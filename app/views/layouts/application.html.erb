@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "App" %></title>
+    <%= render "shared/head" %>
+    <%= yield :head %>
+  </head>
+
+  <body>
+    <%= render Ui::Flash::Component.new %>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<div class="space-y-8">
+  <section class="text-center md:text-left">
+    <h1 class="text-4xl font-black text-brand-blue mb-2 flex items-center gap-3 justify-center md:justify-start uppercase tracking-tight">
+      <%= icon_tag "gift", class: "w-10 h-10" %>
+      <span>Loja de Prêmios</span>
+    </h1>
+    <p class="text-gray-400 font-bold uppercase tracking-widest text-xs">Transforme seu esforço em alegria!</p>
+  </section>
+
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <% if @rewards.any? %>
+      <% @rewards.each do |reward| %>
+        <div class="bg-white rounded-3xl p-8 border-2 border-border shadow-[0_4px_0_0_rgba(0,0,0,0.05)] flex flex-col gap-6 transition-all hover:-translate-y-1 hover:shadow-[0_8px_0_0_rgba(0,0,0,0.05)] relative overflow-hiddenGroup">
+          <div class="flex justify-between items-start">
+             <div class="w-20 h-20 rounded-2xl bg-gray-50 flex items-center justify-center border-2 border-border shadow-[0_4px_0_0_var(--border)] overflow-hidden">
+               <%= icon_tag(reward.icon.presence || "gift", class: "w-12 h-12 text-brand-green") %>
+             </div>
+             <div class="bg-white px-4 py-2 rounded-2xl border-2 border-brand-yellow flex items-center gap-1 shadow-[0_4px_0_0_#e5a500]">
+                <span class="text-xl font-black text-brand-yellow"><%= reward.cost %></span>
+                <%= icon_tag "star", class: "w-6 h-6 text-brand-yellow" %>
+             </div>
+          </div>
+          
+          <div class="flex-1">
+            <h3 class="text-2xl font-black text-gray-900 leading-tight uppercase tracking-tight"><%= reward.title %></h3>
+          </div>
+          
+          <div class="pt-2">
+            <% if current_profile.points >= reward.cost %>
+              <%= button_to redeem_kid_reward_path(reward), method: :post,
+                  id: "redeem_reward_#{reward.id}",
+                  class: "btn btn-default btn-lg btn-block",
+                  data: { turbo: true, turbo_confirm: "Quero trocar minhas estrelas por: #{reward.title}?" } do %>
+                <span>RESGATAR!</span>
+                <%= icon_tag "check-circle", class: "w-6 h-6 text-white" %>
+              <% end %>
+            <% else %>
+              <div class="w-full py-5 rounded-2xl bg-gray-50 text-gray-400 font-black text-lg flex flex-col items-center gap-1 border-2 border-border opacity-60">
+                <span class="flex items-center gap-2"><%= icon_tag "wallet", class: "w-6 h-6" %> Faltam estrelas!</span>
+                <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">Precisa de mais <%= reward.cost - current_profile.points %> <%= icon_tag "star", class: "w-3 h-3 inline-block align-middle" %></span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col-span-full bg-white/50 rounded-[3rem] p-16 text-center border-4 border-dashed border-indigo-100">
+        <div class="flex justify-center mb-6">
+          <%= icon_tag "face-frown", class: "w-24 h-24 text-indigo-400 animate-bounce" %>
+        </div>
+        <h3 class="text-3xl font-black text-indigo-900 mb-2">Poxa, a loja está vazia!</h3>
+        <p class="text-indigo-600 font-bold">Peça para seus pais colocarem uns prêmios maneiros aqui!</p>
+      </div>
+    <% end %>
+  </section>
+</div>

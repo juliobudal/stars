@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: littlestars
+      POSTGRES_PASSWORD: littlestars_dev
+      POSTGRES_DB: littlestars_development
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  web:
+    build: .
+    command: bin/dev
+    ports:
+      - "3000:3000"
+      - "3036:3036"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://littlestars:littlestars_dev@db:5432/littlestars_development
+      RAILS_ENV: development
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+
+volumes:
+  pgdata:
+  bundle_cache:

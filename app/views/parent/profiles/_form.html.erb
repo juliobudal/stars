@@ -1,0 +1,37 @@
+<%= form_with(model: [:parent, profile], class: "space-y-6 max-w-lg bg-white rounded-3xl border-2 border-border p-8 shadow-[0_4px_0_0_rgba(0,0,0,0.05)]") do |f| %>
+  <% if profile.errors.any? %>
+    <div class="rounded-2xl bg-brand-red/10 p-4 border-2 border-brand-red/20 mb-6">
+      <div class="flex">
+        <div class="ml-3">
+          <h3 class="text-sm font-black text-brand-red uppercase tracking-tight italic">Opa! Temos um probleminha:</h3>
+          <div class="mt-2 text-xs font-bold text-brand-red/80 uppercase tracking-widest">
+            <ul class="list-disc space-y-1 pl-5">
+              <% profile.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name, "Nome do Filho", class: "block text-xs font-black text-gray-400 uppercase tracking-widest mb-2" %>
+    <div class="mt-1">
+      <%= f.text_field :name, required: true, class: "block w-full rounded-2xl border-2 border-border px-4 py-3 placeholder-gray-300 focus:border-brand-blue focus:ring-0 text-gray-900 font-bold transition-colors shadow-inner" %>
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :avatar, "Avatar (Emoji)", class: "block text-xs font-black text-gray-400 uppercase tracking-widest mb-2" %>
+    <div class="mt-1">
+      <%= f.text_field :avatar, placeholder: "🐱", required: true, class: "block w-24 rounded-2xl border-2 border-border px-4 py-3 text-2xl text-center focus:border-brand-blue focus:ring-0 shadow-inner" %>
+    </div>
+  </div>
+
+  <div class="flex justify-end gap-4 pt-6 border-t-2 border-border mt-8">
+    <%= link_to "Cancelar", parent_root_path, class: "btn btn-secondary btn-md" %>
+    <%= f.submit "Salvar", class: "btn btn-default btn-md" %>
+  </div>
+<% end %>

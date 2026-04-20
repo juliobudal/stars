@@ -1,0 +1,15 @@
+<%# Confetti Trigger %>
+<%= turbo_stream.append "body" do %>
+  <div data-controller="ui--confetti" data-confetti-on-connect="true" class="hidden"></div>
+<% end %>
+
+<%= turbo_stream.update :flash do %>
+  <div class="relative w-full py-4 px-6 text-sm bg-brand-green text-white rounded-2xl border-b-4 border-brand-green-depth font-bold flex items-center gap-3">
+    <span>🎁</span>
+    Resgate solicitado! Aguarde a aprovação.
+  </div>
+<% end %>
+
+<%= turbo_stream.update "profile_points_#{current_profile.id}" do %>
+  <%= current_profile.reload.points %>
+<% end %>

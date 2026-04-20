@@ -1,0 +1,14 @@
+<%# Kid — Profile task card partial (LittleStars design) %>
+<div id="<%= dom_id(profile_task) %>" class="col" style="gap: 8px; animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;">
+  <%= render Ui::MissionCard::Component.new(
+    mission: profile_task,
+    status: "pending",
+    variant: "bubble",
+    index: 0
+  ) %>
+  <%= button_to complete_kid_mission_path(profile_task), method: :patch,
+      class: "btn btn-primary w-full",
+      data: { turbo_confirm: "Terminou a missão: #{profile_task.title}?" } do %>
+    <i class="ph-bold ph-check" style="font-size: 20px;"></i> FEITO!
+  <% end %>
+</div>

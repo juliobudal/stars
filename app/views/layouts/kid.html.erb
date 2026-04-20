@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "LittleStars | Dashboard Kid" %></title>
+    <%= render "shared/head" %>
+    <%= yield :head %>
+  </head>
+
+  <body class="app-shell" data-palette="sky">
+    <%= render "shared/bg_shapes", variant: "blue" %>
+    <%= turbo_stream_from current_profile, "notifications" %>
+
+    <div class="viewport pb-24">
+      <%= render Ui::Flash::Component.new %>
+      <%= yield %>
+    </div>
+
+    <!-- Bottom Navigation Kids -->
+    <div class="bottom-nav">
+       <% nav_mob = ->(icon_name, path) { 
+          active = request.path == path || current_page?(path)
+          link_to path, class: "nav-item #{active ? 'active' : ''}", title: icon_name do %>
+          <i class="ph-bold ph-<%= icon_name %>" style="font-size: 26px;"></i>
+        <% end } %>
+        <%= nav_mob.call("target", kid_root_path) %>
+        <%= nav_mob.call("tote", kid_rewards_path) %>
+        <%= nav_mob.call("wallet", kid_wallet_index_path) %>
+        
+        <%= button_to sessions_path, method: :delete, class: "nav-item", style: "color: var(--danger);", title: "Sair" do %>
+          <i class="ph-bold ph-sign-out" style="font-size: 26px;"></i>
+        <% end %>
+    </div>
+  </body>
+</html>

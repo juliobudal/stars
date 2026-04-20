@@ -1,0 +1,46 @@
+<div class="space-y-8">
+  <section class="text-center">
+    <div class="inline-block bg-brand-yellow/10 p-8 rounded-[2rem] border-4 border-brand-yellow/20 shadow-[0_8px_0_0_rgba(251,191,36,0.2)] mb-4 transition-transform hover:scale-105">
+      <div class="flex justify-center mb-2">
+        <%= icon_tag "wallet", class: "w-16 h-16 text-brand-yellow" %>
+      </div>
+      <h1 class="text-5xl font-black text-brand-yellow-depth"><%= current_profile.points %></h1>
+      <p class="text-brand-yellow font-black uppercase tracking-widest text-sm">Minhas Estrelas</p>
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <h2 class="text-2xl font-black text-indigo-950 flex items-center gap-2">
+      <%= icon_tag "list-bullet", class: "w-6 h-6 text-brand-blue" %>
+      <span>Minha História</span>
+    </h2>
+    
+    <div class="space-y-3">
+      <% if @activity_logs.any? %>
+        <% @activity_logs.each do |log| %>
+          <div class="bg-white p-5 rounded-2xl shadow-sm flex items-center justify-between border-l-8 <%= log.earn? ? 'border-green-400' : 'border-red-400' %> transition-all hover:bg-gray-50">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full <%= log.earn? ? 'bg-green-50 text-green-500' : 'bg-red-50 text-red-500' %> flex items-center justify-center">
+                <%= log.earn? ? icon_tag("sparkles", class: "w-6 h-6") : icon_tag("gift", class: "w-6 h-6") %>
+              </div>
+              <div>
+                <p class="font-black text-indigo-950"><%= log.title %></p>
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tighter"><%= l(log.created_at, format: :long).upcase %></p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-black <%= log.earn? ? 'text-green-600' : 'text-red-500' %> flex items-center gap-1">
+                <%= log.earn? ? "+" : "-" %><%= log.points %>
+                <%= icon_tag "star", class: "w-5 h-5 text-brand-yellow" %>
+              </span>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="bg-white/50 rounded-2xl p-10 text-center border-2 border-dashed border-gray-200">
+           <p class="text-gray-400 font-extrabold italic">Nenhuma aventura registrada ainda! Vá lá ganhar estrelas! <%= icon_tag "rocket-launch", class: "w-4 h-4 inline-block align-middle" %></p>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>

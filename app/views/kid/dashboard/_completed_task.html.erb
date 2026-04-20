@@ -1,0 +1,10 @@
+<div class="bg-white/60 p-4 rounded-2xl border-2 border-dashed border-green-200 flex items-center gap-4">
+  <%= category_icon_tag completed_task.global_task.category, class: "w-8 h-8 text-brand-green opacity-40" %>
+  <div class="flex-1 opacity-60">
+    <p class="font-bold text-green-700 line-through text-lg"><%= completed_task.title %></p>
+    <div class="flex items-center gap-1 text-green-600 font-black text-sm">
+      <span>GANHOU +<%= completed_task.points %></span>
+      <%= icon_tag "star", class: "w-4 h-4 text-brand-yellow" %>
+    </div>
+  </div>
+</div>

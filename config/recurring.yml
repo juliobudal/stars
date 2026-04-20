@@ -1,0 +1,9 @@
+production:
+  daily_reset:
+    class: DailyResetJob
+    schedule: "0 0 * * *"
+
+development:
+  daily_reset:
+    class: DailyResetJob
+    schedule: "0 0 * * *"

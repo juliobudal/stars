@@ -1,0 +1,6 @@
+fix: true
+ruby_version: 3.3.0
+ignore:
+  - 'db/schema.rb'
+  - 'bin/*'
+  - 'node_modules/**/*'

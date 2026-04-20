@@ -1,0 +1,20 @@
+@font-face {
+  font-weight: 400;
+  font-family: 'Geist';
+  src: url('../../fonts/Geist-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: 'Geist';
+  src: url('../../fonts/Geist-Medium.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 600;
+  font-family: 'Geist';
+  src: url('../../fonts/Geist-SemiBold.ttf') format('truetype');
+  font-display: swap;
+}

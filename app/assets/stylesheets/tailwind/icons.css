@@ -1,0 +1,35 @@
+@layer components {
+  .icon {
+    @apply shrink-0;
+    user-select: none;
+    display: inline-flex;
+    vertical-align: middle;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: currentColor;
+    -webkit-touch-callout: none;
+    mask-image: var(--svg);
+    mask-position: center;
+    mask-repeat: no-repeat;
+    block-size: var(--icon-size, 100%);
+    inline-size: var(--icon-size, 100%);
+    mask-size: var(--icon-size, 100%);
+  }
+
+  img.icon {
+    background: none;
+  }
+
+  .icon-img {
+    background-color: transparent;
+    mask-image: none;
+    background-image: var(--svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: var(--icon-size, 100%);
+  }
+
+  /* Icon specific SVGs are now managed by ApplicationHelper#icon_tag via style injection */
+}
+}

@@ -1,0 +1,83 @@
+@layer components {
+  .h1 {
+    @apply text-4xl font-semibold;
+  }
+
+  .h2 {
+    @apply text-2xl font-semibold;
+  }
+
+  .h3 {
+    @apply text-xl font-semibold;
+  }
+
+  .h4 {
+    @apply text-lg font-semibold;
+  }
+
+  .h5 {
+    @apply text-base font-semibold;
+  }
+
+  .h6 {
+    @apply text-sm font-semibold;
+  }
+
+  .p {
+    @apply mb-3;
+  }
+
+  .ul {
+    @apply flex flex-col gap-1 list-disc list-inside;
+
+    li {
+      @apply pl-6;
+    }
+  }
+
+  .ol {
+    @apply flex flex-col gap-1 list-decimal list-inside;
+    li {
+      @apply pl-6;
+    }
+  }
+
+  .hr {
+    @apply h-px my-8 border-0 bg-border;
+  }
+
+  /* Divider component */
+  .divider {
+    @apply flex items-center gap-4 text-sm py-2 text-muted-foreground;
+
+    &::before,
+    &::after {
+      @apply flex-1 h-px content-[''] bg-border;
+    }
+
+    &:empty {
+      @apply gap-0;
+    }
+  }
+
+  .divider-vertical {
+    @apply flex-col h-full w-px mx-4;
+
+    &::before,
+    &::after {
+      @apply w-px h-auto flex-1;
+    }
+  }
+
+  .divider-start {
+    &::before {
+      @apply hidden;
+    }
+  }
+
+  .divider-end {
+    &::after {
+      @apply hidden;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+/*
+ * Syntax highlighting themes for light/dark mode
+ * Based on highlight.js atom-one themes
+ */
+
+/* Dark theme (default) - Atom One Dark */
+
+@layer components {
+  @import 'highlight.js/styles/atom-one-dark.css';
+
+  .hljs {
+    @apply border border-border rounded-card;
+  }
+
+  .dark .hljs {
+    @apply bg-card;
+  }
+}

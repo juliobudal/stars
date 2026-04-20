@@ -1,0 +1,9 @@
+<div class="mb-6 flex items-center justify-between">
+  <div>
+    <h1 class="text-2xl font-bold text-gray-900">Nova Tarefa</h1>
+    <p class="mt-1 text-sm text-gray-500">Adicione uma missão ao banco de tarefas da família.</p>
+  </div>
+  <%= link_to "← Voltar", parent_global_tasks_path, class: "text-sm text-indigo-600 hover:text-indigo-900" %>
+</div>
+
+<%= render 'form', global_task: @global_task %>

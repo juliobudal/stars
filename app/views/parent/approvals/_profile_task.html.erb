@@ -1,0 +1,29 @@
+<%# Parent — Approvals task partial (LittleStars design) %>
+<div id="<%= dom_id(task) %>" class="card" style="padding: 14px; border: 2px solid rgba(26,42,74,0.08); transition: all 0.2s;">
+  <div class="row" style="gap: 14px;">
+    <div class="icon-tile" style="width: 52px; height: 52px; background: var(--primary-soft); color: var(--primary);">
+      <i class="ph-bold ph-target" style="font-size: 28px;"></i>
+    </div>
+    <div class="col fg1" style="gap: 4px;">
+      <div class="h-display" style="font-size: 17px;"><%= task.title %></div>
+      <div class="row" style="gap: 6px;">
+        <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;"><%= task.profile.name %></span>
+        <div class="chip chip-star" style="font-size: 12px; padding: 4px 10px;">
+          <i class="ph-fill ph-star" style="font-size: 12px; color: var(--star-2);"></i>+<%= task.points %>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="gap: 8px;">
+      <%= button_to reject_parent_approval_path(task), method: :patch,
+          class: "btn btn-danger btn-icon",
+          data: { turbo_frame: "approvals_list", turbo_confirm: "Rejeitar esta tarefa? Ela voltará para a lista do filho." } do %>
+        <i class="ph-bold ph-x" style="font-size: 20px; color: white;"></i>
+      <% end %>
+      <%= button_to approve_parent_approval_path(task), method: :patch,
+          class: "btn btn-success btn-icon",
+          data: { turbo_frame: "approvals_list" } do %>
+        <i class="ph-bold ph-check" style="font-size: 22px; color: white;"></i>
+      <% end %>
+    </div>
+  </div>
+</div>

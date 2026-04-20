@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "@easepick/bundle": "^1.2.1",
+    "@floating-ui/dom": "^1.7.6",
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.2",
+    "@rails/request.js": "^0.0.9",
+    "canvas-confetti": "^1.9.4",
+    "choices.js": "^11.1.0",
+    "highlight.js": "^11.11.1",
+    "imask": "^7.6.1",
+    "mjml": "^4.15.3",
+    "stimulus-rails-autosave": "^5.1.0",
+    "stimulus-textarea-autogrow": "^4.1.0",
+    "stimulus-use": "^0.52.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.18",
+    "@tailwindcss/vite": "^4.0.6",
+    "standard": "^17.1.0",
+    "stimulus-vite-helpers": "^3.1.0",
+    "tailwindcss": "^4.0.6",
+    "vite": "^7.1.7",
+    "vite-plugin-rails": "^0.5.0"
+  },
+  "scripts": {
+    "dev": "bin\\/vite dev",
+    "build": "bin\\/vite build",
+    "standard": "standard"
+  }
+}

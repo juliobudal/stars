@@ -1,0 +1,11 @@
+<%
+  variant ||= "blue"
+  colors = case variant
+           when "warm" then ['#ffe0b3', '#ffcad4', '#e0ccff']
+           when "cool" then ['#c2e7ff', '#dccfff', '#c2f0dd']
+           else ['#c7ddff', '#ffd6e6', '#c2f0dd']
+           end
+%>
+<div class="bg-shape" style="top: -8%; right: -10%; width: 45%; height: 45%; background: <%= colors[0] %>"></div>
+<div class="bg-shape" style="bottom: -12%; left: -8%; width: 50%; height: 50%; background: <%= colors[1] %>"></div>
+<div class="bg-shape" style="top: 30%; left: 50%; width: 30%; height: 30%; background: <%= colors[2] %>; opacity: 0.35"></div>

@@ -1,0 +1,43 @@
+<%= form_with(model: [:parent, reward], class: "space-y-8 max-w-lg bg-white rounded-3xl border-2 border-border p-8 shadow-[0_4px_0_0_rgba(0,0,0,0.05)]") do |f| %>
+  <% if reward.errors.any? %>
+    <div class="rounded-2xl bg-brand-red/10 p-4 border-2 border-brand-red/20 mb-6">
+      <div class="ml-3">
+        <h3 class="text-sm font-black text-brand-red uppercase tracking-tight italic">Ops! Algo deu errado:</h3>
+        <ul class="mt-2 text-xs font-bold text-brand-red/80 uppercase tracking-widest list-disc pl-5">
+          <% reward.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :title, "Nome da Recompensa", class: "block text-xs font-black text-gray-400 uppercase tracking-widest mb-2" %>
+    <%= f.text_field :title, required: true, placeholder: "Ex: Sorvete de chocolate",
+        class: "block w-full rounded-2xl border-2 border-border px-4 py-3 placeholder-gray-300 focus:border-brand-blue focus:ring-0 text-gray-900 font-bold shadow-inner" %>
+  </div>
+
+  <div>
+    <%= f.label :cost, class: "block text-xs font-black text-gray-400 uppercase tracking-widest mb-2" do %>
+      Custo em Estrelinhas (<%= icon_tag "star", class: "w-3 h-3 inline-block" %>)
+    <% end %>
+    <%= f.number_field :cost, min: 1, required: true,
+        class: "block w-full rounded-2xl border-2 border-border px-4 py-3 focus:border-brand-blue focus:ring-0 text-gray-900 font-bold shadow-inner" %>
+    <p class="mt-2 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Quantas estrelinhas o filho precisa para resgatar este prêmio.</p>
+  </div>
+
+  <div>
+    <%= f.label :icon, "Identificador do Ícone (Ex: gift, ticket, star)", class: "block text-xs font-black text-gray-400 uppercase tracking-widest mb-2" %>
+    <div class="flex items-center gap-4">
+      <%= f.text_field :icon, placeholder: "gift",
+          class: "block w-full rounded-2xl border-2 border-border px-4 py-3 text-lg font-bold focus:border-brand-blue focus:ring-0 shadow-inner" %>
+      <span class="text-[10px] font-black text-gray-300 uppercase tracking-widest leading-tight w-32">Use nomes de ícones do sistema para manter o estilo</span>
+    </div>
+  </div>
+
+  <div class="flex justify-end gap-4 pt-6 border-t-2 border-border mt-8">
+    <%= link_to "Cancelar", parent_rewards_path, class: "btn btn-secondary btn-md" %>
+    <%= f.submit "Salvar Recompensa", class: "btn btn-default btn-md" %>
+  </div>
+<% end %>

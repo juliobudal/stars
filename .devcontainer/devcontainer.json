@@ -1,0 +1,21 @@
+{
+  "name": "LittleStars",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "web",
+  "workspaceFolder": "/app",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Shopify.ruby-lsp",
+        "castwide.solargraph",
+        "bradlc.vscode-tailwindcss",
+        "jetrockets.jetrockets-ui-vscode"
+      ]
+    }
+  },
+  "postCreateCommand": "bundle install && yarn install",
+  "forwardPorts": [3000, 5432]
+}

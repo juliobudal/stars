@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "LittleStars | Painel Responsável" %></title>
+    <%= render "shared/head" %>
+    <%= yield :head %>
+  </head>
+
+  <body class="app-shell" data-palette="sky">
+    <%= render "shared/bg_shapes", variant: "cool" %>
+    <%= turbo_stream_from current_profile.family, "approvals" %>
+
+    <div class="viewport">
+      <%= render Ui::Flash::Component.new %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<%= turbo_stream.remove @profile_task %>
+
+<%# Confetti Trigger %>
+<%= turbo_stream.append "body" do %>
+  <div data-controller="ui--confetti" data-confetti-on-connect="true" class="hidden"></div>
+<% end %>
+
+<%= turbo_stream.update :flash do %>
+  <div class="relative w-full py-4 px-6 text-sm bg-brand-green text-white rounded-2xl border-b-4 border-brand-green-depth font-bold flex items-center gap-3">
+    <span>✅</span>
+    Tarefa aprovada com sucesso!
+  </div>
+<% end %>
+
+<% if current_profile.family.profile_tasks.awaiting_approval.count == 0 %>
+  <%= turbo_stream.replace "approvals_list" do %>
+    <div class="bg-white rounded-3xl border-2 border-border p-12 text-center shadow-[0_4px_0_0_rgba(0,0,0,0.05)]">
+      <div class="text-6xl mb-6">💤</div>
+      <h3 class="text-2xl font-black text-gray-900 mb-2 uppercase tracking-tight">Tudo em dia!</h3>
+      <p class="text-gray-500 max-w-xs mx-auto font-medium">Não há missões aguardando aprovação no momento. Que tal aproveitar o descanso?</p>
+    </div>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update "pending_approvals_count" do %>
+  <%= current_profile.family.profile_tasks.awaiting_approval.count %>
+<% end %>
