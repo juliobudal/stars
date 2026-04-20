@@ -10,7 +10,8 @@ class Kid::RewardsController < ApplicationController
   def redeem
     @reward = current_profile.family.rewards.find(params[:id])
     
-    if Rewards::RedeemService.new(profile: current_profile, reward: @reward).call
+    result = Rewards::RedeemService.new(profile: current_profile, reward: @reward).call
+    if result.success?
       respond_to do |format|
         format.html { redirect_to kid_rewards_path, notice: "Resgate solicitado! Aguarde a aprovação. 🎁" }
         format.turbo_stream

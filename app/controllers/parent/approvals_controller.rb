@@ -16,13 +16,14 @@ class Parent::ApprovalsController < ApplicationController
   def approve
     @profile_task = current_profile.family.profile_tasks.find(params[:id])
     
-    if Tasks::ApproveService.new(@profile_task).call
+    result = Tasks::ApproveService.new(@profile_task).call
+    if result.success?
       respond_to do |format|
         format.html { redirect_to parent_approvals_path, notice: "Tarefa aprovada com sucesso!" }
         format.turbo_stream
       end
     else
-      redirect_to parent_approvals_path, alert: "Não foi possível aprovar a tarefa."
+      redirect_to parent_approvals_path, alert: result.error || "Não foi possível aprovar a tarefa."
     end
   end
 
@@ -67,13 +68,14 @@ class Parent::ApprovalsController < ApplicationController
   def reject
     @profile_task = current_profile.family.profile_tasks.find(params[:id])
     
-    if Tasks::RejectService.new(@profile_task).call
+    result = Tasks::RejectService.new(@profile_task).call
+    if result.success?
       respond_to do |format|
         format.html { redirect_to parent_approvals_path, notice: "Tarefa rejeitada." }
         format.turbo_stream
       end
     else
-      redirect_to parent_approvals_path, alert: "Não foi possível rejeitar a tarefa."
+      redirect_to parent_approvals_path, alert: result.error || "Não foi possível rejeitar a tarefa."
     end
   end
 end
