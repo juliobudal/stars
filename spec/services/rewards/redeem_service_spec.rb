@@ -17,14 +17,15 @@ RSpec.describe Rewards::RedeemService do
         expect {
           described_class.new(profile: child, reward: reward).call
         }.to change(child.activity_logs, :count).by(1)
-        
+
         log = child.activity_logs.last
-        expect(log.log_type).to eq('reward_redeemed')
+        expect(log.log_type).to eq('redeem')
         expect(log.points).to eq(-70)
       end
 
-      it 'returns true' do
-        expect(described_class.new(profile: child, reward: reward).call).to be true
+      it 'returns success' do
+        result = described_class.new(profile: child, reward: reward).call
+        expect(result.success?).to be true
       end
     end
 
@@ -37,14 +38,48 @@ RSpec.describe Rewards::RedeemService do
         }.not_to change { child.reload.points }
       end
 
-      it 'returns false' do
-        expect(described_class.new(profile: child, reward: reward).call).to be false
+      it 'returns failure with error' do
+        result = described_class.new(profile: child, reward: reward).call
+        expect(result.success?).to be false
+        expect(result.error).to match(/saldo insuficiente/i)
       end
-      
+
       it 'does not create an activity log' do
         expect {
           described_class.new(profile: child, reward: reward).call
         }.not_to change(ActivityLog, :count)
+      end
+    end
+
+    context 'race condition: two concurrent redeems for same profile' do
+      let(:child) { create(:profile, :child, family: family, points: 70) }
+      let!(:reward) { create(:reward, family: family, cost: 70) }
+
+      it 'allows exactly one to succeed and the other to fail with balance error' do
+        results = []
+        mutex = Mutex.new
+
+        threads = 2.times.map do
+          Thread.new do
+            ActiveRecord::Base.connection_pool.with_connection do
+              result = described_class.new(
+                profile: Profile.find(child.id),
+                reward: Reward.find(reward.id)
+              ).call
+              mutex.synchronize { results << result }
+            end
+          end
+        end
+
+        threads.each(&:join)
+
+        successes = results.count { |r| r.success? }
+        failures = results.count { |r| !r.success? }
+
+        expect(successes).to eq(1)
+        expect(failures).to eq(1)
+        expect(results.find { |r| !r.success? }.error).to match(/saldo insuficiente/i)
+        expect(child.reload.points).to eq(0)
       end
     end
   end
