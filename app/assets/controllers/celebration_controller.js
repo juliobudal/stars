@@ -10,6 +10,10 @@ export default class extends Controller {
 
   burst() {
     if (!this.hasLayerTarget) return
+    // Guard: skip if fired within the last 500ms (prevents repeat-spam)
+    const now = Date.now()
+    if (this._lastBurstAt && now - this._lastBurstAt < 500) return
+    this._lastBurstAt = now
     const layer = this.layerTarget
     layer.style.display = "block"
     layer.innerHTML = ""
