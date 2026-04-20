@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+if [ -f "/usr/local/bin/docker-entrypoint" ]; then
+  exec /usr/local/bin/docker-entrypoint ./bin/rails solid_queue:start "$@"
+fi
+
+exec bundle exec rails solid_queue:start "$@"
