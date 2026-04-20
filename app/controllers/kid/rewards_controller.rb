@@ -1,7 +1,7 @@
 class Kid::RewardsController < ApplicationController
   include Authenticatable
   before_action :require_child!
-  layout 'kid'
+  layout "kid"
 
   def index
     @rewards = current_profile.family.rewards
@@ -9,7 +9,7 @@ class Kid::RewardsController < ApplicationController
 
   def redeem
     @reward = current_profile.family.rewards.find(params[:id])
-    
+
     result = Rewards::RedeemService.new(profile: current_profile, reward: @reward).call
     if result.success?
       respond_to do |format|

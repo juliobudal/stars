@@ -6,7 +6,7 @@ class Parent::ApprovalsController < ApplicationController
     @profile_tasks = current_profile.family.profile_tasks.awaiting_approval
                                     .joins(:profile)
                                     .order("profiles.name ASC, profile_tasks.created_at DESC")
-    
+
     @redemptions = Redemption.pending.joins(:profile)
                                   .where(profiles: { family_id: current_profile.family_id })
                                   .select("redemptions.*, profiles.name as profile_name")
@@ -15,7 +15,7 @@ class Parent::ApprovalsController < ApplicationController
 
   def approve
     @profile_task = current_profile.family.profile_tasks.find(params[:id])
-    
+
     result = Tasks::ApproveService.new(@profile_task).call
     if result.success?
       respond_to do |format|
@@ -67,7 +67,7 @@ class Parent::ApprovalsController < ApplicationController
 
   def reject
     @profile_task = current_profile.family.profile_tasks.find(params[:id])
-    
+
     result = Tasks::RejectService.new(@profile_task).call
     if result.success?
       respond_to do |format|
