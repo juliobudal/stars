@@ -28,9 +28,7 @@ class Parent::ApprovalsController < ApplicationController
   end
 
   def approve_redemption
-    @redemption = Redemption.find(params[:id])
-    # Ensure family scope
-    return unless current_profile.family.profiles.include?(@redemption.profile)
+    @redemption = family_redemptions.find(params[:id])
 
     if @redemption.update(status: :approved)
       respond_to do |format|
@@ -43,8 +41,7 @@ class Parent::ApprovalsController < ApplicationController
   end
 
   def reject_redemption
-    @redemption = Redemption.find(params[:id])
-    return unless current_profile.family.profiles.include?(@redemption.profile)
+    @redemption = family_redemptions.find(params[:id])
 
     ActiveRecord::Base.transaction do
       @redemption.update!(status: :rejected)
@@ -77,5 +74,11 @@ class Parent::ApprovalsController < ApplicationController
     else
       redirect_to parent_approvals_path, alert: result.error || "Não foi possível rejeitar a tarefa."
     end
+  end
+
+  private
+
+  def family_redemptions
+    Redemption.joins(:profile).where(profiles: { family_id: current_profile.family_id })
   end
 end
