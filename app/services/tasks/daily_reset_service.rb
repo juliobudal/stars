@@ -7,31 +7,43 @@ module Tasks
     end
 
     def call
-      # Iterate over global tasks, optionally scoped by family
-      tasks_scope = @family ? @family.global_tasks : GlobalTask.all
-      
+      Rails.logger.info("[Tasks::DailyResetService] start date=#{@date} family_id=#{@family&.id || 'all'}")
+
+      tasks_scope =
+        if @family
+          @family.global_tasks.includes(family: :profiles)
+        else
+          GlobalTask.includes(family: :profiles)
+        end
+
+      created_count = 0
+
       tasks_scope.find_each do |global_task|
         next unless applicable_today?(global_task)
 
-        # Iterate over children in the family (of the task)
-        global_task.family.profiles.child.find_each do |child|
-          ProfileTask.find_or_create_by!(
+        global_task.family.profiles.select(&:child?).each do |child|
+          pt = ProfileTask.find_or_create_by!(
             profile: child,
             global_task: global_task,
             assigned_date: @date
           )
+          created_count += 1 if pt.previously_new_record?
         end
       end
+
+      Rails.logger.info("[Tasks::DailyResetService] success created=#{created_count}")
+      created_count
     end
 
     private
 
     def applicable_today?(gt)
       return true if gt.daily?
-      
-      # Weekly tasks check if today's wday is in the list of days_of_week
-      # NOTE: ensure days_of_week is an array of integers (0-6)
-      gt.weekly? && gt.days_of_week.present? && gt.days_of_week.to_a.map(&:to_i).include?(@wday)
+      return false unless gt.weekly?
+      return false if gt.days_of_week.blank?
+
+      # days_of_week is a PG string array (see schema). Parse once to integers.
+      gt.days_of_week.map(&:to_i).include?(@wday)
     end
   end
 end
