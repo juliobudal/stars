@@ -2,7 +2,7 @@ class ProfileTask < ApplicationRecord
   belongs_to :profile
   belongs_to :global_task
 
-  enum :status, {pending: 0, awaiting_approval: 1, approved: 2}, default: :pending
+  enum :status, {pending: 0, awaiting_approval: 1, approved: 2, rejected: 3}, default: :pending
 
   delegate :title, :points, :category, :description, :icon, to: :global_task
 

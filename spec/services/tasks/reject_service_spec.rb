@@ -8,9 +8,9 @@ RSpec.describe Tasks::RejectService do
 
   describe '#call' do
     context 'when task is awaiting approval' do
-      it 'updates status back to pending' do
+      it 'updates status to rejected' do
         described_class.new(profile_task).call
-        expect(profile_task.reload.status).to eq('pending')
+        expect(profile_task.reload.status).to eq('rejected')
       end
 
       it 'does NOT change points' do
@@ -18,17 +18,20 @@ RSpec.describe Tasks::RejectService do
           described_class.new(profile_task).call
         }.not_to change { child.reload.points }
       end
-      
-      it 'returns true/truthy' do
-        expect(described_class.new(profile_task).call).to be_truthy
+
+      it 'returns success' do
+        result = described_class.new(profile_task).call
+        expect(result.success?).to be true
       end
     end
 
     context 'when task is not awaiting approval' do
       let(:profile_task) { create(:profile_task, :pending, profile: child, global_task: global_task) }
 
-      it 'returns false' do
-        expect(described_class.new(profile_task).call).to be false
+      it 'returns failure' do
+        result = described_class.new(profile_task).call
+        expect(result.success?).to be false
+        expect(result.error).to be_present
       end
     end
   end
