@@ -317,7 +317,22 @@ module Tasks
 end
 ```
 
-### Resgate de Recompensa (com Validação de Saldo)
+### Resgate de Recompensa — Fluxo de 2 Etapas (Intencional)
+
+O resgate de recompensa **não é atômico na submissão**. O fluxo é:
+
+1. **Criança solicita** via `Rewards::RedeemService` → cria `Redemption{status: :pending}` (sem debitar pontos ainda).
+2. **Pai aprova** na fila de aprovações → debita `Profile.points`, muda `Redemption.status` para `:approved`, cria `ActivityLog{log_type: :redeem}` — tudo em transação atômica.
+3. **Pai rejeita** → `Redemption.status: :rejected`, sem efeito em pontos.
+
+Essa separação é **intencional** e espelha o ciclo de aprovação de tarefas (`ProfileTask` → `awaiting_approval` → `approved`). Justificativa:
+- Dá ao pai controle sobre resgates caros antes do débito de pontos.
+- Evita débito-depois-estorno em caso de rejeição (estado mais simples, menos `ActivityLog` de reversão).
+- Reusa a fila de aprovações já existente na `Parent::ApprovalsController`.
+
+A validação de saldo ocorre **na solicitação** (criança não pode pedir resgate se `profile.points < reward.cost`) e **novamente na aprovação** (com `reload` dentro da transação, para evitar race condition caso a criança tenha gasto em outro resgate nesse intervalo).
+
+### Resgate de Recompensa (Serviço de Solicitação)
 
 ```ruby
 # app/services/rewards/redeem_service.rb
