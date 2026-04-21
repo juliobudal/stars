@@ -1,6 +1,4 @@
-@reference "~/entrypoints/tailwind.css";
-
-  .stepper {
+.stepper {
     @apply w-full;
   }
 
