@@ -1,4 +1,4 @@
-@import "tailwindcss" source("../../");
+@import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
 @plugin "@tailwindcss/forms";
@@ -10,5 +10,3 @@
 @import "../stylesheets/tailwind/base";
 @import "../stylesheets/tailwind/icons";
 @import "../stylesheets/tailwind/utilities";
-
-@source '../../../tailwindcss_safelist.txt';
