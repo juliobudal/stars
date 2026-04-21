@@ -1,3 +1,5 @@
+@reference "../../../../assets/entrypoints/tailwind.css";
+
   .timeline {
     @apply relative flex flex-col;
   }

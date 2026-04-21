@@ -1,3 +1,5 @@
+@reference "../../../../assets/entrypoints/tailwind.css";
+
   .list {
     @apply w-full;
   }

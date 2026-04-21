@@ -1,3 +1,5 @@
+@reference "../../../../assets/entrypoints/tailwind.css";
+
   .table {
     @apply w-auto;
     thead {

@@ -1,3 +1,5 @@
+@reference "../../../../assets/entrypoints/tailwind.css";
+
   .btn {
     @apply inline-flex items-center justify-center gap-2 w-fit;
     @apply outline-none cursor-pointer shrink-0 text-trim-trim-both;

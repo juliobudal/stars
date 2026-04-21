@@ -1,3 +1,5 @@
+@reference "../../../../assets/entrypoints/tailwind.css";
+
   .modal {
     @apply p-0 m-auto shadow-sm max-w-11/12 h-fit w-2xl;
     @apply bg-card rounded-modal backdrop:bg-overlay;

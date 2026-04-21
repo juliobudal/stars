@@ -1,3 +1,5 @@
+@reference "../../../../assets/entrypoints/tailwind.css";
+
   .navbar {
     @apply z-20 w-full h-navbar backdrop-blur-xs bg-background/90;
     @apply flex items-center justify-between gap-6;

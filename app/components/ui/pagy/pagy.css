@@ -1,3 +1,5 @@
+@reference "../../../../assets/entrypoints/tailwind.css";
+
   .pagy {
     @apply inline-flex;
     a:not(.gap) {
