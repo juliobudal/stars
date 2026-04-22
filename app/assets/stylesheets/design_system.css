@@ -13,14 +13,13 @@
   --surface-2: #f5f9ff;
   --surface-ink: #1a2a4a;
 
-  /* Primary: azul forte */
-  --primary: #2e7df6;
+  /* Primary shades (--primary itself comes from brand.css → Duolingo blue) */
   --primary-2: #1e5fd9;
   --primary-soft: #c7ddff;
   --primary-glow: #6fa6ff;
 
   /* Secundárias saturadas (hard colors) */
-  --star: #ffc41a;          /* amarelo recompensa */
+  --star: #ffc41a;
   --star-2: #ffa800;
   --star-soft: #fff1c2;
 
@@ -28,8 +27,10 @@
   --c-peach-soft: #ffd6c2;
   --c-rose: #ff5a8a;
   --c-rose-soft: #ffd0dd;
+  --c-rose-dark: #8a2e4a;
   --c-mint: #3ed49e;
   --c-mint-soft: #c2f0dd;
+  --c-mint-dark: #1a6a4a;
   --c-sky: #38b6ff;
   --c-sky-soft: #c2e7ff;
   --c-lilac: #9b7aff;
@@ -38,7 +39,6 @@
   --c-coral-soft: #ffcaca;
 
   --danger: #ff5258;
-  --success: #2eca7f;
 
   --text-dark: #1a2a4a;
   --text: #1a2a4a;
@@ -50,7 +50,7 @@
   --shadow-btn-hover: 0 6px 0 rgba(26, 42, 74, 0.12);
   --shadow-card: 0 4px 0 rgba(26, 42, 74, 0.06), 0 8px 20px rgba(26, 42, 74, 0.04);
   --shadow-lift: 0 10px 0 rgba(26, 42, 74, 0.08), 0 20px 40px rgba(26, 42, 74, 0.08);
-  --border: 2px solid rgba(26, 42, 74, 0.08);
+  --border-card: 2px solid rgba(26, 42, 74, 0.08);
 
   /* Radius — generous */
   --r-sm: 14px;
@@ -278,7 +278,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   border-radius: var(--r-lg);
   padding: var(--space-5);
   box-shadow: var(--shadow-card);
-  border: var(--border);
+  border: var(--border-card);
   position: relative;
 }
 
@@ -356,7 +356,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   background: white;
   padding: 6px;
   border-radius: var(--r-full);
-  border: var(--border);
+  border: var(--border-card);
   box-shadow: 0 3px 0 rgba(26,42,74,0.06);
 }
 .tab {
@@ -385,7 +385,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 /* ── Bottom nav ── */
 .bottom-nav {
   position: absolute;
-  bottom: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -394,10 +394,11 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   padding: 8px;
   border-radius: var(--r-full);
   box-shadow: 0 4px 0 rgba(26,42,74,0.08), 0 16px 40px rgba(26, 42, 74, 0.12);
-  border: var(--border);
+  border: var(--border-card);
   z-index: 10;
 }
 .nav-item {
+  position: relative;
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -468,7 +469,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   max-width: 440px;
   width: 100%;
   box-shadow: 0 8px 0 rgba(26,42,74,0.08), 0 24px 60px rgba(26,42,74,0.3);
-  border: var(--border);
+  border: var(--border-card);
   animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   position: relative;
 }
@@ -581,7 +582,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   bottom: 20px;
   right: 20px;
   background: white;
-  border: var(--border);
+  border: var(--border-card);
   border-radius: var(--r-lg);
   padding: var(--space-5);
   color: var(--text);
@@ -628,6 +629,10 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   100% { transform: scale(1); }
 }
 .pop-on-tap:active { animation: pop 0.3s; }
+
+/* Interactive card press feedback */
+.card-tap:active { transform: translateY(4px); transition: transform 0.1s; }
+.card-tap { transition: transform 0.1s; }
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
