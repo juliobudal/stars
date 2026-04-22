@@ -1,4 +1,4 @@
-@reference "../../../../assets/entrypoints/tailwind.css";
+@reference "../../../assets/stylesheets/tailwind/engine.css";
 
   .modal {
     @apply p-0 m-auto shadow-sm max-w-11/12 h-fit w-2xl;

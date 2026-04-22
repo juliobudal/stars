@@ -1,13 +1,16 @@
 <div class="row mb-5 <%= @options[:class] %>" style="justify-content: space-between; flex-shrink: 0; align-items: flex-start; <%= @options[:style] %>">
   <div class="row" style="gap: 14px; align-items: center;">
     <% if @back_url.present? %>
-      <%= link_to @back_url, class: "btn btn-secondary btn-icon" do %>
-        <i class="ph-bold ph-caret-left" style="font-size: 22px;"></i>
+      <%= render Ui::Btn::Component.new(variant: "secondary", size: "icon", url: @back_url) do %>
+        <%= render Ui::Icon::Component.new("back", size: 22) %>
       <% end %>
+    <% elsif left_action? %>
+      <%= left_action %>
     <% end %>
+
     <div>
       <% if @title.present? %>
-        <h2 class="h-display display" style="font-size: 30px;"><%= @title %></h2>
+        <h2 class="h-display display" style="font-size: 30px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 220px;"><%= @title %></h2>
       <% end %>
       <% if @subtitle.present? %>
         <div class="subtitle" style="margin-top: 2px;"><%= @subtitle %></div>

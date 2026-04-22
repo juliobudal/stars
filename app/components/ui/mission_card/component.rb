@@ -3,6 +3,15 @@
 module Ui
   module MissionCard
     class Component < ApplicationComponent
+      CATEGORIES = {
+        "casa" => { color: "mint", icon: "home", label: "Casa" },
+        "escola" => { color: "sky", icon: "graduationCap", label: "Escola" },
+        "rotina" => { color: "peach", icon: "sun", label: "Rotina" },
+        "saude" => { color: "rose", icon: "muscle", label: "Saúde" },
+        "geral" => { color: "primary", icon: "star", label: "Geral" },
+        "outro" => { color: "primary", icon: "star", label: "Geral" }
+      }.freeze
+
       def initialize(mission:, status: "pending", variant: "bubble", index: 0, **options)
         @mission = mission
         @status = status.to_s # "pending", "waiting", "done"
@@ -12,39 +21,30 @@ module Ui
         super()
       end
 
-      def category_name
-        @mission.respond_to?(:category) && @mission.category ? @mission.category.name : "Geral"
+      def category_data
+        cat = @mission.respond_to?(:category) ? @mission.category : nil
+        name = cat.to_s.presence || "geral"
+        CATEGORIES[name] || CATEGORIES["geral"]
       end
 
       def points_value
-        @mission.try(:points) || @mission.try(:base_reward) || @mission.try(:reward_amount) || 10
-      end
-
-      def category_color
-        name = category_name
-        cat_to_color = {
-          "Saúde" => "mint",
-          "Estudos" => "primary",
-          "Rotina" => "peach",
-          "Casa" => "rose"
-        }
-        theme_color = cat_to_color[name] || "primary"
-        bg_var = "var(--#{theme_color == 'primary' ? 'primary-soft' : "c-#{theme_color}-soft"})"
-        fg_var = "var(--#{theme_color == 'primary' ? 'primary' : "c-#{theme_color}"})"
-        { bg: bg_var, fg: fg_var }
-      end
-
-      def icon_name
-        case category_name
-        when "Saúde" then "heartbeat"
-        when "Estudos" then "book"
-        when "Casa" then "house"
-        else "star"
-        end
+        @mission.try(:points) || @mission.try(:stars) || @mission.try(:base_reward) || @mission.try(:reward_amount) || 10
       end
 
       def waiting?
         @status == "waiting"
+      end
+
+      def pressed_transform
+        @variant == "ticket" ? "translateY(3px)" : "translateY(4px)"
+      end
+
+      def shadow_value
+        color = "rgba(26,42,74,0.08)"
+        color = "var(--c-#{category_data[:color]})" if @variant == "bubble"
+        color = "var(--primary)" if @variant == "bubble" && category_data[:color] == "primary"
+
+        @variant == "ticket" ? "0 4px 0 #{color}" : "0 5px 0 #{color}"
       end
     end
   end

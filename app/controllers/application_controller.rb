@@ -6,7 +6,24 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_profile
 
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActionController::ParameterMissing, with: :bad_request
+
   def current_profile
-    @current_profile ||= Profile.find_by(id: session[:profile_id]) if session[:profile_id]
+    @current_profile ||= Profile.includes(:family).find_by(id: session[:profile_id]) if session[:profile_id]
+  end
+
+  private
+
+  def not_found
+    respond_to do |format|
+      format.html { render file: Rails.public_path.join("404.html"), status: :not_found, layout: false }
+      format.turbo_stream { head :not_found }
+      format.any { head :not_found }
+    end
+  end
+
+  def bad_request
+    head :bad_request
   end
 end

@@ -1,4 +1,4 @@
-@reference "../../../../assets/entrypoints/tailwind.css";
+@reference "../../../assets/stylesheets/tailwind/engine.css";
 
   .drawer {
     @apply fixed inset-0 left-auto flex-col hidden m-0 min-h-full shadow-sm w-2xl;

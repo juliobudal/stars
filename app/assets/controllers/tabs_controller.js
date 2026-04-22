@@ -6,8 +6,10 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+  static targets = ["tab"]
+
   show(event) {
-    const targetId = event.currentTarget.dataset.tabsTargetParam
+    const targetId = event.params.id
 
     // Toggle panels
     this.element.querySelectorAll("[id^='panel-']").forEach(panel => {
@@ -16,8 +18,8 @@ export default class extends Controller {
     })
 
     // Toggle tab active state
-    this.element.querySelectorAll(".tab").forEach(tab => {
-      const isActive = tab.dataset.tabsTargetParam === targetId
+    this.tabTargets.forEach(tab => {
+      const isActive = tab.dataset.tabsIdParam === targetId
       tab.classList.toggle("active", isActive)
     })
   }

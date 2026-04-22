@@ -1,6 +1,5 @@
 class Ui::Flash::Component < ApplicationComponent
-  DISMISS_AFTER = 5000
-  SHOW_DELAY = 250
+  DISMISS_AFTER = 2200
 
   def initialize(dismissible: true)
     super
@@ -9,29 +8,19 @@ class Ui::Flash::Component < ApplicationComponent
 
   private
 
-  def data_attrs
-    attrs = {}
-    attrs[:data] = {
-      controller: "flash",
-      action: "turbo:morph@window->flash#connect"
-    }
-
-    if @dismissible
-      attrs[:data].merge!({
-        flash_dismiss_after_value: DISMISS_AFTER,
-        flash_show_delay_value: SHOW_DELAY
-      })
+  def toast_class_for(flash_type)
+    case flash_type.to_s
+    when "notice", "success" then "success"
+    when "alert", "error" then "danger"
+    else "primary"
     end
-
-    attrs
   end
 
-  def tailwind_classes_for(flash_type)
-    {
-      notice: "bg-info text-white",
-      success: "bg-info text-white",
-      alert: "bg-destructive text-white",
-      error: "bg-destructive text-white"
-    }.stringify_keys[flash_type.to_s] || flash_type.to_s
+  def icon_for(flash_type)
+    case flash_type.to_s
+    when "notice", "success" then "check"
+    when "alert", "error" then "close"
+    else "sparkle"
+    end
   end
 end

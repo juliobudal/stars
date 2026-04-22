@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Ui
   module KidAvatar
     class Component < ApplicationComponent
@@ -9,25 +7,20 @@ module Ui
         @options = options
         super()
       end
-      
+
       def call
-        color_name = @kid.try(:color) || "primary"
-        color_name = "primary" unless %w[primary peach lilac mint rose coral].include?(color_name)
-        
-        bg_var = "var(--#{color_name == 'primary' ? 'primary-soft' : "c-#{color_name}-soft"})"
-        fg_var = "var(--#{color_name == 'primary' ? 'primary' : "c-#{color_name}"})"
-        
-        wrap_style = "width: #{@size}px; height: #{@size}px; border-radius: 50%; background: #{bg_var}; border: 3px solid #{fg_var}; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; #{@options[:style]}"
-        
-        avatar_val = @kid.try(:avatar).presence || "👦"
-        
-        content_tag :div, class: @options[:class], style: wrap_style do
-          # Check if avatar_val is a phosphor icon name or an emoji
-          if avatar_val.match?(/^[a-z\-]+$/)
-            content_tag :i, "", class: "ph-fill ph-#{avatar_val}", style: "font-size: #{@size - 4}px; color: #{fg_var};"
-          else
-            content_tag :span, avatar_val, style: "font-size: #{@size * 0.6}px;"
-          end
+        color = @kid.try(:color).presence || "primary"
+        icon = @kid.try(:avatar).presence || @kid.try(:icon).presence || "faceKid"
+
+        bg_var = "var(--c-#{color}-soft)"
+        bg_var = "var(--primary-soft)" if color == "primary"
+        fg_var = "var(--c-#{color})"
+        fg_var = "var(--primary)" if color == "primary"
+
+        style = "width: #{@size}px; height: #{@size}px; border-radius: 50%; background: #{bg_var}; border: 3px solid #{fg_var}; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; #{@options.delete(:style)}"
+
+        content_tag :div, class: @options.delete(:class), style: style do
+          render Ui::Icon::Component.new(icon, size: @size - 4, color: fg_var)
         end
       end
     end

@@ -1,35 +1,52 @@
-ActivityLog.destroy_all
-ProfileTask.destroy_all
-Reward.destroy_all
-GlobalTask.destroy_all
-Profile.destroy_all
-Family.destroy_all
+ActivityLog.delete_all
+ProfileTask.delete_all
+Redemption.delete_all
+Reward.delete_all
+GlobalTask.delete_all
+Profile.delete_all
+Family.delete_all
+
+ActiveRecord::Base.strict_loading_by_default = false
 
 puts "Creating Demo Family..."
-family = Family.create!(name: "Familia Demo")
+family = Family.create!(name: "Estrelas Incríveis")
 
 puts "Creating Profiles..."
-parent1 = family.profiles.create!(name: "Pai", role: :parent, points: 0)
-parent2 = family.profiles.create!(name: "Mãe", role: :parent, points: 0)
-child1 = family.profiles.create!(name: "Filho 1", role: :child, points: 0)
-child2 = family.profiles.create!(name: "Filho 2", role: :child, points: 0)
+parent1 = Profile.create!(family: family, name: "Mamãe", role: :parent, avatar: "faceParent", color: "rose")
+parent2 = Profile.create!(family: family, name: "Papai", role: :parent, avatar: "faceParent", color: "sky")
+
+child1 = Profile.create!(family: family, name: "Lila", role: :child, avatar: "faceFox", color: "peach", points: 340)
+child2 = Profile.create!(family: family, name: "Theo", role: :child, avatar: "faceHero", color: "sky", points: 180)
+child3 = Profile.create!(family: family, name: "Zoe", role: :child, avatar: "facePrincess", color: "rose", points: 520)
 
 puts "Creating Global Tasks..."
-task1 = family.global_tasks.create!(title: "Arrumar a cama", category: :casa, points: 10, frequency: :daily)
-task2 = family.global_tasks.create!(title: "Fazer lição de casa", category: :escola, points: 20, frequency: :daily)
-task3 = family.global_tasks.create!(title: "Lavar a louça", category: :casa, points: 15, frequency: :daily)
-task4 = family.global_tasks.create!(title: "Comer vegetais", category: :rotina, points: 5, frequency: :daily)
-task5 = family.global_tasks.create!(title: "Ajudar na faxina", category: :casa, points: 30, frequency: :weekly)
+task1 = GlobalTask.create!(family: family, title: "Arrumar a cama", category: :casa, points: 20, frequency: :daily, icon: "bed")
+task2 = GlobalTask.create!(family: family, title: "Escovar os dentes", category: :rotina, points: 10, frequency: :daily, icon: "brush")
+task3 = GlobalTask.create!(family: family, title: "Fazer a lição de casa", category: :escola, points: 50, frequency: :daily, icon: "book")
+task4 = GlobalTask.create!(family: family, title: "Lavar a louça", category: :casa, points: 40, frequency: :daily, icon: "dish")
+task5 = GlobalTask.create!(family: family, title: "Ler um livro", category: :escola, points: 30, frequency: :weekly, icon: "bookOpen")
+task6 = GlobalTask.create!(family: family, title: "Dar comida ao pet", category: :rotina, points: 15, frequency: :daily, icon: "paw")
 
 puts "Creating Profile Tasks..."
-# Assign tasks to children
-task1.profile_tasks.create!(profile: child1, status: :pending, assigned_date: Date.current)
-task2.profile_tasks.create!(profile: child1, status: :pending, assigned_date: Date.current)
-task2.profile_tasks.create!(profile: child2, status: :pending, assigned_date: Date.current)
+# Use direct creation to avoid traversing associations on records with strict loading
+# Lila's tasks
+ProfileTask.create!(profile: child1, global_task: task1, status: :pending, assigned_date: Date.current)
+ProfileTask.create!(profile: child1, global_task: task2, status: :pending, assigned_date: Date.current)
+ProfileTask.create!(profile: child1, global_task: task3, status: :awaiting_approval, assigned_date: Date.current)
+ProfileTask.create!(profile: child1, global_task: task6, status: :pending, assigned_date: Date.current)
+
+# Theo's tasks
+ProfileTask.create!(profile: child2, global_task: task1, status: :awaiting_approval, assigned_date: Date.current)
+ProfileTask.create!(profile: child2, global_task: task4, status: :pending, assigned_date: Date.current)
+
+# Zoe's tasks
+ProfileTask.create!(profile: child3, global_task: task5, status: :pending, assigned_date: Date.current)
 
 puts "Creating Rewards..."
-family.rewards.create!(title: "Sorvete", cost: 50, icon: "gift")
-family.rewards.create!(title: "Cinema", cost: 150, icon: "ticket")
-family.rewards.create!(title: "Jogo Novo", cost: 500, icon: "puzzle-piece")
+Reward.create!(family: family, title: "Sorvete de chocolate", cost: 80, icon: "iceCream")
+Reward.create!(family: family, title: "1h de Video Game", cost: 150, icon: "gamepad")
+Reward.create!(family: family, title: "Passeio ao parque", cost: 250, icon: "ferris")
+Reward.create!(family: family, title: "LEGO novo", cost: 600, icon: "blocks")
+Reward.create!(family: family, title: "Escolher filme", cost: 50, icon: "film")
 
-puts "Seed complete!"
+puts "Seed complete! 🌟"

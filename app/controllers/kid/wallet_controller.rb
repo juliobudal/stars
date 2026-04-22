@@ -4,6 +4,6 @@ class Kid::WalletController < ApplicationController
   layout 'kid'
 
   def index
-    @activity_logs = current_profile.activity_logs.order(created_at: :desc)
+    @activity_logs = ActivityLog.where(profile: current_profile).order(created_at: :desc)
   end
 end

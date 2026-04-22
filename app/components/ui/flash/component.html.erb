@@ -1,17 +1,14 @@
-<%= turbo_frame_tag :flash, class: "fixed flex flex-col items-end space-y-2 top-3 left-3 right-3 md:left-auto md:w-fit md:h-fit z-[100]", target: :_top, refresh: :morph do %>
+<div id="flash" class="fixed top-6 left-1/2 -translate-x-1/2 z-[500] flex flex-col items-center gap-2 pointer-events-none">
   <% flash.each do |key, message| %>
     <% next if message.blank? %>
-
-    <%= content_tag :div, class: "relative w-full py-3 pl-4 pr-12 min-w-xs text-sm transition duration-300 rounded-xl md:max-w-lg md:w-fit hidden #{tailwind_classes_for(key)}", id: "flash-#{key}", **data_attrs do %>
-      <p class="flex-1">
-        <%== message %>
-      </p>
-      <% if @dismissible %>
-        <button class="absolute top-2.5 right-3 text-white transition duration-300 focus:outline-none focus:text-white hover:text-white opacity-80 hover:opacity-100" type="button" data-action="flash#close" aria-label="Close">
-          <%= helpers.ui.icon "x-mark", size: 5 %>
-          <span class="sr-only">Close</span>
-        </button>
-      <% end %>
-    <% end %>
+    <div
+      data-controller="flash"
+      data-flash-dismiss-after-value="<%= Ui::Flash::Component::DISMISS_AFTER %>"
+      class="pointer-events-auto flex items-center gap-2 px-5 py-3 rounded-full text-white font-extrabold text-[15px] shadow-lift animate-popIn bg-<%= toast_class_for(key) %>"
+      style="background-color: var(--<%= toast_class_for(key) %>);"
+    >
+      <%= render Ui::Icon::Component.new(icon_for(key), size: 18, color: "white") %>
+      <span><%= message %></span>
+    </div>
   <% end %>
-<% end %>
+</div>

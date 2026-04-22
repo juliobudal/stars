@@ -1,7 +1,13 @@
-<div class="mb-8">
-  <h1 class="text-2xl font-bold text-gray-900">Editar Tarefa Global</h1>
-</div>
+<div class="screen screen-enter-right">
+  <%= render Ui::BgShapes::Component.new(variant: "blue") %>
 
-<%= render Ui::Card::Component.new(class: "px-4 py-5 sm:p-6") do %>
-  <%= render 'form', global_task: @global_task %>
-<% end %>
+  <%= render Ui::TopBar::Component.new(
+    title: "Editar missão",
+    subtitle: "Ajuste os detalhes da tarefa",
+    back_url: parent_global_tasks_path
+  ) %>
+
+  <div class="mt-4" style="z-index: 2;">
+    <%= render 'form', global_task: @global_task %>
+  </div>
+</div>

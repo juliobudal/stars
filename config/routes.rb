@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   namespace :parent do
     root "dashboard#index"
-    resources :profiles, only: [:new, :create, :edit, :update, :destroy]
+    resources :profiles, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :global_tasks, except: [:show]
     resources :rewards, only: [:index, :new, :create, :destroy]
     resources :approvals, only: [:index] do

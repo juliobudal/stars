@@ -1,5 +1,6 @@
 class Ui::Card::Component < ApplicationComponent
-  def initialize(**options)
+  def initialize(variant: "default", **options)
+    @variant = variant
     @options = options
   end
 
@@ -11,7 +12,8 @@ class Ui::Card::Component < ApplicationComponent
 
   def classes
     class_names(
-      "border-2 border-border bg-card text-card-foreground rounded-card",
+      "card",
+      "card-#{@variant}",
       @options.delete(:class)
     )
   end

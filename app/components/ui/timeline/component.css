@@ -1,4 +1,4 @@
-@reference "../../../../assets/entrypoints/tailwind.css";
+@reference "../../../assets/stylesheets/tailwind/engine.css";
 
   .timeline {
     @apply relative flex flex-col;

@@ -5,13 +5,19 @@ class Parent::DashboardController < ApplicationController
   layout 'parent'
 
   def index
-    family_profiles = current_profile.family.profiles
+    @family = Family.includes(:profiles).find(current_profile.family_id)
+    @children = @family.profiles.child
     
-    @children = family_profiles.child
+    # Pre-calculate counts for each child for today's tasks
+    @child_stats = ProfileTask.where(profile: @children, assigned_date: Date.current)
+                              .group(:profile_id, :status)
+                              .count
+    # Results in something like { [profile_id, "pending"] => 5, [profile_id, "approved"] => 2 }
+
     @stats = {
       children: @children.count,
-      pending_tasks: current_profile.family.profile_tasks.pending.count,
-      pending_approvals: current_profile.family.profile_tasks.awaiting_approval.count,
+      pending_tasks: ProfileTask.joins(:profile).where(profiles: { family_id: @family.id }).pending.count,
+      pending_approvals: ProfileTask.joins(:profile).where(profiles: { family_id: @family.id }).awaiting_approval.count,
       total_stars: @children.sum(:points)
     }
   end

@@ -4,7 +4,8 @@ class Parent::ActivityLogsController < ApplicationController
   layout 'parent'
 
   def index
-    @activity_logs = ActivityLog.where(profile: current_profile.family.profiles.child)
+    child_profiles = Profile.where(family_id: current_profile.family_id).child
+    @activity_logs = ActivityLog.where(profile: child_profiles)
                                 .includes(:profile)
                                 .order(created_at: :desc)
                                 .limit(100)

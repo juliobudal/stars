@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def index
     # Assumindo apenas uma família para MVP
-    @family = Family.first
+    @family = Family.includes(:profiles).first
     @profiles = @family&.profiles || []
   end
 

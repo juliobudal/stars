@@ -1,33 +1,19 @@
 <%= turbo_stream.remove @profile_task %>
 
-<%= turbo_stream.prepend "awaiting_list" do %>
-  <%= render partial: "kid/dashboard/awaiting_task", locals: { awaiting_task: @profile_task } %>
-<% end %>
-
-<%= turbo_stream.remove "completed_section_hidden_check" %>
-<%= turbo_stream.replace "completed_section" do %>
-  <section id="completed_section" class="space-y-4 pt-10">
-     <h2 class="text-xl font-bold text-indigo-900">✅ Já feitas</h2>
-     <div id="awaiting_list" class="grid gap-4 sm:grid-cols-2">
-       <%# Note: This is a bit redundant but ensures the section is visible and has the correct ID structure %>
-       <%= render partial: "kid/dashboard/awaiting_task", collection: current_profile.profile_tasks.awaiting_approval, as: :awaiting_task %>
-       <%= render partial: "kid/dashboard/completed_task", collection: current_profile.profile_tasks.approved, as: :completed_task %>
-     </div>
-  </section>
-<% end %>
-
-<%= turbo_stream.update "flash" do %>
-  <div class="rounded-md bg-indigo-50 p-4 mb-4">
-    <p class="text-sm font-medium text-indigo-800">Missão enviada para aprovação! 🚀</p>
+<%= turbo_stream.prepend "panel-waiting" do %>
+  <div id="<%= dom_id(@profile_task) %>">
+    <%= render Ui::MissionCard::Component.new(mission: @profile_task, status: "waiting", variant: "bubble", index: 0) %>
   </div>
 <% end %>
 
-<% if current_profile.profile_tasks.pending.empty? %>
-  <%= turbo_stream.replace "missions_list" do %>
-    <div id="missions_list" class="bg-indigo-100/50 rounded-3xl p-10 text-center border-4 border-dashed border-indigo-200">
-      <span class="text-6xl block mb-4">🌈</span>
-      <h3 class="text-xl font-bold text-indigo-900">Tudo limpo por aqui!</h3>
-      <p class="text-indigo-600">Prepare-se para as próximas missões ou aproveite seus pontos!</p>
-    </div>
-  <% end %>
+<%= turbo_stream.update "flash" do %>
+  <div
+    data-controller="flash"
+    data-flash-dismiss-after-value="2200"
+    class="pointer-events-auto flex items-center gap-2 px-5 py-3 rounded-full text-white font-extrabold text-[15px] shadow-lift animate-popIn"
+    style="background-color: var(--primary);"
+  >
+    <%= render Ui::Icon::Component.new("sparkle", size: 18, color: "white") %>
+    <span>Missão enviada para aprovação! 🚀</span>
+  </div>
 <% end %>

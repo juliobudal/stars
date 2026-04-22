@@ -1,9 +1,13 @@
-<div class="mb-6 flex items-center justify-between">
-  <div>
-    <h1 class="text-2xl font-bold text-gray-900">Nova Recompensa</h1>
-    <p class="mt-1 text-sm text-gray-500">Adicione um prêmio que seus filhos podem resgatar com estrelinhas.</p>
-  </div>
-  <%= link_to "← Voltar", parent_rewards_path, class: "text-sm text-indigo-600 hover:text-indigo-900" %>
-</div>
+<div class="screen screen-enter-right">
+  <%= render Ui::BgShapes::Component.new(variant: "warm") %>
 
-<%= render 'form', reward: @reward %>
+  <%= render Ui::TopBar::Component.new(
+    title: "Nova recompensa",
+    subtitle: "Crie um prêmio para seus filhos",
+    back_url: parent_rewards_path
+  ) %>
+
+  <div class="mt-4" style="z-index: 2;">
+    <%= render 'form', reward: @reward %>
+  </div>
+</div>

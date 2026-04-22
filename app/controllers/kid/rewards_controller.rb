@@ -4,11 +4,11 @@ class Kid::RewardsController < ApplicationController
   layout "kid"
 
   def index
-    @rewards = current_profile.family.rewards
+    @rewards = Reward.where(family_id: current_profile.family_id)
   end
 
   def redeem
-    @reward = current_profile.family.rewards.find(params[:id])
+    @reward = Reward.where(family_id: current_profile.family_id).find(params[:id])
 
     result = Rewards::RedeemService.new(profile: current_profile, reward: @reward).call
     if result.success?

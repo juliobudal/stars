@@ -1,7 +1,5 @@
-require "ostruct"
-
 module Tasks
-  class ApproveService
+  class ApproveService < ApplicationService
     def initialize(profile_task)
       @profile_task = profile_task
       @profile = profile_task.profile
@@ -12,14 +10,15 @@ module Tasks
 
       unless @profile_task.awaiting_approval?
         Rails.logger.info("[Tasks::ApproveService] failure not awaiting_approval id=#{@profile_task.id}")
-        return OpenStruct.new(success?: false, error: "Tarefa não está aguardando aprovação")
+        return fail_with("Tarefa não está aguardando aprovação")
       end
 
       ActiveRecord::Base.transaction do
         @profile_task.update!(status: :approved, completed_at: Time.current)
         @profile.increment!(:points, @profile_task.points)
 
-        @profile.activity_logs.create!(
+        ActivityLog.create!(
+          profile: @profile,
           log_type: :earn,
           title: "Missão Concluída: #{@profile_task.title}",
           points: @profile_task.points
@@ -27,10 +26,10 @@ module Tasks
       end
 
       Rails.logger.info("[Tasks::ApproveService] success id=#{@profile_task.id}")
-      OpenStruct.new(success?: true, error: nil)
+      ok(@profile_task)
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
       Rails.logger.error("[Tasks::ApproveService] exception id=#{@profile_task.id} error=#{e.message}")
-      OpenStruct.new(success?: false, error: e.message)
+      fail_with(e.message)
     end
   end
 end

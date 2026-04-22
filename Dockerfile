@@ -8,10 +8,10 @@ RUN apt-get update -qq && \
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
-RUN bundle install || true
+RUN bundle install
 
 COPY package.json yarn.lock ./
-RUN yarn install || true
+RUN yarn install --frozen-lockfile
 
 COPY . .
 

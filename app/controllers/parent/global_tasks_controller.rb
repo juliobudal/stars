@@ -6,15 +6,15 @@ class Parent::GlobalTasksController < ApplicationController
   layout 'parent'
 
   def index
-    @global_tasks = current_profile.family.global_tasks.order(created_at: :desc)
+    @global_tasks = GlobalTask.where(family_id: current_profile.family_id).order(created_at: :desc)
   end
 
   def new
-    @global_task = current_profile.family.global_tasks.new
+    @global_task = GlobalTask.new(family_id: current_profile.family_id)
   end
 
   def create
-    @global_task = current_profile.family.global_tasks.new(global_task_params)
+    @global_task = GlobalTask.new(global_task_params.merge(family_id: current_profile.family_id))
     if @global_task.save
       redirect_to parent_global_tasks_path, notice: "Tarefa criada com sucesso."
     else
@@ -41,7 +41,7 @@ class Parent::GlobalTasksController < ApplicationController
   private
 
   def set_global_task
-    @global_task = current_profile.family.global_tasks.find(params[:id])
+    @global_task = GlobalTask.where(family_id: current_profile.family_id).find(params[:id])
   end
 
   def global_task_params

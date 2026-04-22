@@ -1,4 +1,4 @@
-@reference "../../../../assets/entrypoints/tailwind.css";
+@reference "../../../assets/stylesheets/tailwind/engine.css";
 
 .turbo_frame_spinner {
   @apply hidden content-[''] absolute z-20 top-0 left-0 w-full h-full max-h-[90svh];
