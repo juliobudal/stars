@@ -1,21 +1,27 @@
 <%= turbo_stream.remove @profile_task %>
 
 <%= turbo_stream.update :flash do %>
-  <div class="relative w-full py-3 pl-4 pr-12 text-sm bg-red-600 text-white rounded-xl">
-    Tarefa rejeitada.
+  <div
+    data-controller="flash"
+    data-flash-dismiss-after-value="2200"
+    class="pointer-events-auto flex items-center gap-2 px-5 py-3 rounded-full text-white font-extrabold text-[15px] shadow-lift animate-popIn"
+    style="background-color: var(--danger);"
+  >
+    <%= render Ui::Icon::Component.new("close", size: 18, color: "white") %>
+    <span>Tarefa rejeitada.</span>
   </div>
 <% end %>
 
 <% if current_profile.family.profile_tasks.awaiting_approval.count == 0 %>
   <%= turbo_stream.replace "approvals_list" do %>
-    <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-12 text-center">
-      <div class="text-5xl mb-4">💤</div>
-      <h3 class="text-xl font-bold text-gray-900 mb-2">Tudo em dia!</h3>
-      <p class="text-gray-500 max-w-xs mx-auto">Não há missões aguardando aprovação no momento. Que tal aproveitar o descanso?</p>
+    <div class="bg-white rounded-3xl border-2 p-12 text-center" style="border-color: var(--border); box-shadow: 0 4px 0 0 rgba(0,0,0,0.05);">
+      <div class="text-6xl mb-6">💤</div>
+      <h3 class="h-display mb-2" style="font-size: 22px;">Tudo em dia!</h3>
+      <p style="color: var(--text-muted); font-weight: 600;">Não há missões aguardando aprovação no momento.</p>
     </div>
   <% end %>
 <% end %>
 
-<%= turbo_stream.update "pending_approvals_count" do %>
-  <%= current_profile.family.profile_tasks.awaiting_approval.count %>
+<%= turbo_stream.update "pending_approvals_kpi" do %>
+  <%= current_profile.family.profile_tasks.awaiting_approval.count + current_profile.family.redemptions.pending.count %>
 <% end %>
