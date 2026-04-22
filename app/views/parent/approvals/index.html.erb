@@ -1,19 +1,18 @@
-<%# Parent Approvals — LittleStars Design System %>
-<div class="screen screen-enter-right">
+<div class="screen screen-enter-right with-nav">
+  <%= render Ui::BgShapes::Component.new(variant: "cool") %>
 
   <%# ─── Top Bar ─── %>
   <%= render Ui::TopBar::Component.new(
     title: "Aprovações",
     subtitle: "Confira e libere as estrelinhas",
     back_url: parent_root_path
-  ) do |bar|
-    bar.with_right_slot do %>
-      <div class="chip chip-peach" style="font-size: 14px; padding: 8px 14px;" id="pending_approvals_count">
-        <i class="ph-bold ph-clock" style="font-size: 15px; color: currentColor;"></i>
+  ) do |bar| %>
+    <% bar.with_right_slot do %>
+      <%= render Ui::Badge::Component.new(variant: "peach", icon: "clock") do %>
         <%= (@profile_tasks.count + @redemptions.count) %>
-      </div>
-    <% end
-  end %>
+      <% end %>
+    <% end %>
+  <% end %>
 
   <%= turbo_frame_tag "approvals_list" do %>
     <% if @profile_tasks.any? || @redemptions.any? %>
@@ -27,35 +26,44 @@
             <div class="row mb-3" style="gap: 12px;">
               <%= render Ui::KidAvatar::Component.new(kid: child, size: 44) %>
               <div class="h-display" style="font-size: 20px;"><%= child.name %></div>
-              <div class="chip chip-outline"><%= tasks.count %> pedido<%= tasks.count > 1 ? "s" : "" %></div>
+              <%= render Ui::Badge::Component.new(variant: "outline") do %>
+                <%= tasks.count %> pedido<%= tasks.count > 1 ? "s" : "" %>
+              <% end %>
             </div>
 
             <div class="col" style="gap: 10px;">
               <% tasks.each do |task| %>
                 <div id="<%= dom_id(task) %>" class="card" style="padding: 14px; border: 2px solid rgba(26,42,74,0.08); transition: all 0.2s;">
                   <div class="row" style="gap: 14px;">
-                    <div class="icon-tile" style="width: 52px; height: 52px; background: var(--primary-soft); color: var(--primary);">
-                      <i class="ph-bold ph-target" style="font-size: 28px;"></i>
-                    </div>
+                    <% 
+                      cat_name = task.global_task&.category || "geral"
+                      cat_data = Ui::MissionCard::Component::CATEGORIES[cat_name.to_s] || Ui::MissionCard::Component::CATEGORIES["geral"]
+                    %>
+                    <%= render Ui::IconTile::Component.new(icon: cat_data[:icon], color: cat_data[:color], size: 52) %>
+                    
                     <div class="col fg1" style="gap: 4px;">
                       <div class="h-display" style="font-size: 17px;"><%= task.title %></div>
                       <div class="row" style="gap: 6px;">
-                        <div class="chip chip-primary" style="font-size: 11px; padding: 4px 10px;"><%= task.global_task&.category %></div>
-                        <div class="chip chip-star" style="font-size: 12px; padding: 4px 10px;">
-                          <i class="ph-fill ph-star" style="font-size: 12px; color: var(--star-2);"></i>+<%= task.points %>
-                        </div>
+                        <%= render Ui::Badge::Component.new(variant: cat_data[:color], size: "sm", icon: cat_data[:icon]) do %>
+                          <%= cat_data[:label] %>
+                        <% end %>
+                        <%= render Ui::Badge::Component.new(variant: "star", size: "sm", icon: "star") do %>
+                          +<%= task.points %>
+                        <% end %>
                       </div>
                     </div>
                     <div class="row" style="gap: 8px;">
                       <%= button_to reject_parent_approval_path(task), method: :patch,
                           class: "btn btn-danger btn-icon",
-                          data: { turbo_frame: "approvals_list", turbo_confirm: "Rejeitar esta tarefa? Ela voltará para a lista do filho." } do %>
-                        <i class="ph-bold ph-x" style="font-size: 20px; color: white;"></i>
+                          aria: { label: "Rejeitar missão de #{task.title}" },
+                          data: { turbo_frame: "approvals_list", turbo_confirm: "Rejeitar esta tarefa? Ela voltará para a lista do filho.", turbo_submits_with: "Rejeitando..." } do %>
+                        <%= render Ui::Icon::Component.new("close", size: 20, color: "white") %>
                       <% end %>
                       <%= button_to approve_parent_approval_path(task), method: :patch,
                           class: "btn btn-success btn-icon",
-                          data: { turbo_frame: "approvals_list" } do %>
-                        <i class="ph-bold ph-check" style="font-size: 22px; color: white;"></i>
+                          aria: { label: "Aprovar missão de #{task.title}" },
+                          data: { turbo_frame: "approvals_list", turbo_submits_with: "Aprovando..." } do %>
+                        <%= render Ui::Icon::Component.new("check", size: 22, color: "white") %>
                       <% end %>
                     </div>
                   </div>
@@ -72,28 +80,28 @@
               <% @redemptions.each do |redemption| %>
                 <div id="<%= dom_id(redemption) %>" class="card" style="padding: 14px;">
                   <div class="row" style="gap: 14px;">
-                    <div class="icon-tile" style="width: 52px; height: 52px; background: var(--star-soft); color: var(--star-2);">
-                      <i class="ph-bold ph-gift" style="font-size: 28px;"></i>
-                    </div>
+                    <%= render Ui::IconTile::Component.new(icon: "gift", color: "star", size: 52) %>
                     <div class="col fg1" style="gap: 4px;">
                       <div class="h-display" style="font-size: 17px;"><%= redemption.reward&.title %></div>
                       <div class="row" style="gap: 6px;">
-                        <div class="chip chip-star" style="font-size: 12px; padding: 4px 10px;">
-                          <i class="ph-fill ph-star" style="font-size: 12px; color: var(--star-2);"></i>-<%= redemption.reward&.points_required %>
-                        </div>
+                        <%= render Ui::Badge::Component.new(variant: "star", size: "sm", icon: "star") do %>
+                          -<%= redemption.reward&.points_required %>
+                        <% end %>
                         <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;"><%= redemption.profile&.name %></span>
                       </div>
                     </div>
                     <div class="row" style="gap: 8px;">
                       <%= button_to reject_redemption_parent_approval_path(redemption), method: :patch,
                           class: "btn btn-danger btn-icon",
-                          data: { turbo_frame: "approvals_list", turbo_confirm: "Rejeitar este resgate?" } do %>
-                        <i class="ph-bold ph-x" style="font-size: 20px; color: white;"></i>
+                          aria: { label: "Rejeitar resgate de #{redemption.reward&.title}" },
+                          data: { turbo_frame: "approvals_list", turbo_confirm: "Rejeitar este resgate?", turbo_submits_with: "Rejeitando..." } do %>
+                        <%= render Ui::Icon::Component.new("close", size: 20, color: "white") %>
                       <% end %>
                       <%= button_to approve_redemption_parent_approval_path(redemption), method: :patch,
                           class: "btn btn-success btn-icon",
-                          data: { turbo_frame: "approvals_list" } do %>
-                        <i class="ph-bold ph-check" style="font-size: 22px; color: white;"></i>
+                          aria: { label: "Aprovar resgate de #{redemption.reward&.title}" },
+                          data: { turbo_frame: "approvals_list", turbo_submits_with: "Aprovando..." } do %>
+                        <%= render Ui::Icon::Component.new("check", size: 22, color: "white") %>
                       <% end %>
                     </div>
                   </div>
@@ -105,13 +113,12 @@
 
       </div>
     <% else %>
-      <div class="center col" style="padding: 40px; text-align: center; gap: 14px; z-index: 2;">
-        <div style="width: 80px; height: 80px; border-radius: var(--r-md); background: var(--c-mint-soft); color: var(--c-mint); display: flex; align-items: center; justify-content: center;">
-          <i class="ph-bold ph-check-circle" style="font-size: 44px;"></i>
-        </div>
-        <h3 class="h-display" style="font-size: 22px; margin-top: 8px;">Tudo em dia!</h3>
-        <p class="subtitle" style="max-width: 320px;">Nenhuma missão aguardando aprovação agora.</p>
-      </div>
+      <%= render Ui::Empty::Component.new(
+        icon: "check",
+        title: "Tudo em dia!",
+        subtitle: "Nenhuma missão aguardando aprovação agora.",
+        color: "mint"
+      ) %>
     <% end %>
   <% end %>
 

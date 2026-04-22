@@ -1,70 +1,55 @@
-<div class="sm:flex sm:items-center mb-8">
-  <div class="sm:flex-auto">
-    <h1 class="text-3xl font-black text-gray-900 uppercase tracking-tight italic">Banco de Tarefas</h1>
-    <p class="mt-1 text-sm text-gray-400 font-bold uppercase tracking-widest">Tarefas para a familia. Serão atribuídas automaticamente a cada dia.</p>
-  </div>
-  <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-    <%= link_to "Nova Tarefa", new_parent_global_task_path, class: "btn btn-default btn-md" %>
+<div class="screen screen-enter-right with-nav">
+  <%= render Ui::BgShapes::Component.new(variant: "blue") %>
+
+  <%= render Ui::TopBar::Component.new(
+    title: "Banco de Missões",
+    subtitle: "Crie tarefas que as crianças podem cumprir",
+    back_url: parent_root_path
+  ) do |bar| %>
+    <% bar.with_right_slot do %>
+      <%= link_to new_parent_global_task_path, class: "btn btn-primary" do %>
+        <%= render Ui::Icon::Component.new("plus", size: 18, color: "white") %> Nova
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <div class="col" style="gap: 10px; z-index: 2;">
+    <% if @global_tasks.any? %>
+      <% @global_tasks.each_with_index do |m, i| %>
+        <%
+          cat_key = m.category.to_s.presence || "geral"
+          cat_data = Ui::MissionCard::Component::CATEGORIES[cat_key] || Ui::MissionCard::Component::CATEGORIES["geral"]
+        %>
+        <%= link_to edit_parent_global_task_path(m), class: "card pop-on-tap card-tap", style: "padding: 14px; cursor: pointer; animation: slideInCard 0.35s ease #{i * 0.03}s both; border: 2px solid rgba(26,42,74,0.08); text-decoration: none; display: block;" do %>
+          <div class="row" style="gap: 14px;">
+            <%= render Ui::IconTile::Component.new(icon: cat_data[:icon], color: cat_data[:color], size: 52) %>
+            <div class="col fg1" style="gap: 4px;">
+              <div class="h-display" style="font-size: 17px; color: var(--text);"><%= m.title %></div>
+              <div class="row" style="gap: 6px;">
+                <%= render Ui::Badge::Component.new(variant: cat_data[:color], size: "sm", icon: cat_data[:icon]) do %>
+                  <%= cat_data[:label] %>
+                <% end %>
+
+                <%= render Ui::Badge::Component.new(variant: "outline", size: "sm") do %>
+                  <%= m.frequency == "daily" ? "Diária" : "Semanal" %>
+                <% end %>
+              </div>
+            </div>
+            <div class="row" style="gap: 4px; align-items: center;">
+              <%= render Ui::Icon::Component.new("star", size: 20, color: "var(--star)") %>
+              <div class="h-display" style="font-size: 20px; color: var(--star-2);"><%= m.points %></div>
+            </div>
+            <%= render Ui::Icon::Component.new("chevron", size: 18, color: "var(--text-soft)") %>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= render Ui::Empty::Component.new(
+        icon: "target",
+        title: "Nenhuma missão cadastrada",
+        subtitle: "Crie missões para os seus filhos ganharem estrelinhas!",
+        color: "primary"
+      ) %>
+    <% end %>
   </div>
 </div>
-
-<% category_badge = { "escola" => "bg-blue-100 text-blue-800", "casa" => "bg-green-100 text-green-800", "rotina" => "bg-purple-100 text-purple-800", "outro" => "bg-gray-100 text-gray-800" } %>
-
-<% if @global_tasks.any? %>
-  <%= render Ui::Card::Component.new(class: "overflow-hidden") do %>
-    <div class="overflow-x-auto">
-      <table id="global-tasks-table" class="min-w-full">
-        <thead class="bg-gray-50 border-b-2 border-border">
-          <tr>
-            <th scope="col" class="py-4 pl-4 pr-3 text-left text-xs font-black text-gray-400 uppercase tracking-widest sm:pl-6">Título</th>
-            <th scope="col" class="px-3 py-4 text-left text-xs font-black text-gray-400 uppercase tracking-widest">Categoria</th>
-            <th scope="col" class="px-3 py-4 text-left text-xs font-black text-gray-400 uppercase tracking-widest">Estrelas</th>
-            <th scope="col" class="px-3 py-4 text-left text-xs font-black text-gray-400 uppercase tracking-widest">Frequência</th>
-            <th scope="col" class="relative py-4 pl-3 pr-4 sm:pr-6">
-              <span class="sr-only">Ações</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody class="bg-white">
-          <% @global_tasks.each do |task| %>
-            <tr id="global-task-<%= task.id %>" class="border-b border-gray-100 last:border-0 hover:bg-gray-50/50 transition-colors">
-              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-bold text-gray-900 sm:pl-6">
-                <%= task.title %>
-              </td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm">
-                <%= render Ui::Badge::Component.new(variant: :info, class: "flex items-center gap-1.5") do %>
-                  <%= category_icon_tag task.category, class: "w-3 h-3" %>
-                  <%= task.category.upcase %>
-                <% end %>
-              </td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm">
-                <span class="text-brand-yellow font-black flex items-center gap-1">
-                  <%= icon_tag "star", class: "w-4 h-4 text-brand-yellow" %>
-                  <%= task.points %>
-                </span>
-              </td>
-              <td class="whitespace-nowrap px-3 py-4 text-xs font-black text-gray-400 uppercase tracking-widest">
-                <%= task.frequency == "daily" ? "Diária" : "Semanal" %>
-              </td>
-              <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 flex justify-end gap-4">
-                <%= link_to "Editar", edit_parent_global_task_path(task), class: "text-xs font-black text-brand-blue uppercase tracking-widest hover:underline" %>
-                <%= button_to "Remover", parent_global_task_path(task), method: :delete,
-                    class: "text-xs font-black text-brand-red uppercase tracking-widest hover:underline cursor-pointer bg-transparent border-0",
-                    form: { data: { turbo_confirm: "Tem certeza que deseja remover a tarefa \"#{task.title}\"? Isso não afetará tarefas já atribuídas." } } %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  <% end %>
-<% else %>
-  <div class="text-center py-16 border-2 border-dashed border-gray-200 rounded-xl">
-    <div class="flex justify-center mb-4">
-      <%= icon_tag "list-bullet", class: "w-16 h-16 text-gray-200" %>
-    </div>
-    <h3 class="text-lg font-semibold text-gray-700 mb-1">Nenhuma tarefa cadastrada</h3>
-    <p class="text-sm text-gray-500 mb-6">Crie sua primeira tarefa para começar a gamificação!</p>
-    <%= link_to "Nova Tarefa", new_parent_global_task_path, class: "inline-flex items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700" %>
-  </div>
-<% end %>

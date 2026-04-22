@@ -1,60 +1,51 @@
-<div class="sm:flex sm:items-center mb-8">
-  <div class="sm:flex-auto">
-    <h1 class="text-3xl font-black text-gray-900 uppercase tracking-tight italic">Loja de Recompensas</h1>
-    <p class="mt-2 text-sm text-gray-400 font-bold uppercase tracking-widest">Itens que seus filhos podem resgatar com as estrelinhas que acumulam.</p>
-  </div>
-  <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-    <%= link_to "Nova Recompensa", new_parent_reward_path, class: "btn btn-default btn-md" %>
+<div class="screen screen-enter-right with-nav">
+  <%= render Ui::BgShapes::Component.new(variant: "warm") %>
+
+  <%= render Ui::TopBar::Component.new(
+    title: "Lojinha",
+    subtitle: "Catálogo de recompensas da família",
+    back_url: parent_root_path
+  ) do |bar| %>
+    <% bar.with_right_slot do %>
+      <%= link_to new_parent_reward_path, class: "btn btn-primary" do %>
+        <%= render Ui::Icon::Component.new("plus", size: 18, color: "white") %> Nova
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <div class="grid-2" style="gap: 12px; z-index: 2;">
+    <% if @rewards.any? %>
+      <% @rewards.each_with_index do |s, i| %>
+        <% 
+          color_idx = i % 6
+          color_options = %w[peach rose mint sky lilac coral]
+          color = color_options[color_idx]
+          fg_var = "var(--c-#{color})"
+        %>
+        <div class="card pop-on-tap card-tap" style="padding: 16px; border: 2px solid <%= fg_var %>; box-shadow: 0 4px 0 <%= fg_var %>; text-align: center; animation: slideInCard 0.35s ease <%= i * 0.03 %>s both;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: <%= fg_var %>; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;">
+            <%= render Ui::Icon::Component.new(s.icon.presence || "gift", size: 36, color: "white") %>
+          </div>
+          <div class="h-display" style="font-size: 15px;"><%= s.title %></div>
+          <%= render Ui::Badge::Component.new(variant: "star", style: "font-size: 13px; padding: 5px 12px; margin-top: 8px;") do %>
+            <%= render Ui::Icon::Component.new("star", size: 13, color: "var(--star-2)") %> <%= s.cost %>
+          <% end %>
+          <div class="row" style="gap: 8px; margin-top: 12px; justify-content: center;">
+            <%= button_to parent_reward_path(s), method: :delete, class: "btn btn-ghost btn-sm", style: "color: var(--danger);", data: { turbo_confirm: "Remover a recompensa \"#{s.title}\"?" } do %>
+              <%= render Ui::Icon::Component.new("trash", size: 16) %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col-span-2">
+        <%= render Ui::Empty::Component.new(
+          icon: "gift",
+          title: "Loja vazia",
+          subtitle: "Adicione recompensas para motivar seus filhos!",
+          color: "rose"
+        ) %>
+      </div>
+    <% end %>
   </div>
 </div>
-
-<% if @rewards.any? %>
-  <%= render Ui::Card::Component.new(class: "overflow-hidden") do %>
-    <div class="overflow-x-auto">
-      <table id="rewards-table" class="min-w-full">
-        <thead class="bg-gray-50 border-b-2 border-border">
-          <tr>
-            <th scope="col" class="py-4 pl-4 pr-3 text-left text-xs font-black text-gray-400 uppercase tracking-widest sm:pl-6">Ícone</th>
-            <th scope="col" class="px-3 py-4 text-left text-xs font-black text-gray-400 uppercase tracking-widest">Título</th>
-            <th scope="col" class="px-3 py-4 text-left text-xs font-black text-gray-400 uppercase tracking-widest">Custo</th>
-            <th scope="col" class="relative py-4 pl-3 pr-4 sm:pr-6">
-              <span class="sr-only">Ações</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody class="bg-white">
-          <% @rewards.each do |reward| %>
-            <tr id="reward-<%= reward.id %>" class="border-b border-gray-100 last:border-0 hover:bg-gray-50/50 transition-colors">
-              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-2xl sm:pl-6">
-                <%= icon_tag(reward.icon.presence || "gift", class: "w-8 h-8 text-brand-green") %>
-              </td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm font-black text-gray-900 uppercase tracking-tight italic">
-                <%= reward.title %>
-              </td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm">
-                <span class="font-black text-brand-yellow flex items-center gap-1">
-                  <%= icon_tag "star", class: "w-5 h-5" %>
-                  <%= reward.cost %>
-                </span>
-              </td>
-              <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                <%= button_to "Remover", parent_reward_path(reward), method: :delete,
-                    class: "text-xs font-black text-brand-red uppercase tracking-widest hover:underline cursor-pointer bg-transparent border-0",
-                    form: { data: { turbo_confirm: "Remover a recompensa \"#{reward.title}\"?" } } %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  <% end %>
-<% else %>
-  <div class="text-center py-16 border-2 border-dashed border-gray-200 rounded-xl">
-    <div class="flex justify-center mb-4">
-      <%= icon_tag "gift", class: "w-16 h-16 text-gray-200" %>
-    </div>
-    <h3 class="text-lg font-semibold text-gray-700 mb-1">Loja vazia</h3>
-    <p class="text-sm text-gray-500 mb-6">Adicione recompensas para motivar seus filhos a completar tarefas!</p>
-    <%= link_to "Nova Recompensa", new_parent_reward_path, class: "btn btn-default btn-md" %>
-  </div>
-<% end %>
