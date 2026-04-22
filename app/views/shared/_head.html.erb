@@ -4,20 +4,14 @@
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
-<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
-<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<link rel="stylesheet" href="/fonts/phosphor/regular/style.css">
+<link rel="stylesheet" href="/fonts/phosphor/bold/style.css">
+<link rel="stylesheet" href="/fonts/phosphor/fill/style.css">
+<link rel="stylesheet" href="/fonts/phosphor/duotone/style.css">
 
 <link rel="icon" href="/icon.png" type="image/png">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/icon.png">
 
 <%= vite_client_tag %>
-<%= vite_stylesheet_tag 'tailwind' %>
-<%= vite_stylesheet_tag 'application' %>
 <%= vite_javascript_tag 'application' %>
