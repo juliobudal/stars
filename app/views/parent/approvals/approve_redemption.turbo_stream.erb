@@ -1,23 +1,31 @@
 <%= turbo_stream.remove @redemption %>
 
-<%# Confetti Trigger %>
 <%= turbo_stream.append "body" do %>
-  <div data-controller="ui--confetti" data-confetti-on-connect="true" class="hidden"></div>
+  <div data-controller="celebration" data-celebration-auto-fire-value="true" class="hidden"></div>
 <% end %>
 
 <%= turbo_stream.update :flash do %>
-  <div class="relative w-full py-4 px-6 text-sm bg-brand-green text-white rounded-2xl border-b-4 border-brand-green-depth font-bold flex items-center gap-3">
-    <span>🎁</span>
-    Resgate aprovado!
+  <div
+    data-controller="flash"
+    data-flash-dismiss-after-value="2200"
+    class="pointer-events-auto flex items-center gap-2 px-5 py-3 rounded-full text-white font-extrabold text-[15px] shadow-lift animate-popIn"
+    style="background-color: var(--success);"
+  >
+    <%= render Ui::Icon::Component.new("check", size: 18, color: "white") %>
+    <span>Resgate aprovado! 🎁</span>
   </div>
 <% end %>
 
 <% if current_profile.family.redemptions.pending.count == 0 && current_profile.family.profile_tasks.awaiting_approval.count == 0 %>
   <%= turbo_stream.replace "approvals_list" do %>
-    <div class="bg-white rounded-3xl border-2 border-border p-12 text-center shadow-[0_4px_0_0_rgba(0,0,0,0.05)]">
+    <div class="bg-white rounded-3xl p-12 text-center" style="border: var(--border-card); box-shadow: 0 4px 0 0 rgba(0,0,0,0.05);">
       <div class="text-6xl mb-6">✨</div>
-      <h3 class="text-2xl font-black text-gray-900 mb-2 uppercase tracking-tight">Tudo Limpo!</h3>
-      <p class="text-gray-500 max-w-xs mx-auto font-medium">Nenhuma pendência. Trabalho incrível!</p>
+      <h3 class="h-display mb-2" style="font-size: 22px;">Tudo Limpo!</h3>
+      <p style="color: var(--text-muted); font-weight: 600;">Nenhuma pendência. Trabalho incrível!</p>
     </div>
   <% end %>
+<% end %>
+
+<%= turbo_stream.update "pending_approvals_kpi" do %>
+  <%= current_profile.family.profile_tasks.awaiting_approval.count %>
 <% end %>
