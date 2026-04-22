@@ -1,56 +1,30 @@
 class Ui::Modal::Component < ApplicationComponent
-  SIZES = %w[sm md lg xl 2xl 3xl 4xl 5xl 6xl].freeze
-  DEFAULT_SIZE = "2xl"
-
-  def initialize(title: nil, subtitle: nil, size: DEFAULT_SIZE, id: nil)
-    super
+  def initialize(title: nil, subtitle: nil, size: "md", id: nil, **options)
     @title = title
     @subtitle = subtitle
     @size = size
     @id = id
+    @options = options
   end
 
-  erb_template <<~ERB
-    <%= container_tag do %>
-      <%= helpers.ui.modal_header(title: @title, subtitle: @subtitle, closable: closable?, id: @id) %>
-      <%= content %>
-    <% end %>
-  ERB
+  def call
+    content_tag :div, class: "modal-overlay", style: "display: none;", data: { controller: "ui-modal", action: "click->ui-modal#closeOnOverlay" }, id: @id do
+      content_tag :div, class: class_names("modal", "w-#{@size}", @options[:class]) do
+        concat header if @title || @subtitle
+        concat content
+      end
+    end
+  end
 
   private
 
-  def container_tag
-    # If @id is provided, we assume it's a sync dialog.
-    if @id
-      return dialog_tag id: @id, data: {modals_target: "dialog"} do
-        yield
-      end
-    end
-
-    # If turbo frame request (for example, open modal via link_to with data: { turbo_frame: :modal }), we should use dialog tag inside turbo frame :modal
-    if helpers.turbo_frame_request?
-      turbo_frame_tag :modal do
-        dialog_tag id: :modalDialog, data: {controller: "modal"} do
-          turbo_frame_tag :modalContent do
-            yield
-          end
+  def header
+    render Ui::TopBar::Component.new(title: @title, subtitle: @subtitle) do |c|
+      c.with_right_slot do
+        render Ui::Btn::Component.new(variant: "ghost", size: "icon", data: { action: "click->ui-modal#close" }) do
+          render Ui::Icon::Component.new("close", size: 20)
         end
       end
-    # If not using Turbo Frame (open new tab for example), we should use a regular div instead of dialog
-    else
-      content_tag :div, class: class_names("modal modal-page", "w-#{@size}") do
-        yield
-      end
     end
-  end
-
-  def dialog_tag(options = {})
-    content_tag :dialog, tabindex: "-1", class: class_names("modal", "animate-slide-up", "w-#{@size}"), **options do
-      yield
-    end
-  end
-
-  def closable?
-    helpers.turbo_frame_request? || @id
   end
 end

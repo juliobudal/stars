@@ -1,7 +1,5 @@
-require "ostruct"
-
 module Rewards
-  class RedeemService
+  class RedeemService < ApplicationService
     def initialize(profile:, reward:)
       @profile = profile
       @reward = reward
@@ -13,6 +11,7 @@ module Rewards
       )
 
       error = nil
+      redemption = nil
 
       ActiveRecord::Base.transaction do
         @profile.lock!
@@ -24,13 +23,15 @@ module Rewards
 
         @profile.decrement!(:points, @reward.cost)
 
-        @profile.redemptions.create!(
+        redemption = Redemption.create!(
+          profile: @profile,
           reward: @reward,
           points: @reward.cost,
           status: :pending
         )
 
-        @profile.activity_logs.create!(
+        ActivityLog.create!(
+          profile: @profile,
           log_type: :redeem,
           title: "Solicitado: #{@reward.title}",
           points: -@reward.cost
@@ -39,14 +40,14 @@ module Rewards
 
       if error
         Rails.logger.info("[Rewards::RedeemService] failure profile_id=#{@profile.id} error=#{error}")
-        OpenStruct.new(success?: false, error: error)
+        fail_with(error)
       else
         Rails.logger.info("[Rewards::RedeemService] success profile_id=#{@profile.id}")
-        OpenStruct.new(success?: true, error: nil)
+        ok(redemption)
       end
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
       Rails.logger.error("[Rewards::RedeemService] exception profile_id=#{@profile.id} error=#{e.message}")
-      OpenStruct.new(success?: false, error: e.message)
+      fail_with(e.message)
     end
   end
 end

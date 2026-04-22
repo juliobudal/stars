@@ -63,20 +63,67 @@ module ApplicationHelper
   end
 
   def icon_tag(name, options = {})
-    # Resolve the asset path. In development with Vite, we might need to reference the dev server path.
-    # Otherwise, fallback to the standard asset path.
-    asset_path = if defined?(ViteRuby) && ViteRuby.instance.dev_server_running?
-      "/vite-dev/images/icons/#{name}.svg"
-    else
-      vite_asset_path("images/icons/#{name}.svg")
+    # Map legacy Heroicon names to Lucide names
+    # Lucide names use hyphens, e.g., "graduation-cap"
+    lucide_name = case name.to_s.gsub("_", "-")
+    when "academic-cap" then "graduation-cap"
+    when "list-bullet" then "list"
+    when "user-circle" then "circle-user-round"
+    when "check-circle" then "circle-check-big"
+    when "face-frown" then "frown"
+    when "rocket-launch" then "rocket"
+    when "sparkles" then "sparkles"
+    when "arrow-path" then "refresh-cw"
+    when "chevron-down" then "chevron-down"
+    when "chevron-left" then "chevron-left"
+    when "chevron-right" then "chevron-right"
+    when "envelope", "mail" then "mail"
+    when "magnifying-glass", "search" then "search"
+    when "pencil", "edit" then "pencil"
+    when "trash", "delete" then "trash-2"
+    when "plus", "add" then "plus"
+    when "minus" then "minus"
+    when "x-mark", "close" then "x"
+    when "wallet" then "wallet"
+    when "star" then "star"
+    when "heart" then "heart"
+    when "gift" then "gift"
+    else name.to_s.gsub("_", "-")
     end
-    
-    # Merge existing style or create a new one
-    style = options[:style] || ""
-    style = "#{style}; --svg: url('#{asset_path}')".strip
-    
-    classes = class_names("icon", "icon-#{name}", options.delete(:class))
-    content_tag(:span, nil, class: classes, style: style, **options)
+
+    # Use the lucide-rails gem to fetch the SVG content
+    begin
+      # Fetch SVG content
+      svg_content = LucideRails::IconProvider.icon(lucide_name)
+      
+      # Encode to Data URI for mask-image
+      # We use Base64 to ensure all characters are handled correctly across browsers
+      base64_svg = Base64.strict_encode64(svg_content)
+      data_uri = "data:image/svg+xml;base64,#{base64_svg}"
+      
+      style = options[:style] || ""
+      style = "#{style}; --svg: url('#{data_uri}')".strip
+      
+      classes = class_names("icon", "icon-#{name}", options.delete(:class))
+      content_tag(:span, nil, class: classes, style: style, **options)
+    rescue => e
+      # Fallback icon (help-circle) if the requested icon is missing in Lucide
+      begin
+        svg_content = LucideRails::IconProvider.icon("help-circle")
+        base64_svg = Base64.strict_encode64(svg_content)
+        data_uri = "data:image/svg+xml;base64,#{base64_svg}"
+        
+        style = options[:style] || ""
+        style = "#{style}; --svg: url('#{data_uri}')".strip
+        
+        classes = class_names("icon", "icon-missing", options.delete(:class))
+        content_tag(:span, nil, class: classes, style: style, "data-missing-icon" => name, **options)
+      rescue
+        # Absolute fallback if even help-circle fails
+        classes = class_names("icon", "bg-red-500", options.delete(:class))
+        content_tag(:span, nil, class: classes, **options)
+      end
+    end
   end
 
   def category_icon_tag(category, options = {})

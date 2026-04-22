@@ -1,0 +1,39 @@
+<%
+  pending_count = current_profile.family.profile_tasks.awaiting_approval.count +
+                  Redemption.pending.joins(:profile).where(profiles: { family_id: current_profile.family_id }).count
+%>
+<div class="bottom-nav">
+  <%
+    nav_item = ->(icon_name, path, title) {
+      active = current_page?(path)
+      link_to path, class: "nav-item #{active ? 'active' : ''}", title: title do
+        render Ui::Icon::Component.new(icon_name, size: 26)
+      end
+    }
+  %>
+  <%= nav_item.call("house", parent_root_path, "Início") %>
+
+  <%= link_to parent_approvals_path,
+      class: "nav-item #{current_page?(parent_approvals_path) ? 'active' : ''} relative",
+      title: "Aprovações" do %>
+    <%= render Ui::Icon::Component.new("clock", size: 26) %>
+    <% if pending_count > 0 %>
+      <span style="
+        position: absolute;
+        top: 6px; right: 6px;
+        min-width: 16px; height: 16px;
+        background: var(--c-peach);
+        color: white;
+        font-size: 10px;
+        font-weight: 800;
+        border-radius: var(--r-full);
+        display: flex; align-items: center; justify-content: center;
+        padding: 0 4px;
+        line-height: 1;
+      "><%= pending_count %></span>
+    <% end %>
+  <% end %>
+
+  <%= nav_item.call("list-checks", parent_global_tasks_path, "Missões") %>
+  <%= nav_item.call("bag", parent_rewards_path, "Loja") %>
+</div>

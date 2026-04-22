@@ -1,0 +1,52 @@
+<div class="screen screen-enter-right">
+  <%= render Ui::BgShapes::Component.new(variant: "warm") %>
+
+  <%= render Ui::TopBar::Component.new(
+    title: "Crianças",
+    subtitle: "Gerencie perfis e saldos",
+    back_url: parent_root_path
+  ) do |bar| %>
+    <% bar.with_right_slot do %>
+      <%= link_to new_parent_profile_path, class: "btn btn-primary" do %>
+        <%= render Ui::Icon::Component.new("plus", size: 18, color: "white") %> Adicionar
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <div class="col" style="gap: 12px; z-index: 2;">
+    <% if @profiles.any? %>
+      <% @profiles.each_with_index do |k, i| %>
+        <% 
+          color = k.color.presence || "primary"
+          fg_var = color == "primary" ? "var(--primary)" : "var(--c-#{color})"
+          # child_tasks = ProfileTask.where(profile: k).for_today
+          # count = child_tasks.count
+        %>
+        <%= link_to edit_parent_profile_path(k), class: "card pop-on-tap card-tap", style: "padding: 16px; cursor: pointer; border: 2px solid #{fg_var}; box-shadow: 0 4px 0 #{fg_var}; animation: slideInCard 0.35s ease #{i * 0.05}s both; text-decoration: none; display: block;" do %>
+          <div class="row" style="gap: 16px;">
+            <%= render Ui::KidAvatar::Component.new(kid: k, size: 64) %>
+            <div class="col fg1" style="gap: 4px;">
+              <div class="h-display" style="font-size: 20px; color: var(--text);"><%= k.name %></div>
+              <div class="row" style="gap: 8px;">
+                <%= render Ui::Badge::Component.new(variant: "star", size: "sm", icon: "star") do %>
+                  <%= k.points %>
+                <% end %>
+                <%= render Ui::Badge::Component.new(variant: "outline", size: "sm") do %>
+                  <%= k.profile_tasks.size %> missões no total
+                <% end %>
+              </div>
+            </div>
+            <%= render Ui::Icon::Component.new("edit", size: 22, color: fg_var) %>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= render Ui::Empty::Component.new(
+        icon: "users",
+        title: "Nenhum perfil",
+        subtitle: "Adicione seu primeiro filho para começar!",
+        color: "peach"
+      ) %>
+    <% end %>
+  </div>
+</div>

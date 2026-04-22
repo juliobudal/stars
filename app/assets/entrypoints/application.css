@@ -1,5 +1,13 @@
+@import "../stylesheets/tailwind/engine.css";
+@source "../../views/**/*.erb";
+@source "../../components/**/*.erb";
+@source "../../components/**/*.js";
+@source "../../javascript/**/*.js";
+
 /* Theme and brand */
+
 @import "../stylesheets/brand";
+@import "../stylesheets/design_system";
 
 /* Components */
 @import "../stylesheets/components/body";
@@ -11,6 +19,7 @@
 @import "../stylesheets/components/typography";
 @import "../stylesheets/components/wrapper";
 @import "../stylesheets/components/wysiwyg";
+
 
 /* Vendors */
 @import "../stylesheets/vendors/choices";

@@ -48,6 +48,9 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Annotate models with schema info for agent-friendly context
+  gem "annotaterb", require: false
 end
 
 group :development do
@@ -75,3 +78,4 @@ gem "standard", ">= 1.35.1", groups: [:development, :test]
 gem "pagy", "~> 43.5"
 
 gem "database_cleaner-active_record", "~> 2.2", :group => :test
+gem "lucide-rails"

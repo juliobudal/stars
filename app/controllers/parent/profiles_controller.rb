@@ -5,13 +5,16 @@ class Parent::ProfilesController < ApplicationController
 
   layout 'parent'
 
+  def index
+    @profiles = Profile.where(family_id: current_profile.family_id).child.includes(:profile_tasks).order(:name)
+  end
+
   def new
-    @profile = current_profile.family.profiles.build(role: :child)
+    @profile = Profile.new(family_id: current_profile.family_id, role: :child)
   end
 
   def create
-    @profile = current_profile.family.profiles.build(profile_params)
-    @profile.role = :child # Force rule
+    @profile = Profile.new(profile_params.merge(family_id: current_profile.family_id, role: :child))
 
     if @profile.save
       redirect_to parent_root_path, notice: 'Filho adicionado com sucesso!'
@@ -39,10 +42,10 @@ class Parent::ProfilesController < ApplicationController
   private
 
   def set_profile
-    @profile = current_profile.family.profiles.child.find(params[:id])
+    @profile = Profile.where(family_id: current_profile.family_id).child.find(params[:id])
   end
 
   def profile_params
-    params.require(:profile).permit(:name, :avatar)
+    params.require(:profile).permit(:name, :avatar, :color)
   end
 end

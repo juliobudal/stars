@@ -9,6 +9,13 @@ export default defineConfig({
   ],
   server: {
     host: '0.0.0.0',
-    hmr: { host: 'localhost' }
+    port: 3036,
+    strictPort: true,
+    hmr: {
+      host: '127.0.0.1',
+      clientPort: 3036
+    }
   }
 })
+
+// Triggering reload to apply config/vite.json changes

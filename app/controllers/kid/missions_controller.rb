@@ -3,7 +3,7 @@ class Kid::MissionsController < ApplicationController
   before_action :require_child!
 
   def complete
-    @profile_task = current_profile.profile_tasks.pending.find(params[:id])
+    @profile_task = ProfileTask.pending.where(profile: current_profile).find(params[:id])
     @profile_task.awaiting_approval!
     
     respond_to do |format|

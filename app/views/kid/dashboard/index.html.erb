@@ -1,8 +1,6 @@
-<%# Kid Dashboard — US04/05 — LittleStars Design System %>
 <div class="screen screen-enter with-nav" data-controller="celebration">
-
-  <%# Confetti layer (controlled by celebration_controller) %>
-  <div class="confetti-layer" data-celebration-target="layer" style="display:none;" aria-hidden="true"></div>
+  <%= render Ui::BgShapes::Component.new(variant: "blue") %>
+  <%= render Ui::Celebration::Component.new %>
 
   <%# ─── Header ─── %>
   <div class="row mb-5" style="justify-content: space-between; z-index: 2; flex-shrink: 0;">
@@ -23,15 +21,15 @@
 
       <div class="row" style="gap: 18px; position: relative;">
         <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; border: 3px solid rgba(255,255,255,0.4); animation: float 3s ease-in-out infinite;">
-          <i class="ph-fill ph-star" style="font-size: 48px; color: #ffc41a;"></i>
+          <%= render Ui::Icon::Component.new("star", size: 48, color: "var(--star)") %>
         </div>
         <div class="col fg1" style="gap: 2px; color: white;">
           <div style="font-size: 12px; font-weight: 800; opacity: 0.85; letter-spacing: 0.1em; text-transform: uppercase;">Meu Cofrinho</div>
-          <div class="h-display" style="font-size: 44px; line-height: 1; color: white;" id="profile_points_<%= current_profile.id %>"><%= current_profile.points %></div>
+          <%= render Ui::BalanceChip::Component.new(value: current_profile.points, size: "lg", id: "profile_points_#{current_profile.id}", style: "background: transparent; border: none; box-shadow: none; padding: 0; color: white;", class: "h-display") %>
           <div style="font-size: 14px; opacity: 0.85; font-weight: 700;">estrelinhas guardadas</div>
         </div>
         <%= link_to kid_rewards_path, class: "btn btn-star btn-sm", style: "flex-shrink: 0;" do %>
-          <i class="ph-bold ph-tote" style="font-size: 18px;"></i>
+          <%= render Ui::Icon::Component.new("bag", size: 18) %>
           Lojinha
         <% end %>
       </div>
@@ -52,74 +50,96 @@
     </div>
   </div>
 
-  <%# ─── Tabs ─── %>
-  <div style="z-index: 2; flex-shrink: 0; margin-bottom: 16px;">
-    <div class="tabs">
-      <button class="tab active" id="tab-todo" data-action="click->tabs#show" data-tabs-target-param="todo">
-        <i class="ph-bold ph-target" style="font-size: 16px;"></i>
-        Pra Fazer
-        <% if @profile_tasks.any? %>
-          <span style="background: rgba(255,255,255,0.3); color: white; padding: 1px 7px; border-radius: 10px; font-size: 11px;"><%= @profile_tasks.count %></span>
-        <% end %>
-      </button>
-      <button class="tab" id="tab-waiting" data-action="click->tabs#show" data-tabs-target-param="waiting">
-        <i class="ph-bold ph-clock" style="font-size: 16px;"></i>
-        Aguardando
-        <% if @awaiting_tasks.any? %>
-          <span style="background: var(--c-peach); color: white; padding: 1px 7px; border-radius: 10px; font-size: 11px;"><%= @awaiting_tasks.count %></span>
-        <% end %>
-      </button>
+  <%# ─── Tabs & Panels ─── %>
+  <div data-controller="tabs" data-tabs-active-class="active" style="display: flex; flex-direction: column; flex: 1;">
+    <div style="z-index: 2; flex-shrink: 0; margin-bottom: 16px;">
+      <div class="tabs">
+        <button class="tab active" data-tabs-target="tab" data-action="click->tabs#show" data-tabs-id-param="todo">
+          <%= render Ui::Icon::Component.new("target", size: 16) %>
+          Pra Fazer
+          <% if @profile_tasks.any? %>
+            <span style="background: rgba(255,255,255,0.3); color: white; padding: 1px 7px; border-radius: 10px; font-size: 11px;"><%= @profile_tasks.count %></span>
+          <% end %>
+        </button>
+        <button class="tab" data-tabs-target="tab" data-action="click->tabs#show" data-tabs-id-param="waiting">
+          <%= render Ui::Icon::Component.new("clock", size: 16) %>
+          Aguardando
+          <% if @awaiting_tasks.any? %>
+            <span style="background: var(--c-peach); color: white; padding: 1px 7px; border-radius: 10px; font-size: 11px;"><%= @awaiting_tasks.count %></span>
+          <% end %>
+        </button>
+      </div>
     </div>
-  </div>
 
-  <%# ─── Mission list: Pra Fazer ─── %>
-  <div id="panel-todo" class="col" style="gap: 14px; z-index: 2;">
-    <% if @profile_tasks.any? %>
-      <% @profile_tasks.each_with_index do |profile_task, i| %>
-        <div id="<%= dom_id(profile_task) %>" style="animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= i * 0.05 %>s both;">
-          <%= render Ui::MissionCard::Component.new(
-            mission: profile_task,
-            status: "pending",
-            variant: "bubble",
-            index: i
-          ) %>
-          <div style="margin-top: 8px;">
-            <%= button_to complete_kid_mission_path(profile_task), method: :patch,
-                class: "btn btn-primary w-full",
-                data: { turbo_confirm: "Terminou a missão: #{profile_task.title}?" } do %>
-              <i class="ph-bold ph-check" style="font-size: 20px;"></i> FEITO!
+    <%# ─── Mission list: Pra Fazer ─── %>
+    <div id="panel-todo" class="col" style="gap: 14px; z-index: 2;">
+      <% if @profile_tasks.any? %>
+        <% @profile_tasks.each_with_index do |profile_task, i| %>
+          <div id="<%= dom_id(profile_task) %>">
+            <%= render Ui::MissionCard::Component.new(
+              mission: profile_task,
+              status: "pending",
+              variant: "bubble",
+              index: i,
+              data: { action: "click->ui-modal#open", "ui-modal-id-param": "modal_#{dom_id(profile_task)}" }
+            ) %>
+            
+            <%# Confirmation Modal %>
+            <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(profile_task)}", title: profile_task.title) do %>
+              <div class="center col" style="text-align: center; gap: 16px;">
+                <%= render Ui::Lumi::Component.new(size: 76, mood: "thinking") %>
+                <% 
+                  cat_name = profile_task.global_task&.category || "geral"
+                  cat_data = Ui::MissionCard::Component::CATEGORIES[cat_name.to_s] || Ui::MissionCard::Component::CATEGORIES["geral"]
+                %>
+                <%= render Ui::IconTile::Component.new(icon: cat_data[:icon], color: cat_data[:color], size: 88) %>
+                <h3 class="h-display" style="font-size: 26px;"><%= profile_task.title %></h3>
+                <div class="row" style="gap: 10px; justify-content: center;">
+                  <%= render Ui::Badge::Component.new(variant: cat_data[:color], size: "sm", icon: cat_data[:icon]) do %>
+                    <%= cat_data[:label] %>
+                  <% end %>
+                  <%= render Ui::Badge::Component.new(variant: "star") do %>
+                    <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star-2)") %>
+                    +<%= profile_task.points %>
+                  <% end %>
+                </div>
+                <p class="subtitle" style="margin-top: 4px;">Terminou essa missão? Um responsável vai confirmar.</p>
+                <div class="row" style="gap: 12px; margin-top: 8px; width: 100%; justify-content: center;">
+                  <%= render Ui::Btn::Component.new(variant: "secondary", data: { action: "click->modal#close" }) do %>Ainda não<% end %>
+                  <%= button_to complete_kid_mission_path(profile_task), method: :patch, class: "btn btn-primary btn-lg" do %>
+                    <%= render Ui::Icon::Component.new("check", size: 20) %> Terminei!
+                  <% end %>
+                </div>
+              </div>
             <% end %>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+        <%= render Ui::Empty::Component.new(
+          icon: "check",
+          title: "Todas as missões feitas!",
+          subtitle: "Você está arrasando hoje ✨",
+          color: "mint"
+        ) %>
       <% end %>
-    <% else %>
-      <div class="center col" style="padding: 40px; text-align: center; gap: 14px;">
-        <div style="width: 80px; height: 80px; border-radius: var(--r-md); background: var(--c-mint-soft); color: var(--c-mint); display: flex; align-items: center; justify-content: center;">
-          <i class="ph-bold ph-check-circle" style="font-size: 44px;"></i>
-        </div>
-        <h3 class="h-display" style="font-size: 22px; margin-top: 8px;">Todas as missões feitas!</h3>
-        <p class="subtitle" style="max-width: 320px;">Você está arrasando hoje ✨</p>
-      </div>
-    <% end %>
-  </div>
+    </div>
 
-  <%# ─── Mission list: Aguardando ─── %>
-  <div id="panel-waiting" class="col" style="gap: 14px; z-index: 2; display: none;" id="awaiting_list">
-    <% if @awaiting_tasks.any? %>
-      <% @awaiting_tasks.each_with_index do |t, i| %>
-        <div id="<%= dom_id(t) %>" style="animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= i * 0.05 %>s both;">
-          <%= render Ui::MissionCard::Component.new(mission: t, status: "waiting", variant: "bubble", index: i) %>
-        </div>
+    <%# ─── Mission list: Aguardando ─── %>
+    <div id="panel-waiting" class="col" style="gap: 14px; z-index: 2; display: none;">
+      <% if @awaiting_tasks.any? %>
+        <% @awaiting_tasks.each_with_index do |t, i| %>
+          <div id="<%= dom_id(t) %>">
+            <%= render Ui::MissionCard::Component.new(mission: t, status: "waiting", variant: "bubble", index: i) %>
+          </div>
+        <% end %>
+      <% else %>
+        <%= render Ui::Empty::Component.new(
+          icon: "clock",
+          title: "Nada aguardando",
+          subtitle: "Complete missões para elas aparecerem aqui",
+          color: "peach"
+        ) %>
       <% end %>
-    <% else %>
-      <div class="center col" style="padding: 40px; text-align: center; gap: 14px;">
-        <div style="width: 80px; height: 80px; border-radius: var(--r-md); background: var(--c-peach-soft); color: var(--c-peach); display: flex; align-items: center; justify-content: center;">
-          <i class="ph-bold ph-clock" style="font-size: 44px;"></i>
-        </div>
-        <h3 class="h-display" style="font-size: 22px; margin-top: 8px;">Nada aguardando</h3>
-        <p class="subtitle" style="max-width: 320px;">Complete missões para elas aparecerem aqui</p>
-      </div>
-    <% end %>
+    </div>
   </div>
-
 </div>

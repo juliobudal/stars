@@ -56,6 +56,7 @@ build:
 
 down:
 	$(COMPOSE) down
+	@-lsof -ti:3000,3036 | xargs kill -9 2>/dev/null; pkill -9 -f "vite|puma|bin/dev" 2>/dev/null; true
 
 restart:
 	$(COMPOSE) restart
@@ -140,10 +141,14 @@ assets-clobber:
 	$(EXEC) bin/rails assets:clobber
 
 # Full bootstrap ---------------------------------------------------------------
-# Wipes volumes, rebuilds images from scratch, boots the stack, then prepares
+# Wipes volumes, rebuilds images from scratch, boots the stack, installs deps
+# inside the container (bind mount masks image-time node_modules), then prepares
 # both DBs (development + test) — drop → create → migrate → seed (dev only).
 # DATA LOSS INTENDED on the Postgres volume.
 setup:
+	@if [ ! -f config/master.key ] && [ ! -f config/credentials/development.key ] && [ -z "$$RAILS_MASTER_KEY" ]; then \
+		echo "⚠ no config/master.key found — credentials-backed features may fail"; \
+	fi
 	$(COMPOSE) down -v --remove-orphans
 	$(COMPOSE) build --no-cache
 	$(COMPOSE) up -d db
@@ -152,11 +157,20 @@ setup:
 	$(COMPOSE) up -d web
 	@echo "→ waiting for web container to finish bundle install + boot..."
 	@until $(COMPOSE) exec -T web bin/rails runner "puts :ok" >/dev/null 2>&1; do sleep 2; done
-	$(EXEC) bin/rails db:drop db:create db:migrate
-	$(EXEC) bin/rails db:drop db:create db:migrate RAILS_ENV=test
+	@echo "→ ensuring gems + js deps installed inside container (bind mount safety)..."
+	$(EXEC) bundle install
+	$(EXEC) yarn install --frozen-lockfile
+	@echo "→ preparing databases (drop + create + migrate all tables including Solid Queue)..."
+	$(EXEC) bin/rails db:prepare
+	$(EXEC) bin/rails db:prepare RAILS_ENV=test
+	@echo "→ seeding development database..."
 	$(EXEC) bin/rails db:seed
+	@echo "→ annotating models with schema comments..."
+	-$(EXEC) bundle exec annotaterb models
+	@echo "→ building assets..."
+	$(EXEC) bin/vite build
 	@echo ""
-	@echo "✓ setup complete — stack up, dev+test DBs migrated, dev DB seeded."
+	@echo "✓ setup complete — stack up, deps installed, dev+test DBs prepared + migrated, dev DB seeded, assets built."
 	@echo "  app → http://localhost:3000"
 	@echo "  vite → http://localhost:3036"
 

@@ -1,4 +1,4 @@
-@reference "../../../../assets/entrypoints/tailwind.css";
+@reference "../../../assets/stylesheets/tailwind/engine.css";
 
   .dropdown {
     @apply relative w-fit;

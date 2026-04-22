@@ -6,15 +6,15 @@ class Parent::RewardsController < ApplicationController
   layout 'parent'
 
   def index
-    @rewards = current_profile.family.rewards.order(cost: :asc)
+    @rewards = Reward.where(family_id: current_profile.family_id).order(cost: :asc)
   end
 
   def new
-    @reward = current_profile.family.rewards.build
+    @reward = Reward.new(family_id: current_profile.family_id)
   end
 
   def create
-    @reward = current_profile.family.rewards.build(reward_params)
+    @reward = Reward.new(reward_params.merge(family_id: current_profile.family_id))
     if @reward.save
       redirect_to parent_rewards_path, notice: "Recompensa criada com sucesso!"
     else
@@ -30,7 +30,7 @@ class Parent::RewardsController < ApplicationController
   private
 
   def set_reward
-    @reward = current_profile.family.rewards.find(params[:id])
+    @reward = Reward.where(family_id: current_profile.family_id).find(params[:id])
   end
 
   def reward_params

@@ -6,8 +6,10 @@
     <%= yield :head %>
   </head>
 
-  <body>
+  <body class="app-shell" data-palette="sky">
     <%= render Ui::Flash::Component.new %>
-    <%= yield %>
+    <div class="viewport">
+      <%= yield %>
+    </div>
   </body>
 </html>

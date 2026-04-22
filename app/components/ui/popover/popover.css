@@ -1,4 +1,4 @@
-@reference "../../../../assets/entrypoints/tailwind.css";
+@reference "../../../assets/stylesheets/tailwind/engine.css";
 
   .popover {
     @apply absolute z-10 w-64 text-sm transition-opacity duration-300 shadow-sm opacity-0 pointer-events-none;

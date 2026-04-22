@@ -7,12 +7,11 @@
   </head>
 
   <body class="app-shell" data-palette="sky">
-    <%= render "shared/bg_shapes", variant: "cool" %>
     <%= turbo_stream_from current_profile.family, "approvals" %>
-
-    <div class="viewport">
+    <div class="viewport pb-24">
       <%= render Ui::Flash::Component.new %>
       <%= yield %>
     </div>
+    <%= render "shared/parent_nav" %>
   </body>
 </html>

@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@source "../../../views/**/*.erb";
+@source "../../../components/**/*.erb";
+@source "../../../components/**/*.js";
+@source "../../../javascript/**/*.js";
+
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+@import "./theme.css";
+@import "./fonts.css";
+@import "./animations.css";
+@import "./base.css";
+@import "./icons.css";
+@import "./utilities.css";
