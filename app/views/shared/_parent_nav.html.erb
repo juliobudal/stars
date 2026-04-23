@@ -11,6 +11,13 @@
       <div>
         <span class="h-display" style="font-size: 20px; font-style: normal; color: var(--text); display: block;">LittleStars</span>
         <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;"><%= current_profile.family.name %></span>
+        <%
+          parents_count = current_profile.family.profiles.parent.count
+          children_count = current_profile.family.profiles.child.count
+        %>
+        <span style="font-size: 11px; color: var(--text-muted);">
+          <%= parents_count %> <%= 'pai'.pluralize(parents_count) %> · <%= children_count %> <%= 'filho'.pluralize(children_count) %>
+        </span>
       </div>
     </div>
   </div>
@@ -79,8 +86,15 @@
     <% end %>
   </div>
 
-  <%# Logout at bottom %>
-  <div style="padding: var(--space-3); border-top: 1px solid var(--hairline); margin-top: var(--space-3);">
+  <%# Identity + logout at bottom %>
+  <div style="padding: var(--space-2) var(--space-3); border-top: 1px solid var(--hairline); margin-top: var(--space-2);">
+    <div class="row" style="gap: 8px; align-items: center; margin-bottom: 8px;">
+      <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 34) %>
+      <div>
+        <div style="font-size: 13px; font-weight: 700; color: var(--text);"><%= current_profile.name %></div>
+        <div style="font-size: 11px; color: var(--text-muted);">Administrador(a)</div>
+      </div>
+    </div>
     <%= button_to sessions_path, method: :delete, class: "nav-item w-full",
         style: "background: transparent; border: none; cursor: pointer; color: var(--text-muted); text-align: left;",
         title: "Sair" do %>
