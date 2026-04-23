@@ -3,7 +3,7 @@
 
   <%= render Ui::TopBar::Component.new(
     title: "Configurações",
-    subtitle: "Preferências da família",
+    subtitle: "Família, responsáveis e regras do sistema.",
     back_url: parent_root_path
   ) %>
 
@@ -12,91 +12,99 @@
     <div class="grid-2" style="gap: 16px;">
       <%# --- Família card --- %>
       <div class="card" style="padding: 20px;">
-        <div class="h-display" style="font-size: 18px; margin-bottom: 14px;">Família</div>
-        <div class="col" style="gap: 14px;">
-          <div class="col" style="gap: 6px;">
-            <label class="label" style="font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--text-muted); text-transform: uppercase;">Nome</label>
-            <input type="text" value="<%= @family.name %>" readonly class="input" style="padding: 10px 12px; border-radius: 10px; border: 1px solid var(--hairline); background: var(--surface-2); color: var(--text);" />
+        <div class="h-display" style="font-size: 18px; margin-bottom: 16px;">Família</div>
+        <div class="col" style="gap: 0;">
+
+          <%# Nome da família — inline label + value %>
+          <div class="row" style="justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--hairline);">
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text);">Nome da família</div>
+              <div style="font-size: 11px; color: var(--text-muted);">Aparece no app das crianças</div>
+            </div>
+            <div style="font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--text); font-style: italic;">
+              <%= @family.name %>
+            </div>
           </div>
 
-          <div class="col" style="gap: 6px;">
-            <label class="label" style="font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--text-muted); text-transform: uppercase;">Idioma</label>
-            <%# TODO: persist locale preference %>
-            <select class="input" style="padding: 10px 12px; border-radius: 10px; border: 1px solid var(--hairline); background: var(--surface); color: var(--text);">
-              <option value="pt-BR" selected>Português (Brasil)</option>
+          <%# Idioma — inline label + select %>
+          <div class="row" style="justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--hairline);">
+            <div style="font-size: 13px; font-weight: 700; color: var(--text);">Idioma</div>
+            <select name="settings[locale]" style="padding: 6px 10px; border-radius: 8px; border: 1px solid var(--hairline); background: var(--surface-2); color: var(--text); font-family: var(--font-body); font-size: 13px; font-weight: 700; cursor: pointer;">
+              <option value="pt-BR" selected>Português (BR)</option>
               <option value="en">English</option>
             </select>
           </div>
 
-          <div class="col" style="gap: 6px;">
-            <label class="label" style="font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--text-muted); text-transform: uppercase;">Fuso horário</label>
-            <%# TODO: persist timezone %>
-            <select class="input" style="padding: 10px 12px; border-radius: 10px; border: 1px solid var(--hairline); background: var(--surface); color: var(--text);">
-              <option value="America/Sao_Paulo" selected>America/Sao_Paulo</option>
-              <option value="America/New_York">America/New_York</option>
-              <option value="Europe/Lisbon">Europe/Lisbon</option>
+          <%# Fuso horário — inline label + select %>
+          <div class="row" style="justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--hairline);">
+            <div style="font-size: 13px; font-weight: 700; color: var(--text);">Fuso horário</div>
+            <select name="settings[timezone]" style="padding: 6px 10px; border-radius: 8px; border: 1px solid var(--hairline); background: var(--surface-2); color: var(--text); font-family: var(--font-body); font-size: 13px; font-weight: 700; cursor: pointer;">
+              <option value="America/Sao_Paulo" selected>São Paulo (GMT-3)</option>
+              <option value="America/New_York">New York (GMT-4)</option>
+              <option value="Europe/Lisbon">Lisboa (GMT+1)</option>
             </select>
           </div>
 
+          <%# Início de semana — inline label + dom/seg pill toggle %>
           <div class="row" style="justify-content: space-between; align-items: center; padding: 10px 0;">
-            <div>
-              <div class="h-display" style="font-size: 14px;">Semana começa no domingo</div>
-              <div style="font-size: 12px; color: var(--text-muted);">Caso contrário, inicia na segunda</div>
+            <div style="font-size: 13px; font-weight: 700; color: var(--text);">Início de semana</div>
+            <div class="row" style="gap: 4px; background: var(--surface-2); border-radius: var(--r-full); padding: 3px;">
+              <button type="button" style="padding: 4px 10px; border-radius: var(--r-full); border: none; background: transparent; color: var(--text-muted); font-family: var(--font-body); font-size: 12px; font-weight: 800; cursor: pointer;">dom</button>
+              <button type="button" style="padding: 4px 10px; border-radius: var(--r-full); border: none; background: var(--text); color: white; font-family: var(--font-body); font-size: 12px; font-weight: 800; cursor: pointer;">seg</button>
             </div>
-            <%# TODO: bind to family setting %>
-            <label style="display: inline-block; width: 44px; height: 24px; position: relative;">
-              <input type="checkbox" style="opacity: 0; width: 0; height: 0;" />
-              <span style="display: block; width: 44px; height: 24px; border-radius: 999px; background: var(--hairline); position: relative;">
-                <span style="position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 50%; background: white;"></span>
-              </span>
-            </label>
           </div>
+
         </div>
       </div>
 
       <%# --- Responsáveis card --- %>
       <div class="card" style="padding: 20px;">
-        <div class="h-display" style="font-size: 18px; margin-bottom: 14px;">Responsáveis</div>
-        <div class="col" style="gap: 10px;">
+        <div class="h-display" style="font-size: 18px; margin-bottom: 16px;">Responsáveis</div>
+        <div class="col" style="gap: 8px;">
           <% @family.profiles.parent.each do |p| %>
-            <div class="row" style="gap: 12px; align-items: center; padding: 10px; border-radius: 12px; background: var(--surface-2);">
-              <%= render Ui::KidAvatar::Component.new(kid: p, size: 40) %>
-              <div class="col fg1" style="gap: 2px;">
-                <div class="h-display" style="font-size: 14px;"><%= p.name %></div>
-                <div style="font-size: 12px; color: var(--text-muted);">Responsável</div>
+            <div class="row" style="gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; background: var(--surface-2);">
+              <%= render Ui::KidAvatar::Component.new(kid: p, size: 36) %>
+              <div class="col fg1" style="gap: 1px;">
+                <div style="font-size: 14px; font-weight: 700; color: var(--text);"><%= p.name %></div>
+                <div style="font-size: 11px; color: var(--text-muted);">
+                  <%= p.name.downcase.parameterize(separator: ".") %>@familia.com · Administrador<%= "a" if p.name.ends_with?("a") || p.name.ends_with?("e") %>
+                </div>
               </div>
+              <button type="button" style="background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px; display: flex; align-items: center;">
+                <%= render Ui::Icon::Component.new("pencil", size: 14, color: "var(--text-muted)") %>
+              </button>
             </div>
           <% end %>
 
           <%# TODO: enable parent invite flow %>
-          <button type="button" class="btn btn-ghost" style="justify-content: center; border: 1px dashed var(--hairline); padding: 10px;">
-            <%= render Ui::Icon::Component.new("plus", size: 16, color: "var(--text-muted)") %>
+          <button type="button" class="btn btn-ghost btn-sm" style="justify-content: center; width: 100%; border: 1.5px solid var(--hairline); border-style: dashed; border-radius: 10px; padding: 10px; color: var(--text-muted); font-family: var(--font-body); font-size: 13px;">
+            <%= render Ui::Icon::Component.new("plus", size: 14, color: "var(--text-muted)") %>
             Convidar responsável
           </button>
         </div>
       </div>
     </div>
 
-    <%# --- Regras (full-width) --- %>
+    <%# --- Regras do sistema (full-width) --- %>
     <div class="card" style="padding: 20px;">
-      <div class="h-display" style="font-size: 18px; margin-bottom: 14px;">Regras</div>
-      <div class="col" style="gap: 4px;">
+      <div class="h-display" style="font-size: 18px; margin-bottom: 14px;">Regras do sistema</div>
+      <div class="col" style="gap: 0;">
         <% [
-          ["Exigir foto de comprovação", "Pedir foto ao concluir missão"],
-          ["Decaimento de estrelas", "Estrelas expiram após um período"],
-          ["Permitir saldo negativo", "Crianças podem ficar com saldo devedor"],
-          ["Aprovação automática", "Missões diárias liberam sem revisão"]
+          ["Exigir foto na conclusão", "Criança precisa anexar uma foto para marcar missão como feita"],
+          ["Estrelas expiram", "Estrelas não usadas expiram após 30 dias"],
+          ["Permitir saldo negativo", "Crianças podem ficar 'devendo' estrelas por rejeições"],
+          ["Auto-aprovar missões até", "Missões de valor baixo são aprovadas automaticamente"]
         ].each_with_index do |(title, desc), idx| %>
           <div class="row" style="justify-content: space-between; align-items: center; padding: 14px 0; <%= 'border-top: 1px solid var(--hairline);' unless idx.zero? %>">
             <div class="col" style="gap: 2px;">
-              <div class="h-display" style="font-size: 14px;"><%= title %></div>
+              <div style="font-size: 14px; font-weight: 700; color: var(--text);"><%= title %></div>
               <div style="font-size: 12px; color: var(--text-muted);"><%= desc %></div>
             </div>
             <%# TODO: bind to family rule setting %>
-            <label style="display: inline-block; width: 44px; height: 24px; position: relative;">
-              <input type="checkbox" style="opacity: 0; width: 0; height: 0;" />
-              <span style="display: block; width: 44px; height: 24px; border-radius: 999px; background: var(--hairline); position: relative;">
-                <span style="position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 50%; background: white;"></span>
+            <label style="display: inline-block; width: 44px; height: 24px; position: relative; cursor: pointer; flex-shrink: 0;">
+              <input type="checkbox" style="opacity: 0; width: 0; height: 0; position: absolute;" />
+              <span style="display: block; width: 44px; height: 24px; border-radius: 999px; background: var(--hairline); position: relative; transition: background 0.2s;">
+                <span style="position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 50%; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.15); transition: left 0.2s;"></span>
               </span>
             </label>
           </div>
@@ -104,7 +112,7 @@
       </div>
     </div>
 
-    <div class="row" style="justify-content: flex-end; gap: 8px;">
+    <div class="row" style="justify-content: flex-end; gap: 8px; padding-bottom: 8px;">
       <%= f.submit "Salvar alterações", class: "btn btn-primary" %>
     </div>
   <% end %>
