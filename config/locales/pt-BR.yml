@@ -1,0 +1,17 @@
+pt-BR:
+  hello: "Olá mundo"
+  common:
+    save: "Salvar"
+    cancel: "Cancelar"
+    delete: "Excluir"
+    edit: "Editar"
+  flashes:
+    saved: "Salvo com sucesso."
+    deleted: "Excluído com sucesso."
+    auth:
+      email_invalid: "Endereço de e-mail inválido."
+  parent:
+    nav:
+      home: "Início"
+      kids: "Filhos"
+      missions: "Missões"

@@ -29,3 +29,18 @@
 
 en:
   hello: "Hello world"
+  common:
+    save: "Save"
+    cancel: "Cancel"
+    delete: "Delete"
+    edit: "Edit"
+  flashes:
+    saved: "Saved successfully."
+    deleted: "Deleted successfully."
+    auth:
+      email_invalid: "Invalid email address."
+  parent:
+    nav:
+      home: "Home"
+      kids: "Kids"
+      missions: "Missions"

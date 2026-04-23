@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  around_action :with_family_locale
+
   helper_method :current_profile, :family_today
 
   def family_today(family)
@@ -29,5 +31,9 @@ class ApplicationController < ActionController::Base
 
   def bad_request
     head :bad_request
+  end
+
+  def with_family_locale
+    I18n.with_locale(current_profile&.family&.locale || I18n.default_locale) { yield }
   end
 end

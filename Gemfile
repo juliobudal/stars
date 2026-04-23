@@ -79,3 +79,5 @@ gem "pagy", "~> 43.5"
 
 gem "database_cleaner-active_record", "~> 2.2", :group => :test
 gem "lucide-rails"
+
+gem "rails-i18n", "~> 8.0"
