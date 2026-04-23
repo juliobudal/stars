@@ -1,9 +1,7 @@
 <%
   freq_meta = {
-    "daily"   => { label: "Todo dia", soft: "var(--c-mint-soft)", dark: "var(--c-mint-dark)" },
-    "weekly"  => { label: "Semanal", soft: "var(--c-sky-soft)",  dark: "#0369A1" },
-    "monthly" => { label: "Mensal",  soft: "var(--c-lilac-soft)", dark: "#6D28D9" },
-    "once"    => { label: "Única",   soft: "var(--c-peach-soft)", dark: "var(--c-rose-dark)" }
+    "daily"  => { label: "Todo dia", soft: "var(--c-mint-soft)", dark: "var(--c-mint-dark)" },
+    "weekly" => { label: "Semanal",  soft: "var(--c-sky-soft)",  dark: "var(--c-sky-dark)" }
   }
   cat_meta = {
     "casa"   => { label: "Casa",   bg: "var(--c-mint-soft)",  color: "var(--c-mint-dark)", icon: "home" },
@@ -12,14 +10,13 @@
     "saude"  => { label: "Saúde",  bg: "var(--star-soft)",    color: "var(--star-2)",      icon: "muscle" },
     "outro"  => { label: "Outro",  bg: "var(--surface-2)",    color: "var(--text-muted)",  icon: "sparkle" }
   }
-  kids = Profile.where(family_id: current_profile.family_id).child.order(:name).to_a
 %>
 <div class="screen screen-enter-right with-nav" data-controller="tabs">
   <%= render Ui::BgShapes::Component.new(variant: "blue") %>
 
   <%= render Ui::TopBar::Component.new(
     title: "Missões",
-    subtitle: "#{@global_tasks.count { |t| t.respond_to?(:active?) ? t.active? : true }} ativas · #{@global_tasks.size} no catálogo",
+    subtitle: "#{@global_tasks.size} missões no catálogo",
     back_url: parent_root_path
   ) do |bar| %>
     <% bar.with_right_slot do %>
@@ -30,7 +27,7 @@
   <% end %>
 
   <div class="filter-chips row" style="gap: 8px; flex-wrap: wrap; margin-bottom: 14px; z-index: 2;">
-    <% [["all","Todas"],["daily","Diárias"],["weekly","Semanais"],["monthly","Mensais"],["once","Únicas"],["inactive","Inativas"]].each_with_index do |(key,label), idx| %>
+    <% [["all","Todas"],["daily","Diárias"],["weekly","Semanais"]].each_with_index do |(key,label), idx| %>
       <button type="button"
               class="chip <%= 'active' if idx == 0 %>"
               data-tabs-target="tab"
@@ -44,12 +41,11 @@
 
   <div class="card" style="padding: 0; overflow: hidden; z-index: 2;">
     <% if @global_tasks.any? %>
-      <div style="background: var(--surface-2); padding: 14px 20px; display: grid; grid-template-columns: 2fr 1.3fr 0.8fr 1.5fr 100px 60px; font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--text-muted); text-transform: uppercase;">
+      <div style="background: var(--surface-2); padding: 14px 20px; display: grid; grid-template-columns: 2fr 1.3fr 0.8fr 1.5fr 60px; font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--text-muted); text-transform: uppercase;">
         <div>Missão</div>
         <div>Recorrência</div>
         <div>Estrelas</div>
         <div>Atribuída a</div>
-        <div>Ativa</div>
         <div></div>
       </div>
 
@@ -58,19 +54,17 @@
         fm = freq_meta[freq_key] || freq_meta["daily"]
         cat_key = m.category.to_s
         cm = cat_meta[cat_key] || cat_meta["outro"]
-        is_active = m.respond_to?(:active?) ? m.active? : true
         panel_keys = ["all", freq_key]
-        panel_keys << "inactive" unless is_active
       %>
         <div class="mission-row"
              data-panels="<%= panel_keys.join(' ') %>"
-             style="display: grid; grid-template-columns: 2fr 1.3fr 0.8fr 1.5fr 100px 60px; align-items: center; padding: 14px 20px; border-top: 1px solid var(--hairline); gap: 10px;">
+             style="display: grid; grid-template-columns: 2fr 1.3fr 0.8fr 1.5fr 60px; align-items: center; padding: 14px 20px; border-top: 1px solid var(--hairline); gap: 10px;">
           <div class="row" style="gap: 10px; align-items: center;">
             <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: <%= cm[:bg] %>; flex-shrink: 0;">
               <%= render Ui::Icon::Component.new(cm[:icon], size: 16, color: cm[:color]) %>
             </span>
             <div>
-              <div class="h-display" style="font-size: 15px; color: var(--text);<%= ' opacity: 0.5;' unless is_active %>"><%= m.title %></div>
+              <div class="h-display" style="font-size: 15px; color: var(--text);"><%= m.title %></div>
               <div style="font-size: 11px; color: var(--text-muted); margin-top: 1px;"><%= cm[:label] %></div>
             </div>
           </div>
@@ -84,7 +78,7 @@
             <span class="h-display" style="font-size: 15px; color: var(--star-2);"><%= m.points %></span>
           </div>
           <div class="row" style="gap: -4px; align-items: center;">
-            <% kids.first(4).each_with_index do |k, idx|
+            <% @kids.first(4).each_with_index do |k, idx|
               c = k.color.presence || "primary"
               bg = c == "primary" ? "var(--primary)" : "var(--c-#{c})"
               initials = k.name.to_s.strip.split.first(2).map { |w| w[0] }.join.upcase
@@ -93,11 +87,6 @@
                 <%= initials %>
               </span>
             <% end %>
-          </div>
-          <div>
-            <span style="display: inline-block; width: 36px; height: 20px; border-radius: 999px; background: <%= is_active ? 'var(--primary)' : 'var(--hairline)' %>; position: relative;">
-              <span style="position: absolute; top: 2px; <%= is_active ? 'right: 2px' : 'left: 2px' %>; width: 16px; height: 16px; border-radius: 50%; background: white;"></span>
-            </span>
           </div>
           <div class="row" style="gap: 4px; justify-content: flex-end;">
             <%= link_to edit_parent_global_task_path(m), class: "btn btn-ghost btn-sm", style: "padding: 6px;", aria: { label: "Editar" } do %>

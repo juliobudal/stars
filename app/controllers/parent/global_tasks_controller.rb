@@ -7,6 +7,7 @@ class Parent::GlobalTasksController < ApplicationController
 
   def index
     @global_tasks = GlobalTask.where(family_id: current_profile.family_id).order(created_at: :desc)
+    @kids = current_profile.family.profiles.child.order(:name)
   end
 
   def new
