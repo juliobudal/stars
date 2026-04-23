@@ -135,4 +135,19 @@ module ApplicationHelper
     end
     icon_tag(icon_name, options)
   end
+
+  # Returns a color palette hash for a given profile color key.
+  # Used in the profile picker to style SmileyAvatar rings/fills.
+  def smiley_palette(color_key)
+    Ui::SmileyAvatar::Component::COLOR_MAP[color_key.to_s] ||
+      Ui::SmileyAvatar::Component::COLOR_MAP["primary"]
+  end
+
+  # Returns the smiley face variant for a profile.
+  def face_for(profile)
+    return "adult" if profile.respond_to?(:parent?) && profile.parent?
+    return profile.face if profile.respond_to?(:face) && profile.face.present?
+    key = profile.respond_to?(:color) ? profile.color.to_s : ""
+    Ui::SmileyAvatar::Component::FACE_BY_COLOR[key] || "smile"
+  end
 end

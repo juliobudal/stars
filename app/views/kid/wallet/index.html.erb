@@ -2,43 +2,49 @@
   <%= render Ui::BgShapes::Component.new(variant: "cool") %>
 
   <%# ─── Top Bar ─── %>
-  <%= render Ui::TopBar::Component.new(
-    title: "Diário",
-    subtitle: "Suas estrelinhas ganhas e gastas",
-    back_url: kid_root_path
-  ) %>
+  <%= render Ui::TopBar::Component.new(back_url: kid_root_path) do |c| %>
+    <% c.with_right_slot do %>
+      <div class="row" style="gap: 8px; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 5px; background: var(--star-soft); border-radius: var(--r-full); padding: 5px 12px;">
+          <%= render Ui::Icon::Component.new("star", size: 16, color: "var(--star-2)") %>
+          <span class="h-display" style="font-size: 15px; color: var(--star-2);"><%= current_profile.points %></span>
+        </div>
+        <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 34) %>
+      </div>
+    <% end %>
+  <% end %>
+  <div style="margin-top: -12px; margin-bottom: 16px; padding-left: 4px;">
+    <div class="eyebrow" style="font-size: 11px; color: var(--text-muted); letter-spacing: 0.1em;">DIÁRIO DE</div>
+    <h2 class="h-display" style="font-size: 30px; margin: 0;"><%= current_profile.name %></h2>
+  </div>
 
   <%# ─── Week Summary Cards (3-col) ─── %>
   <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; z-index: 2; position: relative;">
     <%# Conquistado %>
     <div class="card" style="padding: 12px; background: var(--c-mint-soft); border: none;">
-      <div style="width: 40px; height: 40px; border-radius: var(--r-full); background: var(--c-mint-dark); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
-        <%= render Ui::Icon::Component.new("sparkle", size: 20, color: "white") %>
-      </div>
-      <div class="eyebrow" style="color: var(--c-mint-dark); margin-bottom: 2px;">Conquistado</div>
-      <div class="h-display" style="font-size: 22px; color: var(--c-mint-dark);">+<%= @week_earned %> ⭐</div>
+      <div class="eyebrow" style="color: var(--c-mint-dark); margin-bottom: 4px;">CONQUISTADO</div>
+      <div class="h-display" style="font-size: 20px; color: var(--c-mint-dark);">+<%= @week_earned %> ⭐</div>
       <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">esta semana</div>
     </div>
 
     <%# Gasto %>
     <div class="card" style="padding: 12px; background: var(--c-rose-soft); border: none;">
-      <div style="width: 40px; height: 40px; border-radius: var(--r-full); background: var(--c-rose-dark); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
-        <%= render Ui::Icon::Component.new("gift", size: 20, color: "white") %>
-      </div>
-      <div class="eyebrow" style="color: var(--c-rose-dark); margin-bottom: 2px;">Gasto</div>
-      <div class="h-display" style="font-size: 22px; color: var(--c-rose-dark);">-<%= @week_spent %> ⭐</div>
-      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">esta semana</div>
+      <div class="eyebrow" style="color: var(--c-rose-dark); margin-bottom: 4px;">GASTO</div>
+      <div class="h-display" style="font-size: 20px; color: var(--c-rose-dark);">−<%= @week_spent %> ⭐</div>
+      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">em prêmios</div>
     </div>
 
     <%# Missões feitas %>
     <div class="card" style="padding: 12px; background: var(--c-lilac-soft); border: none;">
-      <div style="width: 40px; height: 40px; border-radius: var(--r-full); background: var(--primary); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
-        <%= render Ui::Icon::Component.new("star", size: 20, color: "white") %>
-      </div>
-      <div class="eyebrow" style="color: var(--primary); margin-bottom: 2px;">Missões feitas</div>
-      <div class="h-display" style="font-size: 22px; color: var(--primary);"><%= @week_missions %></div>
-      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">esta semana</div>
+      <div class="eyebrow" style="color: var(--primary); margin-bottom: 4px;">MISSÕES FEITAS</div>
+      <div class="h-display" style="font-size: 20px; color: var(--primary);"><%= @week_missions %></div>
+      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">aprovadas</div>
     </div>
+  </div>
+
+  <%# ─── Section heading ─── %>
+  <div style="margin-bottom: 12px; z-index: 2; position: relative;">
+    <h3 class="h-display" style="font-size: 20px; margin: 0;">Tudo que rolou</h3>
   </div>
 
   <%# ─── Filter Chips ─── %>
