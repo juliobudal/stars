@@ -1,5 +1,5 @@
 <%
-  tints = %w[#DBEAFE #FCE7F3 #D1FAE5 #FEF3C7 #EDE9FE]
+  tints = %w[#DBEAFE var(--c-rose-soft) var(--c-mint-soft) #FEF3C7 var(--c-lilac-soft)]
   featured = @featured || @rewards&.first
   featured_icon = featured && featured.respond_to?(:icon) ? featured.icon.presence : nil
 %>
@@ -21,23 +21,23 @@
   <% if featured %>
     <div class="card" style="z-index: 2; display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; margin-bottom: 16px; padding: 28px; overflow: clip; position: relative; border-radius: var(--r-featured);">
       <div>
-        <span style="display:inline-flex; align-items:center; gap:4px; background:#EDE9FE; color:#6D28D9; padding:4px 10px; border-radius:999px; font-size:11px; font-weight:800; letter-spacing:.1em; margin-bottom:12px;">✨ EM DESTAQUE</span>
+        <span style="display:inline-flex; align-items:center; gap:4px; background:var(--c-lilac-soft); color:var(--c-violet-dark); padding:4px 10px; border-radius:999px; font-size:11px; font-weight:800; letter-spacing:.1em; margin-bottom:12px;">✨ EM DESTAQUE</span>
         <h3 class="h-display" style="font-size:26px; margin:0 0 6px;"><%= featured.title %></h3>
         <p style="margin:0 0 18px; font-size:14px; color:var(--text-muted); font-weight:500; line-height:1.4;">Troque suas estrelinhas por esse prêmio especial.</p>
         <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-          <button class="btn btn-primary btn-sm" style="box-shadow:0 3px 0 rgba(76,29,149,0.25);"
+          <button class="btn btn-primary btn-sm" style="box-shadow:0 3px 0 color-mix(in srgb, var(--c-violet-dark) 25%, transparent);"
             data-action="click->ui-modal#open" data-ui-modal-id-param="modal_<%= dom_id(featured) %>">
             Trocar por ⭐ <%= featured.cost %>
           </button>
           <% if current_profile.points >= featured.cost %>
-            <span style="font-size:12px; font-weight:700; color:#047857;">✓ Você pode pegar essa!</span>
+            <span style="font-size:12px; font-weight:700; color:var(--c-mint-dark);">✓ Você pode pegar essa!</span>
           <% else %>
             <span style="font-size:12px; font-weight:700; color:var(--text-muted);">Faltam <%= featured.cost - current_profile.points %> estrelinhas</span>
           <% end %>
         </div>
       </div>
-      <div style="width:140px; height:140px; border-radius:20px; background:#EDE9FE; display:grid; place-items:center; flex-shrink:0;">
-        <%= render Ui::Icon::Component.new(featured_icon || "gift", size: 70, color: "#6D28D9") %>
+      <div style="width:140px; height:140px; border-radius:20px; background:var(--c-lilac-soft); display:grid; place-items:center; flex-shrink:0;">
+        <%= render Ui::Icon::Component.new(featured_icon || "gift", size: 70, color: "var(--c-violet-dark)") %>
       </div>
     </div>
   <% end %>
@@ -114,7 +114,7 @@
               "
             >
               <div style="width: 72px; height: 72px; border-radius: 16px; background: <%= tint %>; display: grid; place-items: center; margin: 0 auto 2px;">
-                <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 36, color: "#6D28D9") %>
+                <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 36, color: "var(--c-violet-dark)") %>
               </div>
               <div class="h-display" style="font-size: 14px; color: var(--text); line-height: 1.2;"><%= reward.title %></div>
               <%= render Ui::Badge::Component.new(variant: "star", style: "font-size: 12px; padding: 4px 10px;") do %>
@@ -122,7 +122,7 @@
                 <%= reward.cost %>
               <% end %>
               <% if can_afford %>
-                <span style="background:var(--primary); color:white; padding:6px 12px; border-radius:999px; font-size:12px; font-weight:900; box-shadow:0 2px 0 rgba(76,29,149,0.25);">TROCAR</span>
+                <span style="background:var(--primary); color:white; padding:6px 12px; border-radius:999px; font-size:12px; font-weight:900; box-shadow:0 2px 0 color-mix(in srgb, var(--c-violet-dark) 25%, transparent);">TROCAR</span>
               <% else %>
                 <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">
                   faltam <%= reward.cost - current_profile.points %> ⭐
@@ -157,19 +157,19 @@
             redemption_icon = redemption.reward.respond_to?(:icon) ? redemption.reward.icon.presence : nil
           %>
           <div style="background:white; border-radius:var(--r-md); padding:14px 16px; display:flex; align-items:center; gap:16px; box-shadow:var(--shadow-card);">
-            <div style="width:64px; height:64px; border-radius:16px; background:#EDE9FE; display:grid; place-items:center; flex-shrink:0;">
-              <%= render Ui::Icon::Component.new(redemption_icon || "gift", size: 30, color: "#6D28D9") %>
+            <div style="width:64px; height:64px; border-radius:16px; background:var(--c-lilac-soft); display:grid; place-items:center; flex-shrink:0;">
+              <%= render Ui::Icon::Component.new(redemption_icon || "gift", size: 30, color: "var(--c-violet-dark)") %>
             </div>
             <div style="flex:1; min-width:0;">
               <div class="h-display" style="font-size:16px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><%= redemption.title %></div>
               <div style="font-size:12px; font-weight:700; color:var(--text-muted);">−<%= redemption.reward.cost %> ⭐</div>
             </div>
             <% if redemption.pending? %>
-              <span style="background:#FCE7F3; color:#BE185D; padding:5px 10px; border-radius:999px; font-size:11px; font-weight:800; white-space:nowrap;">Disponível</span>
+              <span style="background:var(--c-rose-soft); color:var(--c-rose-dark); padding:5px 10px; border-radius:999px; font-size:11px; font-weight:800; white-space:nowrap;">Disponível</span>
             <% elsif redemption.approved? %>
-              <span style="background:#D1FAE5; color:#047857; padding:5px 10px; border-radius:999px; font-size:11px; font-weight:800; white-space:nowrap;">Aproveitado</span>
+              <span style="background:var(--c-mint-soft); color:var(--c-mint-dark); padding:5px 10px; border-radius:999px; font-size:11px; font-weight:800; white-space:nowrap;">Aproveitado</span>
             <% elsif redemption.rejected? %>
-              <span style="background:#FEE2E2; color:#B91C1C; padding:5px 10px; border-radius:999px; font-size:11px; font-weight:800; white-space:nowrap;">Recusado</span>
+              <span style="background:var(--c-red-soft); color:var(--c-red-dark); padding:5px 10px; border-radius:999px; font-size:11px; font-weight:800; white-space:nowrap;">Recusado</span>
             <% end %>
           </div>
         <% end %>
@@ -183,8 +183,8 @@
     <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(reward)}", title: "Resgatar Recompensa") do %>
       <div class="center col" style="text-align: center; gap: 14px;">
         <%= render Ui::Lumi::Component.new(size: 76, mood: "excited") %>
-        <div style="width: 100px; height: 100px; border-radius: 20px; background: #EDE9FE; display: grid; place-items: center; margin: 0 auto;">
-          <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 56, color: "#6D28D9") %>
+        <div style="width: 100px; height: 100px; border-radius: 20px; background: var(--c-lilac-soft); display: grid; place-items: center; margin: 0 auto;">
+          <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 56, color: "var(--c-violet-dark)") %>
         </div>
         <h3 class="h-display" style="font-size: 26px;"><%= reward.title %></h3>
         <div class="row" style="gap: 10px; justify-content: center;">
