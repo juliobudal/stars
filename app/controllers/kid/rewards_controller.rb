@@ -5,7 +5,7 @@ class Kid::RewardsController < ApplicationController
 
   def index
     @rewards = Reward.where(family_id: current_profile.family_id)
-    @featured = @rewards.max_by(&:cost)
+    @featured = @rewards.order(cost: :desc).first
     @redeemed_rewards = current_profile.redemptions.includes(:reward).order(created_at: :desc)
   end
 

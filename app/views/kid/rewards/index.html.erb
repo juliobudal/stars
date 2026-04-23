@@ -55,7 +55,7 @@
     <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none;">
       <%
         tab_labels = [
-          ["all",         "Tudo"],
+          ["tudo",        "Tudo"],
           ["telinha",     "Telinha"],
           ["docinhos",    "Docinhos"],
           ["passeios",    "Passeios"],
@@ -83,66 +83,70 @@
       <% end %>
     </div>
 
-    <%# All panels show the same grid (no category data yet) %>
-    <% tab_labels.each_with_index do |(tab_id, _label), idx| %>
-      <div id="panel-<%= tab_id %>" style="display: <%= idx == 0 ? 'flex' : 'none' %>; flex-direction: column; margin-top: 16px;">
-        <% if @rewards.any? %>
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
-            <% @rewards.each_with_index do |reward, i| %>
-              <%
-                can_afford = current_profile.points >= reward.cost
-                color_options = %w[peach rose mint sky lilac coral]
-                color = color_options[i % color_options.length]
-                fg_var = "var(--c-#{color})"
-              %>
-              <div
-                class="card"
-                style="
-                  padding: 14px 10px;
-                  text-align: center;
-                  opacity: <%= can_afford ? 1 : 0.6 %>;
-                  filter: <%= can_afford ? 'none' : 'grayscale(0.4)' %>;
-                  animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= i * 0.04 %>s both;
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  gap: 8px;
-                  background: white;
-                  border: none;
-                  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-                "
-              >
-                <div style="width: 64px; height: 64px; border-radius: 50%; background: <%= fg_var %>; display: flex; align-items: center; justify-content: center;">
-                  <%= render Ui::Icon::Component.new(reward.icon.presence || "gift", size: 34, color: "white") %>
-                </div>
-                <div class="h-display" style="font-size: 14px; color: var(--text); line-height: 1.2;"><%= reward.title %></div>
-                <%= render Ui::Badge::Component.new(variant: "star", style: "font-size: 12px; padding: 4px 10px;") do %>
-                  <%= render Ui::Icon::Component.new("star", size: 13, color: "var(--star-2)") %>
-                  <%= reward.cost %>
-                <% end %>
-                <% if can_afford %>
-                  <button
-                    class="btn btn-primary btn-sm"
-                    data-action="click->ui-modal#open"
-                    data-ui-modal-id-param="modal_<%= dom_id(reward) %>"
-                  >TROCAR</button>
-                <% else %>
-                  <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">
-                    faltam <%= reward.cost - current_profile.points %> ⭐
-                  </div>
-                <% end %>
+    <%# "Tudo" panel — renders the full grid %>
+    <div id="panel-tudo" style="display: flex; flex-direction: column; margin-top: 16px;">
+      <% if @rewards.any? %>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+          <% @rewards.each_with_index do |reward, i| %>
+            <%
+              can_afford = current_profile.points >= reward.cost
+              color_options = %w[peach rose mint sky lilac coral]
+              color = color_options[i % color_options.length]
+              fg_var = "var(--c-#{color})"
+            %>
+            <button
+              type="button"
+              class="card"
+              <%= "disabled" unless can_afford %>
+              data-action="click->ui-modal#open"
+              data-ui-modal-id-param="modal_<%= dom_id(reward) %>"
+              style="
+                padding: 14px 10px;
+                text-align: center;
+                cursor: <%= can_afford ? 'pointer' : 'default' %>;
+                opacity: <%= can_afford ? 1 : 0.6 %>;
+                filter: <%= can_afford ? 'none' : 'grayscale(0.4)' %>;
+                animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= i * 0.04 %>s both;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                background: white;
+                border: none;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+              "
+            >
+              <div style="width: 64px; height: 64px; border-radius: 50%; background: <%= fg_var %>; display: flex; align-items: center; justify-content: center;">
+                <%= render Ui::Icon::Component.new(reward.icon.presence || "gift", size: 34, color: "white") %>
               </div>
-            <% end %>
-          </div>
-        <% else %>
-          <%= render Ui::Empty::Component.new(
-            icon: "bag",
-            title: "A lojinha está vazia",
-            subtitle: "Peça para um responsável adicionar recompensas!",
-            color: "rose"
-          ) %>
-        <% end %>
-      </div>
+              <div class="h-display" style="font-size: 14px; color: var(--text); line-height: 1.2;"><%= reward.title %></div>
+              <%= render Ui::Badge::Component.new(variant: "star", style: "font-size: 12px; padding: 4px 10px;") do %>
+                <%= render Ui::Icon::Component.new("star", size: 13, color: "var(--star-2)") %>
+                <%= reward.cost %>
+              <% end %>
+              <% if can_afford %>
+                <span class="btn btn-primary btn-sm" aria-hidden="true">TROCAR</span>
+              <% else %>
+                <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">
+                  faltam <%= reward.cost - current_profile.points %> ⭐
+                </div>
+              <% end %>
+            </button>
+          <% end %>
+        </div>
+      <% else %>
+        <%= render Ui::Empty::Component.new(
+          icon: "bag",
+          title: "A lojinha está vazia",
+          subtitle: "Peça para um responsável adicionar recompensas!",
+          color: "rose"
+        ) %>
+      <% end %>
+    </div>
+
+    <%# Category stub panels — filtering not yet available %>
+    <% %w[telinha docinhos passeios brinquedos experiencias].each do |tab_id| %>
+      <div id="panel-<%= tab_id %>" style="display:none"><!-- filtro não disponível ainda --></div>
     <% end %>
   </div>
 
@@ -163,6 +167,8 @@
               <%= render Ui::Badge::Component.new(variant: "mint") do %>Disponível<% end %>
             <% elsif redemption.approved? %>
               <%= render Ui::Badge::Component.new(variant: "lilac") do %>Aproveitado<% end %>
+            <% elsif redemption.rejected? %>
+              <%= render Ui::Badge::Component.new(variant: "rose") do %>Recusado<% end %>
             <% end %>
           </div>
         <% end %>
@@ -197,7 +203,7 @@
           <div style="height: 2px; background: rgba(26,42,74,0.1); margin: 8px 0;"></div>
           <div class="row" style="justify-content: space-between; color: var(--primary); font-family: var(--font-display); font-weight: 800; font-size: 18px;">
             <span>Depois</span>
-            <span><%= current_profile.points - reward.cost %> ⭐</span>
+            <span><%= [current_profile.points - reward.cost, 0].max %> ⭐</span>
           </div>
         </div>
 
