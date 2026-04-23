@@ -44,7 +44,7 @@ class Ui::Icon::Component < ApplicationComponent
     iceCream: "ice-cream",
     gamepad: "game-controller",
     ferris: "park",
-    blocks: "blocks",
+    blocks: "lego",
     pizza: "pizza",
     film: "film-strip",
     moon: "moon",
