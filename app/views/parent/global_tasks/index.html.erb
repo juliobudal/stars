@@ -1,6 +1,6 @@
 <%
   freq_meta = {
-    "daily"   => { label: "Diária",  soft: "var(--c-mint-soft)", dark: "var(--c-mint-dark)" },
+    "daily"   => { label: "Todo dia", soft: "var(--c-mint-soft)", dark: "var(--c-mint-dark)" },
     "weekly"  => { label: "Semanal", soft: "var(--c-sky-soft)",  dark: "#0369A1" },
     "monthly" => { label: "Mensal",  soft: "var(--c-lilac-soft)", dark: "#6D28D9" },
     "once"    => { label: "Única",   soft: "var(--c-peach-soft)", dark: "var(--c-rose-dark)" }
@@ -19,11 +19,11 @@
 
   <%= render Ui::TopBar::Component.new(
     title: "Missões",
-    subtitle: "Crie tarefas que as crianças podem cumprir",
+    subtitle: "#{@global_tasks.count { |t| t.respond_to?(:active?) ? t.active? : true }} ativas · #{@global_tasks.size} no catálogo",
     back_url: parent_root_path
   ) do |bar| %>
     <% bar.with_right_slot do %>
-      <%= link_to new_parent_global_task_path, class: "btn btn-primary" do %>
+      <%= link_to new_parent_global_task_path, class: "btn btn-primary", style: "text-transform: none" do %>
         <%= render Ui::Icon::Component.new("plus", size: 18, color: "white") %> Nova missão
       <% end %>
     <% end %>
@@ -48,7 +48,7 @@
         <div>Missão</div>
         <div>Recorrência</div>
         <div>Estrelas</div>
-        <div>Atribuída</div>
+        <div>Atribuída a</div>
         <div>Ativa</div>
         <div></div>
       </div>
