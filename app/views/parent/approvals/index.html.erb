@@ -38,19 +38,25 @@
                   <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
                     <span class="h-display" style="font-size: 15px;"><%= task.title %></span>
                     <span style="background: <%= palette[:fill] %>; color: <%= palette[:ink] %>; padding: 1px 8px; border-radius: 999px; font-size: 11px; font-weight: 800; white-space: nowrap;"><%= task.profile&.name %></span>
+                    <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--r-full); background: var(--surface-2); color: var(--text-muted);"><%= task.category.to_s.humanize %></span>
                   </div>
-                  <span style="font-size: 12px; font-weight: 800; color: var(--star-2);">+<%= task.points %> ★</span>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 12px; font-weight: 800; color: var(--star-2);">+<%= task.points %> ★</span>
+                    <span style="font-size: 11px; color: var(--text-muted);"><%= time_ago_in_words(task.updated_at) %> atrás</span>
+                  </div>
                 </div>
               </div>
               <div style="display: flex; gap: 8px;">
                 <%= button_to reject_parent_approval_path(task), method: :patch,
-                    style: "flex: 1; background: #FEE2E2; color: #B91C1C; border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
+                    form_class: "flex-1",
+                    style: "width: 100%; background: #FEE2E2; color: #B91C1C; border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
                     aria: { label: "Rejeitar" },
                     data: { turbo_frame: "approvals_list", turbo_confirm: "Rejeitar esta tarefa?", turbo_submits_with: "..." } do %>
                   Rejeitar
                 <% end %>
                 <%= button_to approve_parent_approval_path(task), method: :patch,
-                    style: "flex: 1; background: #D1FAE5; color: #047857; border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
+                    form_class: "flex-1",
+                    style: "width: 100%; background: #D1FAE5; color: #047857; border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
                     aria: { label: "Aprovar" },
                     data: { turbo_frame: "approvals_list", turbo_submits_with: "..." } do %>
                   Aprovar
@@ -80,18 +86,23 @@
                     <span class="h-display" style="font-size: 15px;"><%= redemption.reward&.title %></span>
                     <span style="background: <%= palette[:fill] %>; color: <%= palette[:ink] %>; padding: 1px 8px; border-radius: 999px; font-size: 11px; font-weight: 800; white-space: nowrap;"><%= redemption.profile&.name %></span>
                   </div>
-                  <span style="font-size: 12px; font-weight: 800; color: var(--danger);">−<%= redemption.points %> ★</span>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 12px; font-weight: 800; color: var(--danger);">−<%= redemption.points %> ★</span>
+                    <span style="font-size: 11px; color: var(--text-muted);"><%= time_ago_in_words(redemption.created_at) %> atrás</span>
+                  </div>
                 </div>
               </div>
               <div style="display: flex; gap: 8px;">
                 <%= button_to reject_redemption_parent_approval_path(redemption), method: :patch,
-                    style: "flex: 1; background: #FEE2E2; color: #B91C1C; border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
+                    form_class: "flex-1",
+                    style: "width: 100%; background: #FEE2E2; color: #B91C1C; border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
                     aria: { label: "Cancelar" },
                     data: { turbo_frame: "approvals_list", turbo_confirm: "Cancelar este resgate?", turbo_submits_with: "..." } do %>
                   Cancelar
                 <% end %>
                 <%= button_to approve_redemption_parent_approval_path(redemption), method: :patch,
-                    style: "flex: 1; background: #D1FAE5; color: #047857; border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
+                    form_class: "flex-1",
+                    style: "width: 100%; background: #D1FAE5; color: #047857; border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
                     aria: { label: "Entregue" },
                     data: { turbo_frame: "approvals_list", turbo_submits_with: "..." } do %>
                   Entregue
