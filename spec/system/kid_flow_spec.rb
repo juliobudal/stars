@@ -20,7 +20,7 @@ RSpec.describe "Kid Flow", type: :system do
     click_on "FEITO! 🏅"
 
     expect(page).to have_content("Missão enviada para aprovação! 🚀")
-    
+
     # Verificar se aparece na seção "Já feitas"
     within "section", text: "Já feitas" do
       expect(page).to have_content("Lavar Louça")

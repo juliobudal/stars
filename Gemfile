@@ -68,14 +68,14 @@ gem "vite_rails", "~> 3.10"
 
 gem "view_component", "~> 4.7"
 
-gem "rspec-rails", "~> 8.0", groups: [:development, :test]
-gem "factory_bot_rails", "~> 6.5", groups: [:development, :test]
-gem "faker", "~> 3.8", groups: [:development, :test]
-gem "shoulda-matchers", "~> 7.0", groups: [:development, :test]
+gem "rspec-rails", "~> 8.0", groups: [ :development, :test ]
+gem "factory_bot_rails", "~> 6.5", groups: [ :development, :test ]
+gem "faker", "~> 3.8", groups: [ :development, :test ]
+gem "shoulda-matchers", "~> 7.0", groups: [ :development, :test ]
 
-gem "standard", ">= 1.35.1", groups: [:development, :test]
+gem "standard", ">= 1.35.1", groups: [ :development, :test ]
 
 gem "pagy", "~> 43.5"
 
-gem "database_cleaner-active_record", "~> 2.2", :group => :test
+gem "database_cleaner-active_record", "~> 2.2", group: :test
 gem "lucide-rails"

@@ -22,7 +22,7 @@ class Ui::Drawer::Component < ApplicationComponent
   def container_tag
     # If @id is provided, we assume it's a sync dialog.
     if @id
-      return dialog_tag id: @id, data: {drawers_target: "dialog"} do
+      return dialog_tag id: @id, data: { drawers_target: "dialog" } do
         yield
       end
     end
@@ -30,7 +30,7 @@ class Ui::Drawer::Component < ApplicationComponent
     # If turbo frame request (for example, open drawer via link_to with data: { turbo_frame: :drawer }), we should use dialog tag inside turbo frame :drawer
     if helpers.turbo_frame_request?
       turbo_frame_tag :drawer do
-        dialog_tag id: :drawerDialog, data: {controller: "drawer"} do
+        dialog_tag id: :drawerDialog, data: { controller: "drawer" } do
           turbo_frame_tag :drawerContent do
             yield
           end

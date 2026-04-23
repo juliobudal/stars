@@ -33,7 +33,7 @@ class Ui::Drawer::HeaderComponent < ApplicationComponent
   def classes
     class_names(
       "drawer__header",
-      {"drawer__header-bordered": @bordered},
+      { "drawer__header-bordered": @bordered },
       @options.delete(:class)
     )
   end

@@ -1,7 +1,7 @@
 class Parent::ActivityLogsController < ApplicationController
   include Authenticatable
   before_action :require_parent!
-  layout 'parent'
+  layout "parent"
 
   def index
     child_profiles = Profile.where(family_id: current_profile.family_id).child

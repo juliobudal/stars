@@ -95,15 +95,15 @@ module ApplicationHelper
     begin
       # Fetch SVG content
       svg_content = LucideRails::IconProvider.icon(lucide_name)
-      
+
       # Encode to Data URI for mask-image
       # We use Base64 to ensure all characters are handled correctly across browsers
       base64_svg = Base64.strict_encode64(svg_content)
       data_uri = "data:image/svg+xml;base64,#{base64_svg}"
-      
+
       style = options[:style] || ""
       style = "#{style}; --svg: url('#{data_uri}')".strip
-      
+
       classes = class_names("icon", "icon-#{name}", options.delete(:class))
       content_tag(:span, nil, class: classes, style: style, **options)
     rescue => e
@@ -112,10 +112,10 @@ module ApplicationHelper
         svg_content = LucideRails::IconProvider.icon("help-circle")
         base64_svg = Base64.strict_encode64(svg_content)
         data_uri = "data:image/svg+xml;base64,#{base64_svg}"
-        
+
         style = options[:style] || ""
         style = "#{style}; --svg: url('#{data_uri}')".strip
-        
+
         classes = class_names("icon", "icon-missing", options.delete(:class))
         content_tag(:span, nil, class: classes, style: style, "data-missing-icon" => name, **options)
       rescue
@@ -124,6 +124,39 @@ module ApplicationHelper
         content_tag(:span, nil, class: classes, **options)
       end
     end
+  end
+
+  FACE_BY_COLOR = {
+    "lila" => "wink", "lilac" => "wink",
+    "zoe" => "tongue",
+    "theo" => "smile", "mint" => "smile", "sky" => "smile",
+    "peach" => "smile", "rose" => "smile", "coral" => "smile",
+    "primary" => "smile"
+  }.freeze
+
+  SMILEY_COLOR_MAP = {
+    "lila"    => { fill: "#EDE9FE", ring: "#C4B5FD", ink: "#6D28D9" },
+    "lilac"   => { fill: "#EDE9FE", ring: "#C4B5FD", ink: "#6D28D9" },
+    "theo"    => { fill: "#CFFAFE", ring: "#67E8F9", ink: "#0E7490" },
+    "zoe"     => { fill: "#FCE7F3", ring: "#F472B6", ink: "#BE185D" },
+    "primary" => { fill: "#EDE9FE", ring: "#C4B5FD", ink: "#6D28D9" },
+    "mint"    => { fill: "#D1FAE5", ring: "#6EE7B7", ink: "#047857" },
+    "sky"     => { fill: "#E0F2FE", ring: "#7DD3FC", ink: "#0369A1" },
+    "peach"   => { fill: "#FCE7F3", ring: "#F9A8D4", ink: "#BE185D" },
+    "rose"    => { fill: "#FCE7F3", ring: "#F472B6", ink: "#BE185D" },
+    "coral"   => { fill: "#FCE7F3", ring: "#F9A8D4", ink: "#BE185D" }
+  }.freeze
+
+  def face_for(profile_or_color)
+    color = profile_or_color.respond_to?(:color) ? profile_or_color.color.to_s : profile_or_color.to_s
+    is_parent = profile_or_color.respond_to?(:parent?) && profile_or_color.parent?
+    return "adult" if is_parent
+    FACE_BY_COLOR[color] || "smile"
+  end
+
+  def smiley_palette(profile_or_color)
+    color = profile_or_color.respond_to?(:color) ? profile_or_color.color.to_s : profile_or_color.to_s
+    SMILEY_COLOR_MAP[color] || SMILEY_COLOR_MAP["primary"]
   end
 
   def category_icon_tag(category, options = {})

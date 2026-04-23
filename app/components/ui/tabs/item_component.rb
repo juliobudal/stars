@@ -22,7 +22,7 @@ class Ui::Tabs::ItemComponent < ApplicationComponent
   def link_classes
     class_names(
       "tabs__link",
-      {"tabs__link-active": @active},
+      { "tabs__link-active": @active },
       @options.delete(:class)
     )
   end

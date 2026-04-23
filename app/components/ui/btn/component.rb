@@ -32,7 +32,7 @@ class Ui::Btn::Component < ApplicationComponent
       "btn",
       "btn-#{@variant}",
       "btn-#{@size}",
-      {"w-full": @block},
+      { "w-full": @block },
       @options.delete(:class)
     )
   end

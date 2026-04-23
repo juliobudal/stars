@@ -23,8 +23,8 @@ class Ui::Sidebar::LinkComponent < ApplicationComponent
   def classes
     class_names(
       "sidebar__link",
-      {"sidebar__link-active": active?},
-      {"sidebar__link-disabled": @disabled},
+      { "sidebar__link-active": active? },
+      { "sidebar__link-disabled": @disabled },
       @options[:class]
     )
   end

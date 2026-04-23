@@ -30,7 +30,7 @@ RSpec.describe "Parent::Approvals", type: :request do
       expect {
         patch approve_parent_approval_path(profile_task)
       }.to change { child.reload.points }.by(50)
-      
+
       expect(profile_task.reload.status).to eq('approved')
       expect(response).to redirect_to(parent_approvals_path)
     end
@@ -39,7 +39,7 @@ RSpec.describe "Parent::Approvals", type: :request do
   describe "PATCH /parent/approvals/:id/reject" do
     it "rejects the task and returns it to pending" do
       patch reject_parent_approval_path(profile_task)
-      
+
       expect(profile_task.reload.status).to eq('pending')
       expect(response).to redirect_to(parent_approvals_path)
     end

@@ -13,18 +13,18 @@ RSpec.describe "Parent Flow", type: :system do
   it "permite gerenciar a família (perfis, tarefas e recompensas)" do
     # 1. Criar Filho (14.1)
     visit new_parent_profile_path
-    
+
     expect(page).to have_content("Novo Filho(a)", wait: 10)
     fill_in "Nome do Filho", with: "Zezinho"
     fill_in "Avatar (Emoji ou Sigla)", with: "🐱"
     click_on "Salvar"
-    
+
     expect(page).to have_content("Filho adicionado com sucesso!", wait: 10)
     expect(page).to have_content("Zezinho")
 
     # 2. Criar Tarefa Global (14.2)
     visit new_parent_global_task_path
-    
+
     expect(page).to have_content("Nova Tarefa", wait: 10)
     fill_in "Título da Missão", with: "Arrumar a cama"
     fill_in "Estrelinhas (⭐)", with: "50"
@@ -38,7 +38,7 @@ RSpec.describe "Parent Flow", type: :system do
 
     # 3. Criar Recompensa (14.3)
     visit new_parent_reward_path
-    
+
     expect(page).to have_content("Nova Recompensa", wait: 10)
     fill_in "Nome da Recompensa", with: "Video Game 30min"
     fill_in "Custo em Estrelinhas (⭐)", with: "100"

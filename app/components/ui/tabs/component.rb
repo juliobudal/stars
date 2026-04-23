@@ -21,7 +21,7 @@ class Ui::Tabs::Component < ApplicationComponent
     class_names(
       "tabs",
       "scroller scroller-x w-full",
-      {"tabs-underline": @variant == :underline}
+      { "tabs-underline": @variant == :underline }
     )
   end
 

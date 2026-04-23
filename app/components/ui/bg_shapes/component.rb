@@ -1,8 +1,8 @@
 class Ui::BgShapes::Component < ApplicationComponent
   PALETTES = {
-    blue: ["#c7ddff", "#ffd6e6", "#c2f0dd"],
-    warm: ["#ffe0b3", "#ffcad4", "#e0ccff"],
-    cool: ["#c2e7ff", "#dccfff", "#c2f0dd"]
+    blue: [ "#c7ddff", "#ffd6e6", "#c2f0dd" ],
+    warm: [ "#ffe0b3", "#ffcad4", "#e0ccff" ],
+    cool: [ "#c2e7ff", "#dccfff", "#c2f0dd" ]
   }.freeze
 
   def initialize(variant: "blue", **options)

@@ -5,7 +5,7 @@ class Kid::MissionsController < ApplicationController
   def complete
     @profile_task = ProfileTask.pending.where(profile: current_profile).find(params[:id])
     @profile_task.awaiting_approval!
-    
+
     respond_to do |format|
       format.html { redirect_to kid_root_path, notice: "Missão enviada para aprovação! 🚀" }
       format.turbo_stream

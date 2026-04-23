@@ -16,7 +16,7 @@ class Ui::Modal::FooterComponent < ApplicationComponent
   def classes
     class_names(
       "modal__footer",
-      {"modal__footer-bordered": @bordered},
+      { "modal__footer-bordered": @bordered },
       direction_class,
       align_class,
       justify_class,

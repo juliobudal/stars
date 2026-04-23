@@ -15,42 +15,45 @@
                 else
                   l(date, format: :short).capitalize
                 end
-    day_net = logs.sum { |l| l.earn? ? l.points : -(l.points) }
-    net_color = day_net >= 0 ? "var(--c-mint-dark)" : "var(--c-rose-dark)"
-    net_prefix = day_net >= 0 ? "+" : ""
+    day_total = logs.sum { |l| l.earn? ? l.points : -(l.points) }
+    total_color = day_total >= 0 ? "var(--c-mint-dark)" : "var(--c-rose-dark)"
+    total_prefix = day_total >= 0 ? "+" : "−"
   %>
 
   <%# Day header %>
-  <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 4px 6px;">
-    <span style="font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;"><%= day_label %></span>
-    <span style="font-size: 13px; font-weight: 700; color: <%= net_color %>;"><%= net_prefix %><%= day_net %> ⭐</span>
+  <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; padding: 10px 4px 0;">
+    <div class="h-display" style="font-size: 18px;"><%= day_label %></div>
+    <div style="font-size: 12px; font-weight: 800; color: <%= total_color %>;">
+      Saldo: <%= total_prefix %><%= day_total.abs %> ⭐
+    </div>
   </div>
 
-  <%# Log entries %>
-  <div class="col" style="gap: 8px; margin-bottom: 8px;">
-    <% logs.each do |h| %>
+  <%# Log entries — single white card with dividers %>
+  <div class="card" style="padding: 4px 16px; margin-bottom: 12px;">
+    <% logs.each_with_index do |h, i| %>
       <% kind = h.log_type.to_s %>
       <% k = kind_map[kind] || kind_map["adjust"] %>
-      <div class="card" style="padding: 14px; border: 2px solid rgba(26,42,74,0.06);">
-        <div class="row" style="gap: 14px;">
-          <%# Icon disc %>
-          <div style="width: 48px; height: 48px; border-radius: var(--r-full); background: <%= k[:disc_bg] %>; color: <%= k[:disc_color] %>; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <%= render Ui::Icon::Component.new(k[:icon], size: 26, color: "currentColor") %>
-          </div>
-          <%# Title + kind chip + time %>
-          <div class="col fg1" style="gap: 4px;">
-            <div class="h-display" style="font-size: 16px;"><%= h.title %></div>
-            <div class="row" style="gap: 6px; align-items: center;">
-              <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--r-full); background: <%= k[:chip_bg] %>; color: <%= k[:chip_text] %>;"><%= k[:label] %></span>
-              <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;"><%= h.created_at.strftime("%H:%M") %></span>
-            </div>
-          </div>
-          <%# Points %>
-          <div class="h-display" style="font-size: 18px; color: <%= h.earn? ? 'var(--c-mint-dark)' : 'var(--c-rose-dark)' %>; flex-shrink: 0;">
-            <%= h.earn? ? '+' : '−' %><%= h.points %> ⭐
+      <div class="row" style="gap: 14px; padding: 12px 0;">
+        <%# Icon disc %>
+        <div style="width: 48px; height: 48px; border-radius: 14px; background: <%= k[:disc_bg] %>; color: <%= k[:disc_color] %>; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <%= render Ui::Icon::Component.new(k[:icon], size: 26, color: "currentColor") %>
+        </div>
+        <%# Title + kind chip + time %>
+        <div class="col fg1" style="gap: 4px;">
+          <div class="h-display" style="font-size: 16px;"><%= h.title %></div>
+          <div class="row" style="gap: 6px; align-items: center;">
+            <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--r-full); background: <%= k[:chip_bg] %>; color: <%= k[:chip_text] %>;"><%= k[:label] %></span>
+            <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;"><%= h.created_at.strftime("%H:%M") %></span>
           </div>
         </div>
+        <%# Points %>
+        <div class="h-display" style="font-size: 18px; color: <%= h.earn? ? 'var(--c-mint-dark)' : 'var(--c-rose-dark)' %>; flex-shrink: 0;">
+          <%= h.earn? ? '+' : '−' %><%= h.points %> ⭐
+        </div>
       </div>
+      <% if i < logs.length - 1 %>
+        <div style="height: 1px; background: var(--hairline); margin: 0 -4px;"></div>
+      <% end %>
     <% end %>
   </div>
 <% end %>

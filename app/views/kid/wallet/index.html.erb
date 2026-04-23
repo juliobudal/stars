@@ -11,33 +11,24 @@
   <%# ─── Week Summary Cards (3-col) ─── %>
   <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; z-index: 2; position: relative;">
     <%# Conquistado %>
-    <div class="card" style="padding: 12px; background: var(--c-mint-soft); border: none;">
-      <div style="width: 40px; height: 40px; border-radius: var(--r-full); background: var(--c-mint-dark); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
-        <%= render Ui::Icon::Component.new("sparkle", size: 20, color: "white") %>
-      </div>
-      <div class="eyebrow" style="color: var(--c-mint-dark); margin-bottom: 2px;">Conquistado</div>
-      <div class="h-display" style="font-size: 22px; color: var(--c-mint-dark);">+<%= @week_earned %> ⭐</div>
-      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">esta semana</div>
+    <div class="card" style="padding: 14px; display: flex; flex-direction: column; gap: 4px;">
+      <div style="font-size: 11px; font-weight: 800; letter-spacing: 0.16em; color: var(--text-muted);">CONQUISTADO</div>
+      <div class="h-display" style="font-size: 30px; color: #047857;">+<%= @week_earned %> ⭐</div>
+      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);">esta semana</div>
     </div>
 
     <%# Gasto %>
-    <div class="card" style="padding: 12px; background: var(--c-rose-soft); border: none;">
-      <div style="width: 40px; height: 40px; border-radius: var(--r-full); background: var(--c-rose-dark); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
-        <%= render Ui::Icon::Component.new("gift", size: 20, color: "white") %>
-      </div>
-      <div class="eyebrow" style="color: var(--c-rose-dark); margin-bottom: 2px;">Gasto</div>
-      <div class="h-display" style="font-size: 22px; color: var(--c-rose-dark);">-<%= @week_spent %> ⭐</div>
-      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">esta semana</div>
+    <div class="card" style="padding: 14px; display: flex; flex-direction: column; gap: 4px;">
+      <div style="font-size: 11px; font-weight: 800; letter-spacing: 0.16em; color: var(--text-muted);">GASTO</div>
+      <div class="h-display" style="font-size: 30px; color: #6D28D9;">−<%= @week_spent %> ⭐</div>
+      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);">em prêmios</div>
     </div>
 
     <%# Missões feitas %>
-    <div class="card" style="padding: 12px; background: var(--c-lilac-soft); border: none;">
-      <div style="width: 40px; height: 40px; border-radius: var(--r-full); background: var(--primary); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
-        <%= render Ui::Icon::Component.new("star", size: 20, color: "white") %>
-      </div>
-      <div class="eyebrow" style="color: var(--primary); margin-bottom: 2px;">Missões feitas</div>
-      <div class="h-display" style="font-size: 22px; color: var(--primary);"><%= @week_missions %></div>
-      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">esta semana</div>
+    <div class="card" style="padding: 14px; display: flex; flex-direction: column; gap: 4px;">
+      <div style="font-size: 11px; font-weight: 800; letter-spacing: 0.16em; color: var(--text-muted);">MISSÕES FEITAS</div>
+      <div class="h-display" style="font-size: 30px; color: var(--text);"><%= @week_missions %></div>
+      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);">aprovadas</div>
     </div>
   </div>
 
@@ -49,7 +40,7 @@
         data-tabs-target="tab"
         data-action="click->tabs#show"
         data-tabs-id-param="all"
-        style="border-radius: var(--r-full); padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; background: var(--primary); color: white;">
+        style="border-radius: var(--r-full); padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; background: var(--text); color: var(--bg-deep);">
         Tudo
       </button>
       <button

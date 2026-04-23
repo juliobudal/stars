@@ -13,10 +13,10 @@
     <div data-controller="tabs" data-tabs-active-class="active" style="z-index: 2;">
       <div style="display: flex; gap: 4px; margin-bottom: 20px; background: white; padding: 6px; border-radius: var(--r-full); box-shadow: var(--shadow-card); width: fit-content; border: var(--border-card);">
         <button class="tab active" data-tabs-target="tab" data-action="click->tabs#show" data-tabs-id-param="missions"
-                style="display: inline-flex; align-items: center; gap: 8px;">
+                style="display: inline-flex; align-items: center; gap: 8px; background: var(--text); color: var(--bg-deep);">
           <%= render Ui::Icon::Component.new("target", size: 14) %>
           Missões
-          <span style="background: rgba(167,139,250,0.15); color: var(--primary); padding: 2px 8px; border-radius: var(--r-full); font-size: 11px; font-weight: 900;"><%= @profile_tasks.count %></span>
+          <span style="background: rgba(255,255,255,0.18); color: var(--bg-deep); padding: 2px 8px; border-radius: var(--r-full); font-size: 11px; font-weight: 900;"><%= @profile_tasks.count %></span>
         </button>
         <button class="tab" data-tabs-target="tab" data-action="click->tabs#show" data-tabs-id-param="rewards"
                 style="display: inline-flex; align-items: center; gap: 8px;">
@@ -30,38 +30,32 @@
       <div id="panel-missions" class="col" style="gap: 10px; z-index: 2;">
         <% if @profile_tasks.any? %>
           <% @profile_tasks.each do |task| %>
-            <%
-              cat_name = task.global_task&.category || "geral"
-              cat_data = Ui::MissionCard::Component::CATEGORIES[cat_name.to_s] || Ui::MissionCard::Component::CATEGORIES["geral"]
-            %>
-            <div id="<%= dom_id(task) %>" class="card" style="padding: 18px;">
-              <div class="row" style="gap: 14px;">
-                <%= render Ui::IconTile::Component.new(icon: cat_data[:icon], color: cat_data[:color], size: 52) %>
-                <div class="col fg1" style="gap: 4px;">
-                  <div class="h-display" style="font-size: 17px;"><%= task.title %></div>
-                  <div class="row" style="gap: 6px; flex-wrap: wrap;">
-                    <%= render Ui::KidAvatar::Component.new(kid: task.profile, size: 22) %>
-                    <span style="font-size: 12px; font-weight: 800; color: var(--text-muted);"><%= task.profile&.name %></span>
-                    <%= render Ui::Badge::Component.new(variant: "star", size: "sm", icon: "star") do %>
-                      +<%= task.points %>
-                    <% end %>
-                  </div>
+            <% palette = smiley_palette(task.profile) %>
+            <div id="<%= dom_id(task) %>" class="card" style="padding: 18px; display: flex; align-items: center; gap: 18px;">
+              <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0;">
+              <%= render Ui::SmileyAvatar::Component.new(kid: task.profile, size: 48) %>
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px; flex-wrap: wrap;">
+                  <span class="h-display" style="font-size: 17px;"><%= task.title %></span>
+                  <span style="background: <%= palette[:fill] %>; color: <%= palette[:ink] %>; padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 800;"><%= task.profile&.name %></span>
                 </div>
-                <div class="row" style="gap: 8px; flex-shrink: 0;">
-                  <%= button_to reject_parent_approval_path(task), method: :patch,
-                      class: "btn btn-danger btn-icon",
-                      aria: { label: "Rejeitar" },
-                      data: { turbo_frame: "approvals_list", turbo_confirm: "Rejeitar esta tarefa?", turbo_submits_with: "..." } do %>
-                    <%= render Ui::Icon::Component.new("close", size: 18, color: "white") %>
-                  <% end %>
-                  <%= button_to approve_parent_approval_path(task), method: :patch,
-                      class: "btn btn-success btn-icon",
-                      aria: { label: "Aprovar" },
-                      data: { turbo_frame: "approvals_list", turbo_submits_with: "..." } do %>
-                    <%= render Ui::Icon::Component.new("check", size: 20, color: "white") %>
-                  <% end %>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span class="h-display" style="font-size: 15px; color: var(--text);">+<%= task.points %> ⭐</span>
+                  <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);"><%= time_ago_in_words(task.updated_at) %> atrás</span>
                 </div>
               </div>
+              <%= button_to reject_parent_approval_path(task), method: :patch,
+                  style: "background: #FEE2E2; color: #991B1B; border: none; border-radius: var(--r-sm); padding: 8px 14px; font-weight: 800; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;",
+                  aria: { label: "Rejeitar" },
+                  data: { turbo_frame: "approvals_list", turbo_confirm: "Rejeitar esta tarefa?", turbo_submits_with: "..." } do %>
+                Rejeitar
+              <% end %>
+              <%= button_to approve_parent_approval_path(task), method: :patch,
+                  style: "background: #D1FAE5; color: #047857; border: none; border-radius: var(--r-sm); padding: 8px 14px; font-weight: 800; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;",
+                  aria: { label: "Aprovar" },
+                  data: { turbo_frame: "approvals_list", turbo_submits_with: "..." } do %>
+                Aprovar
+              <% end %>
             </div>
           <% end %>
         <% else %>
@@ -77,34 +71,32 @@
       <div id="panel-rewards" class="col" style="gap: 10px; z-index: 2; display: none;">
         <% if @redemptions.any? %>
           <% @redemptions.each do |redemption| %>
-            <div id="<%= dom_id(redemption) %>" class="card" style="padding: 18px;">
-              <div class="row" style="gap: 14px;">
-                <%= render Ui::IconTile::Component.new(icon: "gift", color: "star", size: 52) %>
-                <div class="col fg1" style="gap: 4px;">
-                  <div class="h-display" style="font-size: 17px;"><%= redemption.reward&.title %></div>
-                  <div class="row" style="gap: 6px; flex-wrap: wrap;">
-                    <%= render Ui::KidAvatar::Component.new(kid: redemption.profile, size: 22) %>
-                    <span style="font-size: 12px; font-weight: 800; color: var(--text-muted);"><%= redemption.profile&.name %></span>
-                    <%= render Ui::Badge::Component.new(variant: "star", size: "sm", icon: "star") do %>
-                      −<%= redemption.points %>
-                    <% end %>
-                  </div>
+            <% palette = smiley_palette(redemption.profile) %>
+            <div id="<%= dom_id(redemption) %>" class="card" style="padding: 18px; display: flex; align-items: center; gap: 18px;">
+              <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0;">
+              <%= render Ui::SmileyAvatar::Component.new(kid: redemption.profile, size: 48) %>
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px; flex-wrap: wrap;">
+                  <span class="h-display" style="font-size: 17px;"><%= redemption.reward&.title %></span>
+                  <span style="background: <%= palette[:fill] %>; color: <%= palette[:ink] %>; padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 800;"><%= redemption.profile&.name %></span>
                 </div>
-                <div class="row" style="gap: 8px; flex-shrink: 0;">
-                  <%= button_to reject_redemption_parent_approval_path(redemption), method: :patch,
-                      class: "btn btn-danger btn-icon",
-                      aria: { label: "Cancelar" },
-                      data: { turbo_frame: "approvals_list", turbo_confirm: "Cancelar este resgate?", turbo_submits_with: "..." } do %>
-                    <%= render Ui::Icon::Component.new("close", size: 18, color: "white") %>
-                  <% end %>
-                  <%= button_to approve_redemption_parent_approval_path(redemption), method: :patch,
-                      class: "btn btn-success btn-icon",
-                      aria: { label: "Entregue" },
-                      data: { turbo_frame: "approvals_list", turbo_submits_with: "..." } do %>
-                    <%= render Ui::Icon::Component.new("check", size: 20, color: "white") %>
-                  <% end %>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span class="h-display" style="font-size: 15px; color: var(--text);">−<%= redemption.points %> ⭐</span>
+                  <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);"><%= time_ago_in_words(redemption.updated_at) %> atrás</span>
                 </div>
               </div>
+              <%= button_to reject_redemption_parent_approval_path(redemption), method: :patch,
+                  style: "background: #FEE2E2; color: #991B1B; border: none; border-radius: var(--r-sm); padding: 8px 14px; font-weight: 800; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;",
+                  aria: { label: "Cancelar" },
+                  data: { turbo_frame: "approvals_list", turbo_confirm: "Cancelar este resgate?", turbo_submits_with: "..." } do %>
+                Cancelar
+              <% end %>
+              <%= button_to approve_redemption_parent_approval_path(redemption), method: :patch,
+                  style: "background: #D1FAE5; color: #047857; border: none; border-radius: var(--r-sm); padding: 8px 14px; font-weight: 800; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;",
+                  aria: { label: "Entregue" },
+                  data: { turbo_frame: "approvals_list", turbo_submits_with: "..." } do %>
+                Entregue
+              <% end %>
             </div>
           <% end %>
         <% else %>
