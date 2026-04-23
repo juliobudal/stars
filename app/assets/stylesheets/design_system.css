@@ -814,3 +814,23 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
     color: var(--primary);
   }
 }
+
+.ghost-add-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 200px;
+  border: 2px dashed var(--hairline);
+  border-radius: var(--r-md);
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: border-color 0.15s, color 0.15s;
+}
+.ghost-add-card:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}

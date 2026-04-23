@@ -24,10 +24,7 @@
         %>
         <div class="card" style="padding: 0; overflow: hidden; border: 1px solid var(--hairline); box-shadow: var(--shadow-card);">
           <%# Top colored section with avatar %>
-          <div style="background: <%= bg_soft %>; padding: 24px 16px 20px; position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px;">
-            <%= link_to edit_parent_profile_path(k), style: "position: absolute; top: 12px; right: 12px; color: #{fg_var}; line-height: 1;" do %>
-              <%= render Ui::Icon::Component.new("edit", size: 18, color: fg_var) %>
-            <% end %>
+          <div style="background: <%= bg_soft %>; padding: 24px 16px 20px; display: flex; flex-direction: column; align-items: center; gap: 12px;">
             <%= render Ui::SmileyAvatar::Component.new(kid: k, size: 80) %>
             <div style="text-align: center;">
               <div style="font-family: var(--font-display); font-style: italic; font-size: 20px; font-weight: 700; color: <%= fg_var %>; line-height: 1.1;"><%= k.name %></div>
@@ -53,7 +50,7 @@
             <%# Action links %>
             <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 4px; border-top: 1px solid var(--hairline);">
               <%= link_to edit_parent_profile_path(k), style: "display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #{fg_var}; text-decoration: none;" do %>
-                <%= render Ui::Icon::Component.new("pencil", size: 14, color: fg_var) %>
+                <%= render Ui::Icon::Component.new("edit", size: 14, color: fg_var) %>
                 Editar perfil
               <% end %>
               <%= button_to parent_profile_path(k), method: :delete,
@@ -69,21 +66,20 @@
     <% end %>
 
     <%# Add child ghost card %>
-    <%= link_to new_parent_profile_path,
-          style: "display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-height: 200px; border: 2px dashed var(--hairline); border-radius: var(--r-md); background: transparent; text-decoration: none; cursor: pointer; color: var(--text-muted); transition: border-color 0.15s, color 0.15s;",
-          onmouseover: "this.style.borderColor='var(--primary)';this.style.color='var(--primary)'",
-          onmouseout:  "this.style.borderColor='var(--hairline)';this.style.color='var(--text-muted)'" do %>
+    <%= link_to new_parent_profile_path, class: "ghost-add-card" do %>
       <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px dashed currentColor; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 300; line-height: 1;">+</div>
       <span style="font-size: 13px; font-weight: 700;">Adicionar filho</span>
     <% end %>
 
     <% if @profiles.empty? %>
-      <%= render Ui::Empty::Component.new(
-        icon: "users",
-        title: "Nenhum perfil",
-        subtitle: "Adicione seu primeiro filho para começar!",
-        color: "peach"
-      ) %>
+      <div style="grid-column: 1 / -1;">
+        <%= render Ui::Empty::Component.new(
+          icon: "users",
+          title: "Nenhum perfil",
+          subtitle: "Adicione seu primeiro filho para começar!",
+          color: "peach"
+        ) %>
+      </div>
     <% end %>
   </div>
 </div>
