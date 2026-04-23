@@ -1,56 +1,61 @@
 /* ===============================================
    LittleStars — Design System
-   Flat · Rounded · Blue-dominant · Playful
+   Soft Candy · Berry Pop · Lilac-dominant · Playful
    =============================================== */
 
 :root {
-  /* ─── Paleta Sky (default) — azul dominante ─── */
-  --bg-deep: #f0f7ff;
-  --bg-mid: #e1efff;
-  --bg-soft: #d0e4ff;
+  /* ─── Paleta Berry Pop (default) ─── */
+  --bg-deep: #F8F5FF;
+  --bg-mid: #F8F5FF;
+  --bg-soft: #F0EAFF;
 
   --surface: #ffffff;
-  --surface-2: #f5f9ff;
-  --surface-ink: #1a2a4a;
+  --surface-2: #F0EAFF;
+  --surface-ink: #2B2A3A;
 
-  /* Primary shades (--primary itself comes from brand.css → Duolingo blue) */
-  --primary-2: #1e5fd9;
-  --primary-soft: #c7ddff;
-  --primary-glow: #6fa6ff;
+  /* Primary — lilac (overrides brand.css Duolingo blue) */
+  --primary: #A78BFA;
+  --primary-2: #7C5CD6;
+  --primary-soft: #EDE9FE;
+  --primary-glow: #C4B5FD;
 
-  /* Secundárias saturadas (hard colors) */
-  --star: #ffc41a;
-  --star-2: #ffa800;
-  --star-soft: #fff1c2;
+  /* Star / reward */
+  --star: #FFC53D;
+  --star-2: #E6A800;
+  --star-soft: #FFF4CC;
 
-  --c-peach: #ff8a5c;
-  --c-peach-soft: #ffd6c2;
-  --c-rose: #ff5a8a;
-  --c-rose-soft: #ffd0dd;
-  --c-rose-dark: #8a2e4a;
-  --c-mint: #3ed49e;
-  --c-mint-soft: #c2f0dd;
-  --c-mint-dark: #1a6a4a;
-  --c-sky: #38b6ff;
-  --c-sky-soft: #c2e7ff;
-  --c-lilac: #9b7aff;
-  --c-lilac-soft: #dccfff;
-  --c-coral: #ff6b6b;
-  --c-coral-soft: #ffcaca;
+  /* Hairline */
+  --hairline: #E8E0F5;
 
-  --danger: #ff5258;
+  /* Secundárias (Berry Pop palette) */
+  --c-peach: #F472B6;
+  --c-peach-soft: #FCE7F3;
+  --c-rose: #EC4899;
+  --c-rose-soft: #FCE7F3;
+  --c-rose-dark: #BE185D;
+  --c-mint: #34D399;
+  --c-mint-soft: #D1FAE5;
+  --c-mint-dark: #047857;
+  --c-sky: #38BDF8;
+  --c-sky-soft: #E0F2FE;
+  --c-lilac: #A78BFA;
+  --c-lilac-soft: #EDE9FE;
+  --c-coral: #EC4899;
+  --c-coral-soft: #FCE7F3;
 
-  --text-dark: #1a2a4a;
-  --text: #1a2a4a;
-  --text-muted: #6b7a99;
-  --text-soft: #9ba8c2;
+  --danger: #EF4444;
 
-  /* Shadows — flat + chunky drop */
-  --shadow-btn: 0 4px 0 rgba(26, 42, 74, 0.12);
-  --shadow-btn-hover: 0 6px 0 rgba(26, 42, 74, 0.12);
-  --shadow-card: 0 4px 0 rgba(26, 42, 74, 0.06), 0 8px 20px rgba(26, 42, 74, 0.04);
-  --shadow-lift: 0 10px 0 rgba(26, 42, 74, 0.08), 0 20px 40px rgba(26, 42, 74, 0.08);
-  --border-card: 2px solid rgba(26, 42, 74, 0.08);
+  --text-dark: #2B2A3A;
+  --text: #2B2A3A;
+  --text-muted: #6A6878;
+  --text-soft: #A09EAE;
+
+  /* Shadows — soft Berry Pop */
+  --shadow-btn: 0 4px 0 rgba(44, 42, 58, 0.12);
+  --shadow-btn-hover: 0 6px 0 rgba(44, 42, 58, 0.12);
+  --shadow-card: 0 2px 0 rgba(44, 42, 58, 0.04), 0 10px 24px rgba(44, 42, 58, 0.06);
+  --shadow-lift: 0 4px 0 rgba(44, 42, 58, 0.05), 0 18px 36px rgba(44, 42, 58, 0.08);
+  --border-card: 1px solid var(--hairline);
 
   /* Radius — generous */
   --r-sm: 14px;
@@ -59,7 +64,7 @@
   --r-xl: 40px;
   --r-full: 999px;
 
-  --font-display: 'Nunito', 'Fredoka', system-ui, sans-serif;
+  --font-display: 'Fraunces', 'Nunito', serif;
   --font-body: 'Nunito', system-ui, sans-serif;
 
   --space-1: 4px;
@@ -74,9 +79,9 @@
 
 /* ─── Paleta alt: Sunset (rosa/coral) ─── */
 [data-palette="aurora"] {
-  --bg-deep: #fff5f0;
-  --bg-mid: #ffe5d9;
-  --bg-soft: #ffd4be;
+  --bg-deep: #ffffff;
+  --bg-mid: #ffffff;
+  --bg-soft: #fff5f0;
   --primary: #ff6a9d;
   --primary-2: #e84d87;
   --primary-soft: #ffd0e2;
@@ -87,9 +92,9 @@
 
 /* ─── Paleta alt: Forest (verde/menta) ─── */
 [data-palette="galaxy"] {
-  --bg-deep: #f0faf3;
-  --bg-mid: #dcf3e0;
-  --bg-soft: #c5e9ce;
+  --bg-deep: #ffffff;
+  --bg-mid: #ffffff;
+  --bg-soft: #f0faf3;
   --primary: #2eca7f;
   --primary-2: #1fa868;
   --primary-soft: #c2f0dd;
@@ -165,7 +170,8 @@ html, body {
 /* ── Typography ── */
 .h-display {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
+  font-style: italic;
   letter-spacing: -0.02em;
   line-height: 1.05;
   color: var(--text);
@@ -286,8 +292,39 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   background: var(--primary);
   color: white;
   border: none;
-  box-shadow: 0 6px 0 var(--primary-2), 0 16px 32px rgba(46, 125, 246, 0.2);
+  box-shadow: 0 6px 0 var(--primary-2), 0 16px 32px rgba(167, 139, 250, 0.25);
 }
+
+/* ── Status chips (icon-only 28px pill for mission path) ── */
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--r-full);
+  flex-shrink: 0;
+}
+.status-chip--approved { background: #D1FAE5; color: #047857; }
+.status-chip--awaiting { background: #FEF3C7; color: #92400E; }
+.status-chip--current  { background: #FCE7F3; color: #BE185D; }
+.status-chip--todo     { background: #F2EEE6; color: #6A6878; }
+
+/* ── Mission path node (84px circle) ── */
+.mission-node {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+}
+.mission-node--approved { background: #34D399; }
+.mission-node--awaiting { background: #FDE68A; }
+.mission-node--current  { box-shadow: 0 0 0 6px rgba(255,197,61,0.33), 0 8px 18px rgba(0,0,0,0.08); }
+.mission-node--todo     { box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
 
 .card-flat { box-shadow: none; }
 
@@ -303,7 +340,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   font-size: 13px;
   letter-spacing: -0.01em;
 }
-.chip-star { background: var(--star-soft); color: #7a5200; }
+.chip-star { background: var(--star-soft); color: #92400E; }
 .chip-peach { background: var(--c-peach-soft); color: #8a3a1a; }
 .chip-rose { background: var(--c-rose-soft); color: #8a2e4a; }
 .chip-mint { background: var(--c-mint-soft); color: #1a6a4a; }
@@ -531,20 +568,8 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   100% { transform: translate(-50%, -50%) scale(30); opacity: 0; }
 }
 
-/* ── Mascote Lumi (SVG-based, via component) ── */
-.lumi-wrap {
-  display: inline-block;
-  animation: float 3.5s ease-in-out infinite;
-}
-.lumi-wrap.excited { animation: bounce 0.8s ease-in-out infinite; }
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(-2deg); }
-  50% { transform: translateY(-6px) rotate(2deg); }
-}
-@keyframes bounce {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-10px) scale(1.04); }
-}
+/* ── Mascote Lumi ── */
+.lumi-wrap { display: inline-block; }
 
 /* ── Utility ── */
 .row { display: flex; align-items: center; gap: var(--space-3); }
@@ -664,12 +689,40 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 /* Screen scoped to parent: no bottom-nav needed */
 .screen.no-nav { padding-bottom: var(--space-6); }
 
-/* Side-nav hidden by default (mobile-first) */
+/* ── Side nav — hidden on all sizes (mobile-first), shown via parent-layout below ── */
 .side-nav { display: none; }
 
-/* ── Desktop layout (≥1024px) ── */
+/* ── Desktop layout ── */
 @media (min-width: 1024px) {
-  /* ── Parent sidebar (desktop only) ── */
+  html, body { overflow: visible; }
+
+  .app-shell {
+    overflow: visible;
+    height: 100vh;
+  }
+
+  .viewport {
+    width: 100%;
+    overflow-y: auto;
+    height: 100vh;
+    position: relative;
+  }
+
+  .screen {
+    position: relative;
+    inset: unset;
+    max-width: 900px;
+    margin: 0 auto;
+    min-height: 100%;
+    padding: var(--space-6) var(--space-7) 120px;
+    overflow-y: visible;
+    overflow-x: visible;
+  }
+
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+  /* ── Parent sidebar (desktop only, scoped to parent-layout) ── */
   body.parent-layout .side-nav {
     display: flex;
     flex-direction: column;
