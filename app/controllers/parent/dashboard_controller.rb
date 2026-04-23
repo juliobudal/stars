@@ -26,7 +26,7 @@ class Parent::DashboardController < ApplicationController
       children:          @children.count,
       pending_approvals: ProfileTask.joins(:profile).where(profiles: { family_id: @family.id }).awaiting_approval.count,
       total_stars:       @children.sum(:points),
-      active_missions:   ProfileTask.joins(:profile).where(profiles: { family_id: @family.id, role: :child }).pending.count,
+      active_missions:   @child_missions.values.sum,
       rewards_count:     Reward.where(family_id: @family.id).count
     }
 

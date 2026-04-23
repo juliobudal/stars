@@ -16,7 +16,7 @@
           children_count = current_profile.family.profiles.child.count
         %>
         <span style="font-size: 11px; color: var(--text-muted);">
-          <%= parents_count %> <%= 'pai'.pluralize(parents_count) %> · <%= children_count %> <%= 'filho'.pluralize(children_count) %>
+          <%= parents_count == 1 ? '1 pai' : "#{parents_count} pais" %> · <%= children_count == 1 ? '1 filho' : "#{children_count} filhos" %>
         </span>
       </div>
     </div>
