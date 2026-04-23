@@ -75,6 +75,11 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
   config.include AuthHelpers, type: :request
+  config.include SystemAuthHelpers, type: :system
+
+  config.before(:each, type: :system) do
+    [Redemption, ActivityLog, ProfileTask, GlobalTaskAssignment, Reward, GlobalTask, ProfileInvitation, Profile, Family].each(&:delete_all)
+  end
 end
 
 Shoulda::Matchers.configure do |config|
