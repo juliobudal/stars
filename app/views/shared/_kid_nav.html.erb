@@ -1,27 +1,36 @@
 <%
-  nav_item = ->(icon_name, path, title) {
-    active = current_page?(path)
-    link_to path, class: "nav-item #{active ? 'active' : ''}", title: title do
-      render Ui::Icon::Component.new(icon_name, size: 26)
-    end
-  }
+  nav_items = [
+    { icon: "target", path: kid_root_path,          label: "Jornada" },
+    { icon: "bag",    path: kid_rewards_path,       label: "Lojinha" },
+    { icon: "book",   path: kid_wallet_index_path,  label: "Diário"  },
+  ]
 %>
 
 <nav class="side-nav">
-  <%= nav_item.call("target", kid_root_path, "Missões") %>
-  <%= nav_item.call("bag", kid_rewards_path, "Loja") %>
-  <%= nav_item.call("scroll", kid_wallet_index_path, "Extrato") %>
+  <% nav_items.each do |item| %>
+    <% active = current_page?(item[:path]) %>
+    <%= link_to item[:path], class: "nav-item #{active ? 'active' : ''}", title: item[:label] do %>
+      <%= render Ui::Icon::Component.new(item[:icon], size: 18) %>
+      <span class="nav-label"><%= item[:label] %></span>
+    <% end %>
+  <% end %>
   <div class="side-nav-spacer"></div>
   <%= button_to sessions_path, method: :delete, class: "nav-item", title: "Sair" do %>
-    <%= render Ui::Icon::Component.new("logout", size: 26) %>
+    <%= render Ui::Icon::Component.new("logout", size: 18) %>
+    <span class="nav-label">Sair</span>
   <% end %>
 </nav>
 
 <div class="bottom-nav">
-  <%= nav_item.call("target", kid_root_path, "Missões") %>
-  <%= nav_item.call("bag", kid_rewards_path, "Loja") %>
-  <%= nav_item.call("scroll", kid_wallet_index_path, "Extrato") %>
+  <% nav_items.each do |item| %>
+    <% active = current_page?(item[:path]) %>
+    <%= link_to item[:path], class: "nav-item #{active ? 'active' : ''}", title: item[:label] do %>
+      <%= render Ui::Icon::Component.new(item[:icon], size: 18) %>
+      <span class="nav-label"><%= item[:label] %></span>
+    <% end %>
+  <% end %>
   <%= button_to sessions_path, method: :delete, class: "nav-item", title: "Sair" do %>
-    <%= render Ui::Icon::Component.new("logout", size: 26) %>
+    <%= render Ui::Icon::Component.new("logout", size: 18) %>
+    <span class="nav-label">Sair</span>
   <% end %>
 </div>
