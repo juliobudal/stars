@@ -12,101 +12,202 @@
     <% end %>
   <% end %>
 
-  <div class="grid-2" style="z-index: 2; gap: 16px;">
-    <% if @rewards.any? %>
-      <% @rewards.each_with_index do |reward, i| %>
-        <% 
-          can_afford = current_profile.points >= reward.cost
-          color_idx = i % 6
-          color_options = %w[peach rose mint sky lilac coral]
-          color = color_options[color_idx]
-          fg_var = "var(--c-#{color})"
-        %>
-        <button
-          class="card pop-on-tap card-tap"
-          style="
-            cursor: <%= can_afford ? 'pointer' : 'not-allowed' %>;
-            border: 3px solid <%= fg_var %>;
-            box-shadow: 0 5px 0 <%= fg_var %>;
-            padding: 18px;
-            text-align: center;
-            opacity: <%= can_afford ? 1 : 0.55 %>;
-            filter: <%= can_afford ? 'none' : 'grayscale(0.4)' %>;
-            animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= i * 0.04 %>s both;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            background: white;
-            font-family: var(--font-body);
-          "
-          <%= 'disabled' unless can_afford %>
-          data-action="click->ui-modal#open"
-          data-ui-modal-id-param="modal_<%= dom_id(reward) %>"
-        >
-          <div style="width: 84px; height: 84px; border-radius: 50%; background: <%= fg_var %>; display: flex; align-items: center; justify-content: center;">
-            <%= render Ui::Icon::Component.new(reward.icon.presence || "gift", size: 48, color: "white") %>
-          </div>
-          <div class="h-display" style="font-size: 16px; color: var(--text);"><%= reward.title %></div>
-          <%= render Ui::Badge::Component.new(variant: "star", style: "font-size: 15px; padding: 7px 14px;") do %>
-            <%= render Ui::Icon::Component.new("star", size: 16, color: "var(--star-2)") %>
-            <%= reward.cost %>
-          <% end %>
-          <% unless can_afford %>
-            <div style="font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">
-              Faltam <%= reward.cost - current_profile.points %> ⭐
-            </div>
-          <% end %>
-        </button>
-
-        <%# Purchase Modal %>
-        <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(reward)}", title: "Resgatar Recompensa") do %>
-          <div class="center col" style="text-align: center; gap: 14px;">
-            <%= render Ui::Lumi::Component.new(size: 76, mood: "excited") %>
-            <div style="width: 100px; height: 100px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-              <%= render Ui::Icon::Component.new(reward.icon.presence || "gift", size: 56, color: "white") %>
-            </div>
-            <h3 class="h-display" style="font-size: 26px;"><%= reward.title %></h3>
-            <div class="row" style="gap: 10px; justify-content: center;">
-              <%= render Ui::Badge::Component.new(variant: "star", style: "font-size: 16px; padding: 8px 14px;") do %>
-                <%= render Ui::Icon::Component.new("star", size: 16, color: "var(--star-2)") %> <%= reward.cost %>
-              <% end %>
-            </div>
-            
-            <div class="card" style="padding: 14px; background: var(--bg-mid); border: none; box-shadow: none; width: 100%;">
-              <div class="row" style="justify-content: space-between; font-family: var(--font-display); font-weight: 800;">
-                <span>Saldo atual</span>
-                <span><%= current_profile.points %> ⭐</span>
-              </div>
-              <div class="row" style="justify-content: space-between; color: var(--danger); font-family: var(--font-display); font-weight: 800; margin-top: 4px;">
-                <span>−</span>
-                <span><%= reward.cost %> ⭐</span>
-              </div>
-              <div style="height: 2px; background: rgba(26,42,74,0.1); margin: 8px 0;"></div>
-              <div class="row" style="justify-content: space-between; color: var(--primary); font-family: var(--font-display); font-weight: 800; font-size: 18px;">
-                <span>Depois</span>
-                <span><%= current_profile.points - reward.cost %> ⭐</span>
-              </div>
-            </div>
-
-            <div class="row" style="gap: 12px; margin-top: 6px; width: 100%; justify-content: center;">
-              <%= render Ui::Btn::Component.new(variant: "secondary", data: { action: "click->modal#close" }) do %>Cancelar<% end %>
-              <%= button_to redeem_kid_reward_path(reward), method: :post, class: "btn btn-primary btn-lg" do %>
-                <%= render Ui::Icon::Component.new("gift", size: 20) %> Resgatar!
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+  <%# Featured Banner %>
+  <% if @featured %>
+    <%
+      featured_can_afford = current_profile.points >= @featured.cost
+    %>
+    <div class="card" style="
+      z-index: 2;
+      margin-bottom: 16px;
+      padding: 20px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
+      border: none;
+      box-shadow: 0 6px 0 var(--primary-2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+    ">
+      <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;">
+        <%= render Ui::Icon::Component.new(@featured.icon.presence || "gift", size: 44, color: "white") %>
+      </div>
+      <div class="h-display" style="font-size: 22px; color: white;"><%= @featured.title %></div>
+      <% if featured_can_afford %>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 700;">Você pode pegar essa! 🎉</div>
+      <% else %>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 700;">faltam <%= @featured.cost - current_profile.points %> ⭐</div>
       <% end %>
-    <% else %>
-      <div class="col-span-2">
-        <%= render Ui::Empty::Component.new(
-          icon: "bag",
-          title: "A lojinha está vazia",
-          subtitle: "Peça para um responsável adicionar recompensas!",
-          color: "rose"
-        ) %>
+      <button
+        class="btn btn-primary"
+        style="background: white; color: var(--primary); border: none; box-shadow: none; font-weight: 800;"
+        data-action="click->ui-modal#open"
+        data-ui-modal-id-param="modal_<%= dom_id(@featured) %>"
+      >
+        Trocar por <%= @featured.cost %> ⭐
+      </button>
+    </div>
+  <% end %>
+
+  <%# Category Tabs %>
+  <div data-controller="tabs" style="z-index: 2; margin-bottom: 16px;">
+    <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none;">
+      <%
+        tab_labels = [
+          ["all",         "Tudo"],
+          ["telinha",     "Telinha"],
+          ["docinhos",    "Docinhos"],
+          ["passeios",    "Passeios"],
+          ["brinquedos",  "Brinquedos"],
+          ["experiencias","Experiências"]
+        ]
+      %>
+      <% tab_labels.each_with_index do |(tab_id, label), idx| %>
+        <button
+          data-tabs-target="tab"
+          data-action="click->tabs#show"
+          data-tabs-id-param="<%= tab_id %>"
+          class="<%= idx == 0 ? 'active' : '' %>"
+          style="
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            border-radius: var(--r-full);
+            padding: 8px 18px;
+            font-weight: 700;
+            font-size: 13px;
+            <%= idx == 0 ? 'background: var(--primary); color: white; box-shadow: 0 3px 0 var(--primary-2);' : 'background: var(--surface-2); color: var(--text-muted);' %>
+          "
+        ><%= label %></button>
+      <% end %>
+    </div>
+
+    <%# All panels show the same grid (no category data yet) %>
+    <% tab_labels.each_with_index do |(tab_id, _label), idx| %>
+      <div id="panel-<%= tab_id %>" style="display: <%= idx == 0 ? 'flex' : 'none' %>; flex-direction: column; margin-top: 16px;">
+        <% if @rewards.any? %>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+            <% @rewards.each_with_index do |reward, i| %>
+              <%
+                can_afford = current_profile.points >= reward.cost
+                color_options = %w[peach rose mint sky lilac coral]
+                color = color_options[i % color_options.length]
+                fg_var = "var(--c-#{color})"
+              %>
+              <div
+                class="card"
+                style="
+                  padding: 14px 10px;
+                  text-align: center;
+                  opacity: <%= can_afford ? 1 : 0.6 %>;
+                  filter: <%= can_afford ? 'none' : 'grayscale(0.4)' %>;
+                  animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= i * 0.04 %>s both;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 8px;
+                  background: white;
+                  border: none;
+                  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                "
+              >
+                <div style="width: 64px; height: 64px; border-radius: 50%; background: <%= fg_var %>; display: flex; align-items: center; justify-content: center;">
+                  <%= render Ui::Icon::Component.new(reward.icon.presence || "gift", size: 34, color: "white") %>
+                </div>
+                <div class="h-display" style="font-size: 14px; color: var(--text); line-height: 1.2;"><%= reward.title %></div>
+                <%= render Ui::Badge::Component.new(variant: "star", style: "font-size: 12px; padding: 4px 10px;") do %>
+                  <%= render Ui::Icon::Component.new("star", size: 13, color: "var(--star-2)") %>
+                  <%= reward.cost %>
+                <% end %>
+                <% if can_afford %>
+                  <button
+                    class="btn btn-primary btn-sm"
+                    data-action="click->ui-modal#open"
+                    data-ui-modal-id-param="modal_<%= dom_id(reward) %>"
+                  >TROCAR</button>
+                <% else %>
+                  <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">
+                    faltam <%= reward.cost - current_profile.points %> ⭐
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <%= render Ui::Empty::Component.new(
+            icon: "bag",
+            title: "A lojinha está vazia",
+            subtitle: "Peça para um responsável adicionar recompensas!",
+            color: "rose"
+          ) %>
+        <% end %>
       </div>
     <% end %>
   </div>
+
+  <%# Meus Prêmios Section %>
+  <% if @redeemed_rewards.any? %>
+    <div style="z-index: 2; margin-top: 8px; margin-bottom: 24px;">
+      <div class="h-display" style="font-size: 20px; color: var(--text); margin-bottom: 12px;">Meus prêmios</div>
+      <div class="col" style="gap: 10px;">
+        <% @redeemed_rewards.each do |redemption| %>
+          <div class="card" style="padding: 14px 16px; display: flex; flex-direction: row; align-items: center; gap: 14px; background: white; border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--c-lilac); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <%= render Ui::Icon::Component.new(redemption.reward.icon.presence || "gift", size: 24, color: "white") %>
+            </div>
+            <div style="flex: 1; font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--text);">
+              <%= redemption.title %>
+            </div>
+            <% if redemption.pending? %>
+              <%= render Ui::Badge::Component.new(variant: "mint") do %>Disponível<% end %>
+            <% elsif redemption.approved? %>
+              <%= render Ui::Badge::Component.new(variant: "lilac") do %>Aproveitado<% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%# Reward Modals (one per reward) %>
+  <% @rewards.each_with_index do |reward, i| %>
+    <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(reward)}", title: "Resgatar Recompensa") do %>
+      <div class="center col" style="text-align: center; gap: 14px;">
+        <%= render Ui::Lumi::Component.new(size: 76, mood: "excited") %>
+        <div style="width: 100px; height: 100px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+          <%= render Ui::Icon::Component.new(reward.icon.presence || "gift", size: 56, color: "white") %>
+        </div>
+        <h3 class="h-display" style="font-size: 26px;"><%= reward.title %></h3>
+        <div class="row" style="gap: 10px; justify-content: center;">
+          <%= render Ui::Badge::Component.new(variant: "star", style: "font-size: 16px; padding: 8px 14px;") do %>
+            <%= render Ui::Icon::Component.new("star", size: 16, color: "var(--star-2)") %> <%= reward.cost %>
+          <% end %>
+        </div>
+
+        <div class="card" style="padding: 14px; background: var(--bg-mid); border: none; box-shadow: none; width: 100%;">
+          <div class="row" style="justify-content: space-between; font-family: var(--font-display); font-weight: 800;">
+            <span>Saldo atual</span>
+            <span><%= current_profile.points %> ⭐</span>
+          </div>
+          <div class="row" style="justify-content: space-between; color: var(--danger); font-family: var(--font-display); font-weight: 800; margin-top: 4px;">
+            <span>−</span>
+            <span><%= reward.cost %> ⭐</span>
+          </div>
+          <div style="height: 2px; background: rgba(26,42,74,0.1); margin: 8px 0;"></div>
+          <div class="row" style="justify-content: space-between; color: var(--primary); font-family: var(--font-display); font-weight: 800; font-size: 18px;">
+            <span>Depois</span>
+            <span><%= current_profile.points - reward.cost %> ⭐</span>
+          </div>
+        </div>
+
+        <div class="row" style="gap: 12px; margin-top: 6px; width: 100%; justify-content: center;">
+          <%= render Ui::Btn::Component.new(variant: "secondary", data: { action: "click->modal#close" }) do %>Cancelar<% end %>
+          <%= button_to redeem_kid_reward_path(reward), method: :post, class: "btn btn-primary btn-lg" do %>
+            <%= render Ui::Icon::Component.new("gift", size: 20) %> Resgatar!
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>
