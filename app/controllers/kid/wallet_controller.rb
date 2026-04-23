@@ -4,12 +4,17 @@ class Kid::WalletController < ApplicationController
   layout 'kid'
 
   def index
-    @activity_logs = ActivityLog.where(profile: current_profile).order(created_at: :desc)
+    @activity_logs = ActivityLog.where(profile: current_profile).order(created_at: :desc).load
 
-    week_start = Date.current.beginning_of_week
-    week_logs = @activity_logs.where("created_at >= ?", week_start)
+    week_start = Time.current.beginning_of_week
+    week_logs = ActivityLog.where(profile: current_profile).where("created_at >= ?", week_start)
     @week_earned   = week_logs.where(log_type: :earn).sum(:points)
     @week_spent    = week_logs.where(log_type: :redeem).sum(:points)
-    @week_missions = week_logs.where(log_type: :earn).count
+    @week_missions = current_profile.profile_tasks.where(status: :approved).where("updated_at >= ?", week_start).count
+
+    @today            = Date.current
+    @all_grouped      = @activity_logs.group_by { |l| l.created_at.to_date }
+    @earned_grouped   = @activity_logs.select(&:earn?).group_by { |l| l.created_at.to_date }
+    @purchase_grouped = @activity_logs.select(&:redeem?).group_by { |l| l.created_at.to_date }
   end
 end

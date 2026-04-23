@@ -82,18 +82,10 @@
       </button>
     </div>
 
-    <%
-      today   = Date.current
-      all_grouped      = @activity_logs.group_by { |l| l.created_at.to_date }
-      earned_grouped   = @activity_logs.select(&:earn?).group_by { |l| l.created_at.to_date }
-      purchase_grouped = @activity_logs.select(&:redeem?).group_by { |l| l.created_at.to_date }
-    %>
-
-    <%# Helper: render a grouped timeline for a given hash of date => logs %>
     <%# Panel: Tudo %>
     <div id="panel-all" style="display: flex; flex-direction: column; gap: 0;">
       <% if @activity_logs.any? %>
-        <%= render partial: "kid/wallet/day_groups", locals: { grouped: all_grouped, today: today } %>
+        <%= render partial: "kid/wallet/day_groups", locals: { grouped: @all_grouped, today: @today } %>
       <% else %>
         <%= render Ui::Empty::Component.new(
           icon: "scroll",
@@ -106,8 +98,8 @@
 
     <%# Panel: Conquistadas %>
     <div id="panel-earned" style="display: none; flex-direction: column; gap: 0;">
-      <% if earned_grouped.any? %>
-        <%= render partial: "kid/wallet/day_groups", locals: { grouped: earned_grouped, today: today } %>
+      <% if @earned_grouped.any? %>
+        <%= render partial: "kid/wallet/day_groups", locals: { grouped: @earned_grouped, today: @today } %>
       <% else %>
         <%= render Ui::Empty::Component.new(
           icon: "scroll",
@@ -120,8 +112,8 @@
 
     <%# Panel: Compras %>
     <div id="panel-purchases" style="display: none; flex-direction: column; gap: 0;">
-      <% if purchase_grouped.any? %>
-        <%= render partial: "kid/wallet/day_groups", locals: { grouped: purchase_grouped, today: today } %>
+      <% if @purchase_grouped.any? %>
+        <%= render partial: "kid/wallet/day_groups", locals: { grouped: @purchase_grouped, today: @today } %>
       <% else %>
         <%= render Ui::Empty::Component.new(
           icon: "scroll",
@@ -132,23 +124,23 @@
       <% end %>
     </div>
 
-    <%# Panel: Aguardando (no ActivityLog status — empty state) %>
+    <%# Panel: Aguardando (no ActivityLog status — honest empty state) %>
     <div id="panel-pending" style="display: none; flex-direction: column; gap: 0;">
       <%= render Ui::Empty::Component.new(
-        icon: "scroll",
-        title: "Nada aguardando aprovação",
-        subtitle: "Missões pendentes aparecem aqui",
-        color: "lilac"
+        icon: "clock",
+        title: "Aguardando aprovação",
+        subtitle: "Missões enviadas para aprovação aparecerão aqui em breve",
+        color: "primary"
       ) %>
     </div>
 
-    <%# Panel: Rejeitadas (no ActivityLog status — empty state) %>
+    <%# Panel: Rejeitadas (no ActivityLog status — honest empty state) %>
     <div id="panel-rejected" style="display: none; flex-direction: column; gap: 0;">
       <%= render Ui::Empty::Component.new(
         icon: "scroll",
         title: "Nenhuma missão rejeitada",
-        subtitle: "Missões rejeitadas apareceriam aqui",
-        color: "lilac"
+        subtitle: "Ótimo trabalho! Missões rejeitadas aparecerão aqui",
+        color: "rose"
       ) %>
     </div>
   </div>
