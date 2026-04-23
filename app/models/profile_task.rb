@@ -13,7 +13,7 @@ class ProfileTask < ApplicationRecord
 
   delegate :title, :points, :category, :description, :icon, to: :global_task
 
-  scope :for_today, -> { where(assigned_date: Date.current) }
+  scope :for_today, ->(date = Date.current) { where(assigned_date: date) }
   scope :actionable, -> { pending.or(awaiting_approval) }
 
   after_commit :broadcast_approval_count

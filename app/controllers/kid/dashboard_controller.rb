@@ -14,7 +14,7 @@ class Kid::DashboardController < ApplicationController
   private
 
   def ensure_todays_tasks
-    today = Date.current
+    today = family_today(current_profile.family)
     return if ProfileTask.where(profile: current_profile, assigned_date: today).exists?
 
     Tasks::DailyResetService.new(family: current_profile.family).call

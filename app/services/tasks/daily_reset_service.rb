@@ -1,8 +1,8 @@
 module Tasks
   class DailyResetService
-    def initialize(date: Date.current, family: nil)
-      @date = date
+    def initialize(date: nil, family: nil)
       @family = family
+      @date = date || (family ? Time.current.in_time_zone(family.timezone).to_date : Date.current)
       @wday = @date.wday
     end
 
@@ -38,7 +38,7 @@ module Tasks
         end
       end
 
-      Rails.logger.info("[Tasks::DailyResetService] success created=#{created_count}")
+      Rails.logger.info("[Tasks::DailyResetService] success created=#{created_count} family_id=#{@family&.id || 'all'}")
       created_count
     end
 

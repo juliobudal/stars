@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Tasks::DailyResetService do
+  include ActiveSupport::Testing::TimeHelpers
   let(:family) { create(:family) }
   let!(:child1) { create(:profile, :child, family: family) }
   let!(:child2) { create(:profile, :child, family: family) }
@@ -43,6 +44,21 @@ RSpec.describe Tasks::DailyResetService do
 
         # Verify weekly task was NOT created
         expect(ProfileTask.where(profile: child1, global_task: weekly_task, assigned_date: monday)).to be_empty
+      end
+    end
+
+    context 'when family timezone differs from UTC' do
+      let(:ny_family) { create(:family, timezone: 'America/New_York') }
+      let!(:ny_child) { create(:profile, :child, family: ny_family) }
+      let!(:ny_daily_task) { create(:global_task, :daily, family: ny_family) }
+
+      it 'creates tasks for the family-local date, not UTC date' do
+        # 2024-01-02 04:00 UTC = 2024-01-01 23:00 in America/New_York
+        travel_to Time.utc(2024, 1, 2, 4, 0, 0) do
+          described_class.new(family: ny_family).call
+          expect(ProfileTask.where(profile: ny_child, global_task: ny_daily_task, assigned_date: Date.new(2024, 1, 1))).to exist
+          expect(ProfileTask.where(profile: ny_child, global_task: ny_daily_task, assigned_date: Date.new(2024, 1, 2))).to be_empty
+        end
       end
     end
 

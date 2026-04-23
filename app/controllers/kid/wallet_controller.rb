@@ -13,7 +13,7 @@ class Kid::WalletController < ApplicationController
     @week_spent    = week_logs.where(log_type: :redeem).sum(:points)
     @week_missions = current_profile.profile_tasks.where(status: :approved).where("updated_at >= ?", week_start).count
 
-    @today            = Date.current
+    @today            = family_today(current_profile.family)
     @all_grouped      = @activity_logs.group_by { |l| l.created_at.to_date }
     @earned_grouped   = @activity_logs.select(&:earn?).group_by { |l| l.created_at.to_date }
     @purchase_grouped = @activity_logs.select(&:redeem?).group_by { |l| l.created_at.to_date }

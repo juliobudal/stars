@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  helper_method :current_profile
+  helper_method :current_profile, :family_today
+
+  def family_today(family)
+    Time.current.in_time_zone(family.timezone).to_date
+  end
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActionController::ParameterMissing, with: :bad_request

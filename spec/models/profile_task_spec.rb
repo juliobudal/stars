@@ -18,11 +18,19 @@ RSpec.describe ProfileTask, type: :model do
 
   describe "scopes" do
     describe ".for_today" do
-      it "returns tasks assigned for today" do
+      it "returns tasks assigned for today by default" do
         task_today = create(:profile_task, assigned_date: Date.current)
         task_yesterday = create(:profile_task, assigned_date: Date.yesterday)
         expect(ProfileTask.for_today).to include(task_today)
         expect(ProfileTask.for_today).not_to include(task_yesterday)
+      end
+
+      it "accepts an explicit date argument" do
+        specific_date = Date.new(2024, 1, 1)
+        task_on_date = create(:profile_task, assigned_date: specific_date)
+        task_today   = create(:profile_task, assigned_date: Date.current)
+        expect(ProfileTask.for_today(specific_date)).to include(task_on_date)
+        expect(ProfileTask.for_today(specific_date)).not_to include(task_today)
       end
     end
 
