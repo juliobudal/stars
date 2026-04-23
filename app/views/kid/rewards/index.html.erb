@@ -19,7 +19,7 @@
 
   <%# Featured Banner — horizontal 2-col %>
   <% if featured %>
-    <div class="card" style="z-index: 2; display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; margin-bottom: 16px; padding: 28px; overflow: hidden; position: relative; border-radius: var(--r-featured);">
+    <div class="card" style="z-index: 2; display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; margin-bottom: 16px; padding: 28px; overflow: clip; position: relative; border-radius: var(--r-featured);">
       <div>
         <span style="display:inline-flex; align-items:center; gap:4px; background:#EDE9FE; color:#6D28D9; padding:4px 10px; border-radius:999px; font-size:11px; font-weight:800; letter-spacing:.1em; margin-bottom:12px;">✨ EM DESTAQUE</span>
         <h3 class="h-display" style="font-size:26px; margin:0 0 6px;"><%= featured.title %></h3>
@@ -41,6 +41,12 @@
       </div>
     </div>
   <% end %>
+
+  <%# Section Header %>
+  <div style="z-index: 2; display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px;">
+    <div class="h-display" style="font-size: 18px; color: var(--text);">O que você quer hoje?</div>
+    <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);"><%= @rewards.size %> prêmios</span>
+  </div>
 
   <%# Category Tabs %>
   <div data-controller="tabs" style="z-index: 2; margin-bottom: 16px;">
@@ -92,7 +98,7 @@
               data-action="click->ui-modal#open"
               data-ui-modal-id-param="modal_<%= dom_id(reward) %>"
               style="
-                padding: 14px 10px;
+                padding: 10px 8px;
                 text-align: center;
                 cursor: <%= can_afford ? 'pointer' : 'default' %>;
                 opacity: <%= can_afford ? 1 : 0.6 %>;
@@ -101,14 +107,14 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 8px;
+                gap: 6px;
                 background: white;
                 border: none;
                 box-shadow: var(--shadow-card);
               "
             >
-              <div style="width: 120px; height: 120px; border-radius: 20px; background: <%= tint %>; display: grid; place-items: center; margin: 0 auto 4px;">
-                <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 56, color: "#6D28D9") %>
+              <div style="width: 72px; height: 72px; border-radius: 16px; background: <%= tint %>; display: grid; place-items: center; margin: 0 auto 2px;">
+                <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 36, color: "#6D28D9") %>
               </div>
               <div class="h-display" style="font-size: 14px; color: var(--text); line-height: 1.2;"><%= reward.title %></div>
               <%= render Ui::Badge::Component.new(variant: "star", style: "font-size: 12px; padding: 4px 10px;") do %>
