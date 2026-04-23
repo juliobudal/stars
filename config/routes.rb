@@ -12,8 +12,12 @@ Rails.application.routes.draw do
   resource :registration, only: [ :new, :create ]
   resource :password_reset, only: [ :new, :create, :edit, :update ]
 
+  get "invitations/:token/accept" => "invitations#show", as: :invitation_acceptance
+  post "invitations/:token/accept" => "invitations#accept", as: :accept_invitation
+
   namespace :parent do
     root "dashboard#index"
+    resources :invitations, only: [ :new, :create ]
     resources :profiles, only: [ :index, :new, :create, :edit, :update, :destroy ]
     resources :global_tasks, except: [ :show ] do
       member do

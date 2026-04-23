@@ -4,6 +4,7 @@ class Profile < ApplicationRecord
   has_many :redemptions, dependent: :destroy
   has_many :activity_logs, dependent: :destroy
   has_many :global_task_assignments, dependent: :destroy
+  has_many :sent_invitations, class_name: "ProfileInvitation", foreign_key: :invited_by_id, dependent: :nullify
 
   has_secure_password validations: false
 

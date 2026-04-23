@@ -1,0 +1,24 @@
+<div class="card" style="max-width: 480px; margin: 40px auto; padding: 32px;">
+  <h2 class="h-display" style="margin-bottom: 24px;">Convidar responsável</h2>
+
+  <% if @invitation.errors.any? %>
+    <div class="alert alert-error" style="margin-bottom: 16px;">
+      <% @invitation.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= form_with model: @invitation, url: parent_invitations_path, method: :post do |f| %>
+    <div class="form-field" style="margin-bottom: 20px;">
+      <%= f.label :email, "Email do responsável", style: "display: block; font-weight: 700; margin-bottom: 6px;" %>
+      <%= f.email_field :email, placeholder: "email@exemplo.com",
+            style: "width: 100%; padding: 10px 12px; border: 1.5px solid var(--hairline); border-radius: 10px; font-size: 14px;" %>
+    </div>
+
+    <div style="display: flex; gap: 12px;">
+      <%= f.submit "Enviar convite", class: "btn btn-primary", style: "flex: 1;" %>
+      <%= link_to "Cancelar", parent_settings_path, class: "btn btn-ghost", style: "flex: 1; text-align: center;" %>
+    </div>
+  <% end %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_23_212941) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_23_213717) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -94,6 +94,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_212941) do
     t.string "title"
     t.datetime "updated_at", null: false
     t.index ["family_id"], name: "index_global_tasks_on_family_id"
+  end
+
+  create_table "profile_invitations", force: :cascade do |t|
+    t.datetime "accepted_at"
+    t.datetime "created_at", null: false
+    t.string "email", null: false
+    t.datetime "expires_at", null: false
+    t.bigint "family_id", null: false
+    t.bigint "invited_by_id"
+    t.string "token", null: false
+    t.datetime "updated_at", null: false
+    t.index ["family_id"], name: "index_profile_invitations_on_family_id"
+    t.index ["token"], name: "index_profile_invitations_on_token", unique: true
   end
 
   create_table "profile_tasks", force: :cascade do |t|
@@ -275,6 +288,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_212941) do
   add_foreign_key "global_task_assignments", "global_tasks", on_delete: :cascade
   add_foreign_key "global_task_assignments", "profiles", on_delete: :cascade
   add_foreign_key "global_tasks", "families"
+  add_foreign_key "profile_invitations", "families", on_delete: :cascade
+  add_foreign_key "profile_invitations", "profiles", column: "invited_by_id", on_delete: :nullify
   add_foreign_key "profile_tasks", "global_tasks"
   add_foreign_key "profile_tasks", "profiles"
   add_foreign_key "profiles", "families"
