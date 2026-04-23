@@ -53,8 +53,8 @@
             <%# Action links %>
             <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 4px; border-top: 1px solid var(--hairline);">
               <%= link_to edit_parent_profile_path(k), style: "display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #{fg_var}; text-decoration: none;" do %>
-                <%= render Ui::Icon::Component.new("eye", size: 14, color: fg_var) %>
-                Ver jornada
+                <%= render Ui::Icon::Component.new("pencil", size: 14, color: fg_var) %>
+                Editar perfil
               <% end %>
               <%= button_to parent_profile_path(k), method: :delete,
                     form: { data: { turbo_confirm: "Remover #{k.name}? Esta ação não pode ser desfeita." } },
