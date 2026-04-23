@@ -4,7 +4,6 @@
   <%= render Ui::TopBar::Component.new(
     title: "Configurações",
     subtitle: "Família, responsáveis e regras do sistema.",
-    back_url: parent_root_path
   ) %>
 
   <%= form_with url: parent_settings_path, method: :patch, local: true, class: "col", style: "gap: 16px; z-index: 2;" do |f| %>

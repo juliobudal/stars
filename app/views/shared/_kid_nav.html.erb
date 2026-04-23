@@ -10,13 +10,13 @@
   <% nav_items.each do |item| %>
     <% active = current_page?(item[:path]) %>
     <%= link_to item[:path], class: "nav-item #{active ? 'active' : ''}", title: item[:label] do %>
-      <%= render Ui::Icon::Component.new(item[:icon], size: 18) %>
+      <%= render Ui::Icon::Component.new(item[:icon], size: 22) %>
       <span class="nav-label"><%= item[:label] %></span>
     <% end %>
   <% end %>
   <div class="side-nav-spacer"></div>
   <%= button_to sessions_path, method: :delete, class: "nav-item", title: "Sair" do %>
-    <%= render Ui::Icon::Component.new("logout", size: 18) %>
+    <%= render Ui::Icon::Component.new("logout", size: 22) %>
     <span class="nav-label">Sair</span>
   <% end %>
 </nav>
@@ -25,12 +25,12 @@
   <% nav_items.each do |item| %>
     <% active = current_page?(item[:path]) %>
     <%= link_to item[:path], class: "nav-item #{active ? 'active' : ''}", title: item[:label] do %>
-      <%= render Ui::Icon::Component.new(item[:icon], size: 18) %>
+      <%= render Ui::Icon::Component.new(item[:icon], size: 22) %>
       <span class="nav-label"><%= item[:label] %></span>
     <% end %>
   <% end %>
   <%= button_to sessions_path, method: :delete, class: "nav-item", title: "Sair" do %>
-    <%= render Ui::Icon::Component.new("logout", size: 18) %>
+    <%= render Ui::Icon::Component.new("logout", size: 22) %>
     <span class="nav-label">Sair</span>
   <% end %>
 </div>

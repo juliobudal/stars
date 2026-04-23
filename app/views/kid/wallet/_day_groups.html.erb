@@ -19,10 +19,10 @@
     <span style="font-size: 12px; font-weight: 600; color: var(--text-muted);">Saldo: <span style="color: <%= net_color %>;"><%= net_prefix %><%= day_net %> ⭐</span></span>
   </div>
 
-  <%# Log entries — flat rows, no card box %>
-  <div class="col" style="gap: 0; margin-bottom: 8px; background: var(--surface); border-radius: var(--r-lg); overflow: hidden;">
-    <% logs.each_with_index do |h, i| %>
-      <%= render Ui::HistoryRow::Component.new(log: h, with_divider: i > 0) %>
+  <%# Log entries — each is its own card via .history-entry %>
+  <div style="margin-bottom: 8px;">
+    <% logs.each do |h| %>
+      <%= render Ui::HistoryRow::Component.new(log: h, with_divider: false) %>
     <% end %>
   </div>
 <% end %>

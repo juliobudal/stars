@@ -3,7 +3,6 @@
   <%= render Ui::TopBar::Component.new(
     title: "Aprovações",
     subtitle: "#{@profile_tasks.count + @redemptions.count} pendências",
-    back_url: parent_root_path
   ) do |bar| %>
     <% bar.with_right_slot do %>
       <button type="submit" form="bulk-approve-form" class="btn btn-primary btn-sm"

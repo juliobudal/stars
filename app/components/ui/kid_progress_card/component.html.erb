@@ -1,29 +1,48 @@
 <div class="card" style="padding: 0; overflow: hidden;">
-  <div style="background: <%= palette[:fill] %>; padding: 18px 20px; display: flex; align-items: center; gap: 14px;">
-    <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 56) %>
-    <div>
-      <div class="h-display" style="font-size: 22px; color: <%= palette[:ink] %>;"><%= kid.name %></div>
-      <div style="font-size: 11px; font-weight: 800; color: <%= palette[:ink] %>; opacity: 0.75; margin-top: 4px;">
-        🔥 <%= streak %> dias seguidos
+  <%# Slim color strip with edit pencil %>
+  <div style="height: 48px; background: <%= palette[:fill] %>; position: relative; flex-shrink: 0;">
+    <%= link_to edit_parent_profile_path(kid),
+          style: "position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.7); display: inline-flex; align-items: center; justify-content: center; text-decoration: none;",
+          aria: { label: "Editar #{kid.name}" } do %>
+      <%= render Ui::Icon::Component.new("pencil", size: 14, color: "rgba(0,0,0,0.5)") %>
+    <% end %>
+  </div>
+
+  <%# Floating avatar + content %>
+  <div style="margin-top: -30px; padding: 0 20px 20px;">
+    <%# Avatar %>
+    <div style="width: 60px; height: 60px; border-radius: 50%; border: 4px solid white; background: <%= palette[:fill] %>; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 22px; color: <%= palette[:ink] %>; box-shadow: 0 2px 8px rgba(44,42,58,0.12);">
+      <%= kid.name.first.upcase %>
+    </div>
+
+    <%# Name + streak %>
+    <div class="row" style="justify-content: space-between; align-items: center; margin-top: 8px;">
+      <div class="h-display" style="font-size: 18px; color: var(--text);"><%= kid.name %></div>
+      <% if streak > 0 %>
+        <span style="background: var(--c-amber-soft); color: var(--c-amber-dark); font-size: 12px; font-weight: 800; padding: 2px 8px; border-radius: var(--r-full); display: flex; align-items: center; gap: 3px;">
+          🔥 <%= streak %>
+        </span>
+      <% end %>
+    </div>
+
+    <%# 2-col stats %>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px;">
+      <div style="background: <%= palette[:fill] %>; border-radius: 12px; padding: 10px 12px;">
+        <div class="h-display" style="font-size: 15px;">⭐ <%= points %></div>
+        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); margin-top: 2px;">Saldo</div>
+      </div>
+      <div style="background: <%= palette[:fill] %>; border-radius: 12px; padding: 10px 12px;">
+        <div class="h-display" style="font-size: 15px;"><%= missions_count %></div>
+        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); margin-top: 2px;">Missões</div>
       </div>
     </div>
-  </div>
-  <div class="stack" style="padding: 14px 20px 20px; gap: 10px;">
-    <div class="row between">
-      <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Saldo</span>
-      <span class="h-display" style="font-size: 15px;">⭐ <%= points %></span>
-    </div>
-    <div class="row between">
-      <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Missões ativas</span>
-      <span class="h-display" style="font-size: 15px;"><%= missions_count %></span>
-    </div>
+
+    <%# Awaiting badge %>
     <% if awaiting_count > 0 %>
-      <div class="awaiting-badge">
-        ⏱ <%= awaiting_count %> aguardando você
+      <div class="row" style="margin-top: 10px; gap: 5px; color: var(--c-amber-dark); font-size: 13px; font-weight: 700;">
+        <%= render Ui::Icon::Component.new("clock", size: 14, color: "var(--c-amber-dark)") %>
+        <%= awaiting_count %> aguardando aprovação
       </div>
     <% end %>
-    <%= link_to "Editar perfil →", edit_parent_profile_path(kid),
-                class: "btn btn-sm btn-ghost",
-                style: "width: 100%; margin-top: 8px;" %>
   </div>
 </div>

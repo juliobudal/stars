@@ -3,7 +3,20 @@
                   Redemption.pending.joins(:profile).where(profiles: { family_id: current_profile.family_id }).count
 %>
 
-<nav class="side-nav" aria-label="Principal">
+<%# Mobile sticky header — hidden on desktop via CSS %>
+<div class="parent-mobile-header">
+  <div class="row" style="gap: 10px; align-items: center;">
+    <%= render Ui::LogoMark::Component.new(size: 20) %>
+    <span class="h-display" style="font-size: 18px; font-style: normal; color: var(--text);">LittleStars</span>
+  </div>
+  <button type="button" id="sidebar-toggle"
+          style="width: 36px; height: 36px; border-radius: 10px; background: var(--bg-soft); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text);">
+    <%= render Ui::Icon::Component.new("list", size: 20) %>
+  </button>
+</div>
+
+<%# Sidebar %>
+<nav class="side-nav" id="parent-sidebar" aria-label="Principal">
   <%# Brand mark %>
   <div class="brand-mark">
     <div class="row">
@@ -14,8 +27,8 @@
       </div>
     </div>
 
-    <%# TODO: wire family switcher %>
-    <button type="button" style="margin-top: 12px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px; border: 1px solid var(--hairline); background: var(--surface); border-radius: 10px; cursor: pointer; text-align: left;">
+    <%# Family picker %>
+    <button type="button" class="family-picker">
       <span style="font-size: 13px; font-weight: 700; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><%= current_profile.family.name %></span>
       <%= render Ui::Icon::Component.new("chevron", size: 14, color: "var(--text-muted)") %>
     </button>
@@ -27,7 +40,7 @@
         class: "nav-item #{current_page?(parent_root_path) ? 'active' : ''}",
         title: "Início",
         aria: { current: current_page?(parent_root_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("house", size: 22) %>
+      <%= render Ui::Icon::Component.new("house", size: 20) %>
       <span>Início</span>
     <% end %>
 
@@ -35,7 +48,7 @@
         class: "nav-item #{current_page?(parent_profiles_path) ? 'active' : ''}",
         title: "Filhos",
         aria: { current: current_page?(parent_profiles_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("users", size: 22) %>
+      <%= render Ui::Icon::Component.new("users", size: 20) %>
       <span>Filhos</span>
     <% end %>
 
@@ -43,7 +56,7 @@
         class: "nav-item #{current_page?(parent_global_tasks_path) ? 'active' : ''}",
         title: "Missões",
         aria: { current: current_page?(parent_global_tasks_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("list-checks", size: 22) %>
+      <%= render Ui::Icon::Component.new("list-checks", size: 20) %>
       <span>Missões</span>
     <% end %>
 
@@ -51,7 +64,7 @@
         class: "nav-item #{current_page?(parent_rewards_path) ? 'active' : ''}",
         title: "Prêmios",
         aria: { current: current_page?(parent_rewards_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("bag", size: 22) %>
+      <%= render Ui::Icon::Component.new("bag", size: 20) %>
       <span>Prêmios</span>
     <% end %>
 
@@ -59,12 +72,12 @@
         class: "nav-item #{current_page?(parent_approvals_path) ? 'active' : ''} relative",
         title: "Aprovações",
         aria: { current: current_page?(parent_approvals_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("clock", size: 22) %>
+      <%= render Ui::Icon::Component.new("clock", size: 20) %>
       <span>Aprovações</span>
       <% if pending_count > 0 %>
         <span style="
           min-width: 18px; height: 18px;
-          background: var(--c-peach);
+          background: var(--c-rose);
           color: white;
           font-size: 11px;
           font-weight: 800;
@@ -80,35 +93,39 @@
         class: "nav-item #{current_page?(parent_settings_path) ? 'active' : ''}",
         title: "Configurações",
         aria: { current: current_page?(parent_settings_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("gear", size: 22) %>
+      <%= render Ui::Icon::Component.new("gear", size: 20) %>
       <span>Configurações</span>
     <% end %>
   </div>
 
   <%# Identity + logout at bottom %>
   <div style="padding: var(--space-2) var(--space-3); border-top: 1px solid var(--hairline); margin-top: var(--space-2);">
-    <div class="row" style="gap: 8px; align-items: center; margin-bottom: 8px;">
+    <div class="row" style="gap: 8px; align-items: center;">
       <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 34) %>
-      <div>
-        <div style="font-size: 13px; font-weight: 700; color: var(--text);"><%= current_profile.name %></div>
-        <div style="font-size: 11px; color: var(--text-muted);">Administrador(a)</div>
+      <div class="fg1" style="min-width: 0;">
+        <div style="font-size: 13px; font-weight: 700; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><%= current_profile.name %></div>
+        <div style="font-size: 11px; color: var(--text-muted);">Responsável</div>
       </div>
+      <%= button_to sessions_path, method: :delete,
+          style: "flex-shrink: 0; width: 32px; height: 32px; padding: 0; background: none; border: none; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: background 0.15s;",
+          title: "Sair",
+          form: { style: "display: contents;" } do %>
+        <%= render Ui::Icon::Component.new("logout", size: 18, color: "currentColor") %>
+      <% end %>
     </div>
-    <%= button_to sessions_path, method: :delete, class: "nav-item w-full",
-        style: "background: transparent; border: none; cursor: pointer; color: var(--text-muted); text-align: left;",
-        title: "Sair" do %>
-      <%= render Ui::Icon::Component.new("logout", size: 22) %>
-      <span>Sair</span>
-    <% end %>
   </div>
 </nav>
 
+<%# Sidebar backdrop (mobile) %>
+<div id="sidebar-backdrop"></div>
+
 <div class="bottom-nav">
   <%
-    nav_item = ->(icon_name, path, title) {
+    nav_item = ->(icon_name, path, label) {
       active = current_page?(path)
-      link_to path, class: "nav-item #{active ? 'active' : ''}", title: title do
-        render Ui::Icon::Component.new(icon_name, size: 26)
+      link_to path, class: "nav-item #{active ? 'active' : ''}", title: label do
+        concat render(Ui::Icon::Component.new(icon_name, size: 22))
+        concat content_tag(:span, label, class: "nav-label")
       end
     }
   %>
@@ -117,13 +134,14 @@
   <%= link_to parent_approvals_path,
       class: "nav-item #{current_page?(parent_approvals_path) ? 'active' : ''} relative",
       title: "Aprovações" do %>
-    <%= render Ui::Icon::Component.new("clock", size: 26) %>
+    <%= render Ui::Icon::Component.new("clock", size: 22) %>
+    <span class="nav-label">Aprovações</span>
     <% if pending_count > 0 %>
       <span style="
         position: absolute;
-        top: 6px; right: 6px;
+        top: 4px; right: 4px;
         min-width: 16px; height: 16px;
-        background: var(--c-peach);
+        background: var(--c-rose);
         color: white;
         font-size: 10px;
         font-weight: 800;
@@ -138,3 +156,28 @@
   <%= nav_item.call("list-checks", parent_global_tasks_path, "Missões") %>
   <%= nav_item.call("bag", parent_rewards_path, "Prêmios") %>
 </div>
+
+<script>
+  (function() {
+    var toggle = document.getElementById('sidebar-toggle');
+    var sidebar = document.getElementById('parent-sidebar');
+    var backdrop = document.getElementById('sidebar-backdrop');
+    if (!toggle || !sidebar || !backdrop) return;
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      backdrop.style.display = 'block';
+    }
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      backdrop.style.display = 'none';
+    }
+
+    toggle.addEventListener('click', openSidebar);
+    backdrop.addEventListener('click', closeSidebar);
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1024) closeSidebar();
+    });
+  })();
+</script>

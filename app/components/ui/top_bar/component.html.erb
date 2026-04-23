@@ -10,7 +10,8 @@
 
     <div>
       <% if @title.present? %>
-        <h2 class="h-display display" style="font-size: 30px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 340px;"><%= @title %></h2>
+        <% heading_tag = @back_url.present? || left_action? ? :h2 : :h1 %>
+        <%= content_tag heading_tag, @title, class: "h-display display", style: "font-size: 26px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 380px;" %>
       <% end %>
       <% if @subtitle.present? %>
         <div class="subtitle" style="margin-top: 2px;"><%= @subtitle %></div>

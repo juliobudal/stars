@@ -4,7 +4,6 @@
   <%= render Ui::TopBar::Component.new(
     title: "Prêmios da lojinha",
     subtitle: "#{@rewards.size} #{@rewards.size == 1 ? "prêmio" : "prêmios"} · precificados em estrelas",
-    back_url: parent_root_path
   ) do |bar| %>
     <% bar.with_right_slot do %>
       <%= link_to new_parent_reward_path, class: "btn btn-primary btn-sm" do %>

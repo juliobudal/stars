@@ -27,8 +27,8 @@
     </div>
   <% end %>
 
-  <%# ─── 4-col stats ─── %>
-  <div class="z-content" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px;">
+  <%# ─── Stats grid (2-col mobile → 4-col desktop) ─── %>
+  <div class="stats-grid z-content" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 28px;">
     <%= render Ui::StatCard::Component.new(value: @stats[:total_stars],     label: "Estrelas em circulação", icon: "star",   tint: "star") %>
     <%= render Ui::StatCard::Component.new(value: @stats[:active_missions], label: "Missões ativas",         icon: "target", tint: "primary") %>
     <%= render Ui::StatCard::Component.new(value: @stats[:rewards_count],   label: "Prêmios no catálogo",    icon: "bag",    tint: "rose") %>
@@ -43,7 +43,7 @@
     </div>
 
     <% if @children.any? %>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+      <div class="kids-grid" style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 16px;">
         <% @children.each do |child| %>
           <%= render Ui::KidProgressCard::Component.new(
                 kid: child,

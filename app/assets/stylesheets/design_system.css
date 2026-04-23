@@ -347,11 +347,11 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 .mission-node--approved { background: #34D399; }
 .mission-node--awaiting { background: #FDE68A; }
 
-/* ── Stat icon tile (38×38 rounded square, used in parent dashboard stats) ── */
+/* ── Stat icon tile (40×40 rounded square, used in parent dashboard stats) ── */
 .stat-icon-tile {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
   display: grid;
   place-items: center;
   flex-shrink: 0;
@@ -528,6 +528,41 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   box-shadow: none;
 }
 .nav-item.active .nav-label { display: inline; }
+
+/* Bottom nav — stacked icon + label, always visible */
+.bottom-nav .nav-item {
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px 12px;
+}
+.bottom-nav .nav-item .nav-label {
+  display: inline;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* ── Parent mobile header (hidden on desktop) ── */
+.parent-mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--hairline);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+/* ── History entry card ── */
+.history-entry {
+  background: var(--surface);
+  border-radius: var(--r-sm);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-card);
+  border: var(--border-card);
+  margin-bottom: 8px;
+}
 
 /* Reward art — square tinted tile */
 .reward-art {
@@ -822,6 +857,33 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 /* ── Side nav — hidden on all sizes (mobile-first), shown via parent-layout below ── */
 .side-nav { display: none; }
 
+/* Parent sidebar — mobile drawer (hidden off-screen, toggled by JS) */
+body.parent-layout .side-nav {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  min-height: 100vh;
+  background: var(--surface);
+  border-right: 1px solid var(--hairline);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  padding: var(--space-5) 0;
+  box-shadow: 2px 0 12px rgba(44, 42, 58, 0.04);
+  transform: translateX(-100%);
+  transition: transform 0.2s ease;
+}
+body.parent-layout .side-nav.open { transform: translateX(0); }
+
+#sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 42, 74, 0.3);
+  z-index: 25;
+}
+
 /* ── Desktop layout ── */
 @media (min-width: 1024px) {
   html, body { overflow: visible; }
@@ -851,22 +913,18 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 
   .grid-2 { grid-template-columns: 1fr 1fr; }
   .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .kids-grid { grid-template-columns: repeat(3, 1fr); }
+  .rewards-grid { grid-template-columns: repeat(3, 1fr); }
 
-  /* ── Parent sidebar (desktop only, scoped to parent-layout) ── */
+  /* ── Parent sidebar (desktop: always visible) ── */
   body.parent-layout .side-nav {
-    display: flex;
-    flex-direction: column;
-    width: 260px;
-    min-height: 100vh;
-    background: var(--surface);
-    border-right: 1px solid var(--hairline);
-    position: fixed;
-    top: 0;
-    left: 0;
+    transform: translateX(0) !important;
     z-index: 100;
-    padding: var(--space-5) 0;
-    box-shadow: 2px 0 12px rgba(44, 42, 58, 0.04);
   }
+
+  body.parent-layout .parent-mobile-header { display: none; }
+  #sidebar-backdrop { display: none !important; }
 
   body.parent-layout .viewport {
     margin-left: 260px;
@@ -906,7 +964,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 }
 
 .brand-mark {
-  padding: 0 var(--space-4) var(--space-4);
+  padding: var(--space-5) var(--space-4) var(--space-4);
   border-bottom: 1px solid var(--hairline);
   margin-bottom: var(--space-3);
 }
@@ -916,6 +974,23 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   align-items: center;
   margin-bottom: 4px;
 }
+
+.family-picker {
+  margin-top: 12px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg-deep);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+.family-picker:hover { background: var(--bg-soft); }
 
 .ghost-add-card {
   display: flex;
