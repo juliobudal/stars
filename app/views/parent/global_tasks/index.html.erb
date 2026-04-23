@@ -1,9 +1,16 @@
 <%
   freq_meta = {
-    "daily"   => { label: "Diária",  soft: "var(--mint-soft, #D1FAE5)", dark: "var(--mint-dark, #047857)" },
-    "weekly"  => { label: "Semanal", soft: "var(--sky-soft, #E0F2FE)",  dark: "var(--sky-dark, #0369A1)" },
-    "monthly" => { label: "Mensal",  soft: "var(--lilac-soft, #EDE9FE)", dark: "var(--lilac-dark, #6D28D9)" },
-    "once"    => { label: "Única",   soft: "var(--peach-soft, #FCE7F3)", dark: "var(--peach-dark, #BE185D)" }
+    "daily"   => { label: "Diária",  soft: "var(--c-mint-soft)", dark: "var(--c-mint-dark)" },
+    "weekly"  => { label: "Semanal", soft: "var(--c-sky-soft)",  dark: "#0369A1" },
+    "monthly" => { label: "Mensal",  soft: "var(--c-lilac-soft)", dark: "#6D28D9" },
+    "once"    => { label: "Única",   soft: "var(--c-peach-soft)", dark: "var(--c-rose-dark)" }
+  }
+  cat_meta = {
+    "casa"   => { label: "Casa",   bg: "var(--c-mint-soft)",  color: "var(--c-mint-dark)", icon: "home" },
+    "escola" => { label: "Escola", bg: "var(--c-lilac-soft)", color: "var(--primary)",     icon: "book" },
+    "rotina" => { label: "Rotina", bg: "var(--c-rose-soft)",  color: "var(--c-rose-dark)", icon: "brush" },
+    "saude"  => { label: "Saúde",  bg: "var(--star-soft)",    color: "var(--star-2)",      icon: "muscle" },
+    "outro"  => { label: "Outro",  bg: "var(--surface-2)",    color: "var(--text-muted)",  icon: "sparkle" }
   }
   kids = Profile.where(family_id: current_profile.family_id).child.order(:name).to_a
 %>
@@ -17,7 +24,7 @@
   ) do |bar| %>
     <% bar.with_right_slot do %>
       <%= link_to new_parent_global_task_path, class: "btn btn-primary" do %>
-        <%= render Ui::Icon::Component.new("plus", size: 18, color: "white") %> Nova
+        <%= render Ui::Icon::Component.new("plus", size: 18, color: "white") %> Nova missão
       <% end %>
     <% end %>
   <% end %>
@@ -40,7 +47,7 @@
       <div style="background: var(--surface-2); padding: 14px 20px; display: grid; grid-template-columns: 2fr 1.3fr 0.8fr 1.5fr 100px 60px; font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--text-muted); text-transform: uppercase;">
         <div>Missão</div>
         <div>Recorrência</div>
-        <div>Pontos</div>
+        <div>Estrelas</div>
         <div>Atribuída</div>
         <div>Ativa</div>
         <div></div>
@@ -49,6 +56,8 @@
       <% @global_tasks.each do |m|
         freq_key = m.frequency.to_s
         fm = freq_meta[freq_key] || freq_meta["daily"]
+        cat_key = m.category.to_s
+        cm = cat_meta[cat_key] || cat_meta["outro"]
         is_active = m.respond_to?(:active?) ? m.active? : true
         panel_keys = ["all", freq_key]
         panel_keys << "inactive" unless is_active
@@ -56,7 +65,15 @@
         <div class="mission-row"
              data-panels="<%= panel_keys.join(' ') %>"
              style="display: grid; grid-template-columns: 2fr 1.3fr 0.8fr 1.5fr 100px 60px; align-items: center; padding: 14px 20px; border-top: 1px solid var(--hairline); gap: 10px;">
-          <div class="h-display" style="font-size: 15px; color: var(--text);"><%= m.title %></div>
+          <div class="row" style="gap: 10px; align-items: center;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: <%= cm[:bg] %>; flex-shrink: 0;">
+              <%= render Ui::Icon::Component.new(cm[:icon], size: 16, color: cm[:color]) %>
+            </span>
+            <div>
+              <div class="h-display" style="font-size: 15px; color: var(--text);<%= ' opacity: 0.5;' unless is_active %>"><%= m.title %></div>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 1px;"><%= cm[:label] %></div>
+            </div>
+          </div>
           <div>
             <span class="chip chip-sm" style="background: <%= fm[:soft] %>; color: <%= fm[:dark] %>;">
               <%= fm[:label] %>
