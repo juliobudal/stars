@@ -1,0 +1,38 @@
+<div<%= " id=\"#{dom_id}\"".html_safe if dom_id %> class="card" style="padding: 14px;">
+  <div class="row" style="gap: 12px; margin-bottom: 10px;">
+    <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 40) %>
+    <div style="flex: 1; min-width: 0;">
+      <div class="cluster" style="gap: 6px;">
+        <span class="h-display" style="font-size: 15px;"><%= title %></span>
+        <% if kid_chip_text.present? %>
+          <span style="background: <%= palette[:fill] %>; color: <%= palette[:ink] %>; padding: 1px 8px; border-radius: var(--r-full); font-size: 11px; font-weight: 800; white-space: nowrap;"><%= kid_chip_text %></span>
+        <% end %>
+        <% if category_label.present? %>
+          <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--r-full); background: var(--surface-2); color: var(--text-muted);"><%= category_label %></span>
+        <% end %>
+      </div>
+      <div class="row" style="gap: 8px; margin-top: 4px;">
+        <span style="font-size: 12px; font-weight: 800; color: <%= points_color %>;"><%= points_sign %><%= points %> ★</span>
+        <% if meta.present? %>
+          <span style="font-size: 11px; color: var(--text-muted);"><%= meta %></span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="gap: 8px;">
+    <%= button_to reject_url, method: :patch,
+        form_class: "flex-1",
+        style: "width: 100%; background: var(--c-red-soft); color: var(--c-red-dark); border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
+        aria: { label: reject_label },
+        data: { turbo_frame: "approvals_list", turbo_confirm: reject_confirm, turbo_submits_with: reject_submits_with }.compact do %>
+      <%= reject_label %>
+    <% end %>
+    <%= button_to approve_url, method: :patch,
+        form_class: "flex-1",
+        style: "width: 100%; background: var(--c-mint-soft); color: var(--c-mint-dark); border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
+        aria: { label: approve_label },
+        data: { turbo_frame: "approvals_list", turbo_submits_with: approve_submits_with } do %>
+      <%= approve_label %>
+    <% end %>
+  </div>
+</div>

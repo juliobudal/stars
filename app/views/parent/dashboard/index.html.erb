@@ -1,7 +1,7 @@
 <div class="screen screen-enter with-nav">
 
   <%# ─── Header ─── %>
-  <div class="row mb-5" style="justify-content: space-between; z-index: 2; flex-shrink: 0; align-items: flex-start;">
+  <div class="row mb-5 between z-content" style="flex-shrink: 0; align-items: flex-start;">
     <div>
       <h1 class="h-display" style="font-size: 26px; margin-bottom: 4px;">Olá, <%= current_profile.name %> ✨</h1>
       <p style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin: 0;">
@@ -15,56 +15,29 @@
 
   <%# ─── Pending approvals banner ─── %>
   <% if @stats[:pending_approvals].to_i > 0 %>
-    <div style="background: linear-gradient(135deg, var(--primary), var(--primary-2)); border-radius: var(--r-lg); padding: 20px 24px; margin-bottom: 20px; color: white; display: flex; align-items: center; gap: 18px; box-shadow: 0 8px 28px rgba(167,139,250,0.35); z-index: 2; flex-shrink: 0;">
-      <div style="width: 52px; height: 52px; border-radius: 14px; background: rgba(255,255,255,0.2); display: grid; place-items: center; flex-shrink: 0;">
+    <div class="banner-approvals z-content" style="flex-shrink: 0;">
+      <div class="banner-approvals__icon">
         <%= render Ui::Icon::Component.new("bell", size: 26, color: "white") %>
       </div>
       <div style="flex: 1;">
-        <div class="h-display" style="font-size: 18px; margin-bottom: 2px; color: white;"><%= @stats[:pending_approvals] %> aprovações aguardando</div>
-        <div style="font-size: 13px; font-weight: 600; opacity: 0.9;"><%= @stats[:active_missions] %> missões · <%= @stats[:rewards_count] %> prêmios</div>
+        <div class="banner-approvals__title" id="pending_approvals_kpi"><%= @stats[:pending_approvals] %> aprovações aguardando</div>
+        <div class="banner-approvals__meta"><%= @stats[:active_missions] %> missões · <%= @stats[:rewards_count] %> prêmios</div>
       </div>
-      <%= link_to "Ver aprovações →", parent_approvals_path, style: "background: white; color: var(--primary); border: none; padding: 10px 18px; border-radius: 10px; font-family: var(--font-display); font-weight: 900; font-size: 13px; cursor: pointer; box-shadow: 0 3px 0 rgba(76,29,149,0.2); text-decoration: none; white-space: nowrap;" %>
+      <%= link_to "Ver aprovações →", parent_approvals_path, class: "banner-approvals__cta" %>
     </div>
   <% end %>
 
   <%# ─── 4-col stats ─── %>
-  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; z-index: 2;">
-    <div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-      <div class="stat-icon-tile" style="background: var(--star-soft);">
-        <%= render Ui::Icon::Component.new("star", size: 20, color: "var(--c-amber-dark)") %>
-      </div>
-      <div class="h-display" style="font-size: 28px; color: var(--text);"><%= @stats[:total_stars] %></div>
-      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Estrelas em circulação</div>
-    </div>
-
-    <div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-      <div class="stat-icon-tile" style="background: var(--primary-soft);">
-        <%= render Ui::Icon::Component.new("target", size: 20, color: "var(--primary)") %>
-      </div>
-      <div class="h-display" style="font-size: 28px; color: var(--text);"><%= @stats[:active_missions] %></div>
-      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Missões ativas</div>
-    </div>
-
-    <div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-      <div class="stat-icon-tile" style="background: var(--c-rose-soft);">
-        <%= render Ui::Icon::Component.new("bag", size: 20, color: "var(--c-rose)") %>
-      </div>
-      <div class="h-display" style="font-size: 28px; color: var(--text);"><%= @stats[:rewards_count] %></div>
-      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Prêmios no catálogo</div>
-    </div>
-
-    <div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-      <div class="stat-icon-tile" style="background: var(--c-mint-soft);">
-        <%= render Ui::Icon::Component.new("users", size: 20, color: "var(--c-mint-dark)") %>
-      </div>
-      <div class="h-display" style="font-size: 28px; color: var(--text);"><%= @stats[:children] %></div>
-      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Crianças ativas</div>
-    </div>
+  <div class="z-content" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px;">
+    <%= render Ui::StatCard::Component.new(value: @stats[:total_stars],     label: "Estrelas em circulação", icon: "star",   tint: "star") %>
+    <%= render Ui::StatCard::Component.new(value: @stats[:active_missions], label: "Missões ativas",         icon: "target", tint: "primary") %>
+    <%= render Ui::StatCard::Component.new(value: @stats[:rewards_count],   label: "Prêmios no catálogo",    icon: "bag",    tint: "rose") %>
+    <%= render Ui::StatCard::Component.new(value: @stats[:children],        label: "Crianças ativas",        icon: "users",  tint: "mint") %>
   </div>
 
   <%# ─── Kid cards ─── %>
-  <div class="mb-5" style="z-index: 2;">
-    <div class="row mb-3" style="justify-content: space-between; align-items: center;">
+  <div class="mb-5 z-content">
+    <div class="row mb-3 between">
       <h2 class="h-display" style="font-size: 22px; margin: 0;">Suas crianças</h2>
       <%= link_to "+ Adicionar filho", parent_profiles_path, class: "btn btn-secondary btn-sm" %>
     </div>
@@ -72,36 +45,11 @@
     <% if @children.any? %>
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
         <% @children.each do |child| %>
-          <% palette = smiley_palette(child.color) %>
-          <% streak = child.respond_to?(:streak) ? child.streak.to_i : 0 %>
-          <% missions_count = @child_missions[child.id].to_i %>
-          <div class="card" style="padding: 0; overflow: hidden;">
-            <%# Color band top %>
-            <div style="background: <%= palette[:fill] %>; padding: 18px 20px; display: flex; align-items: center; gap: 14px;">
-              <%= render Ui::SmileyAvatar::Component.new(kid: child, size: 56) %>
-              <div>
-                <div class="h-display" style="font-size: 22px; color: <%= palette[:ink] %>;"><%= child.name %></div>
-                <div style="font-size: 11px; font-weight: 800; color: <%= palette[:ink] %>; opacity: 0.75; margin-top: 4px;">🔥 <%= streak %> dias seguidos</div>
-              </div>
-            </div>
-            <%# Stats bottom %>
-            <div style="padding: 14px 20px 20px; display: flex; flex-direction: column; gap: 10px;">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Saldo</span>
-                <span class="h-display" style="font-size: 15px;">⭐ <%= child.points %></span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Missões ativas</span>
-                <span class="h-display" style="font-size: 15px;"><%= missions_count %></span>
-              </div>
-              <% if @child_awaiting[child.id].to_i > 0 %>
-                <div class="awaiting-badge">
-                  ⏱ <%= @child_awaiting[child.id] %> aguardando você
-                </div>
-              <% end %>
-              <%= link_to "Editar perfil →", edit_parent_profile_path(child), class: "btn btn-sm btn-ghost", style: "width: 100%; margin-top: 8px;" %>
-            </div>
-          </div>
+          <%= render Ui::KidProgressCard::Component.new(
+                kid: child,
+                awaiting_count: @child_awaiting[child.id].to_i,
+                missions_count: @child_missions[child.id].to_i
+              ) %>
         <% end %>
       </div>
     <% else %>
@@ -116,33 +64,15 @@
   </div>
 
   <%# ─── Atividade recente ─── %>
-  <div style="z-index: 2;">
-    <div class="row mb-3" style="justify-content: space-between; align-items: center;">
+  <div class="z-content">
+    <div class="row mb-3 between">
       <h2 class="h-display" style="font-size: 22px; margin: 0;">Atividade recente</h2>
       <%= link_to "Ver tudo", parent_activity_logs_path, style: "font-size: 13px; font-weight: 700; color: var(--primary); text-decoration: none;" %>
     </div>
     <% if @recent_activity.any? %>
       <div class="card" style="padding: 4px 20px;">
         <% @recent_activity.each_with_index do |log, i| %>
-          <%
-            raw_amount = log.respond_to?(:amount) ? log.amount : log.points
-            amount = raw_amount.to_i
-            amount = -amount.abs if log.log_type == "redeem" && amount > 0
-            description = (log.respond_to?(:description) && log.description.present?) ? log.description :
-                          (log.respond_to?(:title) && log.title.present?) ? log.title : log.log_type.to_s.humanize
-          %>
-          <div style="display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: <%= i < @recent_activity.size - 1 ? "1px solid var(--hairline)" : "none" %>;">
-            <%= render Ui::SmileyAvatar::Component.new(kid: log.profile, size: 34) if log.profile %>
-            <div style="flex: 1; min-width: 0;">
-              <div style="font-size: 13px; font-weight: 800; color: var(--text);">
-                <span><%= log.profile&.name %></span> · <span><%= description %></span>
-              </div>
-              <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); margin-top: 2px;"><%= time_ago_in_words(log.created_at) %> atrás</div>
-            </div>
-            <span class="h-display" style="font-size: 15px; color: <%= amount >= 0 ? 'var(--c-mint-dark)' : 'var(--c-violet-dark)' %>;">
-              <%= amount >= 0 ? "+" : "−" %><%= amount.abs %> ⭐
-            </span>
-          </div>
+          <%= render Ui::ActivityRow::Component.new(log: log, with_divider: i < @recent_activity.size - 1) %>
         <% end %>
       </div>
     <% else %>

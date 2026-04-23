@@ -1,0 +1,29 @@
+<div class="card" style="padding: 0; overflow: hidden;">
+  <div style="background: <%= palette[:fill] %>; padding: 18px 20px; display: flex; align-items: center; gap: 14px;">
+    <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 56) %>
+    <div>
+      <div class="h-display" style="font-size: 22px; color: <%= palette[:ink] %>;"><%= kid.name %></div>
+      <div style="font-size: 11px; font-weight: 800; color: <%= palette[:ink] %>; opacity: 0.75; margin-top: 4px;">
+        🔥 <%= streak %> dias seguidos
+      </div>
+    </div>
+  </div>
+  <div class="stack" style="padding: 14px 20px 20px; gap: 10px;">
+    <div class="row between">
+      <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Saldo</span>
+      <span class="h-display" style="font-size: 15px;">⭐ <%= points %></span>
+    </div>
+    <div class="row between">
+      <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Missões ativas</span>
+      <span class="h-display" style="font-size: 15px;"><%= missions_count %></span>
+    </div>
+    <% if awaiting_count > 0 %>
+      <div class="awaiting-badge">
+        ⏱ <%= awaiting_count %> aguardando você
+      </div>
+    <% end %>
+    <%= link_to "Editar perfil →", edit_parent_profile_path(kid),
+                class: "btn btn-sm btn-ghost",
+                style: "width: 100%; margin-top: 8px;" %>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div data-controller="<%= controller %>" data-<%= controller %>-active-class="active" class="z-content">
+  <div role="tablist" style="display: inline-flex; gap: 4px; margin-bottom: 20px; background: white; padding: 6px; border-radius: var(--r-full); box-shadow: var(--shadow-card); border: var(--border-card); width: fit-content;">
+    <% items.each do |item| %>
+      <button type="button"
+              role="tab"
+              class="<%= 'tab' + (active?(item[:id]) ? ' active' : '') %>"
+              data-<%= controller %>-target="tab"
+              data-action="<%= "click->#{controller}#show" %>"
+              data-<%= controller %>-id-param="<%= item[:id] %>"
+              aria-selected="<%= active?(item[:id]) %>"
+              style="display: inline-flex; align-items: center; gap: 8px;">
+        <% if item[:icon] %>
+          <%= render Ui::Icon::Component.new(item[:icon], size: 14) %>
+        <% end %>
+        <%= item[:label] %>
+        <% if item[:count] %>
+          <span style="background: rgba(167,139,250,0.15); color: var(--primary); padding: 2px 8px; border-radius: var(--r-full); font-size: 11px; font-weight: 900;"><%= item[:count] %></span>
+        <% end %>
+      </button>
+    <% end %>
+  </div>
+</div>

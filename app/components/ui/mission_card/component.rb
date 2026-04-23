@@ -3,13 +3,8 @@
 module Ui
   module MissionCard
     class Component < ApplicationComponent
-      CATEGORIES = {
-        "casa" => { color: "mint", icon: "home", label: "Casa" },
-        "escola" => { color: "sky", icon: "graduationCap", label: "Escola" },
-        "rotina" => { color: "peach", icon: "sun", label: "Rotina" },
-        "saude" => { color: "rose", icon: "muscle", label: "Saúde" },
-        "geral" => { color: "primary", icon: "star", label: "Geral" },
-        "outro" => { color: "primary", icon: "star", label: "Geral" }
+      CATEGORIES = Ui::Tokens::MISSION_CATEGORIES.transform_values { |v|
+        { color: v[:tint], icon: v[:icon], label: v[:label] }
       }.freeze
 
       def initialize(mission:, status: "pending", variant: "bubble", index: 0, **options)

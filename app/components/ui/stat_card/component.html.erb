@@ -1,0 +1,7 @@
+<div class="card stack" style="padding: 18px; gap: 8px;">
+  <div class="stat-icon-tile" style="background: <%= tint[:bg] %>;">
+    <%= render Ui::Icon::Component.new(icon, size: 20, color: tint[:fg]) %>
+  </div>
+  <div class="h-display" style="font-size: 28px;"><%= value %></div>
+  <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);"><%= label %></div>
+</div>

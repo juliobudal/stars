@@ -14,11 +14,13 @@
 
 <% if current_profile.family.profile_tasks.awaiting_approval.count == 0 && current_profile.family.redemptions.pending.count == 0 %>
   <%= turbo_stream.replace "approvals_list" do %>
-    <div class="bg-white rounded-3xl border-2 p-12 text-center" style="border-color: var(--border); box-shadow: 0 4px 0 0 rgba(0,0,0,0.05);">
-      <div class="text-6xl mb-6">💤</div>
-      <h3 class="h-display mb-2" style="font-size: 22px;">Tudo em dia!</h3>
-      <p style="color: var(--text-muted); font-weight: 600;">Não há missões aguardando aprovação no momento.</p>
-    </div>
+    <%= turbo_frame_tag "approvals_list" do %>
+      <div class="card" style="padding: 40px; text-align: center;">
+        <div style="font-size: 36px; margin-bottom: 8px;">🎉</div>
+        <div class="h-display" style="font-size: 22px; margin-bottom: 4px;">Tudo em dia!</div>
+        <div class="subtitle" style="font-size: 14px;">Não há pendências no momento.</div>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 

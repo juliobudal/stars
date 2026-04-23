@@ -53,6 +53,9 @@
   --c-red-dark: #B91C1C;
 
   --danger: #EF4444;
+  --danger-2: #BE185D;
+  --success: #34D399;
+  --success-2: #059669;
 
   --text-dark: #2B2A3A;
   --text: #2B2A3A;
@@ -74,8 +77,8 @@
   --r-featured: 28px;
   --r-full: 999px;
 
-  --font-display: 'Fredoka', 'Inter', sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Nunito', system-ui, sans-serif;
 
   --shape-warm-1: #ffe0b3;
   --shape-warm-2: #ffcad4;
@@ -566,7 +569,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 
 /* ── Modal ── */
 .modal-overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: rgba(26, 42, 74, 0.4);
   backdrop-filter: blur(4px);
@@ -648,6 +651,55 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 
 /* ── Mascote Lumi ── */
 .lumi-wrap { display: inline-block; }
+
+/* ── Layout utilities ── */
+.z-content { z-index: 2; }
+.stack { display: flex; flex-direction: column; }
+.cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+.between { justify-content: space-between; }
+.rounded-card { border-radius: var(--r-md); }
+.shadow-card-soft { box-shadow: var(--shadow-card); }
+
+/* ── Pending-approvals banner (parent dashboard) ── */
+.banner-approvals {
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  border-radius: var(--r-lg);
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 8px 28px rgba(167, 139, 250, 0.35);
+}
+.banner-approvals__icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.2);
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.banner-approvals__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 2px;
+  color: white;
+}
+.banner-approvals__meta { font-size: 13px; font-weight: 600; opacity: 0.9; }
+.banner-approvals__cta {
+  background: white;
+  color: var(--primary);
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 13px;
+  box-shadow: 0 3px 0 rgba(76, 29, 149, 0.2);
+  text-decoration: none;
+  white-space: nowrap;
+}
 
 /* ── Utility ── */
 .row { display: flex; align-items: center; gap: var(--space-3); }

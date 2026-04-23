@@ -1,6 +1,5 @@
 <div class="screen screen-enter-right with-nav">
 
-  <%# ─── Top Bar ─── %>
   <%= render Ui::TopBar::Component.new(
     title: "Aprovações",
     subtitle: "#{@profile_tasks.count + @redemptions.count} pendências",
@@ -9,115 +8,69 @@
 
   <%= turbo_frame_tag "approvals_list" do %>
 
-    <%# ─── Tabs pill switcher ─── %>
-    <div data-controller="tabs" data-tabs-active-class="active" style="z-index: 2;">
-      <div style="display: flex; gap: 4px; margin-bottom: 20px; background: white; padding: 6px; border-radius: var(--r-full); box-shadow: var(--shadow-card); width: fit-content; border: var(--border-card);">
-        <button class="tab active" data-tabs-target="tab" data-action="click->tabs#show" data-tabs-id-param="missions"
-                style="display: inline-flex; align-items: center; gap: 8px;">
-          <%= render Ui::Icon::Component.new("target", size: 14) %>
-          Missões
-          <span style="background: rgba(167,139,250,0.15); color: var(--primary); padding: 2px 8px; border-radius: var(--r-full); font-size: 11px; font-weight: 900;"><%= @profile_tasks.count %></span>
-        </button>
-        <button class="tab" data-tabs-target="tab" data-action="click->tabs#show" data-tabs-id-param="rewards"
-                style="display: inline-flex; align-items: center; gap: 8px;">
-          <%= render Ui::Icon::Component.new("bag", size: 14) %>
-          Prêmios
-          <span style="background: rgba(167,139,250,0.15); color: var(--primary); padding: 2px 8px; border-radius: var(--r-full); font-size: 11px; font-weight: 900;"><%= @redemptions.count %></span>
-        </button>
-      </div>
+    <%= render Ui::FilterChips::Component.new(
+          active: "missions",
+          items: [
+            { id: "missions", label: "Missões", icon: "target", count: @profile_tasks.count },
+            { id: "rewards",  label: "Prêmios", icon: "bag",    count: @redemptions.count }
+          ]
+        ) %>
 
-      <%# ── Missions panel ── %>
-      <div id="panel-missions" class="col" style="gap: 8px; z-index: 2;">
-        <% if @profile_tasks.any? %>
-          <% @profile_tasks.each do |task| %>
-            <% palette = Ui::SmileyAvatar::Component::COLOR_MAP[task.profile&.color.to_s] || Ui::SmileyAvatar::Component::COLOR_MAP["primary"] %>
-            <div id="<%= dom_id(task) %>" class="card" style="padding: 14px;">
-              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
-                <%= render Ui::SmileyAvatar::Component.new(kid: task.profile, size: 40) %>
-                <div style="flex: 1; min-width: 0;">
-                  <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-                    <span class="h-display" style="font-size: 15px;"><%= task.title %></span>
-                    <span style="background: <%= palette[:fill] %>; color: <%= palette[:ink] %>; padding: 1px 8px; border-radius: var(--r-full); font-size: 11px; font-weight: 800; white-space: nowrap;"><%= task.profile&.name %></span>
-                    <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--r-full); background: var(--surface-2); color: var(--text-muted);"><%= task.category.to_s.humanize %></span>
-                  </div>
-                  <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 12px; font-weight: 800; color: var(--star-2);">+<%= task.points %> ★</span>
-                    <span style="font-size: 11px; color: var(--text-muted);"><%= time_ago_in_words(task.updated_at) %> atrás</span>
-                  </div>
-                </div>
-              </div>
-              <div style="display: flex; gap: 8px;">
-                <%= button_to reject_parent_approval_path(task), method: :patch,
-                    form_class: "flex-1",
-                    style: "width: 100%; background: var(--c-red-soft); color: var(--c-red-dark); border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
-                    aria: { label: "Rejeitar" },
-                    data: { turbo_frame: "approvals_list", turbo_confirm: "Rejeitar esta tarefa?", turbo_submits_with: "Rejeitando..." } do %>
-                  Rejeitar
-                <% end %>
-                <%= button_to approve_parent_approval_path(task), method: :patch,
-                    form_class: "flex-1",
-                    style: "width: 100%; background: var(--c-mint-soft); color: var(--c-mint-dark); border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
-                    aria: { label: "Aprovar" },
-                    data: { turbo_frame: "approvals_list", turbo_submits_with: "Aprovando..." } do %>
-                  Aprovar
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-          <div class="card" style="padding: 40px; text-align: center;">
-            <div style="font-size: 36px; margin-bottom: 8px;">🎉</div>
-            <div class="h-display" style="font-size: 20px; margin-bottom: 4px;">Tudo em dia!</div>
-            <div class="subtitle" style="font-size: 14px;">Nenhuma missão aguardando aprovação.</div>
-          </div>
+    <%# ── Missions panel ── %>
+    <div id="panel-missions" class="col z-content" style="gap: 8px;">
+      <% if @profile_tasks.any? %>
+        <% @profile_tasks.each do |task| %>
+          <%= render Ui::ApprovalRow::Component.new(
+                dom_id: dom_id(task),
+                kid: task.profile,
+                title: task.title,
+                kid_chip_text: task.profile&.name,
+                category_label: task.category.to_s.humanize,
+                meta: "#{time_ago_in_words(task.updated_at)} atrás",
+                points: task.points,
+                points_sign: "+",
+                approve_url: approve_parent_approval_path(task),
+                reject_url: reject_parent_approval_path(task),
+                reject_confirm: "Rejeitar esta tarefa?"
+              ) %>
         <% end %>
-      </div>
+      <% else %>
+        <%= render Ui::Empty::Component.new(
+              icon: "check",
+              title: "Tudo em dia!",
+              subtitle: "Nenhuma missão aguardando aprovação."
+            ) %>
+      <% end %>
+    </div>
 
-      <%# ── Rewards panel ── %>
-      <div id="panel-rewards" class="col" style="gap: 8px; z-index: 2; display: none;">
-        <% if @redemptions.any? %>
-          <% @redemptions.each do |redemption| %>
-            <% palette = Ui::SmileyAvatar::Component::COLOR_MAP[redemption.profile&.color.to_s] || Ui::SmileyAvatar::Component::COLOR_MAP["primary"] %>
-            <div id="<%= dom_id(redemption) %>" class="card" style="padding: 14px;">
-              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
-                <%= render Ui::SmileyAvatar::Component.new(kid: redemption.profile, size: 40) %>
-                <div style="flex: 1; min-width: 0;">
-                  <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-                    <span class="h-display" style="font-size: 15px;"><%= redemption.reward&.title %></span>
-                    <span style="background: <%= palette[:fill] %>; color: <%= palette[:ink] %>; padding: 1px 8px; border-radius: var(--r-full); font-size: 11px; font-weight: 800; white-space: nowrap;"><%= redemption.profile&.name %></span>
-                  </div>
-                  <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 12px; font-weight: 800; color: var(--danger);">−<%= redemption.points %> ★</span>
-                    <span style="font-size: 11px; color: var(--text-muted);"><%= time_ago_in_words(redemption.created_at) %> atrás</span>
-                  </div>
-                </div>
-              </div>
-              <div style="display: flex; gap: 8px;">
-                <%= button_to reject_redemption_parent_approval_path(redemption), method: :patch,
-                    form_class: "flex-1",
-                    style: "width: 100%; background: var(--c-red-soft); color: var(--c-red-dark); border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
-                    aria: { label: "Cancelar" },
-                    data: { turbo_frame: "approvals_list", turbo_confirm: "Cancelar este resgate?", turbo_submits_with: "Cancelando..." } do %>
-                  Cancelar
-                <% end %>
-                <%= button_to approve_redemption_parent_approval_path(redemption), method: :patch,
-                    form_class: "flex-1",
-                    style: "width: 100%; background: var(--c-mint-soft); color: var(--c-mint-dark); border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
-                    aria: { label: "Entregue" },
-                    data: { turbo_frame: "approvals_list", turbo_submits_with: "Entregando..." } do %>
-                  Entregue
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-          <div class="card" style="padding: 40px; text-align: center;">
-            <div style="font-size: 36px; margin-bottom: 8px;">🎉</div>
-            <div class="h-display" style="font-size: 20px; margin-bottom: 4px;">Tudo entregue!</div>
-            <div class="subtitle" style="font-size: 14px;">Nenhum prêmio aguardando entrega.</div>
-          </div>
+    <%# ── Rewards panel ── %>
+    <div id="panel-rewards" class="col z-content" style="gap: 8px; display: none;">
+      <% if @redemptions.any? %>
+        <% @redemptions.each do |redemption| %>
+          <%= render Ui::ApprovalRow::Component.new(
+                dom_id: dom_id(redemption),
+                kid: redemption.profile,
+                title: redemption.reward&.title,
+                kid_chip_text: redemption.profile&.name,
+                meta: "#{time_ago_in_words(redemption.created_at)} atrás",
+                points: redemption.points,
+                points_sign: "−",
+                approve_url: approve_redemption_parent_approval_path(redemption),
+                reject_url: reject_redemption_parent_approval_path(redemption),
+                approve_label: "Entregue",
+                reject_label: "Cancelar",
+                approve_submits_with: "Entregando...",
+                reject_submits_with: "Cancelando...",
+                reject_confirm: "Cancelar este resgate?"
+              ) %>
         <% end %>
-      </div>
+      <% else %>
+        <%= render Ui::Empty::Component.new(
+              icon: "check",
+              title: "Tudo entregue!",
+              subtitle: "Nenhum prêmio aguardando entrega."
+            ) %>
+      <% end %>
     </div>
 
   <% end %>
