@@ -3,6 +3,8 @@
     <% if bulk? %>
       <input type="checkbox" name="approval_ids[]" value="<%= bulk_value || dom_id %>"
              aria-label="Selecionar"
+             data-bulk-select-target="checkbox"
+             data-action="change->bulk-select#change"
              style="width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0;" />
     <% end %>
     <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 40) %>
