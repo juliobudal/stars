@@ -73,6 +73,42 @@ RSpec.describe Tasks::DailyResetService do
       end
     end
 
+    context 'monthly missions' do
+      let!(:monthly_task) { create(:global_task, family: family, frequency: :monthly, day_of_month: 15) }
+
+      it 'creates ProfileTask when date matches day_of_month' do
+        target_date = Date.new(2026, 5, 15)
+        expect {
+          described_class.new(date: target_date, family: family).call
+        }.to change(ProfileTask, :count).by(4) # daily_task + monthly_task × 2 children
+        expect(ProfileTask.where(global_task: monthly_task, assigned_date: target_date)).to exist
+      end
+
+      it 'does NOT create ProfileTask when date does not match day_of_month' do
+        target_date = Date.new(2026, 5, 14)
+        described_class.new(date: target_date, family: family).call
+        expect(ProfileTask.where(global_task: monthly_task, assigned_date: target_date)).to be_empty
+      end
+    end
+
+    context 'once missions' do
+      let!(:once_task) { create(:global_task, family: family, frequency: :once) }
+      let(:any_date) { Date.new(2026, 5, 1) }
+
+      it 'creates ProfileTask on the first call' do
+        expect {
+          described_class.new(date: any_date, family: family).call
+        }.to change { ProfileTask.where(global_task: once_task).count }.by(2)
+      end
+
+      it 'does NOT create ProfileTask on the second call (already exists)' do
+        described_class.new(date: any_date, family: family).call
+        expect {
+          described_class.new(date: any_date + 1, family: family).call
+        }.not_to change { ProfileTask.where(global_task: once_task).count }
+      end
+    end
+
     context 'with explicit assignments' do
       let(:monday) { Date.new(2024, 1, 1) }
 

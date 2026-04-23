@@ -30,9 +30,13 @@
       <%= f.label :points, "Estrelinhas", class: "form-label" %>
       <%= f.number_field :points, class: "form-input" %>
     </div>
-    <div class="form-field">
+    <div class="form-field" data-controller="fields">
       <%= f.label :frequency, "Frequência", class: "form-label" %>
-      <%= f.select :frequency, [["Diária", "daily"], ["Semanal", "weekly"]], {}, class: "form-select" %>
+      <%= f.select :frequency,
+            [["Diária", "daily"], ["Semanal", "weekly"], ["Mensal", "monthly"], ["Única vez", "once"]],
+            {},
+            class: "form-select",
+            data: { action: "change->fields#enable", controls: "day_of_month_field" } %>
     </div>
   </div>
 
@@ -102,15 +106,12 @@
     </div>
   <% end %>
 
-  <%# Out-of-scope recurrence chips (disabled) %>
-  <div class="form-field" style="opacity: .5;">
-    <label class="form-label">Outras recorrências (em breve)</label>
-    <div class="row wrap" style="gap: 6px;">
-      <% %w[Mensal Única-vez].each do |lbl| %>
-        <div class="chip" style="cursor: not-allowed;" aria-disabled="true"><%= lbl %></div>
-      <% end %>
-    </div>
-  </div>
+  <%# day_of_month field — visible only for monthly frequency %>
+  <fieldset id="day_of_month_field" class="form-field" <%= "disabled" unless global_task.monthly? %> style="<%= global_task.monthly? ? '' : 'display: none;' %>">
+    <legend class="form-label">Dia do mês</legend>
+    <%= f.number_field :day_of_month, class: "form-input", min: 1, max: 31, placeholder: "Ex: 15" %>
+    <p style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Dia do mês em que a missão será criada (1–31).</p>
+  </fieldset>
 
   <div class="row mt-4" style="gap: 10px; justify-content: flex-end;">
     <%= link_to "Voltar", parent_global_tasks_path, class: "btn btn-secondary" %>

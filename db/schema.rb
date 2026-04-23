@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_23_212853) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_23_212941) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_212853) do
     t.boolean "active", default: true, null: false
     t.integer "category"
     t.datetime "created_at", null: false
+    t.integer "day_of_month"
     t.string "days_of_week", default: [], array: true
     t.text "description"
     t.bigint "family_id", null: false

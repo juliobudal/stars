@@ -46,6 +46,8 @@ module Tasks
 
     def applicable_today?(gt)
       return true if gt.daily?
+      return gt.day_of_month == @date.day if gt.monthly?
+      return !ProfileTask.where(global_task: gt).exists? if gt.once?
       return false unless gt.weekly?
       return false if gt.days_of_week.blank?
 

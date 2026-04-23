@@ -12,8 +12,10 @@ module Ui
     }.freeze
 
     FREQUENCIES = {
-      "daily"  => { label: "Todo dia", tint: "mint" },
-      "weekly" => { label: "Semanal",  tint: "sky"  }
+      "daily"   => { label: "Todo dia",  tint: "mint"  },
+      "weekly"  => { label: "Semanal",   tint: "sky"   },
+      "monthly" => { label: "Mensal",    tint: "lilac" },
+      "once"    => { label: "Única vez", tint: "rose"  }
     }.freeze
 
     REWARD_CATEGORIES = {

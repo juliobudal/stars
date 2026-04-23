@@ -110,6 +110,42 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
       end
     end
 
+    describe "POST /parent/global_tasks with monthly frequency" do
+      it "creates a monthly task with day_of_month and persists it" do
+        expect {
+          post parent_global_tasks_path, params: {
+            global_task: {
+              title: "Mesada",
+              points: 50,
+              category: "outro",
+              frequency: "monthly",
+              day_of_month: 15
+            }
+          }
+        }.to change(GlobalTask, :count).by(1)
+
+        expect(response).to redirect_to(parent_global_tasks_path)
+        task = GlobalTask.order(:id).last
+        expect(task.frequency).to eq("monthly")
+        expect(task.day_of_month).to eq(15)
+      end
+
+      it "rejects monthly task without day_of_month" do
+        expect {
+          post parent_global_tasks_path, params: {
+            global_task: {
+              title: "Mesada",
+              points: 50,
+              category: "outro",
+              frequency: "monthly"
+            }
+          }
+        }.not_to change(GlobalTask, :count)
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
     describe "assigned_profile_ids round-trip" do
       it "persists assignments on create and update" do
         post parent_global_tasks_path, params: {
