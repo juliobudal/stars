@@ -1,0 +1,27 @@
+<div data-controller="<%= controller %>" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; margin-bottom: 12px;">
+  <% items.each do |item| %>
+    <%
+      is_active = active?(item[:id])
+      style = if is_active
+                "background: var(--primary); color: white; box-shadow: 0 3px 0 var(--primary-2);"
+              else
+                "background: var(--surface); color: var(--text-muted); box-shadow: var(--shadow-card);"
+              end
+    %>
+    <button
+      type="button"
+      data-<%= controller %>-target="tab"
+      data-action="click-><%= controller %>#show"
+      data-<%= controller %>-id-param="<%= item[:id] %>"
+      class="<%= is_active ? 'active' : '' %>"
+      style="border: none; cursor: pointer; white-space: nowrap; border-radius: var(--r-full); padding: 8px 18px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; <%= style %>">
+      <% if item[:icon] %>
+        <%= render Ui::Icon::Component.new(item[:icon], size: 14) %>
+      <% end %>
+      <%= item[:label] %>
+      <% if item[:count] %>
+        <span style="background: color-mix(in srgb, var(--primary) 15%, transparent); color: var(--primary); padding: 2px 8px; border-radius: var(--r-full); font-size: 11px; font-weight: 900;"><%= item[:count] %></span>
+      <% end %>
+    </button>
+  <% end %>
+</div>

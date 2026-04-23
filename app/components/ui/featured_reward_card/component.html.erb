@@ -1,0 +1,22 @@
+<div class="card" style="z-index: 2; display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; margin-bottom: 16px; padding: 28px; overflow: clip; position: relative; border-radius: var(--r-featured);">
+  <div>
+    <span style="display:inline-flex; align-items:center; gap:4px; background:var(--c-lilac-soft); color:var(--c-violet-dark); padding:4px 10px; border-radius:var(--r-full); font-size:11px; font-weight:800; letter-spacing:.1em; margin-bottom:12px;">✨ EM DESTAQUE</span>
+    <h3 class="h-display" style="font-size:26px; margin:0 0 6px;"><%= reward.title %></h3>
+    <p class="subtitle" style="margin:0 0 18px; font-size:14px; color:var(--text-muted); font-weight:500; line-height:1.4;">Troque suas estrelinhas por esse prêmio especial.</p>
+    <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+      <button class="btn btn-primary btn-sm"
+              style="box-shadow:0 3px 0 color-mix(in srgb, var(--c-violet-dark) 25%, transparent);"
+              <% if modal_id %>data-action="click->ui-modal#open" data-ui-modal-id-param="<%= modal_id %>"<% end %>>
+        Trocar por ⭐ <%= reward.cost %>
+      </button>
+      <% if can_afford? %>
+        <span style="font-size:12px; font-weight:700; color:var(--c-mint-dark);">✓ Você pode pegar essa!</span>
+      <% else %>
+        <span style="font-size:12px; font-weight:700; color:var(--text-muted);">Faltam <%= shortfall %> estrelinhas</span>
+      <% end %>
+    </div>
+  </div>
+  <div style="width:140px; height:140px; border-radius:var(--r-lg); background:var(--c-lilac-soft); display:grid; place-items:center; flex-shrink:0;">
+    <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 70, color: "var(--c-violet-dark)") %>
+  </div>
+</div>
