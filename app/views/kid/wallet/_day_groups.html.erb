@@ -34,7 +34,7 @@
       <div class="card" style="padding: 14px; border: 2px solid rgba(26,42,74,0.06);">
         <div class="row" style="gap: 14px;">
           <%# Icon disc %>
-          <div style="width: 48px; height: 48px; border-radius: var(--r-md); background: <%= k[:disc_bg] %>; color: <%= k[:disc_color] %>; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <div style="width: 48px; height: 48px; border-radius: var(--r-full); background: <%= k[:disc_bg] %>; color: <%= k[:disc_color] %>; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
             <%= render Ui::Icon::Component.new(k[:icon], size: 26, color: "currentColor") %>
           </div>
           <%# Title + kind chip + time %>
