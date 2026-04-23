@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       end
     end
     resources :activity_logs, only: [:index]
+    resource :settings, only: [:show, :update]
   end
 
   namespace :kid do

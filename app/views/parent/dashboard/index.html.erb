@@ -1,18 +1,15 @@
 <div class="screen screen-enter with-nav">
 
   <%# ─── Header ─── %>
-  <div class="row mb-5" style="justify-content: space-between; z-index: 2; flex-shrink: 0;">
-    <div class="row" style="gap: 12px;">
-      <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--primary-soft); display: flex; align-items: center; justify-content: center;">
-        <%= render Ui::Icon::Component.new(current_profile.avatar.presence || "faceParent", size: 32, color: "var(--primary)") %>
-      </div>
-      <div class="col" style="gap: 0;">
-        <div class="eyebrow">Olá,</div>
-        <div class="h-display" style="font-size: 24px;"><%= current_profile.name %> ✨</div>
-      </div>
+  <div class="row mb-5" style="justify-content: space-between; z-index: 2; flex-shrink: 0; align-items: flex-start;">
+    <div>
+      <h1 class="h-display" style="font-size: 26px; margin-bottom: 4px;">Olá, <%= current_profile.name %> ✨</h1>
+      <p style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin: 0;">
+        Você tem <strong><%= @stats[:pending_approvals] %></strong> aprovações aguardando e <strong><%= @stats[:children] %></strong> crianças ativas.
+      </p>
     </div>
-    <%= button_to sessions_path, method: :delete, class: "btn btn-secondary btn-icon" do %>
-      <%= render Ui::Icon::Component.new("logout", size: 20) %>
+    <%= link_to new_parent_global_task_path, class: "btn btn-primary btn-sm", style: "white-space: nowrap; flex-shrink: 0;" do %>
+      + Nova missão
     <% end %>
   </div>
 
@@ -24,56 +21,60 @@
       </div>
       <div style="flex: 1;">
         <div class="h-display" style="font-size: 18px; margin-bottom: 2px; color: white;"><%= @stats[:pending_approvals] %> aprovações aguardando</div>
-        <div style="font-size: 13px; font-weight: 600; opacity: 0.9;">Libere as estrelinhas dos seus filhos!</div>
+        <div style="font-size: 13px; font-weight: 600; opacity: 0.9;"><%= @stats[:active_missions] %> missões · <%= @stats[:rewards_count] %> prêmios</div>
       </div>
-      <%= link_to "Ver →", parent_approvals_path, style: "background: white; color: var(--primary); border: none; padding: 10px 18px; border-radius: 10px; font-family: var(--font-display); font-weight: 900; font-size: 13px; cursor: pointer; box-shadow: 0 3px 0 rgba(76,29,149,0.2); text-decoration: none; white-space: nowrap;" %>
+      <%= link_to "Ver aprovações →", parent_approvals_path, style: "background: white; color: var(--primary); border: none; padding: 10px 18px; border-radius: 10px; font-family: var(--font-display); font-weight: 900; font-size: 13px; cursor: pointer; box-shadow: 0 3px 0 rgba(76,29,149,0.2); text-decoration: none; white-space: nowrap;" %>
     </div>
   <% end %>
 
   <%# ─── 4-col stats ─── %>
   <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; z-index: 2;">
     <div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-      <div class="icon-tile icon-tile-sm" style="width: 38px; height: 38px; border-radius: 10px; background: var(--star-soft); display: grid; place-items: center;">
+      <div style="width: 38px; height: 38px; border-radius: 10px; background: var(--star-soft); display: grid; place-items: center;">
         <%= render Ui::Icon::Component.new("star", size: 20, color: "#92400E") %>
       </div>
       <div class="h-display" style="font-size: 28px; color: var(--text);"><%= @stats[:total_stars] %></div>
-      <div class="eyebrow">Estrelas em circulação</div>
+      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Estrelas em circulação</div>
     </div>
 
     <div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-      <div class="icon-tile icon-tile-sm" style="width: 38px; height: 38px; border-radius: 10px; background: var(--primary-soft); display: grid; place-items: center;">
+      <div style="width: 38px; height: 38px; border-radius: 10px; background: var(--primary-soft); display: grid; place-items: center;">
         <%= render Ui::Icon::Component.new("target", size: 20, color: "var(--primary)") %>
       </div>
       <div class="h-display" style="font-size: 28px; color: var(--text);"><%= @stats[:active_missions] %></div>
-      <div class="eyebrow">Missões ativas</div>
+      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Missões ativas</div>
     </div>
 
     <div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-      <div class="icon-tile icon-tile-sm" style="width: 38px; height: 38px; border-radius: 10px; background: var(--c-rose-soft); display: grid; place-items: center;">
+      <div style="width: 38px; height: 38px; border-radius: 10px; background: var(--c-rose-soft); display: grid; place-items: center;">
         <%= render Ui::Icon::Component.new("bag", size: 20, color: "var(--c-rose)") %>
       </div>
       <div class="h-display" style="font-size: 28px; color: var(--text);"><%= @stats[:rewards_count] %></div>
-      <div class="eyebrow">Prêmios no catálogo</div>
+      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Prêmios no catálogo</div>
     </div>
 
     <div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-      <div class="icon-tile icon-tile-sm" style="width: 38px; height: 38px; border-radius: 10px; background: var(--c-mint-soft); display: grid; place-items: center;">
+      <div style="width: 38px; height: 38px; border-radius: 10px; background: var(--c-mint-soft); display: grid; place-items: center;">
         <%= render Ui::Icon::Component.new("users", size: 20, color: "var(--c-mint-dark)") %>
       </div>
       <div class="h-display" style="font-size: 28px; color: var(--text);"><%= @stats[:children] %></div>
-      <div class="eyebrow">Crianças ativas</div>
+      <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Crianças ativas</div>
     </div>
   </div>
 
-  <%# ─── Kid cards — 3-col color-band ─── %>
+  <%# ─── Kid cards ─── %>
   <div class="mb-5" style="z-index: 2;">
-    <h3 class="h-display mb-3" style="font-size: 22px;">Visão Geral</h3>
+    <div class="row mb-3" style="justify-content: space-between; align-items: center;">
+      <h2 class="h-display" style="font-size: 22px; margin: 0;">Suas crianças</h2>
+      <%= link_to "+ Adicionar filho", parent_profiles_path, class: "btn btn-secondary btn-sm" %>
+    </div>
 
     <% if @children.any? %>
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
         <% @children.each do |child| %>
           <% palette = smiley_palette(child.color) %>
           <% streak = child.respond_to?(:streak) ? child.streak.to_i : 0 %>
+          <% missions_count = @child_missions[child.id].to_i %>
           <div class="card" style="padding: 0; overflow: hidden;">
             <%# Color band top %>
             <div style="background: <%= palette[:fill] %>; padding: 18px 20px; display: flex; align-items: center; gap: 14px;">
@@ -84,10 +85,14 @@
               </div>
             </div>
             <%# Stats bottom %>
-            <div style="padding: 14px 20px 20px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="padding: 14px 20px 20px; display: flex; flex-direction: column; gap: 10px;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Saldo</span>
-                <span class="h-display" style="font-size: 16px;">⭐ <%= child.points %></span>
+                <span class="h-display" style="font-size: 15px;">⭐ <%= child.points %></span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Missões ativas</span>
+                <span class="h-display" style="font-size: 15px;"><%= missions_count %></span>
               </div>
               <% if @child_awaiting[child.id].to_i > 0 %>
                 <div style="background: #FEF3C7; color: #92400E; padding: 8px 12px; border-radius: 10px; font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 6px;">
@@ -111,7 +116,10 @@
 
   <%# ─── Atividade recente ─── %>
   <div style="z-index: 2;">
-    <h3 class="h-display mb-3" style="font-size: 22px;">Atividade recente</h3>
+    <div class="row mb-3" style="justify-content: space-between; align-items: center;">
+      <h2 class="h-display" style="font-size: 22px; margin: 0;">Atividade recente</h2>
+      <%= link_to "Ver tudo", parent_activity_logs_path, style: "font-size: 13px; font-weight: 700; color: var(--primary); text-decoration: none;" %>
+    </div>
     <% if @recent_activity.any? %>
       <div class="card" style="padding: 4px 20px;">
         <% @recent_activity.each_with_index do |log, i| %>
