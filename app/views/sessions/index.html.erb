@@ -1,104 +1,60 @@
-<% disc_colors = {
-  "primary" => "rgba(167, 139, 250, 0.15)",
-  "peach"   => "rgba(244, 114, 182, 0.15)",
-  "rose"    => "rgba(236, 72, 153, 0.15)",
-  "mint"    => "rgba(52, 211, 153, 0.15)",
-  "sky"     => "rgba(56, 189, 248, 0.15)",
-  "lilac"   => "rgba(167, 139, 250, 0.15)",
-  "coral"   => "rgba(236, 72, 153, 0.15)"
-} %>
-
-<div class="screen screen-enter" style="justify-content: flex-start; align-items: center; padding-top: 28px; background: var(--bg-deep);">
-  <div style="z-index: 2; width: 100%; max-width: 960px; text-align: center;">
-    <div class="mb-4 center col" style="gap: 6px;">
-      <%= render Ui::Lumi::Component.new(size: 72, mood: "excited") %>
-      <div class="eyebrow mt-2">LittleStars</div>
-      <h1 class="h-display display" style="font-size: 36px;">Quem vai brilhar hoje?</h1>
-      <p class="subtitle" style="max-width: 460px; font-size: 15px; margin: 0 auto;">Escolha seu perfil para começar a aventura</p>
+<div class="screen screen-enter" style="justify-content: center; align-items: center; background: var(--bg-deep); position: relative; overflow: auto; padding: 40px 20px;">
+  <div style="width: 100%; max-width: 900px; margin: 0 auto;">
+    <%# Header %>
+    <div style="text-align: center; margin-bottom: 44px; position: relative;">
+      <%= render "shared/star_mascot", size: 64, wink: true %>
+      <div class="eyebrow mt-2" style="letter-spacing: .24em;">LITTLESTARS</div>
+      <h1 class="h-display" style="font-size: 42px; margin: 10px 0 8px;">Quem vai brilhar hoje?</h1>
+      <p style="font-size: 16px; color: var(--text-muted); font-weight: 500;">Escolha seu perfil pra começar a aventura</p>
     </div>
 
-    <div class="grid-auto" style="gap: 14px; margin-top: 20px;">
-      <% @profiles.each_with_index do |profile, i| %>
-        <% color = profile.try(:color).presence || "primary" %>
-        <% disc_color = disc_colors[color] || disc_colors["primary"] %>
-        <% streak = profile.try(:streak).presence || 0 %>
+    <%# Profile grid — 3 col %>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;">
+      <% @profiles.each do |profile| %>
+        <% palette = smiley_palette(profile.color) %>
+        <% face = face_for(profile) %>
+        <% streak = profile.respond_to?(:streak) ? profile.streak.to_i : 0 %>
 
-        <%= form_with url: sessions_path, method: :post, class: "h-full" do |f| %>
+        <%= form_with url: sessions_path, method: :post do |f| %>
           <%= f.hidden_field :profile_id, value: profile.id %>
-          <button type="submit" class="card pop-on-tap card-tap w-full h-full" style="
-            cursor: pointer;
-            background: white;
-            box-shadow: var(--shadow-card);
-            border: none;
-            padding: 24px 18px;
-            border-radius: var(--r-lg);
-            transition: transform 0.12s;
-            animation: slideInCard 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) <%= i * 0.05 %>s both;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            font-family: var(--font-body);
-            font-weight: 700;
-            color: var(--text);
+          <button type="submit" style="
+            background: white; border: none; border-radius: 28px;
+            padding: 32px; cursor: pointer; box-shadow: var(--shadow-card);
+            display: flex; flex-direction: column; align-items: center; gap: 18px;
+            width: 100%; font-family: var(--font-body); color: var(--text);
+            transition: transform .15s, box-shadow .15s;
           ">
-            <div style="width: 100px; height: 100px; border-radius: 50%; background: <%= disc_color %>; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-              <%= render Ui::KidAvatar::Component.new(kid: profile, size: 80) %>
+            <div style="width: 124px; height: 124px; border-radius: 50%; background: <%= palette[:fill] %>; display: grid; place-items: center; margin-top: 4px;">
+              <%= render Ui::SmileyAvatar::Component.new(face: face, size: 96, fill: "white", ring: palette[:ring], ink: palette[:ink]) %>
             </div>
-
-            <div class="h-display" style="font-size: 20px;"><%= profile.name %></div>
+            <div class="h-display" style="font-size: 24px;"><%= profile.name %></div>
 
             <% if profile.child? %>
-              <%= render Ui::Badge::Component.new(variant: "star", icon: "star") do %>
-                <%= profile.points %>
-              <% end %>
-              <% if streak > 0 %>
-                <span style="
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 4px;
-                  background: rgba(251, 146, 60, 0.12);
-                  color: #EA580C;
-                  font-size: 12px;
-                  font-weight: 700;
-                  padding: 3px 10px;
-                  border-radius: 99px;
-                ">🔥 <%= streak %> dias</span>
-              <% end %>
+              <div style="display: flex; gap: 8px; justify-content: center; margin-top: -4px;">
+                <span style="background:#FFF4CC; color:#2B2A3A; padding:2px 12px; border-radius:999px; font-weight:800; font-size:12px; display:inline-flex; align-items:center; gap:4px;">
+                  ⭐ <%= profile.points %>
+                </span>
+                <span style="background:#FFEDE0; color:#B84700; padding:3px 10px; border-radius:999px; font-weight:800; font-size:12px;">
+                  🔥 <%= streak %>
+                </span>
+              </div>
             <% else %>
-              <%= render Ui::Badge::Component.new(variant: "primary") do %>
-                Responsável
-              <% end %>
+              <div style="font-size:11px; font-weight:800; color:var(--text-muted); letter-spacing:.24em; text-transform:uppercase; margin-top:-4px;">RESPONSÁVEL</div>
             <% end %>
           </button>
         <% end %>
       <% end %>
 
-      <%= link_to new_parent_profile_path, class: "card pop-on-tap card-tap", style: "
-        border: 2px dashed var(--hairline);
-        background: transparent;
-        box-shadow: none;
-        padding: 24px 18px;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        text-decoration: none;
-        color: var(--text-muted);
-        min-height: 160px;
-      " do %>
-        <div style="width: 48px; height: 48px; border-radius: 50%; border: 2px dashed var(--hairline); display: flex; align-items: center; justify-content: center;">
-          <%= render Ui::Icon::Component.new("plus", size: 24, color: "var(--text-muted)") %>
-        </div>
-        <span style="font-weight: 700; font-size: 13px;">Adicionar perfil</span>
+      <%# Add profile dashed card %>
+      <%= link_to new_parent_profile_path, style: "border:2px dashed var(--hairline); border-radius:28px; padding:32px; background:transparent; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; min-height:240px; color:var(--text-muted); font-weight:700; font-size:14px; text-decoration:none; text-align:center;" do %>
+        <div style="width:52px; height:52px; border-radius:50%; background:var(--surface-2); display:grid; place-items:center; font-size:30px; font-weight:700; color:var(--text-muted);">+</div>
+        Adicionar<br/>perfil
       <% end %>
     </div>
 
-    <div style="margin-top: 32px; text-align: center;">
-      <%= link_to parent_root_path, style: "font-size: 14px; font-weight: 700; color: var(--text-muted); text-decoration: none;" do %>
+    <%# Footer %>
+    <div style="text-align:center; margin-top:28px;">
+      <%= link_to parent_root_path, style: "font-size:14px; font-weight:700; color:var(--text-muted); text-decoration:none; padding:10px 18px; border-radius:999px;" do %>
         Área dos pais <span aria-hidden="true">→</span>
       <% end %>
     </div>
