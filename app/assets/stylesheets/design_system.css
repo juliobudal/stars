@@ -45,6 +45,9 @@
   --c-coral: #EC4899;
   --c-coral-soft: #FCE7F3;
 
+  --c-amber-soft: #FEF3C7;
+  --c-amber-dark: #92400E;
+
   --c-violet-dark: #6D28D9;
   --c-red-soft: #FEE2E2;
   --c-red-dark: #B91C1C;
@@ -313,7 +316,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   flex-shrink: 0;
 }
 .status-chip--approved { background: #D1FAE5; color: #047857; }
-.status-chip--awaiting { background: #FEF3C7; color: #92400E; }
+.status-chip--awaiting { background: var(--c-amber-soft); color: var(--c-amber-dark); }
 .status-chip--current  { background: #FCE7F3; color: #BE185D; }
 .status-chip--todo     { background: #F2EEE6; color: #6A6878; }
 
@@ -330,6 +333,29 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 }
 .mission-node--approved { background: #34D399; }
 .mission-node--awaiting { background: #FDE68A; }
+
+/* ── Stat icon tile (38×38 rounded square, used in parent dashboard stats) ── */
+.stat-icon-tile {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Awaiting badge pill (amber) ── */
+.awaiting-badge {
+  background: var(--c-amber-soft);
+  color: var(--c-amber-dark);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 .mission-node--current  { box-shadow: 0 0 0 6px rgba(255,197,61,0.33), 0 8px 18px rgba(0,0,0,0.08); }
 .mission-node--todo     { box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
 

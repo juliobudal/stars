@@ -30,15 +30,15 @@
   <%# ─── 4-col stats ─── %>
   <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; z-index: 2;">
     <div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-      <div style="width: 38px; height: 38px; border-radius: 10px; background: var(--star-soft); display: grid; place-items: center;">
-        <%= render Ui::Icon::Component.new("star", size: 20, color: "#92400E") %>
+      <div class="stat-icon-tile" style="background: var(--star-soft);">
+        <%= render Ui::Icon::Component.new("star", size: 20, color: "var(--c-amber-dark)") %>
       </div>
       <div class="h-display" style="font-size: 28px; color: var(--text);"><%= @stats[:total_stars] %></div>
       <div style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Estrelas em circulação</div>
     </div>
 
     <div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-      <div style="width: 38px; height: 38px; border-radius: 10px; background: var(--primary-soft); display: grid; place-items: center;">
+      <div class="stat-icon-tile" style="background: var(--primary-soft);">
         <%= render Ui::Icon::Component.new("target", size: 20, color: "var(--primary)") %>
       </div>
       <div class="h-display" style="font-size: 28px; color: var(--text);"><%= @stats[:active_missions] %></div>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-      <div style="width: 38px; height: 38px; border-radius: 10px; background: var(--c-rose-soft); display: grid; place-items: center;">
+      <div class="stat-icon-tile" style="background: var(--c-rose-soft);">
         <%= render Ui::Icon::Component.new("bag", size: 20, color: "var(--c-rose)") %>
       </div>
       <div class="h-display" style="font-size: 28px; color: var(--text);"><%= @stats[:rewards_count] %></div>
@@ -54,7 +54,7 @@
     </div>
 
     <div class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-      <div style="width: 38px; height: 38px; border-radius: 10px; background: var(--c-mint-soft); display: grid; place-items: center;">
+      <div class="stat-icon-tile" style="background: var(--c-mint-soft);">
         <%= render Ui::Icon::Component.new("users", size: 20, color: "var(--c-mint-dark)") %>
       </div>
       <div class="h-display" style="font-size: 28px; color: var(--text);"><%= @stats[:children] %></div>
@@ -95,7 +95,7 @@
                 <span class="h-display" style="font-size: 15px;"><%= missions_count %></span>
               </div>
               <% if @child_awaiting[child.id].to_i > 0 %>
-                <div style="background: #FEF3C7; color: #92400E; padding: 8px 12px; border-radius: 10px; font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 6px;">
+                <div class="awaiting-badge">
                   ⏱ <%= @child_awaiting[child.id] %> aguardando você
                 </div>
               <% end %>

@@ -1,0 +1,23 @@
+<%# locals: (size: 56, wink: false) %>
+<% size = local_assigns[:size] || 56 %>
+<% wink = local_assigns[:wink] || false %>
+<% gid = "sm-star-#{SecureRandom.hex(4)}" %>
+<svg width="<%= size %>" height="<%= size %>" viewBox="0 0 100 100" aria-hidden="true">
+  <defs>
+    <linearGradient id="<%= gid %>" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFD54A"/>
+      <stop offset="1" stop-color="#FFB21E"/>
+    </linearGradient>
+  </defs>
+  <path d="M50 6 L61 35 L92 37 L68 57 L76 88 L50 71 L24 88 L32 57 L8 37 L39 35 Z"
+        fill="url(#<%= gid %>)" stroke="#E89A00" stroke-width="2.5" stroke-linejoin="round"/>
+  <circle cx="36" cy="52" r="4.5" fill="#FF8AA8" opacity="0.7"/>
+  <circle cx="64" cy="52" r="4.5" fill="#FF8AA8" opacity="0.7"/>
+  <% if wink %>
+    <path d="M36 45 q3 -3 6 0" stroke="#3A2300" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <% else %>
+    <ellipse cx="39" cy="46" rx="2.6" ry="3.2" fill="#2A1A00"/>
+  <% end %>
+  <ellipse cx="61" cy="46" rx="2.6" ry="3.2" fill="#2A1A00"/>
+  <path d="M42 58 q8 7 16 0" stroke="#2A1A00" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

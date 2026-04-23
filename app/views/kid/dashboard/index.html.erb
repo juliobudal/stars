@@ -57,8 +57,8 @@
           </div>
         </div>
         <% if @awaiting_tasks.any? %>
-          <div style="background: #FEF3C7; color: #92400E; padding: 8px 14px; border-radius: 12px; font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0;">
-            <%= render Ui::Icon::Component.new("clock", size: 14, color: "#92400E") %>
+          <div class="awaiting-badge" style="border-radius: 12px; padding: 8px 14px; white-space: nowrap; flex-shrink: 0;">
+            <%= render Ui::Icon::Component.new("clock", size: 14, color: "var(--c-amber-dark)") %>
             <%= @awaiting_tasks.count %> aguardando
           </div>
         <% end %>
@@ -96,7 +96,7 @@
         <div style="display: flex; flex-direction: row; align-items: center; gap: 18px;">
           <div class="mission-node mission-node--approved">
             <%= render Ui::Icon::Component.new("check", size: 36, color: "white") %>
-            <div style="position: absolute; top: -4px; right: -4px; background: var(--star); color: #92400E; border-radius: var(--r-full); padding: 3px 8px; font-size: 11px; font-weight: 900; white-space: nowrap;">+<%= task.points %></div>
+            <div style="position: absolute; top: -4px; right: -4px; background: var(--star); color: var(--c-amber-dark); border-radius: var(--r-full); padding: 3px 8px; font-size: 11px; font-weight: 900; white-space: nowrap;">+<%= task.points %></div>
           </div>
           <div class="card fg1" style="padding: 14px 18px; box-shadow: var(--shadow-card);">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
@@ -125,13 +125,13 @@
       <div style="position: relative; z-index: 1; margin-bottom: 48px;">
         <div style="display: flex; flex-direction: row; align-items: center; gap: 18px;">
           <div class="mission-node mission-node--awaiting">
-            <%= render Ui::Icon::Component.new("clock", size: 32, color: "#92400E") %>
+            <%= render Ui::Icon::Component.new("clock", size: 32, color: "var(--c-amber-dark)") %>
           </div>
           <div class="card fg1" style="padding: 14px 18px; box-shadow: var(--shadow-card);">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
               <div class="h-display mission-title"><%= task.title %></div>
               <span class="status-chip status-chip--awaiting" title="Aguardando aprovação">
-                <%= render Ui::Icon::Component.new("clock", size: 14, color: "#92400E") %>
+                <%= render Ui::Icon::Component.new("clock", size: 14, color: "var(--c-amber-dark)") %>
               </span>
             </div>
             <div style="margin-top: 6px; display: flex; gap: 6px; align-items: center; font-size: 12px; font-weight: 700; color: var(--text-soft);">
@@ -163,7 +163,7 @@
                style="background: <%= node_color %>;">
             <%= render Ui::Icon::Component.new(cat_data[:icon], size: 36, color: "white") %>
             <% if is_current %>
-              <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); background: var(--star); color: #92400E; border-radius: var(--r-full); padding: 3px 10px; font-size: 10px; font-weight: 900; letter-spacing: .1em; white-space: nowrap;">AGORA</div>
+              <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); background: var(--star); color: var(--c-amber-dark); border-radius: var(--r-full); padding: 3px 10px; font-size: 10px; font-weight: 900; letter-spacing: .1em; white-space: nowrap;">AGORA</div>
             <% end %>
           </div>
           <div class="card fg1" style="padding: 14px 18px; box-shadow: var(--shadow-card);">
