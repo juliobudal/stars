@@ -1,5 +1,22 @@
+<%
+  CAT_COLORS = {
+    "casa"   => "#34D399",
+    "escola" => "#A78BFA",
+    "rotina" => "#F472B6",
+    "saude"  => "#EC4899",
+    "geral"  => "#38BDF8",
+    "outro"  => "#38BDF8",
+  }.freeze unless defined?(CAT_COLORS)
+
+  total      = @profile_tasks.count + @awaiting_tasks.count + @completed_today.count
+  done_count = @awaiting_tasks.count + @completed_today.count
+  pct        = total.zero? ? 0 : (done_count.to_f / total * 100).round
+
+  # first pending = "current", rest = "todo"
+  current_task = @profile_tasks.first
+%>
+
 <div class="screen screen-enter with-nav" data-controller="celebration">
-  <%= render Ui::BgShapes::Component.new(variant: "blue") %>
   <%= render Ui::Celebration::Component.new %>
 
   <%# ─── Header ─── %>
@@ -11,135 +28,204 @@
         <div class="h-display" style="font-size: 24px;"><%= current_profile.name %>!</div>
       </div>
     </div>
-    <%= render Ui::Lumi::Component.new(size: 56, mood: @profile_tasks.empty? ? "excited" : "happy") %>
+    <div class="row" style="gap: 10px;">
+      <div style="background: white; border-radius: var(--r-full); padding: 8px 14px; display: flex; align-items: center; gap: 6px; font-weight: 800; color: #B84700; font-size: 13px; box-shadow: var(--shadow-card);">
+        🔥 <%= current_profile.respond_to?(:streak) ? current_profile.streak : 0 %> dias
+      </div>
+      <%= render Ui::Lumi::Component.new(size: 44, mood: @profile_tasks.empty? ? "excited" : "happy") %>
+    </div>
   </div>
 
-  <%# ─── Cofrinho (balance portal card) ─── %>
+  <%# ─── Cofrinho (flat white card) ─── %>
   <div style="z-index: 2; margin-bottom: 28px; flex-shrink: 0;">
-    <div class="card card-primary" style="padding: 26px; overflow: hidden; position: relative;">
-      <div style="position: absolute; inset: 0; background: radial-gradient(circle at 85% 20%, rgba(255,255,255,0.25), transparent 50%); pointer-events: none;"></div>
-
-      <div class="row" style="gap: 18px; position: relative;">
-        <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; border: 3px solid rgba(255,255,255,0.4); animation: float 3s ease-in-out infinite;">
-          <%= render Ui::Icon::Component.new("star", size: 48, color: "var(--star)") %>
+    <div class="card" style="padding: 26px;">
+      <div class="row" style="gap: 18px; margin-bottom: 20px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: var(--star-soft); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <%= render Ui::Icon::Component.new("star", size: 26, color: "var(--star)") %>
         </div>
-        <div class="col fg1" style="gap: 2px; color: white;">
-          <div style="font-size: 12px; font-weight: 800; opacity: 0.85; letter-spacing: 0.1em; text-transform: uppercase;">Meu Cofrinho</div>
-          <%= render Ui::BalanceChip::Component.new(value: current_profile.points, size: "lg", id: "profile_points_#{current_profile.id}", style: "background: transparent; border: none; box-shadow: none; padding: 0; color: white;", class: "h-display") %>
-          <div style="font-size: 14px; opacity: 0.85; font-weight: 700;">estrelinhas guardadas</div>
+        <div class="col fg1" style="gap: 2px;">
+          <div class="eyebrow">Meu Cofrinho</div>
+          <div class="row" style="align-items: baseline; gap: 8px;">
+            <%= render Ui::BalanceChip::Component.new(value: current_profile.points, size: "lg", id: "profile_points_#{current_profile.id}") %>
+            <div style="font-size: 13px; color: var(--text-muted); font-weight: 600;">estrelinhas</div>
+          </div>
         </div>
-        <%= link_to kid_rewards_path, class: "btn btn-star btn-sm", style: "flex-shrink: 0;" do %>
-          <%= render Ui::Icon::Component.new("bag", size: 18) %>
-          Lojinha
+        <% if @awaiting_tasks.any? %>
+          <div style="background: #FEF3C7; color: #92400E; padding: 8px 14px; border-radius: 12px; font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0;">
+            <%= render Ui::Icon::Component.new("clock", size: 14, color: "#92400E") %>
+            <%= @awaiting_tasks.count %> aguardando
+          </div>
         <% end %>
       </div>
 
-      <%# Progress %>
-      <% total = @profile_tasks.count + @awaiting_tasks.count + @completed_today.count %>
-      <% done_count = @awaiting_tasks.count + @completed_today.count %>
-      <% pct = total.zero? ? 0 : (done_count.to_f / total * 100).round %>
-      <div style="margin-top: 22px; position: relative;">
-        <div class="row" style="justify-content: space-between; margin-bottom: 8px; color: white;">
-          <div style="font-size: 13px; font-weight: 800; opacity: 0.9;">PROGRESSO DE HOJE</div>
-          <div style="font-size: 13px; font-weight: 800;"><%= done_count %>/<%= total %> ✨</div>
+      <div>
+        <div class="row mb-3" style="justify-content: space-between; font-size: 12px; font-weight: 800; color: var(--text-muted);">
+          <span style="letter-spacing: .1em;">PROGRESSO DE HOJE</span>
+          <span style="color: var(--text); letter-spacing: 0;"><%= done_count %> de <%= total %> ✨</span>
         </div>
-        <div class="progress-track" style="background: rgba(255,255,255,0.25);">
-          <div class="progress-fill" style="width: <%= pct %>%; background: white;"></div>
+        <div class="progress-track" style="background: var(--bg-soft);">
+          <div class="progress-fill" style="width: <%= pct %>%; background: var(--star);"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <%# ─── Tabs & Panels ─── %>
-  <div data-controller="tabs" data-tabs-active-class="active" style="display: flex; flex-direction: column; flex: 1;">
-    <div style="z-index: 2; flex-shrink: 0; margin-bottom: 16px;">
-      <div class="tabs">
-        <button class="tab active" data-tabs-target="tab" data-action="click->tabs#show" data-tabs-id-param="todo">
-          <%= render Ui::Icon::Component.new("target", size: 16) %>
-          Pra Fazer
-          <% if @profile_tasks.any? %>
-            <span style="background: rgba(255,255,255,0.3); color: white; padding: 1px 7px; border-radius: 10px; font-size: 11px;"><%= @profile_tasks.count %></span>
-          <% end %>
-        </button>
-        <button class="tab" data-tabs-target="tab" data-action="click->tabs#show" data-tabs-id-param="waiting">
-          <%= render Ui::Icon::Component.new("clock", size: 16) %>
-          Aguardando
-          <% if @awaiting_tasks.any? %>
-            <span style="background: var(--c-peach); color: white; padding: 1px 7px; border-radius: 10px; font-size: 11px;"><%= @awaiting_tasks.count %></span>
-          <% end %>
-        </button>
-      </div>
-    </div>
+  <%# ─── Section header ─── %>
+  <div class="row mb-4" style="justify-content: space-between; align-items: baseline; z-index: 2; flex-shrink: 0;">
+    <h2 class="h-display" style="font-size: 22px;">Minhas missões de hoje</h2>
+    <span style="font-size: 13px; font-weight: 700; color: var(--text-muted);"><%= total %> missões</span>
+  </div>
 
-    <%# ─── Mission list: Pra Fazer ─── %>
-    <div id="panel-todo" class="col" style="gap: 14px; z-index: 2;">
-      <% if @profile_tasks.any? %>
-        <% @profile_tasks.each_with_index do |profile_task, i| %>
-          <div id="<%= dom_id(profile_task) %>">
-            <%= render Ui::MissionCard::Component.new(
-              mission: profile_task,
-              status: "pending",
-              variant: "bubble",
-              index: i,
-              data: { action: "click->ui-modal#open", "ui-modal-id-param": "modal_#{dom_id(profile_task)}" }
-            ) %>
-            
-            <%# Confirmation Modal %>
-            <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(profile_task)}", title: profile_task.title) do %>
-              <div class="center col" style="text-align: center; gap: 16px;">
-                <%= render Ui::Lumi::Component.new(size: 76, mood: "thinking") %>
-                <% 
-                  cat_name = profile_task.global_task&.category || "geral"
-                  cat_data = Ui::MissionCard::Component::CATEGORIES[cat_name.to_s] || Ui::MissionCard::Component::CATEGORIES["geral"]
-                %>
-                <%= render Ui::IconTile::Component.new(icon: cat_data[:icon], color: cat_data[:color], size: 88) %>
-                <h3 class="h-display" style="font-size: 26px;"><%= profile_task.title %></h3>
-                <div class="row" style="gap: 10px; justify-content: center;">
-                  <%= render Ui::Badge::Component.new(variant: cat_data[:color], size: "sm", icon: cat_data[:icon]) do %>
-                    <%= cat_data[:label] %>
-                  <% end %>
-                  <%= render Ui::Badge::Component.new(variant: "star") do %>
-                    <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star-2)") %>
-                    +<%= profile_task.points %>
-                  <% end %>
-                </div>
-                <p class="subtitle" style="margin-top: 4px;">Terminou essa missão? Um responsável vai confirmar.</p>
-                <div class="row" style="gap: 12px; margin-top: 8px; width: 100%; justify-content: center;">
-                  <%= render Ui::Btn::Component.new(variant: "secondary", data: { action: "click->modal#close" }) do %>Ainda não<% end %>
-                  <%= button_to complete_kid_mission_path(profile_task), method: :patch, class: "btn btn-primary btn-lg" do %>
-                    <%= render Ui::Icon::Component.new("check", size: 20) %> Terminei!
-                  <% end %>
-                </div>
-              </div>
+  <%# ─── Mission path ─── %>
+  <div style="position: relative; z-index: 2;">
+    <%# Dashed vertical rail %>
+    <div aria-hidden="true" style="position: absolute; top: 42px; bottom: 80px; left: 41px; width: 0; border-left: 3px dashed var(--hairline); z-index: 0;"></div>
+
+    <%# Completed tasks %>
+    <% @completed_today.each_with_index do |task, i| %>
+      <%
+        cat_data  = Ui::MissionCard::Component::CATEGORIES[task.global_task&.category.to_s] || Ui::MissionCard::Component::CATEGORIES["geral"]
+      %>
+      <div style="position: relative; z-index: 1; margin-bottom: 12px; opacity: 0.75;">
+        <div style="display: flex; flex-direction: row; align-items: center; gap: 18px;">
+          <div class="mission-node mission-node--approved">
+            <%= render Ui::Icon::Component.new("check", size: 36, color: "white") %>
+            <div style="position: absolute; top: -4px; right: -4px; background: var(--star); color: #92400E; border-radius: var(--r-full); padding: 3px 8px; font-size: 11px; font-weight: 900; white-space: nowrap;">+<%= task.points %></div>
+          </div>
+          <div class="card fg1" style="padding: 14px 18px; box-shadow: var(--shadow-card);">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <div class="h-display" style="font-size: 17px; text-decoration: line-through; text-decoration-color: var(--text-muted);"><%= task.title %></div>
+              <span class="status-chip status-chip--approved" title="Aprovada">
+                <%= render Ui::Icon::Component.new("check", size: 14, color: "#047857") %>
+              </span>
+            </div>
+            <div style="margin-top: 6px; display: flex; gap: 6px; align-items: center; font-size: 12px; font-weight: 700; color: var(--text-muted);">
+              <span><%= cat_data[:label] %></span>
+              <span style="opacity: 0.35;">·</span>
+              <span><%= task.global_task&.frequency || "diária" %></span>
+              <span style="opacity: 0.35;">·</span>
+              <span style="background: var(--star-soft); color: #92400E; padding: 2px 8px; border-radius: var(--r-full); font-weight: 800;">+<%= task.points %> ⭐</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <%# Awaiting tasks %>
+    <% @awaiting_tasks.each_with_index do |task, i| %>
+      <%
+        cat_data = Ui::MissionCard::Component::CATEGORIES[task.global_task&.category.to_s] || Ui::MissionCard::Component::CATEGORIES["geral"]
+      %>
+      <div style="position: relative; z-index: 1; margin-bottom: 12px;">
+        <div style="display: flex; flex-direction: row; align-items: center; gap: 18px;">
+          <div class="mission-node mission-node--awaiting">
+            <%= render Ui::Icon::Component.new("clock", size: 32, color: "#92400E") %>
+          </div>
+          <div class="card fg1" style="padding: 14px 18px; box-shadow: var(--shadow-card);">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <div class="h-display" style="font-size: 17px;"><%= task.title %></div>
+              <span class="status-chip status-chip--awaiting" title="Aguardando aprovação">
+                <%= render Ui::Icon::Component.new("clock", size: 14, color: "#92400E") %>
+              </span>
+            </div>
+            <div style="margin-top: 6px; display: flex; gap: 6px; align-items: center; font-size: 12px; font-weight: 700; color: var(--text-muted);">
+              <span><%= cat_data[:label] %></span>
+              <span style="opacity: 0.35;">·</span>
+              <span><%= task.global_task&.frequency || "diária" %></span>
+              <span style="opacity: 0.35;">·</span>
+              <span style="background: var(--star-soft); color: #92400E; padding: 2px 8px; border-radius: var(--r-full); font-weight: 800;">+<%= task.points %> ⭐</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <%# Pending tasks %>
+    <% @profile_tasks.each_with_index do |profile_task, i| %>
+      <%
+        cat_data  = Ui::MissionCard::Component::CATEGORIES[profile_task.global_task&.category.to_s] || Ui::MissionCard::Component::CATEGORIES["geral"]
+        node_color = CAT_COLORS[profile_task.global_task&.category.to_s] || CAT_COLORS["geral"]
+        is_current = i == 0
+        status_key = is_current ? "current" : "todo"
+      %>
+      <div id="<%= dom_id(profile_task) %>" data-controller="ui-modal"
+           style="position: relative; z-index: 1; margin-bottom: 12px;">
+        <div style="display: flex; flex-direction: row; align-items: center; gap: 18px; cursor: pointer;"
+             data-action="click->ui-modal#open"
+             data-ui-modal-id-param="modal_<%= dom_id(profile_task) %>">
+          <div class="mission-node mission-node--<%= status_key %>"
+               style="background: <%= node_color %>;">
+            <%= render Ui::Icon::Component.new(cat_data[:icon], size: 36, color: "white") %>
+            <% if is_current %>
+              <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); background: var(--star); color: #92400E; border-radius: var(--r-full); padding: 3px 10px; font-size: 10px; font-weight: 900; letter-spacing: .1em; white-space: nowrap;">AGORA</div>
             <% end %>
           </div>
-        <% end %>
-      <% else %>
-        <%= render Ui::Empty::Component.new(
-          icon: "check",
-          title: "Todas as missões feitas!",
-          subtitle: "Você está arrasando hoje ✨",
-          color: "mint"
-        ) %>
-      <% end %>
-    </div>
+          <div class="card fg1" style="padding: 14px 18px; box-shadow: var(--shadow-card);">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <div class="h-display" style="font-size: 17px;"><%= profile_task.title %></div>
+              <span class="status-chip status-chip--<%= status_key %>" title="<%= is_current ? 'Em andamento' : 'A fazer' %>">
+                <% if is_current %>
+                  <%= render Ui::Icon::Component.new("target", size: 14, color: "#BE185D") %>
+                <% else %>
+                  <span style="width: 8px; height: 8px; border-radius: 50%; background: #6A6878; opacity: 0.55;"></span>
+                <% end %>
+              </span>
+            </div>
+            <div style="margin-top: 6px; display: flex; gap: 6px; align-items: center; font-size: 12px; font-weight: 700; color: var(--text-muted);">
+              <span><%= cat_data[:label] %></span>
+              <span style="opacity: 0.35;">·</span>
+              <span><%= profile_task.global_task&.frequency || "diária" %></span>
+              <span style="opacity: 0.35;">·</span>
+              <span style="background: var(--star-soft); color: #92400E; padding: 2px 8px; border-radius: var(--r-full); font-weight: 800;">+<%= profile_task.points %> ⭐</span>
+            </div>
+          </div>
+        </div>
 
-    <%# ─── Mission list: Aguardando ─── %>
-    <div id="panel-waiting" class="col" style="gap: 14px; z-index: 2; display: none;">
-      <% if @awaiting_tasks.any? %>
-        <% @awaiting_tasks.each_with_index do |t, i| %>
-          <div id="<%= dom_id(t) %>">
-            <%= render Ui::MissionCard::Component.new(mission: t, status: "waiting", variant: "bubble", index: i) %>
+        <%# Confirmation Modal %>
+        <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(profile_task)}", title: profile_task.title) do %>
+          <div class="center col" style="text-align: center; gap: 16px;">
+            <%= render Ui::Lumi::Component.new(size: 76, mood: "thinking") %>
+            <%= render Ui::IconTile::Component.new(icon: cat_data[:icon], color: cat_data[:color], size: 88) %>
+            <h3 class="h-display" style="font-size: 26px;"><%= profile_task.title %></h3>
+            <div class="row" style="gap: 10px; justify-content: center;">
+              <%= render Ui::Badge::Component.new(variant: cat_data[:color], size: "sm", icon: cat_data[:icon]) do %>
+                <%= cat_data[:label] %>
+              <% end %>
+              <%= render Ui::Badge::Component.new(variant: "star") do %>
+                <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star-2)") %>
+                +<%= profile_task.points %>
+              <% end %>
+            </div>
+            <p class="subtitle" style="margin-top: 4px;">Terminou essa missão? Um responsável vai confirmar.</p>
+            <div class="row" style="gap: 12px; margin-top: 8px; width: 100%; justify-content: center;">
+              <%= render Ui::Btn::Component.new(variant: "secondary", data: { action: "click->ui-modal#close" }) do %>Ainda não<% end %>
+              <%= button_to complete_kid_mission_path(profile_task), method: :patch, class: "btn btn-primary btn-lg" do %>
+                <%= render Ui::Icon::Component.new("check", size: 20) %> Terminei!
+              <% end %>
+            </div>
           </div>
         <% end %>
-      <% else %>
-        <%= render Ui::Empty::Component.new(
-          icon: "clock",
-          title: "Nada aguardando",
-          subtitle: "Complete missões para elas aparecerem aqui",
-          color: "peach"
-        ) %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
+
+    <%# Empty state %>
+    <% if @profile_tasks.empty? && @awaiting_tasks.empty? && @completed_today.empty? %>
+      <%= render Ui::Empty::Component.new(
+        icon: "star",
+        title: "Nenhuma missão hoje",
+        subtitle: "Um responsável vai adicionar novas missões pra você ✨",
+        color: "mint"
+      ) %>
+    <% end %>
+
+    <%# Finish node %>
+    <% if total > 0 %>
+      <div style="display: flex; flex-direction: row; align-items: center; gap: 18px; margin-top: 16px; padding-left: 4px;">
+        <div style="width: 84px; height: 84px; border-radius: 50%; background: var(--star-soft); display: grid; place-items: center; box-shadow: 0 8px 20px rgba(255,197,61,0.25); flex-shrink: 0;">
+          <%= render Ui::Lumi::Component.new(size: 58, mood: "excited") %>
+        </div>
+        <div class="h-display" style="font-size: 16px; color: var(--text-muted);">+50 ao concluir tudo!</div>
+      </div>
+    <% end %>
   </div>
 </div>

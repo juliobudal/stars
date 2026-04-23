@@ -7,28 +7,10 @@
   </head>
 
   <body class="app-shell" data-palette="sky">
-    <div class="viewport pb-24">
+    <%= render "shared/kid_nav" %>
+    <div class="viewport pb-24 lg:pb-0">
       <%= render Ui::Flash::Component.new %>
       <%= yield %>
-    </div>
-
-    <!-- Bottom Navigation Kids -->
-    <div class="bottom-nav">
-       <% 
-         nav_item = ->(icon_name, path, title) { 
-           active = current_page?(path)
-           link_to path, class: "nav-item #{active ? 'active' : ''}", title: title do
-             render Ui::Icon::Component.new(icon_name, size: 26)
-           end
-         } 
-       %>
-       <%= nav_item.call("target", kid_root_path, "Missões") %>
-       <%= nav_item.call("bag", kid_rewards_path, "Loja") %>
-       <%= nav_item.call("scroll", kid_wallet_index_path, "Extrato") %>
-       
-       <%= button_to sessions_path, method: :delete, class: "nav-item", title: "Sair" do %>
-         <%= render Ui::Icon::Component.new("logout", size: 26) %>
-       <% end %>
     </div>
   </body>
 </html>

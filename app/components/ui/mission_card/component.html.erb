@@ -15,7 +15,7 @@
       transition: all 0.1s;
       <%= @options[:style] %>
     "
-    <%= @options.except(:style, :class).map { |k, v| "#{k}=\"#{v}\"" }.join(" ").html_safe %>
+    <%= extra_html_attrs %>
   >
     <%= render Ui::IconTile::Component.new(icon: category_data[:icon], color: category_data[:color], size: 56) %>
 
@@ -57,7 +57,7 @@
       align-items: center;
       <%= @options[:style] %>
     "
-    <%= @options.except(:style, :class).map { |k, v| "#{k}=\"#{v}\"" }.join(" ").html_safe %>
+    <%= extra_html_attrs %>
   >
     <div style="width: 58px; height: 58px; border-radius: 50%; background: <%= category_data[:color] == 'primary' ? 'var(--primary)' : "var(--c-#{category_data[:color]})" %>; color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
       <%= render Ui::Icon::Component.new(category_data[:icon], size: 30, color: "white") %>

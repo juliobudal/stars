@@ -46,6 +46,24 @@ module Ui
 
         @variant == "ticket" ? "0 4px 0 #{color}" : "0 5px 0 #{color}"
       end
+
+      # Serializes extra options (excluding :style and :class) to an HTML-safe
+      # attribute string. Nested hashes (e.g. data: { action: "...", foo: "bar" })
+      # are expanded into individual data-* attributes.
+      def extra_html_attrs
+        attrs = []
+        @options.except(:style, :class).each do |key, value|
+          if value.is_a?(Hash)
+            value.each do |sub_key, sub_value|
+              attr_name = "#{key}-#{sub_key.to_s.tr('_', '-')}"
+              attrs << "#{attr_name}=\"#{ERB::Util.html_escape(sub_value)}\""
+            end
+          else
+            attrs << "#{key}=\"#{ERB::Util.html_escape(value)}\""
+          end
+        end
+        attrs.join(" ").html_safe
+      end
     end
   end
 end

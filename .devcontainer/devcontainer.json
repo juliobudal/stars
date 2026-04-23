@@ -17,5 +17,5 @@
     }
   },
   "postCreateCommand": "bundle install && yarn install",
-  "forwardPorts": [3000, 5432]
+  "forwardPorts": [10301, 10302, 10303]
 }

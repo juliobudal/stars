@@ -8,13 +8,13 @@ class Parent::ApprovalsController < ApplicationController
   end
 
   def approve
-    @profile_task = ProfileTask.includes(:profile).joins(:profile).where(profiles: { family_id: current_profile.family_id }).find(params[:id])
+    @profile_task = ProfileTask.includes(:profile, :global_task).joins(:profile).where(profiles: { family_id: current_profile.family_id }).find(params[:id])
     result = Tasks::ApproveService.call(@profile_task)
     respond_after(result, success_msg: "Tarefa aprovada com sucesso!", fail_msg: "Não foi possível aprovar a tarefa.")
   end
 
   def reject
-    @profile_task = ProfileTask.includes(:profile).joins(:profile).where(profiles: { family_id: current_profile.family_id }).find(params[:id])
+    @profile_task = ProfileTask.includes(:profile, :global_task).joins(:profile).where(profiles: { family_id: current_profile.family_id }).find(params[:id])
     result = Tasks::RejectService.call(@profile_task)
     respond_after(result, success_msg: "Tarefa rejeitada.", fail_msg: "Não foi possível rejeitar a tarefa.")
   end

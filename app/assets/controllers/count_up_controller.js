@@ -12,7 +12,7 @@ export default class extends Controller {
   }
 
   connect() {
-    this.displayed = this.currentValue
+    this.displayed = isNaN(this.currentValue) ? 0 : this.currentValue
   }
 
   // Call animateTo(newValue) externally or via data-action

@@ -6,7 +6,7 @@ services:
       POSTGRES_PASSWORD: littlestars_dev
       POSTGRES_DB: littlestars_development
     ports:
-      - "5432:5432"
+      - "10303:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -14,8 +14,8 @@ services:
     build: .
     command: bin/dev
     ports:
-      - "3000:3000"
-      - "3036:3036"
+      - "10301:3000"
+      - "10302:3036"
     depends_on:
       - db
     environment:

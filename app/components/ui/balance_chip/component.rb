@@ -2,7 +2,7 @@ module Ui
   module BalanceChip
     class Component < ApplicationComponent
       def initialize(value:, size: "md", **options)
-        @value = value
+        @value = value.to_i
         @size = size.to_s
         @options = options
         super()
