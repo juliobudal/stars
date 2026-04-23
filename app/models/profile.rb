@@ -14,7 +14,7 @@ class Profile < ApplicationRecord
   after_update_commit :broadcast_points, if: :saved_change_to_points?
 
   validates :name, presence: true
-  validates :points, numericality: { greater_than_or_equal_to: 0 }
+  validates :points, numericality: { greater_than_or_equal_to: 0 }, unless: -> { family&.allow_negative? }
   validates :color, inclusion: { in: %w[peach rose mint sky lilac coral primary], allow_blank: true }
 
   validates :email, presence: true,

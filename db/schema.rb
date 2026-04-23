@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_23_210911) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_23_212853) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -45,11 +45,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_210911) do
 
   create_table "activity_logs", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.datetime "decayed_at"
     t.integer "log_type"
     t.integer "points"
     t.bigint "profile_id", null: false
     t.string "title"
     t.datetime "updated_at", null: false
+    t.index ["decayed_at"], name: "index_activity_logs_undecayed_earns", where: "((decayed_at IS NULL) AND (log_type = 0))"
     t.index ["profile_id", "created_at"], name: "index_activity_logs_on_profile_id_and_created_at"
     t.index ["profile_id"], name: "index_activity_logs_on_profile_id"
   end
