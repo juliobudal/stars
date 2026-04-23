@@ -2,7 +2,7 @@
   <%= render Ui::BgShapes::Component.new(variant: "warm") %>
 
   <%= render Ui::TopBar::Component.new(
-    title: "Lojinha",
+    title: "Prêmios",
     subtitle: "Catálogo de recompensas da família",
     back_url: parent_root_path
   ) do |bar| %>
@@ -13,39 +13,56 @@
     <% end %>
   <% end %>
 
-  <div class="grid-2" style="gap: 12px; z-index: 2;">
-    <% if @rewards.any? %>
-      <% @rewards.each_with_index do |s, i| %>
-        <% 
-          color_idx = i % 6
-          color_options = %w[peach rose mint sky lilac coral]
-          color = color_options[color_idx]
-          fg_var = "var(--c-#{color})"
-        %>
-        <div class="card pop-on-tap card-tap" style="padding: 16px; border: 2px solid <%= fg_var %>; box-shadow: 0 4px 0 <%= fg_var %>; text-align: center; animation: slideInCard 0.35s ease <%= i * 0.03 %>s both;">
-          <div style="width: 64px; height: 64px; border-radius: 50%; background: <%= fg_var %>; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;">
-            <%= render Ui::Icon::Component.new(s.icon.presence || "gift", size: 36, color: "white") %>
+  <div class="grid-3" style="gap: 14px; z-index: 2;">
+    <% @rewards.each_with_index do |s, i|
+      color_idx = i % 6
+      color_options = %w[peach rose mint sky lilac coral]
+      color = color_options[color_idx]
+      fg_var = "var(--c-#{color})"
+      tint_soft = "var(--#{color}-soft, var(--surface-2))"
+    %>
+      <div class="card reward-card" style="display: flex; align-items: center; gap: 14px; padding: 16px; border: 1px solid var(--hairline); animation: slideInCard 0.35s ease <%= i * 0.03 %>s both;">
+        <div style="flex: 0 0 72px; width: 72px; height: 72px; border-radius: 16px; background: <%= tint_soft %>; display: flex; align-items: center; justify-content: center;">
+          <%= render Ui::Icon::Component.new(s.icon.presence || "gift", size: 34, color: fg_var) %>
+        </div>
+        <div class="col fg1" style="gap: 4px; min-width: 0;">
+          <div class="h-display" style="font-size: 15px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= s.title %></div>
+          <div style="font-size: 11px; font-weight: 800; letter-spacing: .08em; color: var(--text-muted); text-transform: uppercase;">
+            <%= s.respond_to?(:category) && s.category.present? ? s.category : "RECOMPENSA" %>
           </div>
-          <div class="h-display" style="font-size: 15px;"><%= s.title %></div>
-          <%= render Ui::Badge::Component.new(variant: "star", style: "font-size: 13px; padding: 5px 12px; margin-top: 8px;") do %>
-            <%= render Ui::Icon::Component.new("star", size: 13, color: "var(--star-2)") %> <%= s.cost %>
-          <% end %>
-          <div class="row" style="gap: 8px; margin-top: 12px; justify-content: center;">
-            <%= button_to parent_reward_path(s), method: :delete, class: "btn btn-ghost btn-sm", style: "color: var(--danger);", data: { turbo_confirm: "Remover a recompensa \"#{s.title}\"?" } do %>
-              <%= render Ui::Icon::Component.new("trash", size: 16) %>
-            <% end %>
+          <div class="row" style="gap: 4px; align-items: center; margin-top: 2px;">
+            <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
+            <span class="h-display" style="font-size: 15px; color: var(--star-2);"><%= s.cost %></span>
           </div>
         </div>
-      <% end %>
-    <% else %>
-      <div class="col-span-2">
-        <%= render Ui::Empty::Component.new(
-          icon: "gift",
-          title: "Loja vazia",
-          subtitle: "Adicione recompensas para motivar seus filhos!",
-          color: "rose"
-        ) %>
+        <div class="col" style="gap: 4px;">
+          <%# TODO: link to edit_parent_reward_path when edit action exists %>
+          <span class="btn btn-ghost btn-sm" style="padding: 6px; opacity: .4; cursor: not-allowed;" aria-hidden="true">
+            <%= render Ui::Icon::Component.new("pencil", size: 16, color: "var(--text-soft)") %>
+          </span>
+          <%= button_to parent_reward_path(s), method: :delete, class: "btn btn-ghost btn-sm", style: "padding: 6px; color: var(--danger);", data: { turbo_confirm: "Remover a recompensa \"#{s.title}\"?" } do %>
+            <%= render Ui::Icon::Component.new("trash", size: 16) %>
+          <% end %>
+        </div>
       </div>
     <% end %>
+
+    <%= link_to new_parent_reward_path, class: "card", style: "display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 104px; padding: 16px; border: 2px dashed var(--hairline); background: transparent; box-shadow: none; color: var(--text-muted); text-decoration: none;" do %>
+      <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--surface-2); display: flex; align-items: center; justify-content: center;">
+        <%= render Ui::Icon::Component.new("plus", size: 22, color: "var(--text-muted)") %>
+      </div>
+      <div class="h-display" style="font-size: 14px;">Novo prêmio</div>
+    <% end %>
   </div>
+
+  <% if @rewards.empty? %>
+    <div style="margin-top: 16px;">
+      <%= render Ui::Empty::Component.new(
+        icon: "gift",
+        title: "Loja vazia",
+        subtitle: "Adicione recompensas para motivar seus filhos!",
+        color: "rose"
+      ) %>
+    </div>
+  <% end %>
 </div>

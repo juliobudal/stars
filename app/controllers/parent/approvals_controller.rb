@@ -1,5 +1,6 @@
 class Parent::ApprovalsController < ApplicationController
   include Authenticatable
+  layout 'parent'
   before_action :require_parent!
 
   def index

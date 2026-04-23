@@ -25,6 +25,30 @@
       <span>Início</span>
     <% end %>
 
+    <%= link_to parent_profiles_path,
+        class: "nav-item #{current_page?(parent_profiles_path) ? 'active' : ''}",
+        title: "Filhos",
+        aria: { current: current_page?(parent_profiles_path) ? "page" : nil } do %>
+      <%= render Ui::Icon::Component.new("users", size: 22) %>
+      <span>Filhos</span>
+    <% end %>
+
+    <%= link_to parent_global_tasks_path,
+        class: "nav-item #{current_page?(parent_global_tasks_path) ? 'active' : ''}",
+        title: "Missões",
+        aria: { current: current_page?(parent_global_tasks_path) ? "page" : nil } do %>
+      <%= render Ui::Icon::Component.new("list-checks", size: 22) %>
+      <span>Missões</span>
+    <% end %>
+
+    <%= link_to parent_rewards_path,
+        class: "nav-item #{current_page?(parent_rewards_path) ? 'active' : ''}",
+        title: "Prêmios",
+        aria: { current: current_page?(parent_rewards_path) ? "page" : nil } do %>
+      <%= render Ui::Icon::Component.new("bag", size: 22) %>
+      <span>Prêmios</span>
+    <% end %>
+
     <%= link_to parent_approvals_path,
         class: "nav-item #{current_page?(parent_approvals_path) ? 'active' : ''} relative",
         title: "Aprovações",
@@ -46,28 +70,12 @@
       <% end %>
     <% end %>
 
-    <%= link_to parent_global_tasks_path,
-        class: "nav-item #{current_page?(parent_global_tasks_path) ? 'active' : ''}",
-        title: "Missões",
-        aria: { current: current_page?(parent_global_tasks_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("list-checks", size: 22) %>
-      <span>Missões</span>
-    <% end %>
-
-    <%= link_to parent_rewards_path,
-        class: "nav-item #{current_page?(parent_rewards_path) ? 'active' : ''}",
-        title: "Loja",
-        aria: { current: current_page?(parent_rewards_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("bag", size: 22) %>
-      <span>Loja</span>
-    <% end %>
-
-    <%= link_to parent_profiles_path,
-        class: "nav-item #{current_page?(parent_profiles_path) ? 'active' : ''}",
-        title: "Filhos",
-        aria: { current: current_page?(parent_profiles_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("users", size: 22) %>
-      <span>Filhos</span>
+    <%= link_to parent_settings_path,
+        class: "nav-item #{current_page?(parent_settings_path) ? 'active' : ''}",
+        title: "Configurações",
+        aria: { current: current_page?(parent_settings_path) ? "page" : nil } do %>
+      <%= render Ui::Icon::Component.new("gear", size: 22) %>
+      <span>Configurações</span>
     <% end %>
   </div>
 
@@ -115,5 +123,5 @@
   <% end %>
 
   <%= nav_item.call("list-checks", parent_global_tasks_path, "Missões") %>
-  <%= nav_item.call("bag", parent_rewards_path, "Loja") %>
+  <%= nav_item.call("bag", parent_rewards_path, "Prêmios") %>
 </div>

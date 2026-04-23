@@ -13,11 +13,15 @@ export default class extends Controller {
 
   connect() {
     this.displayed = isNaN(this.currentValue) ? 0 : this.currentValue
+    if (this.hasDisplayTarget) {
+      this.displayTarget.textContent = this.displayed
+    }
   }
 
   // Call animateTo(newValue) externally or via data-action
   animateTo(newValue) {
-    const start = this.displayed
+    if (isNaN(newValue)) return
+    const start = isNaN(this.displayed) ? 0 : this.displayed
     const diff = newValue - start
     const steps = 18
     const interval = this.durationValue / steps
