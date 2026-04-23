@@ -4,7 +4,7 @@ Capybara.register_driver :chrome_headless do |app|
   options.add_argument("--no-sandbox")
   options.add_argument("--disable-dev-shm-usage")
   options.add_argument("--disable-gpu")
-
+  
   # Specify chromium binary if google-chrome is not available
   options.binary = "/usr/bin/chromium" if File.exist?("/usr/bin/chromium")
 

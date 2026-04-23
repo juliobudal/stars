@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root "sessions#index"
 
-  resources :sessions, only: [ :index, :create ] do
+  resources :sessions, only: [:index, :create] do
     collection do
       delete :destroy
     end
@@ -11,10 +11,10 @@ Rails.application.routes.draw do
 
   namespace :parent do
     root "dashboard#index"
-    resources :profiles, only: [ :index, :new, :create, :edit, :update, :destroy ]
-    resources :global_tasks, except: [ :show ]
-    resources :rewards, only: [ :index, :new, :create, :destroy ]
-    resources :approvals, only: [ :index ] do
+    resources :profiles, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :global_tasks, except: [:show]
+    resources :rewards, only: [:index, :new, :create, :destroy]
+    resources :approvals, only: [:index] do
       member do
         patch :approve
         patch :reject
@@ -22,9 +22,7 @@ Rails.application.routes.draw do
         patch :reject_redemption
       end
     end
-    resources :activity_logs, only: [ :index ]
-    get "settings", to: "settings#index"
-    patch "settings", to: "settings#update"
+    resources :activity_logs, only: [:index]
   end
 
   namespace :kid do
@@ -34,11 +32,11 @@ Rails.application.routes.draw do
         patch :complete
       end
     end
-    resources :rewards, only: [ :index ] do
+    resources :rewards, only: [:index] do
       member do
         post :redeem
       end
     end
-    resources :wallet, only: [ :index ]
+    resources :wallet, only: [:index]
   end
 end

@@ -11,7 +11,7 @@ module KitDocsHelper
             ui.card_header(justify: :between, align: :center, direction: :row) do
               safe_join([
                 ui.card_title("Variant #{variant[:number]}"),
-                ui.btn(variant: :secondary, size: :sm, data: { action: "click->modals#show", id: modal_id }) do
+                ui.btn(variant: :secondary, size: :sm, data: {action: "click->modals#show", id: modal_id}) do
                   safe_join([
                     ui.icon("code-bracket", class: "size-4"),
                     content_tag(:span, "View code")

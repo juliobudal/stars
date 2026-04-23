@@ -17,8 +17,8 @@ class Ui::Sidebar::Component < ApplicationComponent
   end
 
   def data_attributes
-    default_data = { sidebar_target: "menu" }
+    default_data = {sidebar_target: "menu"}
     custom_data = @options[:data] || {}
-    { data: default_data.merge(custom_data) }
+    {data: default_data.merge(custom_data)}
   end
 end

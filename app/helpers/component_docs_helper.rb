@@ -208,7 +208,7 @@ module ComponentDocsHelper
 
     if prop["values"].present?
       values_html = prop["values"].map { |v| content_tag(:code, v, class: "text-xs text-muted-foreground") }.join(" | ").html_safe
-      safe_join([ type_html, tag.br, values_html ])
+      safe_join([type_html, tag.br, values_html])
     else
       type_html
     end

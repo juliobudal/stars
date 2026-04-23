@@ -16,7 +16,7 @@ class Ui::Drawer::FooterComponent < ApplicationComponent
   def classes
     class_names(
       "drawer__footer",
-      { "drawer__footer-bordered": @bordered },
+      {"drawer__footer-bordered": @bordered},
       direction_class,
       align_class,
       justify_class,

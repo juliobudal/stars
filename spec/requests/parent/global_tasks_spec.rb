@@ -51,7 +51,7 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
               points: 20,
               category: "studies",
               frequency: "daily",
-              days_of_week: [ "monday", "tuesday" ]
+              days_of_week: ["monday", "tuesday"]
             }
           }
         }.to change(GlobalTask, :count).by(1)
@@ -59,7 +59,7 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
         expect(response).to redirect_to(parent_global_tasks_path)
         new_task = GlobalTask.last
         expect(new_task.title).to eq("Do homework")
-        expect(new_task.days_of_week).to eq([ "monday", "tuesday" ])
+        expect(new_task.days_of_week).to eq(["monday", "tuesday"])
         expect(new_task.family_id).to eq(family.id)
       end
 
@@ -86,7 +86,7 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
         patch parent_global_task_path(global_task), params: {
           global_task: { title: "Clean room completely" }
         }
-
+        
         expect(response).to redirect_to(parent_global_tasks_path)
         expect(global_task.reload.title).to eq("Clean room completely")
       end
@@ -97,7 +97,7 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
         expect {
           delete parent_global_task_path(global_task)
         }.to change(GlobalTask, :count).by(-1)
-
+        
         expect(response).to redirect_to(parent_global_tasks_path)
       end
     end

@@ -25,7 +25,7 @@ RSpec.describe "Kid::Rewards", type: :request do
       expect {
         post redeem_kid_reward_path(task_reward)
       }.to change { child.reload.points }.by(-50)
-
+      
       expect(response).to redirect_to(kid_rewards_path)
     end
 
@@ -34,7 +34,7 @@ RSpec.describe "Kid::Rewards", type: :request do
       expect {
         post redeem_kid_reward_path(expensive_reward)
       }.not_to change { child.reload.points }
-
+      
       expect(response).to redirect_to(kid_rewards_path)
       expect(flash[:alert]).to be_present
     end

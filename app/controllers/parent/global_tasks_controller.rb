@@ -1,9 +1,9 @@
 class Parent::GlobalTasksController < ApplicationController
   include Authenticatable
   before_action :require_parent!
-  before_action :set_global_task, only: [ :edit, :update, :destroy ]
+  before_action :set_global_task, only: [:edit, :update, :destroy]
 
-  layout "parent"
+  layout 'parent'
 
   def index
     @global_tasks = GlobalTask.where(family_id: current_profile.family_id).order(created_at: :desc)

@@ -13,7 +13,7 @@ class Ui::Dropdown::Component < ApplicationComponent
   private
 
   def attrs
-    data_attributes = { controller: "dropdown" }.deep_merge(@options.fetch(:data, {}))
+    data_attributes = {controller: "dropdown"}.deep_merge(@options.fetch(:data, {}))
     @options.merge(data: data_attributes)
   end
 

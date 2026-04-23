@@ -10,7 +10,7 @@ class CreateProfileTasks < ActiveRecord::Migration[8.1]
       t.timestamps
     end
 
-    add_index :profile_tasks, [ :profile_id, :assigned_date ]
-    add_index :profile_tasks, [ :profile_id, :status ]
+    add_index :profile_tasks, [:profile_id, :assigned_date]
+    add_index :profile_tasks, [:profile_id, :status]
   end
 end

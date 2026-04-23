@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [ :create, :destroy ], raise: false
+  skip_before_action :verify_authenticity_token, only: [:create, :destroy], raise: false
 
   def index
     # Assumindo apenas uma família para MVP
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   def create
     @profile = Profile.find(params[:profile_id])
     session[:profile_id] = @profile.id
-
+    
     if @profile.parent?
       redirect_to parent_root_path
     else

@@ -9,7 +9,7 @@ class Ui::Stat::DescriptionComponent < ApplicationComponent
 
   def call
     content_tag :p, class: classes, **@options do
-      safe_join([ trend_icon, content ].compact)
+      safe_join([trend_icon, content].compact)
     end
   end
 

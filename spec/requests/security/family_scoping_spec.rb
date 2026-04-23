@@ -28,7 +28,7 @@ RSpec.describe "Security::FamilyScoping", type: :request do
   # it renders 404 (GET) or 422 (non-GET). Either way: NOT a 2xx/3xx — the
   # request was rejected and no state was mutated. We assert both.
   def expect_rejected
-    expect(response.status).to be_in([ 404, 422 ])
+    expect(response.status).to be_in([404, 422])
   end
 
   describe "Parent::GlobalTasksController" do

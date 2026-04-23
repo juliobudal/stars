@@ -1,9 +1,9 @@
 class Parent::RewardsController < ApplicationController
   include Authenticatable
   before_action :require_parent!
-  before_action :set_reward, only: [ :destroy ]
+  before_action :set_reward, only: [:destroy]
 
-  layout "parent"
+  layout 'parent'
 
   def index
     @rewards = Reward.where(family_id: current_profile.family_id).order(cost: :asc)
