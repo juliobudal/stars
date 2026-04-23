@@ -33,7 +33,7 @@ RSpec.describe "Kid::Dashboard", type: :request do
 
   describe "Security" do
     it "prevents parent from accessing kid dashboard" do
-      post "/sessions", params: { profile_id: parent.id }
+      sign_in_as(parent)
       get kid_root_path
       expect(response).to redirect_to(root_path)
     end

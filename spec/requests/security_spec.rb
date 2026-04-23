@@ -18,7 +18,7 @@ RSpec.describe "Security Access", type: :request do
 
   describe "Kid namespace" do
     it "denies access to parents" do
-      post "/sessions", params: { profile_id: parent.id }
+      sign_in_as(parent)
       get kid_root_path
       expect(response).to redirect_to(root_path)
       expect(flash[:alert]).to include("Acesso restrito para filhos")

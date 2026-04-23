@@ -15,4 +15,64 @@ RSpec.describe Profile, type: :model do
   describe "enums" do
     it { is_expected.to define_enum_for(:role).with_values(child: 0, parent: 1) }
   end
+
+  describe "parent email validations" do
+    let(:family) { create(:family) }
+
+    it "requires email for parent" do
+      profile = build(:profile, :parent, family: family, email: nil)
+      expect(profile).not_to be_valid
+      expect(profile.errors[:email]).to be_present
+    end
+
+    it "requires valid email format for parent" do
+      profile = build(:profile, :parent, family: family, email: "not-an-email")
+      expect(profile).not_to be_valid
+      expect(profile.errors[:email]).to be_present
+    end
+
+    it "enforces case-insensitive email uniqueness for parents" do
+      create(:profile, :parent, family: family, email: "test@example.com")
+      duplicate = build(:profile, :parent, family: family, email: "TEST@EXAMPLE.COM")
+      expect(duplicate).not_to be_valid
+      expect(duplicate.errors[:email]).to be_present
+    end
+
+    it "does not require email for children" do
+      profile = build(:profile, :child, family: family, email: nil)
+      expect(profile).to be_valid
+    end
+
+    it "normalizes email to lowercase before validation" do
+      profile = create(:profile, :parent, family: family, email: "UPPER@EXAMPLE.COM")
+      expect(profile.email).to eq("upper@example.com")
+    end
+  end
+
+  describe "parent password validations" do
+    let(:family) { create(:family) }
+
+    it "requires password on create for parent" do
+      profile = build(:profile, :parent, family: family, password: nil)
+      expect(profile).not_to be_valid
+      expect(profile.errors[:password]).to be_present
+    end
+
+    it "requires password of at least 12 characters for parent" do
+      profile = build(:profile, :parent, family: family, password: "short1234")
+      expect(profile).not_to be_valid
+      expect(profile.errors[:password]).to be_present
+    end
+
+    it "allows nil password on update for parent (no change)" do
+      profile = create(:profile, :parent, family: family)
+      profile.password = nil
+      expect(profile).to be_valid
+    end
+
+    it "does not require password for children" do
+      profile = build(:profile, :child, family: family)
+      expect(profile).to be_valid
+    end
+  end
 end

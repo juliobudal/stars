@@ -9,7 +9,7 @@ RSpec.describe "Parent::Rewards", type: :request do
   let!(:reward)        { create(:reward, family: family, title: "Sorvete", cost: 100, icon: "🍦") }
 
   def login_as(profile)
-    post sessions_path, params: { profile_id: profile.id }
+    sign_in_as(profile)
   end
 
   describe "Access Control" do

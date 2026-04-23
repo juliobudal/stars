@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :registration, only: [ :new, :create ]
+  resource :password_reset, only: [ :new, :create, :edit, :update ]
+
   namespace :parent do
     root "dashboard#index"
     resources :profiles, only: [ :index, :new, :create, :edit, :update, :destroy ]
@@ -19,6 +22,10 @@ Rails.application.routes.draw do
     end
     resources :rewards, only: [ :index, :new, :create, :edit, :update, :destroy ]
     resources :approvals, only: [ :index ] do
+      collection do
+        post :bulk_approve
+        post :bulk_reject
+      end
       member do
         patch :approve
         patch :reject

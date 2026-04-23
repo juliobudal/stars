@@ -1,0 +1,12 @@
+Olá, <%= @profile.name %>!
+
+Recebemos uma solicitação para redefinir a senha da sua conta no LittleStars.
+
+Clique no link abaixo para criar uma nova senha (válido por 2 horas):
+
+<%= edit_password_reset_url(token: @token) %>
+
+Se você não solicitou a redefinição, ignore este email.
+
+Atenciosamente,
+Equipe LittleStars

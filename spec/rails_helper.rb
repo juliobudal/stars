@@ -35,6 +35,10 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
+  # Clear Rails cache before each spec so rate_limit buckets don't leak between
+  # examples (Rails.cache is memory_store in test).
+  config.before(:each) { Rails.cache.clear }
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join("spec/fixtures")
@@ -70,6 +74,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
+  config.include AuthHelpers, type: :request
 end
 
 Shoulda::Matchers.configure do |config|

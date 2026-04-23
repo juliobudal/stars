@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe "Parent::GlobalTasks", type: :request do
   before { host! "localhost" }
 
-  let(:family) { Family.create! }
-  let(:parent_profile) { Profile.create!(family: family, name: "Parent", role: :parent) }
-  let(:kid_profile) { Profile.create!(family: family, name: "Kid", role: :child) }
-  let!(:global_task) { GlobalTask.create!(family: family, title: "Clean room", points: 10, category: :casa, frequency: :weekly) }
+  let(:family) { create(:family) }
+  let(:parent_profile) { create(:profile, :parent, family: family) }
+  let(:kid_profile) { create(:profile, :child, family: family) }
+  let!(:global_task) { create(:global_task, family: family, title: "Clean room", points: 10, category: :casa, frequency: :weekly) }
 
   describe "Access Control" do
     it "redirects to root if not logged in" do
@@ -15,7 +15,7 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
     end
 
     it "redirects to root if logged in as kid" do
-      post sessions_path, params: { profile_id: kid_profile.id }
+      sign_in_as(kid_profile)
       get parent_global_tasks_path
       expect(response).to redirect_to(root_path)
     end
@@ -23,7 +23,7 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
 
   describe "CRUD Tasks" do
     before do
-      post sessions_path, params: { profile_id: parent_profile.id }
+      sign_in_as(parent_profile)
     end
 
     describe "GET /parent/global_tasks" do

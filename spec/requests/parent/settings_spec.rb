@@ -7,7 +7,7 @@ RSpec.describe "Parent::Settings", type: :request do
   let(:parent_profile) { create(:profile, :parent, family: family) }
 
   def login_as(profile)
-    post sessions_path, params: { profile_id: profile.id }
+    sign_in_as(profile)
   end
 
   describe "Access Control" do

@@ -12,8 +12,10 @@ puts "Creating Demo Family..."
 family = Family.create!(name: "Estrelas Incríveis")
 
 puts "Creating Profiles..."
-parent1 = Profile.create!(family: family, name: "Mamãe", role: :parent, avatar: "faceParent", color: "rose")
-parent2 = Profile.create!(family: family, name: "Papai", role: :parent, avatar: "faceParent", color: "sky")
+parent1 = Profile.create!(family: family, name: "Mamãe", role: :parent, avatar: "faceParent", color: "rose",
+                          email: "mae@example.com", password: "supersecret1234", confirmed_at: Time.current)
+parent2 = Profile.create!(family: family, name: "Papai", role: :parent, avatar: "faceParent", color: "sky",
+                          email: "pai@example.com", password: "supersecret1234", confirmed_at: Time.current)
 
 child1 = Profile.create!(family: family, name: "Lila", role: :child, avatar: "faceFox", color: "peach", points: 340)
 child2 = Profile.create!(family: family, name: "Theo", role: :child, avatar: "faceHero", color: "sky", points: 180)

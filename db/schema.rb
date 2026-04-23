@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_23_205547) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_23_210002) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -108,12 +109,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_205547) do
   create_table "profiles", force: :cascade do |t|
     t.string "avatar"
     t.string "color"
+    t.datetime "confirmed_at"
     t.datetime "created_at", null: false
+    t.citext "email"
     t.bigint "family_id", null: false
     t.string "name"
+    t.string "password_digest"
     t.integer "points", default: 0
     t.integer "role"
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_profiles_on_email_parent", unique: true, where: "(role = 1)"
     t.index ["family_id"], name: "index_profiles_on_family_id"
   end
 

@@ -20,7 +20,9 @@ Rails.application.configure do
 
   # Show full error reports.
   config.consider_all_requests_local = true
-  config.cache_store = :null_store
+  # Memory store (not null) so rate_limit buckets are countable; Rails.cache.clear
+  # runs before each spec via spec/rails_helper.rb to isolate examples.
+  config.cache_store = :memory_store
 
   # Render exception templates for rescuable exceptions and raise for other exceptions.
   config.action_dispatch.show_exceptions = :rescuable
@@ -50,6 +52,9 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # Use minimum BCrypt cost factor in tests for speed
+  BCrypt::Engine.cost = BCrypt::Engine::MIN_COST
 
   config.hosts.clear
 end

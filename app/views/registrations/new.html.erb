@@ -1,0 +1,28 @@
+<div class="screen screen-enter picker-screen">
+  <div class="picker-wrap">
+    <h1 class="h-display picker-heading">Criar conta</h1>
+
+    <% if flash[:alert] %>
+      <p style="color:red;text-align:center;margin-bottom:1rem;"><%= flash[:alert] %></p>
+    <% end %>
+
+    <%= form_with url: registration_path, method: :post, local: true,
+        style: "display:flex;flex-direction:column;gap:0.75rem;max-width:360px;margin:0 auto;" do |f| %>
+      <%= f.text_field :family_name, placeholder: "Nome da família", required: true,
+          style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
+      <%= f.text_field :name, placeholder: "Seu nome", required: true,
+          style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
+      <%= f.email_field :email, placeholder: "Email", required: true,
+          style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
+      <%= f.password_field :password, placeholder: "Senha (mín. 12 caracteres)", required: true,
+          style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
+      <%= f.password_field :password_confirmation, placeholder: "Confirmar senha", required: true,
+          style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
+      <%= f.submit "Criar conta", style: "padding:0.5rem;background:#6366f1;color:white;border:none;border-radius:0.5rem;cursor:pointer;" %>
+    <% end %>
+
+    <div style="text-align:center;margin-top:1rem;">
+      <%= link_to "Já tenho conta", root_path %>
+    </div>
+  </div>
+</div>

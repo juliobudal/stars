@@ -3,22 +3,59 @@
 
   <div class="picker-wrap">
     <%= render "shared/star_mascot", size: 44 %>
-    <h1 class="h-display picker-heading">Quem vai brilhar hoje?</h1>
-    <p class="picker-lead">Escolha seu perfil para começar</p>
+    <h1 class="h-display picker-heading">Bem-vindo ao LittleStars</h1>
 
-    <div class="picker-grid">
-      <% @profiles.each do |profile| %>
-        <%= render Ui::ProfileCard::Component.new(profile: profile, url: sessions_path) %>
-      <% end %>
-
-      <%= link_to new_parent_profile_path, class: "picker-ghost-card" do %>
-        <div class="picker-avatar">+</div>
-        <span>Adicionar perfil</span>
-      <% end %>
+    <div class="picker-tabs" style="display:flex;gap:1rem;justify-content:center;margin-bottom:1.5rem;">
+      <button class="picker-tab-btn active" data-tab="kids" onclick="switchTab('kids')">Crianças</button>
+      <button class="picker-tab-btn" data-tab="parents" onclick="switchTab('parents')">Pais</button>
     </div>
 
-    <%= link_to parent_root_path, class: "picker-footer-link" do %>
-      Modo pais <span aria-hidden="true">→</span>
-    <% end %>
+    <div id="tab-kids">
+      <p class="picker-lead">Escolha seu perfil para começar</p>
+      <div class="picker-grid">
+        <% @profiles.each do |profile| %>
+          <%= render Ui::ProfileCard::Component.new(profile: profile, url: sessions_path) %>
+        <% end %>
+
+        <%= link_to new_parent_profile_path, class: "picker-ghost-card" do %>
+          <div class="picker-avatar">+</div>
+          <span>Adicionar perfil</span>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="tab-parents" style="display:none;">
+      <p class="picker-lead">Acesso para pais</p>
+
+      <% if flash[:alert] %>
+        <p style="color:red;text-align:center;margin-bottom:1rem;"><%= flash[:alert] %></p>
+      <% end %>
+
+      <%= form_with url: sessions_path, method: :post, local: true, style: "display:flex;flex-direction:column;gap:0.75rem;max-width:320px;margin:0 auto;" do |f| %>
+        <%= f.email_field :email, placeholder: "Email", required: true,
+            style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
+        <%= f.password_field :password, placeholder: "Senha (mín. 12 caracteres)", required: true,
+            style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
+        <%= f.submit "Entrar", style: "padding:0.5rem;background:#6366f1;color:white;border:none;border-radius:0.5rem;cursor:pointer;" %>
+      <% end %>
+
+      <div style="text-align:center;margin-top:1rem;">
+        <%= link_to "Criar conta", new_registration_path %> ·
+        <%= link_to "Esqueci minha senha", new_password_reset_path %>
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+  function switchTab(tab) {
+    document.getElementById('tab-kids').style.display = tab === 'kids' ? '' : 'none';
+    document.getElementById('tab-parents').style.display = tab === 'parents' ? '' : 'none';
+    document.querySelectorAll('.picker-tab-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.tab === tab);
+    });
+  }
+  <% if flash[:alert] %>
+    switchTab('parents');
+  <% end %>
+</script>

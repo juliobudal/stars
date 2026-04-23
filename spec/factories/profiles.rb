@@ -8,6 +8,9 @@ FactoryBot.define do
 
     trait :parent do
       role { :parent }
+      sequence(:email) { |n| "parent#{n}@example.com" }
+      password { "supersecret1234" }
+      confirmed_at { Time.current }
     end
 
     trait :child do

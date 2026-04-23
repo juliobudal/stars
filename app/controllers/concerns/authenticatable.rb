@@ -39,6 +39,10 @@ module Authenticatable
   def require_parent!
     unless current_profile&.parent?
       redirect_to root_path, alert: "Acesso restrito para pais."
+      return
+    end
+    unless current_profile.confirmed_at.present?
+      redirect_to root_path, alert: "Email não confirmado."
     end
   end
 

@@ -21,7 +21,7 @@ RSpec.describe "Security::FamilyScoping", type: :request do
 
   before do
     host! "localhost"
-    post "/sessions", params: { profile_id: parent_a.id }
+    sign_in_as(parent_a)
   end
 
   # In request specs Rails rescues RecordNotFound. Depending on request format
