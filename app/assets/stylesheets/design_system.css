@@ -693,4 +693,23 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   body.parent-layout .bottom-nav {
     display: none;
   }
+
+  body.parent-layout .side-nav .nav-item {
+    width: auto;
+    height: auto;
+    border-radius: var(--r-md);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  body.parent-layout .side-nav .nav-item.active {
+    background: var(--primary-soft);
+    color: var(--primary-2);
+  }
 }
