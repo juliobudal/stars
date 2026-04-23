@@ -3,70 +3,145 @@
 
   <%# ─── Top Bar ─── %>
   <%= render Ui::TopBar::Component.new(
-    title: "Extrato",
+    title: "Diário",
     subtitle: "Suas estrelinhas ganhas e gastas",
     back_url: kid_root_path
   ) %>
 
-  <%
-    total_earn = @activity_logs.select(&:earn?).sum(&:points)
-    total_spend = @activity_logs.reject(&:earn?).sum(&:points)
-  %>
-
-  <%# Summary %>
-  <div class="grid-2 mb-4" style="gap: 12px; z-index: 2;">
-    <div class="card" style="padding: 16px; border: 2px solid var(--success); background: var(--c-mint-soft);">
-      <div class="row" style="gap: 10px;">
-        <div style="width: 40px; height: 40px; border-radius: var(--r-md); background: var(--success); display: flex; align-items: center; justify-content: center;">
-          <%= render Ui::Icon::Component.new("arrowUp", size: 22, color: "white") %>
-        </div>
-        <div class="col" style="gap: 0;">
-          <div class="eyebrow" style="color: var(--c-mint-dark);">Ganhou</div>
-          <div class="h-display" style="font-size: 22px; color: var(--c-mint-dark);">+<%= total_earn %> ⭐</div>
-        </div>
+  <%# ─── Week Summary Cards (3-col) ─── %>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; z-index: 2; position: relative;">
+    <%# Conquistado %>
+    <div class="card" style="padding: 12px; background: var(--c-mint-soft); border: none;">
+      <div style="width: 40px; height: 40px; border-radius: var(--r-full); background: var(--c-mint-dark); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+        <%= render Ui::Icon::Component.new("sparkle", size: 20, color: "white") %>
       </div>
+      <div class="eyebrow" style="color: var(--c-mint-dark); margin-bottom: 2px;">Conquistado</div>
+      <div class="h-display" style="font-size: 22px; color: var(--c-mint-dark);">+<%= @week_earned %> ⭐</div>
+      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">esta semana</div>
     </div>
-    <div class="card" style="padding: 16px; border: 2px solid var(--c-rose); background: var(--c-rose-soft);">
-      <div class="row" style="gap: 10px;">
-        <div style="width: 40px; height: 40px; border-radius: var(--r-md); background: var(--c-rose); display: flex; align-items: center; justify-content: center;">
-          <%= render Ui::Icon::Component.new("arrowDown", size: 22, color: "white") %>
-        </div>
-        <div class="col" style="gap: 0;">
-          <div class="eyebrow" style="color: var(--c-rose-dark);">Gastou</div>
-          <div class="h-display" style="font-size: 22px; color: var(--c-rose-dark);">−<%= total_spend %> ⭐</div>
-        </div>
+
+    <%# Gasto %>
+    <div class="card" style="padding: 12px; background: var(--c-rose-soft); border: none;">
+      <div style="width: 40px; height: 40px; border-radius: var(--r-full); background: var(--c-rose-dark); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+        <%= render Ui::Icon::Component.new("gift", size: 20, color: "white") %>
       </div>
+      <div class="eyebrow" style="color: var(--c-rose-dark); margin-bottom: 2px;">Gasto</div>
+      <div class="h-display" style="font-size: 22px; color: var(--c-rose-dark);">-<%= @week_spent %> ⭐</div>
+      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">esta semana</div>
+    </div>
+
+    <%# Missões feitas %>
+    <div class="card" style="padding: 12px; background: var(--c-lilac-soft); border: none;">
+      <div style="width: 40px; height: 40px; border-radius: var(--r-full); background: var(--primary); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+        <%= render Ui::Icon::Component.new("star", size: 20, color: "white") %>
+      </div>
+      <div class="eyebrow" style="color: var(--primary); margin-bottom: 2px;">Missões feitas</div>
+      <div class="h-display" style="font-size: 22px; color: var(--primary);"><%= @week_missions %></div>
+      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">esta semana</div>
     </div>
   </div>
 
-  <div class="col" style="gap: 10px; z-index: 2;">
-    <% if @activity_logs.any? %>
-      <% @activity_logs.each_with_index do |h, i| %>
-        <% earn = h.earn? %>
-        <div class="card" style="padding: 14px; border: 2px solid rgba(26,42,74,0.06); animation: slideInCard 0.3s ease <%= i * 0.02 %>s both;">
-          <div class="row" style="gap: 14px;">
-            <div style="width: 48px; height: 48px; border-radius: var(--r-md); background: <%= earn ? 'var(--c-mint-soft)' : 'var(--c-rose-soft)' %>; color: <%= earn ? 'var(--success)' : 'var(--c-rose)' %>; display: flex; align-items: center; justify-content: center;">
-              <%= render Ui::Icon::Component.new(earn ? "sparkle" : "gift", size: 26, color: "currentColor") %>
-            </div>
-            <div class="col fg1" style="gap: 2px;">
-              <div class="h-display" style="font-size: 16px;"><%= h.title %></div>
-              <div class="row" style="gap: 6px;">
-                <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;"><%= l(h.created_at, format: :short).upcase %></span>
-              </div>
-            </div>
-            <div class="h-display" style="font-size: 18px; color: <%= earn ? 'var(--success)' : 'var(--c-rose)' %>;">
-              <%= earn ? '+' : '−' %><%= h.points %> ⭐
-            </div>
-          </div>
-        </div>
+  <%# ─── Filter Chips ─── %>
+  <div data-controller="tabs" style="z-index: 2; position: relative;">
+    <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; scrollbar-width: none; margin-bottom: 12px;">
+      <button
+        class="active"
+        data-tabs-target="tab"
+        data-action="click->tabs#show"
+        data-tabs-id-param="all"
+        style="border-radius: var(--r-full); padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; background: var(--primary); color: white;">
+        Tudo
+      </button>
+      <button
+        data-tabs-target="tab"
+        data-action="click->tabs#show"
+        data-tabs-id-param="earned"
+        style="border-radius: var(--r-full); padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; background: var(--surface-2); color: var(--text-muted);">
+        Conquistadas
+      </button>
+      <button
+        data-tabs-target="tab"
+        data-action="click->tabs#show"
+        data-tabs-id-param="purchases"
+        style="border-radius: var(--r-full); padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; background: var(--surface-2); color: var(--text-muted);">
+        Compras
+      </button>
+      <button
+        data-tabs-target="tab"
+        data-action="click->tabs#show"
+        data-tabs-id-param="pending"
+        style="border-radius: var(--r-full); padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; background: var(--surface-2); color: var(--text-muted);">
+        Aguardando
+      </button>
+      <button
+        data-tabs-target="tab"
+        data-action="click->tabs#show"
+        data-tabs-id-param="rejected"
+        style="border-radius: var(--r-full); padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; background: var(--surface-2); color: var(--text-muted);">
+        Rejeitadas
+      </button>
+    </div>
+
+    <%# Panel: Tudo %>
+    <div id="panel-all" style="display: flex; flex-direction: column; gap: 0;">
+      <% if @activity_logs.any? %>
+        <%= render partial: "kid/wallet/day_groups", locals: { grouped: @all_grouped, today: @today } %>
+      <% else %>
+        <%= render Ui::Empty::Component.new(
+          icon: "scroll",
+          title: "Nenhuma atividade ainda ⭐",
+          subtitle: "Complete missões ou faça resgates pra começar o histórico",
+          color: "lilac"
+        ) %>
       <% end %>
-    <% else %>
+    </div>
+
+    <%# Panel: Conquistadas %>
+    <div id="panel-earned" style="display: none; flex-direction: column; gap: 0;">
+      <% if @earned_grouped.any? %>
+        <%= render partial: "kid/wallet/day_groups", locals: { grouped: @earned_grouped, today: @today } %>
+      <% else %>
+        <%= render Ui::Empty::Component.new(
+          icon: "scroll",
+          title: "Nenhuma conquista ainda ⭐",
+          subtitle: "Complete missões para ganhar estrelinhas",
+          color: "lilac"
+        ) %>
+      <% end %>
+    </div>
+
+    <%# Panel: Compras %>
+    <div id="panel-purchases" style="display: none; flex-direction: column; gap: 0;">
+      <% if @purchase_grouped.any? %>
+        <%= render partial: "kid/wallet/day_groups", locals: { grouped: @purchase_grouped, today: @today } %>
+      <% else %>
+        <%= render Ui::Empty::Component.new(
+          icon: "scroll",
+          title: "Nenhuma compra ainda ⭐",
+          subtitle: "Resgate recompensas na loja",
+          color: "lilac"
+        ) %>
+      <% end %>
+    </div>
+
+    <%# Panel: Aguardando (no ActivityLog status — honest empty state) %>
+    <div id="panel-pending" style="display: none; flex-direction: column; gap: 0;">
+      <%= render Ui::Empty::Component.new(
+        icon: "clock",
+        title: "Aguardando aprovação",
+        subtitle: "Missões enviadas para aprovação aparecerão aqui em breve",
+        color: "primary"
+      ) %>
+    </div>
+
+    <%# Panel: Rejeitadas (no ActivityLog status — honest empty state) %>
+    <div id="panel-rejected" style="display: none; flex-direction: column; gap: 0;">
       <%= render Ui::Empty::Component.new(
         icon: "scroll",
-        title: "Nada no extrato ainda",
-        subtitle: "Complete missões ou faça resgates pra começar o histórico",
-        color: "lilac"
+        title: "Nenhuma missão rejeitada",
+        subtitle: "Ótimo trabalho! Missões rejeitadas aparecerão aqui",
+        color: "rose"
       ) %>
-    <% end %>
+    </div>
   </div>
 </div>

@@ -1,0 +1,56 @@
+<%
+  kind_map = {
+    "earn"   => { icon: "sparkle", disc_bg: "var(--c-mint-soft)",  disc_color: "var(--c-mint-dark)", chip_bg: "var(--c-mint-soft)",  chip_text: "var(--c-mint-dark)",  label: "Conquista" },
+    "redeem" => { icon: "gift",    disc_bg: "var(--c-lilac-soft)", disc_color: "var(--primary)",     chip_bg: "var(--c-lilac-soft)", chip_text: "var(--primary-2)",    label: "Compra"    },
+    "adjust" => { icon: "star",    disc_bg: "var(--star-soft)",    disc_color: "var(--star-2)",      chip_bg: "var(--star-soft)",    chip_text: "var(--star-2)",       label: "Ajuste"    }
+  }
+%>
+
+<% grouped.each do |date, logs| %>
+  <%
+    day_label = if date == today
+                  "Hoje"
+                elsif date == today - 1
+                  "Ontem"
+                else
+                  l(date, format: :short).capitalize
+                end
+    day_net = logs.sum { |l| l.earn? ? l.points : -(l.points) }
+    net_color = day_net >= 0 ? "var(--c-mint-dark)" : "var(--c-rose-dark)"
+    net_prefix = day_net >= 0 ? "+" : ""
+  %>
+
+  <%# Day header %>
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 4px 6px;">
+    <span style="font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;"><%= day_label %></span>
+    <span style="font-size: 13px; font-weight: 700; color: <%= net_color %>;"><%= net_prefix %><%= day_net %> ⭐</span>
+  </div>
+
+  <%# Log entries %>
+  <div class="col" style="gap: 8px; margin-bottom: 8px;">
+    <% logs.each do |h| %>
+      <% kind = h.log_type.to_s %>
+      <% k = kind_map[kind] || kind_map["adjust"] %>
+      <div class="card" style="padding: 14px; border: 2px solid rgba(26,42,74,0.06);">
+        <div class="row" style="gap: 14px;">
+          <%# Icon disc %>
+          <div style="width: 48px; height: 48px; border-radius: var(--r-full); background: <%= k[:disc_bg] %>; color: <%= k[:disc_color] %>; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <%= render Ui::Icon::Component.new(k[:icon], size: 26, color: "currentColor") %>
+          </div>
+          <%# Title + kind chip + time %>
+          <div class="col fg1" style="gap: 4px;">
+            <div class="h-display" style="font-size: 16px;"><%= h.title %></div>
+            <div class="row" style="gap: 6px; align-items: center;">
+              <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--r-full); background: <%= k[:chip_bg] %>; color: <%= k[:chip_text] %>;"><%= k[:label] %></span>
+              <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;"><%= h.created_at.strftime("%H:%M") %></span>
+            </div>
+          </div>
+          <%# Points %>
+          <div class="h-display" style="font-size: 18px; color: <%= h.earn? ? 'var(--c-mint-dark)' : 'var(--c-rose-dark)' %>; flex-shrink: 0;">
+            <%= h.earn? ? '+' : '−' %><%= h.points %> ⭐
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
