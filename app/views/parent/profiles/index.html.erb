@@ -2,45 +2,82 @@
   <%= render Ui::BgShapes::Component.new(variant: "warm") %>
 
   <%= render Ui::TopBar::Component.new(
-    title: "Crianças",
-    subtitle: "Gerencie perfis e saldos",
+    title: "Filhos",
+    subtitle: "Gerencia as crianças da família. Adicione novas, mude cor, nome ou expressão.",
     back_url: parent_root_path
   ) do |bar| %>
     <% bar.with_right_slot do %>
       <%= link_to new_parent_profile_path, class: "btn btn-primary" do %>
-        <%= render Ui::Icon::Component.new("plus", size: 18, color: "white") %> Adicionar
+        <%= render Ui::Icon::Component.new("star", size: 16, color: "white") %> Adicionar filho
       <% end %>
     <% end %>
   <% end %>
 
-  <div class="col" style="gap: 12px; z-index: 2;">
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; z-index: 2; align-items: start;">
     <% if @profiles.any? %>
-      <% @profiles.each_with_index do |k, i| %>
-        <% 
-          color = k.color.presence || "primary"
-          fg_var = color == "primary" ? "var(--primary)" : "var(--c-#{color})"
-          # child_tasks = ProfileTask.where(profile: k).for_today
-          # count = child_tasks.count
+      <% @profiles.each do |k| %>
+        <%
+          color     = k.color.presence || "primary"
+          fg_var    = color == "primary" ? "var(--primary)" : "var(--c-#{color})"
+          bg_soft   = color == "primary" ? "var(--primary-soft)" : "var(--c-#{color}-soft)"
+          missions  = k.profile_tasks.select(&:pending?).size
         %>
-        <%= link_to edit_parent_profile_path(k), class: "card pop-on-tap card-tap", style: "padding: 16px; cursor: pointer; border: 2px solid #{fg_var}; box-shadow: 0 4px 0 #{fg_var}; animation: slideInCard 0.35s ease #{i * 0.05}s both; text-decoration: none; display: block;" do %>
-          <div class="row" style="gap: 16px;">
-            <%= render Ui::KidAvatar::Component.new(kid: k, size: 64) %>
-            <div class="col fg1" style="gap: 4px;">
-              <div class="h-display" style="font-size: 20px; color: var(--text);"><%= k.name %></div>
-              <div class="row" style="gap: 8px;">
-                <%= render Ui::Badge::Component.new(variant: "star", size: "sm", icon: "star") do %>
-                  <%= k.points %>
-                <% end %>
-                <%= render Ui::Badge::Component.new(variant: "outline", size: "sm") do %>
-                  <%= k.profile_tasks.size %> missões no total
-                <% end %>
+        <div class="card" style="padding: 0; overflow: hidden; border: 1px solid var(--hairline); box-shadow: var(--shadow-card);">
+          <%# Top colored section with avatar %>
+          <div style="background: <%= bg_soft %>; padding: 24px 16px 20px; position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+            <%= link_to edit_parent_profile_path(k), style: "position: absolute; top: 12px; right: 12px; color: #{fg_var}; line-height: 1;" do %>
+              <%= render Ui::Icon::Component.new("edit", size: 18, color: fg_var) %>
+            <% end %>
+            <%= render Ui::SmileyAvatar::Component.new(kid: k, size: 80) %>
+            <div style="text-align: center;">
+              <div style="font-family: var(--font-display); font-style: italic; font-size: 20px; font-weight: 700; color: <%= fg_var %>; line-height: 1.1;"><%= k.name %></div>
+            </div>
+          </div>
+
+          <%# Bottom white section: stats + actions %>
+          <div style="padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+            <%# Stats row %>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <div style="background: var(--bg-soft); border-radius: var(--r-sm); padding: 8px 10px; text-align: center;">
+                <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">Saldo</div>
+                <div style="font-size: 15px; font-weight: 800; color: var(--text); display: flex; align-items: center; justify-content: center; gap: 4px;">
+                  <span style="color: var(--star);">⭐</span><%= k.points %>
+                </div>
+              </div>
+              <div style="background: var(--bg-soft); border-radius: var(--r-sm); padding: 8px 10px; text-align: center;">
+                <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">Missões</div>
+                <div style="font-size: 15px; font-weight: 800; color: var(--text);"><%= missions %></div>
               </div>
             </div>
-            <%= render Ui::Icon::Component.new("edit", size: 22, color: fg_var) %>
+
+            <%# Action links %>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 4px; border-top: 1px solid var(--hairline);">
+              <%= link_to edit_parent_profile_path(k), style: "display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #{fg_var}; text-decoration: none;" do %>
+                <%= render Ui::Icon::Component.new("eye", size: 14, color: fg_var) %>
+                Ver jornada
+              <% end %>
+              <%= button_to parent_profile_path(k), method: :delete,
+                    form: { data: { turbo_confirm: "Remover #{k.name}? Esta ação não pode ser desfeita." } },
+                    style: "background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--danger);" do %>
+                <%= render Ui::Icon::Component.new("trash", size: 14, color: "var(--danger)") %>
+                Remover
+              <% end %>
+            </div>
           </div>
-        <% end %>
+        </div>
       <% end %>
-    <% else %>
+    <% end %>
+
+    <%# Add child ghost card %>
+    <%= link_to new_parent_profile_path,
+          style: "display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-height: 200px; border: 2px dashed var(--hairline); border-radius: var(--r-md); background: transparent; text-decoration: none; cursor: pointer; color: var(--text-muted); transition: border-color 0.15s, color 0.15s;",
+          onmouseover: "this.style.borderColor='var(--primary)';this.style.color='var(--primary)'",
+          onmouseout:  "this.style.borderColor='var(--hairline)';this.style.color='var(--text-muted)'" do %>
+      <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px dashed currentColor; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 300; line-height: 1;">+</div>
+      <span style="font-size: 13px; font-weight: 700;">Adicionar filho</span>
+    <% end %>
+
+    <% if @profiles.empty? %>
       <%= render Ui::Empty::Component.new(
         icon: "users",
         title: "Nenhum perfil",
