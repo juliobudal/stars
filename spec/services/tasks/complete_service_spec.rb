@@ -79,5 +79,68 @@ RSpec.describe Tasks::CompleteService do
         expect(result.error).to be_present
       end
     end
+
+    context "auto-approval via auto_approve_threshold" do
+      let(:global_task) { create(:global_task, family: family, points: 5) }
+      let(:profile_task) { create(:profile_task, :pending, profile: child, global_task: global_task) }
+
+      context "when threshold is set, points <= threshold, and require_photo is false" do
+        before { family.update!(auto_approve_threshold: 10, require_photo: false) }
+
+        it "auto-approves: status ends up :approved" do
+          described_class.new(profile_task: profile_task).call
+          expect(profile_task.reload.status).to eq("approved")
+        end
+
+        it "credits points to the profile" do
+          expect { described_class.new(profile_task: profile_task).call }
+            .to change { child.reload.points }.by(5)
+        end
+      end
+
+      context "when threshold is set but points exceed threshold" do
+        let(:global_task) { create(:global_task, family: family, points: 15) }
+
+        before { family.update!(auto_approve_threshold: 10, require_photo: false) }
+
+        it "leaves status as :awaiting_approval" do
+          described_class.new(profile_task: profile_task).call
+          expect(profile_task.reload.status).to eq("awaiting_approval")
+        end
+
+        it "does not credit points" do
+          expect { described_class.new(profile_task: profile_task).call }
+            .not_to change { child.reload.points }
+        end
+      end
+
+      context "when threshold is set but require_photo is true and a photo is provided" do
+        before { family.update!(auto_approve_threshold: 10, require_photo: true) }
+
+        it "leaves status as :awaiting_approval (photo blocks auto-approve)" do
+          described_class.new(profile_task: profile_task, proof_photo: valid_photo).call
+          expect(profile_task.reload.status).to eq("awaiting_approval")
+        end
+
+        it "does not credit points" do
+          expect { described_class.new(profile_task: profile_task, proof_photo: valid_photo).call }
+            .not_to change { child.reload.points }
+        end
+      end
+
+      context "when auto_approve_threshold is nil (feature disabled)" do
+        before { family.update!(auto_approve_threshold: nil, require_photo: false) }
+
+        it "leaves status as :awaiting_approval" do
+          described_class.new(profile_task: profile_task).call
+          expect(profile_task.reload.status).to eq("awaiting_approval")
+        end
+
+        it "does not credit points" do
+          expect { described_class.new(profile_task: profile_task).call }
+            .not_to change { child.reload.points }
+        end
+      end
+    end
   end
 end
