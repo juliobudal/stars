@@ -54,14 +54,11 @@
       <% end %>
 
       <%# Ghost add card — matches ref dashed card at end of grid %>
-      <%= link_to new_parent_reward_path,
-            style: "display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 104px; padding: 16px; border: 2px dashed var(--hairline); border-radius: var(--r-md); background: transparent; color: var(--text-muted); text-decoration: none; transition: border-color .15s, color .15s;",
-            onmouseover: "this.style.borderColor='var(--primary)';this.style.color='var(--primary)'",
-            onmouseout: "this.style.borderColor='var(--hairline)';this.style.color='var(--text-muted)'" do %>
+      <%= link_to new_parent_reward_path, class: "ghost-add-card" do %>
         <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--surface-2); display: flex; align-items: center; justify-content: center;">
           <%= render Ui::Icon::Component.new("plus", size: 18, color: "currentColor") %>
         </div>
-        <span class="h-display" style="font-size: 13px;">Nova prêmio</span>
+        <span class="h-display" style="font-size: 13px;">Novo prêmio</span>
       <% end %>
     </div>
   <% end %>
