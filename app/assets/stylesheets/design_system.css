@@ -663,3 +663,34 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 
 /* Screen scoped to parent: no bottom-nav needed */
 .screen.no-nav { padding-bottom: var(--space-6); }
+
+/* Side-nav hidden by default (mobile-first) */
+.side-nav { display: none; }
+
+/* ── Desktop layout (≥1024px) ── */
+@media (min-width: 1024px) {
+  /* ── Parent sidebar (desktop only) ── */
+  body.parent-layout .side-nav {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    min-height: 100vh;
+    background: var(--surface);
+    border-right: 1px solid var(--hairline);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: var(--space-5) 0;
+    box-shadow: 2px 0 12px rgba(44, 42, 58, 0.04);
+  }
+
+  body.parent-layout .viewport {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+  }
+
+  body.parent-layout .bottom-nav {
+    display: none;
+  }
+}
