@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Diário · histórico — LittleStars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fraunces:ital,opsz,wght@1,9..144,600;1,9..144,700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
+  <style>
+    body { font-family: 'Nunito', system-ui, sans-serif; }
+    .font-display { font-family: 'Fraunces', Georgia, serif; font-style: italic; }
+  </style>
+</head>
+<body class="bg-[#F8F5FF]">
+
+  <div class="min-h-screen flex items-start justify-center">
+    <!-- Single column panel -->
+    <div class="w-full max-w-[430px] md:max-w-[480px] pb-28 relative mx-auto">
+
+      <!-- Top bar -->
+      <div class="flex items-center justify-between p-5 pt-6">
+        <button class="w-9 h-9 rounded-full bg-white flex items-center justify-center" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 4px 12px rgba(44,42,58,.08)">
+          <i data-lucide="arrow-left" class="w-4 h-4 text-[#2B2A3A]"></i>
+        </button>
+        <div class="text-center">
+          <p class="text-[10px] font-bold uppercase tracking-widest text-[#A09EAE]">DIÁRIO DA</p>
+          <p class="font-display text-3xl text-[#2B2A3A] leading-none mt-0.5">Lila</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="flex items-center gap-1.5 bg-[#FFF4CC] text-[#2B2A3A] px-3 py-1.5 rounded-full font-bold text-sm">
+            <i data-lucide="star" class="w-4 h-4 text-[#F59E0B]"></i>
+            42
+          </div>
+          <div class="w-9 h-9 rounded-full bg-[#FDE68A] flex items-center justify-center text-lg">🙂</div>
+        </div>
+      </div>
+
+      <!-- Stats row: always 3-col -->
+      <div class="grid grid-cols-3 gap-3 px-5 mt-4 mb-4">
+        <div class="bg-white rounded-[18px] p-4 text-center" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 10px 24px rgba(44,42,58,.06)">
+          <p class="text-[#34D399] font-bold text-xl">+42</p>
+          <p class="text-[#A09EAE] text-xs font-semibold mt-1">Conquistado</p>
+        </div>
+        <div class="bg-white rounded-[18px] p-4 text-center" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 10px 24px rgba(44,42,58,.06)">
+          <p class="text-[#EC4899] font-bold text-xl">−15</p>
+          <p class="text-[#A09EAE] text-xs font-semibold mt-1">Gasto</p>
+        </div>
+        <div class="bg-white rounded-[18px] p-4 text-center" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 10px 24px rgba(44,42,58,.06)">
+          <p class="text-[#A78BFA] font-bold text-xl">8</p>
+          <p class="text-[#A09EAE] text-xs font-semibold mt-1">Missões</p>
+        </div>
+      </div>
+
+      <!-- Filter chips -->
+      <div class="flex gap-2 px-5 mb-5 flex-wrap">
+        <button class="px-4 py-1.5 rounded-full text-sm font-bold bg-[#2B2A3A] text-white">Todos</button>
+        <button class="px-4 py-1.5 rounded-full text-sm font-semibold text-[#6A6878]">Ganho</button>
+        <button class="px-4 py-1.5 rounded-full text-sm font-semibold text-[#6A6878]">Gasto</button>
+        <button class="px-4 py-1.5 rounded-full text-sm font-semibold text-[#6A6878]">Aguardando</button>
+        <button class="px-4 py-1.5 rounded-full text-sm font-semibold text-[#6A6878]">Rejeitado</button>
+      </div>
+
+      <!-- Timeline -->
+      <div class="px-5">
+
+        <!-- === Hoje === -->
+        <p class="text-[#A09EAE] text-xs font-bold uppercase tracking-wide mb-3">Hoje</p>
+
+        <!-- Entry 1: Arrumar quarto — Ganho — +8★ -->
+        <div class="flex items-center gap-3 bg-white rounded-[14px] p-4 mb-2" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 4px 16px rgba(44,42,58,.06)">
+          <div class="w-10 h-10 rounded-full bg-[#ECFDF5] flex items-center justify-center shrink-0">
+            <i data-lucide="check" class="w-5 h-5 text-[#34D399]"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-bold text-[#2B2A3A] text-sm">Arrumar quarto</p>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="bg-[#ECFDF5] text-[#059669] text-[10px] font-bold px-2 py-0.5 rounded-full">Ganho</span>
+              <span class="text-[#A09EAE] text-[10px]">14:30</span>
+            </div>
+          </div>
+          <p class="font-bold text-[#34D399] text-sm shrink-0">+8 ★</p>
+        </div>
+
+        <!-- Entry 2: Ajudar mamãe — Ganho — +6★ -->
+        <div class="flex items-center gap-3 bg-white rounded-[14px] p-4 mb-2" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 4px 16px rgba(44,42,58,.06)">
+          <div class="w-10 h-10 rounded-full bg-[#ECFDF5] flex items-center justify-center shrink-0">
+            <i data-lucide="check" class="w-5 h-5 text-[#34D399]"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-bold text-[#2B2A3A] text-sm">Ajudar mamãe</p>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="bg-[#ECFDF5] text-[#059669] text-[10px] font-bold px-2 py-0.5 rounded-full">Ganho</span>
+              <span class="text-[#A09EAE] text-[10px]">11:00</span>
+            </div>
+          </div>
+          <p class="font-bold text-[#34D399] text-sm shrink-0">+6 ★</p>
+        </div>
+
+        <!-- Entry 3: Hora de tela — Gasto — −15★ -->
+        <div class="flex items-center gap-3 bg-white rounded-[14px] p-4 mb-6" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 4px 16px rgba(44,42,58,.06)">
+          <div class="w-10 h-10 rounded-full bg-[#F0EAFF] flex items-center justify-center shrink-0">
+            <i data-lucide="shopping-bag" class="w-5 h-5 text-[#A78BFA]"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-bold text-[#2B2A3A] text-sm">Hora de tela</p>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="bg-[#F0EAFF] text-[#A78BFA] text-[10px] font-bold px-2 py-0.5 rounded-full">Gasto</span>
+              <span class="text-[#A09EAE] text-[10px]">10:15</span>
+            </div>
+          </div>
+          <p class="font-bold text-[#EC4899] text-sm shrink-0">−15 ★</p>
+        </div>
+
+        <!-- === Ontem === -->
+        <p class="text-[#A09EAE] text-xs font-bold uppercase tracking-wide mb-3">Ontem</p>
+
+        <!-- Entry 4: Cuidar do pet — Ganho — +10★ -->
+        <div class="flex items-center gap-3 bg-white rounded-[14px] p-4 mb-2" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 4px 16px rgba(44,42,58,.06)">
+          <div class="w-10 h-10 rounded-full bg-[#ECFDF5] flex items-center justify-center shrink-0">
+            <i data-lucide="check" class="w-5 h-5 text-[#34D399]"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-bold text-[#2B2A3A] text-sm">Cuidar do pet</p>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="bg-[#ECFDF5] text-[#059669] text-[10px] font-bold px-2 py-0.5 rounded-full">Ganho</span>
+              <span class="text-[#A09EAE] text-[10px]">16:00</span>
+            </div>
+          </div>
+          <p class="font-bold text-[#34D399] text-sm shrink-0">+10 ★</p>
+        </div>
+
+        <!-- Entry 5: Estudar inglês — Aguardando — +12★ amber -->
+        <div class="flex items-center gap-3 bg-white rounded-[14px] p-4 mb-6" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 4px 16px rgba(44,42,58,.06)">
+          <div class="w-10 h-10 rounded-full bg-[#FEF3C7] flex items-center justify-center shrink-0">
+            <i data-lucide="clock" class="w-5 h-5 text-[#D97706]"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-bold text-[#2B2A3A] text-sm">Estudar inglês</p>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="bg-[#FEF3C7] text-[#D97706] text-[10px] font-bold px-2 py-0.5 rounded-full">Aguardando</span>
+              <span class="text-[#A09EAE] text-[10px]">09:00</span>
+            </div>
+          </div>
+          <p class="font-bold text-[#D97706] text-sm shrink-0">+12 ★</p>
+        </div>
+
+        <!-- === Esta semana === -->
+        <p class="text-[#A09EAE] text-xs font-bold uppercase tracking-wide mb-3">Esta semana</p>
+
+        <!-- Entry 6: Ler livro — Ganho — +5★ -->
+        <div class="flex items-center gap-3 bg-white rounded-[14px] p-4 mb-2" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 4px 16px rgba(44,42,58,.06)">
+          <div class="w-10 h-10 rounded-full bg-[#ECFDF5] flex items-center justify-center shrink-0">
+            <i data-lucide="check" class="w-5 h-5 text-[#34D399]"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-bold text-[#2B2A3A] text-sm">Ler livro</p>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="bg-[#ECFDF5] text-[#059669] text-[10px] font-bold px-2 py-0.5 rounded-full">Ganho</span>
+              <span class="text-[#A09EAE] text-[10px]">Seg</span>
+            </div>
+          </div>
+          <p class="font-bold text-[#34D399] text-sm shrink-0">+5 ★</p>
+        </div>
+
+        <!-- Entry 7: Arrumar quarto — Ganho — +8★ -->
+        <div class="flex items-center gap-3 bg-white rounded-[14px] p-4 mb-4" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 4px 16px rgba(44,42,58,.06)">
+          <div class="w-10 h-10 rounded-full bg-[#ECFDF5] flex items-center justify-center shrink-0">
+            <i data-lucide="check" class="w-5 h-5 text-[#34D399]"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="font-bold text-[#2B2A3A] text-sm">Arrumar quarto</p>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="bg-[#ECFDF5] text-[#059669] text-[10px] font-bold px-2 py-0.5 rounded-full">Ganho</span>
+              <span class="text-[#A09EAE] text-[10px]">Seg</span>
+            </div>
+          </div>
+          <p class="font-bold text-[#34D399] text-sm shrink-0">+8 ★</p>
+        </div>
+
+      </div><!-- /timeline -->
+
+    </div><!-- /panel -->
+  </div>
+
+  <!-- Bottom nav — fixed always — Diário tab active -->
+  <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white rounded-[28px] px-6 py-3 flex items-center gap-8" style="box-shadow:0 4px 24px rgba(44,42,58,.14)">
+    <button class="flex flex-col items-center gap-1">
+      <i data-lucide="target" class="w-6 h-6 text-[#A09EAE]"></i>
+      <span class="text-[10px] font-semibold text-[#A09EAE]">Jornada</span>
+    </button>
+    <button class="flex flex-col items-center gap-1">
+      <i data-lucide="shopping-bag" class="w-6 h-6 text-[#A09EAE]"></i>
+      <span class="text-[10px] font-semibold text-[#A09EAE]">Lojinha</span>
+    </button>
+    <button class="flex flex-col items-center gap-1">
+      <i data-lucide="book-open" class="w-6 h-6 text-[#A78BFA]"></i>
+      <span class="text-[10px] font-bold text-[#A78BFA]">Diário</span>
+    </button>
+    <button class="flex flex-col items-center gap-1">
+      <i data-lucide="log-out" class="w-6 h-6 text-[#A09EAE]"></i>
+      <span class="text-[10px] font-semibold text-[#A09EAE]">Sair</span>
+    </button>
+  </div>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

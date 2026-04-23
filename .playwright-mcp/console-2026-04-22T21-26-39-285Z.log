@@ -1,0 +1,8 @@
+[     704ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:10302/vite/?token=Fme_Mv-7c7wv' failed: Error in connection establishment: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:10301/vite/@vite/client:744
+[     704ms] [ERROR] [vite] failed to connect to websocket (Error: WebSocket closed without opened.).  @ http://localhost:10301/vite/@vite/client:771
+[    1001ms] Error: WebSocket closed without opened.
+    at WebSocket.<anonymous> (http://localhost:10301/vite/@vite/client:423:30)
+[     987ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:10301/assets/fonts/nunito-latin.woff2:0
+[    1005ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:10301/assets/fonts/fredoka-latin.woff2:0
+[  241639ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:10301/parent/approvals/22/approve:0
+[  241645ms] [WARNING] The response (500) from <turbo-frame id="approvals_list"> is performing a full page visit due to turbo-visit-control. @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/chunk-7S54ZFUB.js?v=63aa988e:5011

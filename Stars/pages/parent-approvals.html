@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aprovações — LittleStars Pais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fraunces:ital,opsz,wght@1,9..144,600;1,9..144,700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
+  <style>
+    body { font-family: 'Nunito', system-ui, sans-serif; }
+    .font-display { font-family: 'Fraunces', Georgia, serif; font-style: italic; }
+  </style>
+</head>
+<body class="bg-[#F8F5FF]">
+
+<div class="flex min-h-screen">
+
+  <!-- Mobile overlay backdrop -->
+  <div id="sidebar-backdrop" class="hidden fixed inset-0 bg-black/30 z-20 md:hidden" onclick="document.getElementById('sidebar').classList.add('-translate-x-full');this.classList.add('hidden')"></div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="w-64 shrink-0 flex flex-col fixed inset-y-0 left-0 z-30 -translate-x-full md:translate-x-0 md:static md:z-auto transition-transform duration-200 bg-white border-r border-[rgba(44,42,58,.08)]" style="box-shadow:2px 0 12px rgba(44,42,58,.04)">
+    <div class="p-6 pb-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-[12px] bg-[#A78BFA] flex items-center justify-center">
+          <i data-lucide="star" class="w-5 h-5 text-white"></i>
+        </div>
+        <div>
+          <p class="font-bold text-[#2B2A3A] text-base">LittleStars</p>
+          <p class="text-[#A09EAE] text-[10px] font-bold uppercase tracking-wide">Modo Pais</p>
+        </div>
+      </div>
+      <button class="mt-4 w-full flex items-center justify-between bg-[#F8F5FF] rounded-[14px] px-4 py-2.5">
+        <span class="text-[#2B2A3A] text-sm font-semibold">Família Budal</span>
+        <i data-lucide="chevrons-up-down" class="w-4 h-4 text-[#A09EAE]"></i>
+      </button>
+    </div>
+    <nav class="flex-1 px-4 pb-4 space-y-1">
+      <a href="parent-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[14px] hover:bg-[#F8F5FF] text-[#6A6878]">
+        <i data-lucide="layout-dashboard" class="w-5 h-5 text-[#A09EAE]"></i>
+        <span class="text-sm font-semibold">Dashboard</span>
+      </a>
+      <a href="parent-kids.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[14px] hover:bg-[#F8F5FF] text-[#6A6878]">
+        <i data-lucide="users" class="w-5 h-5 text-[#A09EAE]"></i>
+        <span class="text-sm font-semibold">Filhos</span>
+      </a>
+      <a href="parent-missions.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[14px] hover:bg-[#F8F5FF] text-[#6A6878]">
+        <i data-lucide="target" class="w-5 h-5 text-[#A09EAE]"></i>
+        <span class="text-sm font-semibold">Missões</span>
+      </a>
+      <a href="parent-rewards.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[14px] hover:bg-[#F8F5FF] text-[#6A6878]">
+        <i data-lucide="gift" class="w-5 h-5 text-[#A09EAE]"></i>
+        <span class="text-sm font-semibold">Prêmios</span>
+      </a>
+      <!-- APPROVALS — active -->
+      <a href="parent-approvals.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[14px] bg-[#F0EAFF]">
+        <i data-lucide="check-circle" class="w-5 h-5 text-[#A78BFA]"></i>
+        <span class="text-sm font-bold text-[#A78BFA]">Aprovações</span>
+        <span class="ml-auto bg-[#EC4899] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">4</span>
+      </a>
+      <!-- SETTINGS — inactive -->
+      <a href="parent-settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[14px] hover:bg-[#F8F5FF] text-[#6A6878]">
+        <i data-lucide="settings" class="w-5 h-5 text-[#A09EAE]"></i>
+        <span class="text-sm font-semibold text-[#6A6878]">Configurações</span>
+      </a>
+    </nav>
+    <div class="p-4 border-t border-[rgba(44,42,58,.06)]">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm" style="background:#FCE7F3;border:2px solid #F9A8D4">R</div>
+        <div class="flex-1 min-w-0">
+          <p class="text-[#2B2A3A] text-sm font-semibold truncate">Renata</p>
+          <p class="text-[#A09EAE] text-xs">Responsável</p>
+        </div>
+        <button><i data-lucide="log-out" class="w-4 h-4 text-[#A09EAE]"></i></button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="flex-1 overflow-auto">
+
+    <!-- Mobile header bar -->
+    <div class="md:hidden flex items-center justify-between p-4 bg-white border-b border-[rgba(44,42,58,.08)] sticky top-0 z-20">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-[10px] bg-[#A78BFA] flex items-center justify-center">
+          <i data-lucide="star" class="w-4 h-4 text-white"></i>
+        </div>
+        <span class="font-bold text-[#2B2A3A]">LittleStars</span>
+      </div>
+      <button id="menu-toggle" class="w-9 h-9 rounded-[12px] bg-[#F8F5FF] flex items-center justify-center">
+        <i data-lucide="menu" class="w-5 h-5 text-[#2B2A3A]"></i>
+      </button>
+    </div>
+
+    <div class="p-4 md:p-8">
+
+      <!-- Section header -->
+      <div class="flex items-start justify-between mb-6">
+        <div>
+          <h1 class="font-display text-3xl text-[#2B2A3A]">Aprovações</h1>
+          <p class="text-[#6A6878] mt-1">4 itens pendentes — <span class="font-semibold">3 missões</span> e <span class="font-semibold">1 prêmio</span></p>
+        </div>
+        <!-- Bulk action -->
+        <button class="hidden sm:flex bg-[#34D399] text-white font-bold px-5 py-2.5 rounded-[14px] items-center gap-2">
+          <i data-lucide="check-check" class="w-4 h-4"></i>
+          Aprovar selecionadas
+        </button>
+      </div>
+
+      <!-- Mobile bulk action button -->
+      <button class="sm:hidden w-full bg-[#34D399] text-white font-bold px-5 py-2.5 rounded-[14px] flex items-center justify-center gap-2 mb-4">
+        <i data-lucide="check-check" class="w-4 h-4"></i>
+        Aprovar selecionadas
+      </button>
+
+      <!-- Tab switcher -->
+      <div class="flex gap-1 mb-6 bg-[#F8F5FF] p-1 rounded-[16px] w-full sm:w-fit">
+        <!-- Active tab: Missões -->
+        <button class="flex-1 sm:flex-none px-5 py-2 rounded-[12px] bg-white font-bold text-[#2B2A3A] text-sm shadow-sm flex items-center justify-center gap-2">
+          Missões
+          <span class="bg-[#EC4899] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">3</span>
+        </button>
+        <!-- Inactive tab: Prêmios -->
+        <button class="flex-1 sm:flex-none px-5 py-2 rounded-[12px] font-semibold text-[#6A6878] text-sm flex items-center justify-center gap-2">
+          Prêmios
+          <span class="bg-[#F0EAFF] text-[#A78BFA] text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">1</span>
+        </button>
+      </div>
+
+      <!-- Missions approval list -->
+      <div class="space-y-3">
+
+        <!-- Item 1: Arrumar quarto — Lila -->
+        <div class="bg-white rounded-[22px] p-4 md:p-5" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 10px 24px rgba(44,42,58,.06)">
+          <div class="flex items-center gap-3 md:gap-4">
+            <!-- Checkbox -->
+            <div class="w-5 h-5 rounded-[6px] border-2 border-[rgba(44,42,58,.2)] shrink-0 cursor-pointer"></div>
+            <!-- Kid avatar -->
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm shrink-0" style="background:#EDE9FE;border:2px solid #C4B5FD">L</div>
+            <!-- Content -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <p class="font-bold text-[#2B2A3A]">Arrumar quarto</p>
+                <span class="px-2 py-0.5 rounded-full text-xs font-bold bg-[#EDE9FE] text-[#7C3AED]">Lila</span>
+              </div>
+              <p class="text-[#A09EAE] text-xs mt-1">há 2 horas · Foto enviada 📷</p>
+            </div>
+            <!-- Stars -->
+            <div class="shrink-0 text-right hidden sm:block">
+              <p class="font-bold text-[#2B2A3A] flex items-center gap-1">8 <i data-lucide="star" class="w-3.5 h-3.5 text-[#FFC53D]"></i></p>
+            </div>
+            <!-- Action buttons -->
+            <div class="flex gap-2 shrink-0">
+              <button class="px-3 md:px-4 py-2 rounded-[12px] bg-[#FEF2F2] text-[#EF4444] font-bold text-sm">Rejeitar</button>
+              <button class="px-3 md:px-4 py-2 rounded-[12px] bg-[#A78BFA] text-white font-bold text-sm">Aprovar</button>
+            </div>
+          </div>
+          <!-- Stars on mobile -->
+          <div class="sm:hidden flex items-center gap-1 mt-2 pl-[calc(20px+40px+24px)]">
+            <p class="font-bold text-[#2B2A3A] flex items-center gap-1 text-sm">8 <i data-lucide="star" class="w-3.5 h-3.5 text-[#FFC53D]"></i></p>
+          </div>
+        </div>
+
+        <!-- Item 2: Estudar inglês — Lila -->
+        <div class="bg-white rounded-[22px] p-4 md:p-5" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 10px 24px rgba(44,42,58,.06)">
+          <div class="flex items-center gap-3 md:gap-4">
+            <!-- Checkbox -->
+            <div class="w-5 h-5 rounded-[6px] border-2 border-[rgba(44,42,58,.2)] shrink-0 cursor-pointer"></div>
+            <!-- Kid avatar -->
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm shrink-0" style="background:#EDE9FE;border:2px solid #C4B5FD">L</div>
+            <!-- Content -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <p class="font-bold text-[#2B2A3A]">Estudar inglês</p>
+                <span class="px-2 py-0.5 rounded-full text-xs font-bold bg-[#EDE9FE] text-[#7C3AED]">Lila</span>
+              </div>
+              <p class="text-[#A09EAE] text-xs mt-1">há 4 horas · Completado no app</p>
+            </div>
+            <!-- Stars -->
+            <div class="shrink-0 text-right hidden sm:block">
+              <p class="font-bold text-[#2B2A3A] flex items-center gap-1">12 <i data-lucide="star" class="w-3.5 h-3.5 text-[#FFC53D]"></i></p>
+            </div>
+            <!-- Action buttons -->
+            <div class="flex gap-2 shrink-0">
+              <button class="px-3 md:px-4 py-2 rounded-[12px] bg-[#FEF2F2] text-[#EF4444] font-bold text-sm">Rejeitar</button>
+              <button class="px-3 md:px-4 py-2 rounded-[12px] bg-[#A78BFA] text-white font-bold text-sm">Aprovar</button>
+            </div>
+          </div>
+          <!-- Stars on mobile -->
+          <div class="sm:hidden flex items-center gap-1 mt-2 pl-[calc(20px+40px+24px)]">
+            <p class="font-bold text-[#2B2A3A] flex items-center gap-1 text-sm">12 <i data-lucide="star" class="w-3.5 h-3.5 text-[#FFC53D]"></i></p>
+          </div>
+        </div>
+
+        <!-- Item 3: Cuidar do pet — Theo -->
+        <div class="bg-white rounded-[22px] p-4 md:p-5" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 10px 24px rgba(44,42,58,.06)">
+          <div class="flex items-center gap-3 md:gap-4">
+            <!-- Checkbox -->
+            <div class="w-5 h-5 rounded-[6px] border-2 border-[rgba(44,42,58,.2)] shrink-0 cursor-pointer"></div>
+            <!-- Kid avatar -->
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm shrink-0" style="background:#CFFAFE;border:2px solid #67E8F9">T</div>
+            <!-- Content -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <p class="font-bold text-[#2B2A3A]">Cuidar do pet</p>
+                <span class="px-2 py-0.5 rounded-full text-xs font-bold bg-[#CFFAFE] text-[#0891B2]">Theo</span>
+              </div>
+              <p class="text-[#A09EAE] text-xs mt-1">ontem · Sem nota</p>
+            </div>
+            <!-- Stars -->
+            <div class="shrink-0 text-right hidden sm:block">
+              <p class="font-bold text-[#2B2A3A] flex items-center gap-1">10 <i data-lucide="star" class="w-3.5 h-3.5 text-[#FFC53D]"></i></p>
+            </div>
+            <!-- Action buttons -->
+            <div class="flex gap-2 shrink-0">
+              <button class="px-3 md:px-4 py-2 rounded-[12px] bg-[#FEF2F2] text-[#EF4444] font-bold text-sm">Rejeitar</button>
+              <button class="px-3 md:px-4 py-2 rounded-[12px] bg-[#A78BFA] text-white font-bold text-sm">Aprovar</button>
+            </div>
+          </div>
+          <!-- Stars on mobile -->
+          <div class="sm:hidden flex items-center gap-1 mt-2 pl-[calc(20px+40px+24px)]">
+            <p class="font-bold text-[#2B2A3A] flex items-center gap-1 text-sm">10 <i data-lucide="star" class="w-3.5 h-3.5 text-[#FFC53D]"></i></p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Rewards hint -->
+      <div class="mt-4 p-4 bg-[#F8F5FF] rounded-[18px] text-center text-[#A09EAE] text-sm">
+        1 prêmio aguardando · <a href="#" class="text-[#A78BFA] font-semibold">Ver aba Prêmios</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>lucide.createIcons();</script>
+<script>
+  const btn = document.getElementById('menu-toggle');
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  if (btn && sidebar) {
+    btn.addEventListener('click', () => {
+      sidebar.classList.toggle('-translate-x-full');
+      backdrop.classList.toggle('hidden');
+    });
+  }
+</script>
+</body>
+</html>

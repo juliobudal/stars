@@ -1,0 +1,13 @@
+<%= helpers.form_with url: @url, method: :post do |f| %>
+  <%= f.hidden_field :profile_id, value: @profile.id %>
+  <button type="submit" class="picker-card">
+    <div class="picker-avatar" style="background: <%= palette[:fill] %>; border-color: <%= palette[:ring] %>;">
+      <span style="color: <%= palette[:ink] %>"><%= initial %></span>
+    </div>
+    <div class="picker-card-body">
+      <p class="picker-name"><%= @profile.name %></p>
+      <% if subtitle %><p class="picker-subtitle"><%= subtitle %></p><% end %>
+      <span class="chip chip-sm <%= chip_class %>"><%= chip_label %></span>
+    </div>
+  </button>
+<% end %>

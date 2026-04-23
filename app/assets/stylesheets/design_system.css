@@ -74,8 +74,18 @@
   --r-featured: 28px;
   --r-full: 999px;
 
-  --font-display: 'Fraunces', 'Nunito', serif;
-  --font-body: 'Nunito', system-ui, sans-serif;
+  --font-display: 'Fredoka', 'Inter', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --shape-warm-1: #ffe0b3;
+  --shape-warm-2: #ffcad4;
+  --shape-warm-3: #e0ccff;
+  --shape-cool-1: #c2e7ff;
+  --shape-cool-2: #dccfff;
+  --shape-cool-3: #c2f0dd;
+  --shape-blue-1: #c7ddff;
+  --shape-blue-2: #ffd6e6;
+  --shape-blue-3: #c2f0dd;
 
   --space-1: 4px;
   --space-2: 8px;
@@ -369,7 +379,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   padding: 4px 10px;
   border-radius: var(--r-full);
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 11px;
   letter-spacing: 0.08em;
 }
@@ -390,7 +400,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   font-size: 10px;
   padding: 3px 9px;
   letter-spacing: 0.12em;
-  font-weight: 900;
+  font-weight: 600;
   border-radius: var(--r-full);
 }
 
@@ -843,6 +853,18 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   }
 }
 
+.brand-mark {
+  padding: 0 var(--space-4) var(--space-4);
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: var(--space-3);
+}
+
+.brand-mark .row {
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
 .ghost-add-card {
   display: flex;
   flex-direction: column;
@@ -861,4 +883,147 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 .ghost-add-card:hover {
   border-color: var(--primary);
   color: var(--primary);
+}
+
+/* ── Picker (profile select screen) ── */
+.picker-card {
+  background: var(--surface);
+  border: none;
+  border-radius: var(--r-md);
+  padding: 20px 24px;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  font-family: var(--font-body);
+  color: var(--text);
+  text-decoration: none;
+  text-align: left;
+  height: 100%;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.picker-card:hover {
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-2px);
+}
+
+.picker-avatar {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.picker-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.picker-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  margin: 0;
+}
+
+.picker-subtitle {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.picker-card .chip { margin-top: 4px; }
+
+.picker-ghost-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  border: 2px dashed var(--hairline);
+  border-radius: var(--r-md);
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  height: 100%;
+  transition: border-color 0.15s, color 0.15s;
+}
+.picker-ghost-card:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.picker-ghost-card .picker-avatar {
+  background: var(--surface-2) !important;
+  border-color: var(--hairline) !important;
+  color: var(--text-soft);
+  font-size: 1.5rem;
+}
+
+.picker-screen {
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-deep);
+}
+
+.picker-wrap {
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .picker-wrap { max-width: 768px; }
+}
+
+.picker-heading {
+  font-size: 28px;
+  margin: 16px 0 8px;
+}
+
+.picker-lead {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.picker-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 32px;
+  width: 100%;
+  text-align: left;
+  align-items: stretch;
+}
+@media (min-width: 640px) {
+  .picker-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.picker-grid > form {
+  height: 100%;
+}
+
+.picker-footer-link {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  margin-top: 24px;
 }

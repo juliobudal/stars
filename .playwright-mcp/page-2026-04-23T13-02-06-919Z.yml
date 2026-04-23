@@ -1,0 +1,93 @@
+- generic [active] [ref=e1]:
+  - navigation "Principal" [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 
+      - generic [ref=e6]:
+        - generic [ref=e7]: LittleStars
+        - text: Estrelas Incríveis 2 pais · 3 filhos
+    - generic [ref=e8]:
+      - link "Início" [ref=e9] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e10]: 
+        - generic [ref=e11]: Início
+      - link "Filhos" [ref=e12] [cursor=pointer]:
+        - /url: /parent/profiles
+        - generic [ref=e13]: 
+        - generic [ref=e14]: Filhos
+      - link "Missões" [ref=e15] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e16]: 
+        - generic [ref=e17]: Missões
+      - link "Prêmios" [ref=e18] [cursor=pointer]:
+        - /url: /parent/rewards
+        - generic [ref=e19]: 
+        - generic [ref=e20]: Prêmios
+      - link "Aprovações 1" [ref=e21] [cursor=pointer]:
+        - /url: /parent/approvals
+        - generic [ref=e22]: 
+        - generic [ref=e23]: Aprovações
+        - generic [ref=e24]: "1"
+      - link "Configurações" [ref=e25] [cursor=pointer]:
+        - /url: /parent/settings
+        - generic [ref=e26]: 
+        - generic [ref=e27]: Configurações
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - img [ref=e30]
+        - generic [ref=e34]:
+          - generic [ref=e35]: Mamãe
+          - generic [ref=e36]: Administrador(a)
+      - button "Sair" [ref=e38] [cursor=pointer]:
+        - generic [ref=e39]: 
+        - generic [ref=e40]: Sair
+  - text:    
+  - generic [ref=e42]:
+    - generic [ref=e43]:
+      - generic [ref=e44]:
+        - link [ref=e45] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e46]: 
+        - generic [ref=e47]:
+          - heading "Crianças" [level=2] [ref=e48]
+          - generic [ref=e49]: Gerencie perfis e saldos
+      - link "Adicionar" [ref=e51] [cursor=pointer]:
+        - /url: /parent/profiles/new
+        - generic [ref=e52]: 
+        - text: Adicionar
+    - generic [ref=e53]:
+      - link "Lila 390 9 missões no total" [ref=e54] [cursor=pointer]:
+        - /url: /parent/profiles/17/edit
+        - generic [ref=e55]:
+          - generic [ref=e57]: 
+          - generic [ref=e58]:
+            - generic [ref=e59]: Lila
+            - generic [ref=e60]:
+              - generic [ref=e61]:
+                - generic [ref=e62]: 
+                - text: "390"
+              - generic [ref=e63]: 9 missões no total
+          - generic [ref=e64]: 
+      - link "Theo 180 7 missões no total" [ref=e65] [cursor=pointer]:
+        - /url: /parent/profiles/18/edit
+        - generic [ref=e66]:
+          - generic [ref=e68]: 
+          - generic [ref=e69]:
+            - generic [ref=e70]: Theo
+            - generic [ref=e71]:
+              - generic [ref=e72]:
+                - generic [ref=e73]: 
+                - text: "180"
+              - generic [ref=e74]: 7 missões no total
+          - generic [ref=e75]: 
+      - link "Zoe 520 6 missões no total" [ref=e76] [cursor=pointer]:
+        - /url: /parent/profiles/19/edit
+        - generic [ref=e77]:
+          - generic [ref=e79]: 
+          - generic [ref=e80]:
+            - generic [ref=e81]: Zoe
+            - generic [ref=e82]:
+              - generic [ref=e83]:
+                - generic [ref=e84]: 
+                - text: "520"
+              - generic [ref=e85]: 6 missões no total
+          - generic [ref=e86]: 

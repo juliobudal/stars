@@ -1,0 +1,21 @@
+<svg width="<%= size %>" height="<%= size %>" viewBox="0 0 100 100" aria-hidden="true">
+  <circle cx="50" cy="50" r="46" fill="<%= fill %>" stroke="<%= ring %>" stroke-width="4"/>
+  <% case face %>
+  <% when "adult" %>
+    <circle cx="50" cy="42" r="11" fill="<%= ring %>"/>
+    <path d="M26 78 Q50 58 74 78 L74 84 Q50 70 26 84 Z" fill="<%= ring %>"/>
+  <% when "wink" %>
+    <path d="M34 44 Q38 40 42 44" stroke="<%= ink %>" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <circle cx="62" cy="44" r="3.2" fill="<%= ink %>"/>
+    <path d="M36 58 Q50 72 64 58" stroke="<%= ink %>" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <% when "tongue" %>
+    <path d="M34 44 L42 44" stroke="<%= ink %>" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M58 44 L66 44" stroke="<%= ink %>" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M40 58 Q50 68 60 58 L60 64 Q55 70 50 70 Q45 70 40 64 Z" fill="<%= ink %>"/>
+    <path d="M50 62 L50 68" stroke="#FF6F8A" stroke-width="2"/>
+  <% else %>
+    <circle cx="38" cy="44" r="3.2" fill="<%= ink %>"/>
+    <circle cx="62" cy="44" r="3.2" fill="<%= ink %>"/>
+    <path d="M36 58 Q50 72 64 58" stroke="<%= ink %>" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <% end %>
+</svg>

@@ -7,14 +7,6 @@
 %>
 
 <nav class="side-nav">
-  <%# Brand mark %>
-  <div style="padding: 0 var(--space-4) var(--space-4); border-bottom: 1px solid var(--hairline); margin-bottom: var(--space-3);">
-    <div class="row" style="gap: 10px; align-items: center;">
-      <%= render Ui::LogoMark::Component.new(size: 24) %>
-      <span class="h-display" style="font-size: 20px; font-style: normal; color: var(--text);">LittleStars</span>
-    </div>
-  </div>
-
   <% nav_items.each do |item| %>
     <% active = current_page?(item[:path]) %>
     <%= link_to item[:path], class: "nav-item #{active ? 'active' : ''}", title: item[:label] do %>

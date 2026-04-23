@@ -1,0 +1,110 @@
+- generic [active] [ref=e1]:
+  - navigation "Principal" [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 
+      - generic [ref=e6]:
+        - generic [ref=e7]: LittleStars
+        - text: Estrelas Incríveis
+    - generic [ref=e8]:
+      - link "Início" [ref=e9] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e10]: 
+        - generic [ref=e11]: Início
+      - link "Filhos" [ref=e12] [cursor=pointer]:
+        - /url: /parent/profiles
+        - generic [ref=e13]: 
+        - generic [ref=e14]: Filhos
+      - link "Missões" [ref=e15] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e16]: 
+        - generic [ref=e17]: Missões
+      - link "Prêmios" [ref=e18] [cursor=pointer]:
+        - /url: /parent/rewards
+        - generic [ref=e19]: 
+        - generic [ref=e20]: Prêmios
+      - link "Aprovações 1" [ref=e21] [cursor=pointer]:
+        - /url: /parent/approvals
+        - generic [ref=e22]: 
+        - generic [ref=e23]: Aprovações
+        - generic [ref=e24]: "1"
+      - link "Configurações" [ref=e25] [cursor=pointer]:
+        - /url: /parent/settings
+        - generic [ref=e26]: 
+        - generic [ref=e27]: Configurações
+    - button "Sair" [ref=e30] [cursor=pointer]:
+      - generic [ref=e31]: 
+      - generic [ref=e32]: Sair
+  - text:    
+  - generic [ref=e34]:
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - generic [ref=e38]: 
+        - generic [ref=e39]:
+          - generic [ref=e40]: Olá,
+          - generic [ref=e41]: Mamãe ✨
+      - button [ref=e43] [cursor=pointer]:
+        - generic [ref=e44]: 
+    - generic [ref=e45]:
+      - generic [ref=e47]: 
+      - generic [ref=e48]:
+        - generic [ref=e49]: 1 aprovações aguardando
+        - generic [ref=e50]: Libere as estrelinhas dos seus filhos!
+      - link "Ver →" [ref=e51] [cursor=pointer]:
+        - /url: /parent/approvals
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e55]: 
+        - generic [ref=e56]: "1090"
+        - generic [ref=e57]: Estrelas em circulação
+      - generic [ref=e58]:
+        - generic [ref=e60]: 
+        - generic [ref=e61]: "21"
+        - generic [ref=e62]: Missões ativas
+      - generic [ref=e63]:
+        - generic [ref=e65]: 
+        - generic [ref=e66]: "5"
+        - generic [ref=e67]: Prêmios no catálogo
+      - generic [ref=e68]:
+        - generic [ref=e70]: 
+        - generic [ref=e71]: "3"
+        - generic [ref=e72]: Crianças ativas
+    - generic [ref=e73]:
+      - heading "Visão Geral" [level=3] [ref=e74]
+      - generic [ref=e75]:
+        - generic [ref=e76]:
+          - generic [ref=e77]:
+            - img [ref=e78]
+            - generic [ref=e83]:
+              - generic [ref=e84]: Lila
+              - generic [ref=e85]: 🔥 0 dias seguidos
+          - generic [ref=e87]:
+            - generic [ref=e88]: Saldo
+            - generic [ref=e89]: ⭐ 390
+        - generic [ref=e90]:
+          - generic [ref=e91]:
+            - img [ref=e92]
+            - generic [ref=e97]:
+              - generic [ref=e98]: Theo
+              - generic [ref=e99]: 🔥 0 dias seguidos
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - generic [ref=e102]: Saldo
+              - generic [ref=e103]: ⭐ 180
+            - generic [ref=e104]: ⏱ 1 aguardando você
+        - generic [ref=e105]:
+          - generic [ref=e106]:
+            - img [ref=e107]
+            - generic [ref=e112]:
+              - generic [ref=e113]: Zoe
+              - generic [ref=e114]: 🔥 0 dias seguidos
+          - generic [ref=e116]:
+            - generic [ref=e117]: Saldo
+            - generic [ref=e118]: ⭐ 520
+    - generic [ref=e119]:
+      - heading "Atividade recente" [level=3] [ref=e120]
+      - generic [ref=e122]:
+        - img [ref=e123]
+        - generic [ref=e128]:
+          - generic [ref=e129]: "Lila · Missão Concluída: Fazer a lição de casa"
+          - generic [ref=e130]: about 1 hour atrás
+        - generic [ref=e131]: +50 ⭐

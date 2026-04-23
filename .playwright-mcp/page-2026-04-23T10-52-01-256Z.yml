@@ -1,0 +1,33 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - link [ref=e6] [cursor=pointer]:
+      - /url: /parent
+      - generic [ref=e7]: 
+    - generic [ref=e8]:
+      - heading "Aprovações" [level=2] [ref=e9]
+      - generic [ref=e10]: 1 pendências
+  - generic [ref=e12]:
+    - generic [ref=e13]:
+      - button "Missões 1" [ref=e14] [cursor=pointer]:
+        - generic [ref=e15]: 
+        - text: Missões
+        - generic [ref=e16]: "1"
+      - button "Prêmios 0" [ref=e17] [cursor=pointer]:
+        - generic [ref=e18]: 
+        - text: Prêmios
+        - generic [ref=e19]: "0"
+    - generic [ref=e22]:
+      - generic [ref=e24]: 
+      - generic [ref=e25]:
+        - generic [ref=e26]: Arrumar a cama
+        - generic [ref=e27]:
+          - generic [ref=e29]: 
+          - generic [ref=e30]: Theo
+          - generic [ref=e31]:
+            - generic [ref=e32]: 
+            - text: "+20"
+      - generic [ref=e33]:
+        - button "Rejeitar" [ref=e35] [cursor=pointer]:
+          - generic [ref=e36]: 
+        - button "Aprovar" [ref=e38] [cursor=pointer]:
+          - generic [ref=e39]: 

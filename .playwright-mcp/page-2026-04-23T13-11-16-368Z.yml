@@ -1,0 +1,142 @@
+- generic [active] [ref=e76]:
+  - navigation "Principal" [ref=e77]:
+    - generic [ref=e79]:
+      - generic [ref=e80]: 
+      - generic [ref=e81]:
+        - generic [ref=e82]: LittleStars
+        - text: Estrelas Incríveis 2 pais · 3 filhos
+    - generic [ref=e83]:
+      - link "Início" [ref=e84] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e85]: 
+        - generic [ref=e86]: Início
+      - link "Filhos" [ref=e87] [cursor=pointer]:
+        - /url: /parent/profiles
+        - generic [ref=e88]: 
+        - generic [ref=e89]: Filhos
+      - link "Missões" [ref=e90] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e91]: 
+        - generic [ref=e92]: Missões
+      - link "Prêmios" [ref=e93] [cursor=pointer]:
+        - /url: /parent/rewards
+        - generic [ref=e94]: 
+        - generic [ref=e95]: Prêmios
+      - link "Aprovações 1" [ref=e96] [cursor=pointer]:
+        - /url: /parent/approvals
+        - generic [ref=e97]: 
+        - generic [ref=e98]: Aprovações
+        - generic [ref=e99]: "1"
+      - link "Configurações" [ref=e100] [cursor=pointer]:
+        - /url: /parent/settings
+        - generic [ref=e101]: 
+        - generic [ref=e102]: Configurações
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - img [ref=e105]
+        - generic [ref=e109]:
+          - generic [ref=e110]: Mamãe
+          - generic [ref=e111]: Administrador(a)
+      - button "Sair" [ref=e113] [cursor=pointer]:
+        - generic [ref=e114]: 
+        - generic [ref=e115]: Sair
+  - text:    
+  - generic [ref=e117]:
+    - generic [ref=e118]:
+      - generic [ref=e119]:
+        - heading "Olá, Mamãe ✨" [level=1] [ref=e120]
+        - paragraph [ref=e121]:
+          - text: Você tem
+          - strong [ref=e122]: "1"
+          - text: aprovações aguardando e
+          - strong [ref=e123]: "3"
+          - text: crianças ativas.
+      - link "+ Nova missão" [ref=e124] [cursor=pointer]:
+        - /url: /parent/global_tasks/new
+    - generic [ref=e125]:
+      - generic [ref=e127]: 
+      - generic [ref=e128]:
+        - generic [ref=e129]: 1 aprovações aguardando
+        - generic [ref=e130]: 20 missões · 5 prêmios
+      - link "Ver aprovações →" [ref=e131] [cursor=pointer]:
+        - /url: /parent/approvals
+    - generic [ref=e132]:
+      - generic [ref=e133]:
+        - generic [ref=e135]: 
+        - generic [ref=e136]: "1090"
+        - generic [ref=e137]: Estrelas em circulação
+      - generic [ref=e138]:
+        - generic [ref=e140]: 
+        - generic [ref=e141]: "20"
+        - generic [ref=e142]: Missões ativas
+      - generic [ref=e143]:
+        - generic [ref=e145]: 
+        - generic [ref=e146]: "5"
+        - generic [ref=e147]: Prêmios no catálogo
+      - generic [ref=e148]:
+        - generic [ref=e150]: 
+        - generic [ref=e151]: "3"
+        - generic [ref=e152]: Crianças ativas
+    - generic [ref=e153]:
+      - generic [ref=e154]:
+        - heading "Suas crianças" [level=2] [ref=e155]
+        - link "+ Adicionar filho" [ref=e156] [cursor=pointer]:
+          - /url: /parent/profiles
+      - generic [ref=e157]:
+        - generic [ref=e158]:
+          - generic [ref=e159]:
+            - img [ref=e160]
+            - generic [ref=e165]:
+              - generic [ref=e166]: Lila
+              - generic [ref=e167]: 🔥 0 dias seguidos
+          - generic [ref=e168]:
+            - generic [ref=e169]:
+              - generic [ref=e170]: Saldo
+              - generic [ref=e171]: ⭐ 390
+            - generic [ref=e172]:
+              - generic [ref=e173]: Missões ativas
+              - generic [ref=e174]: "8"
+            - link "Editar perfil →" [ref=e175] [cursor=pointer]:
+              - /url: /parent/profiles/17/edit
+        - generic [ref=e176]:
+          - generic [ref=e177]:
+            - img [ref=e178]
+            - generic [ref=e183]:
+              - generic [ref=e184]: Theo
+              - generic [ref=e185]: 🔥 0 dias seguidos
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - generic [ref=e188]: Saldo
+              - generic [ref=e189]: ⭐ 180
+            - generic [ref=e190]:
+              - generic [ref=e191]: Missões ativas
+              - generic [ref=e192]: "6"
+            - generic [ref=e193]: ⏱ 1 aguardando você
+            - link "Editar perfil →" [ref=e194] [cursor=pointer]:
+              - /url: /parent/profiles/18/edit
+        - generic [ref=e195]:
+          - generic [ref=e196]:
+            - img [ref=e197]
+            - generic [ref=e202]:
+              - generic [ref=e203]: Zoe
+              - generic [ref=e204]: 🔥 0 dias seguidos
+          - generic [ref=e205]:
+            - generic [ref=e206]:
+              - generic [ref=e207]: Saldo
+              - generic [ref=e208]: ⭐ 520
+            - generic [ref=e209]:
+              - generic [ref=e210]: Missões ativas
+              - generic [ref=e211]: "6"
+            - link "Editar perfil →" [ref=e212] [cursor=pointer]:
+              - /url: /parent/profiles/19/edit
+    - generic [ref=e213]:
+      - generic [ref=e214]:
+        - heading "Atividade recente" [level=2] [ref=e215]
+        - link "Ver tudo" [ref=e216] [cursor=pointer]:
+          - /url: /parent/activity_logs
+      - generic [ref=e218]:
+        - img [ref=e219]
+        - generic [ref=e224]:
+          - generic [ref=e225]: "Lila · Missão Concluída: Fazer a lição de casa"
+          - generic [ref=e226]: about 3 hours atrás
+        - generic [ref=e227]: +50 ⭐

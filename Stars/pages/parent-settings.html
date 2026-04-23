@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Configurações — LittleStars Pais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fraunces:ital,opsz,wght@1,9..144,600;1,9..144,700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" crossorigin="anonymous"></script>
+  <style>
+    body { font-family: 'Nunito', system-ui, sans-serif; }
+    .font-display { font-family: 'Fraunces', Georgia, serif; font-style: italic; }
+  </style>
+</head>
+<body class="bg-[#F8F5FF]">
+
+<div class="flex min-h-screen">
+
+  <!-- Mobile overlay backdrop -->
+  <div id="sidebar-backdrop" class="hidden fixed inset-0 bg-black/30 z-20 md:hidden" onclick="document.getElementById('sidebar').classList.add('-translate-x-full');this.classList.add('hidden')"></div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="w-64 shrink-0 flex flex-col fixed inset-y-0 left-0 z-30 -translate-x-full md:translate-x-0 md:static md:z-auto transition-transform duration-200 bg-white border-r border-[rgba(44,42,58,.08)]" style="box-shadow:2px 0 12px rgba(44,42,58,.04)">
+    <div class="p-6 pb-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-[12px] bg-[#A78BFA] flex items-center justify-center">
+          <i data-lucide="star" class="w-5 h-5 text-white"></i>
+        </div>
+        <div>
+          <p class="font-bold text-[#2B2A3A] text-base">LittleStars</p>
+          <p class="text-[#A09EAE] text-[10px] font-bold uppercase tracking-wide">Modo Pais</p>
+        </div>
+      </div>
+      <button class="mt-4 w-full flex items-center justify-between bg-[#F8F5FF] rounded-[14px] px-4 py-2.5">
+        <span class="text-[#2B2A3A] text-sm font-semibold">Família Budal</span>
+        <i data-lucide="chevrons-up-down" class="w-4 h-4 text-[#A09EAE]"></i>
+      </button>
+    </div>
+    <nav class="flex-1 px-4 pb-4 space-y-1">
+      <a href="parent-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[14px] hover:bg-[#F8F5FF] text-[#6A6878]">
+        <i data-lucide="layout-dashboard" class="w-5 h-5 text-[#A09EAE]"></i>
+        <span class="text-sm font-semibold">Dashboard</span>
+      </a>
+      <a href="parent-kids.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[14px] hover:bg-[#F8F5FF] text-[#6A6878]">
+        <i data-lucide="users" class="w-5 h-5 text-[#A09EAE]"></i>
+        <span class="text-sm font-semibold">Filhos</span>
+      </a>
+      <a href="parent-missions.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[14px] hover:bg-[#F8F5FF] text-[#6A6878]">
+        <i data-lucide="target" class="w-5 h-5 text-[#A09EAE]"></i>
+        <span class="text-sm font-semibold">Missões</span>
+      </a>
+      <a href="parent-rewards.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[14px] hover:bg-[#F8F5FF] text-[#6A6878]">
+        <i data-lucide="gift" class="w-5 h-5 text-[#A09EAE]"></i>
+        <span class="text-sm font-semibold">Prêmios</span>
+      </a>
+      <!-- APPROVALS — inactive -->
+      <a href="parent-approvals.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[14px] hover:bg-[#F8F5FF] text-[#6A6878]">
+        <i data-lucide="check-circle" class="w-5 h-5 text-[#A09EAE]"></i>
+        <span class="text-sm font-semibold text-[#6A6878]">Aprovações</span>
+        <span class="ml-auto bg-[#EC4899] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">4</span>
+      </a>
+      <!-- SETTINGS — active -->
+      <a href="parent-settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[14px] bg-[#F0EAFF]">
+        <i data-lucide="settings" class="w-5 h-5 text-[#A78BFA]"></i>
+        <span class="text-sm font-bold text-[#A78BFA]">Configurações</span>
+      </a>
+    </nav>
+    <div class="p-4 border-t border-[rgba(44,42,58,.06)]">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm" style="background:#FCE7F3;border:2px solid #F9A8D4">R</div>
+        <div class="flex-1 min-w-0">
+          <p class="text-[#2B2A3A] text-sm font-semibold truncate">Renata</p>
+          <p class="text-[#A09EAE] text-xs">Responsável</p>
+        </div>
+        <button><i data-lucide="log-out" class="w-4 h-4 text-[#A09EAE]"></i></button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="flex-1 overflow-auto">
+
+    <!-- Mobile header bar -->
+    <div class="md:hidden flex items-center justify-between p-4 bg-white border-b border-[rgba(44,42,58,.08)] sticky top-0 z-20">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-[10px] bg-[#A78BFA] flex items-center justify-center">
+          <i data-lucide="star" class="w-4 h-4 text-white"></i>
+        </div>
+        <span class="font-bold text-[#2B2A3A]">LittleStars</span>
+      </div>
+      <button id="menu-toggle" class="w-9 h-9 rounded-[12px] bg-[#F8F5FF] flex items-center justify-center">
+        <i data-lucide="menu" class="w-5 h-5 text-[#2B2A3A]"></i>
+      </button>
+    </div>
+
+    <div class="p-4 md:p-8">
+
+      <!-- Section header -->
+      <div class="mb-6">
+        <h1 class="font-display text-3xl text-[#2B2A3A]">Configurações</h1>
+        <p class="text-[#6A6878] mt-1">Família Budal</p>
+      </div>
+
+      <!-- 2-column grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+
+        <!-- Card 1: Família -->
+        <div class="bg-white rounded-[22px] p-6" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 10px 24px rgba(44,42,58,.06)">
+          <h2 class="font-bold text-[#2B2A3A] mb-5 flex items-center gap-2">
+            <i data-lucide="home" class="w-5 h-5 text-[#A78BFA]"></i>
+            Família
+          </h2>
+          <div class="space-y-4">
+            <!-- Nome da família -->
+            <div>
+              <label class="text-[#6A6878] text-xs font-semibold uppercase tracking-wide block mb-1.5">Nome da família</label>
+              <input type="text" value="Família Budal" class="w-full px-4 py-2.5 rounded-[12px] border border-[rgba(44,42,58,.12)] text-[#2B2A3A] font-semibold bg-[#F8F5FF] outline-none focus:border-[#A78BFA]" />
+            </div>
+            <!-- Idioma -->
+            <div>
+              <label class="text-[#6A6878] text-xs font-semibold uppercase tracking-wide block mb-1.5">Idioma</label>
+              <select class="w-full px-4 py-2.5 rounded-[12px] border border-[rgba(44,42,58,.12)] text-[#2B2A3A] bg-[#F8F5FF] outline-none focus:border-[#A78BFA]">
+                <option selected>Português (BR)</option>
+                <option>English (US)</option>
+                <option>Español</option>
+              </select>
+            </div>
+            <!-- Fuso horário -->
+            <div>
+              <label class="text-[#6A6878] text-xs font-semibold uppercase tracking-wide block mb-1.5">Fuso horário</label>
+              <select class="w-full px-4 py-2.5 rounded-[12px] border border-[rgba(44,42,58,.12)] text-[#2B2A3A] bg-[#F8F5FF] outline-none focus:border-[#A78BFA]">
+                <option selected>America/Sao_Paulo (GMT-3)</option>
+                <option>America/New_York (GMT-5)</option>
+              </select>
+            </div>
+            <!-- Início da semana -->
+            <div>
+              <label class="text-[#6A6878] text-xs font-semibold uppercase tracking-wide block mb-1.5">Início da semana</label>
+              <div class="flex gap-2">
+                <button class="px-4 py-2 rounded-[10px] bg-[#A78BFA] text-white font-bold text-sm">Segunda</button>
+                <button class="px-4 py-2 rounded-[10px] bg-[#F8F5FF] text-[#6A6878] font-semibold text-sm">Domingo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Responsáveis -->
+        <div class="bg-white rounded-[22px] p-6" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 10px 24px rgba(44,42,58,.06)">
+          <h2 class="font-bold text-[#2B2A3A] mb-5 flex items-center gap-2">
+            <i data-lucide="shield" class="w-5 h-5 text-[#A78BFA]"></i>
+            Responsáveis
+          </h2>
+          <div class="space-y-3 mb-5">
+            <!-- Parent: Renata -->
+            <div class="flex items-center gap-3 p-3 bg-[#F8F5FF] rounded-[14px]">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold shrink-0" style="background:#FCE7F3;border:2px solid #F9A8D4">R</div>
+              <div class="flex-1 min-w-0">
+                <p class="text-[#2B2A3A] font-semibold">Renata Budal</p>
+                <p class="text-[#A09EAE] text-xs">renata@email.com · <span class="text-[#A78BFA] font-semibold">Admin</span></p>
+              </div>
+              <button class="w-8 h-8 rounded-[10px] bg-white flex items-center justify-center shrink-0">
+                <i data-lucide="pencil" class="w-4 h-4 text-[#6A6878]"></i>
+              </button>
+            </div>
+            <!-- Parent: João -->
+            <div class="flex items-center gap-3 p-3 bg-[#F8F5FF] rounded-[14px]">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold shrink-0" style="background:#DBEAFE;border:2px solid #93C5FD">J</div>
+              <div class="flex-1 min-w-0">
+                <p class="text-[#2B2A3A] font-semibold">João Budal</p>
+                <p class="text-[#A09EAE] text-xs">joao@email.com · <span class="text-[#6A6878] font-semibold">Membro</span></p>
+              </div>
+              <button class="w-8 h-8 rounded-[10px] bg-white flex items-center justify-center shrink-0">
+                <i data-lucide="pencil" class="w-4 h-4 text-[#6A6878]"></i>
+              </button>
+            </div>
+          </div>
+          <button class="w-full border-2 border-dashed border-[rgba(44,42,58,.15)] rounded-[14px] py-3 text-[#A09EAE] font-semibold text-sm flex items-center justify-center gap-2 hover:border-[#A78BFA] hover:text-[#A78BFA] transition-colors">
+            <i data-lucide="user-plus" class="w-4 h-4"></i>
+            Convidar responsável
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Full-width card: Regras do sistema -->
+      <div class="bg-white rounded-[22px] p-6" style="box-shadow:0 2px 0 rgba(44,42,58,.04),0 10px 24px rgba(44,42,58,.06)">
+        <h2 class="font-bold text-[#2B2A3A] mb-5 flex items-center gap-2">
+          <i data-lucide="sliders-horizontal" class="w-5 h-5 text-[#A78BFA]"></i>
+          Regras do sistema
+        </h2>
+        <div class="space-y-5">
+
+          <!-- Toggle: Exigir foto — ON -->
+          <div class="flex items-center justify-between gap-4">
+            <div class="min-w-0">
+              <p class="font-semibold text-[#2B2A3A]">Exigir foto como prova</p>
+              <p class="text-[#A09EAE] text-sm">Crianças devem enviar foto para completar missão</p>
+            </div>
+            <div class="w-11 h-6 rounded-full bg-[#A78BFA] relative cursor-pointer shrink-0">
+              <div class="absolute right-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow-sm"></div>
+            </div>
+          </div>
+
+          <hr class="border-[rgba(44,42,58,.06)]" />
+
+          <!-- Toggle: Decaimento — OFF -->
+          <div class="flex items-center justify-between gap-4">
+            <div class="min-w-0">
+              <p class="font-semibold text-[#2B2A3A]">Decaimento de estrelas</p>
+              <p class="text-[#A09EAE] text-sm">Estrelas não usadas decaem com o tempo</p>
+            </div>
+            <div class="w-11 h-6 rounded-full bg-[#E5E7EB] relative cursor-pointer shrink-0">
+              <div class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow-sm"></div>
+            </div>
+          </div>
+
+          <hr class="border-[rgba(44,42,58,.06)]" />
+
+          <!-- Toggle: Saldo negativo — OFF -->
+          <div class="flex items-center justify-between gap-4">
+            <div class="min-w-0">
+              <p class="font-semibold text-[#2B2A3A]">Permitir saldo negativo</p>
+              <p class="text-[#A09EAE] text-sm">Crianças podem resgatar prêmios mesmo sem saldo</p>
+            </div>
+            <div class="w-11 h-6 rounded-full bg-[#E5E7EB] relative cursor-pointer shrink-0">
+              <div class="absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow-sm"></div>
+            </div>
+          </div>
+
+          <hr class="border-[rgba(44,42,58,.06)]" />
+
+          <!-- Select: Aprovação automática -->
+          <div class="flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row">
+            <div class="min-w-0">
+              <p class="font-semibold text-[#2B2A3A]">Aprovação automática</p>
+              <p class="text-[#A09EAE] text-sm">Aprovar automaticamente missões abaixo de X estrelas</p>
+            </div>
+            <select class="w-full sm:w-auto px-4 py-2 rounded-[12px] border border-[rgba(44,42,58,.12)] text-[#2B2A3A] font-semibold bg-[#F8F5FF] shrink-0 outline-none focus:border-[#A78BFA]">
+              <option>Desligado</option>
+              <option>≤ 5 estrelas</option>
+              <option>≤ 10 estrelas</option>
+              <option>≤ 15 estrelas</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>lucide.createIcons();</script>
+<script>
+  const btn = document.getElementById('menu-toggle');
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  if (btn && sidebar) {
+    btn.addEventListener('click', () => {
+      sidebar.classList.toggle('-translate-x-full');
+      backdrop.classList.toggle('hidden');
+    });
+  }
+</script>
+</body>
+</html>

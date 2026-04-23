@@ -1,0 +1,72 @@
+- generic [active] [ref=e1]:
+  - navigation "Principal" [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 
+      - generic [ref=e6]:
+        - generic [ref=e7]: LittleStars
+        - text: Estrelas Incríveis 2 pais · 3 filhos
+    - generic [ref=e8]:
+      - link "Início" [ref=e9] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e10]: 
+        - generic [ref=e11]: Início
+      - link "Filhos" [ref=e12] [cursor=pointer]:
+        - /url: /parent/profiles
+        - generic [ref=e13]: 
+        - generic [ref=e14]: Filhos
+      - link "Missões" [ref=e15] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e16]: 
+        - generic [ref=e17]: Missões
+      - link "Prêmios" [ref=e18] [cursor=pointer]:
+        - /url: /parent/rewards
+        - generic [ref=e19]: 
+        - generic [ref=e20]: Prêmios
+      - link "Aprovações 1" [ref=e21] [cursor=pointer]:
+        - /url: /parent/approvals
+        - generic [ref=e22]: 
+        - generic [ref=e23]: Aprovações
+        - generic [ref=e24]: "1"
+      - link "Configurações" [ref=e25] [cursor=pointer]:
+        - /url: /parent/settings
+        - generic [ref=e26]: 
+        - generic [ref=e27]: Configurações
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - img [ref=e30]
+        - generic [ref=e34]:
+          - generic [ref=e35]: Mamãe
+          - generic [ref=e36]: Administrador(a)
+      - button "Sair" [ref=e38] [cursor=pointer]:
+        - generic [ref=e39]: 
+        - generic [ref=e40]: Sair
+  - text:    
+  - generic [ref=e42]:
+    - generic [ref=e44]:
+      - link [ref=e45] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e46]: 
+      - generic [ref=e47]:
+        - heading "Aprovações" [level=2] [ref=e48]
+        - generic [ref=e49]: 1 pendências
+    - generic [ref=e51]:
+      - generic [ref=e52]:
+        - button "Missões 1" [ref=e53] [cursor=pointer]:
+          - generic [ref=e54]: 
+          - text: Missões
+          - generic [ref=e55]: "1"
+        - button "Prêmios 0" [ref=e56] [cursor=pointer]:
+          - generic [ref=e57]: 
+          - text: Prêmios
+          - generic [ref=e58]: "0"
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - img [ref=e62]
+          - generic [ref=e67]:
+            - generic [ref=e68]:
+              - generic [ref=e69]: Arrumar a cama
+              - generic [ref=e70]: Theo
+            - text: +20 ★
+        - generic [ref=e71]:
+          - button "Rejeitar" [ref=e73] [cursor=pointer]
+          - button "Aprovar" [ref=e75] [cursor=pointer]

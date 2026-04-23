@@ -1,0 +1,35 @@
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: 
+      - generic [ref=e8]: 
+    - generic [ref=e9]: LittleStars
+    - heading "Quem vai brilhar hoje?" [level=1] [ref=e10]
+    - paragraph [ref=e11]: Escolha seu perfil para começar a aventura
+  - generic [ref=e12]:
+    - button "Mamãe Responsável" [ref=e14] [cursor=pointer]:
+      - generic [ref=e16]: 
+      - generic [ref=e17]: Mamãe
+      - generic [ref=e18]: Responsável
+    - button "Papai Responsável" [ref=e20] [cursor=pointer]:
+      - generic [ref=e22]: 
+      - generic [ref=e23]: Papai
+      - generic [ref=e24]: Responsável
+    - button "Lila 340" [ref=e26] [cursor=pointer]:
+      - generic [ref=e28]: 
+      - generic [ref=e29]: Lila
+      - generic [ref=e30]:
+        - generic [ref=e31]: 
+        - text: "340"
+    - button "Theo 180" [ref=e33] [cursor=pointer]:
+      - generic [ref=e35]: 
+      - generic [ref=e36]: Theo
+      - generic [ref=e37]:
+        - generic [ref=e38]: 
+        - text: "180"
+    - button "Zoe 520" [ref=e40] [cursor=pointer]:
+      - generic [ref=e42]: 
+      - generic [ref=e43]: Zoe
+      - generic [ref=e44]:
+        - generic [ref=e45]: 
+        - text: "520"

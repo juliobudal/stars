@@ -1,0 +1,60 @@
+- generic [active] [ref=e1]:
+  - navigation "Principal" [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 
+      - generic [ref=e6]:
+        - generic [ref=e7]: LittleStars
+        - text: Estrelas Incríveis
+    - generic [ref=e8]:
+      - link "Início" [ref=e9] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e10]: 
+        - generic [ref=e11]: Início
+      - link "Aprovações 1" [ref=e12] [cursor=pointer]:
+        - /url: /parent/approvals
+        - generic [ref=e13]: 
+        - generic [ref=e14]: Aprovações
+        - generic [ref=e15]: "1"
+      - link "Missões" [ref=e16] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e17]: 
+        - generic [ref=e18]: Missões
+      - link "Loja" [ref=e19] [cursor=pointer]:
+        - /url: /parent/rewards
+        - generic [ref=e20]: 
+        - generic [ref=e21]: Loja
+      - link "Filhos" [ref=e22] [cursor=pointer]:
+        - /url: /parent/profiles
+        - generic [ref=e23]: 
+        - generic [ref=e24]: Filhos
+    - button "Sair" [ref=e27] [cursor=pointer]:
+      - generic [ref=e28]: 
+      - generic [ref=e29]: Sair
+  - text:    
+  - generic [ref=e31]:
+    - generic [ref=e33]:
+      - link [ref=e34] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e35]: 
+      - generic [ref=e36]:
+        - heading "Extrato" [level=2] [ref=e37]
+        - generic [ref=e38]: Histórico completo da família
+    - generic [ref=e39]:
+      - generic [ref=e41]:
+        - generic [ref=e43]: 
+        - generic [ref=e44]:
+          - generic [ref=e45]: Ganhou
+          - generic [ref=e46]: +50 ⭐
+      - generic [ref=e48]:
+        - generic [ref=e50]: 
+        - generic [ref=e51]:
+          - generic [ref=e52]: Gastou
+          - generic [ref=e53]: −0 ⭐
+    - generic [ref=e56]:
+      - generic [ref=e58]: 
+      - generic [ref=e59]:
+        - generic [ref=e60]: "Missão Concluída: Fazer a lição de casa"
+        - generic [ref=e61]:
+          - generic [ref=e62]: Lila
+          - generic [ref=e63]: 23 APR 10:07
+      - generic [ref=e64]: +50 ⭐

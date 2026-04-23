@@ -5,12 +5,12 @@
 <svg width="<%= size %>" height="<%= size %>" viewBox="0 0 100 100" aria-hidden="true">
   <defs>
     <linearGradient id="<%= gid %>" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#FFD54A"/>
-      <stop offset="1" stop-color="#FFB21E"/>
+      <stop offset="0" style="stop-color: var(--star)"/>
+      <stop offset="1" style="stop-color: var(--star-2)"/>
     </linearGradient>
   </defs>
   <path d="M50 6 L61 35 L92 37 L68 57 L76 88 L50 71 L24 88 L32 57 L8 37 L39 35 Z"
-        fill="url(#<%= gid %>)" stroke="#E89A00" stroke-width="2.5" stroke-linejoin="round"/>
+        fill="url(#<%= gid %>)" style="stroke: var(--star-2);" stroke-width="2.5" stroke-linejoin="round"/>
   <circle cx="36" cy="52" r="4.5" fill="#FF8AA8" opacity="0.7"/>
   <circle cx="64" cy="52" r="4.5" fill="#FF8AA8" opacity="0.7"/>
   <% if wink %>
