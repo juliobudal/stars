@@ -8,7 +8,7 @@ RSpec.describe InvitationMailer, type: :mailer do
     let(:mail) { InvitationMailer.invite(invitation) }
 
     it "delivers to the invitation email" do
-      expect(mail.to).to eq(["newparent@example.com"])
+      expect(mail.to).to eq([ "newparent@example.com" ])
     end
 
     it "has the correct subject" do

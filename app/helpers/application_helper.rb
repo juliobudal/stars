@@ -95,15 +95,15 @@ module ApplicationHelper
     begin
       # Fetch SVG content
       svg_content = LucideRails::IconProvider.icon(lucide_name)
-      
+
       # Encode to Data URI for mask-image
       # We use Base64 to ensure all characters are handled correctly across browsers
       base64_svg = Base64.strict_encode64(svg_content)
       data_uri = "data:image/svg+xml;base64,#{base64_svg}"
-      
+
       style = options[:style] || ""
       style = "#{style}; --svg: url('#{data_uri}')".strip
-      
+
       classes = class_names("icon", "icon-#{name}", options.delete(:class))
       content_tag(:span, nil, class: classes, style: style, **options)
     rescue => e
@@ -112,10 +112,10 @@ module ApplicationHelper
         svg_content = LucideRails::IconProvider.icon("help-circle")
         base64_svg = Base64.strict_encode64(svg_content)
         data_uri = "data:image/svg+xml;base64,#{base64_svg}"
-        
+
         style = options[:style] || ""
         style = "#{style}; --svg: url('#{data_uri}')".strip
-        
+
         classes = class_names("icon", "icon-missing", options.delete(:class))
         content_tag(:span, nil, class: classes, style: style, "data-missing-icon" => name, **options)
       rescue

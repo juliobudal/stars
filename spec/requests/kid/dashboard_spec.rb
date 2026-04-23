@@ -41,7 +41,7 @@ RSpec.describe "Kid::Dashboard", type: :request do
     it "returns 404 when child tries to complete someone else's task" do
       other_child = create(:profile, :child, family: family)
       other_task = create(:profile_task, :pending, profile: other_child, global_task: global_task)
-      
+
       patch complete_kid_mission_path(other_task)
       expect(response).to have_http_status(:not_found)
     end

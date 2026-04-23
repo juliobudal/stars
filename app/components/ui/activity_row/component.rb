@@ -14,11 +14,11 @@ module Ui
           @direction = amt >= 0 ? "earn" : "spend"
           @description = if log.respond_to?(:description) && log.description.present?
                            log.description
-                         elsif log.respond_to?(:title) && log.title.present?
+          elsif log.respond_to?(:title) && log.title.present?
                            log.title
-                         else
+          else
                            log.log_type.to_s.humanize
-                         end
+          end
           @timestamp = log.created_at
         else
           @kid = kid

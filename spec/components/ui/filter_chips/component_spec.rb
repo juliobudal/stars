@@ -20,7 +20,7 @@ RSpec.describe Ui::FilterChips::Component, type: :component do
   it "marks active tab with aria-selected=true" do
     render_inline(described_class.new(
       active: "b",
-      items: [{ id: "a", label: "A" }, { id: "b", label: "B" }]
+      items: [ { id: "a", label: "A" }, { id: "b", label: "B" } ]
     ))
     expect(page).to have_css("button.active[aria-selected='true']", text: "B")
   end

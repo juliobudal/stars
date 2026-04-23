@@ -33,7 +33,7 @@ class Ui::Modal::HeaderComponent < ApplicationComponent
   def classes
     class_names(
       "modal__header",
-      {"modal__header-bordered": @bordered},
+      { "modal__header-bordered": @bordered },
       @options.delete(:class)
     )
   end

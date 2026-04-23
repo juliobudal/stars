@@ -36,9 +36,9 @@ class ProfileTask < ApplicationRecord
     # We pluck family_id from Profile to avoid triggering association load
     family_id = Profile.where(id: profile_id).pluck(:family_id).first
     return unless family_id
-    
+
     count = ProfileTask.joins(:profile).where(profiles: { family_id: family_id }).awaiting_approval.count
-    
+
     broadcast_update_to Family.find(family_id), "approvals",
       target: "pending_approvals_count",
       html: count.to_s

@@ -1,7 +1,7 @@
 class Kid::DashboardController < ApplicationController
   include Authenticatable
   before_action :require_child!
-  layout 'kid'
+  layout "kid"
 
   def index
     ensure_todays_tasks

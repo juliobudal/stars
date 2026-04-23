@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :profile_invitation do
     family
-    association :invited_by, factory: [:profile, :parent]
+    association :invited_by, factory: [ :profile, :parent ]
     sequence(:email) { |n| "invitee#{n}@example.com" }
     expires_at { 7.days.from_now }
 

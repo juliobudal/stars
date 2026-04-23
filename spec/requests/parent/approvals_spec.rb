@@ -30,7 +30,7 @@ RSpec.describe "Parent::Approvals", type: :request do
       expect {
         patch approve_parent_approval_path(profile_task)
       }.to change { child.reload.points }.by(50)
-      
+
       expect(profile_task.reload.status).to eq('approved')
       expect(response).to redirect_to(parent_approvals_path)
     end
@@ -53,7 +53,7 @@ RSpec.describe "Parent::Approvals", type: :request do
     let(:task3) { create(:profile_task, :awaiting_approval, profile: child, global_task: global_task3) }
 
     it "approves all selected tasks and credits points" do
-      ids = [task1.id, task2.id, task3.id]
+      ids = [ task1.id, task2.id, task3.id ]
       expect {
         post bulk_approve_parent_approvals_path, params: { approval_ids: ids }
       }.to change { child.reload.points }.by(100)
@@ -76,7 +76,7 @@ RSpec.describe "Parent::Approvals", type: :request do
       other_gt      = create(:global_task, family: other_family, points: 50)
       other_task    = create(:profile_task, :awaiting_approval, profile: other_child, global_task: other_gt)
 
-      post bulk_approve_parent_approvals_path, params: { approval_ids: [other_task.id] }
+      post bulk_approve_parent_approvals_path, params: { approval_ids: [ other_task.id ] }
 
       expect(other_task.reload.status).to eq("awaiting_approval")
       expect(other_child.reload.points).to eq(0)

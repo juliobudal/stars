@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :destroy], raise: false
+  skip_before_action :verify_authenticity_token, only: [ :create, :destroy ], raise: false
 
   rate_limit to: 10, within: 3.minutes, only: :create, with: -> { head :too_many_requests }
 
