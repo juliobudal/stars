@@ -51,6 +51,56 @@ RSpec.describe Rewards::RedeemService do
       end
     end
 
+    context 'when allow_negative is true and balance stays within max_debt' do
+      let(:family) { create(:family, allow_negative: true, max_debt: 100) }
+      let(:child)  { create(:profile, :child, family: family, points: 10) }
+      let(:reward) { create(:reward, family: family, cost: 50) }
+
+      it 'allows the redeem and results in a negative balance' do
+        result = described_class.new(profile: child, reward: reward).call
+        expect(result.success?).to be true
+        expect(child.reload.points).to eq(-40)
+      end
+    end
+
+    context 'when allow_negative is true and redeem lands exactly at -max_debt' do
+      let(:family) { create(:family, allow_negative: true, max_debt: 100) }
+      let(:child)  { create(:profile, :child, family: family, points: 0) }
+      let(:reward) { create(:reward, family: family, cost: 100) }
+
+      it 'allows the redeem at the exact boundary' do
+        result = described_class.new(profile: child, reward: reward).call
+        expect(result.success?).to be true
+        expect(child.reload.points).to eq(-100)
+      end
+    end
+
+    context 'when allow_negative is true but redeem would exceed max_debt' do
+      let(:family) { create(:family, allow_negative: true, max_debt: 100) }
+      let(:child)  { create(:profile, :child, family: family, points: 10) }
+      let(:reward) { create(:reward, family: family, cost: 500) }
+
+      it 'blocks the redeem and leaves the balance unchanged' do
+        result = described_class.new(profile: child, reward: reward).call
+        expect(result.success?).to be false
+        expect(result.error).to match(/saldo insuficiente/i)
+        expect(child.reload.points).to eq(10)
+      end
+    end
+
+    context 'when allow_negative is false (default)' do
+      let(:family) { create(:family, allow_negative: false) }
+      let(:child)  { create(:profile, :child, family: family, points: 10) }
+      let(:reward) { create(:reward, family: family, cost: 50) }
+
+      it 'blocks the redeem even if max_debt would cover it' do
+        result = described_class.new(profile: child, reward: reward).call
+        expect(result.success?).to be false
+        expect(result.error).to match(/saldo insuficiente/i)
+        expect(child.reload.points).to eq(10)
+      end
+    end
+
     context 'race condition: two concurrent redeems for same profile' do
       let(:child) { create(:profile, :child, family: family, points: 70) }
       let!(:reward) { create(:reward, family: family, cost: 70) }

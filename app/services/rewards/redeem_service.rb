@@ -16,7 +16,16 @@ module Rewards
       ActiveRecord::Base.transaction do
         @profile.lock!
 
-        if @profile.points < @reward.cost
+        family = @profile.family
+        resulting_balance = @profile.points - @reward.cost
+
+        insufficient = if family.allow_negative?
+          resulting_balance < -family.max_debt
+        else
+          @profile.points < @reward.cost
+        end
+
+        if insufficient
           error = "Saldo insuficiente"
           raise ActiveRecord::Rollback
         end
