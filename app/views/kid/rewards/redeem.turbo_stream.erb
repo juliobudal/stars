@@ -5,8 +5,11 @@
   </div>
 <% end %>
 
-<%# Update Balance (animated via count-up controller's currentValueChanged) %>
-<%= turbo_stream.set_attribute "profile_points_#{current_profile.id}", "data-count-up-current-value", current_profile.reload.points %>
+<%# Update Balance display (turbo_stream.set_attribute not available in turbo-rails 2.x; update inner text instead) %>
+<%= turbo_stream.update "profile_points_#{current_profile.id}" do %>
+  <span data-count-up-target="display"><%= current_profile.reload.points %></span>
+  <span style="color: var(--star-2);">★</span>
+<% end %>
 
 <%# Show Toast %>
 <%= turbo_stream.prepend "flash" do %>

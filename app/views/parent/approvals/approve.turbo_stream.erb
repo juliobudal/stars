@@ -19,7 +19,10 @@
   </div>
 <% end %>
 
-<% if current_profile.family.profile_tasks.awaiting_approval.count == 0 && current_profile.family.redemptions.pending.count == 0 %>
+<%
+  family_redemptions_pending = Redemption.joins(:profile).where(profiles: { family_id: current_profile.family_id }).pending.count
+%>
+<% if current_profile.family.profile_tasks.awaiting_approval.count == 0 && family_redemptions_pending == 0 %>
   <%= turbo_stream.replace "approvals_list" do %>
     <%= turbo_frame_tag "approvals_list" do %>
       <div class="card" style="padding: 40px; text-align: center;">
@@ -32,5 +35,5 @@
 <% end %>
 
 <%= turbo_stream.update "pending_approvals_kpi" do %>
-  <%= current_profile.family.profile_tasks.awaiting_approval.count + current_profile.family.redemptions.pending.count %>
+  <%= current_profile.family.profile_tasks.awaiting_approval.count + family_redemptions_pending %>
 <% end %>
