@@ -7,7 +7,8 @@ module Ui
                      dom_id: nil, kid_chip_text: nil, category_label: nil,
                      points_sign: "+", approve_label: "Aprovar", reject_label: "Rejeitar",
                      reject_confirm: nil, approve_submits_with: "Aprovando...",
-                     reject_submits_with: "Rejeitando...", bulk: false, bulk_value: nil)
+                     reject_submits_with: "Rejeitando...", bulk: false, bulk_value: nil,
+                     profile_task: nil)
         @bulk = bulk
         @bulk_value = bulk_value
         @kid = kid
@@ -26,13 +27,15 @@ module Ui
         @reject_confirm = reject_confirm
         @approve_submits_with = approve_submits_with
         @reject_submits_with = reject_submits_with
+        @profile_task = profile_task
         super()
       end
 
       attr_reader :kid, :title, :meta, :points, :approve_url, :reject_url,
                   :dom_id, :kid_chip_text, :category_label, :points_sign,
                   :points_color, :approve_label, :reject_label, :reject_confirm,
-                  :approve_submits_with, :reject_submits_with, :bulk, :bulk_value
+                  :approve_submits_with, :reject_submits_with, :bulk, :bulk_value,
+                  :profile_task
 
       def bulk?
         @bulk

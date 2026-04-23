@@ -8,6 +8,11 @@
              style="width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0;" />
     <% end %>
     <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 40) %>
+    <% if profile_task&.proof_photo&.attached? %>
+      <%= image_tag url_for(profile_task.proof_photo.variant(resize_to_limit: [80, 80])),
+            alt: "Comprovante",
+            style: "width: 80px; height: 80px; object-fit: cover; border-radius: var(--r-md); flex-shrink: 0;" %>
+    <% end %>
     <div style="flex: 1; min-width: 0;">
       <div class="cluster" style="gap: 6px;">
         <span class="h-display" style="font-size: 15px;"><%= title %></span>
