@@ -1,0 +1,11 @@
+<% if form_bound? %>
+  <label class="<%= root_class %>" aria-label="<%= aria_label %>">
+    <input type="hidden" name="<%= name %>" value="0" form="<%= form %>" />
+    <input type="checkbox" name="<%= name %>" value="<%= value %>" <%= "checked" if checked %> <%= "form=\"#{form}\"".html_safe if form.present? %> />
+    <span class="toggle-track"><span class="toggle-thumb"></span></span>
+  </label>
+<% else %>
+  <span class="<%= root_class %>" role="switch" aria-checked="<%= checked %>" aria-label="<%= aria_label %>">
+    <span class="toggle-track"><span class="toggle-thumb"></span></span>
+  </span>
+<% end %>

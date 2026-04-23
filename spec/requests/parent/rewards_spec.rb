@@ -80,6 +80,24 @@ RSpec.describe "Parent::Rewards", type: :request do
       end
     end
 
+    describe "GET /parent/rewards/:id/edit" do
+      it "renders the edit form" do
+        get edit_parent_reward_path(reward)
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe "PATCH /parent/rewards/:id" do
+      it "updates category and redirects" do
+        patch parent_reward_path(reward), params: { reward: { title: "Sorvete de morango", cost: 120, category: "doce" } }
+        expect(response).to redirect_to(parent_rewards_path)
+        reward.reload
+        expect(reward.title).to eq("Sorvete de morango")
+        expect(reward.category).to eq("doce")
+        expect(reward.cost).to eq(120)
+      end
+    end
+
     describe "DELETE /parent/rewards/:id" do
       it "destroys the reward and redirects" do
         expect {

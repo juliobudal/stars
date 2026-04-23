@@ -1,5 +1,10 @@
 <div<%= " id=\"#{dom_id}\"".html_safe if dom_id %> class="card" style="padding: 14px;">
-  <div class="row" style="gap: 12px; margin-bottom: 10px;">
+  <div class="row" style="gap: 12px; margin-bottom: 10px; align-items: center;">
+    <% if bulk? %>
+      <input type="checkbox" name="approval_ids[]" value="<%= bulk_value || dom_id %>"
+             aria-label="Selecionar"
+             style="width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0;" />
+    <% end %>
     <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 40) %>
     <div style="flex: 1; min-width: 0;">
       <div class="cluster" style="gap: 6px;">

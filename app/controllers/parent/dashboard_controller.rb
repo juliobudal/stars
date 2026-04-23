@@ -2,7 +2,7 @@ class Parent::DashboardController < ApplicationController
   include Authenticatable
   before_action :require_parent!
 
-  layout 'parent'
+  layout "parent"
 
   def index
     @family = Family.includes(:profiles).find(current_profile.family_id)

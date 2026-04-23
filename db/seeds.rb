@@ -43,10 +43,17 @@ ProfileTask.create!(profile: child2, global_task: task4, status: :pending, assig
 ProfileTask.create!(profile: child3, global_task: task5, status: :pending, assigned_date: Date.current)
 
 puts "Creating Rewards..."
-Reward.create!(family: family, title: "Sorvete de chocolate", cost: 80, icon: "iceCream")
-Reward.create!(family: family, title: "1h de Video Game", cost: 150, icon: "gamepad")
-Reward.create!(family: family, title: "Passeio ao parque", cost: 250, icon: "ferris")
-Reward.create!(family: family, title: "LEGO novo", cost: 600, icon: "blocks")
-Reward.create!(family: family, title: "Escolher filme", cost: 50, icon: "film")
+Reward.create!(family: family, title: "Sorvete de chocolate", cost: 80, icon: "iceCream", category: :doce)
+Reward.create!(family: family, title: "1h de Video Game", cost: 150, icon: "gamepad", category: :tela)
+Reward.create!(family: family, title: "Passeio ao parque", cost: 250, icon: "ferris", category: :passeio)
+Reward.create!(family: family, title: "LEGO novo", cost: 600, icon: "blocks", category: :brinquedo)
+Reward.create!(family: family, title: "Escolher filme", cost: 50, icon: "film", category: :experiencia)
+
+puts "Creating Mission Assignments..."
+# task3 (lição) → only Lila and Zoe
+GlobalTaskAssignment.create!(global_task: task3, profile: child1)
+GlobalTaskAssignment.create!(global_task: task3, profile: child3)
+# task4 (louça) → only Theo
+GlobalTaskAssignment.create!(global_task: task4, profile: child2)
 
 puts "Seed complete! 🌟"

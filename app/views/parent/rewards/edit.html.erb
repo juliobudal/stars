@@ -1,0 +1,13 @@
+<div class="screen screen-enter-right">
+  <%= render Ui::BgShapes::Component.new(variant: "warm") %>
+
+  <%= render Ui::TopBar::Component.new(
+    title: "Editar recompensa",
+    subtitle: @reward.title,
+    back_url: parent_rewards_path
+  ) %>
+
+  <div class="mt-4" style="z-index: 2;">
+    <%= render 'form', reward: @reward %>
+  </div>
+</div>

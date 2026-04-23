@@ -45,5 +45,37 @@ RSpec.describe Tasks::DailyResetService do
         expect(ProfileTask.where(profile: child1, global_task: weekly_task, assigned_date: monday)).to be_empty
       end
     end
+
+    context 'with inactive missions' do
+      let(:monday) { Date.new(2024, 1, 1) }
+
+      it 'skips inactive missions entirely' do
+        daily_task.update!(active: false)
+        expect {
+          described_class.new(date: monday, family: family).call
+        }.not_to change(ProfileTask, :count)
+      end
+    end
+
+    context 'with explicit assignments' do
+      let(:monday) { Date.new(2024, 1, 1) }
+
+      it 'targets only assigned children' do
+        GlobalTaskAssignment.create!(global_task: daily_task, profile: child1)
+
+        expect {
+          described_class.new(date: monday, family: family).call
+        }.to change(ProfileTask, :count).by(1)
+
+        expect(ProfileTask.where(profile: child1, global_task: daily_task)).to exist
+        expect(ProfileTask.where(profile: child2, global_task: daily_task)).to be_empty
+      end
+
+      it 'falls back to all children when no assignment is set' do
+        expect {
+          described_class.new(date: monday, family: family).call
+        }.to change(ProfileTask, :count).by(2)
+      end
+    end
   end
 end

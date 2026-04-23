@@ -11,17 +11,24 @@ module Tasks
 
       tasks_scope =
         if @family
-          @family.global_tasks.includes(family: :profiles)
+          @family.global_tasks.includes(:assigned_profiles, family: :profiles)
         else
-          GlobalTask.includes(family: :profiles)
+          GlobalTask.includes(:assigned_profiles, family: :profiles)
         end
 
       created_count = 0
 
       tasks_scope.find_each do |global_task|
+        next unless global_task.active?
         next unless applicable_today?(global_task)
 
-        global_task.family.profiles.select(&:child?).each do |child|
+        target_profiles = if global_task.assigned_profiles.any?
+                            global_task.assigned_profiles.select(&:child?)
+        else
+                            global_task.family.profiles.select(&:child?)
+        end
+
+        target_profiles.each do |child|
           pt = ProfileTask.find_or_create_by!(
             profile: child,
             global_task: global_task,

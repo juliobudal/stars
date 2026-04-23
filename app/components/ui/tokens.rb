@@ -16,6 +16,19 @@ module Ui
       "weekly" => { label: "Semanal",  tint: "sky"  }
     }.freeze
 
+    REWARD_CATEGORIES = {
+      "tela"         => { label: "tela",        tint: "lilac" },
+      "doce"         => { label: "doce",        tint: "rose"  },
+      "passeio"      => { label: "passeio",     tint: "sky"   },
+      "brinquedo"    => { label: "brinquedo",   tint: "mint"  },
+      "experiencia"  => { label: "experiência", tint: "star"  },
+      "outro"        => { label: "outro",       tint: "sky"   }
+    }.freeze
+
+    def self.reward_category_for(key)
+      REWARD_CATEGORIES.fetch(key.to_s, REWARD_CATEGORIES["outro"])
+    end
+
     def self.category_for(key)
       MISSION_CATEGORIES.fetch(key.to_s, MISSION_CATEGORIES["geral"])
     end

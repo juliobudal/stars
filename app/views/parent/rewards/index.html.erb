@@ -1,9 +1,9 @@
-<div class="screen screen-enter-right with-nav">
+<div class="screen screen-enter-right with-nav" data-controller="tabs">
   <%= render Ui::BgShapes::Component.new(variant: "warm") %>
 
   <%= render Ui::TopBar::Component.new(
     title: "Prêmios da lojinha",
-    subtitle: "#{@rewards.size} #{"prêmio".then { |w| @rewards.size == 1 ? w : "prêmios" }} · precificados em estrelas",
+    subtitle: "#{@rewards.size} #{@rewards.size == 1 ? "prêmio" : "prêmios"} · precificados em estrelas",
     back_url: parent_root_path
   ) do |bar| %>
     <% bar.with_right_slot do %>
@@ -14,47 +14,22 @@
   <% end %>
 
   <% unless @rewards.empty? %>
-    <div class="grid-3" style="gap: 14px; z-index: 2; margin-top: 4px;">
-      <% @rewards.each_with_index do |s, i|
-        color_idx = i % 6
-        color_options = %w[peach rose mint sky lilac coral]
-        color = color_options[color_idx]
-        fg_var = "var(--c-#{color})"
-        tint_soft = "var(--c-#{color}-soft, var(--surface-2))"
-      %>
-        <div class="card reward-card" style="display: flex; align-items: center; gap: 12px; padding: 14px 14px 14px 14px; border: 1px solid var(--hairline); animation: slideInCard 0.35s ease <%= i * 0.03 %>s both; position: relative;">
-          <%# Icon tile %>
-          <div style="flex: 0 0 56px; width: 56px; height: 56px; border-radius: 14px; background: <%= tint_soft %>; display: flex; align-items: center; justify-content: center;">
-            <%= render Ui::Icon::Component.new(s.icon.presence || "gift", size: 28, color: fg_var) %>
-          </div>
+    <%
+      chip_items = [{ id: "all", label: "Todos" }]
+      Ui::Tokens::REWARD_CATEGORIES.each do |key, meta|
+        chip_items << { id: key, label: meta[:label].capitalize }
+      end
+    %>
+    <div style="margin-bottom: 14px; z-index: 2;">
+      <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all") %>
+    </div>
 
-          <%# Content %>
-          <div class="col fg1" style="gap: 3px; min-width: 0;">
-            <div class="h-display" style="font-size: 14px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= s.title %></div>
-            <div style="font-size: 10px; font-weight: 800; letter-spacing: .08em; color: var(--text-soft); text-transform: uppercase;">Recompensa</div>
-            <div class="row" style="gap: 4px; align-items: center;">
-              <%= render Ui::Icon::Component.new("star", size: 13, color: "var(--star)") %>
-              <span class="h-display" style="font-size: 14px; color: var(--star-2);"><%= s.cost %></span>
-            </div>
-          </div>
-
-          <%# Actions (top-right) %>
-          <div style="display: flex; flex-direction: column; gap: 2px; align-self: flex-start;">
-            <%# Pencil — disabled until edit route exists %>
-            <span style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; opacity: .35; cursor: not-allowed;" aria-hidden="true">
-              <%= render Ui::Icon::Component.new("pencil", size: 15, color: "var(--text-soft)") %>
-            </span>
-            <%= button_to parent_reward_path(s), method: :delete,
-                  style: "width: 28px; height: 28px; padding: 0; background: none; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--danger);",
-                  data: { turbo_confirm: "Remover a recompensa \"#{s.title}\"?" } do %>
-              <%= render Ui::Icon::Component.new("trash", size: 15, color: "var(--danger)") %>
-            <% end %>
-          </div>
-        </div>
+    <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; z-index: 2; margin-top: 4px;">
+      <% @rewards.each do |reward| %>
+        <%= render Ui::RewardCatalogCard::Component.new(reward: reward) %>
       <% end %>
 
-      <%# Ghost add card — matches ref dashed card at end of grid %>
-      <%= link_to new_parent_reward_path, class: "ghost-add-card" do %>
+      <%= link_to new_parent_reward_path, class: "ghost-add-card", data: { panels: "all" } do %>
         <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--surface-2); display: flex; align-items: center; justify-content: center;">
           <%= render Ui::Icon::Component.new("plus", size: 18, color: "currentColor") %>
         </div>
@@ -74,3 +49,20 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  (function(){
+    document.addEventListener("click", function(e){
+      const btn = e.target.closest(".screen .tab[data-tabs-id-param]");
+      if (!btn) return;
+      const scope = btn.closest(".screen");
+      if (!scope) return;
+      const key = btn.dataset.tabsIdParam;
+      scope.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t === btn));
+      scope.querySelectorAll(".reward-catalog-card, .ghost-add-card").forEach(card => {
+        const panels = (card.dataset.panels || "all").split(/\s+/);
+        card.style.display = (key === "all" || panels.includes(key)) ? "" : "none";
+      });
+    });
+  })();
+</script>

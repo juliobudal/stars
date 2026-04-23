@@ -12,7 +12,7 @@ RSpec.describe GlobalTask, type: :model do
   end
 
   describe "enums" do
-    it { is_expected.to define_enum_for(:category).with_values(domestic: 0, personal: 1, studies: 2, behavior: 3) }
+    it { is_expected.to define_enum_for(:category).with_values(escola: 0, casa: 1, rotina: 2, saude: 3, outro: 4) }
     it { is_expected.to define_enum_for(:frequency).with_values(daily: 0, weekly: 1) }
   end
 end

@@ -1,77 +1,30 @@
 <div class="screen screen-enter-right with-nav">
   <%= render Ui::BgShapes::Component.new(variant: "cool") %>
 
-  <%# ─── Top Bar ─── %>
   <%= render Ui::TopBar::Component.new(
     title: "Diário",
     subtitle: "Suas estrelinhas ganhas e gastas",
     back_url: kid_root_path
   ) %>
 
-  <%# ─── Week Summary Cards (3-col) ─── %>
+  <%# Week Summary Cards (3-col) %>
   <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; z-index: 2; position: relative;">
-    <%# Conquistado %>
-    <div class="card" style="padding: 12px;">
-      <div class="eyebrow" style="color: var(--c-mint-dark); margin-bottom: 4px;">CONQUISTADO</div>
-      <div class="h-display" style="font-size: 20px; color: var(--c-mint-dark);">+<%= @week_earned %> ⭐</div>
-      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">esta semana</div>
-    </div>
-
-    <%# Gasto %>
-    <div class="card" style="padding: 12px;">
-      <div class="eyebrow" style="color: var(--c-rose-dark); margin-bottom: 4px;">GASTO</div>
-      <div class="h-display" style="font-size: 20px; color: var(--c-rose-dark);">−<%= @week_spent %> ⭐</div>
-      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">em prêmios</div>
-    </div>
-
-    <%# Missões feitas %>
-    <div class="card" style="padding: 12px;">
-      <div class="eyebrow" style="color: var(--primary); margin-bottom: 4px;">MISSÕES FEITAS</div>
-      <div class="h-display" style="font-size: 20px; color: var(--primary);"><%= @week_missions %></div>
-      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">aprovadas</div>
-    </div>
+    <%= render Ui::StatMetric::Component.new(value: @week_earned,   label: "Conquistado", tint: "mint",    prefix: "+") %>
+    <%= render Ui::StatMetric::Component.new(value: @week_spent,    label: "Gasto",       tint: "rose",    prefix: "−") %>
+    <%= render Ui::StatMetric::Component.new(value: @week_missions, label: "Missões",     tint: "primary") %>
   </div>
 
-  <%# ─── Filter Chips ─── %>
   <div data-controller="tabs" style="z-index: 2; position: relative;">
-    <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; scrollbar-width: none; margin-bottom: 12px;">
-      <button
-        class="active"
-        data-tabs-target="tab"
-        data-action="click->tabs#show"
-        data-tabs-id-param="all"
-        style="border-radius: var(--r-full); padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; background: var(--primary); color: white;">
-        Tudo
-      </button>
-      <button
-        data-tabs-target="tab"
-        data-action="click->tabs#show"
-        data-tabs-id-param="earned"
-        style="border-radius: var(--r-full); padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; background: var(--surface-2); color: var(--text-muted);">
-        Conquistadas
-      </button>
-      <button
-        data-tabs-target="tab"
-        data-action="click->tabs#show"
-        data-tabs-id-param="purchases"
-        style="border-radius: var(--r-full); padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; background: var(--surface-2); color: var(--text-muted);">
-        Compras
-      </button>
-      <button
-        data-tabs-target="tab"
-        data-action="click->tabs#show"
-        data-tabs-id-param="pending"
-        style="border-radius: var(--r-full); padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; background: var(--surface-2); color: var(--text-muted);">
-        Aguardando
-      </button>
-      <button
-        data-tabs-target="tab"
-        data-action="click->tabs#show"
-        data-tabs-id-param="rejected"
-        style="border-radius: var(--r-full); padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; white-space: nowrap; background: var(--surface-2); color: var(--text-muted);">
-        Rejeitadas
-      </button>
-    </div>
+    <%= render Ui::CategoryTabs::Component.new(
+      items: [
+        { id: "all",       label: "Tudo" },
+        { id: "earned",    label: "Conquistadas" },
+        { id: "purchases", label: "Compras" },
+        { id: "pending",   label: "Aguardando" },
+        { id: "rejected",  label: "Rejeitadas" }
+      ],
+      active: "all"
+    ) %>
 
     <%# Panel: Tudo %>
     <div id="panel-all" style="display: flex; flex-direction: column; gap: 0;">
@@ -115,7 +68,7 @@
       <% end %>
     </div>
 
-    <%# Panel: Aguardando (no ActivityLog status — honest empty state) %>
+    <%# Panel: Aguardando %>
     <div id="panel-pending" style="display: none; flex-direction: column; gap: 0;">
       <%= render Ui::Empty::Component.new(
         icon: "clock",
@@ -125,7 +78,7 @@
       ) %>
     </div>
 
-    <%# Panel: Rejeitadas (no ActivityLog status — honest empty state) %>
+    <%# Panel: Rejeitadas %>
     <div id="panel-rejected" style="display: none; flex-direction: column; gap: 0;">
       <%= render Ui::Empty::Component.new(
         icon: "scroll",

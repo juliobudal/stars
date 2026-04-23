@@ -1,7 +1,6 @@
 <%
   tints = ["var(--c-sky-soft)", "var(--c-rose-soft)", "var(--c-mint-soft)", "var(--c-amber-soft)", "var(--c-lilac-soft)"]
   featured = @featured || @rewards&.first
-  featured_icon = featured && featured.respond_to?(:icon) ? featured.icon.presence : nil
 %>
 <div class="screen screen-enter-right with-nav" data-controller="celebration">
   <%= render Ui::BgShapes::Component.new(variant: "warm") %>
@@ -17,29 +16,12 @@
     <% end %>
   <% end %>
 
-  <%# Featured Banner — horizontal 2-col %>
   <% if featured %>
-    <div class="card" style="z-index: 2; display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; margin-bottom: 16px; padding: 28px; overflow: clip; position: relative; border-radius: var(--r-featured);">
-      <div>
-        <span style="display:inline-flex; align-items:center; gap:4px; background:var(--c-lilac-soft); color:var(--c-violet-dark); padding:4px 10px; border-radius:999px; font-size:11px; font-weight:800; letter-spacing:.1em; margin-bottom:12px;">✨ EM DESTAQUE</span>
-        <h3 class="h-display" style="font-size:26px; margin:0 0 6px;"><%= featured.title %></h3>
-        <p style="margin:0 0 18px; font-size:14px; color:var(--text-muted); font-weight:500; line-height:1.4;">Troque suas estrelinhas por esse prêmio especial.</p>
-        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-          <button class="btn btn-primary btn-sm" style="box-shadow:0 3px 0 color-mix(in srgb, var(--c-violet-dark) 25%, transparent);"
-            data-action="click->ui-modal#open" data-ui-modal-id-param="modal_<%= dom_id(featured) %>">
-            Trocar por ⭐ <%= featured.cost %>
-          </button>
-          <% if current_profile.points >= featured.cost %>
-            <span style="font-size:12px; font-weight:700; color:var(--c-mint-dark);">✓ Você pode pegar essa!</span>
-          <% else %>
-            <span style="font-size:12px; font-weight:700; color:var(--text-muted);">Faltam <%= featured.cost - current_profile.points %> estrelinhas</span>
-          <% end %>
-        </div>
-      </div>
-      <div style="width:140px; height:140px; border-radius:20px; background:var(--c-lilac-soft); display:grid; place-items:center; flex-shrink:0;">
-        <%= render Ui::Icon::Component.new(featured_icon || "gift", size: 70, color: "var(--c-violet-dark)") %>
-      </div>
-    </div>
+    <%= render Ui::FeaturedRewardCard::Component.new(
+      reward: featured,
+      balance: current_profile.points,
+      modal_id: "modal_#{dom_id(featured)}"
+    ) %>
   <% end %>
 
   <%# Section Header %>
@@ -48,87 +30,31 @@
     <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);"><%= @rewards.size %> prêmios</span>
   </div>
 
-  <%# Category Tabs %>
-  <div data-controller="tabs" style="z-index: 2; margin-bottom: 16px;">
-    <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none;">
-      <%
-        tab_labels = [
-          ["tudo",        "Tudo"],
-          ["telinha",     "Telinha"],
-          ["docinhos",    "Docinhos"],
-          ["passeios",    "Passeios"],
-          ["brinquedos",  "Brinquedos"],
-          ["experiencias","Experiências"]
-        ]
-      %>
-      <% tab_labels.each_with_index do |(tab_id, label), idx| %>
-        <button
-          data-tabs-target="tab"
-          data-action="click->tabs#show"
-          data-tabs-id-param="<%= tab_id %>"
-          class="<%= idx == 0 ? 'active' : '' %>"
-          style="
-            border: none;
-            cursor: pointer;
-            white-space: nowrap;
-            border-radius: var(--r-full);
-            padding: 8px 18px;
-            font-weight: 700;
-            font-size: 13px;
-            <%= idx == 0 ? 'background: var(--primary); color: white; box-shadow: 0 3px 0 var(--primary-2);' : 'background: white; color: var(--text-muted); box-shadow: var(--shadow-card);' %>
-          "
-        ><%= label %></button>
-      <% end %>
-    </div>
+  <div style="z-index: 2; margin-bottom: 16px;">
+    <%= render Ui::CategoryTabs::Component.new(
+      items: [
+        { id: "tudo",         label: "Tudo" },
+        { id: "telinha",      label: "Telinha" },
+        { id: "docinhos",     label: "Docinhos" },
+        { id: "passeios",     label: "Passeios" },
+        { id: "brinquedos",   label: "Brinquedos" },
+        { id: "experiencias", label: "Experiências" }
+      ],
+      active: "tudo"
+    ) %>
 
     <%# "Tudo" panel — renders the full grid %>
     <div id="panel-tudo" style="display: flex; flex-direction: column; margin-top: 16px;">
       <% if @rewards.any? %>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
           <% @rewards.each_with_index do |reward, i| %>
-            <%
-              can_afford = current_profile.points >= reward.cost
-              tint = tints[i % tints.length]
-              reward_icon = reward.respond_to?(:icon) ? reward.icon.presence : nil
-            %>
-            <button
-              type="button"
-              class="card"
-              <%= "disabled" unless can_afford %>
-              data-action="click->ui-modal#open"
-              data-ui-modal-id-param="modal_<%= dom_id(reward) %>"
-              style="
-                padding: 10px 8px;
-                text-align: center;
-                cursor: <%= can_afford ? 'pointer' : 'default' %>;
-                opacity: <%= can_afford ? 1 : 0.6 %>;
-                filter: <%= can_afford ? 'none' : 'grayscale(0.4)' %>;
-                animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= i * 0.04 %>s both;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 6px;
-                background: white;
-                border: none;
-                box-shadow: var(--shadow-card);
-              "
-            >
-              <div style="width: 72px; height: 72px; border-radius: 16px; background: <%= tint %>; display: grid; place-items: center; margin: 0 auto 2px;">
-                <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 36, color: "var(--c-violet-dark)") %>
-              </div>
-              <div class="h-display" style="font-size: 14px; color: var(--text); line-height: 1.2;"><%= reward.title %></div>
-              <%= render Ui::Badge::Component.new(variant: "star", style: "font-size: 12px; padding: 4px 10px;") do %>
-                <%= render Ui::Icon::Component.new("star", size: 13, color: "var(--star-2)") %>
-                <%= reward.cost %>
-              <% end %>
-              <% if can_afford %>
-                <span style="background:var(--primary); color:white; padding:6px 12px; border-radius:999px; font-size:12px; font-weight:900; box-shadow:0 2px 0 color-mix(in srgb, var(--c-violet-dark) 25%, transparent);">TROCAR</span>
-              <% else %>
-                <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">
-                  faltam <%= reward.cost - current_profile.points %> ⭐
-                </div>
-              <% end %>
-            </button>
+            <%= render Ui::RewardTile::Component.new(
+              reward: reward,
+              balance: current_profile.points,
+              tint: tints[i % tints.length],
+              index: i,
+              modal_id: "modal_#{dom_id(reward)}"
+            ) %>
           <% end %>
         </div>
       <% else %>
@@ -147,31 +73,12 @@
     <% end %>
   </div>
 
-  <%# Meus Prêmios Section — horizontal cards %>
   <% if @redeemed_rewards.any? %>
     <div style="z-index: 2; margin-top: 8px; margin-bottom: 24px;">
       <div class="h-display" style="font-size: 20px; color: var(--text); margin-bottom: 12px;">Meus prêmios</div>
       <div class="col" style="gap: 10px;">
         <% @redeemed_rewards.each do |redemption| %>
-          <%
-            redemption_icon = redemption.reward.respond_to?(:icon) ? redemption.reward.icon.presence : nil
-          %>
-          <div style="background:white; border-radius:var(--r-md); padding:14px 16px; display:flex; align-items:center; gap:16px; box-shadow:var(--shadow-card);">
-            <div style="width:64px; height:64px; border-radius:16px; background:var(--c-lilac-soft); display:grid; place-items:center; flex-shrink:0;">
-              <%= render Ui::Icon::Component.new(redemption_icon || "gift", size: 30, color: "var(--c-violet-dark)") %>
-            </div>
-            <div style="flex:1; min-width:0;">
-              <div class="h-display" style="font-size:16px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><%= redemption.title %></div>
-              <div style="font-size:12px; font-weight:700; color:var(--text-muted);">−<%= redemption.reward.cost %> ⭐</div>
-            </div>
-            <% if redemption.pending? %>
-              <span style="background:var(--c-rose-soft); color:var(--c-rose-dark); padding:5px 10px; border-radius:999px; font-size:11px; font-weight:800; white-space:nowrap;">Disponível</span>
-            <% elsif redemption.approved? %>
-              <span style="background:var(--c-mint-soft); color:var(--c-mint-dark); padding:5px 10px; border-radius:999px; font-size:11px; font-weight:800; white-space:nowrap;">Aproveitado</span>
-            <% elsif redemption.rejected? %>
-              <span style="background:var(--c-red-soft); color:var(--c-red-dark); padding:5px 10px; border-radius:999px; font-size:11px; font-weight:800; white-space:nowrap;">Recusado</span>
-            <% end %>
-          </div>
+          <%= render Ui::RedemptionRow::Component.new(redemption: redemption) %>
         <% end %>
       </div>
     </div>
@@ -183,7 +90,7 @@
     <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(reward)}", title: "Resgatar Recompensa") do %>
       <div class="center col" style="text-align: center; gap: 14px;">
         <%= render Ui::Lumi::Component.new(size: 76, mood: "excited") %>
-        <div style="width: 100px; height: 100px; border-radius: 20px; background: var(--c-lilac-soft); display: grid; place-items: center; margin: 0 auto;">
+        <div style="width: 100px; height: 100px; border-radius: var(--r-lg); background: var(--c-lilac-soft); display: grid; place-items: center; margin: 0 auto;">
           <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 56, color: "var(--c-violet-dark)") %>
         </div>
         <h3 class="h-display" style="font-size: 26px;"><%= reward.title %></h3>

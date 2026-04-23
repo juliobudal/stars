@@ -1,4 +1,4 @@
-<div class="screen screen-enter-right">
+<div class="screen screen-enter-right with-nav">
   <%= render Ui::BgShapes::Component.new(variant: "warm") %>
 
   <%= render Ui::TopBar::Component.new(
@@ -13,59 +13,17 @@
     <% end %>
   <% end %>
 
-  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; z-index: 2; align-items: start;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; z-index: 2; align-items: start;">
     <% if @profiles.any? %>
       <% @profiles.each do |k| %>
-        <%
-          color     = k.color.presence || "primary"
-          fg_var    = color == "primary" ? "var(--primary)" : "var(--c-#{color})"
-          bg_soft   = color == "primary" ? "var(--primary-soft)" : "var(--c-#{color}-soft)"
-          missions  = k.profile_tasks.select(&:pending?).size
-        %>
-        <div class="card" style="padding: 0; overflow: hidden; border: 1px solid var(--hairline); box-shadow: var(--shadow-card);">
-          <%# Top colored section with avatar %>
-          <div style="background: <%= bg_soft %>; padding: 24px 16px 20px; display: flex; flex-direction: column; align-items: center; gap: 12px;">
-            <%= render Ui::SmileyAvatar::Component.new(kid: k, size: 80) %>
-            <div style="text-align: center;">
-              <div style="font-family: var(--font-display); font-style: italic; font-size: 20px; font-weight: 700; color: <%= fg_var %>; line-height: 1.1;"><%= k.name %></div>
-            </div>
-          </div>
-
-          <%# Bottom white section: stats + actions %>
-          <div style="padding: 16px; display: flex; flex-direction: column; gap: 12px;">
-            <%# Stats row %>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-              <div style="background: var(--bg-soft); border-radius: var(--r-sm); padding: 8px 10px; text-align: center;">
-                <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">Saldo</div>
-                <div style="font-size: 15px; font-weight: 800; color: var(--text); display: flex; align-items: center; justify-content: center; gap: 4px;">
-                  <span style="color: var(--star);">⭐</span><%= k.points %>
-                </div>
-              </div>
-              <div style="background: var(--bg-soft); border-radius: var(--r-sm); padding: 8px 10px; text-align: center;">
-                <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">Missões</div>
-                <div style="font-size: 15px; font-weight: 800; color: var(--text);"><%= missions %></div>
-              </div>
-            </div>
-
-            <%# Action links %>
-            <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 4px; border-top: 1px solid var(--hairline);">
-              <%= link_to edit_parent_profile_path(k), style: "display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #{fg_var}; text-decoration: none;" do %>
-                <%= render Ui::Icon::Component.new("edit", size: 14, color: fg_var) %>
-                Editar perfil
-              <% end %>
-              <%= button_to parent_profile_path(k), method: :delete,
-                    form: { data: { turbo_confirm: "Remover #{k.name}? Esta ação não pode ser desfeita." } },
-                    style: "background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--danger);" do %>
-                <%= render Ui::Icon::Component.new("trash", size: 14, color: "var(--danger)") %>
-                Remover
-              <% end %>
-            </div>
-          </div>
-        </div>
+        <%= render Ui::KidManagementCard::Component.new(
+              kid: k,
+              balance: k.points,
+              missions_count: k.profile_tasks.select(&:pending?).size
+            ) %>
       <% end %>
     <% end %>
 
-    <%# Add child ghost card %>
     <%= link_to new_parent_profile_path, class: "ghost-add-card" do %>
       <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px dashed currentColor; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 300; line-height: 1;">+</div>
       <span style="font-size: 13px; font-weight: 700;">Adicionar filho</span>

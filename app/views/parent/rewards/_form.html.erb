@@ -31,6 +31,13 @@
   </div>
 
   <div class="form-field">
+    <%= f.label :category, "Categoria", class: "form-label" %>
+    <%= f.select :category,
+          Reward.categories.keys.map { |k| [Ui::Tokens.reward_category_for(k)[:label].capitalize, k] },
+          {}, class: "form-select" %>
+  </div>
+
+  <div class="form-field">
     <label class="form-label">Ícone</label>
     <div class="row wrap" style="gap: 6px;">
       <% icon_options.each do |ic| %>

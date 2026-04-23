@@ -66,6 +66,52 @@
     </div>
   </div>
 
+  <%# Active toggle %>
+  <div class="row" style="justify-content: space-between; align-items: center; padding: 12px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);">
+    <div>
+      <div style="font-size: 13px; font-weight: 700; color: var(--text);">Missão ativa</div>
+      <div style="font-size: 11px; color: var(--text-muted);">Missões inativas não aparecem para as crianças</div>
+    </div>
+    <label class="toggle <%= 'is-checked' if global_task.active? %>">
+      <%= f.hidden_field :active, value: "0" %>
+      <input type="checkbox" name="global_task[active]" value="1" <%= "checked" if global_task.active? %> />
+      <span class="toggle-track"><span class="toggle-thumb"></span></span>
+    </label>
+  </div>
+
+  <%# Assign to kids %>
+  <% family = global_task.family || current_profile.family %>
+  <% kids = family.profiles.child.order(:name) %>
+  <% if kids.any? %>
+    <div class="form-field">
+      <label class="form-label">Atribuir a</label>
+      <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">Deixe em branco para atribuir a todas as crianças.</div>
+      <div class="row wrap" style="gap: 8px;">
+        <% kids.each do |kid| %>
+          <% checked = global_task.assigned_profile_ids.include?(kid.id) %>
+          <label class="cursor-pointer">
+            <%= check_box_tag "global_task[assigned_profile_ids][]", kid.id, checked, class: "peer sr-only" %>
+            <div class="chip" style="background: <%= checked ? 'var(--primary-soft)' : 'var(--surface-2)' %>; color: <%= checked ? 'var(--primary)' : 'var(--text)' %>; border: 1px solid <%= checked ? 'var(--primary)' : 'var(--hairline)' %>;">
+              <%= kid.name %>
+            </div>
+          </label>
+        <% end %>
+      </div>
+      <%# ensure empty array when none selected %>
+      <%= hidden_field_tag "global_task[assigned_profile_ids][]", "" %>
+    </div>
+  <% end %>
+
+  <%# Out-of-scope recurrence chips (disabled) %>
+  <div class="form-field" style="opacity: .5;">
+    <label class="form-label">Outras recorrências (em breve)</label>
+    <div class="row wrap" style="gap: 6px;">
+      <% %w[Mensal Única-vez].each do |lbl| %>
+        <div class="chip" style="cursor: not-allowed;" aria-disabled="true"><%= lbl %></div>
+      <% end %>
+    </div>
+  </div>
+
   <div class="row mt-4" style="gap: 10px; justify-content: flex-end;">
     <%= link_to "Voltar", parent_global_tasks_path, class: "btn btn-secondary" %>
     <%= f.submit "Salvar Missão", class: "btn btn-primary" %>

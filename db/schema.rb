@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_21_234653) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_23_164403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -26,12 +26,30 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_21_234653) do
   end
 
   create_table "families", force: :cascade do |t|
+    t.boolean "allow_negative", default: false
+    t.integer "auto_approve_threshold"
     t.datetime "created_at", null: false
+    t.boolean "decay_enabled", default: false
+    t.string "locale", default: "pt-BR"
     t.string "name"
+    t.boolean "require_photo", default: false
+    t.string "timezone", default: "America/Sao_Paulo"
     t.datetime "updated_at", null: false
+    t.integer "week_start", default: 1
+  end
+
+  create_table "global_task_assignments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "global_task_id", null: false
+    t.bigint "profile_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["global_task_id", "profile_id"], name: "idx_global_task_assignments_unique", unique: true
+    t.index ["global_task_id"], name: "index_global_task_assignments_on_global_task_id"
+    t.index ["profile_id"], name: "index_global_task_assignments_on_profile_id"
   end
 
   create_table "global_tasks", force: :cascade do |t|
+    t.boolean "active", default: true, null: false
     t.integer "category"
     t.datetime "created_at", null: false
     t.string "days_of_week", default: [], array: true
@@ -83,6 +101,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_21_234653) do
   end
 
   create_table "rewards", force: :cascade do |t|
+    t.integer "category", default: 5, null: false
     t.integer "cost"
     t.datetime "created_at", null: false
     t.bigint "family_id", null: false
@@ -214,6 +233,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_21_234653) do
   end
 
   add_foreign_key "activity_logs", "profiles"
+  add_foreign_key "global_task_assignments", "global_tasks", on_delete: :cascade
+  add_foreign_key "global_task_assignments", "profiles", on_delete: :cascade
   add_foreign_key "global_tasks", "families"
   add_foreign_key "profile_tasks", "global_tasks"
   add_foreign_key "profile_tasks", "profiles"

@@ -1,0 +1,48 @@
+<div class="card" style="padding: 0; overflow: hidden; border: 1px solid var(--hairline); box-shadow: var(--shadow-card); position: relative;">
+  <%# Colored header band with edit button and avatar %>
+  <div style="background: <%= bg_soft %>; padding: 24px 16px 28px; display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative;">
+    <%= link_to edit_parent_profile_path(kid),
+          style: "position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.7); display: inline-flex; align-items: center; justify-content: center; color: #{fg_var}; text-decoration: none;",
+          aria: { label: "Editar" } do %>
+      <%= render Ui::Icon::Component.new("pencil", size: 14, color: fg_var) %>
+    <% end %>
+    <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 64) %>
+    <div style="text-align: center;">
+      <div style="font-family: var(--font-display); font-style: italic; font-size: 18px; font-weight: 700; color: <%= fg_var %>; line-height: 1.1;">
+        <%= kid.name %>
+      </div>
+      <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 700;">
+        Nível <%= level %>
+      </div>
+    </div>
+  </div>
+
+  <%# Stats + footer %>
+  <div style="padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+      <div style="background: var(--bg-soft); border-radius: var(--r-sm); padding: 8px 10px; text-align: center;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">Saldo</div>
+        <div style="font-size: 15px; font-weight: 800; color: var(--text); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <span style="color: var(--star);">★</span><%= balance %>
+        </div>
+      </div>
+      <div style="background: var(--bg-soft); border-radius: var(--r-sm); padding: 8px 10px; text-align: center;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">Missões</div>
+        <div style="font-size: 15px; font-weight: 800; color: var(--text);"><%= missions_count.to_i %></div>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 4px; border-top: 1px solid var(--hairline);">
+      <%= link_to edit_parent_profile_path(kid),
+            style: "display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #{fg_var}; text-decoration: none;" do %>
+        <%= render Ui::Icon::Component.new("sparkle", size: 14, color: fg_var) %>
+        Ver jornada
+      <% end %>
+      <%= button_to parent_profile_path(kid), method: :delete,
+            form: { data: { turbo_confirm: "Remover #{kid.name}? Esta ação não pode ser desfeita." } },
+            style: "background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; gap: 4px; color: var(--danger);" do %>
+        <%= render Ui::Icon::Component.new("trash", size: 14, color: "var(--danger)") %>
+      <% end %>
+    </div>
+  </div>
+</div>

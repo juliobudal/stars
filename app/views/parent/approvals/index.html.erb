@@ -4,7 +4,15 @@
     title: "Aprovações",
     subtitle: "#{@profile_tasks.count + @redemptions.count} pendências",
     back_url: parent_root_path
-  ) %>
+  ) do |bar| %>
+    <% bar.with_right_slot do %>
+      <%# TODO: wire bulk approval endpoint %>
+      <button type="button" class="btn btn-primary btn-sm" data-action="click->nothing" disabled
+              style="opacity: .65; cursor: not-allowed;">
+        <%= render Ui::Icon::Component.new("check", size: 14, color: "white") %> Aprovar selecionadas
+      </button>
+    <% end %>
+  <% end %>
 
   <%= turbo_frame_tag "approvals_list" do %>
 
@@ -16,7 +24,6 @@
           ]
         ) %>
 
-    <%# ── Missions panel ── %>
     <div id="panel-missions" class="col z-content" style="gap: 8px;">
       <% if @profile_tasks.any? %>
         <% @profile_tasks.each do |task| %>
@@ -29,6 +36,8 @@
                 meta: "#{time_ago_in_words(task.updated_at)} atrás",
                 points: task.points,
                 points_sign: "+",
+                bulk: true,
+                bulk_value: task.id,
                 approve_url: approve_parent_approval_path(task),
                 reject_url: reject_parent_approval_path(task),
                 reject_confirm: "Rejeitar esta tarefa?"
@@ -43,7 +52,6 @@
       <% end %>
     </div>
 
-    <%# ── Rewards panel ── %>
     <div id="panel-rewards" class="col z-content" style="gap: 8px; display: none;">
       <% if @redemptions.any? %>
         <% @redemptions.each do |redemption| %>
@@ -55,6 +63,8 @@
                 meta: "#{time_ago_in_words(redemption.created_at)} atrás",
                 points: redemption.points,
                 points_sign: "−",
+                bulk: true,
+                bulk_value: redemption.id,
                 approve_url: approve_redemption_parent_approval_path(redemption),
                 reject_url: reject_redemption_parent_approval_path(redemption),
                 approve_label: "Entregue",

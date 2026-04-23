@@ -1,16 +1,3 @@
-<%
-  freq_meta = {
-    "daily"  => { label: "Todo dia", soft: "var(--c-mint-soft)", dark: "var(--c-mint-dark)" },
-    "weekly" => { label: "Semanal",  soft: "var(--c-sky-soft)",  dark: "var(--c-sky-dark)" }
-  }
-  cat_meta = {
-    "casa"   => { label: "Casa",   bg: "var(--c-mint-soft)",  color: "var(--c-mint-dark)", icon: "home" },
-    "escola" => { label: "Escola", bg: "var(--c-lilac-soft)", color: "var(--primary)",     icon: "book" },
-    "rotina" => { label: "Rotina", bg: "var(--c-rose-soft)",  color: "var(--c-rose-dark)", icon: "brush" },
-    "saude"  => { label: "Saúde",  bg: "var(--star-soft)",    color: "var(--star-2)",      icon: "muscle" },
-    "outro"  => { label: "Outro",  bg: "var(--surface-2)",    color: "var(--text-muted)",  icon: "sparkle" }
-  }
-%>
 <div class="screen screen-enter-right with-nav" data-controller="tabs">
   <%= render Ui::BgShapes::Component.new(variant: "blue") %>
 
@@ -26,77 +13,33 @@
     <% end %>
   <% end %>
 
-  <div class="filter-chips row" style="gap: 8px; flex-wrap: wrap; margin-bottom: 14px; z-index: 2;">
-    <% [["all","Todas"],["daily","Diárias"],["weekly","Semanais"]].each_with_index do |(key,label), idx| %>
-      <button type="button"
-              class="chip <%= 'active' if idx == 0 %>"
-              data-tabs-target="tab"
-              data-action="click->tabs#show"
-              data-tabs-id-param="<%= key %>"
-              style="padding: 8px 14px; border-radius: 999px; border: 1px solid var(--hairline); background: <%= idx == 0 ? 'var(--primary)' : 'var(--surface)' %>; color: <%= idx == 0 ? 'white' : 'var(--text)' %>; font-weight: 700; font-size: 13px; cursor: pointer;">
-        <%= label %>
-      </button>
-    <% end %>
+  <%
+    chip_items = [
+      { id: "all",      label: "Todas" },
+      { id: "daily",    label: "Diárias" },
+      { id: "weekly",   label: "Semanais" },
+      { id: "inactive", label: "Inativas" }
+    ]
+  %>
+  <div style="margin-bottom: 14px; z-index: 2;">
+    <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all") %>
   </div>
 
   <div class="card" style="padding: 0; overflow: hidden; z-index: 2;">
     <% if @global_tasks.any? %>
-      <div style="background: var(--surface-2); padding: 14px 20px; display: grid; grid-template-columns: 2fr 1.3fr 0.8fr 1.5fr 60px; font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--text-muted); text-transform: uppercase;">
+      <div class="mission-header" style="display: none; background: var(--surface-2); padding: 14px 20px; grid-template-columns: 2fr 1.3fr 0.8fr 1.4fr 80px 80px; font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--text-muted); text-transform: uppercase; gap: 10px;">
         <div>Missão</div>
         <div>Recorrência</div>
         <div>Estrelas</div>
         <div>Atribuída a</div>
+        <div style="text-align: center;">Ativa</div>
         <div></div>
       </div>
 
       <% @global_tasks.each do |m|
-        freq_key = m.frequency.to_s
-        fm = freq_meta[freq_key] || freq_meta["daily"]
-        cat_key = m.category.to_s
-        cm = cat_meta[cat_key] || cat_meta["outro"]
-        panel_keys = ["all", freq_key]
+        assigned = m.assigned_profiles.any? ? m.assigned_profiles : @kids
       %>
-        <div class="mission-row"
-             data-panels="<%= panel_keys.join(' ') %>"
-             style="display: grid; grid-template-columns: 2fr 1.3fr 0.8fr 1.5fr 60px; align-items: center; padding: 14px 20px; border-top: 1px solid var(--hairline); gap: 10px;">
-          <div class="row" style="gap: 10px; align-items: center;">
-            <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: <%= cm[:bg] %>; flex-shrink: 0;">
-              <%= render Ui::Icon::Component.new(cm[:icon], size: 16, color: cm[:color]) %>
-            </span>
-            <div>
-              <div class="h-display" style="font-size: 15px; color: var(--text);"><%= m.title %></div>
-              <div style="font-size: 11px; color: var(--text-muted); margin-top: 1px;"><%= cm[:label] %></div>
-            </div>
-          </div>
-          <div>
-            <span class="chip chip-sm" style="background: <%= fm[:soft] %>; color: <%= fm[:dark] %>;">
-              <%= fm[:label] %>
-            </span>
-          </div>
-          <div class="row" style="gap: 4px; align-items: center;">
-            <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
-            <span class="h-display" style="font-size: 15px; color: var(--star-2);"><%= m.points %></span>
-          </div>
-          <div class="row" style="gap: -4px; align-items: center;">
-            <% @kids.first(4).each_with_index do |k, idx|
-              c = k.color.presence || "primary"
-              bg = c == "primary" ? "var(--primary)" : "var(--c-#{c})"
-              initials = k.name.to_s.strip.split.first(2).map { |w| w[0] }.join.upcase
-            %>
-              <span title="<%= k.name %>" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: <%= bg %>; color: white; font-size: 10px; font-weight: 800; margin-left: <%= idx.zero? ? 0 : -6 %>px; border: 2px solid var(--surface);">
-                <%= initials %>
-              </span>
-            <% end %>
-          </div>
-          <div class="row" style="gap: 4px; justify-content: flex-end;">
-            <%= link_to edit_parent_global_task_path(m), class: "btn btn-ghost btn-sm", style: "padding: 6px;", aria: { label: "Editar" } do %>
-              <%= render Ui::Icon::Component.new("pencil", size: 16, color: "var(--text-soft)") %>
-            <% end %>
-            <%= button_to parent_global_task_path(m), method: :delete, class: "btn btn-ghost btn-sm", style: "padding: 6px; color: var(--danger);", data: { turbo_confirm: "Remover a missão \"#{m.title}\"?" } do %>
-              <%= render Ui::Icon::Component.new("trash", size: 16) %>
-            <% end %>
-          </div>
-        </div>
+        <%= render Ui::MissionListRow::Component.new(mission: m, assigned_profiles: assigned) %>
       <% end %>
     <% else %>
       <div style="padding: 20px;">
@@ -111,24 +54,24 @@
   </div>
 </div>
 
+<style>
+  @media (min-width: 768px) {
+    .mission-header { display: grid !important; }
+  }
+</style>
+
 <script>
-  // Client-side chip filtering: toggle rows based on data-panels.
   (function(){
     document.addEventListener("click", function(e){
-      const btn = e.target.closest("[data-tabs-id-param]");
+      const btn = e.target.closest(".screen .tab[data-tabs-id-param]");
       if (!btn) return;
       const scope = btn.closest(".screen");
       if (!scope) return;
       const key = btn.dataset.tabsIdParam;
-      scope.querySelectorAll(".chip").forEach(c => {
-        const active = c === btn;
-        c.classList.toggle("active", active);
-        c.style.background = active ? "var(--primary)" : "var(--surface)";
-        c.style.color = active ? "white" : "var(--text)";
-      });
+      scope.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t === btn));
       scope.querySelectorAll(".mission-row").forEach(row => {
         const panels = (row.dataset.panels || "").split(/\s+/);
-        row.style.display = panels.includes(key) ? "grid" : "none";
+        row.style.display = (key === "all" || panels.includes(key)) ? "" : "none";
       });
     });
   })();

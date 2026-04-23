@@ -1,12 +1,4 @@
 <%# locals: (grouped:, today:) %>
-<%
-  kind_map = {
-    "earn"   => { icon: "sparkle", disc_bg: "var(--c-mint-soft)",  disc_color: "var(--c-mint-dark)", chip_bg: "var(--c-mint-soft)",  chip_text: "var(--c-mint-dark)",  label: "Conquista" },
-    "redeem" => { icon: "gift",    disc_bg: "var(--c-lilac-soft)", disc_color: "var(--primary)",     chip_bg: "var(--c-lilac-soft)", chip_text: "var(--primary-2)",    label: "Compra"    },
-    "adjust" => { icon: "star",    disc_bg: "var(--star-soft)",    disc_color: "var(--star-2)",      chip_bg: "var(--star-soft)",    chip_text: "var(--star-2)",       label: "Ajuste"    }
-  }
-%>
-
 <% grouped.each do |date, logs| %>
   <%
     day_label = if date == today
@@ -30,28 +22,7 @@
   <%# Log entries — flat rows, no card box %>
   <div class="col" style="gap: 0; margin-bottom: 8px; background: var(--surface); border-radius: var(--r-lg); overflow: hidden;">
     <% logs.each_with_index do |h, i| %>
-      <% kind = h.log_type.to_s %>
-      <% k = kind_map[kind] || kind_map["adjust"] %>
-      <div style="padding: 12px 14px; <%= i > 0 ? 'border-top: 1px solid var(--hairline);' : '' %>">
-        <div class="row" style="gap: 12px; align-items: center;">
-          <%# Icon disc — smaller, 36px %>
-          <div style="width: 36px; height: 36px; border-radius: var(--r-full); background: <%= k[:disc_bg] %>; color: <%= k[:disc_color] %>; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <%= render Ui::Icon::Component.new(k[:icon], size: 20, color: "currentColor") %>
-          </div>
-          <%# Title + kind chip + time %>
-          <div class="col fg1" style="gap: 2px;">
-            <div style="font-size: 15px; font-weight: 700; color: var(--text);"><%= h.title %></div>
-            <div class="row" style="gap: 5px; align-items: center;">
-              <span style="font-size: 10px; font-weight: 800; padding: 1px 7px; border-radius: var(--r-full); background: <%= k[:chip_bg] %>; color: <%= k[:chip_text] %>; text-transform: uppercase; letter-spacing: 0.04em;"><%= k[:label] %></span>
-              <span style="font-size: 11px; color: var(--text-muted); font-weight: 500;"><%= h.created_at.strftime("%H:%M") %></span>
-            </div>
-          </div>
-          <%# Points %>
-          <div class="h-display" style="font-size: 16px; color: <%= h.earn? ? 'var(--c-mint-dark)' : 'var(--c-rose-dark)' %>; flex-shrink: 0;">
-            <%= h.earn? ? '+' : '−' %><%= h.points %> ⭐
-          </div>
-        </div>
-      </div>
+      <%= render Ui::HistoryRow::Component.new(log: h, with_divider: i > 0) %>
     <% end %>
   </div>
 <% end %>

@@ -1,9 +1,9 @@
 class Parent::RewardsController < ApplicationController
   include Authenticatable
   before_action :require_parent!
-  before_action :set_reward, only: [:destroy]
+  before_action :set_reward, only: [ :edit, :update, :destroy ]
 
-  layout 'parent'
+  layout "parent"
 
   def index
     @rewards = Reward.where(family_id: current_profile.family_id).order(cost: :asc)
@@ -22,6 +22,17 @@ class Parent::RewardsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @reward.update(reward_params)
+      redirect_to parent_rewards_path, notice: "Recompensa atualizada."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @reward.destroy
     redirect_to parent_rewards_path, notice: "Recompensa removida."
@@ -34,6 +45,6 @@ class Parent::RewardsController < ApplicationController
   end
 
   def reward_params
-    params.require(:reward).permit(:title, :cost, :icon)
+    params.require(:reward).permit(:title, :cost, :icon, :category)
   end
 end

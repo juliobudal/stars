@@ -6,7 +6,7 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
   let(:family) { Family.create! }
   let(:parent_profile) { Profile.create!(family: family, name: "Parent", role: :parent) }
   let(:kid_profile) { Profile.create!(family: family, name: "Kid", role: :child) }
-  let!(:global_task) { GlobalTask.create!(family: family, title: "Clean room", points: 10, category: :domestic, frequency: :weekly) }
+  let!(:global_task) { GlobalTask.create!(family: family, title: "Clean room", points: 10, category: :casa, frequency: :weekly) }
 
   describe "Access Control" do
     it "redirects to root if not logged in" do
@@ -49,9 +49,9 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
             global_task: {
               title: "Do homework",
               points: 20,
-              category: "studies",
+              category: "escola",
               frequency: "daily",
-              days_of_week: ["monday", "tuesday"]
+              days_of_week: [ "monday", "tuesday" ]
             }
           }
         }.to change(GlobalTask, :count).by(1)
@@ -59,7 +59,7 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
         expect(response).to redirect_to(parent_global_tasks_path)
         new_task = GlobalTask.last
         expect(new_task.title).to eq("Do homework")
-        expect(new_task.days_of_week).to eq(["monday", "tuesday"])
+        expect(new_task.days_of_week).to eq([ "monday", "tuesday" ])
         expect(new_task.family_id).to eq(family.id)
       end
 
@@ -86,7 +86,7 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
         patch parent_global_task_path(global_task), params: {
           global_task: { title: "Clean room completely" }
         }
-        
+
         expect(response).to redirect_to(parent_global_tasks_path)
         expect(global_task.reload.title).to eq("Clean room completely")
       end
@@ -97,8 +97,38 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
         expect {
           delete parent_global_task_path(global_task)
         }.to change(GlobalTask, :count).by(-1)
-        
+
         expect(response).to redirect_to(parent_global_tasks_path)
+      end
+    end
+
+    describe "PATCH /parent/global_tasks/:id/toggle_active" do
+      it "flips the active flag" do
+        expect {
+          patch toggle_active_parent_global_task_path(global_task)
+        }.to change { global_task.reload.active }.from(true).to(false)
+      end
+    end
+
+    describe "assigned_profile_ids round-trip" do
+      it "persists assignments on create and update" do
+        post parent_global_tasks_path, params: {
+          global_task: {
+            title: "Leitura",
+            points: 10,
+            category: "escola",
+            frequency: "daily",
+            assigned_profile_ids: [ kid_profile.id.to_s ]
+          }
+        }
+        gt = GlobalTask.order(:id).last
+        expect(gt.assigned_profiles).to contain_exactly(kid_profile)
+
+        other_kid = Profile.create!(family: family, name: "Other", role: :child)
+        patch parent_global_task_path(gt), params: {
+          global_task: { assigned_profile_ids: [ other_kid.id.to_s ] }
+        }
+        expect(gt.reload.assigned_profiles).to contain_exactly(other_kid)
       end
     end
   end
