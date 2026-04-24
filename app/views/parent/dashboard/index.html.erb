@@ -70,7 +70,7 @@
       <%= link_to "Ver tudo", parent_activity_logs_path, style: "font-size: 13px; font-weight: 700; color: var(--primary); text-decoration: none;" %>
     </div>
     <% if @recent_activity.any? %>
-      <div class="card" style="padding: 4px 20px;">
+      <div class="card" style="padding: 14px 20px;">
         <% @recent_activity.each_with_index do |log, i| %>
           <%= render Ui::ActivityRow::Component.new(log: log, with_divider: i < @recent_activity.size - 1) %>
         <% end %>
