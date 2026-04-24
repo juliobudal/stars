@@ -6,7 +6,7 @@
     subtitle: "#{@global_tasks.size} missões no catálogo",
   ) do |bar| %>
     <% bar.with_right_slot do %>
-      <%= link_to new_parent_global_task_path, class: "btn btn-primary", style: "text-transform: none" do %>
+      <%= link_to new_parent_global_task_path, class: "btn btn-primary normal-case" do %>
         <%= render Ui::Icon::Component.new("plus", size: 18, color: "white") %> Nova missão
       <% end %>
     <% end %>
@@ -20,18 +20,18 @@
       { id: "inactive", label: "Inativas" }
     ]
   %>
-  <div style="margin-bottom: 14px; z-index: 2;">
+  <div class="mb-3.5 z-2">
     <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all") %>
   </div>
 
-  <div class="card" style="padding: 0; overflow: hidden; z-index: 2;">
+  <div class="card p-0 overflow-hidden z-2">
     <% if @global_tasks.any? %>
-      <div class="mission-header" style="display: none; background: var(--surface-2); padding: 14px 20px; grid-template-columns: 2fr 1.3fr 0.8fr 1.4fr 80px 80px; font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--text-muted); text-transform: uppercase; gap: 10px;">
+      <div class="mission-header hidden md:grid bg-surface-2 py-3.5 px-5 grid-cols-[2fr_1.3fr_0.8fr_1.4fr_80px_80px] text-[11px] font-extrabold tracking-widest text-muted-foreground uppercase gap-2.5">
         <div>Missão</div>
         <div>Recorrência</div>
         <div>Estrelas</div>
         <div>Atribuída a</div>
-        <div style="text-align: center;">Ativa</div>
+        <div class="text-center">Ativa</div>
         <div></div>
       </div>
 
@@ -41,7 +41,7 @@
         <%= render Ui::MissionListRow::Component.new(mission: m, assigned_profiles: assigned) %>
       <% end %>
     <% else %>
-      <div style="padding: 20px;">
+      <div class="p-5">
         <%= render Ui::Empty::Component.new(
           icon: "target",
           title: "Nenhuma missão cadastrada",
@@ -51,13 +51,15 @@
       </div>
     <% end %>
   </div>
+
+  <%# Brand footer %>
+  <div style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 24px 0 8px; opacity: 0.35;">
+    <%= render Ui::LogoMark::Component.new(size: 16) %>
+    <span style="font-size: 11px; font-weight: 800; letter-spacing: .12em; color: var(--text-muted); text-transform: uppercase;">LittleStars</span>
+  </div>
 </div>
 
-<style>
-  @media (min-width: 768px) {
-    .mission-header { display: grid !important; }
-  }
-</style>
+
 
 <script>
   (function(){
