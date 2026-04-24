@@ -98,6 +98,36 @@
   --space-6: 32px;
   --space-7: 40px;
   --space-8: 56px;
+
+  /* Aliases for @theme compatibility */
+  --background: var(--bg-deep);
+  --foreground: var(--text);
+  --card: var(--surface);
+  --card-foreground: var(--text);
+  --popover: var(--surface);
+  --popover-foreground: var(--text);
+  --muted: var(--surface-2);
+  --muted-foreground: var(--text-muted);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --input-focus: var(--primary);
+  --input-ring: var(--primary-soft);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--text);
+  --accent: var(--primary-soft);
+  --accent-foreground: var(--primary-2);
+  --destructive: var(--danger);
+  --destructive-depth: var(--danger-2);
+  --warning: var(--star);
+  --warning-depth: var(--star-2);
+  --info: var(--c-sky);
+  --primary-foreground: #ffffff;
+  --primary-depth: var(--primary-2);
+  --overlay: rgba(26, 42, 74, 0.4);
+  /* Radius aliases */
+  --radius-base: var(--r-sm);
+  --radius-btn: var(--r-full);
+  --radius-field: var(--r-sm);
 }
 
 /* ─── Paleta alt: Sunset (rosa/coral) ─── */
@@ -764,6 +794,50 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
 .grid-auto { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-4); }
+
+/* ── Layout helpers ── */
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.row-between  { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.col-tight    { display: flex; flex-direction: column; gap: 0; }
+
+/* ── Card size variants ── */
+.card-sm { background: var(--surface); border-radius: var(--r-sm); padding: var(--space-3); box-shadow: var(--shadow-card); position: relative; }
+.card-md { background: var(--surface); border-radius: var(--r-sm); padding: var(--space-4); box-shadow: var(--shadow-card); position: relative; }
+
+/* ── Timeline vertical line ── */
+.timeline-divider {
+  position: absolute;
+  left: 19px; top: 40px; bottom: 0;
+  border-left: 2px dashed rgba(44,42,58,0.10);
+}
+
+/* ── Typography shorthands ── */
+.text-label   { font-size: 13px; font-weight: 700; color: var(--text); }
+.text-caption { font-size: 11px; font-weight: 700; color: var(--text-muted); }
+
+/* ── Inline badge ── */
+.badge-count {
+  min-width: 18px; height: 18px;
+  background: var(--c-rose); color: white;
+  font-size: 11px; font-weight: 800;
+  border-radius: var(--r-full);
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 5px;
+}
+
+/* ── Stat summary card variants ── */
+.card-stat-earned {
+  border: 2px solid var(--success);
+  background: var(--c-mint-soft);
+  padding: var(--space-4);
+  border-radius: var(--r-sm);
+}
+.card-stat-spent {
+  border: 2px solid var(--c-rose);
+  background: var(--c-rose-soft);
+  padding: var(--space-4);
+  border-radius: var(--r-sm);
+}
 
 @media (max-width: 640px) {
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
