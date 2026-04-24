@@ -380,7 +380,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 .stat-icon-tile {
   width: 40px;
   height: 40px;
-  border-radius: 12px;
+  border-radius: 10px;
   display: grid;
   place-items: center;
   flex-shrink: 0;
@@ -429,10 +429,10 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   border: 2px solid rgba(26,42,74,0.1);
 }
 .chip-sm {
-  font-size: 10px;
-  padding: 3px 9px;
-  letter-spacing: 0.12em;
-  font-weight: 600;
+  font-size: 11px;
+  padding: 4px 10px;
+  letter-spacing: 0.08em;
+  font-weight: 800;
   border-radius: var(--r-full);
 }
 
@@ -574,6 +574,13 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   display: inline;
   font-size: 10px;
   font-weight: 700;
+}
+
+/* Parent layout mobile — override nav-item active state to match desktop sidebar */
+body.parent-layout .nav-item.active {
+  background: var(--primary-soft);
+  color: var(--text);
+  box-shadow: none;
 }
 
 /* ── Parent mobile header (hidden on desktop) ── */
