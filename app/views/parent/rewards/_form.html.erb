@@ -15,7 +15,7 @@
   %>
 
   <div class="center mb-4">
-    <div style="width: 100px; height: 100px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center;">
+    <div class="flex-center" style="width: 100px; height: 100px; border-radius: 50%; background: var(--primary);">
       <%= render Ui::Icon::Component.new(reward.icon.presence || "gift", size: 58, color: "white") %>
     </div>
   </div>
@@ -43,7 +43,7 @@
       <% icon_options.each do |ic| %>
         <label class="cursor-pointer">
           <%= f.radio_button :icon, ic, class: "peer sr-only" %>
-          <div class="peer-checked:bg-primary-soft peer-checked:border-primary border-2 border-transparent p-2 rounded-xl transition-all" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: white; border: 2px solid rgba(26,42,74,0.1);">
+          <div class="peer-checked:bg-primary-soft peer-checked:border-primary border-2 border-transparent p-2 rounded-xl transition-all flex-center" style="width: 44px; height: 44px; background: white; border: 2px solid rgba(26,42,74,0.1);">
             <%= render Ui::Icon::Component.new(ic, size: 24, color: "var(--primary)") %>
           </div>
         </label>

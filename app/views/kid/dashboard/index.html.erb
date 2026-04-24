@@ -88,13 +88,13 @@
   <div style="font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 16px; flex-shrink: 0; z-index: 2;">Missões de hoje</div>
 
   <%# ── Mission list ── %>
-  <div style="position: relative; z-index: 2;">
+  <div class="relative" style="z-index: 2;">
 
     <%# Completed ─────────────────────────────── %>
     <% @completed_today.each do |task| %>
       <% cat_data = Ui::MissionCard::Component::CATEGORIES[task.global_task&.category.to_s] || Ui::MissionCard::Component::CATEGORIES["geral"] %>
-      <div style="position:relative;display:flex;gap:16px;padding-bottom:24px;opacity:0.75;">
-        <div style="position:absolute;left:19px;top:40px;bottom:0;border-left:2px dashed rgba(44,42,58,0.10);"></div>
+      <div class="row" style="padding-bottom:24px;opacity:0.75;position:relative;">
+        <div class="timeline-divider"></div>
         <div style="width:40px;height:40px;border-radius:50%;background:var(--c-mint-soft);border:2px solid var(--c-mint);display:grid;place-items:center;flex-shrink:0;z-index:1;">
           <%= render Ui::Icon::Component.new("check", size: 16, color: "var(--c-mint-dark)") %>
         </div>
@@ -127,8 +127,8 @@
       <% is_current = i == 0 %>
 
       <div id="<%= dom_id(profile_task) %>" data-controller="ui-modal"
-           style="position:relative;display:flex;gap:16px;padding-bottom:24px;">
-        <div style="position:absolute;left:19px;top:40px;bottom:0;border-left:2px dashed rgba(44,42,58,0.10);"></div>
+           class="row" style="padding-bottom:24px;position:relative;">
+        <div class="timeline-divider"></div>
 
         <div style="width:40px;height:40px;border-radius:50%;background:white;border:2px solid <%= is_current ? node_color : 'rgba(44,42,58,0.12)' %>;display:grid;place-items:center;flex-shrink:0;z-index:1;cursor:pointer;<%= is_current ? "box-shadow:0 0 0 4px #{node_color}33;" : '' %>"
              data-action="click->ui-modal#open"
@@ -194,7 +194,7 @@
 
     <%# Finish node %>
     <% if total > 0 %>
-      <div style="display:flex;gap:16px;align-items:center;margin-top:8px;">
+      <div class="row" style="align-items:center;margin-top:8px;">
         <div style="width:40px;height:40px;border-radius:50%;background:var(--star-soft);display:grid;place-items:center;flex-shrink:0;">
           <%= render Ui::Lumi::Component.new(size: 28, mood: "excited") %>
         </div>

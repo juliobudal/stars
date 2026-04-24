@@ -25,7 +25,7 @@
   <% end %>
 
   <%# Section Header %>
-  <div style="z-index: 2; display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px; margin-top: 20px;">
+  <div class="row-between" style="z-index: 2; align-items: baseline; margin-bottom: 20px; margin-top: 20px;">
     <div class="h-display" style="font-size: 18px; color: var(--text);">O que você quer hoje?</div>
     <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);"><%= @rewards.size %> prêmios</span>
   </div>
@@ -44,9 +44,9 @@
     ) %>
 
     <%# "Tudo" panel — renders the full grid %>
-    <div id="panel-tudo" style="display: flex; flex-direction: column; margin-top: 16px;">
+    <div id="panel-tudo" class="col" style="margin-top: 16px;">
       <% if @rewards.any? %>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+        <div class="rewards-grid" style="display: grid; gap: 12px;">
           <% @rewards.each_with_index do |reward, i| %>
             <%= render Ui::RewardTile::Component.new(
               reward: reward,
@@ -90,7 +90,7 @@
     <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(reward)}", title: "Resgatar Recompensa") do %>
       <div class="center col" style="text-align: center; gap: 14px;">
         <%= render Ui::Lumi::Component.new(size: 76, mood: "excited") %>
-        <div style="width: 100px; height: 100px; border-radius: var(--r-lg); background: var(--c-lilac-soft); display: grid; place-items: center; margin: 0 auto;">
+        <div class="flex-center" style="width: 100px; height: 100px; border-radius: var(--r-lg); background: var(--c-lilac-soft); margin: 0 auto;">
           <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 56, color: "var(--c-violet-dark)") %>
         </div>
         <h3 class="h-display" style="font-size: 26px;"><%= reward.title %></h3>

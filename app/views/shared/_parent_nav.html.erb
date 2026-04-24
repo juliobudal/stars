@@ -10,7 +10,7 @@
     <span class="h-display" style="font-size: 18px; font-style: normal; color: var(--text);">LittleStars</span>
   </div>
   <button type="button" id="sidebar-toggle"
-          style="width: 36px; height: 36px; border-radius: 10px; background: var(--bg-soft); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text);">
+          class="flex-center" style="width: 36px; height: 36px; border-radius: 10px; background: var(--bg-soft); border: none; cursor: pointer; color: var(--text);">
     <%= render Ui::Icon::Component.new("list", size: 20) %>
   </button>
 </div>
@@ -75,17 +75,7 @@
       <%= render Ui::Icon::Component.new("clock", size: 20) %>
       <span>Aprovações</span>
       <% if pending_count > 0 %>
-        <span style="
-          min-width: 18px; height: 18px;
-          background: var(--c-rose);
-          color: white;
-          font-size: 11px;
-          font-weight: 800;
-          border-radius: var(--r-full);
-          display: flex; align-items: center; justify-content: center;
-          padding: 0 5px;
-          margin-left: auto;
-        "><%= pending_count %></span>
+        <span class="badge-count" style="margin-left: auto;"><%= pending_count %></span>
       <% end %>
     <% end %>
 
@@ -107,7 +97,7 @@
         <div style="font-size: 11px; color: var(--text-muted);">Responsável</div>
       </div>
       <%= button_to sessions_path, method: :delete,
-          style: "flex-shrink: 0; width: 32px; height: 32px; padding: 0; background: none; border: none; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: background 0.15s;",
+          class: "flex-center", style: "flex-shrink: 0; width: 32px; height: 32px; padding: 0; background: none; border: none; cursor: pointer; color: var(--text-muted); border-radius: 8px; transition: background 0.15s;",
           title: "Sair",
           form: { style: "display: contents;" } do %>
         <%= render Ui::Icon::Component.new("logout", size: 18, color: "currentColor") %>
@@ -137,19 +127,7 @@
     <%= render Ui::Icon::Component.new("clock", size: 22) %>
     <span class="nav-label">Aprovações</span>
     <% if pending_count > 0 %>
-      <span style="
-        position: absolute;
-        top: 4px; right: 4px;
-        min-width: 16px; height: 16px;
-        background: var(--c-rose);
-        color: white;
-        font-size: 10px;
-        font-weight: 800;
-        border-radius: var(--r-full);
-        display: flex; align-items: center; justify-content: center;
-        padding: 0 4px;
-        line-height: 1;
-      "><%= pending_count %></span>
+      <span class="badge-count" style="position: absolute; top: 4px; right: 4px; min-width: 16px; height: 16px; font-size: 10px; line-height: 1;"><%= pending_count %></span>
     <% end %>
   <% end %>
 
