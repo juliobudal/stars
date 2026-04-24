@@ -8,8 +8,8 @@ module Approvals
       Redemption
         .pending
         .includes(:profile, :reward)
+        .joins(:profile)
         .where(profiles: { family_id: @family.id })
-        .references(:profiles)
         .order(created_at: :desc)
     end
   end

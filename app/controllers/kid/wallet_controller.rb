@@ -8,9 +8,9 @@ class Kid::WalletController < ApplicationController
 
     week_start_day = current_profile.family.week_start.zero? ? :sunday : :monday
     week_start = Time.current.beginning_of_week(week_start_day)
-    week_logs = ActivityLog.where(profile: current_profile).where("created_at >= ?", week_start)
-    @week_earned   = week_logs.where(log_type: :earn).sum(:points)
-    @week_spent    = week_logs.where(log_type: :redeem).sum(:points)
+    week_logs = @activity_logs.select { |l| l.created_at >= week_start }
+    @week_earned   = week_logs.select(&:earn?).sum(&:points)
+    @week_spent    = week_logs.select(&:redeem?).sum(&:points).abs
     @week_missions = current_profile.profile_tasks.where(status: :approved).where("updated_at >= ?", week_start).count
 
     @today            = family_today(current_profile.family)

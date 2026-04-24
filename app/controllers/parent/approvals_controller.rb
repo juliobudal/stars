@@ -8,68 +8,22 @@ class Parent::ApprovalsController < ApplicationController
     @redemptions = Approvals::PendingRedemptionsQuery.new(family: current_profile.family).call
   end
 
-  # TODO: batch endpoint when ids > 20
   def bulk_approve
-    ids = Array(params[:approval_ids]).reject(&:blank?)
-    if ids.empty?
-      redirect_to parent_approvals_path, alert: "Nenhuma tarefa selecionada."
-      return
-    end
-
-    approved_ids = []
-    ids.each do |id|
-      task = family_profile_tasks.find_by(id: id)
-      next unless task
-
-      result = Tasks::ApproveService.call(task)
-      approved_ids << id if result.success?
-    end
-
-    respond_to do |format|
-      format.html { redirect_to parent_approvals_path, notice: "#{approved_ids.size} tarefa(s) aprovada(s)." }
-      format.turbo_stream do
-        render turbo_stream: approved_ids.map { |id|
-          turbo_stream.remove("profile_task_#{id}")
-        }
-      end
-    end
+    perform_bulk(service: Tasks::ApproveService, success_msg: ->(n) { "#{n} tarefa(s) aprovada(s)." })
   end
 
-  # TODO: batch endpoint when ids > 20
   def bulk_reject
-    ids = Array(params[:approval_ids]).reject(&:blank?)
-    if ids.empty?
-      redirect_to parent_approvals_path, alert: "Nenhuma tarefa selecionada."
-      return
-    end
-
-    rejected_ids = []
-    ids.each do |id|
-      task = family_profile_tasks.find_by(id: id)
-      next unless task
-
-      result = Tasks::RejectService.call(task)
-      rejected_ids << id if result.success?
-    end
-
-    respond_to do |format|
-      format.html { redirect_to parent_approvals_path, notice: "#{rejected_ids.size} tarefa(s) rejeitada(s)." }
-      format.turbo_stream do
-        render turbo_stream: rejected_ids.map { |id|
-          turbo_stream.remove("profile_task_#{id}")
-        }
-      end
-    end
+    perform_bulk(service: Tasks::RejectService, success_msg: ->(n) { "#{n} tarefa(s) rejeitada(s)." })
   end
 
   def approve
-    @profile_task = ProfileTask.includes(:profile, :global_task).joins(:profile).where(profiles: { family_id: current_profile.family_id }).find(params[:id])
+    @profile_task = family_profile_tasks.find(params[:id])
     result = Tasks::ApproveService.call(@profile_task)
     respond_after(result, success_msg: "Tarefa aprovada com sucesso!", fail_msg: "Não foi possível aprovar a tarefa.")
   end
 
   def reject
-    @profile_task = ProfileTask.includes(:profile, :global_task).joins(:profile).where(profiles: { family_id: current_profile.family_id }).find(params[:id])
+    @profile_task = family_profile_tasks.find(params[:id])
     result = Tasks::RejectService.call(@profile_task)
     respond_after(result, success_msg: "Tarefa rejeitada.", fail_msg: "Não foi possível rejeitar a tarefa.")
   end
@@ -103,6 +57,28 @@ class Parent::ApprovalsController < ApplicationController
   end
 
   private
+
+  def perform_bulk(service:, success_msg:)
+    ids = Array(params[:approval_ids]).reject(&:blank?)
+    if ids.empty?
+      redirect_to parent_approvals_path, alert: "Nenhuma tarefa selecionada."
+      return
+    end
+
+    processed_ids = ids.filter_map do |id|
+      task = family_profile_tasks.find_by(id: id)
+      next unless task
+      result = service.call(task)
+      id if result.success?
+    end
+
+    respond_to do |format|
+      format.html { redirect_to parent_approvals_path, notice: success_msg.call(processed_ids.size) }
+      format.turbo_stream do
+        render turbo_stream: processed_ids.map { |id| turbo_stream.remove("profile_task_#{id}") }
+      end
+    end
+  end
 
   def family_profile_tasks
     ProfileTask.includes(:profile, :global_task).joins(:profile).where(profiles: { family_id: current_profile.family_id })
