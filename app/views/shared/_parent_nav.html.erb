@@ -5,12 +5,14 @@
 
 <%# Mobile sticky header — hidden on desktop via CSS %>
 <%# Mobile sticky header — hidden on desktop via CSS %>
+<div data-controller="sidebar-toggle">
 <div class="flex lg:hidden items-center justify-between px-4 h-[64px] bg-white border-b border-hairline sticky top-0 z-40">
   <div class="flex items-center gap-2.5">
     <%= render Ui::LogoMark::Component.new(size: 20) %>
     <span class="font-display font-extrabold tracking-tight text-[18px] text-foreground">LittleStars</span>
   </div>
   <button type="button" id="sidebar-toggle"
+          data-action="click->sidebar-toggle#open"
           class="flex items-center justify-center w-9 h-9 rounded-[10px] bg-muted border-none cursor-pointer text-foreground">
     <%= render Ui::Icon::Component.new("list", size: 20) %>
   </button>
@@ -18,7 +20,7 @@
 
 <%# Sidebar %>
 <%# Sidebar %>
-<nav class="flex flex-col fixed left-0 top-0 bottom-0 w-[280px] bg-surface border-r border-hairline z-50 -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0" id="parent-sidebar" aria-label="Principal">
+<nav class="flex flex-col fixed left-0 top-0 bottom-0 w-[280px] bg-surface border-r border-hairline z-50 -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0" id="parent-sidebar" data-sidebar-toggle-target="sidebar" aria-label="Principal">
   <%# Brand mark %>
   <div class="p-6 flex flex-col gap-4">
     <div class="flex items-center gap-3">
@@ -82,7 +84,11 @@
 </nav>
 
 <%# Sidebar backdrop (mobile) %>
-<div id="sidebar-backdrop" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden"></div>
+<div id="sidebar-backdrop" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden"
+     data-sidebar-toggle-target="backdrop"
+     data-action="click->sidebar-toggle#close"></div>
+
+</div><%# end data-controller="sidebar-toggle" %>
 
 <div class="fixed bottom-0 left-0 right-0 h-[72px] bg-white/80 backdrop-blur-lg border-t border-hairline flex justify-around items-center px-4 z-40 lg:hidden">
   <%
@@ -105,29 +111,3 @@
   <% end %>
 </div>
 
-<script>
-  (function() {
-    var toggle = document.getElementById('sidebar-toggle');
-    var sidebar = document.getElementById('parent-sidebar');
-    var backdrop = document.getElementById('sidebar-backdrop');
-    if (!toggle || !sidebar || !backdrop) return;
-
-    function openSidebar() {
-      sidebar.classList.remove('-translate-x-full');
-      sidebar.classList.add('translate-x-0');
-      backdrop.classList.remove('hidden');
-    }
-    function closeSidebar() {
-      sidebar.classList.remove('translate-x-0');
-      sidebar.classList.add('-translate-x-full');
-      backdrop.classList.add('hidden');
-    }
-
-    toggle.addEventListener('click', openSidebar);
-    backdrop.addEventListener('click', closeSidebar);
-
-    window.addEventListener('resize', function() {
-      if (window.innerWidth >= 1024) closeSidebar();
-    });
-  })();
-</script>

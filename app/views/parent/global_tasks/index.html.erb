@@ -1,4 +1,4 @@
-<div class="screen screen-enter-right with-nav" data-controller="tabs">
+<div class="screen screen-enter-right with-nav" data-controller="filter-tabs">
   <%= render Ui::BgShapes::Component.new(variant: "blue") %>
 
   <%= render Ui::TopBar::Component.new(
@@ -21,7 +21,7 @@
     ]
   %>
   <div class="mb-3.5 z-2">
-    <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all") %>
+    <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all", controller: "filter-tabs") %>
   </div>
 
   <div class="bg-surface rounded-card shadow-card relative border-none p-0 overflow-hidden z-2">
@@ -37,8 +37,12 @@
 
       <% @global_tasks.each do |m|
         assigned = m.assigned_profiles.any? ? m.assigned_profiles : @kids
+        panel_keys = [ "all", m.frequency.to_s ]
+        panel_keys << "inactive" unless m.active?
       %>
-        <%= render Ui::MissionListRow::Component.new(mission: m, assigned_profiles: assigned) %>
+        <div data-filter-tabs-target="item" data-panels="<%= panel_keys.join(' ') %>">
+          <%= render Ui::MissionListRow::Component.new(mission: m, assigned_profiles: assigned) %>
+        </div>
       <% end %>
     <% else %>
       <div class="p-5">
@@ -59,21 +63,3 @@
   </div>
 </div>
 
-
-
-<script>
-  (function(){
-    document.addEventListener("click", function(e){
-      const btn = e.target.closest(".screen .tab[data-tabs-id-param]");
-      if (!btn) return;
-      const scope = btn.closest(".screen");
-      if (!scope) return;
-      const key = btn.dataset.tabsIdParam;
-      scope.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t === btn));
-      scope.querySelectorAll(".mission-row").forEach(row => {
-        const panels = (row.dataset.panels || "").split(/\s+/);
-        row.style.display = (key === "all" || panels.includes(key)) ? "" : "none";
-      });
-    });
-  })();
-</script>

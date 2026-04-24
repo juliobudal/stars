@@ -1,4 +1,4 @@
-<div class="screen screen-enter-right with-nav" data-controller="tabs">
+<div class="screen screen-enter-right with-nav" data-controller="filter-tabs">
   <%= render Ui::BgShapes::Component.new(variant: "warm") %>
 
   <%= render Ui::TopBar::Component.new(
@@ -20,15 +20,17 @@
       end
     %>
     <div class="mb-3.5 z-2">
-      <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all") %>
+      <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all", controller: "filter-tabs") %>
     </div>
 
     <div class="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-[clamp(14px,2vw,28px)] z-2 mt-1">
       <% @rewards.each do |reward| %>
-        <%= render Ui::RewardCatalogCard::Component.new(reward: reward) %>
+        <div data-filter-tabs-target="item" data-panels="all <%= reward.category %>">
+          <%= render Ui::RewardCatalogCard::Component.new(reward: reward) %>
+        </div>
       <% end %>
 
-      <%= link_to new_parent_reward_path, class: "ghost-add-card", data: { panels: "all" } do %>
+      <%= link_to new_parent_reward_path, class: "ghost-add-card", data: { panels: "all", filter_tabs_target: "item" } do %>
         <div class="w-9 h-9 rounded-full bg-surface-2 flex items-center justify-center">
           <%= render Ui::Icon::Component.new("plus", size: 18, color: "currentColor") %>
         </div>
@@ -48,20 +50,3 @@
     </div>
   <% end %>
 </div>
-
-<script>
-  (function(){
-    document.addEventListener("click", function(e){
-      const btn = e.target.closest(".screen .tab[data-tabs-id-param]");
-      if (!btn) return;
-      const scope = btn.closest(".screen");
-      if (!scope) return;
-      const key = btn.dataset.tabsIdParam;
-      scope.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t === btn));
-      scope.querySelectorAll(".reward-catalog-card, .ghost-add-card").forEach(card => {
-        const panels = (card.dataset.panels || "all").split(/\s+/);
-        card.style.display = (key === "all" || panels.includes(key)) ? "" : "none";
-      });
-    });
-  })();
-</script>
