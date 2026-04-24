@@ -6,6 +6,8 @@ Capybara.register_driver :selenium_chrome_headless do |app|
   options.add_argument("--no-sandbox")
   options.add_argument("--disable-dev-shm-usage")
   options.add_argument("--disable-gpu")
+  # Tall viewport so long forms (overflow-y:auto scroll containers) don't clip fields
+  options.add_argument("--window-size=1280,1200")
 
   # Use chromium binary when google-chrome is not available (Debian/devcontainer)
   options.binary = "/usr/bin/chromium" if File.exist?("/usr/bin/chromium")

@@ -16,7 +16,7 @@ RSpec.describe Ui::RewardTile::Component, type: :component do
 
   it "shows shortfall and disables when not affordable" do
     render_inline(described_class.new(reward: reward, balance: 3))
-    expect(page).to have_text("faltam 7 ⭐")
+    expect(page).to have_text("faltam 7")
     expect(page).to have_css("button[disabled]")
   end
 

@@ -40,7 +40,7 @@
 
     <%# Awaiting badge %>
     <% if awaiting_count > 0 %>
-      <div class="row" style="margin-top: 10px; gap: 5px; color: var(--c-amber-dark); font-size: 13px; font-weight: 700;">
+      <div class="row awaiting-badge" style="margin-top: 10px; gap: 5px; color: var(--c-amber-dark); font-size: 13px; font-weight: 700;">
         <%= render Ui::Icon::Component.new("clock", size: 14, color: "var(--c-amber-dark)") %>
         <%= awaiting_count %> aguardando aprovação
       </div>
