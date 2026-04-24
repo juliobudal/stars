@@ -7,6 +7,9 @@
 %>
 
 <nav class="side-nav">
+  <div class="brand-mark" style="display: flex; justify-content: center; padding: var(--space-4) 0 var(--space-3);">
+    <%= render Ui::LogoMark::Component.new(size: 24) %>
+  </div>
   <% nav_items.each do |item| %>
     <% active = current_page?(item[:path]) %>
     <%= link_to item[:path], class: "nav-item #{active ? 'active' : ''}", title: item[:label] do %>
