@@ -1,11 +1,11 @@
 <div<%= " id=\"#{dom_id}\"".html_safe if dom_id %> class="card" style="padding: 14px;">
-  <div class="row" style="gap: 12px; margin-bottom: 10px;">
+  <div class="row" style="gap: 10px; margin-bottom: 10px;">
     <% if bulk? %>
       <input type="checkbox" name="approval_ids[]" value="<%= bulk_value || dom_id %>"
              aria-label="Selecionar"
              data-bulk-select-target="checkbox"
              data-action="change->bulk-select#change"
-             style="width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0;" />
+             style="width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0;" />
     <% end %>
     <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 40) %>
     <% if profile_task&.proof_photo&.attached? %>
@@ -23,7 +23,7 @@
           <span class="chip chip-sm" style="background: var(--surface-2); color: var(--text-muted);"><%= category_label %></span>
         <% end %>
       </div>
-      <div class="row" style="gap: 8px; margin-top: 4px;">
+      <div class="row" style="gap: 10px; margin-top: 4px;">
         <span style="font-size: 12px; font-weight: 800; color: <%= points_color %>;"><%= points_sign %><%= points %> ★</span>
         <% if meta.present? %>
           <span class="text-caption"><%= meta %></span>
@@ -31,7 +31,7 @@
       </div>
     </div>
   </div>
-  <div class="row" style="gap: 8px;">
+  <div class="row" style="gap: 10px;">
     <%= button_to reject_url, method: :patch,
         form_class: "flex-1",
         style: "width: 100%; background: var(--c-red-soft); color: var(--c-red-dark); border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
