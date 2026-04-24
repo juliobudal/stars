@@ -4,12 +4,12 @@
   <div style="width:40px;height:40px;border-radius:50%;background:var(--c-amber-soft);border:2px solid var(--star);display:grid;place-items:center;flex-shrink:0;z-index:1;">
     <%= render Ui::Icon::Component.new("clock", size: 16, color: "var(--star-2)") %>
   </div>
-  <div class="card fg1" style="padding:14px 16px;">
+  <div class="card fg1" style="padding:20px 24px;">
     <div class="row" style="justify-content:space-between;gap:8px;">
       <div style="font-weight:700;color:var(--text);"><%= task.title %></div>
       <span style="color:var(--star-2);font-weight:800;font-size:13px;flex-shrink:0;opacity:0.5;"><%= task.points %> ★</span>
     </div>
-    <div class="mt-1">
+    <div class="mt-3" style="margin-top: 12px;">
       <span class="chip chip-sm" style="background:var(--c-amber-soft);color:var(--c-amber-dark);display:inline-flex;align-items:center;gap:4px;">
         <%= render Ui::Icon::Component.new("clock", size: 10, color: "var(--c-amber-dark)") %>
         Aguardando

@@ -14,6 +14,10 @@ export default class extends Controller {
     const id = event.params.id || this.idValue
     const modal = document.getElementById(id)
     if (modal) {
+      // Teleport to body so position:fixed escapes any scroll container or stacking context
+      if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal)
+      }
       modal.style.display = "flex"
       document.body.style.overflow = "hidden"
     }

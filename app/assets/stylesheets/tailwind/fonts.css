@@ -1,4 +1,4 @@
-/* LittleStars typography — Fraunces (display, italic) + Nunito (body).
+/* LittleStars typography — Inter (display) + Nunito (body).
  * Loaded from Google Fonts — mirrors Stars/pages/kid-dashboard.html:9.
  */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fraunces:ital,opsz,wght@1,9..144,600;1,9..144,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@600;700&display=swap');

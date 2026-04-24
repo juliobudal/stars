@@ -1,3 +1,29 @@
+# == Schema Information
+#
+# Table name: global_tasks
+#
+#  id           :bigint           not null, primary key
+#  active       :boolean          default(TRUE), not null
+#  category     :integer
+#  day_of_month :integer
+#  days_of_week :string           default([]), is an Array
+#  description  :text
+#  frequency    :integer
+#  icon         :string
+#  points       :integer
+#  title        :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  family_id    :bigint           not null
+#
+# Indexes
+#
+#  index_global_tasks_on_family_id  (family_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (family_id => families.id)
+#
 class GlobalTask < ApplicationRecord
   belongs_to :family
   has_many :profile_tasks, dependent: :destroy

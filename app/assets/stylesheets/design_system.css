@@ -63,21 +63,21 @@
   --text-soft: #A09EAE;
 
   /* Shadows — soft Berry Pop */
-  --shadow-btn: 0 4px 0 rgba(44, 42, 58, 0.12);
-  --shadow-btn-hover: 0 6px 0 rgba(44, 42, 58, 0.12);
-  --shadow-card: 0 2px 0 rgba(44, 42, 58, 0.04), 0 10px 24px rgba(44, 42, 58, 0.06);
-  --shadow-lift: 0 4px 0 rgba(44, 42, 58, 0.05), 0 18px 36px rgba(44, 42, 58, 0.08);
+  --shadow-btn: 0 2px 0 rgba(44, 42, 58, 0.04);
+  --shadow-btn-hover: 0 3px 0 rgba(44, 42, 58, 0.05);
+  --shadow-card: 0 2px 0 rgba(44, 42, 58, 0.04), 0 6px 16px rgba(44, 42, 58, 0.05);
+  --shadow-lift: 0 2px 0 rgba(44, 42, 58, 0.04), 0 8px 16px rgba(44, 42, 58, 0.05);
   --border-card: 1px solid var(--hairline);
 
   /* Radius — generous */
-  --r-sm: 14px;
-  --r-md: 22px;
-  --r-lg: 32px;
-  --r-xl: 40px;
-  --r-featured: 28px;
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-featured: 20px;
   --r-full: 999px;
 
-  --font-display: 'Fraunces', Georgia, serif;
+  --font-display: 'Inter', system-ui, sans-serif;
   --font-body: 'Nunito', system-ui, sans-serif;
 
   --shape-warm-1: #ffe0b3;
@@ -158,7 +158,7 @@ html, body {
 }
 
 /* ── Viewport / Screen ── */
-.viewport { position: relative; width: 100%; height: 100%; z-index: 1; }
+.viewport { position: relative; width: 100%; height: 100%; }
 
 .screen {
   position: absolute;
@@ -194,7 +194,6 @@ html, body {
 .h-display {
   font-family: var(--font-display);
   font-weight: 700;
-  font-style: italic;
   letter-spacing: -0.02em;
   line-height: 1.05;
   color: var(--text);
@@ -304,10 +303,10 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 /* ── Card ── */
 .card {
   background: var(--surface);
-  border-radius: var(--r-md);
-  padding: 20px;
+  border-radius: var(--r-sm);
+  padding: 28px;
   box-shadow: var(--shadow-card);
-  border: var(--border-card);
+  border: none;
   position: relative;
 }
 
@@ -315,7 +314,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   background: var(--primary);
   color: white;
   border: none;
-  box-shadow: 0 6px 0 var(--primary-2), 0 16px 32px rgba(167, 139, 250, 0.25);
+  box-shadow: 0 2px 0 rgba(44, 42, 58, 0.04), 0 6px 16px rgba(44, 42, 58, 0.05);
 }
 
 /* ── Status chips (icon-only 28px pill for mission path) ── */
@@ -422,7 +421,6 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 
 .mission-title {
   font-family: var(--font-display);
-  font-style: italic;
   font-weight: 700;
   font-size: 19px;
   letter-spacing: -0.01em;
@@ -594,7 +592,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 .form-input, .form-select {
   width: 100%;
   padding: 14px 18px;
-  border-radius: var(--r-md);
+  border-radius: var(--r-sm);
   border: 2px solid rgba(26,42,74,0.1);
   background: white;
   font-family: var(--font-body);
@@ -624,7 +622,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 }
 .modal {
   background: var(--surface);
-  border-radius: var(--r-xl);
+  border-radius: var(--r-lg);
   padding: var(--space-6);
   max-width: 440px;
   width: 100%;
@@ -699,13 +697,13 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 .stack { display: flex; flex-direction: column; }
 .cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
 .between { justify-content: space-between; }
-.rounded-card { border-radius: var(--r-md); }
+.rounded-card { border-radius: var(--r-sm); }
 .shadow-card-soft { box-shadow: var(--shadow-card); }
 
 /* ── Pending-approvals banner (parent dashboard) ── */
 .banner-approvals {
   background: linear-gradient(135deg, var(--primary), var(--primary-2));
-  border-radius: var(--r-lg);
+  border-radius: var(--r-md);
   padding: 20px 24px;
   margin-bottom: 20px;
   color: white;
@@ -724,7 +722,6 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
 }
 .banner-approvals__title {
   font-family: var(--font-display);
-  font-style: italic;
   font-weight: 700;
   font-size: 18px;
   margin-bottom: 2px;
@@ -781,7 +778,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   right: 20px;
   background: white;
   border: var(--border-card);
-  border-radius: var(--r-lg);
+  border-radius: var(--r-md);
   padding: var(--space-5);
   color: var(--text);
   box-shadow: 0 6px 0 rgba(26,42,74,0.08), 0 16px 40px rgba(26,42,74,0.12);
@@ -1008,7 +1005,7 @@ body.parent-layout .side-nav.open { transform: translateX(0); }
   gap: 12px;
   min-height: 200px;
   border: 2px dashed var(--hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--r-sm);
   background: transparent;
   text-decoration: none;
   cursor: pointer;
@@ -1024,7 +1021,7 @@ body.parent-layout .side-nav.open { transform: translateX(0); }
 .picker-card {
   background: var(--surface);
   border: none;
-  border-radius: var(--r-md);
+  border-radius: var(--r-sm);
   padding: 20px 24px;
   cursor: pointer;
   box-shadow: var(--shadow-card);
@@ -1085,7 +1082,7 @@ body.parent-layout .side-nav.open { transform: translateX(0); }
   gap: 20px;
   padding: 20px 24px;
   border: 2px dashed var(--hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--r-sm);
   background: transparent;
   text-decoration: none;
   cursor: pointer;

@@ -3,7 +3,7 @@ class Kid::MissionsController < ApplicationController
   before_action :require_child!
 
   def complete
-    @profile_task = ProfileTask.includes(:global_task).pending.where(profile: current_profile).find(params[:id])
+    @profile_task = ProfileTask.includes(:global_task, profile: :family).pending.where(profile: current_profile).find(params[:id])
     result = Tasks::CompleteService.new(profile_task: @profile_task, proof_photo: mission_params[:proof_photo]).call
 
     if result.success?
