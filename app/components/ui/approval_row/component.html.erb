@@ -1,5 +1,5 @@
-<div<%= " id=\"#{dom_id}\"".html_safe if dom_id %> class="card" style="padding: 14px;">
-  <div class="row" style="gap: 10px; margin-bottom: 10px;">
+<div<%= " id=\"#{dom_id}\"".html_safe if dom_id %> class="bg-surface rounded-md p-7 shadow-card relative border-none p-[14px]">
+  <div class="flex items-center gap-2.5 mb-2.5">
     <% if bulk? %>
       <input type="checkbox" name="approval_ids[]" value="<%= bulk_value || dom_id %>"
              aria-label="Selecionar"
@@ -13,25 +13,25 @@
             alt: "Comprovante",
             style: "width: 80px; height: 80px; object-fit: cover; border-radius: var(--r-md); flex-shrink: 0;" %>
     <% end %>
-    <div class="fg1" style="min-width: 0;">
-      <div class="cluster" style="gap: 6px;">
-        <span class="h-display" style="font-size: 15px;"><%= title %></span>
+    <div class="flex-1 min-w-0">
+      <div class="flex flex-wrap items-center gap-1.5">
+        <span class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[15px]"><%= title %></span>
         <% if kid_chip_text.present? %>
-          <span class="chip chip-sm" style="background: <%= palette[:fill] %>; color: <%= palette[:ink] %>; white-space: nowrap;"><%= kid_chip_text %></span>
+          <%= render Ui::Chip::Component.new(size: "sm", style: "background: #{palette[:fill]}; color: #{palette[:ink]}; white-space: nowrap;") do %><%= kid_chip_text %><% end %>
         <% end %>
         <% if category_label.present? %>
-          <span class="chip chip-sm" style="background: var(--surface-2); color: var(--text-muted);"><%= category_label %></span>
+          <%= render Ui::Chip::Component.new(size: "sm") do %><%= category_label %><% end %>
         <% end %>
       </div>
-      <div class="row" style="gap: 10px; margin-top: 4px;">
+      <div class="flex items-center gap-2.5 mt-1">
         <span style="font-size: 12px; font-weight: 800; color: <%= points_color %>;"><%= points_sign %><%= points %> ★</span>
         <% if meta.present? %>
-          <span class="text-caption"><%= meta %></span>
+          <span class="text-[11px] font-bold text-muted-foreground"><%= meta %></span>
         <% end %>
       </div>
     </div>
   </div>
-  <div class="row" style="gap: 10px;">
+  <div class="flex items-center gap-2.5">
     <%= button_to reject_url, method: :patch,
         form_class: "flex-1",
         style: "width: 100%; background: var(--c-red-soft); color: var(--c-red-dark); border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",

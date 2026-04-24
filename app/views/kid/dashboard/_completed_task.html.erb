@@ -1,10 +1,10 @@
-<div style="background: var(--c-mint-soft); padding: 14px 16px; border-radius: var(--r-sm); border: none; display: flex; align-items: center; gap: 12px; opacity: 0.75;">
-  <%= category_icon_tag completed_task.global_task.category, class: "w-8 h-8", style: "color: var(--c-mint-dark); opacity: 0.6; flex-shrink: 0;" %>
-  <div style="flex: 1; min-width: 0;">
-    <p style="font-weight: 700; color: var(--c-mint-dark); text-decoration: line-through; font-size: 15px; margin: 0;"><%= completed_task.title %></p>
-    <div style="display: flex; align-items: center; gap: 4px; color: var(--c-mint-dark); font-weight: 800; font-size: 12px; margin-top: 2px;">
+<div class="bg-mint-soft p-3.5 rounded-sm border-none flex items-center gap-3 opacity-75">
+  <%= category_icon_tag completed_task.global_task.category, class: "w-8 h-8 text-mint-dark opacity-60 shrink-0" %>
+  <div class="flex-1 min-w-0">
+    <p class="font-bold text-mint-dark line-through text-[15px] m-0"><%= completed_task.title %></p>
+    <div class="flex items-center gap-1 text-mint-dark font-extrabold text-[12px] mt-0.5">
       <span>GANHOU +<%= completed_task.points %></span>
-      <%= icon_tag "star", style: "width: 14px; height: 14px; color: var(--star);" %>
+      <%= icon_tag "star", class: "w-3.5 h-3.5 text-[var(--star)]" %>
     </div>
   </div>
 </div>

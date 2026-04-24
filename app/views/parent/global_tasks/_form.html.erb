@@ -1,8 +1,8 @@
-<%= form_with(model: global_task, url: global_task.new_record? ? parent_global_tasks_path : parent_global_task_path(global_task), class: "col", style: "gap: 20px;") do |f| %>
+<%= form_with(model: global_task, url: global_task.new_record? ? parent_global_tasks_path : parent_global_task_path(global_task), class: "col gap-5") do |f| %>
   <% if global_task.errors.any? %>
     <%= render Ui::Card::Component.new(variant: "flat", class: "bg-danger-soft text-danger p-4 mb-4") do %>
-      <h3 class="h-display" style="font-size: 18px;">Ops! Algo deu errado:</h3>
-      <ul class="subtitle" style="font-size: 14px; list-style: disc; margin-left: 20px;">
+      <h3 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[18px]">Ops! Algo deu errado:</h3>
+      <ul class="text-[17px] text-muted-foreground font-semibold text-[14px] list-disc ml-5">
         <% global_task.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -16,22 +16,22 @@
     icon_options = %w[bed brush book dish bookOpen bear paw music sun home graduationCap muscle]
   %>
 
-  <div class="center mb-4">
+  <div class="flex items-center justify-center mb-4">
     <%= render Ui::IconTile::Component.new(icon: global_task.icon.presence || "target", color: cat_data[:color], size: 80) %>
   </div>
 
-  <div class="form-field">
-    <%= f.label :title, "Título", class: "form-label" %>
-    <%= f.text_field :title, class: "form-input", placeholder: "Ex: Arrumar a cama" %>
+  <div class="mb-6 flex flex-col gap-2">
+    <%= f.label :title, "Título", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
+    <%= f.text_field :title, class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm", placeholder: "Ex: Arrumar a cama" %>
   </div>
 
-  <div class="grid-2" style="gap: 12px;">
-    <div class="form-field">
-      <%= f.label :points, "Estrelinhas", class: "form-label" %>
-      <%= f.number_field :points, class: "form-input" %>
-    </div>
-    <div class="form-field" data-controller="fields">
-      <%= f.label :frequency, "Frequência", class: "form-label" %>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+  <div class="mb-6 flex flex-col gap-2">
+    <%= f.label :points, "Estrelinhas", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
+    <%= f.number_field :points, class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm" %>
+  </div>
+  <div class="mb-6 flex flex-col gap-2">
+    <%= f.label :frequency, "Frequência", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
       <%= f.select :frequency,
             [["Diária", "daily"], ["Semanal", "weekly"], ["Mensal", "monthly"], ["Única vez", "once"]],
             {},
@@ -40,29 +40,29 @@
     </div>
   </div>
 
-  <div class="form-field">
-    <label class="form-label">Categoria</label>
-    <div class="row wrap" style="gap: 8px;">
+  <div class="mb-6 flex flex-col gap-2">
+    <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Categoria</label>
+    <div class="row flex-wrap gap-2">
       <% Ui::MissionCard::Component::CATEGORIES.each do |key, data| %>
         <% next if data[:label] == "Geral" %>
         <label class="cursor-pointer">
           <%= f.radio_button :category, key, class: "peer sr-only" %>
-          <div class="chip chip-<%= data[:color] %> peer-checked:outline peer-checked:outline-3 peer-checked:outline-offset-2" style="outline-color: var(--c-<%= data[:color] %>);">
+          <%= render Ui::Chip::Component.new(variant: data[:color], class: "peer-checked:outline peer-checked:outline-3 peer-checked:outline-offset-2 outline-c-#{data[:color]}") do %>
             <%= render Ui::Icon::Component.new(data[:icon], size: 14) %>
             <%= data[:label] %>
-          </div>
+          <% end %>
         </label>
       <% end %>
     </div>
   </div>
 
-  <div class="form-field">
-    <label class="form-label">Ícone</label>
-    <div class="row wrap" style="gap: 6px;">
+  <div class="mb-6 flex flex-col gap-2">
+    <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Ícone</label>
+    <div class="row flex-wrap gap-1.5">
       <% icon_options.each do |ic| %>
         <label class="cursor-pointer">
           <%= f.radio_button :icon, ic, class: "peer sr-only" %>
-          <div class="peer-checked:bg-primary-soft peer-checked:border-primary border-2 border-transparent p-2 rounded-xl transition-all flex-center" style="width: 44px; height: 44px; background: white; border: 2px solid rgba(26,42,74,0.1);">
+          <div class="peer-checked:bg-primary-soft peer-checked:border-primary border-2 border-[rgba(26,42,74,0.1)] p-2 rounded-xl transition-all flex items-center justify-center w-11 h-11 bg-white">
             <%= render Ui::Icon::Component.new(ic, size: 24, color: "var(--primary)") %>
           </div>
         </label>
@@ -71,33 +71,29 @@
   </div>
 
   <%# Active toggle %>
-  <div class="row" style="justify-content: space-between; align-items: center; padding: 12px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);">
+  <div class="row justify-between items-center py-3 border-y border-hairline">
     <div>
-      <div style="font-size: 13px; font-weight: 700; color: var(--text);">Missão ativa</div>
-      <div style="font-size: 11px; color: var(--text-muted);">Missões inativas não aparecem para as crianças</div>
+      <div class="text-[13px] font-bold text-foreground">Missão ativa</div>
+      <div class="text-[11px] text-muted-foreground">Missões inativas não aparecem para as crianças</div>
     </div>
-    <label class="toggle <%= 'is-checked' if global_task.active? %>">
-      <%= f.hidden_field :active, value: "0" %>
-      <input type="checkbox" name="global_task[active]" value="1" <%= "checked" if global_task.active? %> />
-      <span class="toggle-track"><span class="toggle-thumb"></span></span>
-    </label>
+    <%= render Ui::Toggle::Component.new(name: "global_task[active]", checked: global_task.active?) %>
   </div>
 
   <%# Assign to kids %>
   <% family = global_task.family || current_profile.family %>
   <% kids = family.profiles.child.order(:name) %>
   <% if kids.any? %>
-    <div class="form-field">
-      <label class="form-label">Atribuir a</label>
-      <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;">Deixe em branco para atribuir a todas as crianças.</div>
-      <div class="row wrap" style="gap: 8px;">
+  <div class="mb-6 flex flex-col gap-2">
+    <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Atribuir a</label>
+      <div class="text-[11px] text-muted-foreground mb-2">Deixe em branco para atribuir a todas as crianças.</div>
+      <div class="row flex-wrap gap-2">
         <% kids.each do |kid| %>
           <% checked = global_task.assigned_profile_ids.include?(kid.id) %>
           <label class="cursor-pointer">
             <%= check_box_tag "global_task[assigned_profile_ids][]", kid.id, checked, class: "peer sr-only" %>
-            <div class="chip" style="background: <%= checked ? 'var(--primary-soft)' : 'var(--surface-2)' %>; color: <%= checked ? 'var(--primary)' : 'var(--text)' %>; border: 1px solid <%= checked ? 'var(--primary)' : 'var(--hairline)' %>;">
+            <%= render Ui::Chip::Component.new(variant: checked ? "primary" : "neutral", class: "border #{checked ? 'border-primary' : 'border-hairline'}") do %>
               <%= kid.name %>
-            </div>
+            <% end %>
           </label>
         <% end %>
       </div>
@@ -107,20 +103,20 @@
   <% end %>
 
   <%# day_of_month field — visible only for monthly frequency %>
-  <fieldset id="day_of_month_field" class="form-field" <%= "disabled" unless global_task.monthly? %> style="<%= global_task.monthly? ? '' : 'display: none;' %>">
-    <legend class="form-label">Dia do mês</legend>
-    <%= f.number_field :day_of_month, class: "form-input", min: 1, max: 31, placeholder: "Ex: 15" %>
-    <p style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Dia do mês em que a missão será criada (1–31).</p>
+  <fieldset id="day_of_month_field" class="mb-6 flex flex-col gap-2 <%= 'hidden' unless global_task.monthly? %>" <%= "disabled" unless global_task.monthly? %>>
+    <legend class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Dia do mês</legend>
+    <%= f.number_field :day_of_month, class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm", min: 1, max: 31, placeholder: "Ex: 15" %>
+    <p class="text-[11px] text-muted-foreground mt-1">Dia do mês em que a missão será criada (1–31).</p>
   </fieldset>
 
-  <div class="row mt-4" style="gap: 10px; justify-content: flex-end;">
-    <%= link_to "Voltar", parent_global_tasks_path, class: "btn btn-secondary" %>
-    <%= f.submit "Salvar Missão", class: "btn btn-primary" %>
+  <div class="row mt-4 gap-2.5 justify-end">
+    <%= render Ui::Btn::Component.new(variant: "secondary", url: parent_global_tasks_path) do %>Voltar<% end %>
+    <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>Salvar Missão<% end %>
   </div>
 
   <% unless global_task.new_record? %>
     <div class="mt-8 pt-6 border-t-2 border-border">
-      <%= button_to parent_global_task_path(global_task), method: :delete, class: "btn btn-danger btn-sm", data: { turbo_confirm: "Tem certeza? Isso removerá a missão permanentemente." } do %>
+      <%= render Ui::Btn::Component.new(variant: "danger", size: "sm", url: parent_global_task_path(global_task), method: :delete, data: { turbo_confirm: "Tem certeza? Isso removerá a missão permanentemente." }) do %>
         <%= render Ui::Icon::Component.new("trash", size: 16, color: "white") %> Remover Missão
       <% end %>
     </div>

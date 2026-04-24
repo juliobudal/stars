@@ -1,10 +1,10 @@
-<div class="row" style="background:var(--surface); border-radius:var(--r-md); padding:14px 16px; gap:16px; box-shadow:var(--shadow-card);">
-  <div class="flex-center noshrink" style="width:48px; height:48px; border-radius:var(--r-md); background:var(--c-lilac-soft);">
+<div class="flex items-center bg-surface rounded-2xl py-[14px] px-4 gap-4" style="box-shadow: var(--shadow-card);">
+  <div class="flex items-center justify-center shrink-0 w-12 h-12 rounded-2xl" style="background: var(--c-lilac-soft);">
     <%= render Ui::Icon::Component.new(icon, size: 24, color: "var(--c-violet-dark)") %>
   </div>
-  <div class="fg1" style="min-width:0;">
-    <div class="h-display" style="font-size:16px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><%= redemption.title %></div>
-    <div class="text-caption" style="font-size:12px;">−<%= redemption.reward.cost %> ⭐</div>
+  <div class="flex-1 min-w-0">
+    <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[16px] overflow-hidden text-ellipsis whitespace-nowrap"><%= redemption.title %></div>
+    <div class="text-[12px] font-bold text-muted-foreground flex items-center gap-1">−<%= redemption.reward.cost %> <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--c-amber-dark)") %></div>
   </div>
-  <span class="chip chip-sm" style="background:<%= status[:bg] %>; color:<%= status[:fg] %>; white-space:nowrap;"><%= status[:label] %></span>
+  <%= render Ui::Chip::Component.new(size: "sm", style: "background:#{status[:bg]}; color:#{status[:fg]}; white-space:nowrap;") do %><%= status[:label] %><% end %>
 </div>

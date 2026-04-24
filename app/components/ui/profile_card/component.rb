@@ -20,6 +20,10 @@ module Ui
         @profile.child? ? "chip-lilac" : "chip-#{@profile.color}"
       end
 
+      def chip_variant
+        @profile.child? ? "lilac" : (@profile.color.presence || "primary")
+      end
+
       def chip_label
         @profile.child? ? "CRIANÇA" : "RESPONSÁVEL"
       end

@@ -1,3 +1,161 @@
+:root {
+  /* ─── Paleta Berry Pop (default) ─── */
+  --bg-deep: #F8F5FF;
+  --bg-mid: #F8F5FF;
+  --bg-soft: #F0EAFF;
+
+  --surface: #ffffff;
+  --surface-2: #F0EAFF;
+  --surface-ink: #2B2A3A;
+
+  /* Primary — lilac */
+  --primary: #A78BFA;
+  --primary-2: #7C5CD6;
+  --primary-soft: #EDE9FE;
+  --primary-glow: #C4B5FD;
+
+  /* Star / reward */
+  --star: #FFC53D;
+  --star-2: #E6A800;
+  --star-soft: #FFF4CC;
+
+  /* Hairline */
+  --hairline: #E8E0F5;
+
+  /* Secundárias (Berry Pop palette) */
+  --c-peach: #F472B6;
+  --c-peach-soft: #FCE7F3;
+  --c-rose: #EC4899;
+  --c-rose-soft: #FCE7F3;
+  --c-rose-dark: #BE185D;
+  --c-mint: #34D399;
+  --c-mint-soft: #D1FAE5;
+  --c-mint-dark: #047857;
+  --c-sky: #38BDF8;
+  --c-sky-soft: #E0F2FE;
+  --c-sky-dark: #0369A1;
+  --c-lilac: #A78BFA;
+  --c-lilac-soft: #EDE9FE;
+  --c-lilac-dark: #6D28D9;
+  --c-coral: #EC4899;
+  --c-coral-soft: #FCE7F3;
+  --c-coral-depth: #8a2a2a;
+
+  --c-peach-depth: #8a3a1a;
+  --c-rose-depth: #8a2e4a;
+  --c-mint-depth: #1a6a4a;
+  --c-sky-depth: #1a5a8a;
+  --c-lilac-depth: #4a3a8a;
+
+  --c-amber-soft: #FEF3C7;
+  --c-amber-dark: #92400E;
+
+  --c-violet-dark: #6D28D9;
+  --c-red-soft: #FEE2E2;
+  --c-red-dark: #B91C1C;
+
+  --danger: #EF4444;
+  --danger-2: #BE185D;
+  --success: #34D399;
+  --success-2: #059669;
+
+  --text-dark: #2B2A3A;
+  --text: #2B2A3A;
+  --text-muted: #6A6878;
+  --text-soft: #A09EAE;
+
+  /* Shadows — soft Berry Pop */
+  --shadow-btn: 0 2px 0 rgba(44, 42, 58, 0.04);
+  --shadow-btn-hover: 0 3px 0 rgba(44, 42, 58, 0.05);
+  --shadow-card: 0 2px 0 rgba(44, 42, 58, 0.04), 0 6px 16px rgba(44, 42, 58, 0.05);
+  --shadow-lift: 0 2px 0 rgba(44, 42, 58, 0.04), 0 8px 16px rgba(44, 42, 58, 0.05);
+  --border-card: 1px solid var(--hairline);
+
+  /* Radius — generous */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-featured: 20px;
+  --r-full: 999px;
+
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body: 'Nunito', system-ui, sans-serif;
+
+  --shape-warm-1: #ffe0b3;
+  --shape-warm-2: #ffcad4;
+  --shape-warm-3: #e0ccff;
+  --shape-cool-1: #c2e7ff;
+  --shape-cool-2: #dccfff;
+  --shape-cool-3: #c2f0dd;
+  --shape-blue-1: #c7ddff;
+  --shape-blue-2: #ffd6e6;
+  --shape-blue-3: #c2f0dd;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 56px;
+
+  /* Aliases for @theme compatibility */
+  --background: var(--bg-deep);
+  --foreground: var(--text);
+  --card: var(--surface);
+  --card-foreground: var(--text);
+  --popover: var(--surface);
+  --popover-foreground: var(--text);
+  --muted: var(--surface-2);
+  --muted-foreground: var(--text-muted);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --input-focus: var(--primary);
+  --input-ring: var(--primary-soft);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--text);
+  --accent: var(--primary-soft);
+  --accent-foreground: var(--primary-2);
+  --destructive: var(--danger);
+  --destructive-depth: var(--danger-2);
+  --warning: var(--star);
+  --warning-depth: var(--star-2);
+  --info: var(--c-sky);
+  --primary-foreground: #ffffff;
+  --primary-depth: var(--primary-2);
+  --overlay: rgba(26, 42, 74, 0.4);
+  /* Radius aliases */
+  --radius-base: var(--r-sm);
+  --radius-btn: var(--r-full);
+  --radius-field: var(--r-sm);
+}
+
+/* ─── Paleta alt: Sunset (rosa/coral) ─── */
+[data-palette="aurora"] {
+  --bg-deep: #ffffff;
+  --bg-mid: #ffffff;
+  --bg-soft: #fff5f0;
+  --primary: #ff6a9d;
+  --primary-2: #e84d87;
+  --primary-soft: #ffd0e2;
+  --primary-glow: #ffb3cc;
+  --star: #ffb020;
+  --star-2: #ff8a00;
+}
+
+/* ─── Paleta alt: Forest (verde/menta) ─── */
+[data-palette="galaxy"] {
+  --bg-deep: #ffffff;
+  --bg-mid: #ffffff;
+  --bg-soft: #f0faf3;
+  --primary: #2eca7f;
+  --primary-2: #1fa868;
+  --primary-soft: #c2f0dd;
+  --primary-glow: #5ddba0;
+}
+
 @theme {
   --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --font-serif: ui-serif, georgia, cambria, 'Times New Roman', times, serif;
@@ -17,7 +175,7 @@
 
 /* Map raw variables to Tailwind utility classes */
 @theme inline {
-  /* Radius — derived from --radius-base and --radius-btn (set in brand.css) */
+  /* Radius — derived from --radius-base and --radius-btn (defined above) */
   --radius-btn-xs: calc(var(--radius-btn) * 0.75);
   --radius-btn-sm: calc(var(--radius-btn) * 0.875);
   --radius-btn-md: var(--radius-btn);
@@ -95,4 +253,89 @@
   --color-info-soft-hover: oklch(from var(--info) l c h / 15%);
   --color-info-soft-foreground: var(--info);
   --color-info-border: oklch(from var(--info) l c h / 25%);
+
+  /* Typography */
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+
+  /* Spacing aliases */
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-5: var(--space-5);
+  --spacing-6: var(--space-6);
+  --spacing-7: var(--space-7);
+  --spacing-8: var(--space-8);
+
+  /* Shadows */
+  --shadow-btn: var(--shadow-btn);
+  --shadow-btn-hover: var(--shadow-btn-hover);
+  --shadow-card: var(--shadow-card);
+  --shadow-lift: var(--shadow-lift);
+
+  /* Colors used in design system */
+  --color-bg-deep: var(--bg-deep);
+  --color-bg-mid: var(--bg-mid);
+  --color-bg-soft: var(--bg-soft);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-ink: var(--surface-ink);
+  --color-star: var(--star);
+  --color-star-2: var(--star-2);
+  --color-star-soft: var(--star-soft);
+  --color-hairline: var(--hairline);
+  --color-text-dark: var(--text-dark);
+  --color-text-muted: var(--text-muted);
+  --color-text-soft: var(--text-soft);
+
+  /* Specific chips/colors */
+  --color-peach: var(--c-peach);
+  --color-peach-soft: var(--c-peach-soft);
+  --color-rose: var(--c-rose);
+  --color-rose-soft: var(--c-rose-soft);
+  --color-rose-dark: var(--c-rose-dark);
+  --color-mint: var(--c-mint);
+  --color-mint-soft: var(--c-mint-soft);
+  --color-mint-dark: var(--c-mint-dark);
+  --color-sky: var(--c-sky);
+  --color-sky-soft: var(--c-sky-soft);
+  --color-sky-dark: var(--c-sky-dark);
+  --color-lilac: var(--c-lilac);
+  --color-lilac-soft: var(--c-lilac-soft);
+  --color-lilac-dark: var(--c-lilac-dark);
+  --color-coral: var(--c-coral);
+  --color-coral-soft: var(--c-coral-soft);
+  --color-coral-depth: var(--c-coral-depth);
+  --color-peach-depth: var(--c-peach-depth);
+  --color-rose-depth: var(--c-rose-depth);
+  --color-mint-depth: var(--c-mint-depth);
+  --color-sky-depth: var(--c-sky-depth);
+  --color-lilac-depth: var(--c-lilac-depth);
+  --color-amber-soft: var(--c-amber-soft);
+  --color-amber-dark: var(--c-amber-dark);
 }
+
+/* ── Button depth shadows — used by Ui::Btn::Component ── */
+@utility shadow-btn-primary        { box-shadow: 0 4px 0 var(--color-primary-depth); }
+@utility shadow-btn-primary-hover  { box-shadow: 0 5px 0 var(--color-primary-depth); }
+@utility shadow-btn-primary-active { box-shadow: 0 1px 0 var(--color-primary-depth); }
+
+@utility shadow-btn-destructive        { box-shadow: 0 4px 0 var(--color-destructive-depth); }
+@utility shadow-btn-destructive-hover  { box-shadow: 0 5px 0 var(--color-destructive-depth); }
+@utility shadow-btn-destructive-active { box-shadow: 0 1px 0 var(--color-destructive-depth); }
+
+@utility shadow-btn-success        { box-shadow: 0 4px 0 var(--color-success-depth); }
+@utility shadow-btn-success-hover  { box-shadow: 0 5px 0 var(--color-success-depth); }
+@utility shadow-btn-success-active { box-shadow: 0 1px 0 var(--color-success-depth); }
+
+@utility shadow-btn-warning        { box-shadow: 0 4px 0 var(--color-warning-depth); }
+@utility shadow-btn-warning-hover  { box-shadow: 0 5px 0 var(--color-warning-depth); }
+@utility shadow-btn-warning-active { box-shadow: 0 1px 0 var(--color-warning-depth); }
+
+@utility shadow-btn-secondary        { box-shadow: 0 4px 0 rgba(26,42,74,0.1); }
+@utility shadow-btn-secondary-hover  { box-shadow: 0 5px 0 rgba(26,42,74,0.1); }
+@utility shadow-btn-secondary-active { box-shadow: 0 1px 0 rgba(26,42,74,0.1); }
+
+/* Active-tab depth shadow */
+@utility shadow-tab-active { box-shadow: 0 2px 0 var(--color-primary-depth); }

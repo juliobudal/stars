@@ -1,18 +1,19 @@
-<div class="row" style="gap: 14px; padding: 14px 0; <%= with_divider ? 'border-bottom: 1px solid var(--hairline);' : '' %>">
+<div class="flex items-center gap-3.5 py-3.5 <%= with_divider ? 'border-b border-[var(--hairline)]' : '' %>">
   <% if kid %>
     <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 34) %>
   <% end %>
-  <div class="fg1" style="min-width: 0;">
-    <div class="text-label" style="font-size: 13px;">
+  <div class="flex-1 min-w-0">
+    <div class="text-[13px] font-bold text-foreground">
       <% if kid %><span><%= kid.name %></span> · <% end %><span><%= description %></span>
     </div>
     <% if timestamp %>
-      <div class="text-caption" style="margin-top: 2px;">
+      <div class="text-[11px] font-bold text-muted-foreground mt-0.5">
         <%= time_ago_in_words(timestamp) %> atrás
       </div>
     <% end %>
   </div>
-  <span class="h-display" style="font-size: 15px; color: <%= amount_color %>;">
-    <%= amount_sign %><%= amount.abs %> ⭐
+  <span class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground flex items-center gap-1 text-[15px]" style="color: <%= amount_color %>;">
+    <%= amount_sign %><%= amount.abs %>
+    <%= render Ui::Icon::Component.new(:star, size: 14, color: "var(--c-amber-dark)") %>
   </span>
 </div>

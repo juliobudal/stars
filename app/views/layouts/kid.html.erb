@@ -6,9 +6,9 @@
     <%= yield :head %>
   </head>
 
-  <body class="app-shell" data-palette="sky">
+  <body class="min-h-screen flex flex-col bg-bg-deep overflow-x-hidden" data-palette="sky">
     <%= render "shared/kid_nav" %>
-    <div class="viewport pb-24 lg:pb-0">
+    <div class="flex-1 p-6 overflow-y-auto w-full max-w-[500px] mx-auto relative z-1 pb-24 lg:pb-0">
       <%= render Ui::Flash::Component.new %>
       <%= yield %>
     </div>

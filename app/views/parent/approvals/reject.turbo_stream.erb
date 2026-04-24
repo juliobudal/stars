@@ -4,8 +4,7 @@
   <div
     data-controller="flash"
     data-flash-dismiss-after-value="2200"
-    class="pointer-events-auto flex items-center gap-2 px-5 py-3 rounded-full text-white font-extrabold text-[15px] shadow-lift animate-popIn"
-    style="background-color: var(--danger);"
+    class="pointer-events-auto flex items-center gap-2 px-5 py-3 rounded-full text-white font-extrabold text-[15px] shadow-lift animate-popIn bg-danger"
   >
     <%= render Ui::Icon::Component.new("close", size: 18, color: "white") %>
     <span>Tarefa rejeitada.</span>
@@ -15,10 +14,10 @@
 <% if current_profile.family.profile_tasks.awaiting_approval.count == 0 && current_profile.family.redemptions.pending.count == 0 %>
   <%= turbo_stream.replace "approvals_list" do %>
     <%= turbo_frame_tag "approvals_list" do %>
-      <div class="card" style="padding: 40px; text-align: center;">
-        <div style="font-size: 36px; margin-bottom: 8px;">🎉</div>
-        <div class="h-display" style="font-size: 22px; margin-bottom: 4px;">Tudo em dia!</div>
-        <div class="subtitle" style="font-size: 14px;">Não há pendências no momento.</div>
+      <div class="bg-surface rounded-md p-7 shadow-card relative border-none p-10 text-center">
+        <div class="flex items-center justify-center mb-2"><%= render Ui::Icon::Component.new(:party, size: 36, color: "var(--c-amber-dark)") %></div>
+        <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[22px] mb-1">Tudo em dia!</div>
+        <div class="text-[17px] text-muted-foreground font-semibold text-[14px]">Não há pendências no momento.</div>
       </div>
     <% end %>
   <% end %>

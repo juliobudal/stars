@@ -5,11 +5,17 @@
     subtitle: "#{@profile_tasks.count + @redemptions.count} pendências",
   ) do |bar| %>
     <% bar.with_right_slot do %>
-      <button type="submit" form="bulk-approve-form" class="btn btn-primary btn-sm"
-              data-bulk-select-target="submit" disabled
-              style="opacity: .65; cursor: not-allowed;">
+      <%= render Ui::Btn::Component.new(
+        variant: "primary", 
+        size: "sm", 
+        type: "submit", 
+        form: "bulk-approve-form",
+        class: "opacity-65 cursor-not-allowed",
+        data: { bulk_select_target: "submit" },
+        disabled: true
+      ) do %>
         <%= render Ui::Icon::Component.new("check", size: 14, color: "white") %> Aprovar selecionadas
-      </button>
+      <% end %>
     <% end %>
   <% end %>
 
@@ -24,7 +30,7 @@
           ]
         ) %>
 
-    <div id="panel-missions" class="col z-content" style="gap: 8px;">
+    <div id="panel-missions" class="col z-content gap-2">
       <% if @profile_tasks.any? %>
         <% @profile_tasks.each do |task| %>
           <%= render Ui::ApprovalRow::Component.new(
@@ -52,7 +58,7 @@
       <% end %>
     </div>
 
-    <div id="panel-rewards" class="col z-content" style="gap: 8px; display: none;">
+    <div id="panel-rewards" class="col z-content gap-2 hidden">
       <% if @redemptions.any? %>
         <% @redemptions.each do |redemption| %>
           <%= render Ui::ApprovalRow::Component.new(

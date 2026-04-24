@@ -6,34 +6,37 @@
   ]
 %>
 
-<nav class="side-nav">
-  <div class="brand-mark" style="display: flex; justify-content: center; padding: var(--space-4) 0 var(--space-3);">
+<nav class="hidden md:flex flex-col w-[80px] h-screen fixed left-0 top-0 bg-white border-r border-hairline py-6 px-2 z-40">
+  <div class="flex justify-center mb-8">
     <%= render Ui::LogoMark::Component.new(size: 24) %>
   </div>
-  <% nav_items.each do |item| %>
-    <% active = current_page?(item[:path]) %>
-    <%= link_to item[:path], class: "nav-item #{active ? 'active' : ''}", title: item[:label] do %>
-      <%= render Ui::Icon::Component.new(item[:icon], size: 22) %>
-      <span class="nav-label"><%= item[:label] %></span>
+  <div class="flex flex-col gap-2">
+    <% nav_items.each do |item| %>
+      <% active = current_page?(item[:path]) %>
+      <%= link_to item[:path], class: "flex flex-col items-center justify-center gap-1.5 w-full aspect-square rounded-[18px] transition-all duration-200 #{active ? 'bg-bg-deep text-primary' : 'text-muted-foreground hover:bg-muted'}", title: item[:label] do %>
+        <%= render Ui::Icon::Component.new(item[:icon], size: 22) %>
+        <span class="text-[10px] font-display font-extrabold tracking-wider uppercase"><%= item[:label] %></span>
+      <% end %>
     <% end %>
-  <% end %>
-  <div class="side-nav-spacer"></div>
-  <%= button_to sessions_path, method: :delete, class: "nav-item", title: "Sair" do %>
-    <%= render Ui::Icon::Component.new("logout", size: 22) %>
-    <span class="nav-label">Sair</span>
-  <% end %>
+  </div>
+  <div class="mt-auto">
+    <%= button_to sessions_path, method: :delete, class: "flex flex-col items-center justify-center gap-1.5 w-full aspect-square rounded-[18px] text-muted-foreground hover:bg-muted transition-all", title: "Sair" do %>
+      <%= render Ui::Icon::Component.new("logout", size: 22) %>
+      <span class="text-[10px] font-display font-extrabold tracking-wider uppercase">Sair</span>
+    <% end %>
+  </div>
 </nav>
 
-<div class="bottom-nav">
+<div class="fixed bottom-0 left-0 right-0 h-[72px] bg-white/80 backdrop-blur-lg border-t border-hairline flex justify-around items-center px-4 z-40 md:hidden">
   <% nav_items.each do |item| %>
     <% active = current_page?(item[:path]) %>
-    <%= link_to item[:path], class: "nav-item #{active ? 'active' : ''}", title: item[:label] do %>
+    <%= link_to item[:path], class: "flex flex-col items-center justify-center gap-1 flex-1 py-2 #{active ? 'text-primary' : 'text-muted-foreground'}", title: item[:label] do %>
       <%= render Ui::Icon::Component.new(item[:icon], size: 22) %>
-      <span class="nav-label"><%= item[:label] %></span>
+      <span class="text-[10px] font-display font-extrabold tracking-wider uppercase"><%= item[:label] %></span>
     <% end %>
   <% end %>
-  <%= button_to sessions_path, method: :delete, class: "nav-item", title: "Sair" do %>
+  <%= button_to sessions_path, method: :delete, class: "flex flex-col items-center justify-center gap-1 flex-1 py-2 text-muted-foreground", title: "Sair" do %>
     <%= render Ui::Icon::Component.new("logout", size: 22) %>
-    <span class="nav-label">Sair</span>
+    <span class="text-[10px] font-display font-extrabold tracking-wider uppercase">Sair</span>
   <% end %>
 </div>

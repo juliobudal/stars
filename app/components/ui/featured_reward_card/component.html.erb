@@ -1,22 +1,21 @@
-<div class="card" style="z-index: 2; display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; margin-bottom: 16px; padding: 28px; overflow: clip; position: relative; border-radius: var(--r-featured);">
+<div class="bg-surface rounded-md p-7 shadow-card relative border-none z-2 grid grid-cols-[1fr_auto] gap-7 items-center mb-4 p-7 overflow-clip relative rounded-[var(--r-featured)]">
   <div>
-    <span class="row" style="display:inline-flex; gap:4px; background:var(--c-lilac-soft); color:var(--c-violet-dark); padding:4px 10px; border-radius:var(--r-full); font-size:11px; font-weight:800; letter-spacing:.1em; margin-bottom:12px;">✨ EM DESTAQUE</span>
-    <h3 class="h-display" style="font-size:26px; margin:0 0 6px;"><%= reward.title %></h3>
-    <p class="subtitle" style="margin:0 0 18px; font-size:14px; font-weight:500; line-height:1.4;">Troque suas estrelinhas por esse prêmio especial.</p>
-    <div class="row wrap" style="gap:12px;">
-      <button class="btn btn-primary btn-sm"
-              style="box-shadow:0 3px 0 color-mix(in srgb, var(--c-violet-dark) 25%, transparent);"
-              <% if modal_id %>data-action="click->ui-modal#open" data-ui-modal-id-param="<%= modal_id %>"<% end %>>
-        Trocar por ⭐ <%= reward.cost %>
-      </button>
+    <span class="inline-flex items-center gap-1 bg-lilac-soft text-violet-dark py-1 px-2.5 rounded-full text-[11px] font-extrabold tracking-widest mb-3"><%= render Ui::Icon::Component.new(:sparkle, size: 12, color: "var(--c-violet-dark)") %> EM DESTAQUE</span>
+    <h3 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[26px] m-0 mb-1.5"><%= reward.title %></h3>
+    <p class="text-[17px] text-muted-foreground font-semibold m-0 mb-4.5 text-sm font-medium leading-[1.4]">Troque suas estrelinhas por esse prêmio especial.</p>
+    <div class="flex items-center flex-wrap gap-3">
+      <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", class: "shadow-[0_3px_0_color-mix(in_srgb,var(--c-violet-dark)_25%,transparent)]",
+            **(modal_id ? { data: { action: "click->ui-modal#open", ui_modal_id_param: modal_id } } : {})) do %>
+        Trocar por <%= render Ui::Icon::Component.new(:star, size: 14, color: "currentColor") %> <%= reward.cost %>
+      <% end %>
       <% if can_afford? %>
-        <span style="font-size:12px; font-weight:700; color:var(--c-mint-dark);">✓ Você pode pegar essa!</span>
+        <span class="text-xs font-bold text-mint-dark">✓ Você pode pegar essa!</span>
       <% else %>
-        <span class="text-caption" style="font-size:12px;">Faltam <%= shortfall %> estrelinhas</span>
+        <span class="text-[12px] font-bold text-muted-foreground text-xs">Faltam <%= shortfall %> estrelinhas</span>
       <% end %>
     </div>
   </div>
-  <div class="flex-center noshrink" style="width:140px; height:140px; border-radius:var(--r-lg); background:var(--c-lilac-soft);">
+  <div class="flex items-center justify-center shrink-0 w-[140px] h-[140px] rounded-2xl bg-lilac-soft">
     <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 70, color: "var(--c-violet-dark)") %>
   </div>
 </div>

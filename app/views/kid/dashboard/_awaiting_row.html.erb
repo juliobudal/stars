@@ -1,17 +1,17 @@
 <%# locals: (task:) %>
-<div id="<%= dom_id(task) %>" style="position:relative;display:flex;gap:16px;padding-bottom:24px;">
-  <div style="position:absolute;left:19px;top:40px;bottom:0;border-left:2px dashed rgba(44,42,58,0.10);"></div>
-  <div style="width:40px;height:40px;border-radius:50%;background:var(--c-amber-soft);border:2px solid var(--star);display:grid;place-items:center;flex-shrink:0;z-index:1;">
+<div id="<%= dom_id(task) %>" class="relative flex gap-4 pb-6">
+  <div class="absolute left-[19px] top-[40px] bottom-0 border-l-2 border-dashed border-[rgba(44,42,58,0.10)]"></div>
+  <div class="w-[40px] h-[40px] rounded-full bg-amber-soft border-2 border-[var(--star)] grid place-items-center shrink-0 z-1">
     <%= render Ui::Icon::Component.new("clock", size: 16, color: "var(--star-2)") %>
   </div>
-  <div class="card fg1" style="padding:20px 24px;">
-    <div class="row" style="justify-content:space-between;gap:8px;">
-      <div style="font-weight:700;color:var(--text);"><%= task.title %></div>
-      <span style="color:var(--star-2);font-weight:800;font-size:13px;flex-shrink:0;opacity:0.5;"><%= task.points %> ★</span>
+  <div class="bg-surface rounded-card shadow-card flex-1 px-6 py-5">
+    <div class="flex items-center justify-between gap-2">
+      <div class="font-bold text-foreground"><%= task.title %></div>
+      <span class="text-star-2 font-extrabold text-[13px] shrink-0 opacity-50"><%= task.points %> ★</span>
     </div>
-    <div class="mt-3" style="margin-top: 12px;">
-      <span class="chip chip-sm" style="background:var(--c-amber-soft);color:var(--c-amber-dark);display:inline-flex;align-items:center;gap:4px;">
-        <%= render Ui::Icon::Component.new("clock", size: 10, color: "var(--c-amber-dark)") %>
+    <div class="mt-3">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-display font-extrabold text-[11px] tracking-wider uppercase bg-warning-soft text-warning-depth">
+        <%= render Ui::Icon::Component.new("clock", size: 10, color: "currentColor") %>
         Aguardando
       </span>
     </div>

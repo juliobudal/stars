@@ -1,8 +1,8 @@
-<div class="card" style="padding: 0; overflow: hidden; position: relative;">
+<div class="bg-surface rounded-md p-7 shadow-card relative border-none" style="padding: 0; overflow: hidden; position: relative;">
   <%# Slim color strip with edit button %>
   <div style="height: 48px; background: <%= bg_soft %>; position: relative; flex-shrink: 0;">
     <%= link_to edit_parent_profile_path(kid),
-          class: "flex-center",
+          class: "flex items-center justify-center",
           style: "position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.7); text-decoration: none;",
           aria: { label: "Editar #{kid.name}" } do %>
       <%= render Ui::Icon::Component.new("pencil", size: 14, color: "rgba(0,0,0,0.5)") %>
@@ -21,27 +21,27 @@
       <div style="font-family: var(--font-display); font-style: italic; font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.1;">
         <%= kid.name %>
       </div>
-      <div class="text-caption" style="margin-top: 2px; text-transform: uppercase; letter-spacing: 0.06em;">
+      <div class="text-[11px] font-bold text-muted-foreground" style="margin-top: 2px; text-transform: uppercase; letter-spacing: 0.06em;">
         Nível <%= level %>
       </div>
     </div>
 
     <%# 2-col stats %>
-    <div class="grid-2" style="gap: 8px;">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
       <div style="background: var(--bg-soft); border-radius: var(--r-sm); padding: 8px 10px; text-align: center;">
-        <div class="text-caption" style="letter-spacing: 0.06em; margin-bottom: 2px; text-transform: uppercase;">Saldo</div>
-        <div class="flex-center" style="font-size: 15px; font-weight: 800; color: var(--text); gap: 4px;">
+        <div class="text-[11px] font-bold text-muted-foreground" style="letter-spacing: 0.06em; margin-bottom: 2px; text-transform: uppercase;">Saldo</div>
+        <div class="flex items-center justify-center" style="font-size: 15px; font-weight: 800; color: var(--text); gap: 4px;">
           <span style="color: var(--star);">★</span><%= balance %>
         </div>
       </div>
       <div style="background: var(--bg-soft); border-radius: var(--r-sm); padding: 8px 10px; text-align: center;">
-        <div class="text-caption" style="letter-spacing: 0.06em; margin-bottom: 2px; text-transform: uppercase;">Missões</div>
+        <div class="text-[11px] font-bold text-muted-foreground" style="letter-spacing: 0.06em; margin-bottom: 2px; text-transform: uppercase;">Missões</div>
         <div style="font-size: 15px; font-weight: 800; color: var(--text);"><%= missions_count.to_i %></div>
       </div>
     </div>
 
     <%# Actions %>
-    <div class="row-between" style="padding-top: 12px; margin-top: 8px; border-top: 1px solid var(--hairline);">
+    <div class="flex items-center justify-between gap-3" style="padding-top: 12px; margin-top: 8px; border-top: 1px solid var(--hairline);">
       <%= link_to edit_parent_profile_path(kid),
             class: "row",
             style: "gap: 6px; font-size: 13px; font-weight: 700; color: #{fg_var}; text-decoration: none;" do %>

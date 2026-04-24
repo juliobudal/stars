@@ -1,8 +1,8 @@
-<%= form_with(model: [:parent, profile], class: "col", style: "gap: 20px;") do |f| %>
+<%= form_with(model: [:parent, profile], class: "col gap-5") do |f| %>
   <% if profile.errors.any? %>
     <%= render Ui::Card::Component.new(variant: "flat", class: "bg-danger-soft text-danger p-4 mb-4") do %>
-      <h3 class="h-display" style="font-size: 18px;">Ops! Algo deu errado:</h3>
-      <ul class="subtitle" style="font-size: 14px; list-style: disc; margin-left: 20px;">
+      <h3 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[18px]">Ops! Algo deu errado:</h3>
+      <ul class="text-[17px] text-muted-foreground font-semibold text-[14px] list-disc ml-5">
         <% profile.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -16,22 +16,22 @@
     current_color = profile.color.presence || "peach"
   %>
 
-  <div class="center mb-4">
+  <div class="flex items-center justify-center mb-4">
     <%= render Ui::KidAvatar::Component.new(kid: profile, size: 100) %>
   </div>
 
-  <div class="form-field">
-    <%= f.label :name, "Nome", class: "form-label" %>
-    <%= f.text_field :name, class: "form-input", placeholder: "Ex: Lila" %>
+  <div class="mb-6 flex flex-col gap-2">
+    <%= f.label :name, "Nome", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
+    <%= f.text_field :name, class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm", placeholder: "Ex: Lila" %>
   </div>
 
-  <div class="form-field">
-    <label class="form-label">Avatar</label>
-    <div class="row wrap" style="gap: 8px;">
+  <div class="mb-6 flex flex-col gap-2">
+    <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Avatar</label>
+    <div class="row flex-wrap gap-2">
       <% icon_options.each do |ic| %>
         <label class="cursor-pointer">
           <%= f.radio_button :avatar, ic, class: "peer sr-only" %>
-          <div class="peer-checked:bg-primary-soft peer-checked:border-primary border-2 border-transparent p-1 rounded-full transition-all flex-center" style="width: 56px; height: 56px; background: white; border: 2px solid rgba(26,42,74,0.1);">
+          <div class="peer-checked:bg-primary-soft peer-checked:border-primary border-2 border-[rgba(26,42,74,0.1)] p-1 rounded-full transition-all flex items-center justify-center w-14 h-14 bg-white">
             <%= render Ui::Icon::Component.new(ic, size: 48, color: "var(--primary)") %>
           </div>
         </label>
@@ -39,26 +39,26 @@
     </div>
   </div>
 
-  <div class="form-field">
-    <label class="form-label">Cor</label>
-    <div class="row wrap" style="gap: 10px;">
+  <div class="mb-6 flex flex-col gap-2">
+    <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Cor</label>
+    <div class="row flex-wrap gap-2.5">
       <% color_options.each do |col| %>
         <label class="cursor-pointer">
           <%= f.radio_button :color, col, class: "peer sr-only" %>
-          <div class="peer-checked:border-text border-3 border-transparent rounded-full transition-all" style="width: 40px; height: 40px; background: var(--c-<%= col %>);"></div>
+          <div class="peer-checked:border-text border-3 border-transparent rounded-full transition-all w-10 h-10" style="background: var(--c-<%= col %>);"></div>
         </label>
       <% end %>
     </div>
   </div>
 
-  <div class="row mt-4" style="gap: 10px; justify-content: flex-end;">
-    <%= link_to "Voltar", parent_root_path, class: "btn btn-secondary" %>
-    <%= f.submit "Salvar Perfil", class: "btn btn-primary" %>
+  <div class="row mt-4 gap-2.5 justify-end">
+    <%= render Ui::Btn::Component.new(variant: "secondary", url: parent_root_path) do %>Voltar<% end %>
+    <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>Salvar Perfil<% end %>
   </div>
 
   <% unless profile.new_record? %>
     <div class="mt-8 pt-6 border-t-2 border-border">
-      <%= button_to parent_profile_path(profile), method: :delete, class: "btn btn-danger btn-sm", data: { turbo_confirm: "Tem certeza? Isso apagará todas as tarefas e histórico deste perfil." } do %>
+      <%= render Ui::Btn::Component.new(variant: "danger", size: "sm", url: parent_profile_path(profile), method: :delete, data: { turbo_confirm: "Tem certeza? Isso apagará todas as tarefas e histórico deste perfil." }) do %>
         <%= render Ui::Icon::Component.new("trash", size: 16, color: "white") %> Remover Perfil
       <% end %>
     </div>

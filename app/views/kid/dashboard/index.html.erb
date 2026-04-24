@@ -28,9 +28,9 @@
       <%= render Ui::Icon::Component.new("arrow-left", size: 16, color: "var(--text-muted)") %>
     <% end %>
 
-    <div class="col fg1 gap-0 text-left">
-      <div class="eyebrow tracking-[0.28em]"><%= greeting %></div>
-      <div class="h-display text-[30px] leading-none"><%= current_profile.name %>!</div>
+    <div class="col flex-1 gap-0 text-left">
+      <div class="font-display text-[11px] font-bold tracking-[0.08em] uppercase text-primary tracking-[0.28em]"><%= greeting %></div>
+      <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[30px] leading-none"><%= current_profile.name %>!</div>
     </div>
 
     <div class="row gap-2 shrink-0">
@@ -46,20 +46,20 @@
 
   <%# ── Cofrinho card ── %>
   <div class="z-2 mb-6 shrink-0">
-    <div class="card px-8 py-7 border-none">
+    <div class="bg-surface rounded-md p-7 shadow-card relative border-none px-8 py-7 border-none">
       <div class="row justify-between items-start mb-3.5 gap-3">
         <div class="col gap-1">
-          <div class="eyebrow">Minhas estrelinhas</div>
+          <div class="font-display text-[11px] font-bold tracking-[0.08em] uppercase text-primary">Minhas estrelinhas</div>
           <div id="profile_points_<%= current_profile.id %>"
                data-controller="count-up"
                data-count-up-current-value="<%= current_profile.points %>"
-               class="h-display text-[36px] leading-none mt-1">
+               class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[36px] leading-none mt-1">
             <span data-count-up-target="display"><%= current_profile.points %></span>
             <span class="text-star-2">★</span>
           </div>
         </div>
-        <div class="w-12 h-12 rounded-sm bg-star-soft grid place-items-center text-[26px] shrink-0">
-          🐷
+        <div class="w-12 h-12 rounded-sm bg-star-soft grid place-items-center shrink-0">
+          <%= render Ui::Icon::Component.new(:star, size: 28, color: "var(--c-amber-dark)") %>
         </div>
       </div>
 
@@ -67,17 +67,17 @@
         <p class="text-[12px] text-muted-foreground mb-2 font-semibold">
           Próximo: <%= @next_reward.title %> (<%= @next_reward.cost %> ★) — faltam <%= next_reward_remaining %> ★
         </p>
-        <div class="progress-track">
-          <div class="progress-fill bg-primary" style="width: <%= next_reward_pct %>%;"></div>
+        <div class="h-2 bg-hairline rounded-full overflow-hidden mt-3">
+          <div class="h-full bg-primary rounded-full transition-all duration-500" style="width: <%= next_reward_pct %>%;"></div>
         </div>
       <% elsif @awaiting_tasks.any? %>
-        <div class="awaiting-badge rounded-full py-1.5 px-3.5 w-fit flex items-center gap-1.5 text-[13px]">
-          <%= render Ui::Icon::Component.new("clock", size: 14, color: "var(--c-amber-dark)") %>
+        <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-warning-soft text-warning-depth text-[13px] font-semibold border border-warning/10">
+          <%= render Ui::Icon::Component.new("clock", size: 14, color: "currentColor") %>
           <%= @awaiting_tasks.count %> aguardando aprovação
         </div>
       <% else %>
-        <div class="progress-track bg-surface-2">
-          <div class="progress-fill bg-star" style="width: <%= total.zero? ? 0 : (done_count.to_f / total * 100).round %>%;"></div>
+        <div class="h-2 bg-muted rounded-full overflow-hidden mt-3">
+          <div class="h-full bg-star-2 rounded-full transition-all duration-500" style="width: <%= total.zero? ? 0 : (done_count.to_f / total * 100).round %>%;"></div>
         </div>
       <% end %>
     </div>
@@ -93,18 +93,18 @@
     <% @completed_today.each do |task| %>
       <% cat_data = Ui::MissionCard::Component::CATEGORIES[task.global_task&.category.to_s] || Ui::MissionCard::Component::CATEGORIES["geral"] %>
       <div class="row pb-6 opacity-75 relative">
-        <div class="timeline-divider"></div>
+        <div class="absolute left-[19px] top-10 bottom-0 border-l-2 border-dashed border-[rgba(44,42,58,0.10)]"></div>
         <div class="w-10 h-10 rounded-full bg-mint-soft border-2 border-mint grid place-items-center shrink-0 z-1">
           <%= render Ui::Icon::Component.new("check", size: 16, color: "var(--c-mint-dark)") %>
         </div>
-        <div class="card fg1 px-6 py-5 border-none">
+        <div class="bg-surface rounded-md p-7 shadow-card relative border-none flex-1 px-6 py-5 border-none">
           <div class="row justify-between gap-2">
             <div class="font-bold line-through text-foreground"><%= task.title %></div>
             <span class="text-star-2 font-extrabold text-[13px] shrink-0"><%= task.points %> ★</span>
           </div>
           <div class="mt-3">
-            <span class="chip chip-sm chip-mint inline-flex items-center gap-1">
-              <%= render Ui::Icon::Component.new("check", size: 10, color: "var(--c-mint-dark)") %>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-display font-extrabold text-[11px] tracking-wider uppercase bg-mint-soft text-mint-dark">
+              <%= render Ui::Icon::Component.new("check", size: 10, color: "currentColor") %>
               Aprovado
             </span>
           </div>
@@ -127,7 +127,7 @@
 
       <div id="<%= dom_id(profile_task) %>" data-controller="ui-modal"
            class="row pb-6 relative">
-        <div class="timeline-divider"></div>
+        <div class="absolute left-[19px] top-10 bottom-0 border-l-2 border-dashed border-[rgba(44,42,58,0.10)]"></div>
 
         <div class="w-10 h-10 rounded-full bg-white border-2 grid place-items-center shrink-0 z-1 cursor-pointer"
              style="border-color: <%= is_current ? node_color : 'rgba(44,42,58,0.12)' %>; <%= is_current ? "box-shadow:0 0 0 4px #{node_color}33;" : '' %>"
@@ -136,7 +136,7 @@
           <%= render Ui::Icon::Component.new(is_current ? cat_data[:icon] : "lock", size: 16, color: is_current ? node_color : "var(--text-soft)") %>
         </div>
 
-        <div class="card fg1 px-6 py-5 cursor-pointer"
+        <div class="bg-surface rounded-md p-7 shadow-card relative border-none flex-1 px-6 py-5 cursor-pointer"
              style="<%= is_current ? "border:2px solid #{node_color};box-shadow:0 2px 0 #{node_color}15,0 6px 12px #{node_color}15;" : 'opacity:0.6;' %>"
              data-action="click->ui-modal#open"
              data-ui-modal-id-param="modal_<%= dom_id(profile_task) %>">
@@ -146,22 +146,22 @@
           </div>
           <div class="mt-3">
             <% if is_current %>
-              <span class="chip chip-sm bg-rose-soft text-rose inline-flex items-center gap-1">
-                <%= render Ui::Icon::Component.new("star", size: 10, color: "var(--c-rose)") %>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-display font-extrabold text-[11px] tracking-wider uppercase bg-rose-soft text-rose">
+                <%= render Ui::Icon::Component.new("star", size: 10, color: "currentColor") %>
                 Agora!
               </span>
             <% else %>
-              <span class="chip chip-sm chip-outline">A fazer</span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-display font-extrabold text-[11px] tracking-wider uppercase bg-white text-foreground border-2 border-hairline">A fazer</span>
             <% end %>
           </div>
         </div>
 
         <%# Confirmation modal %>
         <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(profile_task)}", title: profile_task.title) do %>
-          <div class="center col text-center gap-4">
+          <div class="flex items-center justify-center flex-col text-center gap-4">
             <%= render Ui::LogoMark::Component.new(size: 48) %>
             <%= render Ui::IconTile::Component.new(icon: cat_data[:icon], color: cat_data[:color], size: 88) %>
-            <h3 class="h-display text-[26px]"><%= profile_task.title %></h3>
+            <h3 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[26px]"><%= profile_task.title %></h3>
             <div class="row gap-2.5 justify-center">
               <%= render Ui::Badge::Component.new(variant: cat_data[:color], size: "sm", icon: cat_data[:icon]) do %>
                 <%= cat_data[:label] %>
@@ -171,10 +171,10 @@
                 +<%= profile_task.points %>
               <% end %>
             </div>
-            <p class="subtitle mt-1">Terminou essa missão? Um responsável vai confirmar.</p>
+            <p class="text-muted-foreground font-semibold text-[17px] mt-1">Terminou essa missão? Um responsável vai confirmar.</p>
             <div class="row gap-3 mt-2 w-full justify-center">
               <%= render Ui::Btn::Component.new(variant: "secondary", data: { action: "click->ui-modal#close" }) do %>Ainda não<% end %>
-              <%= button_to complete_kid_mission_path(profile_task), method: :patch, class: "btn btn-primary btn-lg" do %>
+              <%= button_to complete_kid_mission_path(profile_task), method: :patch, class: "inline-flex items-center justify-center font-display font-extrabold px-6 py-3.5 rounded-full bg-primary text-white shadow-btn-primary hover:shadow-btn-primary-hover active:shadow-btn-primary-active hover:-translate-y-1 active:translate-y-1 transition-all border-none text-[18px]" do %>
                 <%= render Ui::Icon::Component.new("check", size: 20) %> Terminei!
               <% end %>
             </div>
@@ -188,7 +188,7 @@
       <%= render Ui::Empty::Component.new(
             icon: "star",
             title: "Nenhuma missão hoje",
-            subtitle: "Um responsável vai adicionar novas missões pra você ✨",
+            subtitle: "Um responsável vai adicionar novas missões pra você",
             color: "mint"
           ) %>
     <% end %>
@@ -199,7 +199,7 @@
         <div class="w-10 h-10 rounded-full bg-star-soft grid place-items-center shrink-0">
           <%= render Ui::LogoMark::Component.new(size: 24) %>
         </div>
-        <div class="text-[14px] text-muted-foreground font-bold">+50 ao concluir tudo ✨</div>
+        <div class="text-[14px] text-muted-foreground font-bold row gap-1">+50 ao concluir tudo <%= render Ui::Icon::Component.new(:sparkle, size: 14, color: "var(--c-amber-dark)") %></div>
       </div>
     <% end %>
 

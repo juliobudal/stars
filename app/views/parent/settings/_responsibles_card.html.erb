@@ -1,22 +1,22 @@
-<div class="card" style="padding: 20px;">
-  <div class="h-display" style="font-size: 18px; margin-bottom: 16px;">Responsáveis</div>
-  <div class="col" style="gap: 8px;">
+<div class="bg-surface rounded-md p-7 shadow-card relative border-none p-5">
+  <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[18px] mb-4">Responsáveis</div>
+  <div class="flex flex-col gap-2">
     <% family.profiles.parent.each do |p| %>
-      <div class="row" style="gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; background: var(--surface-2);">
+      <div class="flex items-center gap-3 py-2.5 px-3 rounded-xl bg-surface-2">
         <%= render Ui::SmileyAvatar::Component.new(kid: p, size: 36) %>
-        <div class="col fg1" style="gap: 1px;">
-          <div style="font-size: 14px; font-weight: 700; color: var(--text);"><%= p.name %></div>
-          <div style="font-size: 11px; color: var(--text-muted);">
+        <div class="flex flex-col flex-1 gap-0.5">
+          <div class="text-[14px] font-bold text-foreground"><%= p.name %></div>
+          <div class="text-[11px] text-muted-foreground">
             <%= p.name.downcase.parameterize(separator: ".") %>@familia.com · Administrador<%= "a" if p.name.ends_with?("a") || p.name.ends_with?("e") %>
           </div>
         </div>
-        <button type="button" style="background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px; display: flex; align-items: center;">
+        <button type="button" class="bg-transparent border-none cursor-pointer text-muted-foreground p-1 flex items-center">
           <%= render Ui::Icon::Component.new("pencil", size: 14, color: "var(--text-muted)") %>
         </button>
       </div>
     <% end %>
 
-    <%= link_to new_parent_invitation_path, class: "btn btn-ghost btn-sm", style: "justify-content: center; width: 100%; border: 1.5px solid var(--hairline); border-style: dashed; border-radius: 10px; padding: 10px; color: var(--text-muted); font-family: var(--font-body); font-size: 13px; text-decoration: none; display: flex; align-items: center; gap: 6px;" do %>
+    <%= render Ui::Btn::Component.new(variant: "ghost", size: "sm", url: new_parent_invitation_path, class: "justify-center w-full border-1.5 border-dashed border-hairline rounded-[10px] p-2.5 text-muted-foreground font-body text-[13px] no-underline") do %>
       <%= render Ui::Icon::Component.new("plus", size: 14, color: "var(--text-muted)") %>
       Convidar responsável
     <% end %>

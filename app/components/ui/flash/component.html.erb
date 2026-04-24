@@ -4,10 +4,9 @@
     <div
       data-controller="flash"
       data-flash-dismiss-after-value="<%= Ui::Flash::Component::DISMISS_AFTER %>"
-      class="pointer-events-auto flex items-center gap-2 px-5 py-3 rounded-full text-white font-extrabold text-[15px] shadow-lift animate-popIn bg-<%= toast_class_for(key) %>"
-      style="background-color: var(--<%= toast_class_for(key) %>);"
+      class="pointer-events-auto flex items-center gap-2.5 px-5 py-3 rounded-full text-white font-display font-extrabold text-[15px] shadow-lift animate-pop-in <%= toast_bg_class_for(key) %>"
     >
-      <%= render Ui::Icon::Component.new(icon_for(key), size: 18, color: "white") %>
+      <%= render Ui::Icon::Component.new(icon_for(key), size: 18) %>
       <span><%= message %></span>
     </div>
   <% end %>

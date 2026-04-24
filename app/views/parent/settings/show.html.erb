@@ -6,16 +6,16 @@
     subtitle: "Família, responsáveis e regras do sistema.",
   ) %>
 
-  <%= form_with url: parent_settings_path, method: :patch, local: true, class: "col", style: "gap: 16px; z-index: 2;" do |f| %>
+  <%= form_with url: parent_settings_path, method: :patch, local: true, class: "flex flex-col gap-4 z-2" do |f| %>
 
-    <div class="grid-2" style="gap: 16px;">
+    <div class="grid grid-cols-2 gap-4">
       <%= render partial: "family_card", locals: { family: @family } %>
       <%= render partial: "responsibles_card", locals: { family: @family } %>
     </div>
 
     <%= render partial: "rules_card", locals: { family: @family } %>
 
-    <div class="row" style="justify-content: flex-end; gap: 8px; padding-bottom: 8px;">
+    <div class="flex items-center justify-end gap-2 pb-2">
       <%= f.submit "Salvar alterações", class: "btn btn-primary" %>
     </div>
   <% end %>

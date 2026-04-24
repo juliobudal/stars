@@ -26,6 +26,6 @@ RSpec.describe Ui::CategoryTabs::Component, type: :component do
       active: "a",
       items: [ { id: "a", label: "A", icon: "star" } ]
     ))
-    expect(page).to have_css("i.ph-star")
+    expect(page).to have_css("i.hgi-star")
   end
 end

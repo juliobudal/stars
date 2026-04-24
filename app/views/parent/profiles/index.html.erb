@@ -6,13 +6,13 @@
     subtitle: "Gerencia as crianças da família. Adicione novas, mude cor, nome ou expressão.",
   ) do |bar| %>
     <% bar.with_right_slot do %>
-      <%= link_to new_parent_profile_path, class: "btn btn-primary" do %>
+      <%= render Ui::Btn::Component.new(variant: "primary", url: new_parent_profile_path) do %>
         <%= render Ui::Icon::Component.new("star", size: 16, color: "white") %> Adicionar filho
       <% end %>
     <% end %>
   <% end %>
 
-  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; z-index: 2; align-items: start;">
+  <div class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4 z-2 items-start">
     <% if @profiles.any? %>
       <% @profiles.each do |k| %>
         <%= render Ui::KidManagementCard::Component.new(
@@ -24,12 +24,12 @@
     <% end %>
 
     <%= link_to new_parent_profile_path, class: "ghost-add-card" do %>
-      <div class="flex-center" style="width: 40px; height: 40px; border-radius: 50%; border: 2px dashed currentColor; font-size: 22px; font-weight: 300; line-height: 1;">+</div>
-      <span style="font-size: 13px; font-weight: 700;">Adicionar filho</span>
+      <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-dashed border-current text-[22px] font-light leading-none">+</div>
+      <span class="text-[13px] font-bold">Adicionar filho</span>
     <% end %>
 
     <% if @profiles.empty? %>
-      <div style="grid-column: 1 / -1;">
+      <div class="col-[1/-1]">
         <%= render Ui::Empty::Component.new(
           icon: "users",
           title: "Nenhum perfil",

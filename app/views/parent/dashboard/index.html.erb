@@ -1,34 +1,34 @@
 <div class="screen screen-enter with-nav">
 
   <%# ─── Header ─── %>
-  <div class="row mb-5 between z-content" style="flex-shrink: 0; align-items: flex-start;">
+  <div class="flex items-start justify-between mb-5 z-content shrink-0">
     <div>
-      <h1 class="h-display" style="font-size: 26px; margin-bottom: 4px;">Olá, <%= current_profile.name %> ✨</h1>
-      <p style="font-size: 13px; font-weight: 600; color: var(--text-muted); margin: 0;">
+      <h1 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground flex items-center gap-2 text-[26px] mb-1">Olá, <%= current_profile.name %> <%= render Ui::Icon::Component.new(:sparkle, size: 22, color: "var(--c-amber-dark)") %></h1>
+      <p class="text-[13px] font-semibold text-muted-foreground m-0">
         Você tem <strong><%= @stats[:pending_approvals] %></strong> aprovações aguardando e <strong><%= @stats[:children] %></strong> crianças ativas.
       </p>
     </div>
-    <%= link_to new_parent_global_task_path, class: "btn btn-primary btn-sm", style: "white-space: nowrap; flex-shrink: 0;" do %>
+    <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: new_parent_global_task_path, class: "whitespace-nowrap shrink-0") do %>
       + Nova missão
     <% end %>
   </div>
 
   <%# ─── Pending approvals banner ─── %>
   <% if @stats[:pending_approvals].to_i > 0 %>
-    <div class="banner-approvals z-content" style="flex-shrink: 0;">
-      <div class="banner-approvals__icon">
+    <div class="bg-gradient-to-br from-primary to-primary-depth rounded-md px-6 py-5 mb-5 text-white flex items-center flex-wrap gap-[18px] shadow-[0_8px_28px_rgba(167,139,250,0.35)] z-content shrink-0">
+      <div class="w-13 h-13 rounded-[14px] bg-white/20 grid place-items-center shrink-0">
         <%= render Ui::Icon::Component.new("bell", size: 26, color: "white") %>
       </div>
-      <div style="flex: 1;">
-        <div class="banner-approvals__title" id="pending_approvals_kpi"><%= @stats[:pending_approvals] %> aprovações aguardando</div>
-        <div class="banner-approvals__meta"><%= @stats[:active_missions] %> missões · <%= @stats[:rewards_count] %> prêmios</div>
+      <div class="flex-1">
+        <div class="font-display font-bold text-lg mb-0.5 text-white" id="pending_approvals_kpi"><%= @stats[:pending_approvals] %> aprovações aguardando</div>
+        <div class="text-[13px] font-semibold opacity-90"><%= @stats[:active_missions] %> missões · <%= @stats[:rewards_count] %> prêmios</div>
       </div>
-      <%= link_to "Ver aprovações →", parent_approvals_path, class: "banner-approvals__cta" %>
+      <%= link_to "Ver aprovações →", parent_approvals_path, class: "bg-white text-primary px-5 py-2.5 rounded-[10px] font-display font-black text-[13px] shadow-[0_3px_0_rgba(76,29,149,0.2)] no-underline whitespace-nowrap" %>
     </div>
   <% end %>
 
   <%# ─── Stats grid (2-col mobile → 4-col desktop) ─── %>
-  <div class="stats-grid z-content" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 28px;">
+  <div class="z-10 relative grid grid-cols-2 lg:grid-cols-4 gap-4 mb-7">
     <%= render Ui::StatCard::Component.new(value: @stats[:total_stars],     label: "Estrelas em circulação", icon: "star",   tint: "star") %>
     <%= render Ui::StatCard::Component.new(value: @stats[:active_missions], label: "Missões ativas",         icon: "target", tint: "primary") %>
     <%= render Ui::StatCard::Component.new(value: @stats[:rewards_count],   label: "Prêmios no catálogo",    icon: "bag",    tint: "rose") %>
@@ -37,13 +37,13 @@
 
   <%# ─── Kid cards ─── %>
   <div class="mb-5 z-content">
-    <div class="row mb-3 between">
-      <h2 class="h-display" style="font-size: 22px; margin: 0;">Suas crianças</h2>
-      <%= link_to "+ Adicionar filho", parent_profiles_path, class: "btn btn-secondary btn-sm" %>
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[22px] m-0">Suas crianças</h2>
+      <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: parent_profiles_path) do %>+ Adicionar filho<% end %>
     </div>
 
     <% if @children.any? %>
-      <div class="kids-grid" style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 16px;">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <% @children.each do |child| %>
           <%= render Ui::KidProgressCard::Component.new(
                 kid: child,
@@ -58,25 +58,25 @@
         title: "Nenhuma criança adicionada",
         subtitle: "Para começar as missões, adicione o primeiro filho(a)."
       ) do %>
-        <%= link_to "Adicionar Filho", parent_profiles_path, class: "btn btn-primary btn-sm" %>
+        <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: parent_profiles_path) do %>Adicionar Filho<% end %>
       <% end %>
     <% end %>
   </div>
 
   <%# ─── Atividade recente ─── %>
   <div class="z-content">
-    <div class="row mb-3 between">
-      <h2 class="h-display" style="font-size: 22px; margin: 0;">Atividade recente</h2>
-      <%= link_to "Ver tudo", parent_activity_logs_path, style: "font-size: 13px; font-weight: 700; color: var(--primary); text-decoration: none;" %>
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[22px] m-0">Atividade recente</h2>
+      <%= link_to "Ver tudo", parent_activity_logs_path, class: "text-[13px] font-bold text-primary no-underline hover:underline" %>
     </div>
     <% if @recent_activity.any? %>
-      <div class="card" style="padding: 14px 20px;">
+      <div class="bg-surface rounded-md p-7 shadow-card relative border-none py-3.5 px-5">
         <% @recent_activity.each_with_index do |log, i| %>
           <%= render Ui::ActivityRow::Component.new(log: log, with_divider: i < @recent_activity.size - 1) %>
         <% end %>
       </div>
     <% else %>
-      <div class="card" style="padding: 24px; text-align: center; color: var(--text-muted); font-size: 13px; font-weight: 700;">
+      <div class="bg-surface rounded-md p-7 shadow-card relative border-none p-6 text-center text-muted-foreground text-[13px] font-bold">
         Nenhuma atividade ainda.
       </div>
     <% end %>

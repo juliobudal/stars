@@ -11,15 +11,21 @@ module Ui
       def call
         big = @size == "lg"
 
-        chip_style = big ? "font-size: 28px; padding: 10px 20px 10px 12px; #{@options.delete(:style)}" : @options.delete(:style)
-        badge_style = big ? "width: 36px; height: 36px;" : ""
-        icon_size = big ? 22 : 16
-
-        content_tag :div, id: @options.delete(:id), class: class_names("balance-chip", @options.delete(:class)),
-          style: chip_style,
+        base_classes = "inline-flex items-center gap-2 bg-white text-foreground pl-2.5 pr-4 py-2 rounded-full font-display font-extrabold shadow-btn border-2 border-hairline"
+        size_classes = big ? "text-[28px] px-5 py-2.5 pl-3" : "text-lg px-4 py-2 pl-2.5"
+        
+        content_tag :div, id: @options.delete(:id), class: class_names(base_classes, size_classes, @options.delete(:class)),
+          style: @options.delete(:style),
           data: { controller: "count-up", "count-up-current-value": @value } do
-          concat content_tag(:div, class: "star-badge", style: badge_style) {
-            render Ui::Icon::Component.new("star", size: icon_size, color: "#8a5a00")
+          
+          badge_classes = class_names(
+            "rounded-full bg-warning flex items-center justify-center shadow-[inset_0_-2px_0_var(--color-warning-depth)]",
+            big ? "w-9 h-9" : "w-7 h-7"
+          )
+          icon_size = big ? 22 : 16
+
+          concat content_tag(:div, class: badge_classes) {
+            render Ui::Icon::Component.new("star", size: icon_size, color: "var(--color-amber-dark)")
           }
           concat content_tag(:span, @value, data: { "count-up-target": "display" })
         end

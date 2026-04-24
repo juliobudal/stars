@@ -1,8 +1,8 @@
-<div class="card" style="max-width: 480px; margin: 40px auto; padding: 32px;">
-  <h2 class="h-display" style="margin-bottom: 24px;">Convidar responsável</h2>
+<div class="bg-surface rounded-card p-7 shadow-card relative border-none max-w-[480px] mx-auto my-10">
+  <h2 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground mb-6">Convidar responsável</h2>
 
   <% if @invitation.errors.any? %>
-    <div class="alert alert-error" style="margin-bottom: 16px;">
+    <div class="alert alert-error mb-4">
       <% @invitation.errors.full_messages.each do |msg| %>
         <p><%= msg %></p>
       <% end %>
@@ -10,15 +10,19 @@
   <% end %>
 
   <%= form_with model: @invitation, url: parent_invitations_path, method: :post do |f| %>
-    <div class="form-field" style="margin-bottom: 20px;">
-      <%= f.label :email, "Email do responsável", style: "display: block; font-weight: 700; margin-bottom: 6px;" %>
+    <div class="mb-5">
+      <%= f.label :email, "Email do responsável", class: "block font-bold mb-1.5" %>
       <%= f.email_field :email, placeholder: "email@exemplo.com",
-            style: "width: 100%; padding: 10px 12px; border: 1.5px solid var(--hairline); border-radius: 10px; font-size: 14px;" %>
+            class: "w-full py-2.5 px-3 border-1.5 border-hairline rounded-[10px] text-[14px]" %>
     </div>
 
-    <div style="display: flex; gap: 12px;">
-      <%= f.submit "Enviar convite", class: "btn btn-primary", style: "flex: 1;" %>
-      <%= link_to "Cancelar", parent_settings_path, class: "btn btn-ghost", style: "flex: 1; text-align: center;" %>
+    <div class="flex gap-3">
+      <%= render Ui::Btn::Component.new(variant: "primary", size: "md", block: false, type: "submit", class: "flex-1") do %>
+        Enviar convite
+      <% end %>
+      <%= render Ui::Btn::Component.new(variant: "ghost", size: "md", url: parent_settings_path, class: "flex-1 text-center") do %>
+        Cancelar
+      <% end %>
     </div>
   <% end %>
 </div>

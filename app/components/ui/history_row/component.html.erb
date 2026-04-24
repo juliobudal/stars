@@ -1,17 +1,18 @@
-<div class="history-entry">
-  <div class="row" style="gap: 12px;">
-    <div class="flex-center noshrink" style="width: 40px; height: 40px; border-radius: var(--r-full); background: <%= kind[:disc_bg] %>; color: <%= kind[:disc_color] %>;">
+<div class="bg-surface rounded-md px-4 py-3.5 shadow-card border border-hairline mb-2">
+  <div class="flex items-center gap-3">
+    <div class="flex items-center justify-center shrink-0 w-10 h-10 rounded-full <%= kind[:disc_bg] %> <%= kind[:disc_color] %>">
       <%= render Ui::Icon::Component.new(kind[:icon], size: 20, color: "currentColor") %>
     </div>
-    <div class="col fg1" style="gap: 2px;">
-      <div class="text-label" style="font-size: 14px;"><%= log.title %></div>
-      <div class="row" style="gap: 5px;">
-        <span class="chip chip-sm" style="background: <%= kind[:chip_bg] %>; color: <%= kind[:chip_text] %>; text-transform: uppercase; letter-spacing: 0.04em;"><%= kind[:label] %></span>
-        <span class="text-caption" style="font-weight: 500;"><%= log.created_at.strftime("%H:%M") %></span>
+    <div class="flex flex-col flex-1 gap-0.5">
+      <div class="text-[14px] font-bold"><%= log.title %></div>
+      <div class="flex items-center gap-1.25">
+        <%= render Ui::Chip::Component.new(variant: kind[:chip_variant], size: "sm", uppercase: true) do %><%= kind[:label] %><% end %>
+        <span class="text-[13px] text-muted-foreground font-medium"><%= log.created_at.strftime("%H:%M") %></span>
       </div>
     </div>
-    <div class="h-display noshrink" style="font-size: 15px; color: <%= points_color %>; white-space: nowrap;">
-      <%= points_sign %><%= log.points %> ⭐
+    <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground flex items-center gap-1 shrink-0 text-[15px] whitespace-nowrap <%= points_color %>">
+      <%= points_sign %><%= log.points %>
+      <%= render Ui::Icon::Component.new(:star, size: 14, color: "var(--c-amber-dark)") %>
     </div>
   </div>
 </div>

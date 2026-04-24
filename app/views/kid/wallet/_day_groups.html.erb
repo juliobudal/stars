@@ -9,18 +9,18 @@
                   l(date, format: :short).capitalize
                 end
     day_net = logs.sum { |l| l.earn? ? l.points : -(l.points) }
-    net_color = day_net >= 0 ? "var(--c-mint-dark)" : "var(--c-rose-dark)"
+    net_color_class = day_net >= 0 ? "text-mint-dark" : "text-rose-dark"
     net_prefix = day_net >= 0 ? "+" : ""
   %>
 
   <%# Day header %>
-  <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 4px 6px;">
-    <span class="h-display" style="font-size: 16px; font-style: italic;"><%= day_label %></span>
-    <span style="font-size: 12px; font-weight: 600; color: var(--text-muted);">Saldo: <span style="color: <%= net_color %>;"><%= net_prefix %><%= day_net %> ⭐</span></span>
+  <div class="flex justify-between items-center px-1 pt-3.5 pb-1.5">
+    <span class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[16px] italic"><%= day_label %></span>
+    <span class="text-[12px] font-semibold text-muted-foreground row gap-1">Saldo: <span class="row gap-1 <%= net_color_class %>"><%= net_prefix %><%= day_net %> <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--c-amber-dark)") %></span></span>
   </div>
 
   <%# Log entries — each is its own card via .history-entry %>
-  <div style="margin-bottom: 8px;">
+  <div class="mb-2">
     <% logs.each do |h| %>
       <%= render Ui::HistoryRow::Component.new(log: h, with_divider: false) %>
     <% end %>

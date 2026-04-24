@@ -14,7 +14,8 @@ RSpec.describe Ui::ActivityRow::Component, type: :component do
       with_divider: false
     ))
     expect(page).to have_text("Bonus")
-    expect(page).to have_text("+5 ⭐")
+    expect(page).to have_text("+5")
+    expect(page).to have_css("i.hgi-star")
   end
 
   it "renders spend with minus sign" do
@@ -22,6 +23,7 @@ RSpec.describe Ui::ActivityRow::Component, type: :component do
       kid: nil, description: "Prêmio", timestamp: nil,
       amount: -10, direction: "spend", with_divider: false
     ))
-    expect(page).to have_text("−10 ⭐")
+    expect(page).to have_text("−10")
+    expect(page).to have_css("i.hgi-star")
   end
 end

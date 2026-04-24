@@ -1,6 +1,6 @@
-<div class="card" style="padding: 20px;">
-  <div class="h-display" style="font-size: 18px; margin-bottom: 14px;">Regras do sistema</div>
-  <div class="col" style="gap: 0;">
+<div class="bg-surface rounded-md p-7 shadow-card relative border-none p-5">
+  <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[18px] mb-3.5">Regras do sistema</div>
+  <div class="col gap-0">
     <%
       rules = [
         { key: :require_photo,  title: "Exigir foto na conclusão", desc: "Criança precisa anexar uma foto para marcar missão como feita" },
@@ -9,28 +9,24 @@
       ]
     %>
     <% rules.each_with_index do |rule, idx| %>
-      <div class="row" style="justify-content: space-between; align-items: center; padding: 14px 0; <%= 'border-top: 1px solid var(--hairline);' unless idx.zero? %>">
-        <div class="col" style="gap: 2px;">
-          <div style="font-size: 14px; font-weight: 700; color: var(--text);"><%= rule[:title] %></div>
-          <div style="font-size: 12px; color: var(--text-muted);"><%= rule[:desc] %></div>
+      <div class="row justify-between items-center py-3.5 <%= 'border-t border-hairline' unless idx.zero? %>">
+        <div class="col gap-0.5">
+          <div class="text-[14px] font-bold text-foreground"><%= rule[:title] %></div>
+          <div class="text-[12px] text-muted-foreground"><%= rule[:desc] %></div>
         </div>
         <% checked = !!family.public_send(rule[:key]) %>
-        <label class="toggle <%= 'is-checked' if checked %>">
-          <input type="hidden" name="family[<%= rule[:key] %>]" value="0" />
-          <input type="checkbox" name="family[<%= rule[:key] %>]" value="1" <%= 'checked' if checked %> />
-          <span class="toggle-track"><span class="toggle-thumb"></span></span>
-        </label>
+        <%= render Ui::Toggle::Component.new(name: "family[#{rule[:key]}]", checked: checked) %>
       </div>
     <% end %>
 
-    <div class="row" style="justify-content: space-between; align-items: center; padding: 14px 0; border-top: 1px solid var(--hairline);">
-      <div class="col" style="gap: 2px;">
-        <div style="font-size: 14px; font-weight: 700; color: var(--text);">Auto-aprovar missões até</div>
-        <div style="font-size: 12px; color: var(--text-muted);">Missões de valor baixo são aprovadas automaticamente (deixe em branco para desativar)</div>
+    <div class="row justify-between items-center py-3.5 border-t border-hairline">
+      <div class="col gap-0.5">
+        <div class="text-[14px] font-bold text-foreground">Auto-aprovar missões até</div>
+        <div class="text-[12px] text-muted-foreground">Missões de valor baixo são aprovadas automaticamente (deixe em branco para desativar)</div>
       </div>
       <input type="number" name="family[auto_approve_threshold]" value="<%= family.auto_approve_threshold %>"
              placeholder="—" min="0"
-             style="width: 90px; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--hairline); background: var(--surface-2); text-align: right; font-weight: 700;" />
+             class="w-[90px] py-1.5 px-2.5 rounded-lg border border-hairline bg-surface-2 text-right font-bold" />
     </div>
   </div>
 </div>

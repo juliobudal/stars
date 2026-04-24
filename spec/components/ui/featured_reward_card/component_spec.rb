@@ -10,7 +10,7 @@ RSpec.describe Ui::FeaturedRewardCard::Component, type: :component do
   it "renders title, button with cost and affordable message" do
     render_inline(described_class.new(reward: reward, balance: 60, modal_id: "modal_x"))
     expect(page).to have_text("Passeio")
-    expect(page).to have_text("Trocar por ⭐ 50")
+    expect(page).to have_text(/Trocar por.*50/)
     expect(page).to have_text("✓ Você pode pegar essa!")
     expect(page).to have_css("button[data-ui-modal-id-param='modal_x']")
   end

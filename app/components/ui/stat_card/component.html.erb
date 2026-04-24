@@ -1,7 +1,7 @@
-<div class="card stack" style="padding: 18px; gap: 8px;">
-  <div class="stat-icon-tile" style="background: <%= tint[:bg] %>;">
+<div class="bg-surface rounded-md p-7 shadow-card relative border-none flex flex-col p-4.5 gap-2">
+  <div class="w-10 h-10 rounded-[10px] grid place-items-center shrink-0" style="background: <%= tint[:bg] %>;">
     <%= render Ui::Icon::Component.new(icon, size: 22, color: tint[:fg]) %>
   </div>
-  <div class="h-display"><%= value %></div>
-  <div class="text-caption"><%= label %></div>
+  <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground"><%= value %></div>
+  <div class="text-[12px] font-bold text-muted-foreground"><%= label %></div>
 </div>

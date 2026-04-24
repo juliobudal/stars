@@ -2,14 +2,13 @@
   cat = category_meta
   tint = cat[:tint]
 %>
-<div class="card reward-catalog-card col" data-panels="all <%= reward.category %>"
-     style="padding: 20px; text-align: center; align-items: center; gap: 10px;">
+<div class="bg-surface rounded-md p-7 shadow-card relative border-none reward-catalog-card flex flex-col p-5 text-center items-center gap-2.5" data-panels="all <%= reward.category %>">
 
   <%# Icon tile — 64px centered %>
   <%= render Ui::IconTile::Component.new(icon: reward.icon.presence || "gift", color: tint, size: 64) %>
 
   <%# Title %>
-  <div class="h-display flex-center" style="font-size: 15px; min-height: 2.4em; text-align: center; line-height: 1.2;">
+  <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground flex items-center justify-center text-[15px] min-h-[2.4em] text-center leading-[1.2]">
     <%= reward.title %>
   </div>
 
@@ -19,23 +18,21 @@
   <% end %>
 
   <%# Star cost %>
-  <div class="row flex-center" style="gap: 6px; font-weight: 800; font-size: 18px; color: var(--star-2);">
+  <div class="flex items-center justify-center gap-1.5 font-extrabold text-lg text-[var(--star-2)]">
     <%= render Ui::Icon::Component.new("star", size: 18, color: "var(--star)") %>
     <%= reward.cost %>
   </div>
 
   <%# Actions row %>
-  <div class="row" style="gap: 8px; width: 100%; margin-top: 4px;">
+  <div class="flex items-center gap-2 w-full mt-1">
     <%= link_to edit_parent_reward_path(reward),
-          class: "btn btn-sm flex-center fg1",
-          style: "background: var(--primary-soft); color: var(--primary-2); gap: 6px; border-radius: 12px; text-decoration: none; font-size: 13px;",
+          class: "btn btn-sm flex items-center justify-center flex-1 bg-primary-soft text-primary-2 gap-1.5 rounded-xl no-underline text-[13px]",
           aria: { label: "Editar #{reward.title}" } do %>
       <%= render Ui::Icon::Component.new("pencil", size: 14, color: "currentColor") %>
       Editar
     <% end %>
     <%= button_to parent_reward_path(reward), method: :delete,
-          class: "flex-center noshrink",
-          style: "width: 36px; height: 36px; padding: 0; background: var(--c-red-soft); border: none; cursor: pointer; color: var(--danger); border-radius: 12px;",
+          class: "flex items-center justify-center shrink-0 w-9 h-9 p-0 bg-red-soft border-none cursor-pointer text-danger rounded-xl",
           data: { turbo_confirm: "Remover \"#{reward.title}\"?" } do %>
       <%= render Ui::Icon::Component.new("trash", size: 16, color: "var(--danger)") %>
     <% end %>

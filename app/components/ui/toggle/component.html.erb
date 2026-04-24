@@ -1,11 +1,15 @@
 <% if form_bound? %>
-  <label class="<%= root_class %>" aria-label="<%= aria_label %>">
+  <label class="inline-flex cursor-pointer select-none group" aria-label="<%= aria_label %>">
     <input type="hidden" name="<%= name %>" value="0" form="<%= form %>" />
-    <input type="checkbox" name="<%= name %>" value="<%= value %>" <%= "checked" if checked %> <%= "form=\"#{form}\"".html_safe if form.present? %> />
-    <span class="toggle-track"><span class="toggle-thumb"></span></span>
+    <input type="checkbox" name="<%= name %>" value="<%= value %>" <%= "checked" if checked %> <%= "form=\"#{form}\"".html_safe if form.present? %> class="sr-only peer" />
+    <span class="<%= peer_track_classes %>">
+      <span class="<%= peer_thumb_classes %>"></span>
+    </span>
   </label>
 <% else %>
-  <span class="<%= root_class %>" role="switch" aria-checked="<%= checked %>" aria-label="<%= aria_label %>">
-    <span class="toggle-track"><span class="toggle-thumb"></span></span>
+  <span class="inline-flex select-none" role="switch" aria-checked="<%= checked %>" aria-label="<%= aria_label %>">
+    <span class="<%= track_classes %>">
+      <span class="<%= thumb_classes %>"></span>
+    </span>
   </span>
 <% end %>

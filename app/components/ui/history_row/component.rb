@@ -4,9 +4,9 @@ module Ui
   module HistoryRow
     class Component < ApplicationComponent
       TYPE_MAP = {
-        "earn"   => { icon: "sparkle", disc_bg: "var(--c-mint-soft)",  disc_color: "var(--c-mint-dark)", chip_bg: "var(--c-mint-soft)",  chip_text: "var(--c-mint-dark)",  label: "Conquista" },
-        "redeem" => { icon: "gift",    disc_bg: "var(--c-lilac-soft)", disc_color: "var(--primary)",     chip_bg: "var(--c-lilac-soft)", chip_text: "var(--primary-2)",    label: "Compra"    },
-        "adjust" => { icon: "star",    disc_bg: "var(--star-soft)",    disc_color: "var(--star-2)",      chip_bg: "var(--star-soft)",    chip_text: "var(--star-2)",       label: "Ajuste"    }
+        "earn"   => { icon: "sparkle", disc_bg: "bg-mint-soft",  disc_color: "text-mint-dark", chip_bg: "bg-mint-soft",  chip_text: "text-mint-dark",  label: "Conquista", chip_variant: "mint"   },
+        "redeem" => { icon: "gift",    disc_bg: "bg-lilac-soft", disc_color: "text-[var(--primary)]",     chip_bg: "bg-lilac-soft", chip_text: "text-[var(--primary-2)]",    label: "Compra",    chip_variant: "lilac"  },
+        "adjust" => { icon: "star",    disc_bg: "bg-star-soft",    disc_color: "text-[var(--star-2)]",      chip_bg: "bg-star-soft",    chip_text: "text-[var(--star-2)]",       label: "Ajuste",    chip_variant: "star"   }
       }.freeze
 
       def initialize(log:, with_divider: true)
@@ -22,7 +22,7 @@ module Ui
       end
 
       def points_color
-        log.earn? ? "var(--c-mint-dark)" : "var(--c-rose-dark)"
+        log.earn? ? "text-mint-dark" : "text-rose-dark"
       end
 
       def points_sign

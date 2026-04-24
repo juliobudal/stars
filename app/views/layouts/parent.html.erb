@@ -6,10 +6,10 @@
     <%= yield :head %>
   </head>
 
-  <body class="app-shell parent-layout" data-palette="sky">
+  <body class="min-h-screen flex flex-col bg-bg-deep overflow-x-hidden" data-palette="sky">
     <%= turbo_stream_from current_profile.family, "approvals" %>
     <%= render "shared/parent_nav" %>
-    <div class="viewport pb-24 lg:pb-0">
+    <div class="flex-1 p-6 overflow-y-auto w-full max-w-[500px] mx-auto relative z-1 pb-24 lg:pb-0">
       <%= render Ui::Flash::Component.new %>
       <%= yield %>
     </div>

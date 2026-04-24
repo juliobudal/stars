@@ -62,68 +62,46 @@ module ApplicationHelper
     end
   end
 
+  HUGEICONS_LEGACY_MAP = {
+    "academic-cap" => "mortarboard-01",
+    "list-bullet" => "left-to-right-list-bullet",
+    "user-circle" => "user-circle",
+    "check-circle" => "checkmark-circle-02",
+    "face-frown" => "sad-01",
+    "rocket-launch" => "rocket",
+    "sparkles" => "sparkles",
+    "arrow-path" => "refresh",
+    "chevron-down" => "arrow-down-01",
+    "chevron-left" => "arrow-left-01",
+    "chevron-right" => "arrow-right-01",
+    "envelope" => "mail-01",
+    "mail" => "mail-01",
+    "magnifying-glass" => "search-01",
+    "search" => "search-01",
+    "pencil" => "pencil-edit-02",
+    "edit" => "pencil-edit-02",
+    "trash" => "delete-02",
+    "delete" => "delete-02",
+    "plus" => "plus-sign",
+    "add" => "plus-sign",
+    "minus" => "minus-sign",
+    "x-mark" => "cancel-01",
+    "close" => "cancel-01",
+    "wallet" => "wallet-01",
+    "star" => "star",
+    "heart" => "favourite",
+    "gift" => "gift",
+    "home" => "home-01",
+    "clock" => "clock-01",
+    "tag" => "tag-01"
+  }.freeze
+
   def icon_tag(name, options = {})
-    # Map legacy Heroicon names to Lucide names
-    # Lucide names use hyphens, e.g., "graduation-cap"
-    lucide_name = case name.to_s.gsub("_", "-")
-    when "academic-cap" then "graduation-cap"
-    when "list-bullet" then "list"
-    when "user-circle" then "circle-user-round"
-    when "check-circle" then "circle-check-big"
-    when "face-frown" then "frown"
-    when "rocket-launch" then "rocket"
-    when "sparkles" then "sparkles"
-    when "arrow-path" then "refresh-cw"
-    when "chevron-down" then "chevron-down"
-    when "chevron-left" then "chevron-left"
-    when "chevron-right" then "chevron-right"
-    when "envelope", "mail" then "mail"
-    when "magnifying-glass", "search" then "search"
-    when "pencil", "edit" then "pencil"
-    when "trash", "delete" then "trash-2"
-    when "plus", "add" then "plus"
-    when "minus" then "minus"
-    when "x-mark", "close" then "x"
-    when "wallet" then "wallet"
-    when "star" then "star"
-    when "heart" then "heart"
-    when "gift" then "gift"
-    else name.to_s.gsub("_", "-")
-    end
-
-    # Use the lucide-rails gem to fetch the SVG content
-    begin
-      # Fetch SVG content
-      svg_content = LucideRails::IconProvider.icon(lucide_name)
-
-      # Encode to Data URI for mask-image
-      # We use Base64 to ensure all characters are handled correctly across browsers
-      base64_svg = Base64.strict_encode64(svg_content)
-      data_uri = "data:image/svg+xml;base64,#{base64_svg}"
-
-      style = options[:style] || ""
-      style = "#{style}; --svg: url('#{data_uri}')".strip
-
-      classes = class_names("icon", "icon-#{name}", options.delete(:class))
-      content_tag(:span, nil, class: classes, style: style, **options)
-    rescue => e
-      # Fallback icon (help-circle) if the requested icon is missing in Lucide
-      begin
-        svg_content = LucideRails::IconProvider.icon("help-circle")
-        base64_svg = Base64.strict_encode64(svg_content)
-        data_uri = "data:image/svg+xml;base64,#{base64_svg}"
-
-        style = options[:style] || ""
-        style = "#{style}; --svg: url('#{data_uri}')".strip
-
-        classes = class_names("icon", "icon-missing", options.delete(:class))
-        content_tag(:span, nil, class: classes, style: style, "data-missing-icon" => name, **options)
-      rescue
-        # Absolute fallback if even help-circle fails
-        classes = class_names("icon", "bg-red-500", options.delete(:class))
-        content_tag(:span, nil, class: classes, **options)
-      end
-    end
+    key = name.to_s.tr("_", "-")
+    glyph = HUGEICONS_LEGACY_MAP[key] || key
+    style_key = options.delete(:style_variant) || "solid-rounded"
+    classes = class_names("hgi-#{style_key}", "hgi-#{glyph}", options.delete(:class))
+    content_tag(:i, nil, class: classes, "aria-hidden": true, **options)
   end
 
   def category_icon_tag(category, options = {})

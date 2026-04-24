@@ -16,6 +16,14 @@ class Ui::Flash::Component < ApplicationComponent
     end
   end
 
+  def toast_bg_class_for(flash_type)
+    case flash_type.to_s
+    when "notice", "success" then "bg-success"
+    when "alert", "error" then "bg-destructive"
+    else "bg-primary"
+    end
+  end
+
   def icon_for(flash_type)
     case flash_type.to_s
     when "notice", "success" then "check"

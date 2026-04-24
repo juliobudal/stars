@@ -6,8 +6,8 @@
     subtitle: "#{@global_tasks.size} missões no catálogo",
   ) do |bar| %>
     <% bar.with_right_slot do %>
-      <%= link_to new_parent_global_task_path, class: "btn btn-primary normal-case" do %>
-        <%= render Ui::Icon::Component.new("plus", size: 18, color: "white") %> Nova missão
+      <%= render Ui::Btn::Component.new(url: new_parent_global_task_path, size: "md") do %>
+        <%= render Ui::Icon::Component.new("plus", size: 18) %> Nova missão
       <% end %>
     <% end %>
   <% end %>
@@ -24,9 +24,9 @@
     <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all") %>
   </div>
 
-  <div class="card p-0 overflow-hidden z-2">
+  <div class="bg-surface rounded-card shadow-card relative border-none p-0 overflow-hidden z-2">
     <% if @global_tasks.any? %>
-      <div class="mission-header hidden md:grid bg-surface-2 py-3.5 px-5 grid-cols-[2fr_1.3fr_0.8fr_1.4fr_80px_80px] text-[11px] font-extrabold tracking-widest text-muted-foreground uppercase gap-2.5">
+      <div class="hidden md:grid bg-muted/40 py-3.5 px-5 grid-cols-[2fr_1.3fr_0.8fr_1.4fr_80px_80px] text-[11px] font-extrabold tracking-widest text-muted-foreground uppercase gap-2.5">
         <div>Missão</div>
         <div>Recorrência</div>
         <div>Estrelas</div>

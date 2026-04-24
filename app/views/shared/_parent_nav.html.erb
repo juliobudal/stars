@@ -4,102 +4,77 @@
 %>
 
 <%# Mobile sticky header — hidden on desktop via CSS %>
-<div class="parent-mobile-header">
-  <div class="row" style="gap: 10px; align-items: center;">
+<%# Mobile sticky header — hidden on desktop via CSS %>
+<div class="flex lg:hidden items-center justify-between px-4 h-[64px] bg-white border-b border-hairline sticky top-0 z-40">
+  <div class="flex items-center gap-2.5">
     <%= render Ui::LogoMark::Component.new(size: 20) %>
-    <span class="h-display" style="font-size: 18px; font-style: normal; color: var(--text);">LittleStars</span>
+    <span class="font-display font-extrabold tracking-tight text-[18px] text-foreground">LittleStars</span>
   </div>
   <button type="button" id="sidebar-toggle"
-          class="flex-center" style="width: 36px; height: 36px; border-radius: 10px; background: var(--bg-soft); border: none; cursor: pointer; color: var(--text);">
+          class="flex items-center justify-center w-9 h-9 rounded-[10px] bg-muted border-none cursor-pointer text-foreground">
     <%= render Ui::Icon::Component.new("list", size: 20) %>
   </button>
 </div>
 
 <%# Sidebar %>
-<nav class="side-nav" id="parent-sidebar" aria-label="Principal">
+<%# Sidebar %>
+<nav class="flex flex-col fixed left-0 top-0 bottom-0 w-[280px] bg-surface border-r border-hairline z-50 -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0" id="parent-sidebar" aria-label="Principal">
   <%# Brand mark %>
-  <div class="brand-mark">
-    <div class="row">
+  <div class="p-6 flex flex-col gap-4">
+    <div class="flex items-center gap-3">
       <%= render Ui::LogoMark::Component.new(size: 24) %>
       <div>
-        <span class="h-display" style="font-size: 20px; font-style: normal; color: var(--text); display: block;">LittleStars</span>
-        <span style="font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--text-muted); text-transform: uppercase;">MODO PAIS</span>
+        <span class="font-display font-extrabold tracking-tight text-[20px] text-foreground leading-tight block">LittleStars</span>
+        <span class="text-[10px] font-extrabold tracking-widest text-muted-foreground uppercase">MODO PAIS</span>
       </div>
     </div>
 
     <%# Family picker %>
-    <button type="button" class="family-picker">
-      <span style="font-size: 13px; font-weight: 700; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><%= current_profile.family.name %></span>
-      <%= render Ui::Icon::Component.new("chevron", size: 14, color: "var(--text-muted)") %>
+    <button type="button" class="flex items-center justify-between px-3 py-2.5 bg-muted rounded-xl border-none cursor-pointer w-full hover:bg-muted-foreground/10 transition-colors">
+      <span class="text-[13px] font-bold text-foreground overflow-hidden text-ellipsis whitespace-nowrap"><%= current_profile.family.name %></span>
+      <%= render Ui::Icon::Component.new("chevron", size: 14, color: "var(--color-text-muted)") %>
     </button>
   </div>
 
   <%# Nav items %>
-  <div class="col" style="gap: 2px; padding: 0 var(--space-3); flex: 1;">
-    <%= link_to parent_root_path,
-        class: "nav-item #{current_page?(parent_root_path) ? 'active' : ''}",
-        title: "Início",
-        aria: { current: current_page?(parent_root_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("house", size: 20) %>
-      <span>Início</span>
-    <% end %>
-
-    <%= link_to parent_profiles_path,
-        class: "nav-item #{current_page?(parent_profiles_path) ? 'active' : ''}",
-        title: "Filhos",
-        aria: { current: current_page?(parent_profiles_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("users", size: 20) %>
-      <span>Filhos</span>
-    <% end %>
-
-    <%= link_to parent_global_tasks_path,
-        class: "nav-item #{current_page?(parent_global_tasks_path) ? 'active' : ''}",
-        title: "Missões",
-        aria: { current: current_page?(parent_global_tasks_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("list-checks", size: 20) %>
-      <span>Missões</span>
-    <% end %>
-
-    <%= link_to parent_rewards_path,
-        class: "nav-item #{current_page?(parent_rewards_path) ? 'active' : ''}",
-        title: "Prêmios",
-        aria: { current: current_page?(parent_rewards_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("bag", size: 20) %>
-      <span>Prêmios</span>
-    <% end %>
-
-    <%= link_to parent_approvals_path,
-        class: "nav-item #{current_page?(parent_approvals_path) ? 'active' : ''} relative",
-        title: "Aprovações",
-        aria: { current: current_page?(parent_approvals_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("clock", size: 20) %>
-      <span>Aprovações</span>
-      <% if pending_count > 0 %>
-        <span class="badge-count" style="margin-left: auto;"><%= pending_count %></span>
+  <div class="flex flex-col gap-1 px-3 flex-1 overflow-y-auto">
+    <%
+      items = [
+        { icon: "house", path: parent_root_path, label: "Início" },
+        { icon: "users", path: parent_profiles_path, label: "Filhos" },
+        { icon: "list-checks", path: parent_global_tasks_path, label: "Missões" },
+        { icon: "bag", path: parent_rewards_path, label: "Prêmios" },
+        { icon: "clock", path: parent_approvals_path, label: "Aprovações", badge: pending_count > 0 ? pending_count : nil },
+        { icon: "gear", path: parent_settings_path, label: "Configurações" }
+      ]
+    %>
+    <% items.each do |item| %>
+      <% active = current_page?(item[:path]) %>
+      <%= link_to item[:path],
+          class: "flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-semibold text-[15px] #{active ? 'bg-bg-deep text-primary' : 'text-muted-foreground hover:bg-muted'}",
+          title: item[:label],
+          aria: { current: active ? "page" : nil } do %>
+        <%= render Ui::Icon::Component.new(item[:icon], size: 20) %>
+        <span><%= item[:label] %></span>
+        <% if item[:badge] %>
+          <span class="ml-auto bg-primary text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full min-w-[20px] text-center"><%= item[:badge] %></span>
+        <% end %>
       <% end %>
-    <% end %>
-
-    <%= link_to parent_settings_path,
-        class: "nav-item #{current_page?(parent_settings_path) ? 'active' : ''}",
-        title: "Configurações",
-        aria: { current: current_page?(parent_settings_path) ? "page" : nil } do %>
-      <%= render Ui::Icon::Component.new("gear", size: 20) %>
-      <span>Configurações</span>
     <% end %>
   </div>
 
   <%# Identity + logout at bottom %>
-  <div style="padding: var(--space-2) var(--space-3); border-top: 1px solid var(--hairline); margin-top: var(--space-2);">
-    <div class="row" style="gap: 8px; align-items: center;">
+  <div class="py-2 px-3 border-t border-border mt-2">
+    <div class="flex items-center gap-2">
       <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 34) %>
-      <div class="fg1" style="min-width: 0;">
-        <div style="font-size: 13px; font-weight: 700; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><%= current_profile.name %></div>
-        <div style="font-size: 11px; color: var(--text-muted);">Responsável</div>
+      <div class="flex-1 min-w-0">
+        <div class="text-[13px] font-bold text-foreground overflow-hidden text-ellipsis whitespace-nowrap"><%= current_profile.name %></div>
+        <div class="text-[11px] text-muted-foreground">Responsável</div>
       </div>
       <%= button_to sessions_path, method: :delete,
-          class: "flex-center", style: "flex-shrink: 0; width: 32px; height: 32px; padding: 0; background: none; border: none; cursor: pointer; color: var(--text-muted); border-radius: 8px; transition: background 0.15s;",
+          class: "flex items-center justify-center shrink-0 w-8 h-8 p-0 bg-transparent border-none cursor-pointer text-muted-foreground rounded-md transition-colors hover:bg-surface-2",
           title: "Sair",
-          form: { style: "display: contents;" } do %>
+          form: { class: "contents" } do %>
         <%= render Ui::Icon::Component.new("logout", size: 18, color: "currentColor") %>
       <% end %>
     </div>
@@ -107,32 +82,27 @@
 </nav>
 
 <%# Sidebar backdrop (mobile) %>
-<div id="sidebar-backdrop"></div>
+<div id="sidebar-backdrop" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden"></div>
 
-<div class="bottom-nav">
+<div class="fixed bottom-0 left-0 right-0 h-[72px] bg-white/80 backdrop-blur-lg border-t border-hairline flex justify-around items-center px-4 z-40 lg:hidden">
   <%
-    nav_item = ->(icon_name, path, label) {
-      active = current_page?(path)
-      link_to path, class: "nav-item #{active ? 'active' : ''}", title: label do
-        concat render(Ui::Icon::Component.new(icon_name, size: 22))
-        concat content_tag(:span, label, class: "nav-label")
-      end
-    }
+    mobile_nav_items = [
+      { icon: "house", path: parent_root_path, label: "Início" },
+      { icon: "clock", path: parent_approvals_path, label: "Pendências", badge: pending_count > 0 ? pending_count : nil },
+      { icon: "list-checks", path: parent_global_tasks_path, label: "Missões" },
+      { icon: "bag", path: parent_rewards_path, label: "Prêmios" }
+    ]
   %>
-  <%= nav_item.call("house", parent_root_path, "Início") %>
-
-  <%= link_to parent_approvals_path,
-      class: "nav-item #{current_page?(parent_approvals_path) ? 'active' : ''} relative",
-      title: "Aprovações" do %>
-    <%= render Ui::Icon::Component.new("clock", size: 22) %>
-    <span class="nav-label">Aprovações</span>
-    <% if pending_count > 0 %>
-      <span class="badge-count" style="position: absolute; top: 4px; right: 4px; min-width: 16px; height: 16px; font-size: 10px; line-height: 1;"><%= pending_count %></span>
+  <% mobile_nav_items.each do |item| %>
+    <% active = current_page?(item[:path]) %>
+    <%= link_to item[:path], class: "flex flex-col items-center justify-center gap-1 flex-1 py-2 relative #{active ? 'text-primary' : 'text-muted-foreground'}", title: item[:label] do %>
+      <%= render Ui::Icon::Component.new(item[:icon], size: 22) %>
+      <span class="text-[10px] font-display font-extrabold tracking-wider uppercase"><%= item[:label] %></span>
+      <% if item[:badge] %>
+        <span class="absolute top-1 right-1/2 translate-x-4 bg-primary text-white text-[9px] font-extrabold px-1 rounded-full min-w-[16px] h-4 flex items-center justify-center border-2 border-white"><%= item[:badge] %></span>
+      <% end %>
     <% end %>
   <% end %>
-
-  <%= nav_item.call("list-checks", parent_global_tasks_path, "Missões") %>
-  <%= nav_item.call("bag", parent_rewards_path, "Prêmios") %>
 </div>
 
 <script>
@@ -143,12 +113,14 @@
     if (!toggle || !sidebar || !backdrop) return;
 
     function openSidebar() {
-      sidebar.classList.add('open');
-      backdrop.style.display = 'block';
+      sidebar.classList.remove('-translate-x-full');
+      sidebar.classList.add('translate-x-0');
+      backdrop.classList.remove('hidden');
     }
     function closeSidebar() {
-      sidebar.classList.remove('open');
-      backdrop.style.display = 'none';
+      sidebar.classList.remove('translate-x-0');
+      sidebar.classList.add('-translate-x-full');
+      backdrop.classList.add('hidden');
     }
 
     toggle.addEventListener('click', openSidebar);

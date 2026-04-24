@@ -1,5 +1,5 @@
-<div class="row-between mb-5 <%= @options[:class] %>" style="flex-shrink: 0; align-items: flex-start; <%= @options[:style] %>">
-  <div class="row" style="gap: 14px;">
+<div class="flex items-center justify-between mb-5 flex-shrink-0 <%= @options[:class] %>" style="<%= @options[:style] %>">
+  <div class="flex items-center gap-3.5">
     <% if @back_url.present? %>
       <%= render Ui::Btn::Component.new(variant: "secondary", size: "icon", url: @back_url) do %>
         <%= render Ui::Icon::Component.new("back", size: 22) %>
@@ -11,10 +11,10 @@
     <div>
       <% if @title.present? %>
         <% heading_tag = @back_url.present? || left_action? ? :h2 : :h1 %>
-        <%= content_tag heading_tag, @title, class: "h-display display", style: "font-size: 26px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 380px;" %>
+        <%= content_tag heading_tag, @title, class: "font-display font-extrabold text-[26px] leading-tight text-foreground overflow-hidden text-ellipsis whitespace-nowrap max-w-[380px]" %>
       <% end %>
       <% if @subtitle.present? %>
-        <div class="subtitle" style="margin-top: 2px;"><%= @subtitle %></div>
+        <div class="text-muted-foreground font-semibold text-[14px] mt-0.5"><%= @subtitle %></div>
       <% end %>
     </div>
   </div>

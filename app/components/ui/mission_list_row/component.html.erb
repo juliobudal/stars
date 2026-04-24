@@ -7,12 +7,12 @@
 %>
 <%= turbo_frame_tag dom_id, target: "_top", class: "mission-row", data: { panels: panel_keys } do %>
   <%# Desktop row (>= md) %>
-  <div class="mission-row-desktop" style="display: none; grid-template-columns: 2fr 1.3fr 0.8fr 1.4fr 80px 80px; align-items: center; padding: 14px 20px; border-top: 1px solid var(--hairline); gap: 10px; opacity: <%= row_opacity %>;">
-    <div class="row" style="gap: 10px; min-width: 0;">
+  <div class="hidden md:grid grid-cols-[2fr_1.3fr_0.8fr_1.4fr_80px_80px] items-center p-3.5 px-5 border-t border-hairline gap-2.5" style="opacity: <%= row_opacity %>;">
+    <div class="flex items-center gap-2.5 min-w-0">
       <%= render Ui::IconTile::Component.new(icon: cm[:icon], color: tint, size: 36) %>
-      <div style="min-width: 0;">
-        <div class="h-display" style="font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= mission.title %></div>
-        <div class="text-caption" style="margin-top: 1px;"><%= cm[:label] %></div>
+      <div class="min-w-0">
+        <div class="font-display font-extrabold text-[15px] text-foreground whitespace-nowrap overflow-hidden text-ellipsis"><%= mission.title %></div>
+        <div class="text-[11px] font-bold text-muted-foreground mt-[1px]"><%= cm[:label] %></div>
       </div>
     </div>
     <div>
@@ -20,76 +20,72 @@
         <%= fm[:label] %>
       <% end %>
     </div>
-    <div class="row" style="gap: 4px;">
-      <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
-      <span class="h-display" style="font-size: 15px; color: var(--star-2);"><%= mission.points %></span>
+    <div class="flex items-center gap-1">
+      <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--color-amber-dark)") %>
+      <span class="font-display font-extrabold text-[15px] text-star-2"><%= mission.points %></span>
     </div>
-    <div class="row" style="gap: 0;">
+    <div class="flex items-center gap-0">
       <% assigned_profiles.first(4).each_with_index do |k, idx| %>
-        <span style="margin-left: <%= idx.zero? ? 0 : -6 %>px;">
+        <span class="<%= idx.zero? ? '' : '-ml-1.5' %>">
           <%= render Ui::KidInitialChip::Component.new(profile: k, size: 24) %>
         </span>
       <% end %>
       <% if assigned_profiles.size > 4 %>
-        <span class="flex-center" style="margin-left: -6px; width: 24px; height: 24px; border-radius: 50%; background: var(--surface-2); color: var(--text-muted); font-size: 10px; font-weight: 800; border: 2px solid var(--surface);">+<%= assigned_profiles.size - 4 %></span>
+        <span class="flex items-center justify-center -ml-1.5 w-6 h-6 rounded-full bg-muted text-muted-foreground text-[10px] font-extrabold border-2 border-surface">+<%= assigned_profiles.size - 4 %></span>
       <% end %>
     </div>
-    <div style="justify-self: center;">
+    <div class="justify-self-center">
       <%= button_to toggle_active_parent_global_task_path(mission), method: :patch,
             form_class: "inline",
-            style: "background: none; border: none; padding: 0; cursor: pointer;",
+            class: "bg-transparent border-none p-0 cursor-pointer",
             aria: { label: mission.active? ? "Desativar missão" : "Ativar missão" } do %>
         <%= render Ui::Toggle::Component.new(checked: mission.active?) %>
       <% end %>
     </div>
-    <div class="row" style="gap: 4px; justify-content: flex-end;">
-      <%= link_to edit_parent_global_task_path(mission), class: "btn btn-ghost btn-sm", style: "padding: 6px;", aria: { label: "Editar" } do %>
+    <div class="flex items-center gap-1 justify-end">
+      <%= render Ui::Btn::Component.new(variant: "ghost", size: "sm", url: edit_parent_global_task_path(mission), class: "p-1.5", aria: { label: "Editar" }) do %>
         <%= render Ui::Icon::Component.new("pencil", size: 15, color: "var(--text-soft)") %>
       <% end %>
-      <%= button_to parent_global_task_path(mission), method: :delete, class: "btn btn-ghost btn-sm",
-            style: "padding: 6px; color: var(--danger);",
-            data: { turbo_confirm: "Remover a missão \"#{mission.title}\"?" } do %>
+      <%= render Ui::Btn::Component.new(variant: "ghost", size: "sm", url: parent_global_task_path(mission), method: :delete, class: "p-1.5 text-destructive", data: { turbo_confirm: "Remover a missão \"#{mission.title}\"?" }) do %>
         <%= render Ui::Icon::Component.new("trash", size: 15) %>
       <% end %>
     </div>
   </div>
 
   <%# Mobile card (< md) %>
-  <div class="mission-row-mobile card col" style="padding: 14px; border-top: 1px solid var(--hairline); gap: 10px; opacity: <%= row_opacity %>;">
-    <div class="row" style="gap: 10px;">
+  <div class="flex md:hidden flex-col bg-surface rounded-card p-3.5 border-t border-hairline gap-2.5 shadow-card" style="opacity: <%= row_opacity %>;">
+    <div class="flex items-center gap-2.5">
       <%= render Ui::IconTile::Component.new(icon: cm[:icon], color: tint, size: 36) %>
-      <div class="col fg1" style="gap: 2px; min-width: 0;">
-        <div class="h-display" style="font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= mission.title %></div>
-        <div class="row" style="gap: 6px;">
+      <div class="flex flex-col flex-1 gap-0.5 min-w-0">
+        <div class="font-display font-extrabold text-[15px] text-foreground whitespace-nowrap overflow-hidden text-ellipsis"><%= mission.title %></div>
+        <div class="flex items-center gap-1.5">
           <%= render Ui::Badge::Component.new(variant: freq_tint, size: "sm") do %>
             <%= fm[:label] %>
           <% end %>
-          <span class="text-caption" style="font-size: 12px;">★ <%= mission.points %></span>
+          <span class="text-[12px] font-bold text-muted-foreground">★ <%= mission.points %></span>
         </div>
       </div>
       <%= button_to toggle_active_parent_global_task_path(mission), method: :patch,
             form_class: "inline",
-            style: "background: none; border: none; padding: 0; cursor: pointer;",
+            class: "bg-transparent border-none p-0 cursor-pointer",
             aria: { label: mission.active? ? "Desativar missão" : "Ativar missão" } do %>
         <%= render Ui::Toggle::Component.new(checked: mission.active?) %>
       <% end %>
     </div>
 
-    <div class="row-between">
-      <div class="row" style="gap: 0;">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-0">
         <% assigned_profiles.first(4).each_with_index do |k, idx| %>
-          <span style="margin-left: <%= idx.zero? ? 0 : -6 %>px;">
+          <span class="<%= idx.zero? ? '' : '-ml-1.5' %>">
             <%= render Ui::KidInitialChip::Component.new(profile: k, size: 22) %>
           </span>
         <% end %>
       </div>
-      <div class="row" style="gap: 4px;">
-        <%= link_to edit_parent_global_task_path(mission), class: "btn btn-ghost btn-sm", style: "padding: 6px;", aria: { label: "Editar" } do %>
+      <div class="flex items-center gap-1">
+        <%= render Ui::Btn::Component.new(variant: "ghost", size: "sm", url: edit_parent_global_task_path(mission), class: "p-1.5", aria: { label: "Editar" }) do %>
           <%= render Ui::Icon::Component.new("pencil", size: 15, color: "var(--text-soft)") %>
         <% end %>
-        <%= button_to parent_global_task_path(mission), method: :delete, class: "btn btn-ghost btn-sm",
-              style: "padding: 6px; color: var(--danger);",
-              data: { turbo_confirm: "Remover \"#{mission.title}\"?" } do %>
+        <%= render Ui::Btn::Component.new(variant: "ghost", size: "sm", url: parent_global_task_path(mission), method: :delete, class: "p-1.5 text-destructive", data: { turbo_confirm: "Remover \"#{mission.title}\"?" }) do %>
           <%= render Ui::Icon::Component.new("trash", size: 15) %>
         <% end %>
       </div>

@@ -21,8 +21,8 @@ class Ui::Tabs::ItemComponent < ApplicationComponent
 
   def link_classes
     class_names(
-      "tabs__link",
-      { "tabs__link-active": @active },
+      "flex-1 px-[18px] py-[12px] rounded-full bg-transparent text-text-muted font-display font-extrabold cursor-pointer transition-all duration-150 text-[15px] inline-flex items-center justify-center gap-2",
+      { "bg-primary text-white shadow-tab-active": @active },
       @options.delete(:class)
     )
   end

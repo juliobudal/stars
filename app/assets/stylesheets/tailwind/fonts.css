@@ -1,4 +1,5 @@
 /* LittleStars typography — Inter (display) + Nunito (body).
- * Loaded from Google Fonts — mirrors Stars/pages/kid-dashboard.html:9.
+ * Fonts loaded via <link> in app/views/shared/_head.html.erb
+ * (Vite/PostCSS rejects @import url(...) after other statements,
+ * and tailwindcss inline-imports introduce earlier @layer blocks.)
  */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@600;700&display=swap');

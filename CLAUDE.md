@@ -44,7 +44,7 @@ Namespaced dual-interface app: `parent/` vs `kid/` routes, controllers, views, a
 
 **Real-time**: Turbo Frames for partial updates (approval queue, balance). Turbo Streams broadcast from services (e.g. `ApproveService` broadcasts balance update to `"kid_#{profile.id}"` channel so kid's wallet live-updates when parent approves).
 
-**Stimulus controllers** in `app/frontend/entrypoints/` (Vite-served, not classic `app/javascript/`). Current: `celebration_controller.js`, `count_up_controller.js`, `tabs_controller.js`. Add new controllers here — Vite auto-registers via `stimulus-vite-helpers`.
+**Stimulus controllers** in `app/assets/controllers/` (Vite-served, auto-registered via `stimulus-vite-helpers` in `app/assets/controllers/index.js`). Add new `*_controller.js` files there — no manual registration needed.
 
 ## Conventions
 

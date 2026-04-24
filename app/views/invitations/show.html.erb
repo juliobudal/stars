@@ -1,5 +1,5 @@
 <div style="max-width: 480px; margin: 60px auto; padding: 0 16px;">
-  <div class="card" style="padding: 32px;">
+  <div class="bg-surface rounded-card p-7 shadow-card relative border-none" style="padding: 32px;">
     <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Aceitar convite</h2>
     <p style="color: var(--text-muted); margin-bottom: 24px;">
       Você foi convidado para se juntar à família <strong><%= @invitation.family.name %></strong>.
@@ -13,28 +13,30 @@
     <% end %>
 
     <%= form_with url: accept_invitation_path(token: @invitation.token), method: :post do |f| %>
-      <div style="margin-bottom: 16px;">
+      <div class="mb-4">
         <%= label_tag :name, "Seu nome", style: "display: block; font-weight: 700; margin-bottom: 6px; font-size: 14px;" %>
         <%= text_field_tag :name, params[:name],
               placeholder: "Como você quer ser chamado?",
               style: "width: 100%; padding: 10px 12px; border: 1.5px solid var(--hairline); border-radius: 10px; font-size: 14px;" %>
       </div>
 
-      <div style="margin-bottom: 16px;">
+      <div class="mb-4">
         <%= label_tag :password, "Senha (mínimo 12 caracteres)", style: "display: block; font-weight: 700; margin-bottom: 6px; font-size: 14px;" %>
         <%= password_field_tag :password, nil,
               placeholder: "••••••••••••",
               style: "width: 100%; padding: 10px 12px; border: 1.5px solid var(--hairline); border-radius: 10px; font-size: 14px;" %>
       </div>
 
-      <div style="margin-bottom: 24px;">
+      <div class="mb-4">
         <%= label_tag :password_confirmation, "Confirme a senha", style: "display: block; font-weight: 700; margin-bottom: 6px; font-size: 14px;" %>
         <%= password_field_tag :password_confirmation, nil,
               placeholder: "••••••••••••",
               style: "width: 100%; padding: 10px 12px; border: 1.5px solid var(--hairline); border-radius: 10px; font-size: 14px;" %>
       </div>
 
-      <%= submit_tag "Criar conta e entrar", style: "width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer;" %>
+      <%= render Ui::Btn::Component.new(variant: "primary", size: "md", block: true, type: "submit") do %>
+        Criar conta e entrar
+      <% end %>
     <% end %>
   </div>
 </div>

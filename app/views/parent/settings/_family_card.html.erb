@@ -1,43 +1,43 @@
-<div class="card" style="padding: 20px;">
-  <div class="h-display" style="font-size: 18px; margin-bottom: 16px;">Família</div>
-  <div class="col-tight">
+<div class="bg-surface rounded-md p-7 shadow-card relative border-none p-5">
+  <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[18px] mb-4">Família</div>
+  <div class="flex flex-col gap-0">
 
-    <div class="row" style="justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--hairline);">
+    <div class="row justify-between items-center py-2.5 border-b border-hairline">
       <div>
-        <div style="font-size: 13px; font-weight: 700; color: var(--text);">Nome da família</div>
-        <div style="font-size: 11px; color: var(--text-muted);">Aparece no app das crianças</div>
+        <div class="text-[13px] font-bold text-foreground">Nome da família</div>
+        <div class="text-[11px] text-muted-foreground">Aparece no app das crianças</div>
       </div>
-      <div style="font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--text); font-style: italic;">
+      <div class="font-display font-bold text-[14px] text-foreground italic">
         <%= family.name %>
       </div>
     </div>
 
-    <div class="row" style="justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--hairline);">
-      <div style="font-size: 13px; font-weight: 700; color: var(--text);">Idioma</div>
-      <select name="family[locale]" style="padding: 6px 10px; border-radius: 8px; border: 1px solid var(--hairline); background: var(--surface-2); color: var(--text); font-family: var(--font-body); font-size: 13px; font-weight: 700; cursor: pointer;">
+    <div class="row justify-between items-center py-2.5 border-b border-hairline">
+      <div class="text-[13px] font-bold text-foreground">Idioma</div>
+      <select name="family[locale]" class="py-1.5 px-2.5 rounded-lg border border-hairline bg-surface-2 text-foreground font-body text-[13px] font-bold cursor-pointer">
         <% [["pt-BR", "Português (BR)"], ["en", "English"]].each do |val, lbl| %>
           <option value="<%= val %>" <%= 'selected' if family.locale == val %>><%= lbl %></option>
         <% end %>
       </select>
     </div>
 
-    <div class="row" style="justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--hairline);">
-      <div style="font-size: 13px; font-weight: 700; color: var(--text);">Fuso horário</div>
-      <select name="family[timezone]" style="padding: 6px 10px; border-radius: 8px; border: 1px solid var(--hairline); background: var(--surface-2); color: var(--text); font-family: var(--font-body); font-size: 13px; font-weight: 700; cursor: pointer;">
+    <div class="row justify-between items-center py-2.5 border-b border-hairline">
+      <div class="text-[13px] font-bold text-foreground">Fuso horário</div>
+      <select name="family[timezone]" class="py-1.5 px-2.5 rounded-lg border border-hairline bg-surface-2 text-foreground font-body text-[13px] font-bold cursor-pointer">
         <% [["America/Sao_Paulo", "São Paulo (GMT-3)"], ["America/New_York", "New York (GMT-4)"], ["Europe/Lisbon", "Lisboa (GMT+1)"]].each do |val, lbl| %>
           <option value="<%= val %>" <%= 'selected' if family.timezone == val %>><%= lbl %></option>
         <% end %>
       </select>
     </div>
 
-    <div class="row" style="justify-content: space-between; align-items: center; padding: 10px 0;">
-      <div style="font-size: 13px; font-weight: 700; color: var(--text);">Início de semana</div>
-      <div class="row" style="gap: 4px; background: var(--surface-2); border-radius: var(--r-full); padding: 3px;">
+    <div class="row justify-between items-center py-2.5">
+      <div class="text-[13px] font-bold text-foreground">Início de semana</div>
+      <div class="row gap-1 bg-surface-2 rounded-full p-0.5">
         <% [[0, "dom"], [1, "seg"]].each do |val, lbl|
           active = family.week_start == val %>
-          <label style="cursor: pointer;">
-            <input type="radio" name="family[week_start]" value="<%= val %>" <%= 'checked' if active %> style="position: absolute; opacity: 0;" />
-            <span style="display: inline-block; padding: 4px 10px; border-radius: var(--r-full); background: <%= active ? 'var(--text)' : 'transparent' %>; color: <%= active ? 'white' : 'var(--text-muted)' %>; font-family: var(--font-body); font-size: 12px; font-weight: 800;"><%= lbl %></span>
+          <label class="cursor-pointer relative">
+            <input type="radio" name="family[week_start]" value="<%= val %>" <%= 'checked' if active %> class="absolute opacity-0" />
+            <span class="inline-block py-1 px-2.5 rounded-full font-body text-[12px] font-extrabold <%= active ? 'bg-foreground text-white' : 'bg-transparent text-muted-foreground' %>"><%= lbl %></span>
           </label>
         <% end %>
       </div>

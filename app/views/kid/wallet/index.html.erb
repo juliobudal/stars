@@ -8,19 +8,19 @@
   ) %>
 
   <% if current_profile.points < 0 && current_profile.family.allow_negative? %>
-    <div style="display: inline-flex; align-items: center; gap: 4px; background: rgba(239,68,68,0.12); color: var(--danger); border: 1px solid var(--danger); border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 600; margin-bottom: 12px; z-index: 2; position: relative;">
+    <div class="inline-flex items-center gap-1 bg-danger-soft text-danger border border-danger rounded-full py-0.5 px-2.5 text-[12px] font-semibold mb-3 z-2 relative">
       em débito
     </div>
   <% end %>
 
   <%# Week Summary Cards (3-col) %>
-  <div class="grid-3" style="gap: 10px; margin-bottom: 16px; z-index: 2; position: relative;">
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-4 z-10 relative">
     <%= render Ui::StatMetric::Component.new(value: @week_earned,   label: "Conquistado", tint: "mint",    prefix: "+") %>
     <%= render Ui::StatMetric::Component.new(value: @week_spent,    label: "Gasto",       tint: "rose",    prefix: "−") %>
     <%= render Ui::StatMetric::Component.new(value: @week_missions, label: "Missões",     tint: "primary") %>
   </div>
 
-  <div data-controller="tabs" style="z-index: 2; position: relative;">
+  <div data-controller="tabs" class="z-2 relative">
     <%= render Ui::CategoryTabs::Component.new(
       items: [
         { id: "all",       label: "Tudo" },
@@ -33,13 +33,13 @@
     ) %>
 
     <%# Panel: Tudo %>
-    <div id="panel-all" class="col-tight">
+    <div id="panel-all" class="flex flex-col gap-0">
       <% if @activity_logs.any? %>
         <%= render partial: "kid/wallet/day_groups", locals: { grouped: @all_grouped, today: @today } %>
       <% else %>
         <%= render Ui::Empty::Component.new(
           icon: "scroll",
-          title: "Nenhuma atividade ainda ⭐",
+          title: "Nenhuma atividade ainda",
           subtitle: "Complete missões ou faça resgates pra começar o histórico",
           color: "lilac"
         ) %>
@@ -47,13 +47,13 @@
     </div>
 
     <%# Panel: Conquistadas %>
-    <div id="panel-earned" class="col-tight" style="display: none;">
+    <div id="panel-earned" class="flex flex-col gap-0 hidden">
       <% if @earned_grouped.any? %>
         <%= render partial: "kid/wallet/day_groups", locals: { grouped: @earned_grouped, today: @today } %>
       <% else %>
         <%= render Ui::Empty::Component.new(
           icon: "scroll",
-          title: "Nenhuma conquista ainda ⭐",
+          title: "Nenhuma conquista ainda",
           subtitle: "Complete missões para ganhar estrelinhas",
           color: "lilac"
         ) %>
@@ -61,13 +61,13 @@
     </div>
 
     <%# Panel: Compras %>
-    <div id="panel-purchases" class="col-tight" style="display: none;">
+    <div id="panel-purchases" class="flex flex-col gap-0 hidden">
       <% if @purchase_grouped.any? %>
         <%= render partial: "kid/wallet/day_groups", locals: { grouped: @purchase_grouped, today: @today } %>
       <% else %>
         <%= render Ui::Empty::Component.new(
           icon: "scroll",
-          title: "Nenhuma compra ainda ⭐",
+          title: "Nenhuma compra ainda",
           subtitle: "Resgate recompensas na loja",
           color: "lilac"
         ) %>
@@ -75,7 +75,7 @@
     </div>
 
     <%# Panel: Aguardando %>
-    <div id="panel-pending" class="col-tight" style="display: none;">
+    <div id="panel-pending" class="flex flex-col gap-0 hidden">
       <%= render Ui::Empty::Component.new(
         icon: "clock",
         title: "Aguardando aprovação",
@@ -85,7 +85,7 @@
     </div>
 
     <%# Panel: Rejeitadas %>
-    <div id="panel-rejected" class="col-tight" style="display: none;">
+    <div id="panel-rejected" class="flex flex-col gap-0 hidden">
       <%= render Ui::Empty::Component.new(
         icon: "scroll",
         title: "Nenhuma missão rejeitada",
