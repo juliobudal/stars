@@ -12,10 +12,10 @@ RSpec.describe Ui::LogoMark::Component, type: :component do
     end
   end
 
-  it "renders moon-star SVG path at night (22h)" do
+  it "renders star SVG path at night (22h)" do
     travel_to Time.zone.local(2024, 1, 1, 22, 0, 0) do
       render_inline(described_class.new)
-      expect(page).to have_css("svg path[d*='M20.985 12.486']")
+      expect(page).to have_css("svg path[d*='M11.525 2.295']")
     end
   end
 
@@ -44,7 +44,7 @@ RSpec.describe Ui::LogoMark::Component, type: :component do
   it "is night at hour 5 (before DAY_START)" do
     travel_to Time.zone.local(2024, 1, 1, 5, 0, 0) do
       render_inline(described_class.new)
-      expect(page).to have_css("svg path[d*='M20.985 12.486']")
+      expect(page).to have_css("svg path[d*='M11.525 2.295']")
     end
   end
 
@@ -65,7 +65,7 @@ RSpec.describe Ui::LogoMark::Component, type: :component do
   it "is night at hour 20 (DAY_END boundary)" do
     travel_to Time.zone.local(2024, 1, 1, 20, 0, 0) do
       render_inline(described_class.new)
-      expect(page).to have_css("svg path[d*='M20.985 12.486']")
+      expect(page).to have_css("svg path[d*='M11.525 2.295']")
     end
   end
 end
