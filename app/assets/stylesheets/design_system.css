@@ -484,6 +484,13 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   box-shadow: 0 2px 0 var(--primary-2);
 }
 
+/* Kid context: active tab uses dark bg (not primary purple) */
+.app-shell:not(.parent-layout) .tab.active {
+  background: var(--text-dark);
+  color: white;
+  box-shadow: 0 2px 0 rgba(44, 42, 58, 0.3);
+}
+
 /* ── Bottom nav ── */
 .bottom-nav {
   position: absolute;
@@ -704,6 +711,7 @@ h3.display { font-size: clamp(20px, 2.2vw, 26px); }
   color: white;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 18px;
   box-shadow: 0 8px 28px rgba(167, 139, 250, 0.35);
 }

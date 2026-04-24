@@ -41,7 +41,7 @@
     <% end %>
     <%= button_to approve_url, method: :patch,
         form_class: "flex-1",
-        style: "width: 100%; background: var(--c-mint-soft); color: var(--c-mint-dark); border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
+        style: "width: 100%; background: var(--primary); color: white; border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
         aria: { label: approve_label },
         data: { turbo_frame: "approvals_list", turbo_submits_with: approve_submits_with } do %>
       <%= approve_label %>
