@@ -2,12 +2,12 @@
   <% if kid %>
     <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 34) %>
   <% end %>
-  <div style="flex: 1; min-width: 0;">
-    <div style="font-size: 13px; font-weight: 800; color: var(--text);">
+  <div class="fg1" style="min-width: 0;">
+    <div class="text-label" style="font-size: 13px;">
       <% if kid %><span><%= kid.name %></span> · <% end %><span><%= description %></span>
     </div>
     <% if timestamp %>
-      <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); margin-top: 2px;">
+      <div class="text-caption" style="margin-top: 2px;">
         <%= time_ago_in_words(timestamp) %> atrás
       </div>
     <% end %>

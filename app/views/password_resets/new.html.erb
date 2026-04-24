@@ -3,14 +3,14 @@
     <h1 class="h-display picker-heading">Recuperar senha</h1>
 
     <% if flash[:notice] %>
-      <p style="color:green;text-align:center;margin-bottom:1rem;"><%= flash[:notice] %></p>
+      <p style="text-align:center;margin-bottom:1rem;color:var(--success);"><%= flash[:notice] %></p>
     <% end %>
 
     <%= form_with url: password_reset_path, method: :post, local: true,
         style: "display:flex;flex-direction:column;gap:0.75rem;max-width:360px;margin:0 auto;" do |f| %>
       <%= f.email_field :email, placeholder: "Seu email", required: true,
-          style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
-      <%= f.submit "Enviar instruções", style: "padding:0.5rem;background:#6366f1;color:white;border:none;border-radius:0.5rem;cursor:pointer;" %>
+          style: "padding:var(--space-2);border:1px solid var(--hairline);border-radius:var(--r-sm);" %>
+      <%= f.submit "Enviar instruções", style: "padding:var(--space-2);background:var(--primary);color:white;border:none;border-radius:var(--r-sm);cursor:pointer;" %>
     <% end %>
 
     <div style="text-align:center;margin-top:1rem;">

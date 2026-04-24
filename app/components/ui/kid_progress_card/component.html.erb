@@ -2,7 +2,8 @@
   <%# Slim color strip with edit pencil %>
   <div style="height: 48px; background: <%= palette[:fill] %>; position: relative; flex-shrink: 0;">
     <%= link_to edit_parent_profile_path(kid),
-          style: "position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.7); display: inline-flex; align-items: center; justify-content: center; text-decoration: none;",
+          class: "flex-center",
+          style: "position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.7); text-decoration: none;",
           aria: { label: "Editar #{kid.name}" } do %>
       <%= render Ui::Icon::Component.new("pencil", size: 14, color: "rgba(0,0,0,0.5)") %>
     <% end %>
@@ -11,29 +12,29 @@
   <%# Floating avatar + content %>
   <div style="margin-top: -30px; padding: 0 20px 20px;">
     <%# Avatar %>
-    <div style="width: 60px; height: 60px; border-radius: 50%; border: 4px solid white; background: <%= palette[:fill] %>; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 22px; color: <%= palette[:ink] %>; box-shadow: 0 2px 8px rgba(44,42,58,0.12);">
+    <div class="flex-center" style="width: 60px; height: 60px; border-radius: 50%; border: 4px solid white; background: <%= palette[:fill] %>; font-weight: 800; font-size: 22px; color: <%= palette[:ink] %>; box-shadow: 0 2px 8px rgba(44,42,58,0.12);">
       <%= kid.name.first.upcase %>
     </div>
 
     <%# Name + streak %>
-    <div class="row" style="justify-content: space-between; align-items: center; margin-top: 8px;">
-      <div class="h-display" style="font-size: 18px; color: var(--text);"><%= kid.name %></div>
+    <div class="row-between" style="margin-top: 8px;">
+      <div class="h-display" style="font-size: 18px;"><%= kid.name %></div>
       <% if streak > 0 %>
-        <span style="background: var(--c-amber-soft); color: var(--c-amber-dark); font-size: 12px; font-weight: 800; padding: 2px 8px; border-radius: var(--r-full); display: flex; align-items: center; gap: 3px;">
+        <span class="row" style="background: var(--c-amber-soft); color: var(--c-amber-dark); font-size: 12px; font-weight: 800; padding: 2px 8px; border-radius: var(--r-full); gap: 3px;">
           🔥 <%= streak %>
         </span>
       <% end %>
     </div>
 
     <%# 2-col stats %>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px;">
+    <div class="grid-2" style="gap: 8px; margin-top: 12px;">
       <div style="background: <%= palette[:fill] %>; border-radius: 12px; padding: 10px 12px;">
         <div class="h-display" style="font-size: 15px;">⭐ <%= points %></div>
-        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); margin-top: 2px;">Saldo</div>
+        <div class="text-caption" style="margin-top: 2px;">Saldo</div>
       </div>
       <div style="background: <%= palette[:fill] %>; border-radius: 12px; padding: 10px 12px;">
         <div class="h-display" style="font-size: 15px;"><%= missions_count %></div>
-        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); margin-top: 2px;">Missões</div>
+        <div class="text-caption" style="margin-top: 2px;">Missões</div>
       </div>
     </div>
 

@@ -3,17 +3,17 @@
     <h1 class="h-display picker-heading">Nova senha</h1>
 
     <% if flash[:alert] %>
-      <p style="color:red;text-align:center;margin-bottom:1rem;"><%= flash[:alert] %></p>
+      <p style="color:var(--danger);text-align:center;margin-bottom:1rem;"><%= flash[:alert] %></p>
     <% end %>
 
     <%= form_with url: password_reset_path(token: @token), method: :patch, local: true,
         style: "display:flex;flex-direction:column;gap:0.75rem;max-width:360px;margin:0 auto;" do |f| %>
       <%= hidden_field_tag :token, @token %>
       <%= f.password_field :password, placeholder: "Nova senha (mín. 12 caracteres)", required: true,
-          style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
+          style: "padding:var(--space-2);border:1px solid var(--hairline);border-radius:var(--r-sm);" %>
       <%= f.password_field :password_confirmation, placeholder: "Confirmar nova senha", required: true,
-          style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
-      <%= f.submit "Salvar nova senha", style: "padding:0.5rem;background:#6366f1;color:white;border:none;border-radius:0.5rem;cursor:pointer;" %>
+          style: "padding:var(--space-2);border:1px solid var(--hairline);border-radius:var(--r-sm);" %>
+      <%= f.submit "Salvar nova senha", style: "padding:var(--space-2);background:var(--primary);color:white;border:none;border-radius:var(--r-sm);cursor:pointer;" %>
     <% end %>
   </div>
 </div>

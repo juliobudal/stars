@@ -1,5 +1,5 @@
-<div class="row mb-5 <%= @options[:class] %>" style="justify-content: space-between; flex-shrink: 0; align-items: flex-start; <%= @options[:style] %>">
-  <div class="row" style="gap: 14px; align-items: center;">
+<div class="row-between mb-5 <%= @options[:class] %>" style="flex-shrink: 0; align-items: flex-start; <%= @options[:style] %>">
+  <div class="row" style="gap: 14px;">
     <% if @back_url.present? %>
       <%= render Ui::Btn::Component.new(variant: "secondary", size: "icon", url: @back_url) do %>
         <%= render Ui::Icon::Component.new("back", size: 22) %>

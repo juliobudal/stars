@@ -3,22 +3,22 @@
     <h1 class="h-display picker-heading">Criar conta</h1>
 
     <% if flash[:alert] %>
-      <p style="color:red;text-align:center;margin-bottom:1rem;"><%= flash[:alert] %></p>
+      <p style="color:var(--danger);text-align:center;margin-bottom:1rem;"><%= flash[:alert] %></p>
     <% end %>
 
     <%= form_with url: registration_path, method: :post, local: true,
         style: "display:flex;flex-direction:column;gap:0.75rem;max-width:360px;margin:0 auto;" do |f| %>
       <%= f.text_field :family_name, placeholder: "Nome da família", required: true,
-          style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
+          style: "padding:var(--space-2);border:1px solid var(--hairline);border-radius:var(--r-sm);" %>
       <%= f.text_field :name, placeholder: "Seu nome", required: true,
-          style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
+          style: "padding:var(--space-2);border:1px solid var(--hairline);border-radius:var(--r-sm);" %>
       <%= f.email_field :email, placeholder: "Email", required: true,
-          style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
+          style: "padding:var(--space-2);border:1px solid var(--hairline);border-radius:var(--r-sm);" %>
       <%= f.password_field :password, placeholder: "Senha (mín. 12 caracteres)", required: true,
-          style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
+          style: "padding:var(--space-2);border:1px solid var(--hairline);border-radius:var(--r-sm);" %>
       <%= f.password_field :password_confirmation, placeholder: "Confirmar senha", required: true,
-          style: "padding:0.5rem;border:1px solid #ccc;border-radius:0.5rem;" %>
-      <%= f.submit "Criar conta", style: "padding:0.5rem;background:#6366f1;color:white;border:none;border-radius:0.5rem;cursor:pointer;" %>
+          style: "padding:var(--space-2);border:1px solid var(--hairline);border-radius:var(--r-sm);" %>
+      <%= f.submit "Criar conta", style: "padding:var(--space-2);background:var(--primary);color:white;border:none;border-radius:var(--r-sm);cursor:pointer;" %>
     <% end %>
 
     <div style="text-align:center;margin-top:1rem;">
