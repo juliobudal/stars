@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: profile_tasks
+#
+#  id             :bigint           not null, primary key
+#  assigned_date  :date
+#  completed_at   :datetime
+#  status         :integer          default("pending")
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  global_task_id :bigint           not null
+#  profile_id     :bigint           not null
+#
+# Indexes
+#
+#  index_profile_tasks_on_global_task_id                (global_task_id)
+#  index_profile_tasks_on_profile_id                    (profile_id)
+#  index_profile_tasks_on_profile_id_and_assigned_date  (profile_id,assigned_date)
+#  index_profile_tasks_on_profile_id_and_status         (profile_id,status)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (global_task_id => global_tasks.id)
+#  fk_rails_...  (profile_id => profiles.id)
+#
 require "rails_helper"
 
 RSpec.describe ProfileTask, type: :model do

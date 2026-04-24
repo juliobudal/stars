@@ -1,3 +1,29 @@
+# == Schema Information
+#
+# Table name: profiles
+#
+#  id              :bigint           not null, primary key
+#  avatar          :string
+#  color           :string
+#  confirmed_at    :datetime
+#  email           :citext
+#  name            :string
+#  password_digest :string
+#  points          :integer          default(0)
+#  role            :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  family_id       :bigint           not null
+#
+# Indexes
+#
+#  index_profiles_on_email_parent  (email) UNIQUE WHERE (role = 1)
+#  index_profiles_on_family_id     (family_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (family_id => families.id)
+#
 FactoryBot.define do
   factory :profile do
     family

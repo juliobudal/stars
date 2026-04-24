@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: profile_invitations
+#
+#  id            :bigint           not null, primary key
+#  accepted_at   :datetime
+#  email         :string           not null
+#  expires_at    :datetime         not null
+#  token         :string           not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  family_id     :bigint           not null
+#  invited_by_id :bigint
+#
+# Indexes
+#
+#  index_profile_invitations_on_family_id  (family_id)
+#  index_profile_invitations_on_token      (token) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (family_id => families.id) ON DELETE => cascade
+#  fk_rails_...  (invited_by_id => profiles.id) ON DELETE => nullify
+#
 require "rails_helper"
 
 RSpec.describe ProfileInvitation, type: :model do
