@@ -25,12 +25,12 @@
   <% end %>
 
   <%# Section Header %>
-  <div class="row-between" style="z-index: 2; align-items: baseline; margin-bottom: 20px; margin-top: 20px;">
-    <div class="h-display" style="font-size: 18px; color: var(--text);">O que você quer hoje?</div>
-    <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);"><%= @rewards.size %> prêmios</span>
+  <div class="row-between items-baseline mb-5 mt-5 z-2 relative">
+    <div class="h-display text-[18px] text-foreground">O que você quer hoje?</div>
+    <span class="text-[12px] font-bold text-muted-foreground"><%= @rewards.size %> prêmios</span>
   </div>
 
-  <div style="z-index: 2; margin-bottom: 16px;">
+  <div class="mb-4 z-2 relative">
     <%= render Ui::CategoryTabs::Component.new(
       items: [
         { id: "tudo",         label: "Tudo" },
@@ -44,9 +44,9 @@
     ) %>
 
     <%# "Tudo" panel — renders the full grid %>
-    <div id="panel-tudo" class="col" style="margin-top: 16px;">
+    <div id="panel-tudo" class="col mt-4">
       <% if @rewards.any? %>
-        <div class="rewards-grid" style="display: grid; gap: 12px;">
+        <div class="rewards-grid grid gap-3">
           <% @rewards.each_with_index do |reward, i| %>
             <%= render Ui::RewardTile::Component.new(
               reward: reward,
@@ -69,14 +69,14 @@
 
     <%# Category stub panels — filtering not yet available %>
     <% %w[telinha docinhos passeios brinquedos experiencias].each do |tab_id| %>
-      <div id="panel-<%= tab_id %>" style="display:none"><!-- filtro não disponível ainda --></div>
+      <div id="panel-<%= tab_id %>" class="hidden"><!-- filtro não disponível ainda --></div>
     <% end %>
   </div>
 
   <% if @redeemed_rewards.any? %>
-    <div style="z-index: 2; margin-top: 32px; margin-bottom: 24px;">
-      <div class="h-display" style="font-size: 20px; color: var(--text); margin-bottom: 12px;">Meus prêmios</div>
-      <div class="col" style="gap: 10px;">
+    <div class="mt-8 mb-6 z-2 relative">
+      <div class="h-display text-[20px] text-foreground mb-3">Meus prêmios</div>
+      <div class="col gap-2.5">
         <% @redeemed_rewards.each do |redemption| %>
           <%= render Ui::RedemptionRow::Component.new(redemption: redemption) %>
         <% end %>
@@ -88,35 +88,35 @@
   <% @rewards.each do |reward| %>
     <% reward_icon = reward.respond_to?(:icon) ? reward.icon.presence : nil %>
     <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(reward)}", title: "Resgatar Recompensa") do %>
-      <div class="center col" style="text-align: center; gap: 14px;">
-        <%= render Ui::Lumi::Component.new(size: 76, mood: "excited") %>
-        <div class="flex-center" style="width: 100px; height: 100px; border-radius: var(--r-lg); background: var(--c-lilac-soft); margin: 0 auto;">
+      <div class="center col text-center gap-3.5">
+        <%= render Ui::LogoMark::Component.new(size: 48) %>
+        <div class="flex-center w-[100px] h-[100px] rounded-lg bg-lilac-soft mx-auto">
           <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 56, color: "var(--c-violet-dark)") %>
         </div>
-        <h3 class="h-display" style="font-size: 26px;"><%= reward.title %></h3>
-        <div class="row" style="gap: 10px; justify-content: center;">
-          <%= render Ui::Badge::Component.new(variant: "star", style: "font-size: 16px; padding: 8px 14px;") do %>
+        <h3 class="h-display text-[26px]"><%= reward.title %></h3>
+        <div class="row gap-2.5 justify-center">
+          <%= render Ui::Badge::Component.new(variant: "star", class: "text-[16px] py-2 px-3.5") do %>
             <%= render Ui::Icon::Component.new("star", size: 16, color: "var(--star-2)") %> <%= reward.cost %>
           <% end %>
         </div>
 
-        <div class="card" style="padding: 14px; background: var(--bg-mid); border: none; box-shadow: none; width: 100%;">
-          <div class="row" style="justify-content: space-between; font-family: var(--font-display); font-weight: 800;">
+        <div class="card p-3.5 bg-surface-2 border-none shadow-none w-full">
+          <div class="row justify-between font-display font-extrabold">
             <span>Saldo atual</span>
             <span><%= current_profile.points %> ⭐</span>
           </div>
-          <div class="row" style="justify-content: space-between; color: var(--danger); font-family: var(--font-display); font-weight: 800; margin-top: 4px;">
+          <div class="row justify-between text-danger font-display font-extrabold mt-1">
             <span>−</span>
             <span><%= reward.cost %> ⭐</span>
           </div>
-          <div style="height: 2px; background: rgba(26,42,74,0.1); margin: 8px 0;"></div>
-          <div class="row" style="justify-content: space-between; color: var(--primary); font-family: var(--font-display); font-weight: 800; font-size: 18px;">
+          <div class="h-[2px] bg-[rgba(26,42,74,0.1)] my-2"></div>
+          <div class="row justify-between text-primary font-display font-extrabold text-[18px]">
             <span>Depois</span>
             <span><%= [current_profile.points - reward.cost, 0].max %> ⭐</span>
           </div>
         </div>
 
-        <div class="row" style="gap: 12px; margin-top: 6px; width: 100%; justify-content: center;">
+        <div class="row gap-3 mt-1.5 w-full justify-center">
           <%= render Ui::Btn::Component.new(variant: "secondary", data: { action: "click->modal#close" }) do %>Cancelar<% end %>
           <%= button_to redeem_kid_reward_path(reward), method: :post, class: "btn btn-primary btn-lg" do %>
             <%= render Ui::Icon::Component.new("gift", size: 20) %> Resgatar!
