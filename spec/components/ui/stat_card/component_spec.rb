@@ -13,6 +13,7 @@ RSpec.describe Ui::StatCard::Component, type: :component do
 
   it "falls back to primary tint for unknown tint" do
     render_inline(described_class.new(value: 1, label: "x", icon: "star", tint: "bogus"))
-    expect(page).to have_css(".bg-surface")
+    expect(page).to have_css('div[style*="var(--primary-soft)"]')
+    expect(page).not_to have_css('div[style*="var(--star-soft)"]')
   end
 end
