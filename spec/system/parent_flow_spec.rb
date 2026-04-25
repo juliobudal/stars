@@ -15,9 +15,10 @@ RSpec.describe "Parent Flow", type: :system do
 
     expect(page).to have_content("Novo perfil", wait: 10)
     fill_in "Nome", with: "Zezinho"
+    fill_in "PIN (4 dígitos)", with: "1234"
     click_on "Salvar Perfil"
 
-    expect(page).to have_content("Filho adicionado com sucesso!", wait: 10)
+    expect(page).to have_content("Perfil criado.", wait: 10)
     expect(page).to have_content("Zezinho")
 
     # 2. Criar Tarefa Global — labels: "Título", "Estrelinhas", "Frequência" (select), submit "Salvar Missão"

@@ -32,7 +32,8 @@ RSpec.describe "Bulk Approval Flow", type: :system do
   let!(:pt150) { create(:profile_task, profile: child, global_task: task150, status: :awaiting_approval) }
 
   before do
-    login_as_parent(parent)
+    sign_in_as_parent(parent)
+    expect(page).to have_content("Olá, #{parent.name}", wait: 10)
   end
 
   describe "bulk approve" do
@@ -86,20 +87,6 @@ RSpec.describe "Bulk Approval Flow", type: :system do
   end
 
   private
-
-  # Sign in as a parent using the current Stimulus picker-tabs UI.
-  # The sessions page shows a "Pais" tab button; clicking it reveals the login form.
-  def login_as_parent(profile, password: "supersecret1234")
-    visit root_path
-    # Click the "Pais" tab button to reveal the parent login panel
-    find("button", text: "Pais", wait: 10).click
-    within("[data-tab='parents'][role='tabpanel']") do
-      fill_in "email", with: profile.email
-      fill_in "password", with: password
-      click_button "Entrar"
-    end
-    expect(page).to have_content("Olá, #{profile.name}", wait: 10)
-  end
 
   # Submit the bulk form to `path` via a dynamically created clean form.
   # This avoids the nested button_to forms (which carry hidden _method=patch inputs)
