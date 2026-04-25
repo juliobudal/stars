@@ -22,6 +22,9 @@
 @import "../stylesheets/components/wysiwyg";
 
 
+/* UI Component CSS */
+@import "../../components/ui/pin_modal/component.css";
+
 /* Vendors */
 @import "../stylesheets/vendors/hugeicons";
 @import "../stylesheets/vendors/choices";
