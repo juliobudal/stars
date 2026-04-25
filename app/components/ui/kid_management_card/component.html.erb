@@ -1,4 +1,4 @@
-<div class="bg-surface rounded-md shadow-card overflow-hidden relative">
+<div data-palette="<%= helpers.palette_for(kid) %>" class="bg-surface rounded-md shadow-card overflow-hidden relative">
   <%# Color strip with edit button %>
   <div class="h-12 relative shrink-0" style="background: <%= bg_soft %>;"></div>
   <%= link_to edit_parent_profile_path(kid),
