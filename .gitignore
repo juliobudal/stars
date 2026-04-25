@@ -60,3 +60,4 @@ tailwindcss_safelist.txt
 
 # Screenshot artifacts (review/verify sessions)
 /*.png
+.superpowers/
