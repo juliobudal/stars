@@ -1,28 +1,17 @@
-<div class="screen animate-slide-in flex flex-col items-center justify-center p-10">
-  <div class="max-w-[430px] mx-auto px-5 pt-8 pb-12 flex flex-col items-center text-center relative z-[1] md:max-w-[768px] w-full">
-    <h1 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground">Criar conta</h1>
+<div class="screen flex flex-col items-center p-10">
+  <%= render Ui::LogoMark::Component.new(size: 56) %>
+  <h1 class="font-display text-[32px] font-extrabold mb-6">Criar família</h1>
 
-    <% if flash[:alert] %>
-      <p style="color:var(--danger);text-align:center;margin-bottom:1rem;"><%= flash[:alert] %></p>
-    <% end %>
+  <% if flash[:alert] %><p class="text-destructive mb-4"><%= flash[:alert] %></p><% end %>
 
-    <%= form_with url: registration_path, method: :post, local: true,
-        style: "display:flex;flex-direction:column;gap:0.75rem;max-width:360px;margin:0 auto;" do |f| %>
-      <%= f.text_field :family_name, placeholder: "Nome da família", required: true,
-          style: "padding:var(--space-2);border:1px solid var(--hairline);border-radius:var(--r-sm);" %>
-      <%= f.text_field :name, placeholder: "Seu nome", required: true,
-          style: "padding:var(--space-2);border:1px solid var(--hairline);border-radius:var(--r-sm);" %>
-      <%= f.email_field :email, placeholder: "Email", required: true,
-          style: "padding:var(--space-2);border:1px solid var(--hairline);border-radius:var(--r-sm);" %>
-      <%= f.password_field :password, placeholder: "Senha (mín. 12 caracteres)", required: true,
-          style: "padding:var(--space-2);border:1px solid var(--hairline);border-radius:var(--r-sm);" %>
-      <%= f.password_field :password_confirmation, placeholder: "Confirmar senha", required: true,
-          style: "padding:var(--space-2);border:1px solid var(--hairline);border-radius:var(--r-sm);" %>
-      <%= f.submit "Criar conta", style: "padding:var(--space-2);background:var(--primary);color:white;border:none;border-radius:var(--r-sm);cursor:pointer;" %>
-    <% end %>
-
-    <div style="text-align:center;margin-top:1rem;">
-      <%= link_to "Já tenho conta", root_path %>
-    </div>
-  </div>
+  <%= form_with model: @family, url: registration_path, local: true,
+                class: "flex flex-col gap-3 max-w-[320px] w-full" do |f| %>
+    <%= f.text_field :name, placeholder: "Nome da família", required: true,
+        class: "w-full px-3 py-2 rounded-md border border-hairline bg-white" %>
+    <%= f.email_field :email, placeholder: "Email", required: true,
+        class: "w-full px-3 py-2 rounded-md border border-hairline bg-white" %>
+    <%= f.password_field :password, placeholder: "Senha (mín. 12 caracteres)", required: true,
+        class: "w-full px-3 py-2 rounded-md border border-hairline bg-white" %>
+    <%= render Ui::Btn::Component.new(variant: "primary", size: "md", type: "submit") do %>Criar<% end %>
+  <% end %>
 </div>

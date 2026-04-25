@@ -1,30 +1,25 @@
 class RegistrationsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :create, raise: false
+
   def new
     @family = Family.new
-    @profile = Profile.new
   end
 
   def create
-    @family = Family.new(name: params[:family_name])
-    @profile = @family.profiles.build(
-      name: params[:name],
-      email: params[:email],
-      password: params[:password],
-      password_confirmation: params[:password_confirmation],
-      role: :parent,
-      confirmed_at: Time.current
-    )
-
-    ActiveRecord::Base.transaction do
-      @family.save!
-      @profile.save!
+    result = Auth::CreateFamily.call(registration_params)
+    if result.success?
+      cookies.signed.permanent[:family_id] = { value: result.family.id, httponly: true, same_site: :lax }
+      redirect_to new_parent_profile_path(onboarding: true)
+    else
+      @family = result.family
+      flash.now[:alert] = result.error
+      render :new, status: :unprocessable_entity
     end
+  end
 
-    reset_session
-    session[:profile_id] = @profile.id
-    redirect_to parent_root_path, notice: "Conta criada com sucesso!"
-  rescue ActiveRecord::RecordInvalid => e
-    flash.now[:alert] = e.record.errors.full_messages.to_sentence
-    render :new, status: :unprocessable_entity
+  private
+
+  def registration_params
+    params.require(:family).permit(:name, :email, :password)
   end
 end
