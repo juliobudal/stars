@@ -23,4 +23,14 @@ class Family < ApplicationRecord
   has_many :rewards, dependent: :destroy
   has_many :profile_tasks, through: :profiles
   has_many :profile_invitations, dependent: :destroy
+
+  has_secure_password
+
+  before_validation { email&.downcase! }
+
+  validates :name, presence: true
+  validates :email, presence: true,
+                    uniqueness: { case_sensitive: false },
+                    format: URI::MailTo::EMAIL_REGEXP
+  validates :password, length: { minimum: 12 }, allow_nil: true
 end
