@@ -13,8 +13,8 @@ RSpec.describe Ui::FilterChips::Component, type: :component do
       ]
     ))
     expect(page).to have_css("[role=tablist]")
-    expect(page).to have_css("button.tab", count: 2)
-    expect(page).to have_css("button.tab.active", count: 1)
+    expect(page).to have_css("button[role=tab]", count: 2)
+    expect(page).to have_css("button[role=tab][aria-selected='true']", count: 1)
   end
 
   it "marks active tab with aria-selected=true" do
@@ -22,6 +22,6 @@ RSpec.describe Ui::FilterChips::Component, type: :component do
       active: "b",
       items: [ { id: "a", label: "A" }, { id: "b", label: "B" } ]
     ))
-    expect(page).to have_css("button.active[aria-selected='true']", text: "B")
+    expect(page).to have_css("button[role=tab][aria-selected='true']", text: "B")
   end
 end
