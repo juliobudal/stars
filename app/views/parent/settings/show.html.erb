@@ -19,4 +19,27 @@
       <%= f.submit "Salvar alterações", class: "btn btn-primary" %>
     </div>
   <% end %>
+
+  <section class="mt-8">
+    <h2 class="font-display text-xl font-bold mb-4">PINs dos perfis</h2>
+    <ul class="flex flex-col gap-3">
+      <% current_family.profiles.order(:name).each do |profile| %>
+        <li class="flex items-center justify-between bg-white rounded-md p-3 border">
+          <span class="font-bold"><%= profile.name %> <span class="text-xs text-muted-foreground">(<%= profile.parent? ? "Pai/Mãe" : "Criança" %>)</span></span>
+          <%= form_with url: reset_pin_parent_profile_path(profile), method: :patch, local: true,
+                        class: "flex gap-2" do |f| %>
+            <%= f.text_field :pin, pattern: "\\d{4}", maxlength: 4, inputmode: "numeric",
+                autocomplete: "off", placeholder: "Novo PIN", required: true,
+                class: "px-2 py-1 border rounded w-24" %>
+            <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", type: "submit") do %>Resetar<% end %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+
+  <section class="mt-8">
+    <%= button_to "Sair desta família neste dispositivo", family_session_path, method: :delete,
+                  class: "text-destructive font-bold" %>
+  </section>
 </div>
