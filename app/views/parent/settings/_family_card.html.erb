@@ -1,5 +1,5 @@
-<div class="bg-surface rounded-md p-7 shadow-card relative border-none p-5">
-  <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[18px] mb-4">Família</div>
+<%= render Ui::Card::Component.new(padding: "p-5") do %>
+  <%= render Ui::Heading::Component.new(size: :h3, class: "mb-4") do %>Família<% end %>
   <div class="flex flex-col gap-0">
 
     <div class="row justify-between items-center py-2.5 border-b border-hairline">
@@ -44,4 +44,4 @@
     </div>
 
   </div>
-</div>
+<% end %>

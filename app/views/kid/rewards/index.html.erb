@@ -26,7 +26,7 @@
 
   <%# Section Header %>
   <div class="flex items-baseline justify-between mb-5 mt-5 relative z-10">
-    <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[18px] text-foreground">O que você quer hoje?</div>
+    <%= render Ui::Heading::Component.new(size: :h3) do %>O que você quer hoje?<% end %>
     <span class="text-[12px] font-bold text-muted-foreground"><%= @rewards.size %> prêmios</span>
   </div>
 
@@ -75,7 +75,7 @@
 
   <% if @redeemed_rewards.any? %>
     <div class="mt-8 mb-6 z-2 relative">
-      <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[20px] text-foreground mb-3">Meus prêmios</div>
+      <div class="font-display text-[20px] leading-tight font-extrabold tracking-[-0.02em] text-foreground mb-3">Meus prêmios</div>
       <div class="flex flex-col gap-2.5">
         <% @redeemed_rewards.each do |redemption| %>
           <%= render Ui::RedemptionRow::Component.new(redemption: redemption) %>
@@ -93,14 +93,14 @@
         <div class="flex items-center justify-center w-[100px] h-[100px] rounded-lg bg-lilac-soft mx-auto">
           <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 56, color: "var(--c-violet-dark)") %>
         </div>
-        <h3 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[26px]"><%= reward.title %></h3>
+        <h3 class="font-display text-[26px] leading-tight font-extrabold tracking-[-0.02em] text-foreground"><%= reward.title %></h3>
         <div class="flex items-center justify-center gap-2.5">
           <%= render Ui::Badge::Component.new(variant: "star", class: "text-[16px] py-2 px-3.5") do %>
             <%= render Ui::Icon::Component.new("star", size: 16, color: "var(--star-2)") %> <%= reward.cost %>
           <% end %>
         </div>
 
-        <div class="bg-surface rounded-md p-7 shadow-card relative border-none p-3.5 bg-surface-2 border-none shadow-none w-full">
+        <div class="bg-surface-2 rounded-card p-3.5 w-full">
           <div class="flex items-center justify-between font-display font-extrabold">
             <span>Saldo atual</span>
             <span class="flex items-center gap-1"><%= current_profile.points %> <%= render Ui::Icon::Component.new(:star, size: 14, color: "var(--c-amber-dark)") %></span>

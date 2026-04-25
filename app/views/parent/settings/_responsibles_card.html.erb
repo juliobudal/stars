@@ -1,5 +1,5 @@
-<div class="bg-surface rounded-md p-7 shadow-card relative border-none p-5">
-  <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[18px] mb-4">Responsáveis</div>
+<%= render Ui::Card::Component.new(padding: "p-5") do %>
+  <%= render Ui::Heading::Component.new(size: :h3, class: "mb-4") do %>Responsáveis<% end %>
   <div class="flex flex-col gap-2">
     <% family.profiles.parent.each do |p| %>
       <div class="flex items-center gap-3 py-2.5 px-3 rounded-xl bg-surface-2">
@@ -18,4 +18,4 @@
 
     <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: new_parent_invitation_path) do %>+ Convidar responsável<% end %>
   </div>
-</div>
+<% end %>

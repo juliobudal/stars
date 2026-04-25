@@ -12,7 +12,7 @@
       </div>
     <% end %>
   </div>
-  <span class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground flex items-center gap-1 text-[15px]" style="color: <%= amount_color %>;">
+  <span class="font-display text-[15px] leading-none font-extrabold tracking-[-0.02em] flex items-center gap-1" style="color: <%= amount_color %>;">
     <%= amount_sign %><%= amount.abs %>
     <%= render Ui::Icon::Component.new(:star, size: 14, color: "var(--c-amber-dark)") %>
   </span>

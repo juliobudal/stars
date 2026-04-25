@@ -30,7 +30,7 @@
 
     <div class="flex flex-col flex-1 gap-0 text-center">
       <div class="font-display text-[11px] font-bold tracking-[0.08em] uppercase text-primary tracking-[0.28em]"><%= greeting %></div>
-      <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[30px] leading-none"><%= current_profile.name %>!</div>
+      <div class="font-display text-[30px] leading-none font-extrabold tracking-[-0.02em] text-foreground"><%= current_profile.name %>!</div>
     </div>
 
     <div class="flex gap-2 shrink-0 items-center">
@@ -53,7 +53,7 @@
           <div id="profile_points_<%= current_profile.id %>"
                data-controller="count-up"
                data-count-up-current-value="<%= current_profile.points %>"
-               class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[36px] leading-none mt-1">
+               class="font-display text-[36px] leading-none font-extrabold tracking-[-0.02em] text-foreground mt-1">
             <span data-count-up-target="display"><%= current_profile.points %></span>
             <span class="text-star-2">★</span>
           </div>
@@ -160,7 +160,7 @@
         <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(profile_task)}") do %>
           <div class="flex items-center justify-center flex-col text-center gap-4">
             <%= render Ui::IconTile::Component.new(icon: cat_data[:icon], color: cat_data[:color], size: 88) %>
-            <h3 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[26px]"><%= profile_task.title %></h3>
+            <h3 class="font-display text-[26px] leading-tight font-extrabold tracking-[-0.02em] text-foreground"><%= profile_task.title %></h3>
             <div class="flex gap-2.5 justify-center items-center">
               <%= render Ui::Badge::Component.new(variant: cat_data[:color], size: "sm", icon: cat_data[:icon]) do %>
                 <%= cat_data[:label] %>

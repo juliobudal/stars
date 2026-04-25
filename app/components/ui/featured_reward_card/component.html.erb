@@ -1,7 +1,7 @@
 <div data-controller="ui-modal" class="bg-surface rounded-card shadow-card z-2 grid grid-cols-[1fr_auto] gap-7 items-center mb-4 p-7 overflow-clip">
   <div>
     <span class="inline-flex items-center gap-1 bg-lilac-soft text-violet-dark py-1 px-2.5 rounded-full text-[11px] font-extrabold tracking-widest mb-3"><%= render Ui::Icon::Component.new(:sparkle, size: 12, color: "var(--c-violet-dark)") %> EM DESTAQUE</span>
-    <h3 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[26px] m-0 mb-1.5"><%= reward.title %></h3>
+    <h3 class="font-display text-[26px] leading-tight font-extrabold tracking-[-0.02em] text-foreground m-0 mb-1.5"><%= reward.title %></h3>
     <p class="text-[17px] text-muted-foreground font-semibold m-0 mb-4.5 text-sm font-medium leading-[1.4]">Troque suas estrelinhas por esse prêmio especial.</p>
     <div class="flex items-center flex-wrap gap-3">
       <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", class: "shadow-[0_3px_0_color-mix(in_srgb,var(--c-violet-dark)_25%,transparent)]",

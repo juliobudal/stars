@@ -19,7 +19,7 @@
     <%= render Ui::IconTile::Component.new(icon: category_data[:icon], color: category_data[:color], size: 56) %>
 
     <div class="flex flex-col flex-1 gap-1">
-      <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[17px]"><%= @mission.title %></div>
+      <div class="font-display text-[17px] leading-tight font-extrabold tracking-[-0.02em] text-foreground"><%= @mission.title %></div>
       <div class="flex items-center gap-1.5">
         <%= render Ui::Badge::Component.new(variant: category_data[:color], size: "sm", icon: category_data[:icon]) do %>
           <%= category_data[:label] %>
@@ -35,7 +35,7 @@
 
     <div class="flex flex-col items-center justify-center shrink-0 gap-0.5 px-1.5">
       <%= render Ui::Icon::Component.new("star", size: 22, color: "var(--star)") %>
-      <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[20px] text-star-2"><%= points_value %></div>
+      <div class="font-display text-[20px] leading-none font-extrabold tracking-[-0.02em] text-star-2"><%= points_value %></div>
     </div>
   </div>
 <% else %>
@@ -61,7 +61,7 @@
     </div>
 
     <div class="flex flex-col flex-1 gap-1">
-      <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[18px]"><%= @mission.title %></div>
+      <div class="font-display text-[18px] leading-tight font-extrabold tracking-[-0.02em] text-foreground"><%= @mission.title %></div>
       <div class="flex items-center gap-1.5">
         <div class="text-[13px] font-bold text-muted-foreground">
           <%= category_data[:label] %> · <%= @mission.try(:frequency) || "diária" %>
@@ -75,7 +75,7 @@
       <% else %>
         <div class="flex items-center gap-1">
           <%= render Ui::Icon::Component.new("star", size: 20, color: "var(--star)") %>
-          <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[22px] text-star-2"><%= points_value %></div>
+          <div class="font-display text-[22px] leading-none font-extrabold tracking-[-0.02em] text-star-2"><%= points_value %></div>
         </div>
       <% end %>
     </div>

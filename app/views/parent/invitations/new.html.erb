@@ -1,5 +1,5 @@
-<div class="bg-surface rounded-card p-7 shadow-card relative border-none max-w-[480px] mx-auto my-10">
-  <h2 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground mb-6">Convidar responsável</h2>
+<%= render Ui::Card::Component.new(class: "max-w-[480px] mx-auto my-10") do %>
+  <%= render Ui::Heading::Component.new(size: :h1, class: "mb-6") do %>Convidar responsável<% end %>
 
   <% if @invitation.errors.any? %>
     <div class="alert alert-error mb-4">
@@ -25,4 +25,4 @@
       <% end %>
     </div>
   <% end %>
-</div>
+<% end %>

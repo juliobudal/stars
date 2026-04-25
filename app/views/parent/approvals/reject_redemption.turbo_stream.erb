@@ -16,11 +16,11 @@
 <% if pending_tasks == 0 && pending_redemptions == 0 %>
   <%= turbo_stream.replace "approvals_list" do %>
     <%= turbo_frame_tag "approvals_list" do %>
-      <div class="bg-surface rounded-md p-7 shadow-card relative border-none p-10 text-center">
+      <%= render Ui::Card::Component.new(padding: "p-10", class: "text-center") do %>
         <div class="text-[36px] mb-2">💤</div>
-        <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[22px] mb-1">Tudo em dia!</div>
-        <div class="text-[17px] text-muted-foreground font-semibold text-[14px]">Não há missões ou resgates aguardando aprovação.</div>
-      </div>
+        <%= render Ui::Heading::Component.new(size: :h2, class: "mb-1") do %>Tudo em dia!<% end %>
+        <div class="text-[14px] text-muted-foreground font-semibold">Não há missões ou resgates aguardando aprovação.</div>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

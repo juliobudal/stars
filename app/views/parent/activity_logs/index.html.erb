@@ -21,7 +21,7 @@
         </div>
         <div class="flex flex-col gap-0">
           <div class="font-display text-[11px] font-bold tracking-[0.08em] uppercase text-primary text-mint-dark">Ganhou</div>
-          <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground flex items-center gap-1 text-[22px] text-mint-dark">+<%= total_earn %> <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--c-amber-dark)") %></div>
+          <div class="font-display text-[22px] leading-[1.1] font-extrabold tracking-[-0.02em] flex items-center gap-1 text-mint-dark">+<%= total_earn %> <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--c-amber-dark)") %></div>
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
         </div>
         <div class="flex flex-col gap-0">
           <div class="font-display text-[11px] font-bold tracking-[0.08em] uppercase text-primary text-rose-dark">Gastou</div>
-          <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground flex items-center gap-1 text-[22px] text-rose-dark">−<%= total_spend %> <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--c-amber-dark)") %></div>
+          <div class="font-display text-[22px] leading-[1.1] font-extrabold tracking-[-0.02em] flex items-center gap-1 text-rose-dark">−<%= total_spend %> <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--c-amber-dark)") %></div>
         </div>
       </div>
     </div>
@@ -43,13 +43,13 @@
       <% @activity_logs.each_with_index do |h, i| %>
         <% earn = h.earn? %>
         <% color = h.profile&.color || "primary" %>
-        <div class="bg-surface rounded-md p-7 shadow-card relative border-none p-3.5 border-2 border-[rgba(26,42,74,0.06)]" style="animation: slideInCard 0.3s ease <%= i * 0.02 %>s both;">
+        <%= render Ui::Card::Component.new(padding: "p-3.5", class: "border-2 border-[rgba(26,42,74,0.06)]", style: "animation: slideInCard 0.3s ease #{i * 0.02}s both;") do %>
           <div class="flex items-center gap-3.5">
             <div class="flex items-center justify-center w-12 h-12 rounded-md <%= earn ? 'bg-mint-soft text-success' : 'bg-rose-soft text-rose' %>">
               <%= render Ui::Icon::Component.new(earn ? "sparkle" : "gift", size: 26, color: "currentColor") %>
             </div>
             <div class="flex flex-col flex-1 gap-0.5">
-              <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[16px]"><%= h.title %></div>
+              <div class="font-display text-[16px] leading-tight font-extrabold tracking-[-0.02em] text-foreground"><%= h.title %></div>
               <div class="flex items-center gap-1.5">
                 <%= render Ui::Badge::Component.new(variant: color, size: "sm") do %>
                   <%= h.profile&.name %>
@@ -57,12 +57,12 @@
                 <span class="text-[12px] text-muted-foreground font-bold"><%= l(h.created_at, format: :short).upcase %></span>
               </div>
             </div>
-            <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground flex items-center gap-1 text-[18px] <%= earn ? 'text-success' : 'text-rose' %>">
+            <div class="font-display text-[18px] leading-none font-extrabold tracking-[-0.02em] flex items-center gap-1 <%= earn ? 'text-success' : 'text-rose' %>">
               <%= earn ? '+' : '−' %><%= h.points.abs %>
               <%= render Ui::Icon::Component.new(:star, size: 15, color: "var(--c-amber-dark)") %>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     <% else %>
       <%= render Ui::Empty::Component.new(

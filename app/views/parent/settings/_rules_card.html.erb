@@ -1,5 +1,5 @@
-<div class="bg-surface rounded-md p-7 shadow-card relative border-none p-5">
-  <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[18px] mb-3.5">Regras do sistema</div>
+<%= render Ui::Card::Component.new(padding: "p-5") do %>
+  <%= render Ui::Heading::Component.new(size: :h3, class: "mb-3.5") do %>Regras do sistema<% end %>
   <div class="col gap-0">
     <%
       rules = [
@@ -29,4 +29,4 @@
              class="w-[90px] py-1.5 px-2.5 rounded-lg border border-hairline bg-surface-2 text-right font-bold" />
     </div>
   </div>
-</div>
+<% end %>

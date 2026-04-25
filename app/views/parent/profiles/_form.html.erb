@@ -1,8 +1,8 @@
 <%= form_with(model: [:parent, profile], class: "col gap-5") do |f| %>
   <% if profile.errors.any? %>
     <%= render Ui::Card::Component.new(variant: "flat", class: "bg-danger-soft text-danger p-4 mb-4") do %>
-      <h3 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[18px]">Ops! Algo deu errado:</h3>
-      <ul class="text-[17px] text-muted-foreground font-semibold text-[14px] list-disc ml-5">
+      <%= render Ui::Heading::Component.new(size: :h3) do %>Ops! Algo deu errado:<% end %>
+      <ul class="text-[14px] text-muted-foreground font-semibold list-disc ml-5">
         <% profile.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>

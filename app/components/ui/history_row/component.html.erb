@@ -10,7 +10,7 @@
         <span class="text-[13px] text-muted-foreground font-medium"><%= log.created_at.strftime("%H:%M") %></span>
       </div>
     </div>
-    <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground flex items-center gap-1 shrink-0 text-[15px] whitespace-nowrap <%= points_color %>">
+    <div class="font-display text-[15px] leading-none font-extrabold tracking-[-0.02em] flex items-center gap-1 shrink-0 whitespace-nowrap <%= points_color %>">
       <%= points_sign %><%= log.points %>
       <%= render Ui::Icon::Component.new(:star, size: 14, color: "var(--c-amber-dark)") %>
     </div>

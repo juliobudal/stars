@@ -23,11 +23,11 @@
 <% if family_redemptions_pending == 0 && current_profile.family.profile_tasks.awaiting_approval.count == 0 %>
   <%= turbo_stream.replace "approvals_list" do %>
     <%= turbo_frame_tag "approvals_list" do %>
-      <div class="bg-surface rounded-md p-7 shadow-card relative border-none p-10 text-center">
+      <%= render Ui::Card::Component.new(padding: "p-10", class: "text-center") do %>
         <div class="flex items-center justify-center mb-2"><%= render Ui::Icon::Component.new(:sparkle, size: 36, color: "var(--c-amber-dark)") %></div>
-        <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[22px] mb-1">Tudo Limpo!</div>
-        <div class="text-[17px] text-muted-foreground font-semibold text-[14px]">Nenhuma pendência. Trabalho incrível!</div>
-      </div>
+        <%= render Ui::Heading::Component.new(size: :h2, class: "mb-1") do %>Tudo Limpo!<% end %>
+        <div class="text-[14px] text-muted-foreground font-semibold">Nenhuma pendência. Trabalho incrível!</div>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
