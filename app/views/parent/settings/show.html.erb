@@ -22,7 +22,7 @@
   <% end %>
 
   <section class="mt-8">
-    <h2 class="font-display text-xl font-bold mb-4">PINs dos perfis</h2>
+    <%= render Ui::Heading::Component.new(size: :h2, class: "mb-4") do %>PINs dos perfis<% end %>
     <ul class="flex flex-col gap-3">
       <% current_family.profiles.order(:name).each do |profile| %>
         <li class="flex items-center justify-between bg-white rounded-md p-3 border">
