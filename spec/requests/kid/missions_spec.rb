@@ -10,7 +10,7 @@ RSpec.describe "Kid::Missions", type: :request do
 
   before do
     host! "localhost"
-    post sessions_path, params: { profile_id: child.id }
+    sign_in_as(child)
   end
 
   def valid_photo_upload

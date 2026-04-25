@@ -1,29 +1,34 @@
 module SystemAuthHelpers
-  # Parent: click "Pais" tab (hidden by JS), fill email+password form, submit.
-  # Waits for the parent dashboard to confirm the session is established.
-  def sign_in_as_parent(profile, password: "supersecret1234")
-    visit root_path
-    # Click the "Pais" tab button (Stimulus picker-tabs#switch reveals the parent panel)
-    find("button[data-tab='parents']").click
-    # Reveal the hidden parent panel directly so Capybara can fill in the form
-    page.execute_script(<<~JS)
-      var panel = document.querySelector('[data-picker-tabs-target="panel"][data-tab="parents"]');
-      if (panel) { panel.hidden = false; panel.style.display = ''; }
-    JS
-    fill_in "email", with: profile.email
-    fill_in "password", with: password
-    click_button "Entrar"
-    # Wait for navigation to parent dashboard to complete
-    expect(page).to have_content("Olá, #{profile.name}", wait: 10)
+  def sign_in_family(family)
+    visit new_family_session_path
+    fill_in "Email da família", with: family.email
+    fill_in "Senha", with: "supersecret1234"
+    click_on "Entrar"
   end
 
-  # Kid: click the profile-picker card button that contains the kid's name.
-  # Waits for the kid dashboard to confirm the session is established.
-  def sign_in_as_child(profile)
-    visit root_path
-    find("button", text: profile.name).click
-    # Wait for navigation to complete (kid dashboard shows profile name in greeting)
-    expect(page).to have_content(profile.name, wait: 10)
+  def sign_in_profile(profile, pin: "1234")
+    sign_in_family(profile.family) unless current_path == new_profile_session_path
+    click_on profile.name
+    fill_pin(pin)
+  end
+
+  def fill_pin(pin)
+    pin.chars.each do |digit|
+      find("button.pin-key", text: digit, match: :first).click
+    end
+  end
+
+  # Backwards-compatible aliases used by existing system specs.
+  def sign_in_as(profile, pin: "1234")
+    sign_in_profile(profile, pin: pin)
+  end
+
+  def sign_in_as_parent(profile, pin: "1234")
+    sign_in_profile(profile, pin: pin)
+  end
+
+  def sign_in_as_child(profile, pin: "1234")
+    sign_in_profile(profile, pin: pin)
   end
 
   # Open an inline modal by ID via JS and click a button inside it by text.
@@ -42,4 +47,8 @@ module SystemAuthHelpers
       }
     JS
   end
+end
+
+RSpec.configure do |config|
+  config.include SystemAuthHelpers, type: :system
 end
