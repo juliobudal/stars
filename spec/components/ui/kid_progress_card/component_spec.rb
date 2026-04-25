@@ -22,4 +22,18 @@ RSpec.describe Ui::KidProgressCard::Component, type: :component do
     render_inline(described_class.new(kid: kid, awaiting_count: 0, missions_count: 0))
     expect(page).not_to have_text("aguardando aprovação")
   end
+
+  it "wraps root in data-palette matching kid color" do
+    kid = build_stubbed(:profile, color: "rose", role: :child, name: "Zoe", points: 12)
+    render_inline(described_class.new(kid: kid, awaiting_count: 0, missions_count: 0))
+
+    expect(page).to have_css('[data-palette="rose"]', count: 1)
+  end
+
+  it "uses 'primary' palette when kid color is blank" do
+    kid = build_stubbed(:profile, color: nil, role: :child, name: "Anon", points: 0)
+    render_inline(described_class.new(kid: kid, awaiting_count: 0, missions_count: 0))
+
+    expect(page).to have_css('[data-palette="primary"]', count: 1)
+  end
 end

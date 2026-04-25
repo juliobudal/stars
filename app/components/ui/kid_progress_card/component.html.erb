@@ -1,4 +1,5 @@
-<%= render Ui::Card::Component.new(padding: "none", class: "overflow-hidden") do %>
+<div data-palette="<%= helpers.palette_for(kid) %>">
+  <%= render Ui::Card::Component.new(padding: "none", class: "overflow-hidden") do %>
   <%# Slim color strip with edit pencil %>
   <div class="h-12 relative shrink-0" style="background: <%= palette[:fill] %>;">
     <%= link_to edit_parent_profile_path(kid),
@@ -45,4 +46,5 @@
       </div>
     <% end %>
   </div>
-<% end %>
+  <% end %>
+</div>
