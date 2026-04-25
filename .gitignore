@@ -61,3 +61,6 @@ tailwindcss_safelist.txt
 # Screenshot artifacts (review/verify sessions)
 /*.png
 .superpowers/
+
+# Built assets
+/public/hugeicons-manifest.json

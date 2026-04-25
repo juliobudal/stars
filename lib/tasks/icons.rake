@@ -11,12 +11,20 @@ namespace :icons do
     manifest = seed.map do |entry|
       slug = entry["slug"] || entry["name"].to_s.parameterize
       name = entry["name"].to_s.tr("-_", "  ").strip
-      tags = Array(entry["tags"]).map(&:to_s)
+      tags =
+        case entry["tags"]
+        when String then entry["tags"].split(/\s*,\s*/).reject(&:empty?)
+        else Array(entry["tags"]).map(&:to_s)
+        end
       tags = slug.split("-").reject(&:empty?) if tags.empty?
       { slug: slug, name: name, tags: tags }
     end
 
-    out_path.write(JSON.pretty_generate(manifest))
+    out_path.write(JSON.generate(manifest))
     puts "Wrote #{manifest.size} icons to #{out_path.relative_path_from(Rails.root)}"
   end
+end
+
+if Rake::Task.task_defined?("assets:precompile")
+  Rake::Task["assets:precompile"].enhance(["icons:sync"])
 end
