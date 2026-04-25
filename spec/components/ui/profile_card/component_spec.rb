@@ -48,4 +48,18 @@ RSpec.describe Ui::ProfileCard::Component, type: :component do
       expect(page).not_to have_text("★")
     end
   end
+
+  it "wraps root in data-palette matching profile color" do
+    profile = build_stubbed(:profile, color: "sky", role: :child, name: "Theo", points: 0)
+    render_inline(described_class.new(profile: profile, url: "/x"))
+
+    expect(page).to have_css('[data-palette="sky"]', count: 1)
+  end
+
+  it "uses 'primary' palette when profile color is blank" do
+    profile = build_stubbed(:profile, color: nil, role: :child, name: "Anon", points: 0)
+    render_inline(described_class.new(profile: profile, url: "/x"))
+
+    expect(page).to have_css('[data-palette="primary"]', count: 1)
+  end
 end
