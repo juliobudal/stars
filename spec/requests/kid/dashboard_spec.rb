@@ -9,7 +9,7 @@ RSpec.describe "Kid::Dashboard", type: :request do
 
   before do
     host! "localhost"
-    post "/sessions", params: { profile_id: child.id }
+    sign_in_as(child)
   end
 
   describe "GET /kid" do

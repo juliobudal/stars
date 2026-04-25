@@ -13,7 +13,7 @@ RSpec.describe "Parent::Settings", type: :request do
   describe "Access Control" do
     it "redirects unauthenticated" do
       get parent_settings_path
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(new_family_session_path)
     end
   end
 

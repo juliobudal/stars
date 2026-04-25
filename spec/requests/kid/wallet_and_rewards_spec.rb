@@ -7,7 +7,7 @@ RSpec.describe "Kid::Rewards", type: :request do
 
   before do
     host! "localhost"
-    post "/sessions", params: { profile_id: child.id }
+    sign_in_as(child)
   end
 
   describe "GET /kid/rewards" do
@@ -48,7 +48,7 @@ RSpec.describe "Kid::Wallet", type: :request do
 
   before do
     host! "localhost"
-    post "/sessions", params: { profile_id: child.id }
+    sign_in_as(child)
   end
 
   describe "GET /kid/wallet" do

@@ -9,9 +9,9 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
   let!(:global_task) { create(:global_task, family: family, title: "Clean room", points: 10, category: :casa, frequency: :weekly) }
 
   describe "Access Control" do
-    it "redirects to root if not logged in" do
+    it "redirects to login if not logged in" do
       get parent_global_tasks_path
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(new_family_session_path)
     end
 
     it "redirects to root if logged in as kid" do
@@ -160,7 +160,7 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
         gt = GlobalTask.order(:id).last
         expect(gt.assigned_profiles).to contain_exactly(kid_profile)
 
-        other_kid = Profile.create!(family: family, name: "Other", role: :child)
+        other_kid = Profile.create!(family: family, name: "Other", role: :child, pin: "1234")
         patch parent_global_task_path(gt), params: {
           global_task: { assigned_profile_ids: [ other_kid.id.to_s ] }
         }

@@ -9,7 +9,7 @@ RSpec.describe "Parent::Approvals", type: :request do
 
   before do
     host! "localhost"
-    post "/sessions", params: { email: parent.email, password: "supersecret1234" }
+    sign_in_as(parent)
   end
 
   describe "GET /parent/approvals" do
@@ -85,7 +85,7 @@ RSpec.describe "Parent::Approvals", type: :request do
 
   context "security" do
     it "prevents child from accessing" do
-      post "/sessions", params: { profile_id: child.id }
+      sign_in_as(child)
       get parent_approvals_path
       expect(response).to redirect_to(root_path)
     end

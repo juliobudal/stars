@@ -4,7 +4,7 @@ RSpec.describe "Kid::Wallet week_start", type: :request do
   before { host! "localhost" }
 
   def login_as(profile)
-    post "/sessions", params: { profile_id: profile.id }
+    sign_in_as(profile)
   end
 
   describe "GET /kid/wallet with week_start = 0 (Sunday)" do

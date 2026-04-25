@@ -12,9 +12,9 @@ RSpec.describe "Parent::Profiles", type: :request do
   end
 
   describe "Access Control" do
-    it "redirects to root if not logged in" do
+    it "redirects to login if not logged in" do
       get new_parent_profile_path
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(new_family_session_path)
     end
 
     it "redirects to root if logged in as child" do
@@ -36,12 +36,12 @@ RSpec.describe "Parent::Profiles", type: :request do
 
     describe "POST /parent/profiles" do
       context "with valid params" do
-        it "creates a child profile and redirects to dashboard" do
+        it "creates a child profile and redirects to profiles index" do
           expect {
-            post parent_profiles_path, params: { profile: { name: "Maria", avatar: "🦊" } }
+            post parent_profiles_path, params: { profile: { name: "Maria", avatar: "🦊", pin: "1234" } }
           }.to change(Profile, :count).by(1)
 
-          expect(response).to redirect_to(parent_root_path)
+          expect(response).to redirect_to(parent_profiles_path)
           created = Profile.last
           expect(created.name).to eq("Maria")
           expect(created.role).to eq("child")

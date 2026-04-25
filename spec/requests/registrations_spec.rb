@@ -6,31 +6,29 @@ RSpec.describe "Registrations", type: :request do
   describe "POST /registration" do
     let(:valid_params) do
       {
-        family_name: "Família Silva",
-        name: "João Silva",
-        email: "joao@example.com",
-        password: "supersecret1234",
-        password_confirmation: "supersecret1234"
+        family: {
+          name: "Família Silva",
+          email: "joao@example.com",
+          password: "supersecret1234"
+        }
       }
     end
 
-    it "creates a family, parent profile, and sets session" do
+    it "creates a family and redirects to onboarding profile form" do
       expect {
         post registration_path, params: valid_params
       }.to change(Family, :count).by(1)
-        .and change(Profile, :count).by(1)
 
-      expect(response).to redirect_to(parent_root_path)
+      expect(response).to redirect_to(new_parent_profile_path(onboarding: true))
 
-      profile = Profile.last
-      expect(profile.parent?).to be true
-      expect(profile.email).to eq("joao@example.com")
-      expect(profile.confirmed_at).to be_present
+      family = Family.last
+      expect(family.email).to eq("joao@example.com")
+      expect(family.name).to eq("Família Silva")
     end
 
     it "renders new on invalid params" do
-      post registration_path, params: valid_params.merge(password: "short")
-      expect(response).to have_http_status(:unprocessable_entity)
+      post registration_path, params: { family: { name: "x", email: "joao@example.com", password: "short" } }
+      expect(response).to have_http_status(:unprocessable_content)
     end
   end
 

@@ -13,9 +13,9 @@ RSpec.describe "Parent::Rewards", type: :request do
   end
 
   describe "Access Control" do
-    it "redirects unauthenticated users to root" do
+    it "redirects unauthenticated users to login" do
       get parent_rewards_path
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(new_family_session_path)
     end
 
     it "redirects child users to root" do

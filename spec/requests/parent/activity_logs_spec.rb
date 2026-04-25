@@ -12,18 +12,18 @@ RSpec.describe "Parent::ActivityLogs", type: :request do
   describe "Access control" do
     it "redirects unauthenticated requests" do
       get parent_activity_logs_path
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(new_family_session_path)
     end
 
     it "denies child profiles" do
-      post "/sessions", params: { email: child.email, password: "supersecret1234" }
+      sign_in_as(child)
       get parent_activity_logs_path
       expect(response).to redirect_to(root_path)
     end
   end
 
   describe "GET /parent/activity_logs" do
-    before { post "/sessions", params: { email: parent.email, password: "supersecret1234" } }
+    before { sign_in_as(parent) }
 
     it "returns http success" do
       get parent_activity_logs_path

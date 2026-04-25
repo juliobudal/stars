@@ -9,7 +9,7 @@ RSpec.describe "Security Access", type: :request do
 
   describe "Parent namespace" do
     it "denies access to children" do
-      post "/sessions", params: { profile_id: child.id }
+      sign_in_as(child)
       get parent_root_path
       expect(response).to redirect_to(root_path)
       expect(flash[:alert]).to include("Acesso restrito para pais")
@@ -28,12 +28,12 @@ RSpec.describe "Security Access", type: :request do
   describe "Unauthenticated" do
     it "denies access to parent pages" do
       get parent_root_path
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(new_family_session_path)
     end
 
     it "denies access to kid pages" do
       get kid_root_path
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(new_family_session_path)
     end
   end
 end

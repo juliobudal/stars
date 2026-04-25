@@ -17,9 +17,9 @@ RSpec.describe "Parent::Invitations", type: :request do
     end
 
     context "when unauthenticated" do
-      it "redirects to root" do
+      it "redirects to login" do
         get new_parent_invitation_path
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(new_family_session_path)
       end
     end
   end
@@ -46,9 +46,9 @@ RSpec.describe "Parent::Invitations", type: :request do
     end
 
     context "when unauthenticated" do
-      it "redirects to root" do
+      it "redirects to login" do
         post parent_invitations_path, params: { profile_invitation: { email: "x@example.com" } }
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(new_family_session_path)
       end
     end
   end
