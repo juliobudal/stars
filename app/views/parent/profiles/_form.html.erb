@@ -76,7 +76,7 @@
 
   <% unless profile.new_record? %>
     <div class="mt-8 pt-6 border-t-2 border-border">
-      <% confirm_msg = profile.parent? ? "Remover este responsável? Esta ação é permanente." : "Tem certeza? Isso apagará todas as tarefas e histórico deste perfil." %>
+      <% confirm_msg = profile.parent? ? "Remover este responsável? Esta ação é permanente." : "Remover #{profile.name}? Todas as missões e histórico serão perdidos." %>
       <%= render Ui::Btn::Component.new(variant: "danger", size: "sm", url: parent_profile_path(profile), method: :delete, data: { turbo_confirm: confirm_msg }) do %>
         <%= render Ui::Icon::Component.new("trash", size: 16, color: "white") %> Remover Perfil
       <% end %>

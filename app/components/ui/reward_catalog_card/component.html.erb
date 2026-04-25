@@ -36,7 +36,7 @@
     <% end %>
     <%= button_to parent_reward_path(reward), method: :delete,
           class: "flex items-center justify-center shrink-0 w-9 h-9 p-0 bg-red-soft border-none cursor-pointer text-danger rounded-xl",
-          data: { turbo_confirm: "Remover \"#{reward.title}\"?" } do %>
+          data: { turbo_confirm: "Remover \"#{reward.title}\" do catálogo? Esta ação não pode ser desfeita." } do %>
       <%= render Ui::Icon::Component.new("trash", size: 15, color: "var(--danger)") %>
     <% end %>
   </div>

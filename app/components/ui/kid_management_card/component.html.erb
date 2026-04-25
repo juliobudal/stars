@@ -39,7 +39,7 @@
         Ver jornada
       <% end %>
       <%= button_to parent_profile_path(kid), method: :delete,
-            form: { data: { turbo_confirm: "Remover #{kid.name}? Esta ação não pode ser desfeita." } },
+            form: { data: { turbo_confirm: "Remover #{kid.name}? Todas as missões e histórico serão perdidos." } },
             class: "flex items-center bg-transparent border-0 p-0 cursor-pointer text-danger" do %>
         <%= render Ui::Icon::Component.new("trash", size: 14, color: "var(--danger)") %>
       <% end %>
