@@ -211,6 +211,15 @@
   --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --font-serif: ui-serif, georgia, cambria, 'Times New Roman', times, serif;
 
+  /* Canonical type scale (see .planning/ui-reviews/ui-review-pixel-perfect.md:136-143) */
+  --text-xs: 11px;     /* label / caption */
+  --text-sm: 13px;     /* body small / metadata */
+  --text-base: 15px;   /* body default */
+  --text-lg: 18px;     /* heading h3 */
+  --text-xl: 22px;     /* h2 */
+  --text-2xl: 26px;    /* h1 */
+  --text-3xl: 36px;    /* display */
+
   --height-navbar: 54px;
   --width-sidebar: 220px;
   --background-image-chevron-left: url('/images/icons/chevron-left.svg');

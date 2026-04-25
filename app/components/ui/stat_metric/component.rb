@@ -16,8 +16,8 @@ module Ui
 
       def call
         content_tag :div, class: "card", style: "padding: 14px; text-align: center;" do
-          concat content_tag(:div, "#{prefix}#{value}", class: "h-display", style: "font-size: 22px; color: #{tint[:fg]};")
-          concat content_tag(:div, label, style: "font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;")
+          concat content_tag(:div, "#{prefix}#{value}", class: "h-display text-xl", style: "color: #{tint[:fg]};")
+          concat content_tag(:div, label, class: "text-xs", style: "font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;")
         end
       end
     end

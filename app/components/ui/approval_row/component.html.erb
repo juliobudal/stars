@@ -24,7 +24,7 @@
         <% end %>
       </div>
       <div class="flex items-center gap-2.5 mt-1">
-        <span style="font-size: 12px; font-weight: 800; color: <%= points_color %>;"><%= points_sign %><%= points %> ★</span>
+        <span class="text-xs" style="font-weight: 800; color: <%= points_color %>;"><%= points_sign %><%= points %> ★</span>
         <% if meta.present? %>
           <span class="text-[11px] font-bold text-muted-foreground"><%= meta %></span>
         <% end %>
@@ -34,14 +34,16 @@
   <div class="flex items-center gap-2.5">
     <%= button_to reject_url, method: :patch,
         form_class: "flex-1",
-        style: "width: 100%; background: var(--c-red-soft); color: var(--c-red-dark); border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
+        class: "text-sm",
+        style: "width: 100%; background: var(--c-red-soft); color: var(--c-red-dark); border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; cursor: pointer; text-align: center;",
         aria: { label: reject_label },
         data: { turbo_frame: "approvals_list", turbo_confirm: reject_confirm, turbo_submits_with: reject_submits_with }.compact do %>
       <%= reject_label %>
     <% end %>
     <%= button_to approve_url, method: :patch,
         form_class: "flex-1",
-        style: "width: 100%; background: var(--primary); color: white; border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; font-size: 13px; cursor: pointer; text-align: center;",
+        class: "text-sm",
+        style: "width: 100%; background: var(--primary); color: white; border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; cursor: pointer; text-align: center;",
         aria: { label: approve_label },
         data: { turbo_frame: "approvals_list", turbo_submits_with: approve_submits_with } do %>
       <%= approve_label %>
