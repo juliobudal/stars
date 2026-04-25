@@ -25,6 +25,7 @@
   /* Secundárias (Berry Pop palette) */
   --c-peach: #F472B6;
   --c-peach-soft: #FCE7F3;
+  --c-peach-dark: #BE185D;
   --c-rose: #EC4899;
   --c-rose-soft: #FCE7F3;
   --c-rose-dark: #BE185D;
@@ -37,8 +38,9 @@
   --c-lilac: #A78BFA;
   --c-lilac-soft: #EDE9FE;
   --c-lilac-dark: #6D28D9;
-  --c-coral: #EC4899;
-  --c-coral-soft: #FCE7F3;
+  --c-coral: #FF7F50;
+  --c-coral-dark: #D9531E;
+  --c-coral-soft: #FFE5D9;
   --c-coral-depth: #8a2a2a;
 
   --c-peach-depth: #8a3a1a;
