@@ -99,35 +99,14 @@ RSpec.describe ProfileInvitation, type: :model do
     let(:inviter) { create(:profile, :parent, family: family) }
     let(:invitation) { create(:profile_invitation, family: family, invited_by: inviter) }
 
-    it "creates a parent profile with the given name and password" do
-      # ensure inviter is created before counting
-      inviter
-      expect {
-        invitation.accept!(name: "Maria", password: "supersecret1234")
-      }.to change(Profile, :count).by(1)
-
-      profile = Profile.last
-      expect(profile.name).to eq("Maria")
-      expect(profile.parent?).to be true
-      expect(profile.family).to eq(family)
-      expect(profile.confirmed_at).to be_present
-    end
-
     it "marks the invitation as accepted" do
-      invitation.accept!(name: "Maria", password: "supersecret1234")
+      invitation.accept!
       expect(invitation.reload.accepted_at).to be_present
     end
 
-    it "returns the new profile" do
-      profile = invitation.accept!(name: "Maria", password: "supersecret1234")
-      expect(profile).to be_a(Profile)
-      expect(profile.persisted?).to be true
-    end
-
-    it "raises ActiveRecord::RecordInvalid on invalid data" do
-      expect {
-        invitation.accept!(name: "", password: "supersecret1234")
-      }.to raise_error(ActiveRecord::RecordInvalid)
+    it "returns the family" do
+      result = invitation.accept!
+      expect(result).to eq(family)
     end
   end
 end

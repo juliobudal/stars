@@ -1,42 +1,9 @@
-<div style="max-width: 480px; margin: 60px auto; padding: 0 16px;">
-  <div class="bg-surface rounded-card p-7 shadow-card relative border-none" style="padding: 32px;">
-    <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Aceitar convite</h2>
-    <p style="color: var(--text-muted); margin-bottom: 24px;">
-      Você foi convidado para se juntar à família <strong><%= @invitation.family.name %></strong>.
-      Crie sua conta de responsável abaixo.
-    </p>
-
-    <% if flash[:alert] %>
-      <div style="background: var(--c-red-soft); color: var(--danger); padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; font-size: 14px;">
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
-
-    <%= form_with url: accept_invitation_path(token: @invitation.token), method: :post do |f| %>
-      <div class="mb-4">
-        <%= label_tag :name, "Seu nome", style: "display: block; font-weight: 700; margin-bottom: 6px; font-size: 14px;" %>
-        <%= text_field_tag :name, params[:name],
-              placeholder: "Como você quer ser chamado?",
-              style: "width: 100%; padding: 10px 12px; border: 1.5px solid var(--hairline); border-radius: 10px; font-size: 14px;" %>
-      </div>
-
-      <div class="mb-4">
-        <%= label_tag :password, "Senha (mínimo 12 caracteres)", style: "display: block; font-weight: 700; margin-bottom: 6px; font-size: 14px;" %>
-        <%= password_field_tag :password, nil,
-              placeholder: "••••••••••••",
-              style: "width: 100%; padding: 10px 12px; border: 1.5px solid var(--hairline); border-radius: 10px; font-size: 14px;" %>
-      </div>
-
-      <div class="mb-4">
-        <%= label_tag :password_confirmation, "Confirme a senha", style: "display: block; font-weight: 700; margin-bottom: 6px; font-size: 14px;" %>
-        <%= password_field_tag :password_confirmation, nil,
-              placeholder: "••••••••••••",
-              style: "width: 100%; padding: 10px 12px; border: 1.5px solid var(--hairline); border-radius: 10px; font-size: 14px;" %>
-      </div>
-
-      <%= render Ui::Btn::Component.new(variant: "primary", size: "md", block: true, type: "submit") do %>
-        Criar conta e entrar
-      <% end %>
-    <% end %>
-  </div>
+<div class="screen flex flex-col items-center p-10">
+  <h1 class="font-display text-[28px] font-extrabold mb-6">Aceitar convite</h1>
+  <p class="mb-4">
+    Você foi convidado para se juntar à família
+    <strong><%= @invitation.family.name %></strong>.
+  </p>
+  <%= button_to "Aceitar convite", accept_invitation_path(token: @invitation.token), method: :post,
+                class: "px-4 py-2 rounded-md bg-primary text-white font-bold" %>
 </div>

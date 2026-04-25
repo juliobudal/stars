@@ -34,20 +34,12 @@ class ProfileInvitation < ApplicationRecord
 
   scope :active, -> { where(accepted_at: nil).where("expires_at > ?", Time.current) }
 
-  def accept!(name:, password:)
-    ActiveRecord::Base.transaction do
-      profile = Profile.new(
-        role: :parent,
-        name: name,
-        email: email,
-        password: password,
-        confirmed_at: Time.current,
-        family: family
-      )
-      profile.save!
-      update!(accepted_at: Time.current)
-      profile
-    end
+  # Marks the invitation as accepted and returns the family.
+  # Profile creation now happens through the regular onboarding flow
+  # (see Auth::AcceptInvitation service + InvitationsController).
+  def accept!
+    update!(accepted_at: Time.current)
+    family
   end
 
   private

@@ -2,38 +2,19 @@ class InvitationsController < ApplicationController
   rate_limit to: 5, within: 15.minutes, only: :accept
 
   def show
-    @invitation = ProfileInvitation.active.find_by(token: params[:token])
-    raise ActiveRecord::RecordNotFound unless @invitation
+    @invitation = ProfileInvitation.find_by(token: params[:token])
+    if @invitation.nil? || @invitation.expires_at < Time.current || @invitation.accepted_at.present?
+      render plain: "Convite expirado ou inválido.", status: :not_found
+    end
   end
 
   def accept
-    @invitation = ProfileInvitation.active.find_by(token: params[:token])
-    raise ActiveRecord::RecordNotFound unless @invitation
-
-    name = params[:name].to_s.strip
-    password = params[:password].to_s
-    password_confirmation = params[:password_confirmation].to_s
-
-    if name.blank? || password.blank?
-      flash.now[:alert] = "Nome e senha são obrigatórios."
-      render :show, status: :unprocessable_entity
-      return
-    end
-
-    if password != password_confirmation
-      flash.now[:alert] = "As senhas não coincidem."
-      render :show, status: :unprocessable_entity
-      return
-    end
-
-    begin
-      new_profile = @invitation.accept!(name: name, password: password)
-      reset_session
-      session[:profile_id] = new_profile.id
-      redirect_to parent_root_path, notice: "Bem-vindo à família #{@invitation.family.name}!"
-    rescue ActiveRecord::RecordInvalid => e
-      flash.now[:alert] = e.message
-      render :show, status: :unprocessable_entity
+    result = Auth::AcceptInvitation.call(token: params[:token])
+    if result.success?
+      cookies.signed.permanent[:family_id] = { value: result.family.id, httponly: true, same_site: :lax }
+      redirect_to new_parent_profile_path(onboarding: true, invited: true)
+    else
+      render plain: result.error, status: :not_found
     end
   end
 end

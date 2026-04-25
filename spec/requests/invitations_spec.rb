@@ -45,55 +45,22 @@ RSpec.describe "Invitations (public)", type: :request do
   describe "POST /invitations/:token/accept" do
     let(:invitation) { create(:profile_invitation, family: family, invited_by: inviter) }
 
-    context "with valid params" do
-      let(:valid_params) { { name: "Maria", password: "supersecret1234", password_confirmation: "supersecret1234" } }
-
-      it "creates a new parent profile" do
-        # force inviter + invitation to exist before counting
-        invitation
-        expect {
-          post accept_invitation_path(token: invitation.token), params: valid_params
-        }.to change(Profile, :count).by(1)
-      end
-
-      it "sets the session to the new profile" do
-        post accept_invitation_path(token: invitation.token), params: valid_params
-        new_profile = Profile.last
-        expect(session[:profile_id]).to eq(new_profile.id)
-      end
-
-      it "redirects to parent root" do
-        post accept_invitation_path(token: invitation.token), params: valid_params
-        expect(response).to redirect_to(parent_root_path)
-      end
-
-      it "marks the invitation as accepted (single-use)" do
-        post accept_invitation_path(token: invitation.token), params: valid_params
+    context "with an active token" do
+      it "marks the invitation as accepted" do
+        post accept_invitation_path(token: invitation.token)
         invitation.reload
         expect(invitation.accepted_at).to be_present
       end
 
+      it "redirects to new parent profile (onboarding)" do
+        post accept_invitation_path(token: invitation.token)
+        expect(response).to redirect_to(new_parent_profile_path(onboarding: true, invited: true))
+      end
+
       it "returns 404 on second attempt with the same token" do
-        post accept_invitation_path(token: invitation.token), params: valid_params
-        # Second attempt — token is now accepted (no longer active)
-        post accept_invitation_path(token: invitation.token), params: valid_params
+        post accept_invitation_path(token: invitation.token)
+        post accept_invitation_path(token: invitation.token)
         expect(response).to have_http_status(:not_found)
-      end
-    end
-
-    context "with missing name" do
-      it "re-renders show with error" do
-        post accept_invitation_path(token: invitation.token),
-             params: { name: "", password: "supersecret1234", password_confirmation: "supersecret1234" }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    end
-
-    context "with mismatched passwords" do
-      it "re-renders show with error" do
-        post accept_invitation_path(token: invitation.token),
-             params: { name: "Maria", password: "supersecret1234", password_confirmation: "different" }
-        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
 
@@ -101,8 +68,14 @@ RSpec.describe "Invitations (public)", type: :request do
       let(:expired) { create(:profile_invitation, :expired, family: family, invited_by: inviter) }
 
       it "returns 404" do
-        post accept_invitation_path(token: expired.token),
-             params: { name: "Maria", password: "supersecret1234", password_confirmation: "supersecret1234" }
+        post accept_invitation_path(token: expired.token)
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context "with an unknown token" do
+      it "returns 404" do
+        post accept_invitation_path(token: "nonexistent-token")
         expect(response).to have_http_status(:not_found)
       end
     end
