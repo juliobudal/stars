@@ -1,4 +1,4 @@
-<div<%= " id=\"#{dom_id}\"".html_safe if dom_id %> class="bg-surface rounded-card shadow-card border-none p-[14px]">
+<div<%= " id=\"#{dom_id}\"".html_safe if dom_id %> data-palette="<%= helpers.palette_for(kid) %>" class="bg-surface rounded-card shadow-card border-none p-[14px]">
   <div class="flex items-center gap-2.5 mb-2.5">
     <% if bulk? %>
       <input type="checkbox" name="approval_ids[]" value="<%= bulk_value || dom_id %>"

@@ -29,4 +29,32 @@ RSpec.describe Ui::ApprovalRow::Component, type: :component do
     ))
     expect(page).to have_text("−30 ★")
   end
+
+  it "wraps root in data-palette matching kid color" do
+    palette_kid = build_stubbed(:profile, color: "lilac", role: :child, name: "Lila", points: 0)
+    render_inline(described_class.new(
+      kid: palette_kid,
+      title: "Brush teeth",
+      meta: "today",
+      points: 5,
+      approve_url: "/x",
+      reject_url: "/y"
+    ))
+
+    expect(page).to have_css('[data-palette="lilac"]', count: 1)
+  end
+
+  it "uses 'primary' palette when kid color is blank" do
+    blank_kid = build_stubbed(:profile, color: nil, role: :child, name: "Anon", points: 0)
+    render_inline(described_class.new(
+      kid: blank_kid,
+      title: "Brush teeth",
+      meta: "today",
+      points: 5,
+      approve_url: "/x",
+      reject_url: "/y"
+    ))
+
+    expect(page).to have_css('[data-palette="primary"]', count: 1)
+  end
 end
