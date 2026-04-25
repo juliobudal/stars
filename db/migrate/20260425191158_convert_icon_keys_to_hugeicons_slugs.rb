@@ -12,9 +12,9 @@ class ConvertIconKeysToHugeiconsSlugs < ActiveRecord::Migration[8.1]
   }.freeze
 
   def up
-    [GlobalTask, Reward].each do |klass|
+    [ GlobalTask, Reward ].each do |klass|
       klass.reset_column_information
-      klass.where.not(icon: [nil, ""]).find_each do |row|
+      klass.where.not(icon: [ nil, "" ]).find_each do |row|
         next if row.icon.include?("-") # already raw
         slug = ALIASES[row.icon]
         next unless slug

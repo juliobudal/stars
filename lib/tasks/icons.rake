@@ -26,5 +26,5 @@ namespace :icons do
 end
 
 if Rake::Task.task_defined?("assets:precompile")
-  Rake::Task["assets:precompile"].enhance(["icons:sync"])
+  Rake::Task["assets:precompile"].enhance([ "icons:sync" ])
 end
