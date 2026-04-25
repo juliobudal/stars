@@ -1,0 +1,31 @@
+<div class="pin-card" data-controller="pin-pad" data-pin-pad-target="card">
+  <div class="pin-avatar bg-primary text-white">
+    <%= profile.name.first %>
+  </div>
+  <div class="pin-name"><%= profile.name %></div>
+  <div class="pin-hint">Digite seu PIN</div>
+
+  <div class="pin-dots" data-pin-pad-target="dots">
+    <% 4.times do %><div class="pin-dot"></div><% end %>
+  </div>
+
+  <% if error %>
+    <p class="text-destructive text-sm mt-1"><%= error %></p>
+  <% end %>
+
+  <%= form_with url: profile_session_path, method: :post, local: true,
+                data: { pin_pad_target: "form", turbo_frame: "pin_modal" },
+                class: "contents" do |f| %>
+    <%= f.hidden_field :profile_id, value: profile.id %>
+    <%= f.hidden_field :pin, value: "", data: { pin_pad_target: "input" } %>
+
+    <div class="pin-pad">
+      <% [1,2,3,4,5,6,7,8,9].each do |n| %>
+        <button type="button" class="pin-key" data-action="click->pin-pad#press" data-digit="<%= n %>"><%= n %></button>
+      <% end %>
+      <button type="button" class="pin-key action" data-action="click->pin-pad#clear">esc</button>
+      <button type="button" class="pin-key" data-action="click->pin-pad#press" data-digit="0">0</button>
+      <button type="button" class="pin-key action" data-action="click->pin-pad#backspace">⌫</button>
+    </div>
+  <% end %>
+</div>

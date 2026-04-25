@@ -1,21 +1,5 @@
 <div class="screen flex flex-col items-center justify-center p-10">
   <%= render Ui::LogoMark::Component.new(size: 48) %>
   <h1 class="font-display text-[28px] font-extrabold mb-6">Quem é você?</h1>
-
-  <div class="grid grid-cols-2 gap-3 max-w-[480px] w-full">
-    <% @profiles.each do |profile| %>
-      <%= button_to profile.name, new_profile_session_path(profile_id: profile.id),
-                    method: :get, class: "p-4 rounded-md bg-white border" %>
-    <% end %>
-  </div>
-
-  <% if @selected_profile %>
-    <%= form_with url: profile_session_path, method: :post, local: true, class: "mt-6 flex flex-col gap-2" do |f| %>
-      <%= f.hidden_field :profile_id, value: @selected_profile.id %>
-      <%= f.text_field :pin, pattern: "\\d{4}", maxlength: 4, autofocus: true, placeholder: "PIN" %>
-      <%= render Ui::Btn::Component.new(variant: "primary", size: "md", type: "submit") do %>Entrar<% end %>
-    <% end %>
-
-    <% if flash[:alert] %><p class="text-destructive mt-2"><%= flash[:alert] %></p><% end %>
-  <% end %>
+  <%= render Ui::ProfilePicker::Component.new(profiles: @profiles, selected: @selected_profile) %>
 </div>
