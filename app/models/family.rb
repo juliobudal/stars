@@ -33,4 +33,8 @@ class Family < ApplicationRecord
                     uniqueness: { case_sensitive: false },
                     format: URI::MailTo::EMAIL_REGEXP
   validates :password, length: { minimum: 12 }, allow_nil: true
+
+  generates_token_for :password_reset, expires_in: 30.minutes do
+    password_salt&.last(10)
+  end
 end

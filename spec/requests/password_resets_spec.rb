@@ -4,13 +4,12 @@ RSpec.describe "PasswordResets", type: :request do
   before { host! "localhost" }
 
   let(:family) { create(:family) }
-  let(:parent_profile) { create(:profile, :parent, family: family) }
 
   describe "POST /password_reset" do
     it "enqueues mail for known email and redirects with neutral flash" do
-      parent_profile # ensure created
+      family # ensure created
       expect {
-        post password_reset_path, params: { email: parent_profile.email }
+        post password_reset_path, params: { email: family.email }
       }.to have_enqueued_mail(PasswordMailer, :reset)
       expect(response).to redirect_to(root_path)
       expect(flash[:notice]).to be_present
@@ -27,7 +26,7 @@ RSpec.describe "PasswordResets", type: :request do
 
   describe "GET /password_reset/edit" do
     it "renders edit form for valid token" do
-      token = parent_profile.signed_id(purpose: :password_reset, expires_in: 2.hours)
+      token = family.generate_token_for(:password_reset)
       get edit_password_reset_path(token: token)
       expect(response).to have_http_status(:ok)
     end
@@ -39,16 +38,16 @@ RSpec.describe "PasswordResets", type: :request do
   end
 
   describe "PATCH /password_reset" do
-    it "updates password, logs in, and redirects to parent dashboard" do
-      token = parent_profile.signed_id(purpose: :password_reset, expires_in: 2.hours)
+    it "updates password, sets family cookie, and redirects to profile session" do
+      token = family.generate_token_for(:password_reset)
       patch password_reset_path(token: token), params: {
         token: token,
         password: "newpassword5678",
         password_confirmation: "newpassword5678"
       }
-      expect(response).to redirect_to(parent_root_path)
-      parent_profile.reload
-      expect(parent_profile.authenticate("newpassword5678")).to be_truthy
+      expect(response).to redirect_to(new_profile_session_path)
+      family.reload
+      expect(family.authenticate("newpassword5678")).to be_truthy
     end
 
     it "redirects for invalid token" do

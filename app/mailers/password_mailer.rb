@@ -1,7 +1,7 @@
 class PasswordMailer < ApplicationMailer
-  def reset(profile, token)
-    @profile = profile
+  def reset(family, token)
+    @family = family
     @token = token
-    mail(to: @profile.email, subject: "Redefinição de senha — LittleStars")
+    mail(to: @family.email, subject: "Redefinição de senha — LittleStars")
   end
 end

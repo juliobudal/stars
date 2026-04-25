@@ -5,10 +5,10 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
-    profile = Profile.find_by(email: params[:email].to_s.downcase)
-    if profile
-      token = profile.signed_id(purpose: :password_reset, expires_in: 2.hours)
-      PasswordMailer.reset(profile, token).deliver_later
+    family = Family.find_by(email: params[:email].to_s.downcase)
+    if family
+      token = family.generate_token_for(:password_reset)
+      PasswordMailer.reset(family, token).deliver_later
     end
     flash[:notice] = "Se esse email estiver cadastrado, você receberá as instruções em breve."
     redirect_to root_path
@@ -16,27 +16,27 @@ class PasswordResetsController < ApplicationController
 
   def edit
     @token = params[:token]
-    @profile = Profile.find_signed(@token, purpose: :password_reset)
-    unless @profile
+    @family = Family.find_by_token_for(:password_reset, @token)
+    unless @family
       redirect_to root_path, alert: "Link inválido ou expirado."
     end
   end
 
   def update
     @token = params[:token]
-    @profile = Profile.find_signed(@token, purpose: :password_reset)
+    @family = Family.find_by_token_for(:password_reset, @token)
 
-    unless @profile
+    unless @family
       redirect_to root_path, alert: "Link inválido ou expirado."
       return
     end
 
-    if @profile.update(password: params[:password], password_confirmation: params[:password_confirmation])
+    if @family.update(password: params[:password], password_confirmation: params[:password_confirmation])
       reset_session
-      session[:profile_id] = @profile.id
-      redirect_to parent_root_path, notice: "Senha atualizada com sucesso!"
+      cookies.signed.permanent[:family_id] = { value: @family.id, httponly: true, same_site: :lax }
+      redirect_to new_profile_session_path, notice: "Senha atualizada com sucesso!"
     else
-      flash.now[:alert] = @profile.errors.full_messages.to_sentence
+      flash.now[:alert] = @family.errors.full_messages.to_sentence
       render :edit, status: :unprocessable_entity
     end
   end
