@@ -5,10 +5,9 @@
 #  id              :bigint           not null, primary key
 #  avatar          :string
 #  color           :string
-#  confirmed_at    :datetime
 #  email           :citext
 #  name            :string
-#  password_digest :string
+#  pin_digest      :string
 #  points          :integer          default(0)
 #  role            :integer
 #  created_at      :datetime         not null
@@ -17,7 +16,6 @@
 #
 # Indexes
 #
-#  index_profiles_on_email_parent  (email) UNIQUE WHERE (role = 1)
 #  index_profiles_on_family_id     (family_id)
 #
 # Foreign Keys
@@ -27,16 +25,15 @@
 FactoryBot.define do
   factory :profile do
     family
-    name { Faker::Name.first_name }
+    sequence(:name) { |n| "Profile #{n}" }
     avatar { nil }
     role { :child }
     points { 0 }
+    pin { "1234" }
 
     trait :parent do
       role { :parent }
       sequence(:email) { |n| "parent#{n}@example.com" }
-      password { "supersecret1234" }
-      confirmed_at { Time.current }
     end
 
     trait :child do

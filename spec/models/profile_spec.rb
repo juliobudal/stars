@@ -5,10 +5,8 @@
 #  id              :bigint           not null, primary key
 #  avatar          :string
 #  color           :string
-#  confirmed_at    :datetime
-#  email           :citext
 #  name            :string
-#  password_digest :string
+#  pin_digest      :string
 #  points          :integer          default(0)
 #  role            :integer
 #  created_at      :datetime         not null
@@ -17,7 +15,6 @@
 #
 # Indexes
 #
-#  index_profiles_on_email_parent  (email) UNIQUE WHERE (role = 1)
 #  index_profiles_on_family_id     (family_id)
 #
 # Foreign Keys
@@ -42,63 +39,31 @@ RSpec.describe Profile, type: :model do
     it { is_expected.to define_enum_for(:role).with_values(child: 0, parent: 1) }
   end
 
-  describe "parent email validations" do
-    let(:family) { create(:family) }
+  describe "PIN" do
+    let(:family) { Family.create!(name: "Fam", email: "f@x.co", password: "supersecret1234") }
 
-    it "requires email for parent" do
-      profile = build(:profile, :parent, family: family, email: nil)
+    it "stores a hashed pin_digest, never the plaintext PIN" do
+      profile = Profile.create!(family: family, name: "Kid", role: :child, pin: "1234")
+      expect(profile.pin_digest).to be_present
+      expect(profile.pin_digest).not_to eq("1234")
+    end
+
+    it "authenticates with correct PIN" do
+      profile = Profile.create!(family: family, name: "Kid", role: :child, pin: "1234")
+      expect(profile.authenticate_pin("1234")).to be_truthy
+      expect(profile.authenticate_pin("9999")).to be_falsey
+    end
+
+    it "requires a 4-digit numeric PIN" do
+      profile = Profile.new(family: family, name: "Kid", role: :child, pin: "abcd")
       expect(profile).not_to be_valid
-      expect(profile.errors[:email]).to be_present
+      expect(profile.errors[:pin]).to be_present
     end
 
-    it "requires valid email format for parent" do
-      profile = build(:profile, :parent, family: family, email: "not-an-email")
+    it "requires pin on create" do
+      profile = Profile.new(family: family, name: "Kid", role: :child)
       expect(profile).not_to be_valid
-      expect(profile.errors[:email]).to be_present
-    end
-
-    it "enforces case-insensitive email uniqueness for parents" do
-      create(:profile, :parent, family: family, email: "test@example.com")
-      duplicate = build(:profile, :parent, family: family, email: "TEST@EXAMPLE.COM")
-      expect(duplicate).not_to be_valid
-      expect(duplicate.errors[:email]).to be_present
-    end
-
-    it "does not require email for children" do
-      profile = build(:profile, :child, family: family, email: nil)
-      expect(profile).to be_valid
-    end
-
-    it "normalizes email to lowercase before validation" do
-      profile = create(:profile, :parent, family: family, email: "UPPER@EXAMPLE.COM")
-      expect(profile.email).to eq("upper@example.com")
-    end
-  end
-
-  describe "parent password validations" do
-    let(:family) { create(:family) }
-
-    it "requires password on create for parent" do
-      profile = build(:profile, :parent, family: family, password: nil)
-      expect(profile).not_to be_valid
-      expect(profile.errors[:password]).to be_present
-    end
-
-    it "requires password of at least 12 characters for parent" do
-      profile = build(:profile, :parent, family: family, password: "short1234")
-      expect(profile).not_to be_valid
-      expect(profile.errors[:password]).to be_present
-    end
-
-    it "allows nil password on update for parent (no change)" do
-      profile = create(:profile, :parent, family: family)
-      profile.password = nil
-      expect(profile).to be_valid
-    end
-
-    it "does not require password for children" do
-      profile = build(:profile, :child, family: family)
-      expect(profile).to be_valid
+      expect(profile.errors[:pin_digest]).to be_present
     end
   end
 end
