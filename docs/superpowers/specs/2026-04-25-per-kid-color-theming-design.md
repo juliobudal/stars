@@ -90,8 +90,6 @@ Each component below reads its bound profile and emits `data-palette` on its out
 
 | Component path | Bound to | Notes |
 |----------------|----------|-------|
-| `app/components/ui/kid_avatar/component.*` | `@kid` | Root span/div. |
-| `app/components/ui/smiley_avatar/component.*` | `@kid` (used for parents too) | Root span/div. |
 | `app/components/ui/kid_management_card/component.*` | `@kid` | Card root. |
 | `app/components/ui/kid_progress_card/component.*` | `@kid` | Card root. |
 | `app/components/ui/kid_initial_chip/component.*` | `@profile` | Chip root. |
@@ -99,7 +97,7 @@ Each component below reads its bound profile and emits `data-palette` on its out
 | `app/components/ui/activity_row/component.*` | log's profile | Row root. |
 | `app/components/ui/profile_card/component.*` | `@profile` | Card root. |
 
-For `smiley_avatar` rendered for a parent (parent profile, no color): `palette_for` returns `"primary"` → no tint → safe.
+`kid_avatar` and `smiley_avatar` are intentionally NOT wrapped — both already encode the kid's color through inline styles / inline SVG fills computed from `Profile.color`, so the avatar visuals are already per-kid. Wrapping them in `data-palette` would only affect descendants that consume `--primary`, but neither component renders any such descendant. The composite components above carry the wrap and tint everything around the avatar.
 
 ### Tests
 
