@@ -1,25 +1,26 @@
-ActivityLog.delete_all
-ProfileTask.delete_all
-Redemption.delete_all
-Reward.delete_all
-GlobalTask.delete_all
-Profile.delete_all
-Family.delete_all
+[ActivityLog, Redemption, ProfileTask, GlobalTaskAssignment, Reward, GlobalTask, Profile, ProfileInvitation, Family].each(&:delete_all)
 
 ActiveRecord::Base.strict_loading_by_default = false
 
 puts "Creating Demo Family..."
-family = Family.create!(name: "Estrelas Incríveis")
+family = Family.create!(
+  name: "Estrelas Incríveis",
+  email: "familia@example.com",
+  password: "supersecret1234"
+)
 
 puts "Creating Profiles..."
-parent1 = Profile.create!(family: family, name: "Mamãe", role: :parent, avatar: "faceParent", color: "rose",
-                          email: "mae@example.com", password: "supersecret1234", confirmed_at: Time.current)
-parent2 = Profile.create!(family: family, name: "Papai", role: :parent, avatar: "faceParent", color: "sky",
-                          email: "pai@example.com", password: "supersecret1234", confirmed_at: Time.current)
+parent1 = Profile.create!(family: family, name: "Mamãe", role: :parent, avatar: "faceParent",
+                          color: "rose", email: "mae@example.com", pin: "1111")
+parent2 = Profile.create!(family: family, name: "Papai", role: :parent, avatar: "faceParent",
+                          color: "sky", email: "pai@example.com", pin: "2222")
 
-child1 = Profile.create!(family: family, name: "Lila", role: :child, avatar: "faceFox", color: "peach", points: 340)
-child2 = Profile.create!(family: family, name: "Theo", role: :child, avatar: "faceHero", color: "sky", points: 180)
-child3 = Profile.create!(family: family, name: "Zoe", role: :child, avatar: "facePrincess", color: "rose", points: 520)
+child1 = Profile.create!(family: family, name: "Lila", role: :child, avatar: "faceFox",
+                         color: "peach", points: 340, pin: "1234")
+child2 = Profile.create!(family: family, name: "Theo", role: :child, avatar: "faceHero",
+                         color: "sky", points: 180, pin: "5678")
+child3 = Profile.create!(family: family, name: "Zoe", role: :child, avatar: "facePrincess",
+                         color: "rose", points: 520, pin: "9012")
 
 puts "Creating Global Tasks..."
 task1 = GlobalTask.create!(family: family, title: "Arrumar a cama", category: :casa, points: 20, frequency: :daily, icon: "bed")
