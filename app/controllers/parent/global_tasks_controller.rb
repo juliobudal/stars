@@ -14,6 +14,7 @@ class Parent::GlobalTasksController < ApplicationController
 
   def new
     @global_task = GlobalTask.new(family_id: current_profile.family_id)
+    @kids = current_profile.family.profiles.child.order(:name)
   end
 
   def create
@@ -21,17 +22,20 @@ class Parent::GlobalTasksController < ApplicationController
     if @global_task.save
       redirect_to parent_global_tasks_path, notice: "Tarefa criada com sucesso."
     else
+      @kids = current_profile.family.profiles.child.order(:name)
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    @kids = current_profile.family.profiles.child.order(:name)
   end
 
   def update
     if @global_task.update(global_task_params)
       redirect_to parent_global_tasks_path, notice: "Tarefa atualizada com sucesso."
     else
+      @kids = current_profile.family.profiles.child.order(:name)
       render :edit, status: :unprocessable_entity
     end
   end

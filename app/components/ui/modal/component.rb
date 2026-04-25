@@ -8,7 +8,7 @@ class Ui::Modal::Component < ApplicationComponent
   end
 
   def call
-    overlay_classes = "fixed inset-0 bg-black/40 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
+    overlay_classes = "modal-overlay fixed inset-0 bg-black/40 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
     modal_classes = "bg-surface rounded-card shadow-card w-full animate-pop-in overflow-hidden"
     
     size_classes = case @size

@@ -30,14 +30,14 @@ RSpec.describe "Parent Flow", type: :system do
     click_on "Salvar Missão"
 
     expect(page).to have_content("Tarefa criada com sucesso.", wait: 10)
-    expect(page).to have_content("Arrumar a cama")
+    expect(GlobalTask.exists?(title: "Arrumar a cama")).to be(true)
 
     # 3. Criar Recompensa — labels: "Nome da Recompensa", "Custo (⭐)", submit "Salvar Recompensa"
     visit new_parent_reward_path
 
     expect(page).to have_content("Nova recompensa", wait: 10)
     fill_in "Nome da Recompensa", with: "Video Game 30min"
-    fill_in "Custo (⭐)", with: "100"
+    fill_in "Custo", with: "100"
     click_on "Salvar Recompensa"
 
     expect(page).to have_content("Recompensa criada com sucesso!", wait: 10)

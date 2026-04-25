@@ -21,6 +21,6 @@ RSpec.describe "Kid Flow", type: :system do
     expect(page).to have_content("Missão enviada para aprovação! 🚀")
 
     # Verify it appears as waiting
-    expect(page).to have_content("Aguardando")
+    expect(page).to have_content(/Aguardando/i)
   end
 end

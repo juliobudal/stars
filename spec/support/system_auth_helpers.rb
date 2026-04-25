@@ -3,14 +3,16 @@ module SystemAuthHelpers
   # Waits for the parent dashboard to confirm the session is established.
   def sign_in_as_parent(profile, password: "supersecret1234")
     visit root_path
-    # The parent form is inside #tab-parents which is hidden by default via inline style.
-    # We make it visible so Capybara can interact with it, then submit.
-    page.execute_script("switchTab('parents')")
-    within("#tab-parents") do
-      fill_in "email", with: profile.email
-      fill_in "password", with: password
-      click_button "Entrar"
-    end
+    # Click the "Pais" tab button (Stimulus picker-tabs#switch reveals the parent panel)
+    find("button[data-tab='parents']").click
+    # Reveal the hidden parent panel directly so Capybara can fill in the form
+    page.execute_script(<<~JS)
+      var panel = document.querySelector('[data-picker-tabs-target="panel"][data-tab="parents"]');
+      if (panel) { panel.hidden = false; panel.style.display = ''; }
+    JS
+    fill_in "email", with: profile.email
+    fill_in "password", with: password
+    click_button "Entrar"
     # Wait for navigation to parent dashboard to complete
     expect(page).to have_content("Olá, #{profile.name}", wait: 10)
   end

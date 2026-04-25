@@ -1,11 +1,11 @@
-<div data-controller="<%= controller %>" class="flex gap-2 overflow-x-auto pb-1 mb-3 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+<div data-controller="<%= controller %>" class="cat-tabs">
   <% items.each do |item| %>
     <button
       type="button"
       data-<%= controller %>-target="tab"
       data-action="click-><%= controller %>#show"
       data-<%= controller %>-id-param="<%= item[:id] %>"
-      class="flex-1 px-4 py-3 rounded-full border-none bg-transparent font-display font-extrabold cursor-pointer transition-all duration-150 ease-out text-[15px] inline-flex items-center justify-center gap-2 whitespace-nowrap text-[13px] px-[18px] py-2 <%= active?(item[:id]) ? 'bg-primary text-white shadow-tab-active' : 'text-muted-foreground' %>">
+      class="cat-tab <%= 'cat-tab--active' if active?(item[:id]) %>">
       <% if item[:icon] %>
         <%= render Ui::Icon::Component.new(item[:icon], size: 14) %>
       <% end %>

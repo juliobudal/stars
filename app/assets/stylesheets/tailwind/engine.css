@@ -2,6 +2,8 @@
 @source "../../../views/**/*.erb";
 @source "../../../components/**/*.erb";
 @source "../../../components/**/*.js";
+@source "../../../components/**/*.rb";
+@source "../../../helpers/**/*.rb";
 @source "../../../javascript/**/*.js";
 
 @plugin "@tailwindcss/forms";

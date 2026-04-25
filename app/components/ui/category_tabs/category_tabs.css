@@ -1,0 +1,20 @@
+@reference "../../../assets/stylesheets/tailwind/engine.css";
+
+.cat-tabs {
+  @apply flex gap-2 overflow-x-auto pb-1 mb-3;
+  scrollbar-width: none;
+}
+.cat-tabs::-webkit-scrollbar { display: none; }
+
+.cat-tab {
+  @apply inline-flex items-center justify-center gap-2 whitespace-nowrap;
+  @apply px-4 py-2 rounded-full border-none font-display font-extrabold cursor-pointer;
+  @apply text-[14px] transition-all duration-150 ease-out;
+  @apply bg-transparent text-muted-foreground;
+}
+.cat-tab:hover { @apply text-foreground; }
+.cat-tab--active {
+  @apply bg-primary text-white;
+  box-shadow: 0 3px 0 var(--color-primary-depth);
+}
+.cat-tab--active:hover { @apply text-white; }

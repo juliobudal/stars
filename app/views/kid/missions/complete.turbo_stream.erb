@@ -1,4 +1,5 @@
 <%= turbo_stream.remove @profile_task %>
+<%= turbo_stream.remove "modal_#{dom_id(@profile_task)}" %>
 
 <%= turbo_stream.prepend "panel-waiting" do %>
   <%= render "kid/dashboard/awaiting_row", task: @profile_task %>

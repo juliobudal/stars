@@ -2,39 +2,42 @@
   cat = category_meta
   tint = cat[:tint]
 %>
-<div class="bg-surface rounded-md p-7 shadow-card relative border-none reward-catalog-card flex flex-col p-5 text-center items-center gap-2.5" data-panels="all <%= reward.category %>">
+<div class="bg-surface rounded-md shadow-card overflow-hidden flex flex-col">
 
-  <%# Icon tile — 64px centered %>
-  <%= render Ui::IconTile::Component.new(icon: reward.icon.presence || "gift", color: tint, size: 64) %>
-
-  <%# Title %>
-  <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground flex items-center justify-center text-[15px] min-h-[2.4em] text-center leading-[1.2]">
-    <%= reward.title %>
+  <%# Icon header strip %>
+  <div class="flex items-center justify-center py-5" style="background: var(--c-<%= tint %>-soft, var(--primary-soft));">
+    <%= render Ui::IconTile::Component.new(icon: reward.icon.presence || "gift", color: tint, size: 52) %>
   </div>
 
-  <%# Category badge %>
-  <%= render Ui::Badge::Component.new(variant: tint, size: "sm") do %>
-    <%= cat[:label] %>
-  <% end %>
+  <%# Content %>
+  <div class="flex flex-col gap-2 p-4 flex-1">
+    <div class="font-display font-extrabold text-[15px] text-foreground leading-[1.2] line-clamp-2">
+      <%= reward.title %>
+    </div>
 
-  <%# Star cost %>
-  <div class="flex items-center justify-center gap-1.5 font-extrabold text-lg text-[var(--star-2)]">
-    <%= render Ui::Icon::Component.new("star", size: 18, color: "var(--star)") %>
-    <%= reward.cost %>
+    <div class="flex items-center justify-between mt-auto pt-1">
+      <%= render Ui::Badge::Component.new(variant: tint, size: "sm") do %>
+        <%= cat[:label] %>
+      <% end %>
+      <div class="flex items-center gap-1 font-extrabold text-[15px] text-foreground">
+        <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
+        <%= reward.cost %>
+      </div>
+    </div>
   </div>
 
-  <%# Actions row %>
-  <div class="flex items-center gap-2 w-full mt-1">
+  <%# Actions %>
+  <div class="flex items-center gap-2 px-4 pb-4">
     <%= link_to edit_parent_reward_path(reward),
-          class: "btn btn-sm flex items-center justify-center flex-1 bg-primary-soft text-primary-2 gap-1.5 rounded-xl no-underline text-[13px]",
+          class: "btn btn-sm flex items-center justify-center flex-1 gap-1.5 bg-primary-soft text-primary-2 rounded-xl no-underline text-[13px] font-bold",
           aria: { label: "Editar #{reward.title}" } do %>
-      <%= render Ui::Icon::Component.new("pencil", size: 14, color: "currentColor") %>
+      <%= render Ui::Icon::Component.new("pencil", size: 13, color: "currentColor") %>
       Editar
     <% end %>
     <%= button_to parent_reward_path(reward), method: :delete,
           class: "flex items-center justify-center shrink-0 w-9 h-9 p-0 bg-red-soft border-none cursor-pointer text-danger rounded-xl",
           data: { turbo_confirm: "Remover \"#{reward.title}\"?" } do %>
-      <%= render Ui::Icon::Component.new("trash", size: 16, color: "var(--danger)") %>
+      <%= render Ui::Icon::Component.new("trash", size: 15, color: "var(--danger)") %>
     <% end %>
   </div>
 </div>

@@ -21,19 +21,19 @@
   <%= render Ui::Celebration::Component.new %>
 
   <%# ── Header ── %>
-  <div class="row gap-4.5 z-2 shrink-0 items-center mb-8">
+  <div class="flex gap-4 z-2 shrink-0 items-center mb-8">
     <%= link_to sessions_path,
           class: "w-10 h-10 rounded-full bg-white grid place-items-center shrink-0 shadow-card",
           title: "Trocar perfil" do %>
       <%= render Ui::Icon::Component.new("arrow-left", size: 16, color: "var(--text-muted)") %>
     <% end %>
 
-    <div class="col flex-1 gap-0 text-left">
+    <div class="flex flex-col flex-1 gap-0 text-center">
       <div class="font-display text-[11px] font-bold tracking-[0.08em] uppercase text-primary tracking-[0.28em]"><%= greeting %></div>
       <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[30px] leading-none"><%= current_profile.name %>!</div>
     </div>
 
-    <div class="row gap-2 shrink-0">
+    <div class="flex gap-2 shrink-0 items-center">
       <div class="bg-star-soft text-foreground py-1.5 px-3 rounded-full font-bold text-[14px] flex items-center gap-1.5">
         <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
         <%= current_profile.points %>
@@ -46,9 +46,9 @@
 
   <%# ── Cofrinho card ── %>
   <div class="z-2 mb-6 shrink-0">
-    <div class="bg-surface rounded-md p-7 shadow-card relative border-none px-8 py-7 border-none">
-      <div class="row justify-between items-start mb-3.5 gap-3">
-        <div class="col gap-1">
+    <div class="bg-surface rounded-card shadow-card px-8 py-7">
+      <div class="flex justify-between items-start mb-3.5 gap-3">
+        <div class="flex flex-col gap-1">
           <div class="font-display text-[11px] font-bold tracking-[0.08em] uppercase text-primary">Minhas estrelinhas</div>
           <div id="profile_points_<%= current_profile.id %>"
                data-controller="count-up"
@@ -92,13 +92,13 @@
     <%# Completed ─────────────────────────────── %>
     <% @completed_today.each do |task| %>
       <% cat_data = Ui::MissionCard::Component::CATEGORIES[task.global_task&.category.to_s] || Ui::MissionCard::Component::CATEGORIES["geral"] %>
-      <div class="row pb-6 opacity-75 relative">
+      <div class="flex gap-4 pb-6 opacity-75 relative">
         <div class="absolute left-[19px] top-10 bottom-0 border-l-2 border-dashed border-[rgba(44,42,58,0.10)]"></div>
         <div class="w-10 h-10 rounded-full bg-mint-soft border-2 border-mint grid place-items-center shrink-0 z-1">
           <%= render Ui::Icon::Component.new("check", size: 16, color: "var(--c-mint-dark)") %>
         </div>
-        <div class="bg-surface rounded-md p-7 shadow-card relative border-none flex-1 px-6 py-5 border-none">
-          <div class="row justify-between gap-2">
+        <div class="bg-surface rounded-card shadow-card flex-1 px-6 py-5">
+          <div class="flex items-center justify-between gap-2">
             <div class="font-bold line-through text-foreground"><%= task.title %></div>
             <span class="text-star-2 font-extrabold text-[13px] shrink-0"><%= task.points %> ★</span>
           </div>
@@ -126,7 +126,7 @@
       <% is_current = i == 0 %>
 
       <div id="<%= dom_id(profile_task) %>" data-controller="ui-modal"
-           class="row pb-6 relative">
+           class="flex gap-4 pb-6 relative">
         <div class="absolute left-[19px] top-10 bottom-0 border-l-2 border-dashed border-[rgba(44,42,58,0.10)]"></div>
 
         <div class="w-10 h-10 rounded-full bg-white border-2 grid place-items-center shrink-0 z-1 cursor-pointer"
@@ -136,11 +136,11 @@
           <%= render Ui::Icon::Component.new(is_current ? cat_data[:icon] : "lock", size: 16, color: is_current ? node_color : "var(--text-soft)") %>
         </div>
 
-        <div class="bg-surface rounded-md p-7 shadow-card relative border-none flex-1 px-6 py-5 cursor-pointer"
+        <div class="bg-surface rounded-card shadow-card flex-1 px-6 py-5 cursor-pointer"
              style="<%= is_current ? "border:2px solid #{node_color};box-shadow:0 2px 0 #{node_color}15,0 6px 12px #{node_color}15;" : 'opacity:0.6;' %>"
              data-action="click->ui-modal#open"
              data-ui-modal-id-param="modal_<%= dom_id(profile_task) %>">
-          <div class="row justify-between gap-2">
+          <div class="flex items-center justify-between gap-2">
             <div class="font-bold text-foreground"><%= profile_task.title %></div>
             <span class="text-star-2 font-extrabold text-[13px] shrink-0"><%= profile_task.points %> ★</span>
           </div>
@@ -157,12 +157,11 @@
         </div>
 
         <%# Confirmation modal %>
-        <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(profile_task)}", title: profile_task.title) do %>
+        <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(profile_task)}") do %>
           <div class="flex items-center justify-center flex-col text-center gap-4">
-            <%= render Ui::LogoMark::Component.new(size: 48) %>
             <%= render Ui::IconTile::Component.new(icon: cat_data[:icon], color: cat_data[:color], size: 88) %>
             <h3 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[26px]"><%= profile_task.title %></h3>
-            <div class="row gap-2.5 justify-center">
+            <div class="flex gap-2.5 justify-center items-center">
               <%= render Ui::Badge::Component.new(variant: cat_data[:color], size: "sm", icon: cat_data[:icon]) do %>
                 <%= cat_data[:label] %>
               <% end %>
@@ -172,7 +171,7 @@
               <% end %>
             </div>
             <p class="text-muted-foreground font-semibold text-[17px] mt-1">Terminou essa missão? Um responsável vai confirmar.</p>
-            <div class="row gap-3 mt-2 w-full justify-center">
+            <div class="flex gap-3 mt-2 w-full justify-center items-center">
               <%= render Ui::Btn::Component.new(variant: "secondary", data: { action: "click->ui-modal#close" }) do %>Ainda não<% end %>
               <%= button_to complete_kid_mission_path(profile_task), method: :patch, class: "inline-flex items-center justify-center font-display font-extrabold px-6 py-3.5 rounded-full bg-primary text-white shadow-btn-primary hover:shadow-btn-primary-hover active:shadow-btn-primary-active hover:-translate-y-1 active:translate-y-1 transition-all border-none text-[18px]" do %>
                 <%= render Ui::Icon::Component.new("check", size: 20) %> Terminei!
@@ -195,11 +194,11 @@
 
     <%# Finish node %>
     <% if total > 0 %>
-      <div class="row items-center mt-2">
+      <div class="flex gap-4 items-center mt-2">
         <div class="w-10 h-10 rounded-full bg-star-soft grid place-items-center shrink-0">
           <%= render Ui::LogoMark::Component.new(size: 24) %>
         </div>
-        <div class="text-[14px] text-muted-foreground font-bold row gap-1">+50 ao concluir tudo <%= render Ui::Icon::Component.new(:sparkle, size: 14, color: "var(--c-amber-dark)") %></div>
+        <div class="text-[14px] text-muted-foreground font-bold flex items-center gap-1">+50 ao concluir tudo <%= render Ui::Icon::Component.new(:sparkle, size: 14, color: "var(--c-amber-dark)") %></div>
       </div>
     <% end %>
 

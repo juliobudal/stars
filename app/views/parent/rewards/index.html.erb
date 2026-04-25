@@ -1,4 +1,4 @@
-<div class="screen screen-enter-right with-nav" data-controller="filter-tabs">
+<div class="screen screen-enter-right with-nav">
   <%= render Ui::BgShapes::Component.new(variant: "warm") %>
 
   <%= render Ui::TopBar::Component.new(
@@ -19,23 +19,25 @@
         chip_items << { id: key, label: meta[:label].capitalize }
       end
     %>
-    <div class="mb-3.5 z-2">
-      <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all", controller: "filter-tabs") %>
-    </div>
+    <div data-controller="filter-tabs">
+      <div class="mb-3.5 z-2">
+        <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all", controller: "filter-tabs") %>
+      </div>
 
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-[clamp(14px,2vw,28px)] z-2 mt-1">
-      <% @rewards.each do |reward| %>
-        <div data-filter-tabs-target="item" data-panels="all <%= reward.category %>">
-          <%= render Ui::RewardCatalogCard::Component.new(reward: reward) %>
-        </div>
-      <% end %>
+      <div class="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4 z-2 mt-1">
+        <% @rewards.each do |reward| %>
+          <div data-filter-tabs-target="item" data-panels="all <%= reward.category %>">
+            <%= render Ui::RewardCatalogCard::Component.new(reward: reward) %>
+          </div>
+        <% end %>
 
-      <%= link_to new_parent_reward_path, class: "ghost-add-card", data: { panels: "all", filter_tabs_target: "item" } do %>
-        <div class="w-9 h-9 rounded-full bg-surface-2 flex items-center justify-center">
-          <%= render Ui::Icon::Component.new("plus", size: 18, color: "currentColor") %>
-        </div>
-        <span class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[13px]">Novo prêmio</span>
-      <% end %>
+        <%= link_to new_parent_reward_path, class: "ghost-add-card", data: { panels: "all", filter_tabs_target: "item" } do %>
+          <div class="w-9 h-9 rounded-full bg-surface-2 flex items-center justify-center">
+            <%= render Ui::Icon::Component.new("plus", size: 18, color: "currentColor") %>
+          </div>
+          <span class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[13px]">Novo prêmio</span>
+        <% end %>
+      </div>
     </div>
   <% end %>
 

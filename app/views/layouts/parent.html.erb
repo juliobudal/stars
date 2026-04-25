@@ -6,10 +6,10 @@
     <%= yield :head %>
   </head>
 
-  <body class="min-h-screen flex flex-col bg-bg-deep overflow-x-hidden" data-palette="sky">
+  <body class="min-h-screen bg-bg-deep overflow-x-hidden lg:pl-[280px]" data-palette="sky">
     <%= turbo_stream_from current_profile.family, "approvals" %>
     <%= render "shared/parent_nav" %>
-    <div class="flex-1 p-6 overflow-y-auto w-full max-w-[500px] mx-auto relative z-1 pb-24 lg:pb-0">
+    <div class="p-6 w-full max-w-[500px] lg:max-w-4xl mx-auto relative z-1 pb-24 lg:pb-6">
       <%= render Ui::Flash::Component.new %>
       <%= yield %>
     </div>

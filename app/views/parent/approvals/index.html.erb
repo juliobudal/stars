@@ -5,21 +5,39 @@
     subtitle: "#{@profile_tasks.count + @redemptions.count} pendências",
   ) do |bar| %>
     <% bar.with_right_slot do %>
-      <%= render Ui::Btn::Component.new(
-        variant: "primary", 
-        size: "sm", 
-        type: "submit", 
-        form: "bulk-approve-form",
-        class: "opacity-65 cursor-not-allowed",
-        data: { bulk_select_target: "submit" },
-        disabled: true
-      ) do %>
-        <%= render Ui::Icon::Component.new("check", size: 14, color: "white") %> Aprovar selecionadas
-      <% end %>
+      <div class="flex gap-2">
+        <%= render Ui::Btn::Component.new(
+          variant: "danger",
+          size: "sm",
+          type: "button",
+          class: "opacity-65 cursor-not-allowed",
+          data: {
+            bulk_select_target: "submit",
+            bulk_url: bulk_reject_parent_approvals_path,
+            action: "click->bulk-select#submit"
+          },
+          disabled: true
+        ) do %>
+          Rejeitar selecionadas
+        <% end %>
+        <%= render Ui::Btn::Component.new(
+          variant: "primary",
+          size: "sm",
+          type: "button",
+          class: "opacity-65 cursor-not-allowed",
+          data: {
+            bulk_select_target: "submit",
+            bulk_url: bulk_approve_parent_approvals_path,
+            action: "click->bulk-select#submit"
+          },
+          disabled: true
+        ) do %>
+          <%= render Ui::Icon::Component.new("check", size: 14, color: "white") %> Aprovar selecionadas
+        <% end %>
+      </div>
     <% end %>
   <% end %>
 
-  <%= form_tag bulk_approve_parent_approvals_path, method: :post, id: "bulk-approve-form" do %>
   <%= turbo_frame_tag "approvals_list" do %>
 
     <%= render Ui::FilterChips::Component.new(
@@ -89,6 +107,5 @@
       <% end %>
     </div>
 
-  <% end %>
   <% end %>
 </div>

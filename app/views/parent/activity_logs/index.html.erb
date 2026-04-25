@@ -9,7 +9,7 @@
 
   <%
     total_earn = @activity_logs.select(&:earn?).sum(&:points)
-    total_spend = @activity_logs.reject(&:earn?).sum(&:points)
+    total_spend = @activity_logs.reject(&:earn?).sum { |log| log.points.abs }
   %>
 
   <%# Summary %>
@@ -58,7 +58,7 @@
               </div>
             </div>
             <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground flex items-center gap-1 text-[18px] <%= earn ? 'text-success' : 'text-rose' %>">
-              <%= earn ? '+' : '−' %><%= h.points %>
+              <%= earn ? '+' : '−' %><%= h.points.abs %>
               <%= render Ui::Icon::Component.new(:star, size: 15, color: "var(--c-amber-dark)") %>
             </div>
           </div>

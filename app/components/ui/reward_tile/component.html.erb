@@ -1,6 +1,6 @@
 <button
   type="button"
-  class="bg-surface rounded-md p-7 shadow-card relative border-none p-2.5 flex flex-col items-stretch gap-2 bg-surface border-none shadow-card relative <%= can_afford? ? 'cursor-pointer opacity-100' : 'cursor-default opacity-60 grayscale-[0.4]' %>"
+  class="bg-surface rounded-card shadow-card relative border-none p-1.5 flex flex-col items-stretch gap-2 <%= can_afford? ? 'cursor-pointer opacity-100' : 'cursor-default opacity-60 grayscale-[0.4]' %>"
   <%= "disabled" unless can_afford? %>
   <% if can_afford? && modal_id %>data-action="click->ui-modal#open" data-ui-modal-id-param="<%= modal_id %>"<% end %>
   style="animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= animation_delay %>s both;"
@@ -14,10 +14,10 @@
   </div>
 
   <%# Title %>
-  <div class="text-[13px] font-bold text-foreground leading-[1.2]"><%= reward.title %></div>
+  <div class="text-[13px] font-bold text-foreground leading-[1.2] px-2 pt-1"><%= reward.title %></div>
 
   <%# Cost + action %>
-  <div class="flex items-center justify-between gap-1">
+  <div class="flex items-center justify-between gap-1 px-2 pb-1.5">
     <span class="inline-flex items-center gap-1 font-extrabold text-[13px] text-foreground">
       <%= render Ui::Icon::Component.new("star", size: 13, color: "var(--star)") %>
       <%= reward.cost %>
