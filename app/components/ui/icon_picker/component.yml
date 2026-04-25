@@ -1,0 +1,23 @@
+name: IconPicker
+description: Searchable picker for Hugeicons. Renders preview tile + modal with curated and catalog tabs.
+
+props:
+  - name: field_name
+    type: String
+    description: Form field name for the hidden input (e.g. "global_task[icon]").
+  - name: value
+    type: String
+    default: "nil"
+    description: Current Hugeicons slug (raw, e.g. "bed-single-01").
+  - name: context
+    type: Symbol
+    default: ":any"
+    values: [":mission", ":reward", ":any"]
+    description: Drives the curated tab subset.
+  - name: color
+    type: String
+    default: '"var(--primary)"'
+    description: CSS color used for the preview tile tint.
+  - name: id
+    type: String
+    description: DOM id prefix. Modal id becomes "#{id}_modal".
