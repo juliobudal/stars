@@ -4,7 +4,14 @@ class FamilySessionsController < ApplicationController
   rate_limit to: 10, within: 3.minutes, only: :create, with: -> { head :too_many_requests }
 
   def new
-    redirect_to new_profile_session_path and return if cookies.signed[:family_id]
+    if (family_id = cookies.signed[:family_id])
+      if Family.exists?(id: family_id)
+        redirect_to new_profile_session_path and return
+      else
+        cookies.delete(:family_id)
+        reset_session
+      end
+    end
   end
 
   def create
