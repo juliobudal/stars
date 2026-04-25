@@ -14,7 +14,8 @@ class Parent::ProfilesController < ApplicationController
   end
 
   def new
-    @profile = current_family.profiles.new(role: :child)
+    role = (params[:onboarding] == "true" || params[:invited] == "true") ? :parent : :child
+    @profile = current_family.profiles.new(role: role)
   end
 
   def create
