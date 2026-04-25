@@ -1,116 +1,83 @@
-# Session Handoff — LogoMark Day/Night Mascot
+# Session Handoff — Parent UI Polish + Pendency Audit
 
-Date: 2026-04-23  
-Branch: `feat/pixel-perfect-refinement`  
-Last commit: `d9ae3fa style: kid nav — add LogoMark brand mark to side-nav header`
-
----
-
-## What Was Done This Session
-
-### Feature: Lucide SVG Logo Mascot (day/night)
-
-Replaced the Phosphor icon font call in the LittleStars brand mark with a new `Ui::LogoMark::Component` ViewComponent that renders inline Lucide SVG — gold star during day, lilac moon-star at night — using the design system's two brand color tokens.
-
-**Files created:**
-- `app/components/ui/logo_mark/component.rb` — time logic (`Time.current.hour`, DAY_START=6, DAY_END=20), size param, stroke color resolution
-- `app/components/ui/logo_mark/component.html.erb` — inline SVG, `var(--star)` for day, `var(--primary)` for night
-- `spec/components/ui/logo_mark/component_spec.rb` — 5 specs (day path, night path, day color, night color, custom size)
-
-**Files modified:**
-- `app/views/shared/_parent_nav.html.erb:10` — swapped `Ui::Icon::Component.new("star", ...)` → `Ui::LogoMark::Component.new(size: 24)`
-- `app/views/shared/_kid_nav.html.erb:9-17` — added brand mark block (see caveats below)
-
-**Commits (3):**
+Date: 2026-04-25
+Branch: `main`
+Last commits:
 ```
-1ec2521 feat: add Ui::LogoMark::Component — day star / night moon-star with brand colors
-4110849 style: parent nav — use LogoMark component (Lucide star/moon-star) for brand mark
-d9ae3fa style: kid nav — add LogoMark brand mark to side-nav header
+3af6f33 chore: rubocop autocorrect (case indent + array literal spacing)
+ef070f9 fix(ui): parent shell polish — full-bleed layout, tighter sidebar, FamilySelector + KidPlaceholderCard
+2258fb7 fix(auth): clear stale family cookie when family record is gone
 ```
 
-**Design tokens used:**
-- `--star: #FFC53D` (gold) — day variant stroke
-- `--primary: #A78BFA` (lilac) — night variant stroke
+---
 
-**SVG source:** Lucide icons — `star` (day) and `moon-star` (night)
+## What This Session Shipped
+
+### Parent shell polish (commit `ef070f9`)
+- **Layout** (`app/views/layouts/parent.html.erb`): dropped `lg:max-w-6xl mx-auto`. Full-bleed by default with `lg:px-8` gutter. New `:container_class` yield slot for narrow opt-in.
+- **Sidebar** (`app/views/shared/_parent_nav.html.erb`): nav items reduced `px-4 py-3 text-[15px]` → `px-3 py-2 text-[14px]`, icons 20 → 18.
+- **FamilySelector** (NEW `app/components/ui/family_selector/`): circular initial badge + truncated name + chevron on `bg-bg-soft` tile. Dropdown menu deferred.
+- **KidPlaceholderCard** (NEW `app/components/ui/kid_placeholder_card/`): replaces broken `ghost-add-card` (CSS class deleted in `129d153` Tailwind v4 refactor). Dashed-border card matching kid-card height with hover lift.
+- **Form opt-ins**: `content_for :container_class, "lg:max-w-3xl lg:mx-auto"` added to profiles/global_tasks/rewards/invitations new+edit; `lg:max-w-4xl` on settings/show.
+
+### Auth fix (commit `2258fb7`)
+- `FamilySessionsController#new` now clears stale `family_id` cookie when the Family record was deleted. Prevents `ERR_TOO_MANY_REDIRECTS`. 2 request specs added.
+
+Verification: 11/11 system specs green; rubocop clean on new components; visual screenshot confirms all 4 user complaints resolved.
 
 ---
 
-## Code Review Findings (Opus 4.7)
+## Pendency Audit (3 parallel Explore agents, 2026-04-25)
 
-Review range: `99486e1..d9ae3fa`  
-Verdict: **With fixes**
+### Audit results — most "pendencies" already shipped
 
-### Important — Must fix before merge
+| Group | Total items | HANDLE | SKIP | ALREADY-DONE |
+|-------|------------:|-------:|-----:|-------------:|
+| Parent UI residuals | 5 | 1 | 4 | 0 |
+| Icon picker plan (T1–T9 + repo hygiene) | 12 | 0 | 0 | 12 |
+| Goofy lake / 9-wave UI / design gaps | 7 | 0 | 1 | 6 |
 
-**1. Kid nav dead code**
-- File: `app/views/shared/_kid_nav.html.erb:10-16`
-- Kid `side-nav` is `display:none` — kid layout has no desktop sidebar, only bottom-nav. The brand block added there never renders.
-- Fix: Remove the block OR add an ERB comment making the intent explicit so future readers don't "fix" it.
+### Real pendencies for next session
 
-**2. Boundary specs missing**
-- File: `spec/components/ui/logo_mark/component_spec.rb`
-- `hour == 5` (night), `hour == 6` (day), `hour == 19` (day), `hour == 20` (night) not tested.
-- Off-by-one on `hour < DAY_END` is exactly what boundary tests catch.
-- Fix: Add 4 boundary examples.
+**Tier 1 — quick wins (under 30 min)**
 
-**3. Caching/timezone decision needed**
-- File: `app/components/ui/logo_mark/component.rb:9`
-- `Time.current.hour` uses Rails app TZ, not user's local clock. Fragment cache could also "stick" the wrong variant across the 6h/20h boundary.
-- Fix: Either (a) document the server-TZ constraint with a comment on `day?`, or (b) move the check to a Stimulus controller using `new Date().getHours()` for user-local time. **Decision required from user.**
+1. **Settings legacy headings** — `app/views/parent/settings/show.html.erb:24`
+   - Replace `<h2 class="font-display text-xl font-bold mb-4">PINs dos perfis</h2>` with `Ui::Heading::Component.new(size: :h2, class: "mb-4")`.
+   - Also consider: wrap raw `<ul>` of PIN reset rows in a list ViewComponent if pattern repeats elsewhere — otherwise leave inline.
 
-### Minor — Nice to have
+**Tier 2 — design polish (post-MVP, larger scope)**
 
-**4. SVG path version comment** — `component.html.erb:10,12-14`  
-Add `<%# Lucide vX.X.X star / moon-star %>` comment for future icon audit.
+2. **Hardcoded color migration** — `.planning/ui-reviews/ui-review-pixel-perfect.md:25-31` flags 23 hardcoded color values across views/components. Sweep to design tokens (`var(--primary)`, `var(--c-rose)`, etc.). Estimate: 1 phase.
 
-**5. `@size` ivar vs `attr_reader`** — `component.rb:5-7`  
-Template uses `@size` directly while helpers use method calls. Pick one style.
+3. **Font scale consolidation** — same audit flags 12 distinct `text-[Npx]` sizes across the app. Consolidate to the 5 sizes already defined in `Ui::Heading::Component` (`h1 32 / h2 22 / h3 18 / h4 15 / display 40`) plus body `text-[14px]`. Estimate: 1 phase.
 
-**6. `size:` guard** — `component.rb:5`  
-`size: nil` renders broken SVG. `@size = Integer(size)` is cheap insurance.
+4. **Destructive-action confirmations** — same audit notes missing confirms on irreversible actions. Currently uses `data: { turbo_confirm: ... }` ad hoc. Standardize via a `Ui::ConfirmAction` helper or convention doc. Estimate: 0.5 phase.
 
-**7. Brand block inline styles duplicated** — both nav partials  
-Same padding/border/row pattern in `_parent_nav` and `_kid_nav`. Extract `.brand-mark` CSS class on next cleanup pass.
+### Confirmed not actionable (skipped with rationale)
 
----
+- **Duplicate empty-state in kid index** — `Ui::KidPlaceholderCard` (always) and `Ui::Empty` (only when empty) are visually separated by grid layout; not actually overlapping.
+- **`border-border` token** — defined in `theme.css:115` as `--border: var(--hairline)`. Not orphan.
+- **Mobile bottom nav density** — 22px icons + `text-[10px]` are intentional thumb targets in 72px nav. Different design context than sidebar.
+- **`KidManagementCard` not using `Ui::Card` primitive** — only 2 cards (KidManagement + RewardCatalog) bypass primitive; both need custom data-palette + overflow behavior. Refactor cost > benefit.
+- **Vite HMR WS errors in browser console** — dev-only, port mapping artifact (10302).
 
-## Next Session: What to Do
+### Confirmed already done (closed in earlier sessions)
 
-### Option A — Fix all issues, then merge PR
-
-1. Decide: server TZ (`Time.current`) or client TZ (Stimulus + `new Date().getHours()`)
-2. Fix dead code in `_kid_nav.html.erb` (remove or comment)
-3. Add boundary specs: `hour == 5/6/19/20`
-4. Add Lucide version comment to template
-5. Standardize `@size` → `attr_reader :size`
-6. Run `bundle exec rspec spec/components/ui/logo_mark/` inside `docker compose exec web`
-7. Run `bin/rubocop app/components/ui/logo_mark/`
-8. Create PR → `main`
-
-### Option B — Client-side TZ (Stimulus approach)
-
-If user wants user-local clock:
-1. Create `app/assets/controllers/logo_mark_controller.js`
-   - On connect: get `new Date().getHours()`, toggle `data-variant="day"/"night"` on SVG wrapper
-2. Update `component.html.erb` to default to server-side variant, add `data-controller="logo-mark"` for JS enhancement
-3. This is progressive enhancement — server renders correct variant for app TZ, JS corrects for user TZ
+- All 9 icon-picker plan tasks (commits `57bbb69` → `54617ce`).
+- Tag-split fix (`5d352b3`), manifest gitignore, `bin/setup` icons:sync hook.
+- 9-wave UI plan W1–W8 (Opus-approved 5/8 first pass; W4/W5/W6 re-fixed in `c817e75`/`6f08b99`/`c522e65`).
+- Today's commits (`cd50cb2`, `fdf9ebb`, `ef070f9`) collectively close Spacing, Visuals, and Experience pillars from the 6-pillar pixel-perfect audit.
 
 ---
 
-## Design System Context
+## Recommended next-session entry point
 
-- `--star: #FFC53D` — star gold (day mascot)  
-- `--primary: #A78BFA` — Berry Pop lilac (night mascot)
-- Font: Inter (body), Fredoka (display/headings)
-- Component lives at: `app/components/ui/logo_mark/`
-- Phosphor icon font still used everywhere else in the app (`Ui::Icon::Component`) — LogoMark is the only inline SVG component
+```
+1. Quick win: settings/show.html.erb — Ui::Heading swap (10 min, single commit).
+2. Decide on Tier 2 scope: pick one of {color migration, font scale, confirmations}
+   based on roadmap priority. Each warrants its own phase.
+3. Re-run pendency audit if more than a week passes between sessions —
+   memory drifts, codebase moves.
+```
 
----
-
-## Environment
-
-- Dev: `docker compose exec web` — all commands run inside container
-- Server: `bin/dev` (Rails + Vite)
-- Tests: `docker compose exec web bundle exec rspec`
-- Port: `http://localhost:10301`
+Audit source: 3 Explore agents dispatched 2026-04-25. Full per-item evidence available in conversation transcript.
