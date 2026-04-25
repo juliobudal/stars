@@ -5,19 +5,10 @@ RSpec.describe Ui::Btn::Component, type: :component do
   include ViewComponent::TestHelpers
 
   describe "variant rendering" do
-    variant_bg = {
-      "primary"   => "bg-primary",
-      "secondary" => "bg-white",
-      "ghost"     => "bg-transparent",
-      "danger"    => "bg-destructive",
-      "success"   => "bg-success",
-      "star"      => "bg-warning"
-    }
-
     Ui::Btn::Component::VARIANTS.each do |variant|
-      it "renders #{variant} variant with expected bg class" do
+      it "renders #{variant} variant with expected BEM modifier class" do
         render_inline(described_class.new(variant: variant)) { "Click" }
-        expect(page.native.to_html).to include(variant_bg[variant])
+        expect(page.native.to_html).to include("ui-btn--#{variant}")
       end
     end
   end
@@ -45,19 +36,19 @@ RSpec.describe Ui::Btn::Component, type: :component do
   end
 
   describe "size classes" do
-    it "applies text-[14px] for size sm" do
+    it "applies ui-btn--sm BEM modifier for size sm" do
       render_inline(described_class.new(size: "sm")) { "Small" }
-      expect(page.native.to_html).to include("text-[14px]")
+      expect(page.native.to_html).to include("ui-btn--sm")
     end
 
-    it "applies text-[18px] for size lg" do
+    it "applies ui-btn--lg BEM modifier for size lg" do
       render_inline(described_class.new(size: "lg")) { "Large" }
-      expect(page.native.to_html).to include("text-[18px]")
+      expect(page.native.to_html).to include("ui-btn--lg")
     end
 
-    it "applies text-[16px] for default size md" do
+    it "applies ui-btn--md BEM modifier for default size md" do
       render_inline(described_class.new) { "Default" }
-      expect(page.native.to_html).to include("text-[16px]")
+      expect(page.native.to_html).to include("ui-btn--md")
     end
   end
 
