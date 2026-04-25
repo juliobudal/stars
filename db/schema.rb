@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_23_213717) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_25_134210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -61,13 +61,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_213717) do
     t.integer "auto_approve_threshold"
     t.datetime "created_at", null: false
     t.boolean "decay_enabled", default: false
+    t.citext "email"
     t.string "locale", default: "pt-BR"
     t.integer "max_debt", default: 100, null: false
     t.string "name"
+    t.string "password_digest"
     t.boolean "require_photo", default: false
     t.string "timezone", default: "America/Sao_Paulo"
     t.datetime "updated_at", null: false
     t.integer "week_start", default: 1
+    t.index ["email"], name: "index_families_on_email", unique: true
   end
 
   create_table "global_task_assignments", force: :cascade do |t|
@@ -126,16 +129,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_213717) do
   create_table "profiles", force: :cascade do |t|
     t.string "avatar"
     t.string "color"
-    t.datetime "confirmed_at"
     t.datetime "created_at", null: false
     t.citext "email"
     t.bigint "family_id", null: false
     t.string "name"
-    t.string "password_digest"
+    t.string "pin_digest"
     t.integer "points", default: 0
     t.integer "role"
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_profiles_on_email_parent", unique: true, where: "(role = 1)"
     t.index ["family_id"], name: "index_profiles_on_family_id"
   end
 
