@@ -39,19 +39,19 @@ Verification: 11/11 system specs green; rubocop clean on new components; visual 
 
 ### Real pendencies for next session
 
-**Tier 1 — quick wins (under 30 min)**
+**All Tier 1 + Tier 2 closed in this session** (commits `f33fe1e`, `c2f87d6`, `b0be282`):
 
-1. **Settings legacy headings** — `app/views/parent/settings/show.html.erb:24`
-   - Replace `<h2 class="font-display text-xl font-bold mb-4">PINs dos perfis</h2>` with `Ui::Heading::Component.new(size: :h2, class: "mb-4")`.
-   - Also consider: wrap raw `<ul>` of PIN reset rows in a list ViewComponent if pattern repeats elsewhere — otherwise leave inline.
+1. ✅ Settings PINs heading → `Ui::Heading::Component` (`f33fe1e`).
+2. ✅ Hardcoded color migration — verified already done in earlier commits `98e69a7`, `1a44d8f`. Audit-flagged files (`kid/dashboard`, `_bg_shapes`, `parent/dashboard`, `_star_mascot`) all reference tokens or use intentional opacity literals.
+3. ✅ Font scale — canonical `--text-xs..3xl` (11/13/15/18/22/26/36) added to `theme.css:214-222`. `stat_metric` and `approval_row` migrated. Out-of-scope inline `font-size:` left in: `invitation_mailer/invite.html.erb`, `pin_modal/component.css`, dynamic `size:`-driven components (`Ui::Icon`, `Ui::StarBadge`, `Ui::Avatar`, `Ui::KidInitialChip`).
+4. ✅ Destructive confirmations standardized: `kid_management_card`, `profiles/_form`, `global_tasks/_form`, `mission_list_row`, `reward_catalog_card`, `approvals/index` (`c2f87d6`).
 
-**Tier 2 — design polish (post-MVP, larger scope)**
+### Remaining (lower priority, deferred)
 
-2. **Hardcoded color migration** — `.planning/ui-reviews/ui-review-pixel-perfect.md:25-31` flags 23 hardcoded color values across views/components. Sweep to design tokens (`var(--primary)`, `var(--c-rose)`, etc.). Estimate: 1 phase.
-
-3. **Font scale consolidation** — same audit flags 12 distinct `text-[Npx]` sizes across the app. Consolidate to the 5 sizes already defined in `Ui::Heading::Component` (`h1 32 / h2 22 / h3 18 / h4 15 / display 40`) plus body `text-[14px]`. Estimate: 1 phase.
-
-4. **Destructive-action confirmations** — same audit notes missing confirms on irreversible actions. Currently uses `data: { turbo_confirm: ... }` ad hoc. Standardize via a `Ui::ConfirmAction` helper or convention doc. Estimate: 0.5 phase.
+- **Out-of-scope hex codes** still present in: `app/components/ui/bg_shapes/component.rb`, `smiley_avatar/component.rb`, `pin_modal/component.css`, `confetti/confetti_controller.js`, `app/views/invitation_mailer/invite.html.erb`. These were not in the original audit's flagged list. Run `/gsd-audit-fix` if a sweep is desired.
+- **Inline `font-size:` TODOs** in: `parent/global_tasks/index.html.erb:62`, `invitation_mailer/invite.html.erb:10`, `pin_modal/component.css:2-11`. Defer until next refactor pass.
+- **Family-switch dropdown menu** — `Ui::FamilySelector` button has cosmetic chevron only; wire real menu when multi-family ships.
+- **Vite HMR WS dev errors** — port mapping artifact (10302). Dev ergonomics.
 
 ### Confirmed not actionable (skipped with rationale)
 
