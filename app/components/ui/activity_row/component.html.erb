@@ -1,4 +1,4 @@
-<div class="flex items-center gap-3.5 py-3.5 <%= with_divider ? 'border-b border-[var(--hairline)]' : '' %>">
+<div data-palette="<%= helpers.palette_for(kid) %>" class="flex items-center gap-3.5 py-3.5 <%= with_divider ? 'border-b border-[var(--hairline)]' : '' %>">
   <% if kid %>
     <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 34) %>
   <% end %>
