@@ -13,11 +13,16 @@
   <%
     cat_name = global_task.category || "geral"
     cat_data = Ui::MissionCard::Component::CATEGORIES[cat_name.to_s] || Ui::MissionCard::Component::CATEGORIES["geral"]
-    icon_options = %w[bed brush book dish bookOpen bear paw music sun home graduationCap muscle]
   %>
 
-  <div class="flex items-center justify-center mb-4">
-    <%= render Ui::IconTile::Component.new(icon: global_task.icon.presence || "target", color: cat_data[:color], size: 80) %>
+  <div class="mb-4 flex flex-col items-center gap-2">
+    <%= render Ui::IconPicker::Component.new(
+          field_name: "global_task[icon]",
+          value: global_task.icon,
+          context: :mission,
+          color: "var(--c-#{cat_data[:color]})",
+          id: "global_task_icon_picker"
+        ) %>
   </div>
 
   <div class="mb-6 flex flex-col gap-2">
@@ -51,20 +56,6 @@
             <%= render Ui::Icon::Component.new(data[:icon], size: 14) %>
             <%= data[:label] %>
           <% end %>
-        </label>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="mb-6 flex flex-col gap-2">
-    <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Ícone</label>
-    <div class="row flex-wrap gap-1.5">
-      <% icon_options.each do |ic| %>
-        <label class="cursor-pointer">
-          <%= f.radio_button :icon, ic, class: "peer sr-only" %>
-          <div class="peer-checked:bg-primary-soft peer-checked:border-primary border-2 border-[rgba(26,42,74,0.1)] p-2 rounded-xl transition-all flex items-center justify-center w-11 h-11 bg-white">
-            <%= render Ui::Icon::Component.new(ic, size: 24, color: "var(--primary)") %>
-          </div>
         </label>
       <% end %>
     </div>
