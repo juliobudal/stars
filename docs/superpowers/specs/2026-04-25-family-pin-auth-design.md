@@ -50,7 +50,7 @@ Validations: email presence + format; password length ≥ 12 on create.
 | Column            | Change                                               |
 |-------------------|------------------------------------------------------|
 | `password_digest` | **drop**                                             |
-| `pin_digest`      | **add** string, not null after onboarding completes  |
+| `pin_digest`      | **add** string, not null (set at profile create time) |
 | `email`           | keep as optional personal email (no longer login)    |
 | `confirmed_at`    | drop (parent confirmation belongs to family now)     |
 
@@ -67,8 +67,10 @@ Per Q15: nuke + reseed. A single migration drops `profiles.password_digest`, `pr
 ## 5. Routes
 
 ```ruby
-root "family_sessions#new"               # if no family cookie
-# else root redirects to profile_sessions#new (picker)
+root "home#index"                        # branches based on auth state
+# - no family cookie       → redirect new_family_session_path
+# - cookie + no profile id → redirect new_profile_session_path
+# - both                   → redirect role root
 
 resource :family_session,  only: [:new, :create, :destroy]
 resource :profile_session, only: [:new, :create, :destroy]
@@ -102,7 +104,7 @@ The existing `resources :sessions` route is removed in favor of the two split re
 ### Models
 
 - `Family` — `has_secure_password validations: false`, validates email/password as above, `has_many :profiles`.
-- `Profile` — drops password validations, adds `authenticate_pin(pin)` returning bool, validates `pin_digest` presence (except during the brief onboarding step before the parent supplies one), validates submitted PIN format on assignment.
+- `Profile` — drops password validations, adds `authenticate_pin(pin)` returning bool, validates `pin_digest` presence on create, validates submitted PIN matches `\A\d{4}\z` on assignment via a virtual `pin` attribute that hashes into `pin_digest`.
 
 ### Controllers
 
