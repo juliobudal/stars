@@ -3,7 +3,9 @@
   <%# ─── Header ─── %>
   <div class="flex items-start justify-between mb-5 z-content shrink-0">
     <div>
-      <h1 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground flex items-center gap-2 text-[26px] mb-1">Olá, <%= current_profile.name %> <%= render Ui::Icon::Component.new(:sparkle, size: 22, color: "var(--c-amber-dark)") %></h1>
+      <%= render Ui::Heading::Component.new(size: :h1, class: "flex items-center gap-2 text-[26px] mb-1") do %>
+        Olá, <%= current_profile.name %> <%= render Ui::Icon::Component.new(:sparkle, size: 22, color: "var(--c-amber-dark)") %>
+      <% end %>
       <p class="text-[13px] font-semibold text-muted-foreground m-0">
         Você tem <strong><%= @stats[:pending_approvals] %></strong> aprovações aguardando e <strong><%= @stats[:children] %></strong> crianças ativas.
       </p>
@@ -15,7 +17,7 @@
 
   <%# ─── Pending approvals banner ─── %>
   <% if @stats[:pending_approvals].to_i > 0 %>
-    <div class="bg-gradient-to-br from-primary to-primary-depth rounded-md px-6 py-5 mb-5 text-white flex items-center flex-wrap gap-[18px] shadow-[0_8px_28px_rgba(167,139,250,0.35)] z-content shrink-0">
+    <div class="bg-gradient-to-br from-primary to-primary-depth rounded-card px-6 py-5 mb-5 text-white flex items-center flex-wrap gap-[18px] shadow-[0_8px_28px_rgba(167,139,250,0.35)] z-content shrink-0">
       <div class="w-13 h-13 rounded-[14px] bg-white/20 grid place-items-center shrink-0">
         <%= render Ui::Icon::Component.new("bell", size: 26, color: "white") %>
       </div>
@@ -38,7 +40,7 @@
   <%# ─── Kid cards ─── %>
   <div class="mb-5 z-content">
     <div class="flex items-center justify-between mb-3">
-      <h2 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[22px] m-0">Suas crianças</h2>
+      <%= render Ui::Heading::Component.new(size: :h2, class: "m-0") do %>Suas crianças<% end %>
       <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: parent_profiles_path) do %>+ Adicionar criança<% end %>
     </div>
 
@@ -66,19 +68,23 @@
   <%# ─── Atividade recente ─── %>
   <div class="z-content">
     <div class="flex items-center justify-between mb-3">
-      <h2 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[22px] m-0">Atividade recente</h2>
+      <%= render Ui::Heading::Component.new(size: :h2, class: "m-0") do %>Atividade recente<% end %>
       <%= link_to "Ver tudo", parent_activity_logs_path, class: "text-[13px] font-bold text-primary no-underline hover:underline" %>
     </div>
     <% if @recent_activity.any? %>
-      <div class="bg-surface rounded-md p-7 shadow-card relative border-none py-3.5 px-5">
+      <%= render Ui::Card::Component.new(padding: "sm") do %>
         <% @recent_activity.each_with_index do |log, i| %>
           <%= render Ui::ActivityRow::Component.new(log: log, with_divider: i < @recent_activity.size - 1) %>
         <% end %>
-      </div>
+      <% end %>
     <% else %>
-      <div class="bg-surface rounded-md p-7 shadow-card relative border-none p-6 text-center text-muted-foreground text-[13px] font-bold">
-        Nenhuma atividade ainda.
-      </div>
+      <%= render Ui::Card::Component.new(padding: "md") do %>
+        <%= render Ui::Empty::Component.new(
+          icon: "clock",
+          title: "Sem atividade ainda",
+          subtitle: "Quando suas crianças completarem missões, aparecerá aqui."
+        ) %>
+      <% end %>
     <% end %>
   </div>
 </div>

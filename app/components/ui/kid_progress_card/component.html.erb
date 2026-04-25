@@ -1,4 +1,4 @@
-<div class="bg-surface rounded-md p-7 shadow-card relative border-none p-0 overflow-hidden">
+<%= render Ui::Card::Component.new(padding: "none", class: "overflow-hidden") do %>
   <%# Slim color strip with edit pencil %>
   <div class="h-12 relative shrink-0" style="background: <%= palette[:fill] %>;">
     <%= link_to edit_parent_profile_path(kid),
@@ -17,7 +17,7 @@
 
     <%# Name + streak %>
     <div class="flex items-center justify-between mt-2">
-      <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-lg"><%= kid.name %></div>
+      <%= render Ui::Heading::Component.new(size: :h3, class: "m-0") do %><%= kid.name %><% end %>
       <% if streak > 0 %>
         <span class="flex items-center bg-amber-soft text-amber-dark text-xs font-extrabold py-0.5 px-2 rounded-full gap-1">
           <%= render Ui::Icon::Component.new(:fire, size: 14, color: "var(--c-amber-dark)") %> <%= streak %>
@@ -28,12 +28,12 @@
     <%# 2-col stats %>
     <div class="grid grid-cols-2 gap-2 mt-3">
       <div class="rounded-xl py-2.5 px-3" style="background: <%= palette[:fill] %>;">
-        <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground flex items-center gap-1 text-[15px]"><%= render Ui::Icon::Component.new(:star, size: 15, color: "var(--c-amber-dark)") %> <%= points %></div>
-        <div class="text-[13px] text-muted-foreground mt-0.5">Saldo</div>
+        <div class="font-display text-[20px] leading-none font-extrabold text-foreground flex items-center gap-1"><%= render Ui::Icon::Component.new(:star, size: 15, color: "var(--c-amber-dark)") %> <%= points %></div>
+        <div class="text-[12px] font-bold text-muted-foreground mt-1">Saldo</div>
       </div>
       <div class="rounded-xl py-2.5 px-3" style="background: <%= palette[:fill] %>;">
-        <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[15px]"><%= missions_count %></div>
-        <div class="text-[13px] text-muted-foreground mt-0.5">Missões</div>
+        <div class="font-display text-[20px] leading-none font-extrabold text-foreground"><%= missions_count %></div>
+        <div class="text-[12px] font-bold text-muted-foreground mt-1">Missões</div>
       </div>
     </div>
 
@@ -45,4 +45,4 @@
       </div>
     <% end %>
   </div>
-</div>
+<% end %>

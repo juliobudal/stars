@@ -1,6 +1,14 @@
 class Ui::Card::Component < ApplicationComponent
-  def initialize(variant: "default", **options)
+  PADDINGS = {
+    "none" => "p-0",
+    "sm"   => "p-4.5",
+    "md"   => "p-6",
+    "lg"   => "p-7"
+  }.freeze
+
+  def initialize(variant: "default", padding: "lg", **options)
     @variant = variant
+    @padding = padding
     @options = options
   end
 
@@ -11,8 +19,10 @@ class Ui::Card::Component < ApplicationComponent
   private
 
   def classes
-    base_classes = "bg-surface rounded-card p-7 shadow-card relative border-none"
-    
+    base_classes = "bg-surface rounded-card shadow-card relative border-none"
+
+    padding_class = PADDINGS[@padding.to_s] || @padding.to_s
+
     variant_classes = case @variant
       when "primary"
         "bg-primary text-white shadow-[0_2px_0_rgba(44,42,58,0.04),_0_6px_16px_rgba(44,42,58,0.05)]"
@@ -24,6 +34,7 @@ class Ui::Card::Component < ApplicationComponent
 
     class_names(
       base_classes,
+      padding_class,
       variant_classes,
       @options.delete(:class)
     )

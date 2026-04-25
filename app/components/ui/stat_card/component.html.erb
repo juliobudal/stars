@@ -1,7 +1,7 @@
-<div class="bg-surface rounded-md p-7 shadow-card relative border-none flex flex-col p-4.5 gap-2">
+<%= render Ui::Card::Component.new(padding: "sm", class: "flex flex-col gap-2") do %>
   <div class="w-10 h-10 rounded-[10px] grid place-items-center shrink-0" style="background: <%= tint[:bg] %>;">
     <%= render Ui::Icon::Component.new(icon, size: 22, color: tint[:fg]) %>
   </div>
-  <div class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground"><%= value %></div>
-  <div class="text-[12px] font-bold text-muted-foreground"><%= label %></div>
-</div>
+  <div class="font-display text-[28px] leading-none font-extrabold tracking-[-0.02em] text-foreground"><%= value %></div>
+  <div class="text-[12px] font-bold text-muted-foreground leading-tight"><%= label %></div>
+<% end %>
