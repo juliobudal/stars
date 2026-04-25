@@ -74,6 +74,6 @@ class Parent::ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:name, :role, :avatar, :color, :email, :pin)
+    params.require(:profile).permit(:name, :avatar, :color, :email, :pin)
   end
 end
