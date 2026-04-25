@@ -1,24 +1,36 @@
 class Parent::ProfilesController < ApplicationController
   include Authenticatable
-  before_action :require_parent!
+
+  skip_before_action :require_profile!, only: [ :new, :create ], if: -> { params[:onboarding] == "true" }
+
+  before_action :require_parent!, except: [ :new, :create ]
+  before_action :require_parent_unless_onboarding!, only: [ :new, :create ]
   before_action :set_profile, only: [ :edit, :update, :destroy ]
 
   layout "parent"
 
   def index
-    @profiles = Profile.where(family_id: current_profile.family_id).child.includes(:profile_tasks).order(:name)
+    @profiles = current_family.profiles.child.includes(:profile_tasks).order(:name)
   end
 
   def new
-    @profile = Profile.new(family_id: current_profile.family_id, role: :child)
+    @profile = current_family.profiles.new(role: :child)
   end
 
   def create
-    @profile = Profile.new(profile_params.merge(family_id: current_profile.family_id, role: :child))
-
-    if @profile.save
-      redirect_to parent_root_path, notice: "Filho adicionado com sucesso!"
+    pin = params.dig(:profile, :pin)
+    attrs = profile_params.except(:pin)
+    attrs[:role] = :parent if params[:invited] == "true"
+    result = Auth::CreateProfile.call(family: current_family, params: attrs, pin: pin)
+    if result.success?
+      if params[:onboarding] == "true"
+        session[:profile_id] = result.profile.id
+        redirect_to result.profile.parent? ? parent_root_path : kid_root_path
+      else
+        redirect_to parent_profiles_path, notice: "Perfil criado."
+      end
     else
+      @profile = result.profile
       render :new, status: :unprocessable_entity
     end
   end
@@ -39,13 +51,28 @@ class Parent::ProfilesController < ApplicationController
     redirect_to parent_root_path, notice: "Perfil removido com sucesso."
   end
 
+  def reset_pin
+    profile = current_family.profiles.find(params[:id])
+    result = Auth::ResetPin.call(profile: profile, new_pin: params[:pin], actor: current_profile)
+    if result.success?
+      redirect_to parent_settings_path, notice: "PIN redefinido."
+    else
+      redirect_to parent_settings_path, alert: result.error
+    end
+  end
+
   private
 
+  def require_parent_unless_onboarding!
+    return if params[:onboarding] == "true" && current_profile.nil?
+    require_parent!
+  end
+
   def set_profile
-    @profile = Profile.where(family_id: current_profile.family_id).child.find(params[:id])
+    @profile = current_family.profiles.child.find(params[:id])
   end
 
   def profile_params
-    params.require(:profile).permit(:name, :avatar, :color)
+    params.require(:profile).permit(:name, :role, :avatar, :color, :email, :pin)
   end
 end

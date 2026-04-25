@@ -51,6 +51,20 @@
     </div>
   </div>
 
+  <div class="mb-6 flex flex-col gap-2">
+    <%= f.label :pin, "PIN (4 dígitos)", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
+    <%= f.text_field :pin, pattern: "\\d{4}", maxlength: 4, inputmode: "numeric",
+        autocomplete: "off", required: action_name == "new",
+        class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm" %>
+  </div>
+
+  <% if params[:onboarding].present? %>
+    <%= hidden_field_tag :onboarding, params[:onboarding] %>
+  <% end %>
+  <% if params[:invited].present? %>
+    <%= hidden_field_tag :invited, params[:invited] %>
+  <% end %>
+
   <div class="row mt-4 gap-2.5 justify-end">
     <%= render Ui::Btn::Component.new(variant: "secondary", url: parent_root_path) do %>Voltar<% end %>
     <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>Salvar Perfil<% end %>
