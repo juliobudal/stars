@@ -1,5 +1,5 @@
 <% if form_bound? %>
-  <label class="inline-flex cursor-pointer select-none group" aria-label="<%= aria_label %>">
+  <label class="toggle inline-flex cursor-pointer select-none group" aria-label="<%= aria_label %>">
     <input type="hidden" name="<%= name %>" value="0" form="<%= form %>" />
     <input type="checkbox" name="<%= name %>" value="<%= value %>" <%= "checked" if checked %> <%= "form=\"#{form}\"".html_safe if form.present? %> class="sr-only peer" />
     <span class="<%= peer_track_classes %>">
@@ -7,7 +7,7 @@
     </span>
   </label>
 <% else %>
-  <span class="inline-flex select-none" role="switch" aria-checked="<%= checked %>" aria-label="<%= aria_label %>">
+  <span class="toggle <%= 'is-checked' if checked %> inline-flex select-none" role="switch" aria-checked="<%= checked %>" aria-label="<%= aria_label %>">
     <span class="<%= track_classes %>">
       <span class="<%= thumb_classes %>"></span>
     </span>
