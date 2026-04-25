@@ -55,7 +55,7 @@ RSpec.describe "Parent::Profiles", type: :request do
             post parent_profiles_path, params: { profile: { name: "" } }
           }.not_to change(Profile, :count)
 
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
         end
       end
     end

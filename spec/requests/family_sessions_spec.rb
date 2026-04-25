@@ -12,7 +12,7 @@ RSpec.describe "FamilySessions", type: :request do
 
     it "re-renders new on invalid creds" do
       post family_session_path, params: { email: "f@x.co", password: "wrong" }
-      expect(response).to have_http_status(:unprocessable_entity).or have_http_status(:ok)
+      expect(response).to have_http_status(:unprocessable_content).or have_http_status(:ok)
       expect(cookies.signed[:family_id]).to be_blank
     end
   end

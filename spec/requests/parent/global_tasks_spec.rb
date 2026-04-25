@@ -70,7 +70,7 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
           }
         }.to_not change(GlobalTask, :count)
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
 
@@ -142,7 +142,7 @@ RSpec.describe "Parent::GlobalTasks", type: :request do
           }
         }.not_to change(GlobalTask, :count)
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
 

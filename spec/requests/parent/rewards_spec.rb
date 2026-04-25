@@ -67,7 +67,7 @@ RSpec.describe "Parent::Rewards", type: :request do
             post parent_rewards_path, params: { reward: { title: "", cost: 50 } }
           }.not_to change(Reward, :count)
 
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
         end
 
         it "renders new form with error on zero cost" do
@@ -75,7 +75,7 @@ RSpec.describe "Parent::Rewards", type: :request do
             post parent_rewards_path, params: { reward: { title: "Presente", cost: 0 } }
           }.not_to change(Reward, :count)
 
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
         end
       end
     end
