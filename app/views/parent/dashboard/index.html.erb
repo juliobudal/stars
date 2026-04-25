@@ -39,7 +39,7 @@
   <div class="mb-5 z-content">
     <div class="flex items-center justify-between mb-3">
       <h2 class="font-display text-[32px] leading-[1.1] font-extrabold tracking-[-0.02em] text-foreground text-[22px] m-0">Suas crianças</h2>
-      <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: parent_profiles_path) do %>+ Adicionar filho<% end %>
+      <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: parent_profiles_path) do %>+ Adicionar criança<% end %>
     </div>
 
     <% if @children.any? %>
@@ -56,9 +56,9 @@
       <%= render Ui::Empty::Component.new(
         icon: "users",
         title: "Nenhuma criança adicionada",
-        subtitle: "Para começar as missões, adicione o primeiro filho(a)."
+        subtitle: "Para começar as missões, adicione a primeira criança."
       ) do %>
-        <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: parent_profiles_path) do %>Adicionar Filho<% end %>
+        <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: parent_profiles_path) do %>Adicionar Criança<% end %>
       <% end %>
     <% end %>
   </div>

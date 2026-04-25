@@ -2,12 +2,12 @@
   <%= render Ui::BgShapes::Component.new(variant: "warm") %>
 
   <%= render Ui::TopBar::Component.new(
-    title: "Filhos",
-    subtitle: "Gerencia as crianças da família. Adicione novas, mude cor, nome ou expressão.",
+    title: "Crianças",
+    subtitle: "Gerencie as crianças da família. Adicione novas, mude cor, nome ou expressão.",
   ) do |bar| %>
     <% bar.with_right_slot do %>
       <%= render Ui::Btn::Component.new(variant: "primary", url: new_parent_profile_path) do %>
-        <%= render Ui::Icon::Component.new("star", size: 16, color: "white") %> Adicionar filho
+        <%= render Ui::Icon::Component.new("star", size: 16, color: "white") %> + Adicionar criança
       <% end %>
     <% end %>
   <% end %>
@@ -25,7 +25,7 @@
 
     <%= link_to new_parent_profile_path, class: "ghost-add-card" do %>
       <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-dashed border-current text-[22px] font-light leading-none">+</div>
-      <span class="text-[13px] font-bold">Adicionar filho</span>
+      <span class="text-[13px] font-bold">+ Adicionar criança</span>
     <% end %>
 
     <% if @profiles.empty? %>
@@ -33,7 +33,7 @@
         <%= render Ui::Empty::Component.new(
           icon: "users",
           title: "Nenhum perfil",
-          subtitle: "Adicione seu primeiro filho para começar!",
+          subtitle: "Adicione sua primeira criança para começar!",
           color: "peach"
         ) %>
       </div>
