@@ -8,6 +8,15 @@
 
   <body class="min-h-screen bg-bg-deep overflow-x-hidden lg:pl-[280px]" data-palette="sky">
     <%= turbo_stream_from current_profile.family, "approvals" %>
+    <div data-controller="switch-profile" class="absolute top-4 right-4 z-20">
+      <%= form_with url: profile_session_path, method: :delete, local: true,
+                    data: { switch_profile_target: "form" } do %>
+        <button type="button" data-action="click->switch-profile#confirm"
+                class="text-sm font-bold text-muted-foreground hover:text-primary">
+          Trocar perfil
+        </button>
+      <% end %>
+    </div>
     <%= render "shared/parent_nav" %>
     <div class="p-6 w-full max-w-[500px] lg:max-w-4xl mx-auto relative z-1 pb-24 lg:pb-6">
       <%= render Ui::Flash::Component.new %>
