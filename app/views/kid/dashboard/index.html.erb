@@ -22,7 +22,7 @@
 
   <%# ── Header ── %>
   <div class="flex gap-4 z-2 shrink-0 items-center mb-8">
-    <%= link_to sessions_path,
+    <%= button_to profile_session_path, method: :delete,
           class: "w-10 h-10 rounded-full bg-white grid place-items-center shrink-0 shadow-card",
           title: "Trocar perfil" do %>
       <%= render Ui::Icon::Component.new("arrow-left", size: 16, color: "var(--text-muted)") %>

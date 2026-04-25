@@ -73,7 +73,7 @@
         <div class="text-[13px] font-bold text-foreground overflow-hidden text-ellipsis whitespace-nowrap"><%= current_profile.name %></div>
         <div class="text-[11px] text-muted-foreground">Responsável</div>
       </div>
-      <%= button_to sessions_path, method: :delete,
+      <%= button_to profile_session_path, method: :delete,
           class: "flex items-center justify-center shrink-0 w-8 h-8 p-0 bg-transparent border-none cursor-pointer text-muted-foreground rounded-md transition-colors hover:bg-surface-2",
           title: "Sair",
           form: { class: "contents" } do %>

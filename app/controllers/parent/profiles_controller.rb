@@ -20,7 +20,8 @@ class Parent::ProfilesController < ApplicationController
   def create
     pin = params.dig(:profile, :pin)
     attrs = profile_params.except(:pin)
-    attrs[:role] = :parent if params[:invited] == "true"
+    # Onboarding always creates a parent profile (first parent on signup, additional parents on invite).
+    attrs[:role] = :parent if params[:onboarding] == "true" || params[:invited] == "true"
     result = Auth::CreateProfile.call(family: current_family, params: attrs, pin: pin)
     if result.success?
       if params[:onboarding] == "true"

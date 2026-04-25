@@ -14,7 +14,7 @@
       <span class="text-[10px] font-display font-extrabold tracking-wider uppercase"><%= item[:label] %></span>
     <% end %>
   <% end %>
-  <%= button_to sessions_path, method: :delete, class: "flex flex-col items-center gap-1 text-muted-foreground", title: "Sair" do %>
+  <%= button_to profile_session_path, method: :delete, class: "flex flex-col items-center gap-1 text-muted-foreground", title: "Sair" do %>
     <%= render Ui::Icon::Component.new("logout", size: 22) %>
     <span class="text-[10px] font-display font-extrabold tracking-wider uppercase">Sair</span>
   <% end %>
