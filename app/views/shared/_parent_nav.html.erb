@@ -32,10 +32,7 @@
     </div>
 
     <%# Family picker %>
-    <button type="button" class="flex items-center justify-between px-3 py-2.5 bg-muted rounded-xl border-none cursor-pointer w-full hover:bg-muted-foreground/10 transition-colors">
-      <span class="text-[13px] font-bold text-foreground overflow-hidden text-ellipsis whitespace-nowrap"><%= current_profile.family.name %></span>
-      <%= render Ui::Icon::Component.new("chevron", size: 14, color: "var(--color-text-muted)") %>
-    </button>
+    <%= render Ui::FamilySelector::Component.new(profile: current_profile) %>
   </div>
 
   <%# Nav items %>
@@ -53,10 +50,10 @@
     <% items.each do |item| %>
       <% active = current_page?(item[:path]) %>
       <%= link_to item[:path],
-          class: "flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-semibold text-[15px] #{active ? 'bg-primary/10 text-primary font-bold' : 'text-muted-foreground hover:bg-muted'}",
+          class: "flex items-center gap-2.5 px-3 py-2 rounded-lg transition-all font-semibold text-[14px] #{active ? 'bg-primary/10 text-primary font-bold' : 'text-muted-foreground hover:bg-muted'}",
           title: item[:label],
           aria: { current: active ? "page" : nil } do %>
-        <%= render Ui::Icon::Component.new(item[:icon], size: 20) %>
+        <%= render Ui::Icon::Component.new(item[:icon], size: 18) %>
         <span><%= item[:label] %></span>
         <% if item[:badge] %>
           <span class="ml-auto bg-primary text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full min-w-[20px] text-center"><%= item[:badge] %></span>

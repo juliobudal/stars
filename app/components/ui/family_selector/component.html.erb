@@ -1,0 +1,9 @@
+<button type="button"
+        class="flex items-center gap-2.5 w-full px-2.5 py-2 rounded-lg bg-bg-soft hover:bg-primary/5 transition-colors border-none cursor-pointer"
+        aria-label="Trocar família">
+  <span class="flex items-center justify-center w-7 h-7 rounded-full bg-primary text-white text-[12px] font-extrabold shrink-0">
+    <%= initial %>
+  </span>
+  <span class="flex-1 text-left text-[13px] font-bold text-foreground truncate"><%= @family.name %></span>
+  <%= render Ui::Icon::Component.new("chevron", size: 14, color: "var(--color-text-muted)") %>
+</button>

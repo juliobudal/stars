@@ -20,7 +20,7 @@
       </div>
       <%= render "shared/parent_nav" %>
     <% end %>
-    <div class="p-6 w-full max-w-[500px] lg:max-w-6xl mx-auto relative z-1 pb-24 lg:pb-6">
+    <div class="p-6 w-full max-w-[500px] mx-auto lg:max-w-none lg:mx-0 lg:px-8 relative z-1 pb-24 lg:pb-6 <%= content_for?(:container_class) ? content_for(:container_class) : '' %>">
       <%= render Ui::Flash::Component.new %>
       <%= yield %>
     </div>

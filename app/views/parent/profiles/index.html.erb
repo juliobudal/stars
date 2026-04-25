@@ -23,10 +23,7 @@
       <% end %>
     <% end %>
 
-    <%= link_to new_parent_profile_path, class: "ghost-add-card" do %>
-      <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-dashed border-current text-[22px] font-light leading-none">+</div>
-      <span class="text-[13px] font-bold">+ Adicionar criança</span>
-    <% end %>
+    <%= render Ui::KidPlaceholderCard::Component.new(href: new_parent_profile_path) %>
 
     <% if @profiles.empty? %>
       <div class="col-[1/-1]">
