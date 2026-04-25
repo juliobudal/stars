@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   around_action :with_family_locale
 
-  helper_method :current_profile, :family_today
+  helper_method :family_today
 
   def family_today(family)
     Time.current.in_time_zone(family.timezone).to_date
@@ -14,10 +14,6 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActionController::ParameterMissing, with: :bad_request
-
-  def current_profile
-    @current_profile ||= Profile.includes(:family).find_by(id: session[:profile_id]) if session[:profile_id]
-  end
 
   private
 
@@ -34,6 +30,8 @@ class ApplicationController < ActionController::Base
   end
 
   def with_family_locale
-    I18n.with_locale(current_profile&.family&.locale || I18n.default_locale) { yield }
+    family = Family.find_by(id: cookies.signed[:family_id])
+    locale = family&.locale || I18n.default_locale
+    I18n.with_locale(locale) { yield }
   end
 end
