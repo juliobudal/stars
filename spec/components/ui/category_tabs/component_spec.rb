@@ -10,7 +10,7 @@ RSpec.describe Ui::CategoryTabs::Component, type: :component do
       items: [ { id: "a", label: "A" }, { id: "b", label: "B" } ]
     ))
     expect(page).to have_css("button[data-tabs-target='tab']", count: 2)
-    expect(page).to have_css("button.active", text: "A")
+    expect(page).to have_css("button.cat-tab--active", text: "A")
   end
 
   it "wires Stimulus data-tabs-id-param per item" do
