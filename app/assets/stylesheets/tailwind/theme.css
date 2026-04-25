@@ -158,6 +158,55 @@
   --primary-glow: #5ddba0;
 }
 
+/* ─── Per-kid palettes (driven by Profile.color) ─── */
+[data-palette="peach"] {
+  --primary: var(--c-peach);
+  --primary-2: var(--c-peach-dark);
+  --primary-soft: var(--c-peach-soft);
+  --primary-glow: var(--c-peach);
+  --bg-soft: var(--c-peach-soft);
+}
+
+[data-palette="rose"] {
+  --primary: var(--c-rose);
+  --primary-2: var(--c-rose-dark);
+  --primary-soft: var(--c-rose-soft);
+  --primary-glow: var(--c-rose);
+  --bg-soft: var(--c-rose-soft);
+}
+
+[data-palette="mint"] {
+  --primary: var(--c-mint);
+  --primary-2: var(--c-mint-dark);
+  --primary-soft: var(--c-mint-soft);
+  --primary-glow: var(--c-mint);
+  --bg-soft: var(--c-mint-soft);
+}
+
+[data-palette="sky"] {
+  --primary: var(--c-sky);
+  --primary-2: var(--c-sky-dark);
+  --primary-soft: var(--c-sky-soft);
+  --primary-glow: var(--c-sky);
+  --bg-soft: var(--c-sky-soft);
+}
+
+[data-palette="lilac"] {
+  --primary: var(--c-lilac);
+  --primary-2: var(--c-lilac-dark);
+  --primary-soft: var(--c-lilac-soft);
+  --primary-glow: var(--c-lilac);
+  --bg-soft: var(--c-lilac-soft);
+}
+
+[data-palette="coral"] {
+  --primary: var(--c-coral);
+  --primary-2: var(--c-coral-dark);
+  --primary-soft: var(--c-coral-soft);
+  --primary-glow: var(--c-coral);
+  --bg-soft: var(--c-coral-soft);
+}
+
 @theme {
   --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --font-serif: ui-serif, georgia, cambria, 'Times New Roman', times, serif;
