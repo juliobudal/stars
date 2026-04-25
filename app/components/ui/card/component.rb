@@ -24,13 +24,13 @@ class Ui::Card::Component < ApplicationComponent
     padding_class = PADDINGS[@padding.to_s] || @padding.to_s
 
     variant_classes = case @variant
-      when "primary"
+    when "primary"
         "bg-primary text-white shadow-[0_2px_0_rgba(44,42,58,0.04),_0_6px_16px_rgba(44,42,58,0.05)]"
-      when "flat"
+    when "flat"
         "shadow-none"
-      else
+    else
         ""
-      end
+    end
 
     class_names(
       base_classes,

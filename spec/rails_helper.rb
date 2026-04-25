@@ -78,7 +78,7 @@ RSpec.configure do |config|
   config.include SystemAuthHelpers, type: :system
 
   config.before(:each, type: :system) do
-    [Redemption, ActivityLog, ProfileTask, GlobalTaskAssignment, Reward, GlobalTask, ProfileInvitation, Profile, Family].each(&:delete_all)
+    [ Redemption, ActivityLog, ProfileTask, GlobalTaskAssignment, Reward, GlobalTask, ProfileInvitation, Profile, Family ].each(&:delete_all)
   end
 end
 

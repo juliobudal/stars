@@ -1,4 +1,4 @@
-[ActivityLog, Redemption, ProfileTask, GlobalTaskAssignment, Reward, GlobalTask, Profile, ProfileInvitation, Family].each(&:delete_all)
+[ ActivityLog, Redemption, ProfileTask, GlobalTaskAssignment, Reward, GlobalTask, Profile, ProfileInvitation, Family ].each(&:delete_all)
 
 ActiveRecord::Base.strict_loading_by_default = false
 

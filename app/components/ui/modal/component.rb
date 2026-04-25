@@ -10,12 +10,12 @@ class Ui::Modal::Component < ApplicationComponent
   def call
     overlay_classes = "modal-overlay fixed inset-0 bg-black/40 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
     modal_classes = "bg-surface rounded-card shadow-card w-full animate-pop-in overflow-hidden"
-    
+
     size_classes = case @size
-                   when "sm" then "max-w-md"
-                   when "lg" then "max-w-4xl"
-                   else "max-w-2xl" # md
-                   end
+    when "sm" then "max-w-md"
+    when "lg" then "max-w-4xl"
+    else "max-w-2xl" # md
+    end
 
     content_tag :div, class: overlay_classes, style: "display: none;", data: { controller: "ui-modal", action: "click->ui-modal#closeOnOverlay" }, id: @id do
       content_tag :div, class: class_names(modal_classes, size_classes, @options[:class]) do

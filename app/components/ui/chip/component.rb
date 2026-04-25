@@ -21,16 +21,16 @@ class Ui::Chip::Component < ApplicationComponent
     size_classes = @size == "sm" ? "px-[10px] py-[4px] font-extrabold" : "px-3 py-1 font-semibold"
 
     variant_classes = case @variant
-      when "star"    then "bg-star-soft text-foreground"
-      when "peach"   then "bg-peach-soft text-peach-depth"
-      when "rose"    then "bg-rose-soft text-rose-depth"
-      when "mint"    then "bg-mint-soft text-mint-depth"
-      when "sky"     then "bg-sky-soft text-sky-depth"
-      when "lilac"   then "bg-lilac-soft text-lilac-depth"
-      when "primary" then "bg-primary-soft text-primary-depth"
-      when "outline" then "bg-white text-foreground border-2 border-[rgba(26,42,74,0.1)]"
-      else                "bg-surface-2 text-muted-foreground"
-      end
+    when "star"    then "bg-star-soft text-foreground"
+    when "peach"   then "bg-peach-soft text-peach-depth"
+    when "rose"    then "bg-rose-soft text-rose-depth"
+    when "mint"    then "bg-mint-soft text-mint-depth"
+    when "sky"     then "bg-sky-soft text-sky-depth"
+    when "lilac"   then "bg-lilac-soft text-lilac-depth"
+    when "primary" then "bg-primary-soft text-primary-depth"
+    when "outline" then "bg-white text-foreground border-2 border-[rgba(26,42,74,0.1)]"
+    else                "bg-surface-2 text-muted-foreground"
+    end
 
     class_names(
       base,
