@@ -16,9 +16,6 @@
       </div>
     <% end %>
 
-    <%= render Ui::Btn::Component.new(variant: "ghost", size: "sm", url: new_parent_invitation_path, class: "justify-center w-full border-1.5 border-dashed border-hairline rounded-[10px] p-2.5 text-muted-foreground font-body text-[13px] no-underline") do %>
-      <%= render Ui::Icon::Component.new("plus", size: 14, color: "var(--text-muted)") %>
-      Convidar responsável
-    <% end %>
+    <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: new_parent_invitation_path) do %>+ Convidar responsável<% end %>
   </div>
 </div>

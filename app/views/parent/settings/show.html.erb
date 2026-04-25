@@ -16,7 +16,7 @@
     <%= render partial: "rules_card", locals: { family: @family } %>
 
     <div class="flex items-center justify-end gap-2 pb-2">
-      <%= f.submit "Salvar alterações", class: "btn btn-primary" %>
+      <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>Salvar alterações<% end %>
     </div>
   <% end %>
 
@@ -25,7 +25,7 @@
     <ul class="flex flex-col gap-3">
       <% current_family.profiles.order(:name).each do |profile| %>
         <li class="flex items-center justify-between bg-white rounded-md p-3 border">
-          <span class="font-bold"><%= profile.name %> <span class="text-xs text-muted-foreground">(<%= profile.parent? ? "Pai/Mãe" : "Criança" %>)</span></span>
+          <span class="font-bold"><%= profile.name %> <span class="text-xs text-muted-foreground">(<%= profile.parent? ? "Responsável" : "Criança" %>)</span></span>
           <%= form_with url: reset_pin_parent_profile_path(profile), method: :patch, local: true,
                         class: "flex gap-2" do |f| %>
             <%= f.text_field :pin, pattern: "\\d{4}", maxlength: 4, inputmode: "numeric",
