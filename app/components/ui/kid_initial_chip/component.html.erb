@@ -1,4 +1,5 @@
 <span title="<%= profile&.name %>"
+      data-palette="<%= helpers.palette_for(profile) %>"
       class="flex items-center justify-center"
       style="width: <%= size %>px; height: <%= size %>px; border-radius: 50%;
              background: <%= palette[:fill] %>; color: <%= palette[:ink] %>;

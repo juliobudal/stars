@@ -15,4 +15,18 @@ RSpec.describe Ui::KidInitialChip::Component, type: :component do
     render_inline(described_class.new(profile: profile))
     expect(page.native.to_html).to include("title=\"Theo\"")
   end
+
+  it "wraps root in data-palette matching profile color" do
+    profile = build_stubbed(:profile, color: "coral", role: :child, name: "Lila", points: 0)
+    render_inline(described_class.new(profile: profile))
+
+    expect(page).to have_css('[data-palette="coral"]', count: 1)
+  end
+
+  it "uses 'primary' palette when profile color is blank" do
+    profile = build_stubbed(:profile, color: nil, role: :child, name: "Anon", points: 0)
+    render_inline(described_class.new(profile: profile))
+
+    expect(page).to have_css('[data-palette="primary"]', count: 1)
+  end
 end
