@@ -1,9 +1,22 @@
 <div class="screen screen-enter-right">
   <%= render Ui::BgShapes::Component.new(variant: "warm") %>
 
+  <%
+    if params[:invited] == "true"
+      topbar_title    = "Bem-vindo à família!"
+      topbar_subtitle = "Crie seu perfil para começar"
+    elsif params[:onboarding] == "true"
+      topbar_title    = "Crie seu perfil de pai/mãe"
+      topbar_subtitle = "Configure seu acesso à família"
+    else
+      topbar_title    = "Novo perfil"
+      topbar_subtitle = "Crie um perfil para seu filho(a)"
+    end
+  %>
+
   <%= render Ui::TopBar::Component.new(
-    title: "Novo perfil",
-    subtitle: "Crie um perfil para seu filho(a)",
+    title: topbar_title,
+    subtitle: topbar_subtitle,
     back_url: parent_root_path
   ) %>
 
