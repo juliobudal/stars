@@ -34,11 +34,15 @@ module CookieHelpers
     end
 
     def [](key)
-      @jar[key]
+      @jar[key.to_s]
     end
 
     def []=(key, value)
-      @jar[key] = value
+      @jar[key.to_s] = value
+    end
+
+    def delete(key, *args)
+      @jar.delete(key.to_s, *args)
     end
   end
 end
