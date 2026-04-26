@@ -39,7 +39,7 @@ module Streaks
                      .where('created_at >= ?', 14.days.ago.beginning_of_day)
                      .order(created_at: :desc)
 
-      days = logs.pluck(:created_at).map { |t| t.to_date }.uniq.sort.reverse
+      days = logs.pluck(:created_at).map { |t| t.in_time_zone.to_date }.uniq.sort.reverse
       return nil if days.empty?
 
       today = Date.current

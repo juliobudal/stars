@@ -1,10 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Streaks::CheckService do
+  include ActiveSupport::Testing::TimeHelpers
+
   let(:family) { create(:family) }
   let(:profile) { create(:profile, :child, family: family, points: 100) }
 
   describe '.call' do
+    around { |ex| travel_to(Time.zone.local(2025, 6, 15, 12, 0, 0)) { ex.run } }
     context 'when no threshold or streak hit' do
       it 'returns nil' do
         result = described_class.call(profile, points_before: 100, points_after: 110)
@@ -68,6 +71,21 @@ RSpec.describe Streaks::CheckService do
         expect(Rails.logger).to receive(:warn).with(/Streaks::CheckService/)
         result = described_class.call(profile, points_before: 0, points_after: 5)
         expect(result).to be_nil
+      end
+    end
+
+    context 'when both streak day and threshold cross hit simultaneously' do
+      before do
+        2.downto(0) do |days_ago|
+          create(:activity_log, profile: profile, log_type: :earn, points: 5, created_at: days_ago.days.ago)
+        end
+      end
+
+      it 'returns :streak (priority over :threshold)' do
+        # profile starts at 100; points_before=49 / points_after=55 would cross threshold 50
+        result = described_class.call(profile, points_before: 49, points_after: 55)
+        expect(result[:tier]).to eq(:streak)
+        expect(result[:payload][:days]).to eq(3)
       end
     end
   end
