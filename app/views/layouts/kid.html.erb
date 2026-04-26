@@ -6,7 +6,7 @@
     <%= yield :head %>
   </head>
 
-  <body class="min-h-screen bg-bg-deep overflow-x-hidden" data-palette="<%= palette_for(current_profile) %>">
+  <body class="min-h-screen bg-bg-deep overflow-x-hidden" data-palette="<%= palette_for(current_profile) %>" data-controller="fx">
     <div data-controller="switch-profile" class="absolute top-4 right-4 z-20">
       <%= form_with url: profile_session_path, method: :delete, local: true,
                     data: { switch_profile_target: "form" } do %>
@@ -17,6 +17,7 @@
       <% end %>
     </div>
     <%= render "shared/kid_nav" %>
+    <%= render "kid/shared/fx_stage" %>
     <main class="p-6 w-full max-w-screen-md mx-auto pb-24 md:pb-10">
       <%= render Ui::Flash::Component.new %>
       <%= yield %>
