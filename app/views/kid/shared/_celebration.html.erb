@@ -1,13 +1,15 @@
 <%# locals: (tier:, payload:) %>
+<% ts = (Time.current.to_f * 1000).to_i %>
 <div
-  id="celebration_<%= (Time.current.to_f * 1000).to_i %>"
+  id="celebration_<%= ts %>"
   data-fx-event="celebrate"
   data-fx-tier="<%= tier %>"
   data-fx-payload="<%= payload.to_json %>"
+  data-fx-dismiss-after="<%= tier.to_sym == :big ? 2700 : 3200 %>"
   class="anim-pop-in"
 >
   <% if tier.to_sym == :big %>
-    <%= render Ui::Modal::Component.new(title: payload[:message] || "Conquista!", variant: :celebration, id: "celebration_modal_#{(Time.current.to_f * 1000).to_i}") do %>
+    <%= render Ui::Modal::Component.new(title: payload[:message] || "Conquista!", variant: :celebration, id: "celebration_modal_#{ts}") do %>
       <div class="text-center py-4">
         <% if payload[:points] %>
           <p class="text-3xl font-display font-extrabold text-warning">+<%= payload[:points] %> ★</p>

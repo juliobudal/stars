@@ -21,6 +21,8 @@ module Tasks
         return fail_with("Esta família exige uma foto como comprovante para concluir a missão")
       end
 
+      auto_approved = false
+
       ActiveRecord::Base.transaction do
         @profile_task.proof_photo.attach(@proof_photo) if @proof_photo.present?
         @profile_task.update!(status: :awaiting_approval)
@@ -37,10 +39,13 @@ module Tasks
            !@family.require_photo?
           Tasks::ApproveService.new(@profile_task).call
           @profile_task.reload
+          auto_approved = true
         end
       end
 
-      broadcast_all_cleared if last_pending_task_for_today?
+      # Skip all_cleared broadcast on auto-approve — ApproveService already fired
+      # a BIG :approved celebration; stacking another modal would be jarring.
+      broadcast_all_cleared if !auto_approved && last_pending_task_for_today?
 
       Rails.logger.info("[Tasks::CompleteService] success id=#{@profile_task.id}")
       ok(@profile_task)
