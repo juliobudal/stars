@@ -1,6 +1,6 @@
 <% if @variant == 'ticket' %>
   <div
-    class="flex items-center gap-3.5 pop-on-tap w-full text-left <%= @options[:class] %>"
+    class="flex items-center gap-3.5 pop-on-tap anim-tile w-full text-left <%= @options[:class] %>"
     style="
       background: white;
       border-radius: var(--r-md);
@@ -40,7 +40,7 @@
 <% else %>
   <%# bubble style %>
   <div
-    class="pop-on-tap w-full text-left flex items-center gap-4 <%= @options[:class] %>"
+    class="pop-on-tap anim-tile w-full text-left flex items-center gap-4 <%= @options[:class] %>"
     style="
       background: <%= waiting? ? (category_data[:color] == 'primary' ? 'var(--primary-soft)' : "var(--c-#{category_data[:color]}-soft)") : 'white' %>;
       border-radius: var(--r-lg);
