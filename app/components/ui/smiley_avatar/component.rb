@@ -38,6 +38,16 @@ module Ui
 
       attr_reader :size, :face, :fill, :ring, :ink
 
+      def avatar_slug
+        explicit = @kid.respond_to?(:avatar) ? @kid.avatar.presence : nil
+        explicit || default_slug
+      end
+
+      def default_slug
+        return "user-circle" if @kid.respond_to?(:parent?) && @kid.parent?
+        "happy-01"
+      end
+
       private
 
       def derive_face(kid)

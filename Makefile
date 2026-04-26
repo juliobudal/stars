@@ -154,21 +154,20 @@ setup:
 	$(COMPOSE) up -d db
 	@echo "→ waiting for postgres to accept connections..."
 	@until $(COMPOSE) exec -T db pg_isready -U littlestars >/dev/null 2>&1; do sleep 1; done
-	$(COMPOSE) up -d web
-	@echo "→ waiting for web container to finish bundle install + boot..."
-	@until $(COMPOSE) exec -T web bin/rails runner "puts :ok" >/dev/null 2>&1; do sleep 2; done
-	@echo "→ ensuring gems + js deps installed inside container (bind mount safety)..."
-	$(EXEC) bundle install
-	$(EXEC) yarn install --frozen-lockfile
+	@echo "→ installing gems + js deps via one-shot container (no Foreman, no jobs)..."
+	$(COMPOSE) run --rm --no-deps web bundle install
+	$(COMPOSE) run --rm --no-deps web yarn install --frozen-lockfile
 	@echo "→ preparing databases (drop + create + migrate all tables including Solid Queue)..."
-	$(EXEC) bin/rails db:prepare
-	$(EXEC) bin/rails db:prepare RAILS_ENV=test
+	$(COMPOSE) run --rm web bin/rails db:prepare
+	$(COMPOSE) run --rm web bin/rails db:prepare RAILS_ENV=test
 	@echo "→ seeding development database..."
-	$(EXEC) bin/rails db:seed
+	$(COMPOSE) run --rm web bin/rails db:seed
 	@echo "→ annotating models with schema comments..."
-	-$(EXEC) bundle exec annotaterb models
+	-$(COMPOSE) run --rm web bundle exec annotaterb models
 	@echo "→ building assets..."
-	$(EXEC) bin/vite build
+	$(COMPOSE) run --rm --no-deps web bin/vite build
+	@echo "→ starting web (Foreman: rails+jobs+vite) now that schema exists..."
+	$(COMPOSE) up -d web
 	@echo ""
 	@echo "✓ setup complete — stack up, deps installed, dev+test DBs prepared + migrated, dev DB seeded, assets built."
 	@echo "  app → http://localhost:3000"

@@ -3,14 +3,15 @@
 module Ui
   module KidProgressCard
     class Component < ApplicationComponent
-      def initialize(kid:, awaiting_count: 0, missions_count: 0)
+      def initialize(kid:, awaiting_count: 0, missions_count: 0, manage: false)
         @kid = kid
         @awaiting_count = awaiting_count.to_i
         @missions_count = missions_count.to_i
+        @manage = manage
         super()
       end
 
-      attr_reader :kid, :awaiting_count, :missions_count
+      attr_reader :kid, :awaiting_count, :missions_count, :manage
 
       def palette
         @palette ||= Ui::SmileyAvatar::Component::COLOR_MAP[kid&.color.to_s] ||
@@ -23,6 +24,10 @@ module Ui
 
       def points
         kid.respond_to?(:points) ? kid.points.to_i : 0
+      end
+
+      def level
+        [ (points / 100) + 1, 1 ].max
       end
     end
   end

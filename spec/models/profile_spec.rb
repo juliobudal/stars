@@ -2,20 +2,21 @@
 #
 # Table name: profiles
 #
-#  id              :bigint           not null, primary key
-#  avatar          :string
-#  color           :string
-#  name            :string
-#  pin_digest      :string
-#  points          :integer          default(0)
-#  role            :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  family_id       :bigint           not null
+#  id         :bigint           not null, primary key
+#  avatar     :string
+#  color      :string
+#  email      :citext
+#  name       :string
+#  pin_digest :string
+#  points     :integer          default(0)
+#  role       :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  family_id  :bigint           not null
 #
 # Indexes
 #
-#  index_profiles_on_family_id     (family_id)
+#  index_profiles_on_family_id  (family_id)
 #
 # Foreign Keys
 #

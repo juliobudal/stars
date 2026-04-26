@@ -8,14 +8,20 @@
 #  allow_negative         :boolean          default(FALSE)
 #  auto_approve_threshold :integer
 #  decay_enabled          :boolean          default(FALSE)
+#  email                  :citext
 #  locale                 :string           default("pt-BR")
 #  max_debt               :integer          default(100), not null
 #  name                   :string
+#  password_digest        :string
 #  require_photo          :boolean          default(FALSE)
 #  timezone               :string           default("America/Sao_Paulo")
 #  week_start             :integer          default(1)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#
+# Indexes
+#
+#  index_families_on_email  (email) UNIQUE
 #
 class Family < ApplicationRecord
   has_many :profiles, dependent: :destroy

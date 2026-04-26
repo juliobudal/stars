@@ -15,10 +15,11 @@
   <div class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4 z-2 items-start">
     <% if @profiles.any? %>
       <% @profiles.each do |k| %>
-        <%= render Ui::KidManagementCard::Component.new(
+        <%= render Ui::KidProgressCard::Component.new(
               kid: k,
-              balance: k.points,
-              missions_count: k.profile_tasks.select(&:pending?).size
+              awaiting_count: k.profile_tasks.select(&:awaiting_approval?).size,
+              missions_count: k.profile_tasks.select(&:pending?).size,
+              manage: true
             ) %>
       <% end %>
     <% end %>

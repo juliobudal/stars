@@ -11,7 +11,9 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 3036,
     strictPort: true,
+    origin: 'http://127.0.0.1:10302',
     hmr: {
+      protocol: 'ws',
       host: '127.0.0.1',
       clientPort: 10302
     }

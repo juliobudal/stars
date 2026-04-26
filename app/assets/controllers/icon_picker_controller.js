@@ -31,16 +31,6 @@ export default class extends Controller {
     this.catalogPage = 0
     this.filteredCatalog = []
     this.renderCurated()
-    if (this.hasModalTarget && this.modalTarget.parentElement !== document.body) {
-      this.modalOriginalParent = this.modalTarget.parentElement
-      document.body.appendChild(this.modalTarget)
-    }
-  }
-
-  disconnect() {
-    if (this.modalOriginalParent && this.hasModalTarget && this.modalTarget.parentElement === document.body) {
-      this.modalOriginalParent.appendChild(this.modalTarget)
-    }
   }
 
   open(event) {

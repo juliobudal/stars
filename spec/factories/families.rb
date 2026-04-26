@@ -17,6 +17,10 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
+# Indexes
+#
+#  index_families_on_email  (email) UNIQUE
+#
 FactoryBot.define do
   factory :family do
     name { Faker::Name.last_name }
