@@ -15,8 +15,8 @@
   <% unless @rewards.empty? %>
     <%
       chip_items = [{ id: "all", label: "Todos" }]
-      Ui::Tokens::REWARD_CATEGORIES.each do |key, meta|
-        chip_items << { id: key, label: meta[:label].capitalize }
+      @categories.each do |category|
+        chip_items << { id: category.id.to_s, label: category.name }
       end
     %>
     <div data-controller="filter-tabs">
@@ -26,7 +26,7 @@
 
       <div class="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4 z-2 mt-1">
         <% @rewards.each do |reward| %>
-          <div data-filter-tabs-target="item" data-panels="all <%= reward.category %>">
+          <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>">
             <%= render Ui::RewardCatalogCard::Component.new(reward: reward) %>
           </div>
         <% end %>

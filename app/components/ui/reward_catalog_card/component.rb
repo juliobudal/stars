@@ -11,7 +11,7 @@ module Ui
       attr_reader :reward
 
       def category_meta
-        Ui::Tokens.reward_category_for(reward.category)
+        { tint: reward.category&.color || "lilac" }
       end
     end
   end
