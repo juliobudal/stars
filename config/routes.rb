@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       member { patch :toggle_active }
     end
     resources :rewards, only: [ :index, :new, :create, :edit, :update, :destroy ]
+    resources :categories
     resources :approvals, only: [ :index ] do
       collection do
         post :bulk_approve
