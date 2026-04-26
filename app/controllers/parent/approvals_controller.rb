@@ -18,7 +18,8 @@ class Parent::ApprovalsController < ApplicationController
 
   def approve
     @profile_task = family_profile_tasks.find(params[:id])
-    result = Tasks::ApproveService.call(@profile_task)
+    override = params[:points_override].presence&.to_i
+    result = Tasks::ApproveService.call(@profile_task, points_override: override)
     respond_after(result, success_msg: "Tarefa aprovada com sucesso!", fail_msg: "Não foi possível aprovar a tarefa.")
   end
 
