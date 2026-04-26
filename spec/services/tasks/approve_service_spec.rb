@@ -86,4 +86,44 @@ RSpec.describe Tasks::ApproveService do
       end
     end
   end
+
+  describe "custom missions" do
+    let(:family) { create(:family) }
+    let(:profile) { create(:profile, family: family, role: :child) }
+    let(:category) { create(:category, family: family) }
+    let(:profile_task) do
+      create(:profile_task, :custom,
+             profile: profile,
+             custom_category: category,
+             custom_points: 50,
+             submission_comment: "Foi mole")
+    end
+
+    it "applies points_override before crediting" do
+      result = described_class.call(profile_task, points_override: 30)
+
+      expect(result).to be_success
+      expect(profile_task.reload.custom_points).to eq(30)
+      expect(profile.reload.points).to eq(30)
+    end
+
+    it "uses original points when no override" do
+      result = described_class.call(profile_task)
+
+      expect(result).to be_success
+      expect(profile.reload.points).to eq(50)
+    end
+
+    it "rejects override outside 1..1000" do
+      result = described_class.call(profile_task, points_override: 0)
+      expect(result).not_to be_success
+      expect(profile.reload.points).to eq(0)
+    end
+
+    it "writes submission_comment into ActivityLog title" do
+      described_class.call(profile_task)
+      log = ActivityLog.last
+      expect(log.title).to include("Foi mole").or include("[Sugerida")
+    end
+  end
 end

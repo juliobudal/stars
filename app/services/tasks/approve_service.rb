@@ -1,8 +1,11 @@
 module Tasks
   class ApproveService < ApplicationService
-    def initialize(profile_task)
+    POINTS_RANGE = (1..1000).freeze
+
+    def initialize(profile_task, points_override: nil)
       @profile_task = profile_task
       @profile = profile_task.profile
+      @points_override = points_override
     end
 
     def call
@@ -13,17 +16,28 @@ module Tasks
         return fail_with("Tarefa não está aguardando aprovação")
       end
 
+      if @points_override.present?
+        unless @profile_task.custom?
+          return fail_with("Apenas missões customizadas aceitam ajuste de pontos")
+        end
+        unless POINTS_RANGE.cover?(@points_override.to_i)
+          return fail_with("Pontos inválidos")
+        end
+      end
+
       points_before = @profile.points
-      points_after = nil
 
       ActiveRecord::Base.transaction do
+        if @points_override.present?
+          @profile_task.update!(custom_points: @points_override.to_i)
+        end
         @profile_task.update!(status: :approved, completed_at: Time.current)
         @profile.increment!(:points, @profile_task.points)
 
         ActivityLog.create!(
           profile: @profile,
           log_type: :earn,
-          title: "Missão Concluída: #{@profile_task.title}",
+          title: activity_log_title,
           points: @profile_task.points
         )
       end
@@ -39,6 +53,14 @@ module Tasks
     end
 
     private
+
+    def activity_log_title
+      base = "Missão Concluída: #{@profile_task.title}"
+      parts = [base]
+      parts << "[Sugerida pela criança]" if @profile_task.custom?
+      parts << "💬 #{@profile_task.submission_comment}" if @profile_task.submission_comment.present?
+      parts.join(" ")
+    end
 
     def broadcast_celebration(points_before:, points_after:)
       tier = Ui::Celebration.tier_for(:approved)
