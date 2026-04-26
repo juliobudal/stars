@@ -1,4 +1,4 @@
-[ ActivityLog, Redemption, ProfileTask, GlobalTaskAssignment, Reward, GlobalTask, Profile, ProfileInvitation, Family ].each(&:delete_all)
+[ ActivityLog, Redemption, ProfileTask, GlobalTaskAssignment, Reward, Category, GlobalTask, Profile, ProfileInvitation, Family ].each(&:delete_all)
 
 ActiveRecord::Base.strict_loading_by_default = false
 
@@ -46,11 +46,12 @@ ProfileTask.create!(profile: child2, global_task: task4, status: :pending, assig
 ProfileTask.create!(profile: child3, global_task: task5, status: :pending, assigned_date: Date.current)
 
 puts "Creating Rewards..."
-Reward.create!(family: family, title: "Sorvete de chocolate", cost: 80, icon: "iceCream", category: :doce)
-Reward.create!(family: family, title: "1h de Video Game", cost: 150, icon: "gamepad", category: :tela)
-Reward.create!(family: family, title: "Passeio ao parque", cost: 250, icon: "ferris", category: :passeio)
-Reward.create!(family: family, title: "LEGO novo", cost: 600, icon: "blocks", category: :brinquedo)
-Reward.create!(family: family, title: "Escolher filme", cost: 50, icon: "film", category: :experiencia)
+cats = family.categories.index_by(&:name)
+Reward.create!(family: family, title: "Sorvete de chocolate", cost: 80,  icon: "ice-cream-01",       category: cats.fetch("Docinhos"))
+Reward.create!(family: family, title: "1h de Video Game",     cost: 150, icon: "game-controller-01", category: cats.fetch("Telinha"))
+Reward.create!(family: family, title: "Passeio ao parque",    cost: 250, icon: "ferris-wheel",       category: cats.fetch("Passeios"))
+Reward.create!(family: family, title: "LEGO novo",            cost: 600, icon: "cube",               category: cats.fetch("Brinquedos"))
+Reward.create!(family: family, title: "Escolher filme",       cost: 50,  icon: "film-01",            category: cats.fetch("Experiências"))
 
 puts "Creating Mission Assignments..."
 # task3 (lição) → only Lila and Zoe
