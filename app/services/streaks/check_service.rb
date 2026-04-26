@@ -1,7 +1,7 @@
 module Streaks
   class CheckService
-    THRESHOLDS = [50, 100, 250].freeze
-    STREAK_MILESTONES = [3, 7, 14].freeze
+    THRESHOLDS = [ 50, 100, 250 ].freeze
+    STREAK_MILESTONES = [ 3, 7, 14 ].freeze
 
     def self.call(...)
       new(...).call
@@ -36,7 +36,7 @@ module Streaks
     def detect_streak
       logs = @profile.activity_logs
                      .where(log_type: :earn)
-                     .where('created_at >= ?', 14.days.ago.beginning_of_day)
+                     .where("created_at >= ?", 14.days.ago.beginning_of_day)
                      .order(created_at: :desc)
 
       days = logs.pluck(:created_at).map { |t| t.in_time_zone.to_date }.uniq.sort.reverse

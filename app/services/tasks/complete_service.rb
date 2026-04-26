@@ -55,7 +55,7 @@ module Tasks
       remaining = @profile_task.profile
                                .profile_tasks
                                .where(status: :pending)
-                               .where('created_at >= ?', Date.current.beginning_of_day)
+                               .where("created_at >= ?", Date.current.beginning_of_day)
                                .count
       remaining.zero?
     end
