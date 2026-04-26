@@ -21,7 +21,7 @@ RSpec.describe Category, type: :model do
       family.categories.delete_all
       a = create(:category, family: family, name: "A", position: 2)
       b = create(:category, family: family, name: "B", position: 1)
-      expect(family.categories.ordered).to eq([b, a])
+      expect(family.categories.ordered).to eq([ b, a ])
     end
   end
 end
