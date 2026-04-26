@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   namespace :kid do
     root to: "dashboard#index"
-    resources :missions, only: [] do
+    resources :missions, only: %i[new create] do
       member { patch :complete }
     end
     resources :rewards, only: [ :index ] do
