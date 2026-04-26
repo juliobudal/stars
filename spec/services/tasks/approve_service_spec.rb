@@ -61,5 +61,29 @@ RSpec.describe Tasks::ApproveService do
         expect(result.success?).to be false
       end
     end
+
+    context 'celebration broadcast' do
+      # Stub Streaks::CheckService to nil so the default :big tier (from Ui::Celebration.tier_for(:approved))
+      # is not overridden by a real streak/threshold detection (50pt task crosses the 50 threshold).
+      before { allow(Streaks::CheckService).to receive(:call).and_return(nil) }
+
+      it 'broadcasts a celebration partial with data-fx-event and tier=big' do
+        expect {
+          described_class.new(profile_task).call
+        }.to have_broadcasted_to("kid_#{child.id}")
+          .from_channel(Turbo::StreamsChannel)
+          .with { |stream| expect(stream).to include('data-fx-event="celebrate"', 'data-fx-tier="big"') }
+      end
+
+      it 'upgrades tier to :streak when Streaks::CheckService returns one' do
+        allow(Streaks::CheckService).to receive(:call).and_return({ tier: :streak, payload: { days: 3 } })
+        expect {
+          described_class.new(profile_task).call
+        }.to have_broadcasted_to("kid_#{child.id}")
+          # Payload is rendered into an HTML attribute (data-fx-payload) so the JSON's
+          # double-quotes are HTML-escaped to &quot;. Assert against the escaped form.
+          .with { |stream| expect(stream).to include('&quot;days&quot;:3', 'data-fx-tier="streak"') }
+      end
+    end
   end
 end
