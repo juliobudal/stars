@@ -1,0 +1,66 @@
+<%# Custom mission form — kid proposes a one-off task already done %>
+<div class="px-5 py-6 max-w-[480px] mx-auto">
+  <h1 class="font-display text-[26px] font-extrabold mb-1" style="color: var(--text);">Nova missão!</h1>
+  <p class="text-[14px] font-bold mb-5" style="color: var(--text-muted);">Conta o que você fez. Os pais aprovam e você ganha estrelas! ⭐</p>
+
+  <%= form_with url: kid_missions_path, scope: :profile_task, multipart: true, local: true,
+        html: { class: "space-y-4" } do |f| %>
+    <% if flash[:alert].present? %>
+      <div class="rounded-[12px] border-2 px-4 py-3 text-[13px] font-bold"
+           style="background: var(--danger-soft, #FFE9E9); color: var(--c-red-dark, #B91C1C); border-color: var(--c-red-dark, #B91C1C);">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :custom_title, "O que você fez?", class: "block text-[14px] font-extrabold mb-1.5", style: "color: var(--text);" %>
+      <%= f.text_field :custom_title, required: true, maxlength: 120,
+            placeholder: "Ex.: Arrumei a estante",
+            class: "w-full px-4 py-3 rounded-[12px] border-2 text-[15px] font-bold",
+            style: "border-color: var(--hairline); background: var(--surface); color: var(--text);" %>
+    </div>
+
+    <div>
+      <%= f.label :custom_description, "Conta mais (opcional)", class: "block text-[14px] font-extrabold mb-1.5", style: "color: var(--text);" %>
+      <%= f.text_area :custom_description, rows: 3,
+            placeholder: "Como foi?",
+            class: "w-full px-4 py-3 rounded-[12px] border-2 text-[14px] font-medium",
+            style: "border-color: var(--hairline); background: var(--surface); color: var(--text);" %>
+    </div>
+
+    <div>
+      <%= f.label :custom_points, "Quanto vale?", class: "block text-[14px] font-extrabold mb-1.5", style: "color: var(--text);" %>
+      <%= f.number_field :custom_points, required: true, min: 1, max: 1000, value: 10,
+            class: "w-full px-4 py-3 rounded-[12px] border-2 text-[15px] font-bold",
+            style: "border-color: var(--hairline); background: var(--surface); color: var(--text);" %>
+      <p class="text-[12px] font-bold mt-1" style="color: var(--text-muted);">Os pais podem ajustar.</p>
+    </div>
+
+    <div>
+      <%= f.label :custom_category_id, "Categoria", class: "block text-[14px] font-extrabold mb-1.5", style: "color: var(--text);" %>
+      <%= f.select :custom_category_id,
+            @categories.map { |c| [c.name, c.id] },
+            { include_blank: "Escolha uma..." },
+            required: true,
+            class: "w-full px-4 py-3 rounded-[12px] border-2 text-[15px] font-bold",
+            style: "border-color: var(--hairline); background: var(--surface); color: var(--text);" %>
+    </div>
+
+    <div>
+      <%= f.label :submission_comment, "Recado pros pais (opcional)", class: "block text-[14px] font-extrabold mb-1.5", style: "color: var(--text);" %>
+      <%= f.text_area :submission_comment, rows: 2, maxlength: 500,
+            placeholder: "Quer mandar um recado?",
+            class: "w-full px-4 py-3 rounded-[12px] border-2 text-[14px] font-medium",
+            style: "border-color: var(--hairline); background: var(--surface); color: var(--text);" %>
+    </div>
+
+    <div class="flex gap-3 pt-2">
+      <%= link_to "Cancelar", kid_root_path,
+            class: "flex-1 text-center text-[14px] uppercase tracking-[0.5px]",
+            style: "background: var(--surface); color: var(--text-muted); border: 2px solid var(--hairline); border-radius: 12px; padding: 12px 0; font-weight: 800; box-shadow: 0 3px 0 var(--hairline);" %>
+      <%= f.submit "Enviar pra aprovação",
+            class: "flex-1 text-[14px] uppercase tracking-[0.5px]",
+            style: "background: var(--primary); color: white; border: 2px solid var(--primary); border-radius: 12px; padding: 12px 0; font-weight: 800; cursor: pointer; box-shadow: 0 4px 0 var(--primary-2);" %>
+    </div>
+  <% end %>
+</div>
