@@ -18,18 +18,16 @@ module Ui
       "once"    => { label: "Única vez", tint: "rose"  }
     }.freeze
 
-    REWARD_CATEGORIES = {
-      "tela"         => { label: "tela",        tint: "lilac" },
-      "doce"         => { label: "doce",        tint: "rose"  },
-      "passeio"      => { label: "passeio",     tint: "sky"   },
-      "brinquedo"    => { label: "brinquedo",   tint: "mint"  },
-      "experiencia"  => { label: "experiência", tint: "star"  },
-      "outro"        => { label: "outro",       tint: "sky"   }
+    CATEGORY_COLOR_PALETTE = {
+      "sky"    => { label: "Céu",     soft_var: "var(--c-sky-soft)",    fg_var: "var(--c-sky)"    },
+      "rose"   => { label: "Rosa",    soft_var: "var(--c-rose-soft)",   fg_var: "var(--c-rose)"   },
+      "mint"   => { label: "Menta",   soft_var: "var(--c-mint-soft)",   fg_var: "var(--c-mint)"   },
+      "amber"  => { label: "Âmbar",   soft_var: "var(--c-amber-soft)",  fg_var: "var(--c-amber)"  },
+      "lilac"  => { label: "Lilás",   soft_var: "var(--c-lilac-soft)",  fg_var: "var(--c-lilac)"  },
+      "peach"  => { label: "Pêssego", soft_var: "var(--c-peach-soft)",  fg_var: "var(--c-peach)"  },
+      "violet" => { label: "Violeta", soft_var: "var(--c-violet-soft)", fg_var: "var(--c-violet)" },
+      "star"   => { label: "Dourado", soft_var: "var(--c-star-soft)",   fg_var: "var(--c-star)"   }
     }.freeze
-
-    def self.reward_category_for(key)
-      REWARD_CATEGORIES.fetch(key.to_s, REWARD_CATEGORIES["outro"])
-    end
 
     def self.category_for(key)
       MISSION_CATEGORIES.fetch(key.to_s, MISSION_CATEGORIES["geral"])
@@ -37,6 +35,10 @@ module Ui
 
     def self.frequency_for(key)
       FREQUENCIES.fetch(key.to_s, FREQUENCIES["daily"])
+    end
+
+    def self.color_palette_entry(key)
+      CATEGORY_COLOR_PALETTE.fetch(key.to_s, CATEGORY_COLOR_PALETTE["lilac"])
     end
 
     def self.tint_soft(name)
