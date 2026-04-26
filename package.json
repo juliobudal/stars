@@ -11,6 +11,7 @@
     "highlight.js": "^11.11.1",
     "imask": "^7.6.1",
     "mjml": "^4.15.3",
+    "motion": "^11.11.0",
     "stimulus-rails-autosave": "^5.1.0",
     "stimulus-textarea-autogrow": "^4.1.0",
     "stimulus-use": "^0.52.2"
