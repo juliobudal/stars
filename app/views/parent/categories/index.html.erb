@@ -1,0 +1,28 @@
+<% content_for :container_class, "lg:max-w-3xl lg:mx-auto" %>
+<%= render Ui::TopBar::Component.new(
+  title: "Categorias",
+  subtitle: "Organize seus prêmios em grupos"
+) do |bar| %>
+  <% bar.with_right_slot do %>
+    <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: new_parent_category_path) do %>
+      <%= render Ui::Icon::Component.new("plus-sign", size: 16, color: "white") %> Nova categoria
+    <% end %>
+  <% end %>
+<% end %>
+
+<% reward_counts = Reward.where(family_id: current_profile.family_id).group(:category_id).count %>
+
+<% if @categories.any? %>
+  <div class="flex flex-col gap-2.5 mt-2">
+    <% @categories.each do |category| %>
+      <%= render Ui::CategoryRow::Component.new(category: category, reward_count: reward_counts[category.id].to_i) %>
+    <% end %>
+  </div>
+<% else %>
+  <%= render Ui::Empty::Component.new(
+    icon: "bookmark-01",
+    title: "Nenhuma categoria",
+    subtitle: "Crie categorias para agrupar seus prêmios.",
+    color: "lilac"
+  ) %>
+<% end %>
