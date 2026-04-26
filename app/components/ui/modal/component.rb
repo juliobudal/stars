@@ -48,7 +48,7 @@ class Ui::Modal::Component < ApplicationComponent
     case @variant
     when :success then "border-t-4 border-emerald-400"
     when :"confirm-destructive" then "border-t-4 border-rose-500"
-    when :celebration then "border-t-4 border-yellow-400"
+    when :celebration then "border-t-4 border-warning"
     else ""
     end
   end
