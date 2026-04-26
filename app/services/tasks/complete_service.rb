@@ -2,9 +2,10 @@
 
 module Tasks
   class CompleteService < ApplicationService
-    def initialize(profile_task:, proof_photo: nil)
+    def initialize(profile_task:, proof_photo: nil, submission_comment: nil)
       @profile_task = profile_task
       @proof_photo  = proof_photo
+      @submission_comment = submission_comment
       @family       = profile_task.profile.family
     end
 
@@ -25,6 +26,7 @@ module Tasks
 
       ActiveRecord::Base.transaction do
         @profile_task.proof_photo.attach(@proof_photo) if @proof_photo.present?
+        @profile_task.submission_comment = @submission_comment unless @submission_comment.nil?
         @profile_task.update!(status: :awaiting_approval)
         # Status must be :awaiting_approval before ApproveService runs —
         # ApproveService guards on awaiting_approval? so the flip above must

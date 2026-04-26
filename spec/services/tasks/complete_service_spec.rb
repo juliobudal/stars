@@ -143,4 +143,22 @@ RSpec.describe Tasks::CompleteService do
       end
     end
   end
+
+  describe "submission_comment" do
+    let(:family) { create(:family, require_photo: false, auto_approve_threshold: nil) }
+    let(:profile) { create(:profile, family: family, role: :child) }
+    let(:profile_task) { create(:profile_task, profile: profile, status: :pending) }
+
+    it "persists the comment on submission" do
+      result = described_class.call(profile_task: profile_task, submission_comment: "  fiz com carinho  ")
+      expect(result).to be_success
+      expect(profile_task.reload.submission_comment).to eq("fiz com carinho")
+    end
+
+    it "treats blank comment as nil" do
+      result = described_class.call(profile_task: profile_task, submission_comment: "   ")
+      expect(result).to be_success
+      expect(profile_task.reload.submission_comment).to be_nil
+    end
+  end
 end
