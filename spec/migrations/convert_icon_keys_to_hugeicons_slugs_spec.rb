@@ -14,7 +14,7 @@ RSpec.describe ConvertIconKeysToHugeiconsSlugs do
   end
 
   it "rewrites curated keys to raw slugs on rewards" do
-    reward = Reward.create!(family: family, title: "R", icon: "iceCream", cost: 5)
+    reward = Reward.create!(family: family, title: "R", icon: "iceCream", cost: 5, category: family.categories.first)
     described_class.new.up
     expect(reward.reload.icon).to eq("ice-cream-01")
   end
