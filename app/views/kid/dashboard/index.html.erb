@@ -126,6 +126,13 @@
     <% end %>
   </div>
 
+  <%# ── CTA: create custom mission ── %>
+  <%= link_to new_kid_mission_path,
+        class: "ls-btn-3d font-display block w-full text-center mb-4 z-2 shrink-0",
+        style: "background: var(--star-2, #FFC107); color: var(--c-amber-dark, #B45309); border: 2px solid var(--c-amber-dark, #B45309); border-radius: 14px; padding: 14px 0; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 0 var(--c-amber-dark, #B45309);" do %>
+    + Nova missão
+  <% end %>
+
   <%# ── Mission list ── %>
   <div class="flex flex-col gap-2.5 mb-5 relative z-2">
 

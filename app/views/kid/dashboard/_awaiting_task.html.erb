@@ -1,18 +1,17 @@
-<%# Kid — Awaiting task partial (LittleStars design) %>
-<%= render Ui::Card::Component.new(padding: "p-5", class: "pop-on-tap opacity-70") do %>
-  <div class="flex items-center gap-3.5">
-    <div class="flex items-center justify-center rounded-md shrink-0 w-[52px] h-[52px] bg-peach-soft text-peach">
-      <i class="ph-bold ph-clock text-[28px]"></i>
-    </div>
-    <div class="flex flex-col flex-1 gap-1">
-      <div class="font-display text-[16px] leading-tight font-extrabold tracking-[-0.02em] text-foreground line-through opacity-70"><%= awaiting_task.title %></div>
-      <%= render Ui::Chip::Component.new(variant: "peach", class: "w-fit") do %>
-        <i class="ph-bold ph-clock text-[12px] text-current"></i> Aguardando Aprovação
-      <% end %>
-    </div>
-    <div class="flex flex-col items-center justify-center gap-0">
-      <i class="ph-fill ph-star text-[18px] text-[var(--star)] opacity-50"></i>
-      <div class="font-display text-[18px] leading-none font-extrabold tracking-[-0.02em] text-[var(--star-2)] opacity-50"><%= awaiting_task.points %></div>
-    </div>
+<%# Kid — Awaiting task partial (LittleStars Duolingo design) %>
+<div class="ls-card-3d flex items-center gap-3.5 p-4" style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 14px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); opacity: 0.85;">
+  <div class="flex items-center justify-center shrink-0 w-[48px] h-[48px] rounded-[12px]" style="background: var(--star-soft); border: 2px solid var(--star);">
+    <%= render Ui::Icon::Component.new("clock", size: 24, color: "var(--star-2)") %>
   </div>
-<% end %>
+  <div class="flex flex-col flex-1 gap-1 min-w-0">
+    <div class="font-display text-[15px] leading-tight font-extrabold tracking-[-0.01em] line-through opacity-80" style="color: var(--text);"><%= awaiting_task.title %></div>
+    <span class="inline-flex items-center gap-1 w-fit px-2.5 py-1 rounded-full font-display font-extrabold text-[11px] tracking-[0.5px] uppercase" style="background: var(--star-soft); color: var(--c-amber-dark); border: 2px solid var(--star);">
+      <%= render Ui::Icon::Component.new("clock", size: 10, color: "currentColor") %>
+      Aguardando
+    </span>
+  </div>
+  <div class="flex flex-col items-center justify-center shrink-0 leading-none">
+    <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--star)") %>
+    <div class="font-display text-[16px] font-extrabold mt-0.5" style="color: var(--star-2); opacity: 0.6;"><%= awaiting_task.points %></div>
+  </div>
+</div>
