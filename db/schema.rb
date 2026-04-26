@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_26_150700) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_26_233731) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -129,14 +129,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_26_150700) do
     t.date "assigned_date"
     t.datetime "completed_at"
     t.datetime "created_at", null: false
-    t.bigint "global_task_id", null: false
+    t.bigint "custom_category_id"
+    t.text "custom_description"
+    t.integer "custom_points"
+    t.string "custom_title"
+    t.bigint "global_task_id"
     t.bigint "profile_id", null: false
+    t.integer "source", default: 0, null: false
     t.integer "status", default: 0
+    t.text "submission_comment"
     t.datetime "updated_at", null: false
+    t.index ["custom_category_id"], name: "index_profile_tasks_on_custom_category_id"
     t.index ["global_task_id"], name: "index_profile_tasks_on_global_task_id"
     t.index ["profile_id", "assigned_date"], name: "index_profile_tasks_on_profile_id_and_assigned_date"
     t.index ["profile_id", "status"], name: "index_profile_tasks_on_profile_id_and_status"
     t.index ["profile_id"], name: "index_profile_tasks_on_profile_id"
+    t.index ["source"], name: "index_profile_tasks_on_source"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -306,6 +314,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_26_150700) do
   add_foreign_key "global_tasks", "families"
   add_foreign_key "profile_invitations", "families", on_delete: :cascade
   add_foreign_key "profile_invitations", "profiles", column: "invited_by_id", on_delete: :nullify
+  add_foreign_key "profile_tasks", "categories", column: "custom_category_id", on_delete: :nullify
   add_foreign_key "profile_tasks", "global_tasks"
   add_foreign_key "profile_tasks", "profiles"
   add_foreign_key "profiles", "families"
