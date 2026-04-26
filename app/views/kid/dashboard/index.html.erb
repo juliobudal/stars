@@ -34,9 +34,8 @@
     </div>
 
     <div class="flex gap-2 shrink-0 items-center">
-      <div class="bg-star-soft text-foreground py-1.5 px-3 rounded-full font-bold text-[14px] flex items-center gap-1.5">
-        <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
-        <%= current_profile.points %>
+      <div class="bg-star-soft text-foreground py-1.5 px-3 rounded-full">
+        <%= render Ui::StarValue::Component.new(value: current_profile.points, size: :sm, color: :gold) %>
       </div>
       <div class="w-9 h-9 rounded-full grid place-items-center text-[14px] font-extrabold shrink-0 border-2" style="background: <%= pal[:fill] %>; border-color: <%= pal[:ring] %>; color: <%= pal[:ink] %>;">
         <%= current_profile.name.first.upcase %>
@@ -166,8 +165,7 @@
                 <%= cat_data[:label] %>
               <% end %>
               <%= render Ui::Badge::Component.new(variant: "star") do %>
-                <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star-2)") %>
-                +<%= profile_task.points %>
+                <%= render Ui::StarValue::Component.new(value: profile_task.points, prefix: "+", size: :sm, color: :gold) %>
               <% end %>
             </div>
             <p class="text-muted-foreground font-semibold text-[17px] mt-1">Terminou essa missão? Um responsável vai confirmar.</p>

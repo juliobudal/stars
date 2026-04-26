@@ -64,26 +64,26 @@
   .screen {
     position: relative;
     inset: unset;
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
     min-height: 100%;
-    padding: var(--space-6) var(--space-7) 120px;
+    padding: var(--space-6) 0 120px;
     overflow-y: visible;
     overflow-x: visible;
   }
 }
 
 /* ── Screen entry animations ── */
-.screen-enter       { animation: slideIn  0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
-.screen-enter-right { animation: slideInR 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.screen-enter       { animation: slideIn  0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
+.screen-enter-right { animation: slideInR 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
 
 @keyframes slideIn {
   from { opacity: 0; transform: translateX(-24px); }
-  to   { opacity: 1; transform: translateX(0); }
+  to   { opacity: 1; transform: none; }
 }
 @keyframes slideInR {
   from { opacity: 0; transform: translateX(24px); }
-  to   { opacity: 1; transform: translateX(0); }
+  to   { opacity: 1; transform: none; }
 }
 
 /* ── Confetti / celebration overlay ── */

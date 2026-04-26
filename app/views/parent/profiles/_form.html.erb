@@ -1,4 +1,4 @@
-<%= form_with(model: [:parent, profile], class: "col gap-5") do |f| %>
+<%= form_with(model: [:parent, profile], html: { data: { controller: "form-preview" } }, class: "block") do |f| %>
   <% if profile.errors.any? %>
     <%= render Ui::Card::Component.new(variant: "flat", class: "bg-danger-soft text-danger p-4 mb-4") do %>
       <%= render Ui::Heading::Component.new(size: :h3) do %>Ops! Algo deu errado:<% end %>
@@ -11,67 +11,78 @@
   <% end %>
 
   <%
-    icon_options = profile.parent? ? %w[faceParent faceHero faceFox] : %w[faceFox faceHero facePrincess faceKid]
     color_options = %w[peach rose mint sky lilac coral]
-    current_color = profile.color.presence || "peach"
+    current_color = profile.color.presence || color_options.first
+    current_avatar = profile.avatar.presence || (profile.parent? ? "user-circle" : "happy-01")
   %>
 
-  <div class="flex items-center justify-center mb-4">
-    <% if profile.parent? %>
-      <%= render Ui::SmileyAvatar::Component.new(kid: profile, size: 100) %>
-    <% else %>
-      <%= render Ui::KidAvatar::Component.new(kid: profile, size: 100) %>
-    <% end %>
-  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 items-start">
+    <div class="flex flex-col gap-5">
+      <div class="flex flex-col gap-2">
+        <%= f.label :name, "Nome", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
+        <%= f.text_field :name,
+              class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm",
+              placeholder: "Ex: Lila",
+              data: { form_preview_field: "name" } %>
+      </div>
 
-  <div class="mb-6 flex flex-col gap-2">
-    <%= f.label :name, "Nome", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
-    <%= f.text_field :name, class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm", placeholder: "Ex: Lila" %>
-  </div>
+      <div class="flex flex-col gap-2">
+        <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Avatar</label>
+        <%= render Ui::IconPicker::Component.new(
+              field_name: "profile[avatar]",
+              value: current_avatar,
+              context: :avatar,
+              color: "var(--primary)",
+              id: "profile_avatar_picker",
+              input_data: { form_preview_field: "avatar" }
+            ) %>
+      </div>
 
-  <div class="mb-6 flex flex-col gap-2">
-    <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Avatar</label>
-    <div class="row flex-wrap gap-2">
-      <% icon_options.each do |ic| %>
-        <label class="cursor-pointer">
-          <%= f.radio_button :avatar, ic, class: "peer sr-only" %>
-          <div class="peer-checked:bg-primary-soft peer-checked:border-primary border-2 border-[rgba(26,42,74,0.1)] p-1 rounded-full transition-all flex items-center justify-center w-14 h-14 bg-white">
-            <%= render Ui::Icon::Component.new(ic, size: 48, color: "var(--primary)") %>
+      <%= render Ui::ColorPicker::Component.new(form: f, field: :color, options: color_options, label: "Cor", input_data: { form_preview_field: "color" }) %>
+
+      <div class="flex flex-col gap-2">
+        <%= f.label :pin, "PIN (4 dígitos)", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
+        <%= f.text_field :pin, pattern: "\\d{4}", maxlength: 4, inputmode: "numeric",
+              autocomplete: "off", required: action_name == "new",
+              class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm" %>
+      </div>
+
+      <% if params[:onboarding].present? %>
+        <%= hidden_field_tag :onboarding, params[:onboarding] %>
+      <% end %>
+      <% if params[:invited].present? %>
+        <%= hidden_field_tag :invited, params[:invited] %>
+      <% end %>
+
+      <div class="flex flex-row mt-4 gap-2.5 justify-end">
+        <%= render Ui::Btn::Component.new(variant: "secondary", url: (params[:onboarding].present? ? parent_root_path : parent_profiles_path)) do %>Voltar<% end %>
+        <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>Salvar Perfil<% end %>
+      </div>
+    </div>
+
+    <aside class="hidden lg:block">
+      <div class="sticky top-6">
+        <%= render Ui::Card::Component.new(class: "p-6 flex flex-col items-center gap-4 text-center") do %>
+          <div data-form-preview-target="color" data-form-preview-palette="true" data-palette="<%= current_color %>"
+               class="flex flex-col items-center gap-4">
+            <div class="w-32 h-32 rounded-full flex items-center justify-center shrink-0"
+                 style="background: var(--primary-soft); border: 4px solid var(--primary);">
+              <i data-form-preview-target="avatar" data-form-preview-icon="true"
+                 class="hgi-stroke hgi-<%= current_avatar %>"
+                 style="font-size:80px; line-height:1; color: var(--primary); display:inline-flex; align-items:center; justify-content:center; width:80px; height:80px;"
+                 aria-hidden="true"></i>
+            </div>
+            <div class="flex flex-col gap-1 w-full">
+              <div data-form-preview-target="name" data-form-preview-fallback="Pré-visualização"
+                   class="font-display font-extrabold text-[20px] text-foreground truncate"><%= profile.name.presence || "Pré-visualização" %></div>
+              <div class="text-[12px] text-muted-foreground font-semibold uppercase tracking-wider">
+                <%= profile.parent? ? "Responsável" : "Criança" %>
+              </div>
+            </div>
           </div>
-        </label>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="mb-6 flex flex-col gap-2">
-    <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Cor</label>
-    <div class="row flex-wrap gap-2.5">
-      <% color_options.each do |col| %>
-        <label class="cursor-pointer">
-          <%= f.radio_button :color, col, class: "peer sr-only" %>
-          <div class="peer-checked:border-text border-3 border-transparent rounded-full transition-all w-10 h-10" style="background: var(--c-<%= col %>);"></div>
-        </label>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="mb-6 flex flex-col gap-2">
-    <%= f.label :pin, "PIN (4 dígitos)", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
-    <%= f.text_field :pin, pattern: "\\d{4}", maxlength: 4, inputmode: "numeric",
-        autocomplete: "off", required: action_name == "new",
-        class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm" %>
-  </div>
-
-  <% if params[:onboarding].present? %>
-    <%= hidden_field_tag :onboarding, params[:onboarding] %>
-  <% end %>
-  <% if params[:invited].present? %>
-    <%= hidden_field_tag :invited, params[:invited] %>
-  <% end %>
-
-  <div class="row mt-4 gap-2.5 justify-end">
-    <%= render Ui::Btn::Component.new(variant: "secondary", url: (params[:onboarding].present? ? parent_root_path : parent_profiles_path)) do %>Voltar<% end %>
-    <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>Salvar Perfil<% end %>
+        <% end %>
+      </div>
+    </aside>
   </div>
 
   <% unless profile.new_record? %>

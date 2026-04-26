@@ -1,0 +1,55 @@
+<div class="ui-select relative w-full" data-controller="select" data-select-selected-value="<%= selected_value %>" id="<%= @id %>"
+     <% data_attrs.each do |k, v| %>data-<%= k.to_s.tr("_", "-") %>="<%= v %>" <% end %>>
+
+  <%# Native select (hidden, holds form value, fires change events) %>
+  <select name="<%= name %>" id="<%= native_id %>"
+          data-select-target="native"
+          aria-hidden="true" tabindex="-1"
+          class="ui-select__native"
+          style="position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;"
+          <% native_data.each do |k, v| %>data-<%= k.to_s.tr("_", "-") %>="<%= v %>" <% end %>>
+    <% option_list.each do |opt| %>
+      <option value="<%= option_value(opt) %>" <%= 'selected' if option_value(opt).to_s == selected_value.to_s %>><%= option_label(opt) %></option>
+    <% end %>
+  </select>
+
+  <%# Visual trigger %>
+  <button type="button" id="<%= trigger_id %>"
+          class="<%= trigger_class %>"
+          data-select-target="trigger"
+          data-action="click->select#toggle keydown->select#onKeydown"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          aria-controls="<%= @id %>_panel">
+    <span class="ui-select__label truncate" data-select-target="label"><%= selected_label %></span>
+    <span class="ui-select__chevron text-muted-foreground shrink-0" aria-hidden="true">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </span>
+  </button>
+
+  <%# Dropdown panel %>
+  <div id="<%= @id %>_panel" class="<%= panel_class %>"
+       data-select-target="panel"
+       role="listbox" tabindex="-1">
+    <div class="max-h-[280px] overflow-y-auto py-1">
+      <% option_list.each do |opt| %>
+        <button type="button"
+                class="<%= option_class(option_value(opt)) %>"
+                role="option"
+                data-select-target="option"
+                data-select-value="<%= option_value(opt) %>"
+                data-action="click->select#choose"
+                aria-selected="<%= option_value(opt).to_s == selected_value.to_s %>">
+          <span class="truncate"><%= option_label(opt) %></span>
+          <% if option_value(opt).to_s == selected_value.to_s %>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+              <path d="M5 12l5 5L20 7"/>
+            </svg>
+          <% end %>
+        </button>
+      <% end %>
+    </div>
+  </div>
+</div>

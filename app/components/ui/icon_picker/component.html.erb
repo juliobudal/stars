@@ -6,7 +6,7 @@
   data-icon-picker-color-value="<%= color %>"
   class="flex flex-col items-center gap-3"
 >
-  <%= hidden_field_tag field_name, value, data: { icon_picker_target: "hiddenInput" } %>
+  <%= hidden_field_tag field_name, value, data: { icon_picker_target: "hiddenInput" }.merge(input_data) %>
 
   <button
     type="button"
@@ -27,63 +27,61 @@
     class="icon-picker-modal fixed inset-0 z-[100] items-center justify-center p-4 hidden"
     aria-hidden="true"
     role="dialog"
+    aria-label="Escolher ícone"
   >
-    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" data-action="click->icon-picker#cancel"></div>
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" data-action="click->icon-picker#cancel"></div>
 
-    <div class="relative bg-surface rounded-card shadow-card w-full max-w-4xl animate-pop-in overflow-hidden">
-      <%= render Ui::TopBar::Component.new(title: "Escolher ícone") do |c|
-            c.with_right_slot do
-              render Ui::Btn::Component.new(variant: "ghost", size: "icon", data: { action: "click->icon-picker#cancel" }) do
-                render Ui::Icon::Component.new("close", size: 20)
-              end
-            end
-          end %>
+    <div class="relative bg-surface rounded-card shadow-card w-full max-w-2xl max-h-[85vh] flex flex-col animate-pop-in overflow-hidden">
+      <button type="button"
+        data-action="click->icon-picker#cancel"
+        aria-label="Fechar"
+        class="absolute top-4 right-4 z-10 inline-flex items-center justify-center w-9 h-9 rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition-all">
+        <%= render Ui::Icon::Component.new("close", size: 18) %>
+      </button>
 
-      <div class="p-6">
-        <div class="modal__body">
-          <div class="flex flex-col gap-4">
-            <input
-              type="search"
-              placeholder="Buscar ícones…"
-              data-icon-picker-target="searchInput"
-              data-action="input->icon-picker#search"
-              class="w-full px-5 py-3 bg-white border-2 border-hairline rounded-2xl font-semibold text-[15px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all"
-            />
+      <div class="flex-1 overflow-y-auto px-6 pt-12 pb-4">
+        <div class="flex flex-col gap-4">
+          <input
+            type="search"
+            placeholder="Buscar ícones…"
+            data-icon-picker-target="searchInput"
+            data-action="input->icon-picker#search"
+            class="w-full px-4 py-2.5 bg-white border-2 border-hairline rounded-xl font-semibold text-[14px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all"
+          />
 
-            <div class="row gap-2">
-              <button type="button"
-                data-icon-picker-target="tabCurated"
-                data-action="click->icon-picker#showCurated"
-                class="px-4 py-2 rounded-full font-bold text-[13px] bg-primary-soft text-primary">
-                Sugeridos
-              </button>
-              <button type="button"
-                data-icon-picker-target="tabCatalog"
-                data-action="click->icon-picker#showCatalog"
-                class="px-4 py-2 rounded-full font-bold text-[13px] bg-surface-muted text-muted-foreground">
-                Todos
-              </button>
-            </div>
-
-            <div data-icon-picker-target="curatedGrid"
-                 class="grid grid-cols-5 sm:grid-cols-7 gap-2"></div>
-
-            <div data-icon-picker-target="catalogGrid"
-                 class="grid grid-cols-5 sm:grid-cols-7 gap-2 hidden"></div>
-
+          <div class="flex border-b border-hairline">
             <button type="button"
-              data-icon-picker-target="loadMoreBtn"
-              data-action="click->icon-picker#loadMore"
-              class="hidden mx-auto px-4 py-2 rounded-full font-bold text-[13px] bg-surface-muted text-foreground hover:bg-primary-soft hover:text-primary transition-all">
-              Carregar mais
+              data-icon-picker-target="tabCurated"
+              data-action="click->icon-picker#showCurated"
+              class="px-4 py-2.5 font-bold text-[13px] -mb-px border-b-2 border-primary text-primary transition-all">
+              Sugeridos
+            </button>
+            <button type="button"
+              data-icon-picker-target="tabCatalog"
+              data-action="click->icon-picker#showCatalog"
+              class="px-4 py-2.5 font-bold text-[13px] -mb-px border-b-2 border-transparent text-muted-foreground hover:text-foreground transition-all">
+              Todos
             </button>
           </div>
-        </div>
 
-        <div class="modal__footer modal__footer-bordered flex flex-row gap-2 items-start justify-end">
-          <%= render Ui::Btn::Component.new(variant: "secondary", data: { action: "click->icon-picker#cancel" }) do %>Cancelar<% end %>
-          <%= render Ui::Btn::Component.new(variant: "primary",   data: { action: "click->icon-picker#confirm" }) do %>Confirmar<% end %>
+          <div data-icon-picker-target="curatedGrid"
+               class="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2"></div>
+
+          <div data-icon-picker-target="catalogGrid"
+               class="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2 hidden"></div>
+
+          <button type="button"
+            data-icon-picker-target="loadMoreBtn"
+            data-action="click->icon-picker#loadMore"
+            class="hidden mx-auto px-4 py-2 rounded-full font-bold text-[13px] bg-surface-muted text-foreground hover:bg-primary-soft hover:text-primary transition-all">
+            Carregar mais
+          </button>
         </div>
+      </div>
+
+      <div class="flex flex-row gap-2 items-center justify-end px-6 py-4 border-t border-hairline bg-surface">
+        <%= render Ui::Btn::Component.new(variant: "secondary", data: { action: "click->icon-picker#cancel" }) do %>Cancelar<% end %>
+        <%= render Ui::Btn::Component.new(variant: "primary",   data: { action: "click->icon-picker#confirm" }) do %>Confirmar<% end %>
       </div>
     </div>
   </div>

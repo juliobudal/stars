@@ -1,111 +1,74 @@
-<div class="screen screen-enter-right with-nav" data-controller="bulk-select">
+<div class="screen screen-enter-right with-nav">
 
   <%= render Ui::TopBar::Component.new(
     title: "Aprovações",
     subtitle: "#{@profile_tasks.count + @redemptions.count} pendências",
-  ) do |bar| %>
-    <% bar.with_right_slot do %>
-      <div class="flex gap-2">
-        <%= render Ui::Btn::Component.new(
-          variant: "danger",
-          size: "sm",
-          type: "button",
-          class: "opacity-65 cursor-not-allowed",
-          data: {
-            bulk_select_target: "submit",
-            bulk_url: bulk_reject_parent_approvals_path,
-            action: "click->bulk-select#submit"
-          },
-          disabled: true
-        ) do %>
-          Rejeitar selecionadas
-        <% end %>
-        <%= render Ui::Btn::Component.new(
-          variant: "primary",
-          size: "sm",
-          type: "button",
-          class: "opacity-65 cursor-not-allowed",
-          data: {
-            bulk_select_target: "submit",
-            bulk_url: bulk_approve_parent_approvals_path,
-            action: "click->bulk-select#submit"
-          },
-          disabled: true
-        ) do %>
-          <%= render Ui::Icon::Component.new("check", size: 14, color: "white") %> Aprovar selecionadas
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
+  ) %>
 
   <%= turbo_frame_tag "approvals_list" do %>
+    <div data-controller="tabs">
+      <%= render Ui::FilterChips::Component.new(
+            active: "missions",
+            items: [
+              { id: "missions", label: "Missões", icon: "target", count: @profile_tasks.count },
+              { id: "rewards",  label: "Prêmios", icon: "bag",    count: @redemptions.count }
+            ]
+          ) %>
 
-    <%= render Ui::FilterChips::Component.new(
-          active: "missions",
-          items: [
-            { id: "missions", label: "Missões", icon: "target", count: @profile_tasks.count },
-            { id: "rewards",  label: "Prêmios", icon: "bag",    count: @redemptions.count }
-          ]
-        ) %>
-
-    <div id="panel-missions" class="col z-content gap-2">
-      <% if @profile_tasks.any? %>
-        <% @profile_tasks.each do |task| %>
-          <%= render Ui::ApprovalRow::Component.new(
-                dom_id: dom_id(task),
-                kid: task.profile,
-                title: task.title,
-                kid_chip_text: task.profile&.name,
-                category_label: task.category.to_s.humanize,
-                meta: "#{time_ago_in_words(task.updated_at)} atrás",
-                points: task.points,
-                points_sign: "+",
-                bulk: true,
-                bulk_value: task.id,
-                approve_url: approve_parent_approval_path(task),
-                reject_url: reject_parent_approval_path(task),
-                reject_confirm: "Rejeitar esta missão?"
+      <div id="panel-missions" class="flex flex-col z-content gap-2">
+        <% if @profile_tasks.any? %>
+          <% @profile_tasks.each do |task| %>
+            <%= render Ui::ApprovalRow::Component.new(
+                  dom_id: dom_id(task),
+                  kid: task.profile,
+                  title: task.title,
+                  kid_chip_text: task.profile&.name,
+                  category_label: task.category.to_s.humanize,
+                  meta: "#{time_ago_in_words(task.updated_at)} atrás",
+                  points: task.points,
+                  points_sign: "+",
+                  approve_url: approve_parent_approval_path(task),
+                  reject_url: reject_parent_approval_path(task),
+                  reject_confirm: "Rejeitar esta missão?"
+                ) %>
+          <% end %>
+        <% else %>
+          <%= render Ui::Empty::Component.new(
+                icon: "check",
+                title: "Tudo em dia!",
+                subtitle: "Nenhuma missão aguardando aprovação."
               ) %>
         <% end %>
-      <% else %>
-        <%= render Ui::Empty::Component.new(
-              icon: "check",
-              title: "Tudo em dia!",
-              subtitle: "Nenhuma missão aguardando aprovação."
-            ) %>
-      <% end %>
-    </div>
+      </div>
 
-    <div id="panel-rewards" class="col z-content gap-2 hidden">
-      <% if @redemptions.any? %>
-        <% @redemptions.each do |redemption| %>
-          <%= render Ui::ApprovalRow::Component.new(
-                dom_id: dom_id(redemption),
-                kid: redemption.profile,
-                title: redemption.reward&.title,
-                kid_chip_text: redemption.profile&.name,
-                meta: "#{time_ago_in_words(redemption.created_at)} atrás",
-                points: redemption.points,
-                points_sign: "−",
-                bulk: true,
-                bulk_value: redemption.id,
-                approve_url: approve_redemption_parent_approval_path(redemption),
-                reject_url: reject_redemption_parent_approval_path(redemption),
-                approve_label: "Entregue",
-                reject_label: "Cancelar",
-                approve_submits_with: "Entregando...",
-                reject_submits_with: "Cancelando...",
-                reject_confirm: "Rejeitar este pedido de prêmio? As estrelas serão devolvidas."
+      <div id="panel-rewards" class="flex flex-col z-content gap-2 hidden">
+        <% if @redemptions.any? %>
+          <% @redemptions.each do |redemption| %>
+            <%= render Ui::ApprovalRow::Component.new(
+                  dom_id: dom_id(redemption),
+                  kid: redemption.profile,
+                  title: redemption.reward&.title,
+                  kid_chip_text: redemption.profile&.name,
+                  meta: "#{time_ago_in_words(redemption.created_at)} atrás",
+                  points: redemption.points,
+                  points_sign: "−",
+                  approve_url: approve_redemption_parent_approval_path(redemption),
+                  reject_url: reject_redemption_parent_approval_path(redemption),
+                  approve_label: "Entregue",
+                  reject_label: "Cancelar",
+                  approve_submits_with: "Entregando...",
+                  reject_submits_with: "Cancelando...",
+                  reject_confirm: "Rejeitar este pedido de prêmio? As estrelas serão devolvidas."
+                ) %>
+          <% end %>
+        <% else %>
+          <%= render Ui::Empty::Component.new(
+                icon: "check",
+                title: "Tudo entregue!",
+                subtitle: "Nenhum prêmio aguardando entrega."
               ) %>
         <% end %>
-      <% else %>
-        <%= render Ui::Empty::Component.new(
-              icon: "check",
-              title: "Tudo entregue!",
-              subtitle: "Nenhum prêmio aguardando entrega."
-            ) %>
-      <% end %>
+      </div>
     </div>
-
   <% end %>
 </div>

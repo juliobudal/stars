@@ -1,7 +1,7 @@
 <div data-palette="<%= helpers.palette_for(kid) %>">
   <%= render Ui::Card::Component.new(padding: "none", class: "overflow-hidden") do %>
   <%# Slim color strip with edit pencil %>
-  <div class="h-12 relative shrink-0" style="background: <%= palette[:fill] %>;">
+  <div class="h-12 relative z-20 shrink-0" style="background: <%= palette[:fill] %>;">
     <%= link_to edit_parent_profile_path(kid),
           class: "flex items-center justify-center absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/70 no-underline",
           aria: { label: "Editar #{kid.name}" } do %>
@@ -12,8 +12,12 @@
   <%# Floating avatar + content %>
   <div class="-mt-7.5 px-5 pb-5 relative z-10">
     <%# Avatar %>
-    <div class="flex items-center justify-center w-14 h-14 rounded-full border-4 border-white font-extrabold text-[22px] shadow-[0_2px_8px_rgba(44,42,58,0.12)]" style="background: <%= palette[:fill] %>; color: <%= palette[:ink] %>;">
-      <%= kid.name.first.upcase %>
+    <div class="flex items-center justify-center w-14 h-14 rounded-full border-4 border-white shadow-[0_2px_8px_rgba(44,42,58,0.12)]" style="background: <%= palette[:fill] %>; color: <%= palette[:ink] %>;">
+      <% if kid.avatar.present? %>
+        <%= render Ui::Icon::Component.new(kid.avatar, size: 28, color: palette[:ink]) %>
+      <% else %>
+        <span class="font-extrabold text-[22px]"><%= kid.name.first.upcase %></span>
+      <% end %>
     </div>
 
     <%# Name + streak %>
@@ -29,7 +33,7 @@
     <%# 2-col stats %>
     <div class="grid grid-cols-2 gap-2 mt-3">
       <div class="rounded-xl py-2.5 px-3" style="background: <%= palette[:fill] %>;">
-        <div class="font-display text-[20px] leading-none font-extrabold text-foreground flex items-center gap-1"><%= render Ui::Icon::Component.new(:star, size: 15, color: "var(--c-amber-dark)") %> <%= points %></div>
+        <%= render Ui::StarValue::Component.new(value: points, size: :lg, color: :gold, class: "text-foreground") %>
         <div class="text-[12px] font-bold text-muted-foreground mt-1">Saldo</div>
       </div>
       <div class="rounded-xl py-2.5 px-3" style="background: <%= palette[:fill] %>;">

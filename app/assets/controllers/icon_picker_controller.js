@@ -31,6 +31,16 @@ export default class extends Controller {
     this.catalogPage = 0
     this.filteredCatalog = []
     this.renderCurated()
+    if (this.hasModalTarget && this.modalTarget.parentElement !== document.body) {
+      this.modalOriginalParent = this.modalTarget.parentElement
+      document.body.appendChild(this.modalTarget)
+    }
+  }
+
+  disconnect() {
+    if (this.modalOriginalParent && this.hasModalTarget && this.modalTarget.parentElement === document.body) {
+      this.modalOriginalParent.appendChild(this.modalTarget)
+    }
   }
 
   open(event) {
@@ -195,11 +205,11 @@ export default class extends Controller {
   }
 
   applyTabUI() {
-    const active = "bg-primary-soft text-primary"
-    const idle   = "bg-surface-muted text-muted-foreground"
+    const active = ["border-primary", "text-primary"]
+    const idle   = ["border-transparent", "text-muted-foreground", "hover:text-foreground"]
     const setBtn = (el, on) => {
-      el.classList.remove(...active.split(" "), ...idle.split(" "))
-      el.classList.add(...(on ? active : idle).split(" "))
+      el.classList.remove(...active, ...idle)
+      el.classList.add(...(on ? active : idle))
     }
     setBtn(this.tabCuratedTarget, this.activeTab === "curated")
     setBtn(this.tabCatalogTarget, this.activeTab === "catalog")

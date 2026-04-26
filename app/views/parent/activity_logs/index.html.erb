@@ -21,7 +21,7 @@
         </div>
         <div class="flex flex-col gap-0">
           <div class="font-display text-[11px] font-bold tracking-[0.08em] uppercase text-primary text-mint-dark">Ganhou</div>
-          <div class="font-display text-[22px] leading-[1.1] font-extrabold tracking-[-0.02em] flex items-center gap-1 text-mint-dark">+<%= total_earn %> <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--c-amber-dark)") %></div>
+          <%= render Ui::StarValue::Component.new(value: total_earn, prefix: "+", size: :lg, color: :gold, class: "tracking-[-0.02em] text-mint-dark") %>
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
         </div>
         <div class="flex flex-col gap-0">
           <div class="font-display text-[11px] font-bold tracking-[0.08em] uppercase text-primary text-rose-dark">Gastou</div>
-          <div class="font-display text-[22px] leading-[1.1] font-extrabold tracking-[-0.02em] flex items-center gap-1 text-rose-dark">−<%= total_spend %> <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--c-amber-dark)") %></div>
+          <%= render Ui::StarValue::Component.new(value: total_spend, prefix: "−", size: :lg, color: :gold, class: "tracking-[-0.02em] text-rose-dark") %>
         </div>
       </div>
     </div>
@@ -57,10 +57,7 @@
                 <span class="text-[12px] text-muted-foreground font-bold"><%= l(h.created_at, format: :short).upcase %></span>
               </div>
             </div>
-            <div class="font-display text-[18px] leading-none font-extrabold tracking-[-0.02em] flex items-center gap-1 <%= earn ? 'text-success' : 'text-rose' %>">
-              <%= earn ? '+' : '−' %><%= h.points.abs %>
-              <%= render Ui::Icon::Component.new(:star, size: 15, color: "var(--c-amber-dark)") %>
-            </div>
+            <%= render Ui::StarValue::Component.new(value: h.points.abs, prefix: (earn ? '+' : '−'), size: :md, color: :gold, class: "tracking-[-0.02em] #{earn ? 'text-success' : 'text-rose'}") %>
           </div>
         <% end %>
       <% end %>

@@ -121,12 +121,13 @@
   --accent: var(--primary-soft);
   --accent-foreground: var(--primary-2);
   --destructive: var(--danger);
-  --destructive-depth: var(--danger-2);
+  --destructive-depth: oklch(from var(--danger) calc(l - 0.12) c h);
   --warning: var(--star);
-  --warning-depth: var(--star-2);
+  --warning-depth: oklch(from var(--star) calc(l - 0.12) c h);
+  --success-depth: oklch(from var(--success) calc(l - 0.12) c h);
   --info: var(--c-sky);
   --primary-foreground: #ffffff;
-  --primary-depth: var(--primary-2);
+  --primary-depth: oklch(from var(--primary) calc(l - 0.12) c h);
   --overlay: rgba(26, 42, 74, 0.4);
   /* Radius aliases */
   --radius-base: var(--r-sm);

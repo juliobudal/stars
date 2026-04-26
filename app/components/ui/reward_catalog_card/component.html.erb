@@ -19,10 +19,7 @@
       <%= render Ui::Badge::Component.new(variant: tint, size: "sm") do %>
         <%= cat[:label] %>
       <% end %>
-      <div class="flex items-center gap-1 font-extrabold text-[15px] text-foreground">
-        <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
-        <%= reward.cost %>
-      </div>
+      <%= render Ui::StarValue::Component.new(value: reward.cost, size: :sm, color: :gold, class: "text-foreground") %>
     </div>
   </div>
 

@@ -1,0 +1,19 @@
+<span class="<%= container_class %>" style="gap: <%= [ (icon_size * 0.25).round, 4 ].max %>px;">
+  <svg width="<%= icon_size %>" height="<%= icon_size %>" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display: inline-block; flex-shrink: 0; filter: drop-shadow(0 1px 0 rgba(146, 64, 14, 0.18));">
+    <% if gradient? %>
+      <defs>
+        <linearGradient id="<%= gradient_id %>" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="<%= stop_colors[0] %>" />
+          <stop offset="100%" stop-color="<%= stop_colors[1] %>" />
+        </linearGradient>
+      </defs>
+      <path d="M12 2.5l2.94 5.96 6.58.96-4.76 4.64 1.12 6.55L12 17.6l-5.88 3.01 1.12-6.55L2.48 9.42l6.58-.96L12 2.5z" fill="url(#<%= gradient_id %>)" stroke="#92400E" stroke-width="0.6" stroke-linejoin="round"/>
+    <% else %>
+      <path d="M12 2.5l2.94 5.96 6.58.96-4.76 4.64 1.12 6.55L12 17.6l-5.88 3.01 1.12-6.55L2.48 9.42l6.58-.96L12 2.5z" fill="<%= stop_colors[0] %>" stroke="#92400E" stroke-width="0.6" stroke-linejoin="round"/>
+    <% end %>
+  </svg>
+  <% if prefix %><span aria-hidden="true"><%= prefix %></span><% end %>
+  <span<% if value_id %> id="<%= value_id %>"<% end %>
+        <% if value_class %>class="<%= value_class %>"<% end %>
+        <% value_data.each do |k, v| %>data-<%= k.to_s.tr("_", "-") %>="<%= v %>" <% end %>><%= value %></span>
+</span>

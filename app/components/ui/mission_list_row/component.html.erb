@@ -20,10 +20,7 @@
         <%= fm[:label] %>
       <% end %>
     </div>
-    <div class="flex items-center gap-1">
-      <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--color-amber-dark)") %>
-      <span class="font-display font-extrabold text-[15px] text-star-2"><%= mission.points %></span>
-    </div>
+    <%= render Ui::StarValue::Component.new(value: mission.points, size: :sm, color: :gold, class: "text-star-2") %>
     <div class="flex items-center gap-0">
       <% assigned_profiles.first(4).each_with_index do |k, idx| %>
         <span class="<%= idx.zero? ? '' : '-ml-1.5' %>">

@@ -18,10 +18,7 @@
 
   <%# Cost + action %>
   <div class="flex items-center justify-between gap-1 px-2 pb-1.5">
-    <span class="inline-flex items-center gap-1 font-extrabold text-[13px] text-foreground">
-      <%= render Ui::Icon::Component.new("star", size: 13, color: "var(--star)") %>
-      <%= reward.cost %>
-    </span>
+    <%= render Ui::StarValue::Component.new(value: reward.cost, size: :sm, color: :gold) %>
     <% if can_afford? %>
       <span class="bg-foreground text-white py-[5px] px-2.5 rounded-full text-[10px] font-black tracking-wider">TROCAR</span>
     <% else %>

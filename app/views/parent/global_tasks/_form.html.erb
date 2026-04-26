@@ -1,4 +1,4 @@
-<%= form_with(model: global_task, url: global_task.new_record? ? parent_global_tasks_path : parent_global_task_path(global_task), class: "col gap-5") do |f| %>
+<%= form_with(model: global_task, url: global_task.new_record? ? parent_global_tasks_path : parent_global_task_path(global_task), html: { data: { controller: "form-preview" } }, class: "block") do |f| %>
   <% if global_task.errors.any? %>
     <%= render Ui::Card::Component.new(variant: "flat", class: "bg-danger-soft text-danger p-4 mb-4") do %>
       <%= render Ui::Heading::Component.new(size: :h3) do %>Ops! Algo deu errado:<% end %>
@@ -13,95 +13,133 @@
   <%
     cat_name = global_task.category || "geral"
     cat_data = Ui::MissionCard::Component::CATEGORIES[cat_name.to_s] || Ui::MissionCard::Component::CATEGORIES["geral"]
+    current_icon = global_task.icon.presence || Ui::IconPicker::Component::CONTEXT_GROUPS[:mission].first
   %>
 
-  <div class="mb-4 flex flex-col items-center gap-2">
-    <%= render Ui::IconPicker::Component.new(
-          field_name: "global_task[icon]",
-          value: global_task.icon,
-          context: :mission,
-          color: "var(--c-#{cat_data[:color]})",
-          id: "global_task_icon_picker"
-        ) %>
-  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 items-start">
+    <div class="flex flex-col gap-5">
+      <div class="flex flex-col gap-2">
+        <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Ícone</label>
+        <%= render Ui::IconPicker::Component.new(
+              field_name: "global_task[icon]",
+              value: current_icon,
+              context: :mission,
+              color: "var(--c-#{cat_data[:color]})",
+              id: "global_task_icon_picker",
+              input_data: { form_preview_field: "icon" }
+            ) %>
+      </div>
 
-  <div class="mb-6 flex flex-col gap-2">
-    <%= f.label :title, "Título", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
-    <%= f.text_field :title, class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm", placeholder: "Ex: Arrumar a cama" %>
-  </div>
+      <div class="flex flex-col gap-2">
+        <%= f.label :title, "Título", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
+        <%= f.text_field :title,
+              class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm",
+              placeholder: "Ex: Arrumar a cama",
+              data: { form_preview_field: "title" } %>
+      </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-    <div class="flex flex-col gap-2">
-      <%= f.label :points, "Estrelinhas", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
-      <%= f.number_field :points, class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm" %>
-    </div>
-    <div class="flex flex-col gap-2">
-      <%= f.label :frequency, "Frequência", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
-      <%= f.select :frequency,
-            [["Diária", "daily"], ["Semanal", "weekly"], ["Mensal", "monthly"], ["Única vez", "once"]],
-            {},
-            class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground focus:border-primary focus:ring-0 transition-all shadow-sm appearance-none",
-            data: { action: "change->fields#enable", controls: "day_of_month_field" } %>
-    </div>
-  </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="flex flex-col gap-2">
+          <%= f.label :points, "Estrelinhas", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
+          <%= f.number_field :points,
+                class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm",
+                data: { form_preview_field: "points" } %>
+        </div>
+        <div class="flex flex-col gap-2">
+          <%= f.label :frequency, "Frequência", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
+          <%= render Ui::Select::Component.new(
+                name: "global_task[frequency]",
+                id: "global_task_frequency",
+                options: [["Diária", "daily"], ["Semanal", "weekly"], ["Mensal", "monthly"], ["Única vez", "once"]],
+                selected: global_task.frequency,
+                size: :lg,
+                native_data: { action: "change->fields#enable", controls: "day_of_month_field" }
+              ) %>
+        </div>
+      </div>
 
-  <div class="mb-6 flex flex-col gap-2">
-    <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Categoria</label>
-    <div class="row flex-wrap gap-2">
-      <% Ui::MissionCard::Component::CATEGORIES.each do |key, data| %>
-        <% next if data[:label] == "Geral" %>
-        <label class="cursor-pointer">
-          <%= f.radio_button :category, key, class: "peer sr-only" %>
-          <%= render Ui::Chip::Component.new(variant: data[:color], class: "peer-checked:outline peer-checked:outline-3 peer-checked:outline-offset-2 outline-c-#{data[:color]}") do %>
-            <%= render Ui::Icon::Component.new(data[:icon], size: 14) %>
-            <%= data[:label] %>
+      <div class="flex flex-col gap-2">
+        <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Categoria</label>
+        <div class="flex flex-row flex-wrap gap-2 items-center">
+          <% Ui::MissionCard::Component::CATEGORIES.each do |key, data| %>
+            <% next if data[:label] == "Geral" %>
+            <label class="cursor-pointer">
+              <%= f.radio_button :category, key, class: "peer sr-only" %>
+              <%= render Ui::Chip::Component.new(variant: data[:color], class: "peer-checked:outline peer-checked:outline-3 peer-checked:outline-offset-2 outline-c-#{data[:color]}") do %>
+                <%= render Ui::Icon::Component.new(data[:icon], size: 14) %>
+                <%= data[:label] %>
+              <% end %>
+            </label>
           <% end %>
-        </label>
-      <% end %>
-    </div>
-  </div>
+        </div>
+      </div>
 
-  <%# Active toggle %>
-  <div class="row justify-between items-center py-3 border-y border-hairline">
-    <div>
-      <div class="text-[13px] font-bold text-foreground">Missão ativa</div>
-      <div class="text-[11px] text-muted-foreground">Missões inativas não aparecem para as crianças</div>
-    </div>
-    <%= render Ui::Toggle::Component.new(name: "global_task[active]", checked: global_task.active?) %>
-  </div>
+      <div class="flex flex-row justify-between items-center py-3 border-y border-hairline">
+        <div>
+          <div class="text-[13px] font-bold text-foreground">Missão ativa</div>
+          <div class="text-[11px] text-muted-foreground">Missões inativas não aparecem para as crianças</div>
+        </div>
+        <%= render Ui::Toggle::Component.new(name: "global_task[active]", checked: global_task.active?) %>
+      </div>
 
-  <%# Assign to kids %>
-  <% kids = @kids || current_profile.family.profiles.child.order(:name) %>
-  <% if kids.any? %>
-  <div class="mb-6 flex flex-col gap-2">
-    <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Atribuir a</label>
-      <div class="text-[11px] text-muted-foreground mb-2">Deixe em branco para atribuir a todas as crianças.</div>
-      <div class="row flex-wrap gap-2">
-        <% kids.each do |kid| %>
-          <% checked = global_task.assigned_profile_ids.include?(kid.id) %>
-          <label class="cursor-pointer">
-            <%= check_box_tag "global_task[assigned_profile_ids][]", kid.id, checked, class: "peer sr-only" %>
-            <%= render Ui::Chip::Component.new(variant: checked ? "primary" : "neutral", class: "border #{checked ? 'border-primary' : 'border-hairline'}") do %>
-              <%= kid.name %>
+      <% kids = @kids || current_profile.family.profiles.child.order(:name) %>
+      <% if kids.any? %>
+        <div class="flex flex-col gap-2">
+          <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Atribuir a</label>
+          <div class="text-[11px] text-muted-foreground mb-2">Deixe em branco para atribuir a todas as crianças.</div>
+          <div class="flex flex-row flex-wrap gap-2 items-center">
+            <% kids.each do |kid| %>
+              <% checked = global_task.assigned_profile_ids.include?(kid.id) %>
+              <label class="cursor-pointer">
+                <%= check_box_tag "global_task[assigned_profile_ids][]", kid.id, checked, class: "peer sr-only" %>
+                <%= render Ui::Chip::Component.new(variant: checked ? "primary" : "neutral", class: "border #{checked ? 'border-primary' : 'border-hairline'}") do %>
+                  <%= kid.name %>
+                <% end %>
+              </label>
             <% end %>
-          </label>
+          </div>
+          <%= hidden_field_tag "global_task[assigned_profile_ids][]", "" %>
+        </div>
+      <% end %>
+
+      <fieldset id="day_of_month_field" class="flex flex-col gap-2 <%= 'hidden' unless global_task.monthly? %>" <%= "disabled" unless global_task.monthly? %>>
+        <legend class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Dia do mês</legend>
+        <%= f.number_field :day_of_month, class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm", min: 1, max: 31, placeholder: "Ex: 15" %>
+        <p class="text-[11px] text-muted-foreground mt-1">Dia do mês em que a missão será criada (1–31).</p>
+      </fieldset>
+
+      <div class="flex flex-row mt-4 gap-2.5 justify-end">
+        <%= render Ui::Btn::Component.new(variant: "secondary", url: parent_global_tasks_path) do %>Voltar<% end %>
+        <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>Salvar Missão<% end %>
+      </div>
+    </div>
+
+    <aside class="hidden lg:block">
+      <div class="sticky top-6">
+        <%= render Ui::Card::Component.new(class: "p-6 flex flex-col items-center gap-4 text-center") do %>
+          <div class="w-28 h-28 rounded-3xl flex items-center justify-center shrink-0"
+               style="background: var(--c-<%= cat_data[:color] %>-soft); border: 3px solid var(--c-<%= cat_data[:color] %>);">
+            <i data-form-preview-target="icon" data-form-preview-icon="true"
+               class="hgi-stroke hgi-<%= current_icon %>"
+               style="font-size:64px; line-height:1; color: var(--c-<%= cat_data[:color] %>); display:inline-flex; width:64px; height:64px;"
+               aria-hidden="true"></i>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <div data-form-preview-target="title" data-form-preview-fallback="Título da missão"
+                 class="font-display font-extrabold text-[18px] text-foreground truncate">
+              <%= global_task.title.presence || "Título da missão" %>
+            </div>
+            <%= render Ui::StarValue::Component.new(
+                  value: global_task.points || 0,
+                  size: :sm,
+                  color: :gold,
+                  class: "text-muted-foreground",
+                  value_data: { form_preview_target: "points", form_preview_fallback: "0" }
+                ) %>
+          </div>
         <% end %>
       </div>
-      <%# ensure empty array when none selected %>
-      <%= hidden_field_tag "global_task[assigned_profile_ids][]", "" %>
-    </div>
-  <% end %>
-
-  <%# day_of_month field — visible only for monthly frequency %>
-  <fieldset id="day_of_month_field" class="mb-6 flex flex-col gap-2 <%= 'hidden' unless global_task.monthly? %>" <%= "disabled" unless global_task.monthly? %>>
-    <legend class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Dia do mês</legend>
-    <%= f.number_field :day_of_month, class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm", min: 1, max: 31, placeholder: "Ex: 15" %>
-    <p class="text-[11px] text-muted-foreground mt-1">Dia do mês em que a missão será criada (1–31).</p>
-  </fieldset>
-
-  <div class="row mt-4 gap-2.5 justify-end">
-    <%= render Ui::Btn::Component.new(variant: "secondary", url: parent_global_tasks_path) do %>Voltar<% end %>
-    <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>Salvar Missão<% end %>
+    </aside>
   </div>
 
   <% unless global_task.new_record? %>

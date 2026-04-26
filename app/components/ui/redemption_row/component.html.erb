@@ -4,7 +4,7 @@
   </div>
   <div class="flex-1 min-w-0">
     <div class="font-display text-[16px] leading-tight font-extrabold tracking-[-0.02em] text-foreground overflow-hidden text-ellipsis whitespace-nowrap"><%= redemption.title %></div>
-    <div class="text-[12px] font-bold text-muted-foreground flex items-center gap-1">−<%= redemption.reward.cost %> <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--c-amber-dark)") %></div>
+    <%= render Ui::StarValue::Component.new(value: redemption.reward.cost, prefix: "−", size: :xs, color: :gold, class: "text-muted-foreground") %>
   </div>
   <%= render Ui::Chip::Component.new(size: "sm", style: "background:#{status[:bg]}; color:#{status[:fg]}; white-space:nowrap;") do %><%= status[:label] %><% end %>
 </div>

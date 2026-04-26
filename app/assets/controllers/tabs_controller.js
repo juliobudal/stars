@@ -17,10 +17,19 @@ export default class extends Controller {
       panel.style.flexDirection = "column"
     })
 
-    // Toggle tab active state
+    // Toggle tab active state. CategoryTabs use `cat-tab--active`;
+    // FilterChips toggle inline Tailwind utilities.
     this.tabTargets.forEach(tab => {
       const isActive = tab.dataset.tabsIdParam === targetId
-      tab.classList.toggle("active", isActive)
+      if (tab.classList.contains("cat-tab")) {
+        tab.classList.toggle("cat-tab--active", isActive)
+      } else {
+        tab.classList.toggle("bg-white", isActive)
+        tab.classList.toggle("text-primary", isActive)
+        tab.classList.toggle("shadow-sm", isActive)
+        tab.classList.toggle("text-muted-foreground", !isActive)
+      }
+      tab.setAttribute("aria-selected", isActive)
     })
   }
 }

@@ -30,7 +30,11 @@ class Ui::Icon::Component < ApplicationComponent
     bag: "shopping-bag-01",
     scroll: "scroll",
     home: "home-01",
+    house: "home-01",
     users: "user-multiple",
+    "list-checks": "task-done-01",
+    list: "menu-01",
+    gear: "settings-01",
 
     # missions
     bed: "bed-single-01",

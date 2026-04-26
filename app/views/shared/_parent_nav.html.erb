@@ -21,22 +21,19 @@
 <%# Sidebar %>
 <%# Sidebar %>
 <nav class="flex flex-col fixed left-0 top-0 bottom-0 w-[280px] bg-surface border-r border-hairline z-50 -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0" id="parent-sidebar" data-sidebar-toggle-target="sidebar" aria-label="Principal">
-  <%# Brand mark %>
-  <div class="p-6 flex flex-col gap-4">
-    <div class="flex items-center gap-3">
-      <%= render Ui::LogoMark::Component.new(size: 24) %>
-      <div>
-        <span class="font-display font-extrabold tracking-tight text-[20px] text-foreground leading-tight block">LittleStars</span>
-        <span class="text-[10px] font-extrabold tracking-widest text-muted-foreground uppercase">MODO PAIS</span>
+  <%# Brand %>
+  <div class="px-5 pt-5 pb-4 border-b border-hairline">
+    <div class="flex items-center gap-2.5">
+      <%= render Ui::LogoMark::Component.new(size: 28) %>
+      <div class="flex flex-col leading-tight">
+        <span class="font-display font-extrabold tracking-tight text-[18px] text-foreground">LittleStars</span>
+        <span class="text-[10px] font-extrabold tracking-widest text-muted-foreground uppercase">Modo pais</span>
       </div>
     </div>
-
-    <%# Family picker %>
-    <%= render Ui::FamilySelector::Component.new(profile: current_profile) %>
   </div>
 
   <%# Nav items %>
-  <div class="flex flex-col gap-1 px-3 flex-1 overflow-y-auto">
+  <div class="flex flex-col gap-1 p-3 overflow-y-auto">
     <%
       items = [
         { icon: "house", path: parent_root_path, label: "Início" },
@@ -50,7 +47,7 @@
     <% items.each do |item| %>
       <% active = current_page?(item[:path]) %>
       <%= link_to item[:path],
-          class: "flex items-center gap-2.5 px-3 py-2 rounded-lg transition-all font-semibold text-[14px] #{active ? 'bg-primary/10 text-primary font-bold' : 'text-muted-foreground hover:bg-muted'}",
+          class: "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors font-semibold text-[14px] #{active ? 'bg-primary-soft text-primary font-bold' : 'text-muted-foreground hover:bg-muted hover:text-foreground'}",
           title: item[:label],
           aria: { current: active ? "page" : nil } do %>
         <%= render Ui::Icon::Component.new(item[:icon], size: 18) %>
@@ -62,19 +59,23 @@
     <% end %>
   </div>
 
-  <%# Identity + logout at bottom %>
-  <div class="py-2 px-3 border-t border-border mt-2">
-    <div class="flex items-center gap-2">
-      <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 34) %>
+  <%# Footer: profile + switch profile %>
+  <div class="mt-auto p-3 border-t border-hairline">
+    <div class="flex items-center gap-2.5 px-2 py-2 rounded-xl bg-muted/60">
+      <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 36) %>
       <div class="flex-1 min-w-0">
         <div class="text-[13px] font-bold text-foreground overflow-hidden text-ellipsis whitespace-nowrap"><%= current_profile.name %></div>
         <div class="text-[11px] text-muted-foreground">Responsável</div>
       </div>
-      <%= button_to profile_session_path, method: :delete,
-          class: "flex items-center justify-center shrink-0 w-8 h-8 p-0 bg-transparent border-none cursor-pointer text-muted-foreground rounded-md transition-colors hover:bg-surface-2",
-          title: "Sair",
-          form: { class: "contents" } do %>
-        <%= render Ui::Icon::Component.new("logout", size: 18, color: "currentColor") %>
+    </div>
+    <div data-controller="switch-profile" class="mt-2">
+      <%= form_with url: profile_session_path, method: :delete, local: true,
+                    data: { switch_profile_target: "form" } do %>
+        <button type="button" data-action="click->switch-profile#confirm"
+                class="flex items-center justify-center gap-2 w-full px-3 py-2 rounded-xl bg-transparent border border-hairline text-[13px] font-bold text-muted-foreground hover:bg-muted hover:text-foreground transition-colors cursor-pointer">
+          <%= render Ui::Icon::Component.new("logout", size: 16, color: "currentColor") %>
+          Trocar perfil
+        </button>
       <% end %>
     </div>
   </div>

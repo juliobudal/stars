@@ -16,7 +16,7 @@
   <%# Day header %>
   <div class="flex justify-between items-center px-1 pt-3.5 pb-1.5">
     <span class="font-display text-[16px] leading-tight font-extrabold tracking-[-0.02em] text-foreground italic"><%= day_label %></span>
-    <span class="text-[12px] font-semibold text-muted-foreground row gap-1">Saldo: <span class="row gap-1 <%= net_color_class %>"><%= net_prefix %><%= day_net %> <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--c-amber-dark)") %></span></span>
+    <span class="text-[12px] font-semibold text-muted-foreground row gap-1">Saldo: <span class="<%= net_color_class %>"><%= render Ui::StarValue::Component.new(value: day_net.abs, size: :xs, prefix: net_prefix, color: :current) %></span></span>
   </div>
 
   <%# Log entries — each is its own card via .history-entry %>

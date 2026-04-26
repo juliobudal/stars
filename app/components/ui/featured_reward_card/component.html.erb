@@ -6,7 +6,7 @@
     <div class="flex items-center flex-wrap gap-3">
       <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", class: "shadow-[0_3px_0_color-mix(in_srgb,var(--c-violet-dark)_25%,transparent)]",
             **(modal_id ? { data: { action: "click->ui-modal#open", ui_modal_id_param: modal_id } } : {})) do %>
-        Trocar por <%= render Ui::Icon::Component.new(:star, size: 14, color: "currentColor") %> <%= reward.cost %>
+        Trocar por <%= render Ui::StarValue::Component.new(value: reward.cost, size: :sm, color: :current) %>
       <% end %>
       <% if can_afford? %>
         <span class="text-xs font-bold text-mint-dark">✓ Você pode pegar essa!</span>

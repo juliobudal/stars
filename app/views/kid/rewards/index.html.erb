@@ -96,23 +96,23 @@
         <h3 class="font-display text-[26px] leading-tight font-extrabold tracking-[-0.02em] text-foreground"><%= reward.title %></h3>
         <div class="flex items-center justify-center gap-2.5">
           <%= render Ui::Badge::Component.new(variant: "star", class: "text-[16px] py-2 px-3.5") do %>
-            <%= render Ui::Icon::Component.new("star", size: 16, color: "var(--star-2)") %> <%= reward.cost %>
+            <%= render Ui::StarValue::Component.new(value: reward.cost, size: :md, color: :gold) %>
           <% end %>
         </div>
 
         <div class="bg-surface-2 rounded-card p-3.5 w-full">
           <div class="flex items-center justify-between font-display font-extrabold">
             <span>Saldo atual</span>
-            <span class="flex items-center gap-1"><%= current_profile.points %> <%= render Ui::Icon::Component.new(:star, size: 14, color: "var(--c-amber-dark)") %></span>
+            <%= render Ui::StarValue::Component.new(value: current_profile.points, size: :sm, color: :gold) %>
           </div>
           <div class="flex items-center justify-between text-danger font-display font-extrabold mt-1">
             <span>−</span>
-            <span class="flex items-center gap-1"><%= reward.cost %> <%= render Ui::Icon::Component.new(:star, size: 14, color: "var(--c-amber-dark)") %></span>
+            <%= render Ui::StarValue::Component.new(value: reward.cost, size: :sm, color: :gold, class: "text-danger") %>
           </div>
           <div class="h-[2px] bg-[rgba(26,42,74,0.1)] my-2"></div>
-          <div class="flex items-center justify-between text-primary font-display font-extrabold text-[18px]">
+          <div class="flex items-center justify-between text-primary font-display font-extrabold">
             <span>Depois</span>
-            <span class="flex items-center gap-1"><%= [current_profile.points - reward.cost, 0].max %> <%= render Ui::Icon::Component.new(:star, size: 16, color: "var(--c-amber-dark)") %></span>
+            <%= render Ui::StarValue::Component.new(value: [current_profile.points - reward.cost, 0].max, size: :lg, color: :gold, class: "text-primary") %>
           </div>
         </div>
 

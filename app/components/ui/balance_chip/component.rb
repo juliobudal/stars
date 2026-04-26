@@ -17,16 +17,12 @@ module Ui
         content_tag :div, id: @options.delete(:id), class: class_names(base_classes, size_classes, @options.delete(:class)),
           style: @options.delete(:style),
           data: { controller: "count-up", "count-up-current-value": @value } do
-          badge_classes = class_names(
-            "rounded-full bg-warning flex items-center justify-center shadow-[inset_0_-2px_0_var(--color-warning-depth)]",
-            big ? "w-9 h-9" : "w-7 h-7"
+          render Ui::StarValue::Component.new(
+            value: @value,
+            size: big ? :xl : :md,
+            color: :gold,
+            value_data: { "count-up-target": "display" }
           )
-          icon_size = big ? 22 : 16
-
-          concat content_tag(:div, class: badge_classes) {
-            render Ui::Icon::Component.new("star", size: icon_size, color: "var(--color-amber-dark)")
-          }
-          concat content_tag(:span, @value, data: { "count-up-target": "display" })
         end
       end
     end

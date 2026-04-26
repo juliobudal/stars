@@ -1,7 +1,9 @@
-<div class="flex items-center justify-between mb-5 flex-shrink-0 <%= @options[:class] %>" style="<%= @options[:style] %>">
-  <div class="flex items-center gap-3.5">
+<div class="flex items-center justify-between mb-7 flex-shrink-0 <%= @options[:class] %>" style="<%= @options[:style] %>">
+  <div class="flex items-center gap-5">
     <% if @back_url.present? %>
-      <%= render Ui::Btn::Component.new(variant: "secondary", size: "icon", url: @back_url) do %>
+      <%= link_to @back_url,
+            class: "inline-flex items-center justify-center w-11 h-11 rounded-full bg-surface border-2 border-hairline text-foreground shadow-btn-secondary hover:-translate-y-0.5 hover:bg-muted transition-all active:translate-y-0",
+            "aria-label": "Voltar" do %>
         <%= render Ui::Icon::Component.new("back", size: 22) %>
       <% end %>
     <% elsif left_action? %>

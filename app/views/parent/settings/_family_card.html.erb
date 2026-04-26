@@ -12,22 +12,34 @@
       </div>
     </div>
 
-    <div class="row justify-between items-center py-2.5 border-b border-hairline">
-      <div class="text-[13px] font-bold text-foreground">Idioma</div>
-      <select name="family[locale]" class="py-1.5 px-2.5 rounded-lg border border-hairline bg-surface-2 text-foreground font-body text-[13px] font-bold cursor-pointer">
-        <% [["pt-BR", "Português (BR)"], ["en", "English"]].each do |val, lbl| %>
-          <option value="<%= val %>" <%= 'selected' if family.locale == val %>><%= lbl %></option>
-        <% end %>
-      </select>
+    <div class="row justify-between items-center gap-3 py-2.5 border-b border-hairline">
+      <div class="text-[13px] font-bold text-foreground shrink-0">Idioma</div>
+      <div class="w-[200px]">
+        <%= render Ui::Select::Component.new(
+              name: "family[locale]",
+              id: "family_locale",
+              options: [["Português (BR)", "pt-BR"], ["English", "en"]],
+              selected: family.locale,
+              size: :sm
+            ) %>
+      </div>
     </div>
 
-    <div class="row justify-between items-center py-2.5 border-b border-hairline">
-      <div class="text-[13px] font-bold text-foreground">Fuso horário</div>
-      <select name="family[timezone]" class="py-1.5 px-2.5 rounded-lg border border-hairline bg-surface-2 text-foreground font-body text-[13px] font-bold cursor-pointer">
-        <% [["America/Sao_Paulo", "São Paulo (GMT-3)"], ["America/New_York", "New York (GMT-4)"], ["Europe/Lisbon", "Lisboa (GMT+1)"]].each do |val, lbl| %>
-          <option value="<%= val %>" <%= 'selected' if family.timezone == val %>><%= lbl %></option>
-        <% end %>
-      </select>
+    <div class="row justify-between items-center gap-3 py-2.5 border-b border-hairline">
+      <div class="text-[13px] font-bold text-foreground shrink-0">Fuso horário</div>
+      <div class="w-[220px]">
+        <%= render Ui::Select::Component.new(
+              name: "family[timezone]",
+              id: "family_timezone",
+              options: [
+                ["São Paulo (GMT-3)",  "America/Sao_Paulo"],
+                ["New York (GMT-4)",   "America/New_York"],
+                ["Lisboa (GMT+1)",     "Europe/Lisbon"]
+              ],
+              selected: family.timezone,
+              size: :sm
+            ) %>
+      </div>
     </div>
 
     <div class="row justify-between items-center py-2.5">
