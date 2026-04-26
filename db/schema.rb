@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_26_150354) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_26_150700) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -165,13 +165,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_26_150354) do
   end
 
   create_table "rewards", force: :cascade do |t|
-    t.integer "category", default: 5, null: false
+    t.bigint "category_id", null: false
     t.integer "cost"
     t.datetime "created_at", null: false
     t.bigint "family_id", null: false
     t.string "icon"
     t.string "title"
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_rewards_on_category_id"
     t.index ["family_id"], name: "index_rewards_on_family_id"
   end
 
@@ -310,6 +311,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_26_150354) do
   add_foreign_key "profiles", "families"
   add_foreign_key "redemptions", "profiles"
   add_foreign_key "redemptions", "rewards"
+  add_foreign_key "rewards", "categories"
   add_foreign_key "rewards", "families"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
