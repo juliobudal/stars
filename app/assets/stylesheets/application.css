@@ -3,6 +3,7 @@
 @import "./tailwind/fonts.css";
 @import "./tailwind/theme.css";
 @import "./tailwind/animations.css";
+@import "./tailwind/motion.css";
 @import "./tailwind/icons.css";
 @import "./tailwind/base.css";
 @import "./tailwind/utilities.css";
