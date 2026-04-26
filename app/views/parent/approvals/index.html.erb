@@ -1,9 +1,31 @@
 <div class="screen screen-enter-right with-nav">
 
-  <%= render Ui::TopBar::Component.new(
-    title: "Aprovações",
-    subtitle: "#{@profile_tasks.count + @redemptions.count} pendências",
-  ) %>
+  <%# ─── Header ─── %>
+  <% pending_total = @profile_tasks.count + @redemptions.count %>
+  <div class="flex items-start justify-between gap-4 mb-[22px] z-content shrink-0">
+    <div class="min-w-0">
+      <h1 class="text-[26px] font-extrabold leading-tight m-0 mb-1" style="color: var(--text);">
+        Aprovações
+      </h1>
+      <p class="text-[14px] font-bold m-0" style="color: var(--text-muted);">
+        <% if pending_total > 0 %>
+          <%= pending_total %> <%= pending_total == 1 ? "pendência aguardando" : "pendências aguardando" %> sua revisão
+        <% else %>
+          Nenhuma pendência no momento
+        <% end %>
+      </p>
+    </div>
+    <% if pending_total > 0 %>
+      <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-[14px] border-2 shrink-0"
+           style="background: var(--c-rose-soft); border-color: var(--danger); box-shadow: 0 3px 0 var(--danger-2);">
+        <%= render Ui::Icon::Component.new("clock", size: 18, color: "var(--danger)") %>
+        <div>
+          <div id="pending_approvals_kpi" class="text-[18px] font-extrabold leading-none" style="color: var(--danger);"><%= pending_total %></div>
+          <div class="text-[9px] font-extrabold tracking-[0.5px]" style="color: var(--danger-2);">PENDENTES</div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
   <%= turbo_frame_tag "approvals_list" do %>
     <div data-controller="tabs">
@@ -15,7 +37,7 @@
             ]
           ) %>
 
-      <div id="panel-missions" class="flex flex-col z-content gap-2">
+      <div id="panel-missions" class="flex flex-col z-content gap-2.5">
         <% if @profile_tasks.any? %>
           <% @profile_tasks.each do |task| %>
             <%= render Ui::ApprovalRow::Component.new(
@@ -23,13 +45,18 @@
                   kid: task.profile,
                   title: task.title,
                   kid_chip_text: task.profile&.name,
+                  category: task.category,
                   category_label: task.category.to_s.humanize,
-                  meta: "#{time_ago_in_words(task.updated_at)} atrás",
+                  meta: "há #{time_ago_in_words(task.updated_at)}",
                   points: task.points,
                   points_sign: "+",
                   approve_url: approve_parent_approval_path(task),
                   reject_url: reject_parent_approval_path(task),
-                  reject_confirm: "Rejeitar esta missão?"
+                  reject_confirm: "Rejeitar esta missão?",
+                  profile_task: task,
+                  submission_comment: task.submission_comment,
+                  custom: task.custom?,
+                  points_editable: task.custom?
                 ) %>
           <% end %>
         <% else %>
@@ -41,7 +68,7 @@
         <% end %>
       </div>
 
-      <div id="panel-rewards" class="flex flex-col z-content gap-2 hidden">
+      <div id="panel-rewards" class="flex flex-col z-content gap-2.5 hidden">
         <% if @redemptions.any? %>
           <% @redemptions.each do |redemption| %>
             <%= render Ui::ApprovalRow::Component.new(
@@ -49,7 +76,7 @@
                   kid: redemption.profile,
                   title: redemption.reward&.title,
                   kid_chip_text: redemption.profile&.name,
-                  meta: "#{time_ago_in_words(redemption.created_at)} atrás",
+                  meta: "há #{time_ago_in_words(redemption.created_at)}",
                   points: redemption.points,
                   points_sign: "−",
                   approve_url: approve_redemption_parent_approval_path(redemption),
@@ -58,7 +85,8 @@
                   reject_label: "Cancelar",
                   approve_submits_with: "Entregando...",
                   reject_submits_with: "Cancelando...",
-                  reject_confirm: "Rejeitar este pedido de prêmio? As estrelas serão devolvidas."
+                  reject_confirm: "Rejeitar este pedido de prêmio? As estrelas serão devolvidas.",
+                  compact: true
                 ) %>
           <% end %>
         <% else %>

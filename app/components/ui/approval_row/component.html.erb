@@ -1,52 +1,108 @@
-<div<%= " id=\"#{dom_id}\"".html_safe if dom_id %> data-palette="<%= helpers.palette_for(kid) %>" class="bg-surface rounded-card shadow-card border-none p-[14px]">
-  <div class="flex items-center gap-2.5 mb-2.5">
-    <% if bulk? %>
-      <input type="checkbox" name="approval_ids[]" value="<%= bulk_value || dom_id %>"
-             aria-label="Selecionar"
-             data-bulk-select-target="checkbox"
-             data-action="change->bulk-select#change"
-             style="width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0;" />
-    <% end %>
-    <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 40) %>
-    <% if profile_task&.proof_photo&.attached? %>
-      <%= image_tag url_for(profile_task.proof_photo.variant(resize_to_limit: [80, 80])),
-            alt: "Comprovante",
-            style: "width: 80px; height: 80px; object-fit: cover; border-radius: var(--r-md); flex-shrink: 0;" %>
-    <% end %>
-    <div class="flex-1 min-w-0">
-      <div class="flex flex-wrap items-center gap-1.5">
-        <span class="font-display text-[15px] leading-tight font-extrabold tracking-[-0.02em] text-foreground"><%= title %></span>
-        <% if kid_chip_text.present? %>
-          <%= render Ui::Chip::Component.new(size: "sm", style: "background: #{palette[:fill]}; color: #{palette[:ink]}; white-space: nowrap;") do %><%= kid_chip_text %><% end %>
-        <% end %>
-        <% if category_label.present? %>
-          <%= render Ui::Chip::Component.new(size: "sm") do %><%= category_label %><% end %>
-        <% end %>
+<div<%= " id=\"#{dom_id}\"".html_safe if dom_id %> data-palette="<%= helpers.palette_for(kid) %>" class="bg-surface rounded-[16px] border-2 border-hairline p-[14px]" style="box-shadow: var(--shadow-card);">
+  <% if compact? %>
+    <%# ─── Compact (dashboard): single row with inline buttons ─── %>
+    <div class="flex items-center gap-3.5">
+      <% if category_meta %>
+        <% tint_color = category_meta[:tint] %>
+        <div class="w-[42px] h-[42px] rounded-[12px] grid place-items-center shrink-0 border-2"
+             style="background: <%= Ui::Tokens.tint_soft(tint_color) %>; border-color: <%= Ui::Tokens.tint_fg(tint_color) %>;">
+          <%= render Ui::Icon::Component.new(category_meta[:icon], size: 22, color: Ui::Tokens.tint_fg(tint_color)) %>
+        </div>
+      <% else %>
+        <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 42) %>
+      <% end %>
+      <div class="flex-1 min-w-0">
+        <div class="text-[14px] leading-tight font-extrabold truncate" style="color: var(--text);"><%= title %></div>
+        <div class="text-[12px] font-bold mt-0.5" style="color: var(--text-muted);">
+          <%= [kid_chip_text.presence, meta.presence, "vale #{points} ⭐"].compact.join(" · ") %>
+        </div>
       </div>
-      <div class="flex items-center gap-2.5 mt-1">
-        <span class="text-xs" style="font-weight: 800; color: <%= points_color %>;"><%= points_sign %><%= points %> ★</span>
-        <% if meta.present? %>
-          <span class="text-[11px] font-bold text-muted-foreground"><%= meta %></span>
+      <div class="flex gap-2 shrink-0">
+        <%= button_to reject_url, method: :patch,
+            class: "text-xs uppercase tracking-[0.5px]",
+            style: "background: var(--surface); color: var(--text-muted); border: 2px solid var(--hairline); border-radius: 12px; padding: 8px 14px; font-weight: 800; cursor: pointer; white-space: nowrap; box-shadow: 0 3px 0 var(--hairline);",
+            aria: { label: reject_label },
+            data: { turbo_frame: "approvals_list", turbo_confirm: reject_confirm, turbo_submits_with: reject_submits_with }.compact do %>
+          <%= reject_label %>
+        <% end %>
+        <%= button_to approve_url, method: :patch,
+            class: "text-xs uppercase tracking-[0.5px]",
+            style: "background: var(--primary); color: white; border: 2px solid var(--primary); border-radius: 12px; padding: 8px 16px; font-weight: 800; cursor: pointer; white-space: nowrap; box-shadow: 0 3px 0 var(--primary-2);",
+            aria: { label: approve_label },
+            data: { turbo_frame: "approvals_list", turbo_submits_with: approve_submits_with } do %>
+          <%= approve_label %>
         <% end %>
       </div>
     </div>
-  </div>
-  <div class="flex items-center gap-2.5">
-    <%= button_to reject_url, method: :patch,
-        form_class: "flex-1",
-        class: "text-sm",
-        style: "width: 100%; background: var(--c-red-soft); color: var(--c-red-dark); border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; cursor: pointer; text-align: center;",
-        aria: { label: reject_label },
-        data: { turbo_frame: "approvals_list", turbo_confirm: reject_confirm, turbo_submits_with: reject_submits_with }.compact do %>
-      <%= reject_label %>
-    <% end %>
-    <%= button_to approve_url, method: :patch,
-        form_class: "flex-1",
-        class: "text-sm",
-        style: "width: 100%; background: var(--primary); color: white; border: none; border-radius: var(--r-full); padding: 9px 0; font-family: var(--font-display); font-weight: 800; cursor: pointer; text-align: center;",
-        aria: { label: approve_label },
-        data: { turbo_frame: "approvals_list", turbo_submits_with: approve_submits_with } do %>
-      <%= approve_label %>
-    <% end %>
-  </div>
+  <% else %>
+    <%# ─── Full layout (approvals page): stacked buttons ─── %>
+    <div class="flex items-center gap-2.5 mb-2.5">
+      <% if bulk? %>
+        <input type="checkbox" name="approval_ids[]" value="<%= bulk_value || dom_id %>"
+               aria-label="Selecionar"
+               data-bulk-select-target="checkbox"
+               data-action="change->bulk-select#change"
+               style="width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0;" />
+      <% end %>
+      <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 40) %>
+      <% if profile_task&.proof_photo&.attached? %>
+        <%= image_tag url_for(profile_task.proof_photo.variant(resize_to_limit: [80, 80])),
+              alt: "Comprovante",
+              style: "width: 80px; height: 80px; object-fit: cover; border-radius: var(--r-md); flex-shrink: 0;" %>
+      <% end %>
+      <div class="flex-1 min-w-0">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="font-display text-[15px] leading-tight font-extrabold tracking-[-0.02em] text-foreground"><%= title %></span>
+          <% if kid_chip_text.present? %>
+            <%= render Ui::Chip::Component.new(size: "sm", style: "background: #{palette[:fill]}; color: #{palette[:ink]}; white-space: nowrap;") do %><%= kid_chip_text %><% end %>
+          <% end %>
+          <% if category_label.present? %>
+            <%= render Ui::Chip::Component.new(size: "sm") do %><%= category_label %><% end %>
+          <% end %>
+          <% if custom %>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-[0.5px]"
+                  style="background: var(--accent-soft, #FFF4D6); color: var(--c-amber-dark, #B45309); border: 1px solid var(--c-amber-dark, #B45309);">
+              Sugerida pela criança
+            </span>
+          <% end %>
+        </div>
+        <div class="flex items-center gap-2.5 mt-1">
+          <span class="text-xs" style="font-weight: 800; color: <%= points_color %>;"><%= points_sign %><%= points %> ★</span>
+          <% if meta.present? %>
+            <span class="text-[11px] font-bold text-muted-foreground"><%= meta %></span>
+          <% end %>
+        </div>
+        <% if submission_comment.present? %>
+          <div class="mt-2 px-3 py-2 rounded-[10px] border-l-4 text-[13px] font-medium"
+               style="background: var(--surface-2, #F5F5F7); border-color: var(--primary); color: var(--text);">
+            💬 <%= submission_comment %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="flex items-center gap-2.5">
+      <%= button_to reject_url, method: :patch,
+          form_class: "flex-1",
+          class: "text-sm uppercase tracking-[0.5px]",
+          style: "width: 100%; background: var(--surface); color: var(--text-muted); border: 2px solid var(--hairline); border-radius: 12px; padding: 10px 0; font-weight: 800; cursor: pointer; text-align: center; box-shadow: 0 3px 0 var(--hairline);",
+          aria: { label: reject_label },
+          data: { turbo_frame: "approvals_list", turbo_confirm: reject_confirm, turbo_submits_with: reject_submits_with }.compact do %>
+        <%= reject_label %>
+      <% end %>
+      <%= form_with url: approve_url, method: :patch, class: "flex-1",
+            data: { turbo_frame: "approvals_list", turbo_submits_with: approve_submits_with } do |f| %>
+        <% if points_editable %>
+          <div class="flex items-center gap-2 mb-2">
+            <label class="text-[12px] font-extrabold" style="color: var(--text-muted);">Pontos:</label>
+            <%= f.number_field :points_override, value: points, min: 1, max: 1000,
+                  class: "w-20 px-2 py-1 rounded-[8px] border-2 text-[13px] font-bold text-center",
+                  style: "border-color: var(--hairline); background: var(--surface); color: var(--text);" %>
+          </div>
+        <% end %>
+        <%= f.submit approve_label,
+              class: "w-full text-sm uppercase tracking-[0.5px]",
+              style: "background: var(--primary); color: white; border: 2px solid var(--primary); border-radius: 12px; padding: 10px 0; font-weight: 800; cursor: pointer; box-shadow: 0 3px 0 var(--primary-2);" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
