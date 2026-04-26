@@ -1,0 +1,21 @@
+<div class="flex items-center justify-between bg-white border-2 border-hairline rounded-2xl px-4 py-3 shadow-sm">
+  <div class="flex items-center gap-3">
+    <div class="w-11 h-11 rounded-xl flex items-center justify-center"
+         style="background: <%= palette[:soft_var] %>;">
+      <%= render Ui::Icon::Component.new(category.icon, size: 22, color: palette[:fg_var]) %>
+    </div>
+    <div class="flex flex-col">
+      <span class="font-display font-extrabold text-[16px] tracking-[-0.02em] text-foreground"><%= category.name %></span>
+      <span class="text-[13px] font-semibold text-muted-foreground"><%= reward_count %> <%= reward_count == 1 ? "prêmio" : "prêmios" %></span>
+    </div>
+  </div>
+  <div class="flex items-center gap-2">
+    <%= link_to "Editar", edit_parent_category_path(category),
+          class: "text-[13px] font-extrabold text-primary px-3 py-2 rounded-lg hover:bg-primary-soft" %>
+    <%= button_to "Excluir", parent_category_path(category),
+          method: :delete,
+          form: { class: "inline" },
+          class: "text-[13px] font-extrabold text-danger px-3 py-2 rounded-lg hover:bg-danger-soft border-0 bg-transparent",
+          data: { turbo_confirm: "Excluir #{category.name}? Categorias com prêmios não podem ser removidas." } %>
+  </div>
+</div>
