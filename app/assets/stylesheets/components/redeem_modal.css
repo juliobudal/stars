@@ -1,0 +1,149 @@
+/* Legacy redeem-modal kept only for any non-kid usages. Active kid flow uses .redeem-ritual below. */
+
+.redeem-ritual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 8px 4px 4px;
+}
+
+.redeem-ritual__close {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 2px solid var(--hairline);
+  border-radius: 10px;
+  box-shadow: 0 2px 0 var(--hairline);
+  cursor: pointer;
+  transition: transform 0.05s;
+  z-index: 2;
+}
+.redeem-ritual__close:active { transform: translateY(2px); box-shadow: none; }
+
+.redeem-ritual__mascot { margin-top: 4px; }
+
+.redeem-ritual__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--text);
+  margin: 2px 0 0;
+  letter-spacing: -0.01em;
+}
+
+.redeem-ritual__trade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.redeem-ritual__cost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: var(--star-soft);
+  border: 2px solid var(--star);
+  border-radius: 14px;
+  box-shadow: 0 3px 0 var(--star-2);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--c-amber-dark);
+  line-height: 1;
+}
+
+.redeem-ritual__arrow { display: grid; place-items: center; }
+
+.redeem-ritual__prize {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 2px solid;
+  border-radius: 14px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 14px;
+  max-width: 60%;
+}
+.redeem-ritual__prize span { line-height: 1.2; }
+
+.redeem-ritual__after {
+  margin: 4px 0 0;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.redeem-ritual__after strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--primary-2);
+  font-weight: 800;
+  margin-left: 4px;
+}
+
+.redeem-ritual__warning {
+  width: 100%;
+  padding: 10px 12px;
+  background: rgba(255, 75, 75, 0.08);
+  border: 2px solid var(--danger);
+  border-radius: 12px;
+  color: var(--danger);
+  font-weight: 800;
+  font-size: 13px;
+  text-align: center;
+  margin: 0;
+}
+
+.redeem-ritual__actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.redeem-ritual__btn {
+  flex: 1;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 2px solid;
+  cursor: pointer;
+}
+
+.redeem-ritual__btn--secondary {
+  background: var(--surface);
+  color: var(--text-muted);
+  border-color: var(--hairline);
+  box-shadow: 0 4px 0 var(--hairline);
+}
+
+.redeem-ritual__btn--primary {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 4px 0 var(--primary-2);
+}

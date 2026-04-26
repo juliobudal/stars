@@ -3,13 +3,22 @@
   <div data-fx-event="celebrate" data-fx-tier="big" class="hidden"></div>
 <% end %>
 
-<%# Update Balance display (turbo_stream.set_attribute not available in turbo-rails 2.x; update inner text instead) %>
-<%= turbo_stream.update "profile_points_#{current_profile.id}" do %>
-  <span data-count-up-target="display"><%= current_profile.reload.points %></span>
-  <span class="text-star-2">★</span>
+<%# Close any open redeem modal + animate balance count-down.
+    Bumping data-count-up-current-value triggers count_up_controller#currentValueChanged → animateTo. %>
+<% new_balance = current_profile.reload.points %>
+<%= turbo_stream.append "body" do %>
+  <script data-redeem-after>
+    (() => {
+      document.querySelectorAll(".modal-overlay").forEach(o => o.style.display = "none");
+      document.body.style.overflow = "auto";
+      const el = document.getElementById("profile_points_<%= current_profile.id %>");
+      if (el) el.setAttribute("data-count-up-current-value", "<%= new_balance %>");
+      document.querySelectorAll("script[data-redeem-after]").forEach(s => s.remove());
+    })();
+  </script>
 <% end %>
 
-<%# Show Toast %>
+<%# Ritual toast %>
 <%= turbo_stream.prepend "flash" do %>
-  <%= render Ui::Flash::Component.new.tap { |c| flash.now[:notice] = "Resgate solicitado! Aguarde a aprovação." } %>
+  <%= render Ui::Flash::Component.new.tap { |c| flash.now[:notice] = "🎉 Yay! Avisa o papai pra liberar seu prêmio!" } %>
 <% end %>

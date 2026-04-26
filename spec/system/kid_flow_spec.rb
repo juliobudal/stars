@@ -11,7 +11,7 @@ RSpec.describe "Kid Flow", type: :system do
   end
 
   it "permite ao filho submeter uma missão e vê-la aguardando aprovação" do
-    expect(page).to have_content("Filhote")
+    expect(page).to have_content(/filhote/i)
     expect(page).to have_content("Lavar Louça")
     expect(page).to have_content("100")
 

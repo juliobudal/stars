@@ -1,57 +1,184 @@
 <%
-  featured = @featured || @rewards&.first
+  balance = current_profile.points
+  total = @rewards.size
 %>
+
 <div class="screen screen-enter-right with-nav">
-  <%= render Ui::BgShapes::Component.new(variant: "warm") %>
   <%= render Ui::Celebration::Component.new %>
 
-  <%= render Ui::TopBar::Component.new(
-    title: "Lojinha",
-    subtitle: "Troque suas estrelinhas por recompensas",
-    back_url: kid_root_path
-  ) do |bar| %>
-    <% bar.with_right_slot do %>
-      <%= render Ui::BalanceChip::Component.new(value: current_profile.points, profile: current_profile, id: "profile_points_#{current_profile.id}") %>
+  <%# ── Header: back + shop icon + title ── %>
+  <div class="flex items-center gap-2.5 mb-4 z-2 shrink-0">
+    <%= link_to kid_root_path,
+                class: "ls-btn-3d grid place-items-center shrink-0",
+                style: "width: 38px; height: 38px; background: var(--surface); border: 2px solid var(--hairline); border-radius: 12px; box-shadow: 0 3px 0 var(--hairline);",
+                aria: { label: "Voltar" } do %>
+      <%= render Ui::Icon::Component.new("arrow-left", size: 16, color: "var(--text-muted)") %>
     <% end %>
-  <% end %>
 
-  <% if featured %>
-    <%= render Ui::FeaturedRewardCard::Component.new(
-      reward: featured,
-      balance: current_profile.points,
-      modal_id: "modal_#{dom_id(featured)}"
-    ) %>
-  <% end %>
+    <div class="flex items-center gap-2.5 flex-1 min-w-0">
+      <div class="grid place-items-center shrink-0"
+           style="width: 32px; height: 32px; background: var(--c-peach-dark); border-radius: 10px; box-shadow: 0 3px 0 #831843;">
+        <%= render Ui::Icon::Component.new("gift", size: 18, color: "white") %>
+      </div>
+      <div class="min-w-0">
+        <div class="font-display text-[18px] font-extrabold leading-none" style="color: var(--text);">Loja de Prêmios</div>
+        <div class="text-[11px] font-bold mt-0.5" style="color: var(--text-muted);">Troca estrelinhas por coisas legais!</div>
+      </div>
+    </div>
+  </div>
 
-  <div class="flex items-baseline justify-between mb-5 mt-5 relative z-10">
-    <%= render Ui::Heading::Component.new(size: :h3) do %>O que você quer hoje?<% end %>
-    <span class="text-[12px] font-bold text-muted-foreground"><%= @rewards.size %> prêmios</span>
+  <%# ── Yellow balance hero ── %>
+  <div class="ls-card-3d flex items-center justify-between gap-3.5 mb-4 z-2 shrink-0"
+       style="background: linear-gradient(135deg, var(--star) 0%, var(--c-coral) 100%); border: 2px solid var(--star-2); border-radius: 18px; padding: 16px 20px; box-shadow: 0 5px 0 var(--c-amber-dark);">
+    <div class="flex items-center gap-3.5 min-w-0">
+      <div class="ls-coin-shake grid place-items-center shrink-0"
+           style="width: 60px; height: 60px; background: var(--surface); border-radius: 50%; box-shadow: 0 3px 0 rgba(0,0,0,0.15);">
+        <%= render Ui::Icon::Component.new(:star, size: 38, color: "var(--star)") %>
+      </div>
+      <div class="min-w-0">
+        <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase" style="color: var(--c-amber-dark);">Você tem</div>
+        <div class="flex items-baseline gap-1.5">
+          <span id="profile_points_<%= current_profile.id %>"
+                data-controller="count-up"
+                data-count-up-current-value="<%= balance %>"
+                class="font-display text-[36px] font-extrabold leading-none text-white"
+                style="text-shadow: 0 2px 0 var(--c-amber-dark);">
+            <span data-count-up-target="display"><%= balance %></span>
+          </span>
+          <span class="font-display text-[14px] font-extrabold text-white">estrelinhas</span>
+        </div>
+      </div>
+    </div>
+
+    <%= link_to kid_wallet_index_path,
+                class: "text-right pr-1 no-underline shrink-0",
+                aria: { label: "Histórico" } do %>
+      <div class="font-display text-[10px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--c-amber-dark);">Histórico</div>
+      <%= render Ui::Icon::Component.new("clock", size: 22, color: "white", class: "mt-1") %>
+    <% end %>
   </div>
 
   <% if @rewards.any? %>
-    <div data-controller="filter-tabs" class="mb-4 z-2 relative">
-      <%
-        tab_items = [{ id: "all", label: "Tudo", count: @rewards.size }]
-        @categories_with_rewards.each do |cat|
-          tab_items << { id: cat.id.to_s, label: cat.name, count: @reward_counts[cat.id].to_i }
-        end
-      %>
-      <%= render Ui::CategoryTabs::Component.new(items: tab_items, active: "all", controller: "filter-tabs") %>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
-        <% @rewards.each_with_index do |reward, i| %>
-          <% tint = Ui::Tokens.color_palette_entry(reward.category&.color || "lilac")[:soft_var] %>
-          <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>">
-            <%= render Ui::RewardTile::Component.new(
-              reward: reward,
-              balance: current_profile.points,
-              tint: tint,
-              index: i,
-              modal_id: "modal_#{dom_id(reward)}"
-            ) %>
-          </div>
+    <%# ── Filter pills ── %>
+    <div data-controller="filter-tabs" class="z-2 shrink-0">
+      <div class="cat-tabs">
+        <button type="button"
+                data-filter-tabs-target="tab"
+                data-action="click->filter-tabs#show"
+                data-filter-tabs-id-param="all"
+                class="cat-tab cat-tab--active">
+          Tudo · <%= total %>
+        </button>
+        <% @categories_with_rewards.each do |cat| %>
+          <button type="button"
+                  data-filter-tabs-target="tab"
+                  data-action="click->filter-tabs#show"
+                  data-filter-tabs-id-param="<%= cat.id %>"
+                  class="cat-tab">
+            <%= cat.name %> · <%= @reward_counts[cat.id].to_i %>
+          </button>
         <% end %>
       </div>
+
+      <%# ── Available section ── %>
+      <% if @affordable_rewards.any? %>
+        <div class="flex items-center gap-2 mb-3 px-1">
+          <div class="grid place-items-center shrink-0"
+               style="width: 24px; height: 24px; background: var(--primary); border-radius: 8px; box-shadow: 0 2px 0 var(--primary-2);">
+            <%= render Ui::Icon::Component.new("check", size: 14, color: "white") %>
+          </div>
+          <h2 class="font-display text-[15px] font-extrabold uppercase tracking-[0.5px] m-0" style="color: var(--primary-2);">Posso resgatar agora!</h2>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 mb-5">
+          <% @affordable_rewards.each_with_index do |reward, i| %>
+            <% icon_name = (reward.respond_to?(:icon) && reward.icon.presence) || reward.category&.icon.presence || "gift" %>
+            <% pal = Ui::Tokens.color_palette_entry(reward.category&.color || "lilac") %>
+            <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>">
+              <button type="button"
+                      class="ls-card-3d w-full text-left border-none p-3.5 flex flex-col gap-2.5 cursor-pointer relative overflow-hidden"
+                      style="background: var(--surface); border: 3px solid var(--primary); border-radius: 18px; box-shadow: 0 5px 0 var(--primary-2); animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= [i, 5].min * 0.04 %>s both;"
+                      data-action="click->ui-modal#open"
+                      data-ui-modal-id-param="modal_<%= dom_id(reward) %>">
+                <div class="absolute top-2 right-2 font-display font-extrabold uppercase tracking-[0.5px]"
+                     style="background: var(--primary); color: white; font-size: 9px; padding: 3px 7px; border-radius: 6px; box-shadow: 0 2px 0 var(--primary-2);">
+                  ✓ Pode
+                </div>
+
+                <div class="grid place-items-center w-full"
+                     style="aspect-ratio: 1.4; background: <%= pal[:soft_var] %>; border: 2px solid <%= pal[:fg_var] %>; border-radius: 12px;">
+                  <%= render Ui::Icon::Component.new(icon_name, size: 48, color: pal[:fg_var]) %>
+                </div>
+
+                <div class="font-display text-[14px] font-extrabold leading-tight" style="color: var(--text);">
+                  <%= reward.title %>
+                </div>
+
+                <div class="ls-btn-3d w-full font-display font-extrabold uppercase tracking-[0.5px] inline-flex items-center justify-center gap-1.5"
+                     style="background: var(--primary); color: white; border: 2px solid var(--primary); padding: 9px; border-radius: 12px; font-size: 12px; box-shadow: 0 3px 0 var(--primary-2);">
+                  Trocar por
+                  <span class="inline-flex items-center gap-1">
+                    <%= render Ui::Icon::Component.new(:star, size: 13, color: "white") %>
+                    <%= reward.cost %>
+                  </span>
+                </div>
+              </button>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <%# ── Locked section ── %>
+      <% if @locked_rewards.any? %>
+        <div class="flex items-center gap-2 mb-3 px-1">
+          <div class="grid place-items-center shrink-0"
+               style="width: 24px; height: 24px; background: var(--text-soft); border-radius: 8px; box-shadow: 0 2px 0 var(--text-muted);">
+            <%= render Ui::Icon::Component.new("lock", size: 13, color: "white") %>
+          </div>
+          <h2 class="font-display text-[15px] font-extrabold uppercase tracking-[0.5px] m-0" style="color: var(--text-muted);">Continua juntando!</h2>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 mb-5">
+          <% @locked_rewards.each_with_index do |reward, i| %>
+            <% icon_name = (reward.respond_to?(:icon) && reward.icon.presence) || reward.category&.icon.presence || "gift" %>
+            <% pal = Ui::Tokens.color_palette_entry(reward.category&.color || "lilac") %>
+            <% pct = reward.cost.zero? ? 0 : [(balance.to_f / reward.cost * 100).round, 100].min %>
+            <% remaining = reward.cost - balance %>
+            <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>">
+              <button type="button"
+                      class="ls-card-3d w-full text-left border-none p-3.5 flex flex-col gap-2 cursor-pointer relative"
+                      style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 18px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= [i, 5].min * 0.04 %>s both;"
+                      data-action="click->ui-modal#open"
+                      data-ui-modal-id-param="modal_<%= dom_id(reward) %>">
+                <div class="grid place-items-center w-full"
+                     style="aspect-ratio: 1.4; background: <%= pal[:soft_var] %>; border: 2px solid <%= pal[:fg_var] %>; border-radius: 12px; opacity: 0.85;">
+                  <%= render Ui::Icon::Component.new(icon_name, size: 48, color: pal[:fg_var]) %>
+                </div>
+
+                <div class="font-display text-[14px] font-extrabold leading-tight" style="color: var(--text);">
+                  <%= reward.title %>
+                </div>
+
+                <div class="overflow-hidden" style="height: 6px; background: var(--hairline); border-radius: 4px;">
+                  <div class="h-full" style="width: <%= pct %>%; background: <%= pal[:fg_var] %>; border-radius: 4px;"></div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <div class="inline-flex items-center gap-1">
+                    <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--star)") %>
+                    <span class="font-display text-[12px] font-extrabold" style="color: var(--text);">
+                      <%= balance %><span style="color: var(--text-soft);">/<%= reward.cost %></span>
+                    </span>
+                  </div>
+                  <span class="font-display text-[10px] font-extrabold uppercase tracking-[0.5px]" style="color: <%= pal[:fg_var] %>;">
+                    Falta <%= remaining %>
+                  </span>
+                </div>
+              </button>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   <% else %>
     <%= render Ui::Empty::Component.new(
@@ -63,8 +190,8 @@
   <% end %>
 
   <% if @redeemed_rewards.any? %>
-    <div class="mt-8 mb-6 z-2 relative">
-      <div class="font-display text-[20px] leading-tight font-extrabold tracking-[-0.02em] text-foreground mb-3">Meus prêmios</div>
+    <div class="mt-6 mb-6 z-2 relative">
+      <div class="font-display text-[18px] font-extrabold mb-3" style="color: var(--text);">Meus prêmios</div>
       <div class="flex flex-col gap-2.5">
         <% @redeemed_rewards.each do |redemption| %>
           <%= render Ui::RedemptionRow::Component.new(redemption: redemption) %>
@@ -73,41 +200,80 @@
     </div>
   <% end %>
 
+  <%# ── Redeem ritual modals ── %>
   <% @rewards.each do |reward| %>
-    <% reward_icon = reward.respond_to?(:icon) ? reward.icon.presence : nil %>
-    <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(reward)}", title: "Resgatar Recompensa") do %>
-      <div class="flex flex-col items-center justify-center text-center gap-3.5">
-        <%= render Ui::LogoMark::Component.new(size: 48) %>
-        <div class="flex items-center justify-center w-[100px] h-[100px] rounded-lg bg-lilac-soft mx-auto">
-          <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 56, color: "var(--c-violet-dark)") %>
-        </div>
-        <h3 class="font-display text-[26px] leading-tight font-extrabold tracking-[-0.02em] text-foreground"><%= reward.title %></h3>
-        <div class="flex items-center justify-center gap-2.5">
-          <%= render Ui::Badge::Component.new(variant: "star", class: "text-[16px] py-2 px-3.5") do %>
-            <%= render Ui::StarValue::Component.new(value: reward.cost, size: :md, color: :gold) %>
-          <% end %>
+    <% reward_icon = (reward.respond_to?(:icon) && reward.icon.presence) || reward.category&.icon.presence || "gift" %>
+    <% color_key = reward.category&.color.presence || "primary" %>
+    <% tint_soft = Ui::Tokens.tint_soft(color_key) %>
+    <% tint_fg = Ui::Tokens.tint_fg(color_key) %>
+    <% after_balance = balance - reward.cost %>
+    <% can_afford = after_balance >= 0 %>
+    <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(reward)}") do %>
+      <div class="redeem-ritual">
+        <button type="button" aria-label="Fechar" class="redeem-ritual__close" data-action="click->ui-modal#close">
+          <%= render Ui::Icon::Component.new("close", size: 14, color: "var(--text-muted)") %>
+        </button>
+
+        <%# Mascot smiling %>
+        <div class="redeem-ritual__mascot ls-mascot-bounce">
+          <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, face: "smile", size: 96) %>
         </div>
 
-        <div class="bg-surface-2 rounded-card p-3.5 w-full">
-          <div class="flex items-center justify-between font-display font-extrabold">
-            <span>Saldo atual</span>
-            <%= render Ui::StarValue::Component.new(value: current_profile.points, size: :sm, color: :gold) %>
+        <%# Question copy %>
+        <h3 class="redeem-ritual__title">Você quer trocar?</h3>
+
+        <%# Trade visualization: cost ★ → reward %>
+        <div class="redeem-ritual__trade">
+          <div class="redeem-ritual__cost">
+            <%= render Ui::Icon::Component.new(:star, size: 26, color: "var(--star)") %>
+            <span><%= reward.cost %></span>
           </div>
-          <div class="flex items-center justify-between text-danger font-display font-extrabold mt-1">
-            <span>−</span>
-            <%= render Ui::StarValue::Component.new(value: reward.cost, size: :sm, color: :gold, class: "text-danger") %>
+          <div class="redeem-ritual__arrow">
+            <%= render Ui::Icon::Component.new("arrow-right", size: 20, color: "var(--text-soft)") %>
           </div>
-          <div class="h-[2px] bg-[rgba(26,42,74,0.1)] my-2"></div>
-          <div class="flex items-center justify-between text-primary font-display font-extrabold">
-            <span>Depois</span>
-            <%= render Ui::StarValue::Component.new(value: [current_profile.points - reward.cost, 0].max, size: :lg, color: :gold, class: "text-primary") %>
+          <div class="redeem-ritual__prize" style="background: <%= tint_soft %>; border-color: <%= tint_fg %>;">
+            <%= render Ui::Icon::Component.new(reward_icon, size: 28, color: tint_fg) %>
+            <span style="color: <%= tint_fg %>;"><%= reward.title %></span>
           </div>
         </div>
 
-        <div class="flex items-center justify-center gap-3 mt-1.5 w-full">
-          <%= render Ui::Btn::Component.new(variant: "secondary", data: { action: "click->modal#close" }) do %>Cancelar<% end %>
-          <%= button_to redeem_kid_reward_path(reward), method: :post, class: "btn btn-primary btn-lg" do %>
-            <%= render Ui::Icon::Component.new("gift", size: 20) %> Resgatar!
+        <%# Aftermath %>
+        <% if can_afford %>
+          <p class="redeem-ritual__after">
+            Saldo depois:
+            <strong>
+              <%= render Ui::Icon::Component.new(:star, size: 14, color: "var(--star)") %>
+              <%= after_balance %>
+            </strong>
+          </p>
+        <% else %>
+          <p class="redeem-ritual__warning">
+            Faltam <strong><%= reward.cost - balance %></strong> estrelinhas
+          </p>
+        <% end %>
+
+        <%# Actions %>
+        <div class="redeem-ritual__actions">
+          <button type="button"
+                  class="ls-btn-3d redeem-ritual__btn redeem-ritual__btn--secondary"
+                  data-action="click->ui-modal#close">
+            Volto depois
+          </button>
+          <% if can_afford %>
+            <%= button_to redeem_kid_reward_path(reward),
+                          method: :post,
+                          form: { data: { turbo: true } },
+                          class: "ls-btn-3d redeem-ritual__btn redeem-ritual__btn--primary" do %>
+              <%= render Ui::Icon::Component.new(:star, size: 18, color: "white") %>
+              Sim, quero!
+            <% end %>
+          <% else %>
+            <button type="button" disabled
+                    class="ls-btn-3d redeem-ritual__btn redeem-ritual__btn--primary"
+                    style="opacity: 0.5; cursor: not-allowed;">
+              <%= render Ui::Icon::Component.new("lock", size: 16, color: "white") %>
+              Sim, quero!
+            </button>
           <% end %>
         </div>
       </div>

@@ -10,6 +10,26 @@
 }
 
 @layer utilities {
+  /* ── 3D press elements (Duolingo style) ── */
+  .ls-btn-3d, .ls-filter-pill, .ls-key-3d, .ls-aux-key, .ls-icon-cell, .ls-star-cell {
+    transition: transform 0.05s;
+    user-select: none;
+  }
+  .ls-btn-3d:active, .ls-filter-pill:active, .ls-key-3d:active, .ls-aux-key:active {
+    transform: translateY(2px);
+    box-shadow: none !important;
+  }
+  .ls-icon-cell:active, .ls-star-cell:active {
+    transform: scale(0.92);
+  }
+  .ls-card-3d {
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  .ls-card-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
+  }
+
   .anim-press {
     transition: transform var(--dur-fast) var(--ease-spring);
   }
@@ -24,7 +44,7 @@
   }
   .anim-tile:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(99, 82, 255, 0.14);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.10);
   }
 
   .anim-pop-in {
@@ -73,6 +93,26 @@
   .anim-fade-up {
     animation: fxFadeUp var(--dur-base) var(--ease-spring-soft) both;
   }
+
+  .ls-mascot-bounce {
+    animation: lsMascotBounce 2.5s ease-in-out infinite;
+    transform-origin: bottom center;
+    display: inline-block;
+  }
+  @keyframes lsMascotBounce {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-6px) scale(1.02); }
+  }
+
+  .ls-coin-shake {
+    animation: lsCoinShake 3s ease-in-out infinite;
+    transform-origin: center;
+  }
+  @keyframes lsCoinShake {
+    0%, 90%, 100% { transform: rotate(0deg); }
+    93% { transform: rotate(-8deg); }
+    96% { transform: rotate(8deg); }
+  }
   @keyframes fxFadeUp {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: none; }
@@ -103,15 +143,24 @@
     .anim-shake,
     .anim-bounce-once,
     .anim-fade-up,
-    .anim-shimmer {
+    .anim-shimmer,
+    .ls-mascot-bounce,
+    .ls-coin-shake,
+    .ls-btn-3d,
+    .ls-filter-pill,
+    .ls-key-3d,
+    .ls-aux-key,
+    .ls-icon-cell,
+    .ls-star-cell,
+    .ls-card-3d {
       animation: none !important;
       transition: none !important;
     }
-    .anim-tile:hover {
+    .anim-tile:hover, .ls-card-3d:hover {
       transform: none;
       box-shadow: none;
     }
-    .anim-press:active {
+    .anim-press:active, .ls-btn-3d:active, .ls-filter-pill:active, .ls-key-3d:active, .ls-aux-key:active, .ls-icon-cell:active, .ls-star-cell:active {
       transform: none;
     }
   }

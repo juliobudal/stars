@@ -7,14 +7,21 @@
 .cat-tabs::-webkit-scrollbar { display: none; }
 
 .cat-tab {
-  @apply inline-flex items-center justify-center gap-2 whitespace-nowrap;
-  @apply px-4 py-2 rounded-full border-none font-display font-extrabold cursor-pointer;
-  @apply text-[14px] transition-all duration-150 ease-out;
-  @apply bg-transparent text-muted-foreground;
+  @apply inline-flex items-center justify-center gap-1.5 whitespace-nowrap;
+  @apply px-3.5 py-2 font-display font-extrabold cursor-pointer uppercase;
+  @apply text-[12px] transition-all duration-150 ease-out;
+  background: var(--surface);
+  color: var(--text-muted);
+  border: 2px solid var(--hairline);
+  border-radius: 12px;
+  box-shadow: 0 3px 0 var(--hairline);
+  letter-spacing: 0.5px;
 }
-.cat-tab:hover { @apply text-foreground; }
+.cat-tab:active { transform: translateY(2px); box-shadow: none !important; }
 .cat-tab--active {
-  @apply bg-primary text-white;
-  box-shadow: 0 3px 0 var(--color-primary-depth);
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 3px 0 var(--primary-2);
 }
-.cat-tab--active:hover { @apply text-white; }
+.cat-tab--active:hover { color: white; }

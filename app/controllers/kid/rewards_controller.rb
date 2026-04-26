@@ -5,15 +5,17 @@ class Kid::RewardsController < ApplicationController
 
   def index
     family_id = current_profile.family_id
-    @rewards = Reward.where(family_id: family_id).includes(:category)
-    @featured = @rewards.order(cost: :desc).first
+    balance = current_profile.points
+    @rewards = Reward.where(family_id: family_id).includes(:category).order(:cost)
+    @affordable_rewards = @rewards.select { |r| r.cost <= balance }
+    @locked_rewards     = @rewards.reject { |r| r.cost <= balance }
     @redeemed_rewards = current_profile.redemptions.includes(:reward).order(created_at: :desc)
     @categories_with_rewards = Category
       .where(family_id: family_id)
       .joins(:rewards)
       .distinct
       .ordered
-    @reward_counts = @rewards.group(:category_id).count
+    @reward_counts = @rewards.group_by(&:category_id).transform_values(&:size)
   end
 
   def redeem
