@@ -2,7 +2,7 @@
   tints = ["var(--c-sky-soft)", "var(--c-rose-soft)", "var(--c-mint-soft)", "var(--c-amber-soft)", "var(--c-lilac-soft)"]
   featured = @featured || @rewards&.first
 %>
-<div class="screen screen-enter-right with-nav" data-controller="celebration">
+<div class="screen screen-enter-right with-nav">
   <%= render Ui::BgShapes::Component.new(variant: "warm") %>
   <%= render Ui::Celebration::Component.new %>
 
@@ -12,7 +12,7 @@
     back_url: kid_root_path
   ) do |bar| %>
     <% bar.with_right_slot do %>
-      <%= render Ui::BalanceChip::Component.new(value: current_profile.points, id: "profile_points_#{current_profile.id}") %>
+      <%= render Ui::BalanceChip::Component.new(value: current_profile.points, profile: current_profile, id: "profile_points_#{current_profile.id}") %>
     <% end %>
   <% end %>
 

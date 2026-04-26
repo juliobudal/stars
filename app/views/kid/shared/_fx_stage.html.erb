@@ -1,0 +1,6 @@
+<% if current_profile %>
+  <%= turbo_stream_from "kid_#{current_profile.id}" %>
+  <%# Subscribes to Profile#broadcast_points so the dashboard balance chip auto-updates on approve/redeem %>
+  <%= turbo_stream_from current_profile, "notifications" %>
+<% end %>
+<div id="fx_stage" class="contents"></div>

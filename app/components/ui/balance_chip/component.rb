@@ -1,11 +1,13 @@
 module Ui
   module BalanceChip
     class Component < ApplicationComponent
-      def initialize(value:, size: "md", **options)
+      def initialize(value:, size: "md", profile: nil, **options)
         @value = value.to_i
         @size = size.to_s
+        @profile = profile
+        super(**options)
         @options = options
-        super()
+        @options[:id] ||= "balance_chip_#{profile.id}" if profile
       end
 
       def call

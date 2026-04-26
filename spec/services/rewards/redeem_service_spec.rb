@@ -27,6 +27,18 @@ RSpec.describe Rewards::RedeemService do
         result = described_class.new(profile: child, reward: reward).call
         expect(result.success?).to be true
       end
+
+      context 'celebration broadcast' do
+        it 'broadcasts a celebration partial with tier=big and reward_title in payload' do
+          expect {
+            described_class.new(profile: child, reward: reward).call
+          }.to have_broadcasted_to("kid_#{child.id}")
+            .with { |stream|
+              expect(stream).to include('data-fx-event="celebrate"', 'data-fx-tier="big"')
+              expect(stream).to include(reward.title)
+            }
+        end
+      end
     end
 
     context 'when child has insufficient points' do

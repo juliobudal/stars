@@ -1,6 +1,6 @@
 <button
   type="button"
-  class="bg-surface rounded-card shadow-card relative border-none p-1.5 flex flex-col items-stretch gap-2 <%= can_afford? ? 'cursor-pointer opacity-100' : 'cursor-default opacity-60 grayscale-[0.4]' %>"
+  class="bg-surface rounded-card shadow-card anim-tile relative border-none p-1.5 flex flex-col items-stretch gap-2 <%= can_afford? ? 'cursor-pointer opacity-100' : 'cursor-default opacity-60 grayscale-[0.4]' %>"
   <%= "disabled" unless can_afford? %>
   <% if can_afford? && modal_id %>data-action="click->ui-modal#open" data-ui-modal-id-param="<%= modal_id %>"<% end %>
   style="animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= animation_delay %>s both;"

@@ -1,10 +1,8 @@
 <%= turbo_stream.remove @profile_task %>
 
-<%# Trigger confetti via celebration controller %>
+<%# Trigger confetti via fx controller (auto-fires on insert via MutationObserver) %>
 <%= turbo_stream.append "body" do %>
-  <div data-controller="celebration" data-celebration-auto-fire-value="true" class="hidden">
-    <div data-celebration-target="layer" class="confetti-layer"></div>
-  </div>
+  <div data-fx-event="celebrate" data-fx-tier="big" class="hidden"></div>
 <% end %>
 
 <%= turbo_stream.update :flash do %>

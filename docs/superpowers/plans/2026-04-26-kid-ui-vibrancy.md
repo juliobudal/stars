@@ -602,7 +602,7 @@ module Ui
         when :success then 'bg-emerald-500 text-white'
         when :error   then 'bg-rose-500 text-white'
         when :info    then 'bg-sky-500 text-white'
-        else 'bg-foreground text-bg'
+        else 'bg-foreground text-background'
         end
       end
     end

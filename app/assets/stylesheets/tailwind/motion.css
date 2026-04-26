@@ -1,0 +1,118 @@
+@layer base {
+  :root {
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-spring-soft: cubic-bezier(0.22, 1.4, 0.36, 1);
+    --ease-snap: cubic-bezier(0.4, 0, 0.2, 1);
+    --dur-fast: 120ms;
+    --dur-base: 240ms;
+    --dur-pop: 380ms;
+  }
+}
+
+@layer utilities {
+  .anim-press {
+    transition: transform var(--dur-fast) var(--ease-spring);
+  }
+  .anim-press:active {
+    transform: scale(0.96);
+  }
+
+  .anim-tile {
+    transition:
+      transform var(--dur-base) var(--ease-spring-soft),
+      box-shadow var(--dur-base) var(--ease-snap);
+  }
+  .anim-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(99, 82, 255, 0.14);
+  }
+
+  .anim-pop-in {
+    animation: fxPopIn var(--dur-pop) var(--ease-spring) both;
+  }
+  @keyframes fxPopIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .anim-pulse-once {
+    animation: fxPulseOnce var(--dur-pop) var(--ease-spring) both;
+  }
+  @keyframes fxPulseOnce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+  }
+
+  .anim-shake {
+    animation: fxShake 360ms var(--ease-snap) both;
+  }
+  @keyframes fxShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+
+  .anim-bounce-once {
+    animation: fxBounceOnce 500ms var(--ease-spring) both;
+  }
+  @keyframes fxBounceOnce {
+    0% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    70% { transform: translateY(-4px); }
+    100% { transform: translateY(0); }
+  }
+
+  .anim-fade-up {
+    animation: fxFadeUp var(--dur-base) var(--ease-spring-soft) both;
+  }
+  @keyframes fxFadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  .anim-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.4) 50%,
+      rgba(255,255,255,0) 100%
+    );
+    background-size: 200% 100%;
+    animation: fxShimmer 1.4s linear infinite;
+  }
+  @keyframes fxShimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+}
+
+@layer utilities {
+  @media (prefers-reduced-motion: reduce) {
+    .anim-press,
+    .anim-tile,
+    .anim-pop-in,
+    .anim-pulse-once,
+    .anim-shake,
+    .anim-bounce-once,
+    .anim-fade-up,
+    .anim-shimmer {
+      animation: none !important;
+      transition: none !important;
+    }
+    .anim-tile:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    .anim-press:active {
+      transform: none;
+    }
+  }
+}

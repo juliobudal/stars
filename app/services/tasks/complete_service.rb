@@ -21,6 +21,8 @@ module Tasks
         return fail_with("Esta família exige uma foto como comprovante para concluir a missão")
       end
 
+      auto_approved = false
+
       ActiveRecord::Base.transaction do
         @profile_task.proof_photo.attach(@proof_photo) if @proof_photo.present?
         @profile_task.update!(status: :awaiting_approval)
@@ -37,14 +39,43 @@ module Tasks
            !@family.require_photo?
           Tasks::ApproveService.new(@profile_task).call
           @profile_task.reload
+          auto_approved = true
         end
       end
+
+      # Skip all_cleared broadcast on auto-approve — ApproveService already fired
+      # a BIG :approved celebration; stacking another modal would be jarring.
+      broadcast_all_cleared if !auto_approved && last_pending_task_for_today?
 
       Rails.logger.info("[Tasks::CompleteService] success id=#{@profile_task.id}")
       ok(@profile_task)
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
       Rails.logger.error("[Tasks::CompleteService] exception id=#{@profile_task.id} error=#{e.message}")
       fail_with(e.message)
+    end
+
+    private
+
+    def last_pending_task_for_today?
+      remaining = @profile_task.profile
+                               .profile_tasks
+                               .where(status: :pending)
+                               .where("created_at >= ?", Date.current.beginning_of_day)
+                               .count
+      remaining.zero?
+    end
+
+    def broadcast_all_cleared
+      tier = Ui::Celebration.tier_for(:all_cleared)
+      payload = { message: "Todas as missões de hoje! 🎉" }
+      Turbo::StreamsChannel.broadcast_append_to(
+        "kid_#{@profile_task.profile.id}",
+        target: "fx_stage",
+        partial: "kid/shared/celebration",
+        locals: { tier: tier, payload: payload }
+      )
+    rescue StandardError => e
+      Rails.logger.warn("[Tasks::CompleteService] broadcast failed id=#{@profile_task.id} error=#{e.message}")
     end
   end
 end

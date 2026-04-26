@@ -1,8 +1,6 @@
-<%# Trigger Celebration %>
+<%# Trigger Celebration via fx controller (auto-fires on insert via MutationObserver) %>
 <%= turbo_stream.append "body" do %>
-  <div data-controller="celebration" data-celebration-auto-value="true">
-    <div class="confetti-layer hidden" data-celebration-target="layer"></div>
-  </div>
+  <div data-fx-event="celebrate" data-fx-tier="big" class="hidden"></div>
 <% end %>
 
 <%# Update Balance display (turbo_stream.set_attribute not available in turbo-rails 2.x; update inner text instead) %>

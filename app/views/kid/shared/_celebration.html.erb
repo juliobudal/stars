@@ -1,0 +1,31 @@
+<%# locals: (tier:, payload:) %>
+<% ts = (Time.current.to_f * 1000).to_i %>
+<div
+  id="celebration_<%= ts %>"
+  data-fx-event="celebrate"
+  data-fx-tier="<%= tier %>"
+  data-fx-payload="<%= payload.to_json %>"
+  data-fx-dismiss-after="<%= tier.to_sym == :big ? 2700 : 3200 %>"
+  class="anim-pop-in"
+>
+  <% if tier.to_sym == :big %>
+    <%= render Ui::Modal::Component.new(title: payload[:message] || "Conquista!", variant: :celebration, id: "celebration_modal_#{ts}") do %>
+      <div class="text-center py-4">
+        <% if payload[:points] %>
+          <p class="text-3xl font-display font-extrabold text-warning">+<%= payload[:points] %> ★</p>
+        <% end %>
+        <% if payload[:reward_title] %>
+          <p class="mt-2 text-lg font-bold"><%= payload[:reward_title] %></p>
+        <% end %>
+        <% if payload[:days] %>
+          <p class="mt-2 text-lg font-bold"><%= payload[:days] %> dias seguidos! 🔥</p>
+        <% end %>
+        <% if payload[:threshold] %>
+          <p class="mt-2 text-lg font-bold">Você passou de <%= payload[:threshold] %> ★!</p>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= render Ui::Toast::Component.new(message: payload[:message] || "✨", variant: :info) %>
+  <% end %>
+</div>

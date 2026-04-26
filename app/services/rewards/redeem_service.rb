@@ -52,11 +52,33 @@ module Rewards
         fail_with(error)
       else
         Rails.logger.info("[Rewards::RedeemService] success profile_id=#{@profile.id}")
+        broadcast_celebration(redemption)
         ok(redemption)
       end
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
       Rails.logger.error("[Rewards::RedeemService] exception profile_id=#{@profile.id} error=#{e.message}")
       fail_with(e.message)
+    end
+
+    private
+
+    def broadcast_celebration(redemption)
+      tier = Ui::Celebration.tier_for(:redeemed)
+      payload = {
+        points: -@reward.cost,
+        message: "Recompensa solicitada!",
+        reward_title: @reward.title,
+        palette: "gold"
+      }
+
+      Turbo::StreamsChannel.broadcast_append_to(
+        "kid_#{@profile.id}",
+        target: "fx_stage",
+        partial: "kid/shared/celebration",
+        locals: { tier: tier, payload: payload }
+      )
+    rescue StandardError => e
+      Rails.logger.warn("[Rewards::RedeemService] broadcast failed reward_id=#{@reward.id} error=#{e.message}")
     end
   end
 end

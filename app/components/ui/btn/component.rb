@@ -32,6 +32,7 @@ class Ui::Btn::Component < ApplicationComponent
       "ui-btn",
       "ui-btn--#{@variant}",
       "ui-btn--#{@size}",
+      "anim-press",
       { "w-full": @block },
       @options.delete(:class)
     )
