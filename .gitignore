@@ -64,3 +64,4 @@ tailwindcss_safelist.txt
 
 # Built assets
 /public/hugeicons-manifest.json
+package-lock.json
