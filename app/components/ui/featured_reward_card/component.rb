@@ -23,6 +23,18 @@ module Ui
       def shortfall
         reward.cost - balance
       end
+
+      def palette
+        Ui::Tokens.color_palette_entry(reward.category&.color || "lilac")
+      end
+
+      def tint_soft
+        palette[:soft_var]
+      end
+
+      def tint_fg
+        palette[:fg_var]
+      end
     end
   end
 end

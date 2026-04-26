@@ -15,7 +15,7 @@
       <% end %>
     </div>
   </div>
-  <div class="flex items-center justify-center shrink-0 w-[140px] h-[140px] rounded-2xl bg-lilac-soft">
-    <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 70, color: "var(--c-violet-dark)") %>
+  <div class="flex items-center justify-center shrink-0 w-[140px] h-[140px] rounded-2xl" style="background: <%= tint_soft %>;">
+    <%= render Ui::Icon::Component.new(reward_icon || "gift", size: 70, color: tint_fg) %>
   </div>
 </div>
