@@ -42,12 +42,12 @@
       </div>
 
       <div class="flex flex-col gap-2">
-        <%= f.label :category, "Categoria", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
+        <%= f.label :category_id, "Categoria", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
         <%= render Ui::Select::Component.new(
-              name: "reward[category]",
-              id: "reward_category",
-              options: Reward.categories.keys.map { |k| [Ui::Tokens.reward_category_for(k)[:label].capitalize, k] },
-              selected: reward.category,
+              name: "reward[category_id]",
+              id: "reward_category_id",
+              options: @categories.map { |c| [c.name, c.id] },
+              selected: reward.category_id,
               size: :lg
             ) %>
       </div>

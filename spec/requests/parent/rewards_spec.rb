@@ -47,9 +47,10 @@ RSpec.describe "Parent::Rewards", type: :request do
     describe "POST /parent/rewards" do
       context "with valid params" do
         it "creates a reward and redirects" do
+          cat = family.categories.first
           expect {
             post parent_rewards_path, params: {
-              reward: { title: "Viagem ao parque", cost: 200, icon: "🎡" }
+              reward: { title: "Viagem ao parque", cost: 200, icon: "🎡", category_id: cat.id }
             }
           }.to change(Reward, :count).by(1)
 
@@ -89,11 +90,12 @@ RSpec.describe "Parent::Rewards", type: :request do
 
     describe "PATCH /parent/rewards/:id" do
       it "updates category and redirects" do
-        patch parent_reward_path(reward), params: { reward: { title: "Sorvete de morango", cost: 120, category: "doce" } }
+        new_cat = family.categories.find_by(name: "Docinhos")
+        patch parent_reward_path(reward), params: { reward: { title: "Sorvete de morango", cost: 120, category_id: new_cat.id } }
         expect(response).to redirect_to(parent_rewards_path)
         reward.reload
         expect(reward.title).to eq("Sorvete de morango")
-        expect(reward.category).to eq("doce")
+        expect(reward.category_id).to eq(new_cat.id)
         expect(reward.cost).to eq(120)
       end
     end
