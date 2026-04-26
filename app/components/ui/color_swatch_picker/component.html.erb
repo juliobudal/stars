@@ -1,0 +1,16 @@
+<div id="<%= id %>" class="flex flex-wrap gap-2.5">
+  <% palette.each do |key, meta| %>
+    <% checked = key == value %>
+    <label class="relative cursor-pointer">
+      <input type="radio"
+             name="<%= field_name %>"
+             value="<%= key %>"
+             class="peer sr-only"
+             <%= "checked" if checked %>>
+      <span class="block w-10 h-10 rounded-full border-2 border-hairline peer-checked:border-foreground peer-checked:scale-110 transition-transform"
+            style="background: <%= meta[:soft_var] %>;"
+            title="<%= meta[:label] %>">
+      </span>
+    </label>
+  <% end %>
+</div>
