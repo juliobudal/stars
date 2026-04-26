@@ -80,7 +80,7 @@ RSpec.configure do |config|
   config.include Turbo::Broadcastable::TestHelper
 
   config.before(:each, type: :system) do
-    [ Redemption, ActivityLog, ProfileTask, GlobalTaskAssignment, Reward, GlobalTask, ProfileInvitation, Profile, Family ].each(&:delete_all)
+    [ Redemption, ActivityLog, ProfileTask, GlobalTaskAssignment, Reward, Category, GlobalTask, ProfileInvitation, Profile, Family ].each(&:delete_all)
   end
 end
 
