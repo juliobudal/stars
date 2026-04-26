@@ -12,7 +12,7 @@
     back_url: kid_root_path
   ) do |bar| %>
     <% bar.with_right_slot do %>
-      <%= render Ui::BalanceChip::Component.new(value: current_profile.points, id: "profile_points_#{current_profile.id}") %>
+      <%= render Ui::BalanceChip::Component.new(value: current_profile.points, profile: current_profile, id: "profile_points_#{current_profile.id}") %>
     <% end %>
   <% end %>
 
