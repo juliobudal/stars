@@ -4,9 +4,16 @@ class Kid::RewardsController < ApplicationController
   layout "kid"
 
   def index
-    @rewards = Reward.where(family_id: current_profile.family_id)
+    family_id = current_profile.family_id
+    @rewards = Reward.where(family_id: family_id).includes(:category)
     @featured = @rewards.order(cost: :desc).first
     @redeemed_rewards = current_profile.redemptions.includes(:reward).order(created_at: :desc)
+    @categories_with_rewards = Category
+      .where(family_id: family_id)
+      .joins(:rewards)
+      .distinct
+      .ordered
+    @reward_counts = @rewards.group(:category_id).count
   end
 
   def redeem

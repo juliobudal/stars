@@ -1,5 +1,4 @@
 <%
-  tints = ["var(--c-sky-soft)", "var(--c-rose-soft)", "var(--c-mint-soft)", "var(--c-amber-soft)", "var(--c-lilac-soft)"]
   featured = @featured || @rewards&.first
 %>
 <div class="screen screen-enter-right with-nav">
@@ -24,54 +23,44 @@
     ) %>
   <% end %>
 
-  <%# Section Header %>
   <div class="flex items-baseline justify-between mb-5 mt-5 relative z-10">
     <%= render Ui::Heading::Component.new(size: :h3) do %>O que você quer hoje?<% end %>
     <span class="text-[12px] font-bold text-muted-foreground"><%= @rewards.size %> prêmios</span>
   </div>
 
-  <div class="mb-4 z-2 relative">
-    <%= render Ui::CategoryTabs::Component.new(
-      items: [
-        { id: "tudo",         label: "Tudo" },
-        { id: "telinha",      label: "Telinha" },
-        { id: "docinhos",     label: "Docinhos" },
-        { id: "passeios",     label: "Passeios" },
-        { id: "brinquedos",   label: "Brinquedos" },
-        { id: "experiencias", label: "Experiências" }
-      ],
-      active: "tudo"
-    ) %>
+  <% if @rewards.any? %>
+    <div data-controller="filter-tabs" class="mb-4 z-2 relative">
+      <%
+        tab_items = [{ id: "all", label: "Tudo", count: @rewards.size }]
+        @categories_with_rewards.each do |cat|
+          tab_items << { id: cat.id.to_s, label: cat.name, count: @reward_counts[cat.id].to_i }
+        end
+      %>
+      <%= render Ui::CategoryTabs::Component.new(items: tab_items, active: "all", controller: "filter-tabs") %>
 
-    <%# "Tudo" panel — renders the full grid %>
-    <div id="panel-tudo" class="flex flex-col mt-4">
-      <% if @rewards.any? %>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <% @rewards.each_with_index do |reward, i| %>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
+        <% @rewards.each_with_index do |reward, i| %>
+          <% tint = Ui::Tokens.color_palette_entry(reward.category&.color || "lilac")[:soft_var] %>
+          <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>">
             <%= render Ui::RewardTile::Component.new(
               reward: reward,
               balance: current_profile.points,
-              tint: tints[i % tints.length],
+              tint: tint,
               index: i,
               modal_id: "modal_#{dom_id(reward)}"
             ) %>
-          <% end %>
-        </div>
-      <% else %>
-        <%= render Ui::Empty::Component.new(
-          icon: "bag",
-          title: "A lojinha está vazia",
-          subtitle: "Peça para um responsável adicionar recompensas!",
-          color: "rose"
-        ) %>
-      <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
-
-    <%# Category stub panels — filtering not yet available %>
-    <% %w[telinha docinhos passeios brinquedos experiencias].each do |tab_id| %>
-      <div id="panel-<%= tab_id %>" class="hidden"><!-- filtro não disponível ainda --></div>
-    <% end %>
-  </div>
+  <% else %>
+    <%= render Ui::Empty::Component.new(
+      icon: "bag",
+      title: "A lojinha está vazia",
+      subtitle: "Peça para um responsável adicionar recompensas!",
+      color: "rose"
+    ) %>
+  <% end %>
 
   <% if @redeemed_rewards.any? %>
     <div class="mt-8 mb-6 z-2 relative">
@@ -84,7 +73,6 @@
     </div>
   <% end %>
 
-  <%# Reward Modals (one per reward) %>
   <% @rewards.each do |reward| %>
     <% reward_icon = reward.respond_to?(:icon) ? reward.icon.presence : nil %>
     <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(reward)}", title: "Resgatar Recompensa") do %>

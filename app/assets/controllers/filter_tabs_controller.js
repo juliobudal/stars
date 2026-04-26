@@ -19,10 +19,14 @@ export default class extends Controller {
     this.tabTargets.forEach(t => {
       const isActive = t === event.currentTarget
       t.classList.toggle("active", isActive)
-      t.classList.toggle("bg-white", isActive)
-      t.classList.toggle("text-primary", isActive)
-      t.classList.toggle("shadow-sm", isActive)
-      t.classList.toggle("text-muted-foreground", !isActive)
+      if (t.classList.contains("cat-tab")) {
+        t.classList.toggle("cat-tab--active", isActive)
+      } else {
+        t.classList.toggle("bg-white", isActive)
+        t.classList.toggle("text-primary", isActive)
+        t.classList.toggle("shadow-sm", isActive)
+        t.classList.toggle("text-muted-foreground", !isActive)
+      }
       t.setAttribute("aria-selected", isActive)
     })
     this.apply(key)
