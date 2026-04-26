@@ -30,6 +30,7 @@ FactoryBot.define do
     status { :pending }
     completed_at { nil }
     assigned_date { Date.current }
+    source { :catalog }
 
     trait :pending do
       status { :pending }
@@ -45,6 +46,17 @@ FactoryBot.define do
 
     trait :rejected do
       status { :rejected }
+    end
+
+    trait :custom do
+      global_task { nil }
+      source { :custom }
+      custom_title { "Arrumei a estante" }
+      custom_description { "Tirei o pó e organizei os livros" }
+      custom_points { 25 }
+      custom_category { association(:category) }
+      status { :awaiting_approval }
+      completed_at { Time.current }
     end
   end
 end

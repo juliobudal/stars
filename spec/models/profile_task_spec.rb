@@ -28,17 +28,12 @@ require "rails_helper"
 RSpec.describe ProfileTask, type: :model do
   describe "associations" do
     it { is_expected.to belong_to(:profile) }
-    it { is_expected.to belong_to(:global_task) }
+    it { is_expected.to belong_to(:global_task).optional }
+    it { is_expected.to belong_to(:custom_category).class_name("Category").optional }
   end
 
   describe "enums" do
     it { is_expected.to define_enum_for(:status).with_values(pending: 0, awaiting_approval: 1, approved: 2, rejected: 3) }
-  end
-
-  describe "delegations" do
-    it { is_expected.to delegate_method(:title).to(:global_task) }
-    it { is_expected.to delegate_method(:points).to(:global_task) }
-    it { is_expected.to delegate_method(:category).to(:global_task) }
   end
 
   describe "scopes" do
@@ -124,6 +119,83 @@ RSpec.describe ProfileTask, type: :model do
         attach_photo(profile_task, filename: "animation.gif", content_type: "image/gif", size: 100.kilobytes)
         expect(profile_task).not_to be_valid
         expect(profile_task.errors[:proof_photo]).to be_present
+      end
+    end
+  end
+
+  describe "source enum and custom missions" do
+    it "defaults to catalog" do
+      pt = build(:profile_task)
+      expect(pt.source).to eq("catalog")
+    end
+
+    describe "custom validations" do
+      let(:custom) { build(:profile_task, :custom) }
+
+      it "is valid with required custom fields" do
+        expect(custom).to be_valid
+      end
+
+      it "requires custom_title when custom" do
+        custom.custom_title = nil
+        expect(custom).not_to be_valid
+        expect(custom.errors[:custom_title]).to be_present
+      end
+
+      it "requires custom_points >= 1" do
+        custom.custom_points = 0
+        expect(custom).not_to be_valid
+        expect(custom.errors[:custom_points]).to be_present
+      end
+
+      it "requires custom_points <= 1000" do
+        custom.custom_points = 1001
+        expect(custom).not_to be_valid
+        expect(custom.errors[:custom_points]).to be_present
+      end
+
+      it "requires custom_category when custom" do
+        custom.custom_category = nil
+        expect(custom).not_to be_valid
+        expect(custom.errors[:custom_category_id]).to be_present
+      end
+
+      it "rejects global_task on custom" do
+        custom.global_task = create(:global_task)
+        expect(custom).not_to be_valid
+        expect(custom.errors[:global_task_id]).to be_present
+      end
+    end
+
+    describe "catalog validations" do
+      it "requires global_task when catalog" do
+        pt = build(:profile_task, global_task: nil)
+        expect(pt).not_to be_valid
+        expect(pt.errors[:global_task_id]).to be_present
+      end
+    end
+
+    describe "delegated readers" do
+      it "returns custom_title for custom missions" do
+        pt = build(:profile_task, :custom, custom_title: "Lavar carro")
+        expect(pt.title).to eq("Lavar carro")
+      end
+
+      it "returns custom_points for custom missions" do
+        pt = build(:profile_task, :custom, custom_points: 42)
+        expect(pt.points).to eq(42)
+      end
+
+      it "returns custom_category for custom missions" do
+        cat = create(:category)
+        pt = build(:profile_task, :custom, custom_category: cat)
+        expect(pt.category).to eq(cat)
+      end
+
+      it "returns global_task fields for catalog missions" do
+        gt = create(:global_task, points: 17)
+        pt = build(:profile_task, global_task: gt)
+        expect(pt.points).to eq(17)
       end
     end
   end
