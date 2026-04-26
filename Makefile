@@ -11,7 +11,7 @@ RUN     := $(COMPOSE) run --rm web
 .PHONY: help setup dev dev-detached build down restart ps \
         logs logs-web logs-db \
         shell shell-db c \
-        db-create db-migrate db-seed db-prepare db-reset db-rollback \
+        db-create db-migrate db-seed db-reseed db-prepare db-reset db-rollback \
         migrate seed prepare reset rollback \
         test rspec lint rubocop brakeman audit ci \
         routes assets-build assets-clobber \
@@ -28,7 +28,8 @@ help:
 	@echo "  make clean         stop stack AND wipe volumes (DATA LOSS)"
 	@echo ""
 	@echo "  make migrate       bin/rails db:migrate"
-	@echo "  make seed          bin/rails db:seed"
+	@echo "  make seed          bin/rails db:seed (idempotent — skip if families exist)"
+	@echo "  make db-reseed     SEED_FORCE=1 db:seed (wipes data)"
 	@echo "  make prepare       bin/rails db:prepare"
 	@echo "  make reset         drop + create + migrate + seed"
 	@echo "  make rollback      bin/rails db:rollback"
@@ -89,10 +90,14 @@ db-create:
 	$(EXEC) bin/rails db:create
 
 db-migrate:
-	$(EXEC) bin/rails db:migrate
+	$(EXEC) env RAILS_ENV=development bin/rails db:migrate
 
 db-seed:
-	$(EXEC) bin/rails db:seed
+	$(EXEC) env RAILS_ENV=development bin/rails db:seed
+
+# Force-reseed dev DB (DESTRUCTIVE — wipes all families, profiles, etc).
+db-reseed:
+	$(EXEC) env RAILS_ENV=development SEED_FORCE=1 bin/rails db:seed
 
 db-prepare:
 	$(EXEC) bin/rails db:prepare
@@ -111,8 +116,10 @@ rollback: db-rollback
 reset: db-reset
 
 # Tests & quality --------------------------------------------------------------
+# RAILS_ENV=test prevents env drift that triggers EnvironmentMismatchError +
+# protects dev DB from rspec's db:test:purge stomping if last command ran in dev.
 test:
-	$(EXEC) bundle exec rspec
+	$(EXEC) env RAILS_ENV=test bundle exec rspec $(ARGS)
 
 rspec: test
 

@@ -1,4 +1,14 @@
-[ ActivityLog, Redemption, ProfileTask, GlobalTaskAssignment, Reward, Category, GlobalTask, Profile, ProfileInvitation, Family ].each(&:delete_all)
+# Idempotent: skip wipe + seed if any Family already exists, unless SEED_FORCE=1.
+# Prevents accidental data loss for developers with registered families.
+if Family.exists? && ENV["SEED_FORCE"] != "1"
+  puts "↪ Seed skipped: #{Family.count} family/families already present. Use SEED_FORCE=1 to re-seed."
+  exit
+end
+
+if ENV["SEED_FORCE"] == "1"
+  puts "⚠ SEED_FORCE=1 — wiping all data..."
+  [ ActivityLog, Redemption, ProfileTask, GlobalTaskAssignment, Reward, Category, GlobalTask, Profile, ProfileInvitation, Family ].each(&:delete_all)
+end
 
 ActiveRecord::Base.strict_loading_by_default = false
 
