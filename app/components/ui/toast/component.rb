@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ui
   module Toast
     class Component < ApplicationComponent
