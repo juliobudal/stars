@@ -62,4 +62,13 @@ RSpec.describe Family, type: :model do
       expect(family.authenticate("wrong")).to be_falsey
     end
   end
+
+  describe "after_create" do
+    it "seeds 6 default categories" do
+      family = create(:family)
+      expect(family.categories.pluck(:name)).to match_array(
+        %w[Telinha Docinhos Passeios Brinquedos Experiências Outro]
+      )
+    end
+  end
 end

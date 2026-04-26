@@ -44,4 +44,12 @@ class Family < ApplicationRecord
   generates_token_for :password_reset, expires_in: 30.minutes do
     password_salt&.last(10)
   end
+
+  after_create :seed_default_categories
+
+  private
+
+  def seed_default_categories
+    Categories::SeedDefaultsService.call(self)
+  end
 end
