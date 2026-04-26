@@ -111,5 +111,8 @@
       transform: none;
       box-shadow: none;
     }
+    .anim-press:active {
+      transform: none;
+    }
   }
 }
