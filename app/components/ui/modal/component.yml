@@ -60,6 +60,16 @@ props:
     default: "nil"
     description: Unique identifier for sync modals. Required for modals triggered by `modals#show` action.
 
+  - name: variant
+    type: Symbol
+    default: ":default"
+    values:
+      - ":default"
+      - ":success"
+      - ":confirm-destructive"
+      - ":celebration"
+    description: Visual variant of the modal. `:success` shows an emerald top band, `:confirm-destructive` shows a rose top band, `:celebration` shows a gold top band plus auto-dismiss + fx celebrate event (tier `big`, 2500ms). Invalid values fall back to `:default`.
+
 slots:
   - name: modal_header
     component: Ui::Modal::HeaderComponent
