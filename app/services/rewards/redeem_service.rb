@@ -66,7 +66,7 @@ module Rewards
       tier = Ui::Celebration.tier_for(:redeemed)
       payload = {
         points: -@reward.cost,
-        message: "Recompensa solicitada!",
+        message: "Resgate solicitado!",
         reward_title: @reward.title,
         palette: "gold"
       }

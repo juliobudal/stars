@@ -34,9 +34,9 @@ RSpec.describe "Reward Redemption Flow", type: :system do
 
     # "Entregue" is the approve label for redemptions in ApprovalRow
     within("#panel-rewards") do
-      find("button", text: "Entregue", exact: false).click
+      find("button", text: /entregue/i).click
     end
-    expect(page).to have_content("Resgate aprovado!")
+    expect(page).to have_content(/resgate aprovado!/i)
 
     # 3. Verify activity log
     visit parent_activity_logs_path

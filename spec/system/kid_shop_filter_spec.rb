@@ -15,8 +15,8 @@ RSpec.describe "Kid shop category filter", type: :system do
 
   it "shows only category tabs that have rewards" do
     visit kid_rewards_path
-    expect(page).to have_content("Telinha")
-    expect(page).to have_content("Docinhos")
+    expect(page).to have_content(/telinha/i)
+    expect(page).to have_content(/docinhos/i)
     expect(page).not_to have_content("Brinquedos")
     expect(page).not_to have_content("Outro")
   end

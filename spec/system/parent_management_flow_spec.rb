@@ -25,7 +25,7 @@ RSpec.describe "Parent Management Flow", type: :system do
 
     it "atualiza o título e exibe flash de confirmação" do
       visit edit_parent_global_task_path(task)
-      expect(page).to have_content("Salvar missão", wait: 10)
+      expect(page).to have_content(/salvar missão/i, wait: 10)
 
       fill_in "Título", with: "Varrer o quintal"
       click_on "Salvar missão"
@@ -85,7 +85,7 @@ RSpec.describe "Parent Management Flow", type: :system do
 
     it "atualiza o nome do filho e exibe flash de confirmação" do
       visit edit_parent_profile_path(kid)
-      expect(page).to have_content("Salvar perfil", wait: 10)
+      expect(page).to have_content(/salvar perfil/i, wait: 10)
 
       fill_in "Nome da criança", with: "Bernardinho"
       click_on "Salvar perfil"
@@ -103,7 +103,10 @@ RSpec.describe "Parent Management Flow", type: :system do
       visit parent_settings_path
       expect(page).to have_content("Configurações", wait: 10)
 
-      find("select[name='family[timezone]']", visible: :all).select("New York (GMT-4)")
+      within("#family_timezone") do
+        find('[data-select-target="trigger"]').click
+        find('[data-select-target="option"]', text: "New York (GMT-4)").click
+      end
       click_on "Salvar alterações"
 
       expect(page).to have_content("Salvo", wait: 10)

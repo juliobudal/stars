@@ -13,7 +13,7 @@ RSpec.describe "Parent Flow", type: :system do
     # 1. Criar Filho
     visit new_parent_profile_path
 
-    expect(page).to have_content("Novo perfil", wait: 10)
+    expect(page).to have_content("Nova criança", wait: 10)
     fill_in "Nome da criança", with: "Zezinho"
     fill_in "PIN (4 dígitos)", with: "1234"
     click_on "Salvar perfil"
@@ -27,7 +27,7 @@ RSpec.describe "Parent Flow", type: :system do
     expect(page).to have_content("Nova missão", wait: 10)
     fill_in "Título", with: "Arrumar a cama"
     find("button[aria-label='5 estrelinhas']").click
-    select "Diária", from: "Frequência"
+    find("label", text: "Diária").click
     click_on "Salvar missão"
 
     expect(page).to have_content("Tarefa criada com sucesso.", wait: 10)
@@ -36,7 +36,7 @@ RSpec.describe "Parent Flow", type: :system do
     # 3. Criar Recompensa — labels: "Nome do prêmio", cost field, submit "Salvar prêmio"
     visit new_parent_reward_path
 
-    expect(page).to have_content("Nova recompensa", wait: 10)
+    expect(page).to have_content("Novo prêmio", wait: 10)
     fill_in "Nome do prêmio", with: "Video Game 30min"
     fill_in "Quantas estrelinhas custa?", with: "100"
     click_on "Salvar prêmio"

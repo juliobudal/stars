@@ -59,7 +59,14 @@
         panel_keys = [ "all", m.frequency.to_s ]
         panel_keys << "inactive" unless m.active?
       %>
-        <div data-filter-tabs-target="item" data-panels="<%= panel_keys.join(' ') %>">
+        <div id="mission_row_<%= m.id %>" data-filter-tabs-target="item" data-panels="<%= panel_keys.join(' ') %>" class="relative">
+          <%= button_to toggle_active_parent_global_task_path(m), method: :patch,
+                form_class: "absolute top-3 right-3 z-2",
+                class: "ls-btn-3d inline-flex items-center justify-center w-8 h-8 rounded-[10px] border-2 cursor-pointer bg-surface",
+                style: "border-color: var(--hairline); box-shadow: 0 2px 0 var(--hairline);",
+                aria: { label: m.active? ? "Desativar missão" : "Ativar missão" } do %>
+            <%= render Ui::Icon::Component.new(m.active? ? "check" : "close", size: 14, color: "var(--text-muted)") %>
+          <% end %>
           <%= link_to edit_parent_global_task_path(m),
                 class: "ls-card-3d block rounded-[16px] p-4 no-underline border-2 cursor-pointer",
                 style: "background: var(--surface); border-color: var(--hairline); box-shadow: var(--shadow-card); opacity: #{m.active? ? 1 : 0.85};" do %>

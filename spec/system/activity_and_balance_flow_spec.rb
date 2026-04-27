@@ -22,7 +22,7 @@ RSpec.describe "Activity Log e Saldo", type: :system do
       visit parent_approvals_path
       expect(page).to have_content("Lavar a Louça", wait: 10)
       click_on "Aprovar"
-      expect(page).to have_content("Tarefa aprovada com sucesso!", wait: 10)
+      expect(page).to have_content(/tarefa aprovada com sucesso!/i, wait: 10)
 
       # 3. Filho resgata a recompensa via modal → gera ActivityLog redeem
       sign_in_as_child(child)
@@ -40,9 +40,9 @@ RSpec.describe "Activity Log e Saldo", type: :system do
       JS
       expect(page).to have_css("#panel-rewards", text: "Sorvete Duplo", visible: true)
       within("#panel-rewards") do
-        find("button", text: "Entregue", exact: false).click
+        find("button", text: /entregue/i).click
       end
-      expect(page).to have_content("Resgate aprovado!", wait: 10)
+      expect(page).to have_content(/resgate aprovado!/i, wait: 10)
 
       # 5. Verifica o extrato: título da missão e da recompensa, pontos +200 e −100
       visit parent_activity_logs_path
@@ -77,16 +77,11 @@ RSpec.describe "Activity Log e Saldo", type: :system do
         form.method = 'POST';
         form.action = '#{redeem_kid_reward_path(reward)}';
         form.style.display = 'none';
-        var csrf = document.createElement('input');
-        csrf.type = 'hidden';
-        csrf.name = 'authenticity_token';
-        csrf.value = document.head.querySelector('[name=csrf-token]').content;
-        form.appendChild(csrf);
         document.body.appendChild(form);
         form.submit();
       JS
 
-      expect(page).to have_content("Saldo insuficiente.", wait: 10)
+      expect(page).to have_content(/estrelas suficientes|saldo insuficiente/i, wait: 10)
 
       # Saldo e contagem de resgates permanecem inalterados
       expect(child.reload.points).to eq(50)

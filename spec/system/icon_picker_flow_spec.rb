@@ -25,7 +25,7 @@ RSpec.describe "Icon picker flow", type: :system do
 
     fill_in "Título", with: "Arrumar a cama"
     find("button[aria-label='5 estrelinhas']").click
-    select "Diária", from: "Frequência"
+    find("label", text: "Diária").click
     click_on "Salvar missão"
 
     expect(page).to have_content("Tarefa criada com sucesso.", wait: 10)

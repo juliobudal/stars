@@ -25,7 +25,7 @@ RSpec.describe "Full Mission Flow", type: :system do
 
     expect(page).to have_content("Arrumar Quarto")
     click_on "Aprovar"
-    expect(page).to have_content("Tarefa aprovada com sucesso!")
+    expect(page).to have_content(/tarefa aprovada com sucesso!/i)
 
     # 3. Filho vê as estrelas
     sign_in_as_child(child_profile)
