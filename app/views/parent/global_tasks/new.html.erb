@@ -1,13 +1,13 @@
-<div class="screen screen-enter-right">
+<div class="screen screen-enter-right with-nav">
   <%= render Ui::BgShapes::Component.new(variant: "blue") %>
 
   <%= render Ui::TopBar::Component.new(
     title: "Nova missão",
-    subtitle: "Crie uma tarefa para a família",
+    subtitle: "Crie uma tarefa para a família conquistar estrelinhas",
     back_url: parent_global_tasks_path
   ) %>
 
-  <div class="mt-4 z-2">
+  <div class="z-content">
     <%= render 'form', global_task: @global_task %>
   </div>
 </div>

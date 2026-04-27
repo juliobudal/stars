@@ -18,7 +18,7 @@ class Ui::Badge::Component < ApplicationComponent
   private
 
   def classes
-    base_classes = "inline-flex items-center gap-[6px] rounded-full font-display font-semibold"
+    base_classes = "inline-flex items-center gap-[6px] rounded-full font-display font-bold"
 
     size_classes = @size == "sm" ? "text-[11px] px-[10px] py-[4px] tracking-[0.08em] font-extrabold" : "px-[10px] py-[4px] text-[11px] tracking-[0.08em]"
 

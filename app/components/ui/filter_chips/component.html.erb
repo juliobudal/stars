@@ -1,19 +1,32 @@
 <div class="z-content">
-  <div role="tablist" class="inline-flex items-center gap-1 p-1 bg-surface-2 rounded-full border border-hairline w-fit mb-5">
-    <% items.each do |item| %>
+  <div role="tablist" class="flex flex-wrap items-center gap-2 mb-5">
+    <% items.each do |item|
+         is_active = active?(item[:id])
+         pill_active   = "background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: 0 3px 0 var(--primary-2);"
+         pill_inactive = "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 3px 0 var(--hairline);"
+         badge_active   = "background: rgba(255,255,255,0.25); color: #fff;"
+         badge_inactive = "background: var(--surface-muted); color: var(--text-muted);"
+    %>
       <button type="button"
               role="tab"
-              class="flex items-center gap-2 px-4 py-2 rounded-full font-display font-extrabold text-[13px] transition-all duration-200 cursor-pointer border-none <%= active?(item[:id]) ? 'bg-white text-primary shadow-sm' : 'text-muted-foreground hover:text-foreground' %>"
+              class="ls-filter-pill flex items-center gap-2 px-4 py-2 rounded-[12px] font-extrabold text-[12px] uppercase tracking-[0.5px] cursor-pointer border-2"
+              style="<%= is_active ? pill_active : pill_inactive %>"
+              data-active-style="<%= pill_active %>"
+              data-inactive-style="<%= pill_inactive %>"
               data-<%= controller %>-target="tab"
               data-action="<%= "click->#{controller}#show" %>"
               data-<%= controller %>-id-param="<%= item[:id] %>"
-              aria-selected="<%= active?(item[:id]) %>">
+              aria-selected="<%= is_active %>">
         <% if item[:icon] %>
           <%= render Ui::Icon::Component.new(item[:icon], size: 14, color: "currentColor") %>
         <% end %>
         <%= item[:label] %>
         <% if item[:count] %>
-          <span class="ml-1.5 px-1.5 py-0.5 rounded-full bg-primary-soft text-primary text-[10px] font-bold"><%= item[:count] %></span>
+          <span class="ml-1 px-1.5 py-0.5 rounded-[8px] text-[10px] font-extrabold"
+                data-pill-badge
+                data-active-style="<%= badge_active %>"
+                data-inactive-style="<%= badge_inactive %>"
+                style="<%= is_active ? badge_active : badge_inactive %>"><%= item[:count] %></span>
         <% end %>
       </button>
     <% end %>

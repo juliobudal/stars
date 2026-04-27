@@ -1,88 +1,102 @@
 <%= form_with(model: [:parent, reward], html: { data: { controller: "form-preview" } }, class: "block") do |f| %>
   <% if reward.errors.any? %>
-    <%= render Ui::Card::Component.new(variant: "flat", class: "bg-danger-soft text-danger p-4 mb-4") do %>
-      <%= render Ui::Heading::Component.new(size: :h3) do %>Ops! Algo deu errado:<% end %>
-      <ul class="text-[14px] text-muted-foreground font-semibold list-disc ml-5">
+    <section class="mb-[18px] p-[18px] rounded-[16px] border-2"
+             style="background: var(--c-rose-soft); border-color: var(--danger); box-shadow: 0 4px 0 rgba(0,0,0,0.08);">
+      <div class="text-[12px] font-extrabold uppercase tracking-[0.5px] mb-2" style="color: var(--danger-2);">
+        Ops! Algo deu errado
+      </div>
+      <ul class="text-[14px] font-bold list-disc ml-5" style="color: var(--text);">
         <% reward.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
-    <% end %>
+    </section>
   <% end %>
 
   <% current_icon = reward.icon.presence || Ui::IconPicker::Component::CONTEXT_GROUPS[:reward].first %>
 
-  <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 items-start">
-    <div class="flex flex-col gap-5">
-      <div class="flex flex-col gap-2">
-        <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Ícone</label>
-        <%= render Ui::IconPicker::Component.new(
-              field_name: "reward[icon]",
-              value: current_icon,
-              context: :reward,
-              color: "var(--primary)",
-              id: "reward_icon_picker",
-              input_data: { form_preview_field: "icon" }
-            ) %>
-      </div>
+  <div class="grid grid-cols-1 gap-[18px] max-w-[720px]">
 
-      <div class="flex flex-col gap-2">
-        <%= f.label :title, "Nome da Recompensa", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
-        <%= f.text_field :title,
-              class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm",
-              placeholder: "Ex: Sorvete de chocolate",
-              data: { form_preview_field: "title" } %>
+    <%# ─── Título ─── %>
+    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+             style="box-shadow: var(--shadow-card);">
+      <%= f.label :title,
+            "Nome do prêmio",
+            class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[10px]",
+            style: "color: var(--text-muted);" %>
+      <%= f.text_field :title,
+            class: "form-input w-full px-4 py-[14px] rounded-[14px] border-2 border-hairline font-bold text-[15px] outline-none box-border",
+            style: "color: var(--text); font-family: inherit;",
+            placeholder: "Ex: Sorvete de chocolate",
+            data: { form_preview_field: "title" } %>
+      <div class="text-[11px] font-bold mt-2" style="color: var(--text-muted);">
+        Use frases curtas que a criança entenda.
       </div>
+    </section>
 
-      <div class="flex flex-col gap-2">
-        <%= f.label :cost, class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" do %>Custo (<%= render Ui::Icon::Component.new(:star, size: 14, color: "var(--color-amber-dark)") %>)<% end %>
-        <%= f.number_field :cost,
-              class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm",
-              data: { form_preview_field: "cost" } %>
-      </div>
+    <%# ─── Ícone ─── %>
+    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+             style="box-shadow: var(--shadow-card);">
+      <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[12px]"
+             style="color: var(--text-muted);">
+        Escolha um ícone
+      </label>
+      <%= render Ui::IconPicker::Component.new(
+            field_name: "reward[icon]",
+            value: current_icon,
+            context: :reward,
+            color: "var(--primary)",
+            id: "reward_icon_picker",
+            input_data: { form_preview_field: "icon" }
+          ) %>
+    </section>
 
-      <div class="flex flex-col gap-2">
-        <%= f.label :category_id, "Categoria", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
-        <%= render Ui::Select::Component.new(
-              name: "reward[category_id]",
-              id: "reward_category_id",
-              options: @categories.map { |c| [c.name, c.id] },
-              selected: reward.category_id,
-              size: :lg
-            ) %>
-      </div>
+    <%# ─── Custo ─── %>
+    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+             style="box-shadow: var(--shadow-card);">
+      <%= f.label :cost,
+            class: "flex items-center gap-2 text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[10px]",
+            style: "color: var(--text-muted);" do %>
+        <%= render Ui::Icon::Component.new(:star, size: 14, color: "var(--star)") %>
+        Quantas estrelinhas custa?
+      <% end %>
+      <%= f.number_field :cost,
+            class: "form-input w-full px-4 py-[14px] rounded-[14px] border-2 border-hairline font-bold text-[15px] outline-none box-border",
+            style: "color: var(--text); font-family: inherit;",
+            min: 1,
+            placeholder: "Ex: 10",
+            data: { form_preview_field: "cost" } %>
+    </section>
 
-      <div class="flex flex-row mt-4 gap-2.5 justify-end">
-        <%= render Ui::Btn::Component.new(variant: "secondary", url: parent_rewards_path) do %>Voltar<% end %>
-        <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>Salvar Recompensa<% end %>
-      </div>
+    <%# ─── Categoria ─── %>
+    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+             style="box-shadow: var(--shadow-card);">
+      <%= f.label :category_id,
+            "Categoria",
+            class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[12px]",
+            style: "color: var(--text-muted);" %>
+      <%= render Ui::Select::Component.new(
+            name: "reward[category_id]",
+            id: "reward_category_id",
+            options: @categories.map { |c| [c.name, c.id] },
+            selected: reward.category_id,
+            size: :lg
+          ) %>
+    </section>
+
+    <%# ─── Action bar ─── %>
+    <div class="flex flex-row justify-end gap-[10px] py-1">
+      <%= link_to parent_rewards_path,
+            class: "ls-btn-3d inline-flex items-center px-[22px] py-3 rounded-[14px] text-[13px] font-extrabold uppercase tracking-[0.5px] no-underline border-2",
+            style: "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 4px 0 var(--hairline);" do %>
+        Cancelar
+      <% end %>
+      <button type="submit"
+              class="ls-btn-3d inline-flex items-center gap-2 px-[26px] py-3 rounded-[14px] text-white text-[13px] font-extrabold uppercase tracking-[0.5px] border-2 cursor-pointer"
+              style="background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 0 var(--primary-2); font-family: inherit;">
+        <%= render Ui::Icon::Component.new("check", size: 14, color: "currentColor") %>
+        Salvar prêmio
+      </button>
     </div>
-
-    <aside class="hidden lg:block">
-      <div class="sticky top-6">
-        <%= render Ui::Card::Component.new(class: "p-6 flex flex-col items-center gap-4 text-center") do %>
-          <div class="w-28 h-28 rounded-3xl flex items-center justify-center shrink-0"
-               style="background: var(--primary-soft); border: 3px solid var(--primary);">
-            <i data-form-preview-target="icon" data-form-preview-icon="true"
-               class="hgi-stroke hgi-<%= current_icon %>"
-               style="font-size:64px; line-height:1; color: var(--primary); display:inline-flex; width:64px; height:64px;"
-               aria-hidden="true"></i>
-          </div>
-          <div class="flex flex-col gap-1 w-full">
-            <div data-form-preview-target="title" data-form-preview-fallback="Nome da recompensa"
-                 class="font-display font-extrabold text-[18px] text-foreground truncate">
-              <%= reward.title.presence || "Nome da recompensa" %>
-            </div>
-            <%= render Ui::StarValue::Component.new(
-                  value: reward.cost || 0,
-                  size: :sm,
-                  color: :gold,
-                  class: "text-muted-foreground",
-                  value_data: { form_preview_target: "cost", form_preview_fallback: "0" }
-                ) %>
-          </div>
-        <% end %>
-      </div>
-    </aside>
   </div>
 <% end %>

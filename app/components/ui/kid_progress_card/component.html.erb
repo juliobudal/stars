@@ -1,66 +1,58 @@
 <div data-palette="<%= helpers.palette_for(kid) %>">
-  <%= render Ui::Card::Component.new(padding: "none", class: "overflow-hidden") do %>
-  <%# Header strip — sits above avatar, holds edit pencil + streak %>
-  <div class="h-16 relative shrink-0 flex items-center justify-between px-3" style="background: <%= palette[:fill] %>;">
-    <% if streak > 0 %>
-      <span class="flex items-center bg-white/80 backdrop-blur-sm text-amber-dark text-[11px] font-extrabold py-1 px-2 rounded-full gap-1 shadow-sm">
-        <%= render Ui::Icon::Component.new(:fire, size: 12, color: "var(--c-amber-dark)") %> <%= streak %>
-      </span>
-    <% else %>
-      <span></span>
-    <% end %>
-    <%= link_to edit_parent_profile_path(kid),
-          class: "flex items-center justify-center w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm shadow-sm no-underline hover:bg-white transition",
-          aria: { label: "Editar #{kid.name}" } do %>
-      <%= render Ui::Icon::Component.new("pencil", size: 14, color: "rgba(0,0,0,0.55)") %>
-    <% end %>
-  </div>
+  <div class="bg-surface rounded-[16px] border-2 border-hairline p-4 flex items-center gap-4 ls-card-3d"
+       style="box-shadow: var(--shadow-card);">
 
-  <%# Body — avatar centered, name centered %>
-  <div class="px-5 pt-4 pb-5 flex flex-col items-center text-center">
-    <div class="rounded-full shadow-[0_2px_10px_rgba(44,42,58,0.10)] -mt-10 mb-3 ring-4 ring-white">
-      <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 72) %>
+    <div class="relative shrink-0">
+      <div class="w-16 h-16 rounded-full grid place-items-center"
+           style="background: <%= palette[:fill] %>; box-shadow: 0 4px 0 <%= palette[:ring] %>;">
+        <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 36) %>
+      </div>
+      <div class="absolute -bottom-1 -right-1 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-[10px] border-[3px] border-white leading-none"
+           style="background: var(--success); box-shadow: 0 2px 0 var(--success-2);">N<%= level %></div>
     </div>
 
-    <%= render Ui::Heading::Component.new(size: :h3, class: "m-0 truncate max-w-full") do %><%= kid.name %><% end %>
-    <div class="text-[11px] font-bold text-muted-foreground uppercase tracking-[0.08em] mt-1">Nível <%= level %></div>
+    <div class="flex-1 min-w-0">
+      <div class="flex items-baseline gap-2.5 mb-2">
+        <span class="text-[18px] font-extrabold" style="color: var(--text);"><%= kid.name %></span>
+        <span class="text-[12px] font-bold" style="color: var(--text-muted);">faltam <%= stars_to_next %> ⭐ pro nível <%= level + 1 %></span>
+      </div>
 
-    <%# 2-col stats %>
-    <div class="grid grid-cols-2 gap-2 mt-4 w-full">
-      <div class="rounded-xl py-2.5 px-3 text-left" style="background: <%= palette[:fill] %>;">
-        <%= render Ui::StarValue::Component.new(value: points, size: :lg, color: :gold, class: "text-foreground") %>
-        <div class="text-[12px] font-bold text-muted-foreground mt-1">Saldo</div>
+      <div class="h-[14px] rounded-[8px] overflow-hidden mb-3 relative" style="background: var(--hairline);">
+        <div class="h-full rounded-[8px]" style="width: <%= xp_progress %>%; background: <%= palette[:fill] %>; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);"></div>
       </div>
-      <div class="rounded-xl py-2.5 px-3 text-left" style="background: <%= palette[:fill] %>;">
-        <div class="font-display text-[20px] leading-none font-extrabold text-foreground"><%= missions_count %></div>
-        <div class="text-[12px] font-bold text-muted-foreground mt-1">Missões</div>
+
+      <div class="flex flex-wrap gap-x-[18px] gap-y-1 text-[13px] font-extrabold">
+        <span class="flex items-center gap-1.5" style="color: var(--c-amber-dark);">
+          <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
+          <%= points %> saldo
+        </span>
+        <span class="flex items-center gap-1.5" style="color: var(--c-info-600);">
+          <%= render Ui::Icon::Component.new("target", size: 14, color: "var(--c-info-500)") %>
+          <%= missions_count %> ativas
+        </span>
+        <% if awaiting_count.to_i > 0 %>
+          <span class="flex items-center gap-1.5" style="color: var(--danger-2);">
+            <%= render Ui::Icon::Component.new("clock", size: 14, color: "var(--danger)") %>
+            <%= awaiting_count %> pendentes
+          </span>
+        <% end %>
       </div>
+
+      <% if manage %>
+        <div class="flex items-center justify-between gap-3 pt-3 mt-3 border-t border-hairline">
+          <%= link_to edit_parent_profile_path(kid),
+                class: "flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline",
+                style: "color: #{palette[:ink]};" do %>
+            <%= render Ui::Icon::Component.new("sparkle", size: 14, color: palette[:ink]) %>
+            Ver jornada
+          <% end %>
+          <%= button_to parent_profile_path(kid), method: :delete,
+                form: { data: { turbo_confirm: "Remover #{kid.name}? Todas as missões e histórico serão perdidos." } },
+                class: "flex items-center bg-transparent border-0 p-0 cursor-pointer text-danger" do %>
+            <%= render Ui::Icon::Component.new("trash", size: 14, color: "var(--danger)") %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-
-    <%# Awaiting badge %>
-    <% if awaiting_count > 0 %>
-      <div class="flex items-center gap-1.5 bg-amber-soft text-amber-dark px-3 py-2 rounded-[10px] text-xs font-extrabold mt-3 w-full justify-center">
-        <%= render Ui::Icon::Component.new("clock", size: 14, color: "var(--c-amber-dark)") %>
-        <%= awaiting_count %> aguardando aprovação
-      </div>
-    <% end %>
-
-    <%# Manage actions footer %>
-    <% if manage %>
-      <div class="flex items-center justify-between gap-3 pt-3 mt-3 border-t border-hairline w-full">
-        <%= link_to edit_parent_profile_path(kid),
-              class: "flex items-center gap-1.5 text-[13px] font-bold no-underline",
-              style: "color: #{palette[:ink]};" do %>
-          <%= render Ui::Icon::Component.new("sparkle", size: 14, color: palette[:ink]) %>
-          Ver jornada
-        <% end %>
-        <%= button_to parent_profile_path(kid), method: :delete,
-              form: { data: { turbo_confirm: "Remover #{kid.name}? Todas as missões e histórico serão perdidos." } },
-              class: "flex items-center bg-transparent border-0 p-0 cursor-pointer text-danger" do %>
-          <%= render Ui::Icon::Component.new("trash", size: 14, color: "var(--danger)") %>
-        <% end %>
-      </div>
-    <% end %>
   </div>
-  <% end %>
 </div>

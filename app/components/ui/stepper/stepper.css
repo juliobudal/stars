@@ -44,7 +44,7 @@
   }
 
   .stepper__number {
-    @apply text-sm font-semibold;
+    @apply text-sm font-bold;
   }
 
   .stepper__dot {
@@ -56,7 +56,7 @@
   }
 
   .stepper__title {
-    @apply text-sm font-medium;
+    @apply text-sm font-bold;
   }
 
   .stepper__item-pending .stepper__title {

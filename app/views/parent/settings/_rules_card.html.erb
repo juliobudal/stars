@@ -1,6 +1,9 @@
-<%= render Ui::Card::Component.new(padding: "p-5") do %>
-  <%= render Ui::Heading::Component.new(size: :h3, class: "mb-3.5") do %>Regras do sistema<% end %>
-  <div class="col gap-0">
+<section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+         style="box-shadow: var(--shadow-card);">
+  <div class="text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3" style="color: var(--text-muted);">
+    Regras do sistema
+  </div>
+  <div class="flex flex-col">
     <%
       rules = [
         { key: :require_photo,  title: "Exigir foto na conclusão", desc: "Criança precisa anexar uma foto para marcar missão como feita" },
@@ -9,24 +12,25 @@
       ]
     %>
     <% rules.each_with_index do |rule, idx| %>
-      <div class="row justify-between items-center py-3.5 <%= 'border-t border-hairline' unless idx.zero? %>">
-        <div class="col gap-0.5">
-          <div class="text-[14px] font-bold text-foreground"><%= rule[:title] %></div>
-          <div class="text-[12px] text-muted-foreground"><%= rule[:desc] %></div>
+      <div class="flex justify-between items-center gap-4 py-3.5 <%= 'border-t-2 border-hairline' unless idx.zero? %>">
+        <div class="flex flex-col gap-0.5 min-w-0">
+          <div class="text-[14px] font-extrabold" style="color: var(--text);"><%= rule[:title] %></div>
+          <div class="text-[12px] font-bold" style="color: var(--text-muted);"><%= rule[:desc] %></div>
         </div>
         <% checked = !!family.public_send(rule[:key]) %>
         <%= render Ui::Toggle::Component.new(name: "family[#{rule[:key]}]", checked: checked) %>
       </div>
     <% end %>
 
-    <div class="row justify-between items-center py-3.5 border-t border-hairline">
-      <div class="col gap-0.5">
-        <div class="text-[14px] font-bold text-foreground">Auto-aprovar missões até</div>
-        <div class="text-[12px] text-muted-foreground">Missões de valor baixo são aprovadas automaticamente (deixe em branco para desativar)</div>
+    <div class="flex justify-between items-center gap-4 py-3.5 border-t-2 border-hairline">
+      <div class="flex flex-col gap-0.5 min-w-0">
+        <div class="text-[14px] font-extrabold" style="color: var(--text);">Auto-aprovar missões até</div>
+        <div class="text-[12px] font-bold" style="color: var(--text-muted);">Missões de valor baixo são aprovadas automaticamente (deixe em branco para desativar)</div>
       </div>
       <input type="number" name="family[auto_approve_threshold]" value="<%= family.auto_approve_threshold %>"
              placeholder="—" min="0"
-             class="w-[90px] py-1.5 px-2.5 rounded-lg border border-hairline bg-surface-2 text-right font-bold" />
+             class="w-[90px] py-2 px-2.5 rounded-[10px] border-2 border-hairline bg-white text-right font-extrabold focus:outline-none"
+             style="color: var(--text);" />
     </div>
   </div>
-<% end %>
+</section>

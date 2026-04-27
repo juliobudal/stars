@@ -2,18 +2,18 @@ module Ui
   module SmileyAvatar
     class Component < ApplicationComponent
       COLOR_MAP = {
-        "lila"    => { fill: "#EDE9FE", ring: "#C4B5FD", ink: "#6D28D9" },
-        "lilac"   => { fill: "#EDE9FE", ring: "#C4B5FD", ink: "#6D28D9" },
-        "theo"    => { fill: "#CFFAFE", ring: "#67E8F9", ink: "#0E7490" },
-        "zoe"     => { fill: "#FCE7F3", ring: "#F472B6", ink: "#BE185D" },
-        "mom"     => { fill: "#FCE7F3", ring: "#F9A8D4", ink: "#BE185D" },
-        "dad"     => { fill: "#DBEAFE", ring: "#93C5FD", ink: "#1D4ED8" },
-        "primary" => { fill: "#EDE9FE", ring: "#C4B5FD", ink: "#6D28D9" },
-        "mint"    => { fill: "#D1FAE5", ring: "#6EE7B7", ink: "#047857" },
-        "sky"     => { fill: "#E0F2FE", ring: "#7DD3FC", ink: "#0369A1" },
-        "peach"   => { fill: "#FCE7F3", ring: "#F9A8D4", ink: "#BE185D" },
-        "rose"    => { fill: "#FCE7F3", ring: "#F472B6", ink: "#BE185D" },
-        "coral"   => { fill: "#FCE7F3", ring: "#F9A8D4", ink: "#BE185D" }
+        "lila"    => { fill: "#EDE9FE", tile: "#F8F5FF", ring: "#C4B5FD", ink: "#6D28D9" },
+        "lilac"   => { fill: "#EDE9FE", tile: "#F8F5FF", ring: "#C4B5FD", ink: "#6D28D9" },
+        "theo"    => { fill: "#CFFAFE", tile: "#F0FDFF", ring: "#67E8F9", ink: "#0E7490" },
+        "zoe"     => { fill: "#FCE7F3", tile: "#FFF0F6", ring: "#F472B6", ink: "#BE185D" },
+        "mom"     => { fill: "#FCE7F3", tile: "#FFF0F6", ring: "#F9A8D4", ink: "#BE185D" },
+        "dad"     => { fill: "#DBEAFE", tile: "#EFF6FF", ring: "#93C5FD", ink: "#1D4ED8" },
+        "primary" => { fill: "#EDE9FE", tile: "#F8F5FF", ring: "#C4B5FD", ink: "#6D28D9" },
+        "mint"    => { fill: "#D1FAE5", tile: "#ECFDF5", ring: "#6EE7B7", ink: "#047857" },
+        "sky"     => { fill: "#E0F2FE", tile: "#F0F9FF", ring: "#7DD3FC", ink: "#0369A1" },
+        "peach"   => { fill: "#FCE7F3", tile: "#FFF0F6", ring: "#F9A8D4", ink: "#BE185D" },
+        "rose"    => { fill: "#FCE7F3", tile: "#FFF0F6", ring: "#F472B6", ink: "#BE185D" },
+        "coral"   => { fill: "#FCE7F3", tile: "#FFF0F6", ring: "#F9A8D4", ink: "#BE185D" }
       }.freeze
 
       FACE_BY_COLOR = {

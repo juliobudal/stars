@@ -9,10 +9,10 @@
       @apply px-3 py-2 text-sm border-b border-border;
     }
     th {
-      @apply font-semibold text-left text-foreground;
+      @apply font-bold text-left text-foreground;
     }
     tfoot {
-      @apply font-semibold bg-muted;
+      @apply font-bold bg-muted;
     }
   }
   .table-full {

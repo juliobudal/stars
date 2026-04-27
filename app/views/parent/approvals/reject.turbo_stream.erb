@@ -4,7 +4,8 @@
   <div
     data-controller="flash"
     data-flash-dismiss-after-value="2200"
-    class="pointer-events-auto flex items-center gap-2 px-5 py-3 rounded-full text-white font-extrabold text-[15px] shadow-lift animate-popIn bg-danger"
+    class="pointer-events-auto inline-flex items-center gap-2 px-5 py-3 rounded-[14px] border-2 text-white font-extrabold text-[14px] uppercase tracking-[0.5px] animate-popIn"
+    style="background: var(--danger); border-color: var(--danger); box-shadow: 0 4px 0 var(--danger-2);"
   >
     <%= render Ui::Icon::Component.new("close", size: 18, color: "white") %>
     <span>Tarefa rejeitada.</span>
@@ -14,11 +15,11 @@
 <% if current_profile.family.profile_tasks.awaiting_approval.count == 0 && current_profile.family.redemptions.pending.count == 0 %>
   <%= turbo_stream.replace "approvals_list" do %>
     <%= turbo_frame_tag "approvals_list" do %>
-      <%= render Ui::Card::Component.new(padding: "p-10", class: "text-center") do %>
-        <div class="flex items-center justify-center mb-2"><%= render Ui::Icon::Component.new(:party, size: 36, color: "var(--c-amber-dark)") %></div>
-        <%= render Ui::Heading::Component.new(size: :h2, class: "mb-1") do %>Tudo em dia!<% end %>
-        <div class="text-[14px] text-muted-foreground font-semibold">Não há pendências no momento.</div>
-      <% end %>
+      <%= render Ui::Empty::Component.new(
+            icon: "party",
+            title: "Tudo em dia!",
+            subtitle: "Não há pendências no momento."
+          ) %>
     <% end %>
   <% end %>
 <% end %>

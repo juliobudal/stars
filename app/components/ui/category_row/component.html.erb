@@ -1,21 +1,34 @@
-<div class="flex items-center justify-between bg-white border-2 border-hairline rounded-2xl px-4 py-3 shadow-sm">
-  <div class="flex items-center gap-3">
-    <div class="w-11 h-11 rounded-xl flex items-center justify-center"
-         style="background: <%= palette[:soft_var] %>;">
-      <%= render Ui::Icon::Component.new(category.icon, size: 22, color: palette[:fg_var]) %>
+<div class="ls-card-3d bg-surface rounded-[16px] border-2 border-hairline p-4 flex items-center justify-between gap-3">
+  <div class="flex items-center gap-3 min-w-0">
+    <%# ls-icon-cell 56x56 with palette swatch + icon %>
+    <div class="ls-icon-cell w-14 h-14 rounded-[14px] flex items-center justify-center shrink-0 border-2"
+         style="background: <%= palette[:soft_var] %>; border-color: <%= palette[:fg_var] %>; box-shadow: 0 3px 0 <%= palette[:fg_var] %>;">
+      <%= render Ui::Icon::Component.new(category.icon, size: 24, color: palette[:fg_var]) %>
     </div>
-    <div class="flex flex-col">
-      <span class="font-display font-extrabold text-[16px] tracking-[-0.02em] text-foreground"><%= category.name %></span>
-      <span class="text-[13px] font-semibold text-muted-foreground"><%= reward_count %> <%= reward_count == 1 ? "prêmio" : "prêmios" %></span>
+    <div class="flex flex-col min-w-0">
+      <span class="font-display font-extrabold text-[15px] leading-tight truncate" style="color: var(--text);">
+        <%= category.name %>
+      </span>
+      <span class="text-[11px] font-bold uppercase tracking-[0.5px] mt-0.5" style="color: var(--text-muted);">
+        <%= reward_count %> <%= reward_count == 1 ? "prêmio" : "prêmios" %>
+      </span>
     </div>
   </div>
-  <div class="flex items-center gap-2">
-    <%= link_to "Editar", edit_parent_category_path(category),
-          class: "text-[13px] font-extrabold text-primary px-3 py-2 rounded-lg hover:bg-primary-soft" %>
-    <%= button_to "Excluir", parent_category_path(category),
-          method: :delete,
+
+  <div class="flex items-center gap-1.5 shrink-0">
+    <%= link_to edit_parent_category_path(category),
+          class: "ls-btn-3d inline-flex items-center justify-center w-9 h-9 rounded-[10px] border-2 no-underline",
+          style: "background: var(--primary-soft); border-color: var(--primary); box-shadow: 0 2px 0 var(--primary-2);",
+          aria: { label: "Editar #{category.name}" } do %>
+      <%= render Ui::Icon::Component.new("pencil", size: 14, color: "var(--primary-2)") %>
+    <% end %>
+    <%= button_to parent_category_path(category), method: :delete,
           form: { class: "inline" },
-          class: "text-[13px] font-extrabold text-danger px-3 py-2 rounded-lg hover:bg-danger-soft border-0 bg-transparent",
-          data: { turbo_confirm: "Excluir #{category.name}? Categorias com prêmios não podem ser removidas." } %>
+          class: "ls-btn-3d inline-flex items-center justify-center w-9 h-9 rounded-[10px] border-2 cursor-pointer p-0",
+          style: "background: var(--c-rose-soft); border-color: var(--danger); box-shadow: 0 2px 0 var(--danger-2);",
+          data: { turbo_confirm: "Excluir #{category.name}? Categorias com prêmios não podem ser removidas." },
+          aria: { label: "Excluir #{category.name}" } do %>
+      <%= render Ui::Icon::Component.new("trash", size: 14, color: "var(--danger)") %>
+    <% end %>
   </div>
 </div>

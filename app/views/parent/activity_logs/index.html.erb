@@ -1,65 +1,112 @@
-<div class="screen screen-enter-right">
-  <%= render Ui::BgShapes::Component.new(variant: "cool") %>
+<div class="screen screen-enter-right with-nav">
 
-  <%# ─── Top Bar ─── %>
-  <%= render Ui::TopBar::Component.new(
-    title: "Extrato",
-    subtitle: "Histórico completo da família",
-  ) %>
-
+  <%# ─── Header ─── %>
   <%
     total_earn = @activity_logs.select(&:earn?).sum(&:points)
     total_spend = @activity_logs.reject(&:earn?).sum { |log| log.points.abs }
+    grouped = @activity_logs.group_by { |log| log.created_at.to_date }
   %>
+  <div class="flex items-start justify-between gap-4 mb-[22px] z-content shrink-0">
+    <div class="min-w-0">
+      <h1 class="text-[26px] font-extrabold leading-tight m-0 mb-1" style="color: var(--text);">
+        Extrato
+      </h1>
+      <p class="text-[14px] font-bold m-0" style="color: var(--text-muted);">
+        Histórico completo da família
+      </p>
+    </div>
+    <% if @activity_logs.any? %>
+      <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-[14px] border-2 shrink-0"
+           style="background: var(--star-soft); border-color: var(--star); box-shadow: 0 3px 0 var(--star-2);">
+        <%= render Ui::Icon::Component.new("scroll", size: 18, color: "var(--c-amber-dark)") %>
+        <div>
+          <div class="text-[18px] font-extrabold leading-none" style="color: var(--c-amber-dark);"><%= @activity_logs.size %></div>
+          <div class="text-[9px] font-extrabold tracking-[0.5px]" style="color: var(--c-amber-dark);">EVENTOS</div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-  <%# Summary %>
-  <div class="grid grid-cols-1 sm:grid-cols-2 mb-4 gap-3 relative z-10">
-    <div class="border-2 border-success bg-mint-soft p-4 rounded-xl">
+  <%# ─── Summary ─── %>
+  <div class="grid grid-cols-1 sm:grid-cols-2 mb-[18px] gap-3 relative z-10">
+    <div class="border-2 p-4 rounded-[16px]"
+         style="background: var(--c-info-100); border-color: var(--c-info-500); box-shadow: var(--shadow-card);">
       <div class="flex items-center gap-2.5">
-        <div class="flex items-center justify-center w-10 h-10 rounded-md bg-success">
+        <div class="flex items-center justify-center w-10 h-10 rounded-[10px] border-2"
+             style="background: var(--c-info-500); border-color: var(--c-info-600);">
           <%= render Ui::Icon::Component.new("arrowUp", size: 22, color: "white") %>
         </div>
         <div class="flex flex-col gap-0">
-          <div class="font-display text-[11px] font-bold tracking-[0.08em] uppercase text-primary text-mint-dark">Ganhou</div>
-          <%= render Ui::StarValue::Component.new(value: total_earn, prefix: "+", size: :lg, color: :gold, class: "tracking-[-0.02em] text-mint-dark") %>
+          <div class="text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--c-info-600);">Ganhou</div>
+          <div class="text-[20px] font-extrabold leading-tight tracking-[-0.02em]" style="color: var(--c-info-600);">+<%= total_earn %> ★</div>
         </div>
       </div>
     </div>
-    <div class="border-2 border-rose bg-rose-soft p-4 rounded-xl">
+    <div class="border-2 p-4 rounded-[16px]"
+         style="background: var(--c-rose-soft); border-color: var(--c-rose); box-shadow: var(--shadow-card);">
       <div class="flex items-center gap-2.5">
-        <div class="flex items-center justify-center w-10 h-10 rounded-md bg-rose">
+        <div class="flex items-center justify-center w-10 h-10 rounded-[10px] border-2"
+             style="background: var(--c-rose); border-color: var(--c-rose-dark);">
           <%= render Ui::Icon::Component.new("arrowDown", size: 22, color: "white") %>
         </div>
         <div class="flex flex-col gap-0">
-          <div class="font-display text-[11px] font-bold tracking-[0.08em] uppercase text-primary text-rose-dark">Gastou</div>
-          <%= render Ui::StarValue::Component.new(value: total_spend, prefix: "−", size: :lg, color: :gold, class: "tracking-[-0.02em] text-rose-dark") %>
+          <div class="text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--c-rose-dark);">Gastou</div>
+          <div class="text-[20px] font-extrabold leading-tight tracking-[-0.02em]" style="color: var(--c-rose-dark);">−<%= total_spend %> ★</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="flex flex-col gap-2.5 relative z-10">
-    <% if @activity_logs.any? %>
-      <% @activity_logs.each_with_index do |h, i| %>
-        <% earn = h.earn? %>
-        <% color = h.profile&.color || "primary" %>
-        <%= render Ui::Card::Component.new(padding: "p-3.5", class: "border-2 border-[rgba(26,42,74,0.06)]", style: "animation: slideInCard 0.3s ease #{i * 0.02}s both;") do %>
-          <div class="flex items-center gap-3.5">
-            <div class="flex items-center justify-center w-12 h-12 rounded-md <%= earn ? 'bg-mint-soft text-success' : 'bg-rose-soft text-rose' %>">
-              <%= render Ui::Icon::Component.new(earn ? "sparkle" : "gift", size: 26, color: "currentColor") %>
+  <%# ─── Day-grouped activity cards ─── %>
+  <div class="flex flex-col gap-3 relative z-10">
+    <% if grouped.any? %>
+      <% grouped.each_with_index do |(day, logs), gi| %>
+        <div class="bg-surface rounded-[16px] border-2 border-hairline overflow-hidden"
+             style="box-shadow: var(--shadow-card); animation: slideInCard 0.3s ease #{gi * 0.03}s both;">
+          <%# Day header %>
+          <div class="flex items-center justify-between px-4 py-2.5 border-b-2"
+               style="background: var(--surface-muted); border-color: var(--hairline);">
+            <div class="text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--text-muted);">
+              <%= l(day, format: :long) %>
             </div>
-            <div class="flex flex-col flex-1 gap-0.5">
-              <div class="font-display text-[16px] leading-tight font-extrabold tracking-[-0.02em] text-foreground"><%= h.title %></div>
-              <div class="flex items-center gap-1.5">
-                <%= render Ui::Badge::Component.new(variant: color, size: "sm") do %>
-                  <%= h.profile&.name %>
-                <% end %>
-                <span class="text-[12px] text-muted-foreground font-bold"><%= l(h.created_at, format: :short).upcase %></span>
-              </div>
+            <div class="text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--text-muted);">
+              <%= logs.size %> <%= logs.size == 1 ? "evento" : "eventos" %>
             </div>
-            <%= render Ui::StarValue::Component.new(value: h.points.abs, prefix: (earn ? '+' : '−'), size: :md, color: :gold, class: "tracking-[-0.02em] #{earn ? 'text-success' : 'text-rose'}") %>
           </div>
-        <% end %>
+
+          <%# Rows %>
+          <div class="flex flex-col">
+            <% logs.each_with_index do |log, i| %>
+              <% earn = log.earn? %>
+              <% chip_bg = earn ? "var(--star-soft)" : "var(--c-rose-soft)" %>
+              <% chip_fg = earn ? "var(--c-amber-dark)" : "var(--c-rose-dark)" %>
+              <% chip_border = earn ? "var(--star)" : "var(--c-rose)" %>
+              <div class="flex items-center gap-3 px-4 py-3 <%= 'border-t-2 border-hairline' unless i.zero? %>">
+                <div class="w-10 h-10 rounded-[10px] grid place-items-center shrink-0 border-2"
+                     style="background: <%= chip_bg %>; border-color: <%= chip_border %>;">
+                  <%= render Ui::Icon::Component.new(earn ? "sparkle" : "gift", size: 20, color: chip_fg) %>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-[14px] leading-tight font-extrabold truncate" style="color: var(--text);">
+                    <%= log.title %>
+                  </div>
+                  <div class="flex items-center gap-1.5 mt-1">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-[10px] text-[11px] font-extrabold border-2"
+                          style="background: <%= chip_bg %>; color: <%= chip_fg %>; border-color: <%= chip_border %>;">
+                      <%= log.profile&.name %>
+                    </span>
+                    <span class="text-[11px] font-bold" style="color: var(--text-muted);">
+                      <%= l(log.created_at, format: :short).upcase %>
+                    </span>
+                  </div>
+                </div>
+                <div class="text-[15px] font-extrabold tracking-[-0.02em] shrink-0" style="color: <%= chip_fg %>;">
+                  <%= earn ? "+" : "−" %><%= log.points.abs %> ★
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     <% else %>
       <%= render Ui::Empty::Component.new(

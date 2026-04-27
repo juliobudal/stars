@@ -12,6 +12,7 @@
 
 # Ignore all environment files.
 /.env*
+!/.env.production.example
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -65,3 +66,6 @@ tailwindcss_safelist.txt
 # Built assets
 /public/hugeicons-manifest.json
 package-lock.json
+
+# Shell history
+.lesshst

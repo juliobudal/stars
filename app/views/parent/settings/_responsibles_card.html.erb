@@ -1,21 +1,32 @@
-<%= render Ui::Card::Component.new(padding: "p-5") do %>
-  <%= render Ui::Heading::Component.new(size: :h3, class: "mb-4") do %>Responsáveis<% end %>
+<section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+         style="box-shadow: var(--shadow-card);">
+  <div class="text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3" style="color: var(--text-muted);">
+    Responsáveis
+  </div>
   <div class="flex flex-col gap-2">
     <% family.profiles.parent.each do |p| %>
-      <div class="flex items-center gap-3 py-2.5 px-3 rounded-xl bg-surface-2">
+      <div class="flex items-center gap-3 py-2.5 px-3 rounded-[12px] border-2 border-hairline"
+           style="background: var(--surface-2);">
         <%= render Ui::SmileyAvatar::Component.new(kid: p, size: 36) %>
-        <div class="flex flex-col flex-1 gap-0.5">
-          <div class="text-[14px] font-bold text-foreground"><%= p.name %></div>
-          <div class="text-[11px] text-muted-foreground">
+        <div class="flex flex-col flex-1 gap-0.5 min-w-0">
+          <div class="text-[14px] font-extrabold truncate" style="color: var(--text);"><%= p.name %></div>
+          <div class="text-[11px] font-bold truncate" style="color: var(--text-muted);">
             <%= p.name.downcase.parameterize(separator: ".") %>@familia.com · Administrador<%= "a" if p.name.ends_with?("a") || p.name.ends_with?("e") %>
           </div>
         </div>
-        <button type="button" class="bg-transparent border-none cursor-pointer text-muted-foreground p-1 flex items-center">
+        <button type="button"
+                class="bg-transparent border-none cursor-pointer p-1.5 rounded-[8px] flex items-center"
+                aria-label="Editar responsável">
           <%= render Ui::Icon::Component.new("pencil", size: 14, color: "var(--text-muted)") %>
         </button>
       </div>
     <% end %>
 
-    <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: new_parent_invitation_path) do %>+ Convidar responsável<% end %>
+    <%= link_to new_parent_invitation_path,
+          class: "ls-btn-3d inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-[12px] text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline border-2 mt-1",
+          style: "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 3px 0 var(--hairline);" do %>
+      <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
+      Convidar responsável
+    <% end %>
   </div>
-<% end %>
+</section>

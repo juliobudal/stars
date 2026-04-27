@@ -1,40 +1,62 @@
 <%
   cat = category_meta
   tint = cat[:tint]
+  disabled = reward.respond_to?(:active?) && !reward.active?
 %>
-<div class="bg-surface rounded-md shadow-card anim-tile overflow-hidden flex flex-col">
+<div class="ls-card-3d bg-surface rounded-[16px] border-2 border-hairline p-4 flex flex-col gap-3<%= " opacity-[0.85]" if disabled %>">
 
-  <%# Icon header strip %>
-  <div class="flex items-center justify-center py-5" style="background: var(--c-<%= tint %>-soft, var(--primary-soft));">
-    <%= render Ui::IconTile::Component.new(icon: reward.icon.presence || "gift", color: tint, size: 52) %>
-  </div>
-
-  <%# Content %>
-  <div class="flex flex-col gap-2 p-4 flex-1">
-    <div class="font-display font-extrabold text-[15px] text-foreground leading-[1.2] line-clamp-2">
-      <%= reward.title %>
+  <div class="flex items-start gap-[14px]">
+    <%# ls-icon-cell 56x56 %>
+    <div class="ls-icon-cell w-14 h-14 rounded-[14px] flex items-center justify-center shrink-0 border-2"
+         style="background: var(--c-<%= tint %>-soft, var(--primary-soft)); border-color: var(--c-<%= tint %>, var(--primary));">
+      <%= render Ui::Icon::Component.new(reward.icon.presence || "gift", size: 28, color: "var(--c-#{tint}-dark, var(--primary-2))") %>
     </div>
 
-    <div class="flex items-center justify-between mt-auto pt-1">
-      <%= render Ui::Badge::Component.new(variant: tint, size: "sm") do %>
-        <%= cat[:label] %>
+    <div class="flex-1 min-w-0">
+      <div class="flex items-start justify-between gap-2">
+        <div class="min-w-0">
+          <div class="font-display font-extrabold text-[15px] leading-[1.2] mb-0.5 line-clamp-2" style="color: var(--text);">
+            <%= reward.title %>
+          </div>
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <span class="text-[10px] font-extrabold uppercase tracking-[0.5px] px-2 py-0.5 rounded-[6px]"
+                  style="background: var(--c-<%= tint %>-soft, var(--primary-soft)); color: var(--c-<%= tint %>-dark, var(--primary-2));">
+              <%= cat[:label] %>
+            </span>
+          </div>
+        </div>
+        <%# Star pill %>
+        <div class="flex items-center gap-1 px-2 py-1 rounded-[8px] border-2 shrink-0"
+             style="background: var(--star-soft); border-color: var(--star);">
+          <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--star)") %>
+          <span class="text-[12px] font-extrabold" style="color: var(--c-reward-text);"><%= reward.cost %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# Footer: status + actions %>
+  <div class="mt-auto pt-[10px] flex items-center justify-between gap-2"
+       style="border-top: 2px solid var(--surface-2);">
+    <span class="text-[10px] font-extrabold uppercase tracking-[0.5px] flex items-center gap-1"
+          style="color: <%= disabled ? 'var(--c-amber-dark)' : 'var(--primary-2)' %>;">
+      <span class="w-1.5 h-1.5 rounded-full" style="background: <%= disabled ? 'var(--star)' : 'var(--primary)' %>;"></span>
+      <%= disabled ? "Pausado" : "Ativo" %>
+    </span>
+    <div class="flex items-center gap-1.5">
+      <%= link_to edit_parent_reward_path(reward),
+            class: "ls-btn-3d inline-flex items-center justify-center w-8 h-8 rounded-[10px] border-2 no-underline",
+            style: "background: var(--primary-soft); border-color: var(--primary); box-shadow: 0 2px 0 var(--primary-2);",
+            aria: { label: "Editar #{reward.title}" } do %>
+        <%= render Ui::Icon::Component.new("pencil", size: 13, color: "var(--primary-2)") %>
       <% end %>
-      <%= render Ui::StarValue::Component.new(value: reward.cost, size: :sm, color: :gold, class: "text-foreground") %>
+      <%= button_to parent_reward_path(reward), method: :delete,
+            class: "ls-btn-3d inline-flex items-center justify-center w-8 h-8 rounded-[10px] border-2 cursor-pointer p-0",
+            style: "background: var(--c-rose-soft); border-color: var(--danger); box-shadow: 0 2px 0 var(--danger-2);",
+            data: { turbo_confirm: "Remover \"#{reward.title}\" do catálogo? Esta ação não pode ser desfeita." },
+            aria: { label: "Remover #{reward.title}" } do %>
+        <%= render Ui::Icon::Component.new("trash", size: 13, color: "var(--danger)") %>
+      <% end %>
     </div>
-  </div>
-
-  <%# Actions %>
-  <div class="flex items-center gap-2 px-4 pb-4">
-    <%= link_to edit_parent_reward_path(reward),
-          class: "btn btn-sm flex items-center justify-center flex-1 gap-1.5 bg-primary-soft text-primary-2 rounded-xl no-underline text-[13px] font-bold",
-          aria: { label: "Editar #{reward.title}" } do %>
-      <%= render Ui::Icon::Component.new("pencil", size: 13, color: "currentColor") %>
-      Editar
-    <% end %>
-    <%= button_to parent_reward_path(reward), method: :delete,
-          class: "flex items-center justify-center shrink-0 w-9 h-9 p-0 bg-red-soft border-none cursor-pointer text-danger rounded-xl",
-          data: { turbo_confirm: "Remover \"#{reward.title}\" do catálogo? Esta ação não pode ser desfeita." } do %>
-      <%= render Ui::Icon::Component.new("trash", size: 15, color: "var(--danger)") %>
-    <% end %>
   </div>
 </div>

@@ -11,7 +11,7 @@ class Ui::Alert::TitleComponent < ApplicationComponent
 
   def classes
     class_names(
-      "font-semibold",
+      "font-bold",
       @options.delete(:class)
     )
   end

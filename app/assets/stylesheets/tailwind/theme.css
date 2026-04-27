@@ -1,87 +1,87 @@
 :root {
-  /* ─── Paleta Berry Pop (default) ─── */
-  --bg-deep: #F8F5FF;
-  --bg-mid: #F8F5FF;
-  --bg-soft: #F0EAFF;
+  /* ─── LittleStars Duolingo Style (default) ─── */
+  --bg-deep: #F7F7F7;
+  --bg-mid: #F7F7F7;
+  --bg-soft: #DCFCE7;
 
   --surface: #ffffff;
-  --surface-2: #F0EAFF;
-  --surface-ink: #2B2A3A;
+  --surface-2: #F7F7F7;
+  --surface-ink: #4B4B4B;
 
-  /* Primary — lilac */
-  --primary: #A78BFA;
-  --primary-2: #7C5CD6;
-  --primary-soft: #EDE9FE;
-  --primary-glow: #C4B5FD;
+  /* Primary — Duolingo green */
+  --primary: #58CC02;
+  --primary-2: #46A302;
+  --primary-soft: #DCFCE7;
+  --primary-glow: #86EFAC;
 
-  /* Star / reward */
-  --star: #FFC53D;
-  --star-2: #E6A800;
-  --star-soft: #FFF4CC;
+  /* Star / reward — Duolingo yellow */
+  --star: #FFC800;
+  --star-2: #E0A800;
+  --star-soft: #FFF4DA;
 
   /* Hairline */
-  --hairline: #E8E0F5;
+  --hairline: #E5E5E5;
 
-  /* Secundárias (Berry Pop palette) */
+  /* Secondary palettes (Duolingo accent system) */
   --c-peach: #F472B6;
   --c-peach-soft: #FCE7F3;
   --c-peach-dark: #BE185D;
   --c-rose: #EC4899;
   --c-rose-soft: #FCE7F3;
   --c-rose-dark: #BE185D;
-  --c-mint: #34D399;
-  --c-mint-soft: #D1FAE5;
-  --c-mint-dark: #047857;
-  --c-sky: #38BDF8;
-  --c-sky-soft: #E0F2FE;
-  --c-sky-dark: #0369A1;
-  --c-lilac: #A78BFA;
-  --c-lilac-soft: #EDE9FE;
-  --c-lilac-dark: #6D28D9;
-  --c-coral: #FF7F50;
-  --c-coral-dark: #D9531E;
-  --c-coral-soft: #FFE5D9;
-  --c-coral-depth: #8a2a2a;
+  --c-mint: #58CC02;
+  --c-mint-soft: #DCFCE7;
+  --c-mint-dark: #46A302;
+  --c-sky: #1CB0F6;
+  --c-sky-soft: #DDF4FF;
+  --c-sky-dark: #1899D6;
+  --c-lilac: #CE82FF;
+  --c-lilac-soft: #F3E8FF;
+  --c-lilac-dark: #7C3AED;
+  --c-coral: #FF9600;
+  --c-coral-dark: #CC7700;
+  --c-coral-soft: #FFE4CC;
+  --c-coral-depth: #B36F00;
 
-  --c-peach-depth: #8a3a1a;
-  --c-rose-depth: #8a2e4a;
-  --c-mint-depth: #1a6a4a;
-  --c-sky-depth: #1a5a8a;
-  --c-lilac-depth: #4a3a8a;
+  --c-peach-depth: #BE185D;
+  --c-rose-depth: #BE185D;
+  --c-mint-depth: #46A302;
+  --c-sky-depth: #1899D6;
+  --c-lilac-depth: #A855E0;
 
-  --c-amber-soft: #FEF3C7;
-  --c-amber-dark: #92400E;
+  --c-amber-soft: #FFF4DA;
+  --c-amber-dark: #B36F00;
 
-  --c-violet-dark: #6D28D9;
-  --c-red-soft: #FEE2E2;
-  --c-red-dark: #B91C1C;
+  --c-violet-dark: #7C3AED;
+  --c-red-soft: #FFE4E1;
+  --c-red-dark: #C53232;
 
-  --danger: #EF4444;
-  --danger-2: #BE185D;
-  --success: #34D399;
-  --success-2: #059669;
+  --danger: #FF4B4B;
+  --danger-2: #C53232;
+  --success: #58CC02;
+  --success-2: #46A302;
 
-  --text-dark: #2B2A3A;
-  --text: #2B2A3A;
-  --text-muted: #6A6878;
-  --text-soft: #A09EAE;
+  --text-dark: #4B4B4B;
+  --text: #4B4B4B;
+  --text-muted: #777777;
+  --text-soft: #AFAFAF;
 
-  /* Shadows — soft Berry Pop */
-  --shadow-btn: 0 2px 0 rgba(44, 42, 58, 0.04);
-  --shadow-btn-hover: 0 3px 0 rgba(44, 42, 58, 0.05);
-  --shadow-card: 0 2px 0 rgba(44, 42, 58, 0.04), 0 6px 16px rgba(44, 42, 58, 0.05);
-  --shadow-lift: 0 2px 0 rgba(44, 42, 58, 0.04), 0 8px 16px rgba(44, 42, 58, 0.05);
-  --border-card: 1px solid var(--hairline);
+  /* Shadows — Duolingo 3D */
+  --shadow-btn: 0 4px 0 rgba(0, 0, 0, 0.12);
+  --shadow-btn-hover: 0 6px 0 rgba(0, 0, 0, 0.12);
+  --shadow-card: 0 4px 0 rgba(0, 0, 0, 0.08);
+  --shadow-lift: 0 6px 0 rgba(0, 0, 0, 0.08);
+  --border-card: 2px solid var(--hairline);
 
-  /* Radius — generous */
+  /* Radius — Duolingo compact */
   --r-sm: 10px;
-  --r-md: 16px;
-  --r-lg: 24px;
-  --r-xl: 32px;
+  --r-md: 12px;
+  --r-lg: 14px;
+  --r-xl: 16px;
   --r-featured: 20px;
   --r-full: 999px;
 
-  --font-display: 'Inter', system-ui, sans-serif;
+  --font-display: 'Nunito', system-ui, sans-serif;
   --font-body: 'Nunito', system-ui, sans-serif;
 
   --shape-warm-1: #ffe0b3;
@@ -127,39 +127,27 @@
   --success-depth: oklch(from var(--success) calc(l - 0.12) c h);
   --info: var(--c-sky);
   --primary-foreground: #ffffff;
-  --primary-depth: oklch(from var(--primary) calc(l - 0.12) c h);
+  --primary-depth: var(--primary-2);
   --overlay: rgba(26, 42, 74, 0.4);
   /* Radius aliases */
   --radius-base: var(--r-sm);
-  --radius-btn: var(--r-full);
-  --radius-field: var(--r-sm);
-}
+  --radius-btn: var(--r-lg);
+  --radius-field: 14px;
 
-/* ─── Paleta alt: Sunset (rosa/coral) ─── */
-[data-palette="aurora"] {
-  --bg-deep: #ffffff;
-  --bg-mid: #ffffff;
-  --bg-soft: #fff5f0;
-  --primary: #ff6a9d;
-  --primary-2: #e84d87;
-  --primary-soft: #ffd0e2;
-  --primary-glow: #ffb3cc;
-  --star: #ffb020;
-  --star-2: #ff8a00;
-}
-
-/* ─── Paleta alt: Forest (verde/menta) ─── */
-[data-palette="galaxy"] {
-  --bg-deep: #ffffff;
-  --bg-mid: #ffffff;
-  --bg-soft: #f0faf3;
-  --primary: #2eca7f;
-  --primary-2: #1fa868;
-  --primary-soft: #c2f0dd;
-  --primary-glow: #5ddba0;
+  /* ─── New semantic tokens ─── */
+  --c-info-500: #1CB0F6;
+  --c-info-600: #1899D6;
+  --c-info-100: #DDF4FF;
+  --c-reward-text: #B36F00;
+  --c-character-500: #CE82FF;
+  --c-character-600: #A855E0;
+  --c-streak: #FF9600;
+  --c-streak-2: #CC7700;
+  --surface-muted: #F7F7F7;
 }
 
 /* ─── Per-kid palettes (driven by Profile.color) ─── */
+/* Override --primary family only; shadows/typography/radii inherit Duolingo defaults. */
 [data-palette="peach"] {
   --primary: var(--c-peach);
   --primary-2: var(--c-peach-dark);
@@ -375,6 +363,17 @@
   --color-lilac-depth: var(--c-lilac-depth);
   --color-amber-soft: var(--c-amber-soft);
   --color-amber-dark: var(--c-amber-dark);
+
+  /* New semantic tokens */
+  --color-info-500: var(--c-info-500);
+  --color-info-600: var(--c-info-600);
+  --color-info-100: var(--c-info-100);
+  --color-character-500: var(--c-character-500);
+  --color-character-600: var(--c-character-600);
+  --color-surface-muted: var(--surface-muted);
+  --color-reward-text: var(--c-reward-text);
+  --color-streak: var(--c-streak);
+  --color-streak-2: var(--c-streak-2);
 }
 
 /* ── Button depth shadows — used by Ui::Btn::Component ── */
@@ -394,9 +393,9 @@
 @utility shadow-btn-warning-hover  { box-shadow: 0 5px 0 var(--color-warning-depth); }
 @utility shadow-btn-warning-active { box-shadow: 0 1px 0 var(--color-warning-depth); }
 
-@utility shadow-btn-secondary        { box-shadow: 0 4px 0 rgba(26,42,74,0.1); }
-@utility shadow-btn-secondary-hover  { box-shadow: 0 5px 0 rgba(26,42,74,0.1); }
-@utility shadow-btn-secondary-active { box-shadow: 0 1px 0 rgba(26,42,74,0.1); }
+@utility shadow-btn-secondary        { box-shadow: 0 4px 0 #C9C9C9; }
+@utility shadow-btn-secondary-hover  { box-shadow: 0 5px 0 #C9C9C9; }
+@utility shadow-btn-secondary-active { box-shadow: 0 1px 0 #C9C9C9; }
 
 /* Active-tab depth shadow */
 @utility shadow-tab-active { box-shadow: 0 2px 0 var(--color-primary-depth); }

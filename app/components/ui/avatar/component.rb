@@ -39,7 +39,7 @@ class Ui::Avatar::Component < ApplicationComponent
 
   def avatar_classes
     class_names(
-      "relative flex items-center justify-center overflow-hidden font-medium text-muted-foreground bg-muted",
+      "relative flex items-center justify-center overflow-hidden font-bold text-muted-foreground bg-muted",
       { "rounded-lg": @variant == :rounded },
       { "rounded-full": @variant == :circle },
       @options.delete(:class)

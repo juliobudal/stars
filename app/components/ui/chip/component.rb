@@ -18,7 +18,7 @@ class Ui::Chip::Component < ApplicationComponent
   def classes
     base = "inline-flex items-center gap-1.5 rounded-full font-display text-[11px] tracking-[0.08em]"
 
-    size_classes = @size == "sm" ? "px-[10px] py-[4px] font-extrabold" : "px-3 py-1 font-semibold"
+    size_classes = @size == "sm" ? "px-[10px] py-[4px] font-extrabold" : "px-3 py-1 font-bold"
 
     variant_classes = case @variant
     when "star"    then "bg-star-soft text-foreground"

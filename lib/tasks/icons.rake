@@ -8,8 +8,13 @@ namespace :icons do
 
     seed = JSON.parse(seed_path.read)
 
-    manifest = seed.map do |entry|
+    css_path = Rails.root.join("app/assets/stylesheets/vendors/hugeicons.css")
+    raise "hugeicons.css missing at #{css_path}" unless css_path.exist?
+    available = css_path.read.scan(/\.hgi-stroke\.hgi-([a-z0-9-]+)::before/).flatten.to_set
+
+    manifest = seed.filter_map do |entry|
       slug = entry["slug"] || entry["name"].to_s.parameterize
+      next unless available.include?(slug)
       name = entry["name"].to_s.tr("-_", "  ").strip
       tags =
         case entry["tags"]
@@ -20,8 +25,9 @@ namespace :icons do
       { slug: slug, name: name, tags: tags }
     end
 
+    skipped = seed.size - manifest.size
     out_path.write(JSON.generate(manifest))
-    puts "Wrote #{manifest.size} icons to #{out_path.relative_path_from(Rails.root)}"
+    puts "Wrote #{manifest.size} icons to #{out_path.relative_path_from(Rails.root)} (skipped #{skipped} without stroke glyph)"
   end
 end
 

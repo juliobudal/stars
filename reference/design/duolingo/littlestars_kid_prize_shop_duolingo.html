@@ -1,0 +1,195 @@
+<h2 class="sr-only">LittleStars kid prize shop redesigned in Duolingo style with persistent star balance, available vs locked prizes grid, progress hints toward next attainable prize, and category filters.</h2>
+
+<style>
+.ls-btn-3d { transition: transform 0.05s; cursor: pointer; }
+.ls-btn-3d:active { transform: translateY(2px); box-shadow: none !important; }
+.ls-prize-card { transition: transform 0.15s; cursor: pointer; }
+.ls-prize-card:hover { transform: translateY(-3px); }
+.ls-filter-pill { transition: all 0.15s; cursor: pointer; }
+.ls-coin-shake { animation: shake 3s ease-in-out infinite; transform-origin: center; }
+@keyframes shake {
+  0%, 90%, 100% { transform: rotate(0deg); }
+  93% { transform: rotate(-8deg); }
+  96% { transform: rotate(8deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ls-btn-3d, .ls-prize-card, .ls-filter-pill, .ls-coin-shake { animation: none; transition: none; }
+}
+</style>
+
+<div style="background: linear-gradient(180deg, #FFF4DA 0%, #FFFFFF 240px); border-radius: 16px; border: 2px solid #E5E5E5; padding: 18px 20px; font-family: 'Nunito', system-ui, sans-serif; font-weight: 700; min-height: 940px;">
+
+  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px;">
+    <button class="ls-btn-3d" style="width: 38px; height: 38px; background: white; border: 2px solid #E5E5E5; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 0 #E5E5E5; padding: 0;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div style="flex: 1; display: flex; align-items: center; gap: 10px;">
+      <div style="width: 32px; height: 32px; background: #BE185D; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 0 #831843;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.8" stroke-linejoin="round"><path d="M5 8h14v12H5z"/><path d="M3 8h18V5H3z"/><path d="M12 5v15"/></svg>
+      </div>
+      <div>
+        <div style="font-size: 18px; font-weight: 800; color: #4B4B4B; line-height: 1;">Loja de Prêmios</div>
+        <div style="font-size: 11px; color: #777; font-weight: 700; margin-top: 2px;">Troca estrelinhas por coisas legais!</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: linear-gradient(135deg, #FFC800 0%, #FF9600 100%); border: 2px solid #E0A800; border-radius: 18px; padding: 16px 20px; margin-bottom: 18px; box-shadow: 0 5px 0 #B36F00; display: flex; align-items: center; justify-content: space-between; gap: 14px;">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <div class="ls-coin-shake" style="width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 0 rgba(0,0,0,0.15);">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="#FFC800" stroke="#B36F00" stroke-width="1.5" stroke-linejoin="round"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+      </div>
+      <div>
+        <div style="font-size: 11px; font-weight: 800; color: #B36F00; text-transform: uppercase; letter-spacing: 1px;">Você tem</div>
+        <div style="display: flex; align-items: baseline; gap: 6px;">
+          <span style="font-size: 36px; font-weight: 800; color: white; line-height: 1; text-shadow: 0 2px 0 #B36F00;">12</span>
+          <span style="font-size: 14px; font-weight: 800; color: white;">estrelinhas</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: right; padding-right: 4px;">
+      <div style="font-size: 10px; font-weight: 800; color: #B36F00; text-transform: uppercase; letter-spacing: 0.5px;">Histórico</div>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding: 2px;">
+    <button class="ls-filter-pill" style="background: #58CC02; color: white; border: 2px solid #58CC02; padding: 8px 14px; border-radius: 12px; font-size: 12px; font-weight: 800; box-shadow: 0 3px 0 #46A302; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit; white-space: nowrap;">⭐ Posso resgatar · 2</button>
+    <button class="ls-filter-pill" style="background: white; color: #777; border: 2px solid #E5E5E5; padding: 8px 14px; border-radius: 12px; font-size: 12px; font-weight: 800; box-shadow: 0 3px 0 #E5E5E5; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit; white-space: nowrap;">Tudo · 6</button>
+    <button class="ls-filter-pill" style="background: white; color: #777; border: 2px solid #E5E5E5; padding: 8px 14px; border-radius: 12px; font-size: 12px; font-weight: 800; box-shadow: 0 3px 0 #E5E5E5; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit; white-space: nowrap;">Brinquedos</button>
+    <button class="ls-filter-pill" style="background: white; color: #777; border: 2px solid #E5E5E5; padding: 8px 14px; border-radius: 12px; font-size: 12px; font-weight: 800; box-shadow: 0 3px 0 #E5E5E5; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit; white-space: nowrap;">Tela</button>
+    <button class="ls-filter-pill" style="background: white; color: #777; border: 2px solid #E5E5E5; padding: 8px 14px; border-radius: 12px; font-size: 12px; font-weight: 800; box-shadow: 0 3px 0 #E5E5E5; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit; white-space: nowrap;">Passeios</button>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding: 0 4px;">
+    <div style="width: 24px; height: 24px; background: #58CC02; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 0 #46A302;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg>
+    </div>
+    <h2 style="margin: 0; font-size: 15px; font-weight: 800; color: #46A302; text-transform: uppercase; letter-spacing: 0.5px;">Posso resgatar agora!</h2>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 22px;">
+
+    <div class="ls-prize-card" style="background: white; border: 3px solid #58CC02; border-radius: 18px; padding: 14px; box-shadow: 0 5px 0 #46A302; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 8px; right: 8px; background: #58CC02; color: white; font-size: 9px; font-weight: 800; padding: 3px 7px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 0 #46A302;">✓ Pode</div>
+      <div style="aspect-ratio: 1.4; background: linear-gradient(135deg, #DDF4FF 0%, #BAE6FD 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; border: 2px solid #84D8FF;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1899D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M9 9l6 8M15 9l-6 8"/><path d="M8 5l-2-3M16 5l2-3"/></svg>
+      </div>
+      <div style="font-size: 14px; font-weight: 800; color: #4B4B4B; margin-bottom: 8px; line-height: 1.2;">30 min de videogame</div>
+      <button class="ls-btn-3d" style="width: 100%; background: #58CC02; color: white; border: 2px solid #58CC02; padding: 9px; border-radius: 12px; font-size: 12px; font-weight: 800; box-shadow: 0 3px 0 #46A302; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 6px;">
+        Trocar por
+        <span style="display: flex; align-items: center; gap: 3px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+          10
+        </span>
+      </button>
+    </div>
+
+    <div class="ls-prize-card" style="background: white; border: 3px solid #58CC02; border-radius: 18px; padding: 14px; box-shadow: 0 5px 0 #46A302; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 8px; right: 8px; background: #58CC02; color: white; font-size: 9px; font-weight: 800; padding: 3px 7px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 0 #46A302;">✓ Pode</div>
+      <div style="aspect-ratio: 1.4; background: linear-gradient(135deg, #FCE7F3 0%, #F9A8D4 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; border: 2px solid #F472B6;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#BE185D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+      </div>
+      <div style="font-size: 14px; font-weight: 800; color: #4B4B4B; margin-bottom: 8px; line-height: 1.2;">Sorvete de chocolate</div>
+      <button class="ls-btn-3d" style="width: 100%; background: #58CC02; color: white; border: 2px solid #58CC02; padding: 9px; border-radius: 12px; font-size: 12px; font-weight: 800; box-shadow: 0 3px 0 #46A302; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 6px;">
+        Trocar por
+        <span style="display: flex; align-items: center; gap: 3px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+          8
+        </span>
+      </button>
+    </div>
+
+  </div>
+
+  <div style="background: linear-gradient(135deg, #DDF4FF 0%, #FFF 100%); border: 2px dashed #84D8FF; border-radius: 18px; padding: 14px 16px; margin-bottom: 22px; display: flex; align-items: center; gap: 14px;">
+    <div style="width: 52px; height: 52px; background: white; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 2px solid #84D8FF; box-shadow: 0 3px 0 #84D8FF;">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1899D6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+    </div>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 13px; font-weight: 800; color: #1899D6; margin-bottom: 2px;">Tá quase lá!</div>
+      <div style="font-size: 12px; color: #4B4B4B; font-weight: 700;">Faltam só <strong style="color: #1899D6;">3 estrelinhas</strong> pra você ganhar o <strong>Lego Ninjago</strong> 🎁</div>
+    </div>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding: 0 4px;">
+    <div style="width: 24px; height: 24px; background: #AFAFAF; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 0 #777;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+    </div>
+    <h2 style="margin: 0; font-size: 15px; font-weight: 800; color: #777; text-transform: uppercase; letter-spacing: 0.5px;">Continua juntando!</h2>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+
+    <div class="ls-prize-card" style="background: white; border: 2px solid #E5E5E5; border-radius: 18px; padding: 14px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); position: relative;">
+      <div style="aspect-ratio: 1.4; background: linear-gradient(135deg, #FCE7F3 0%, #FFC8DD 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; border: 2px solid #F472B6; opacity: 0.85;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#BE185D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18M7 8a3 3 0 1 1 5-2 3 3 0 1 1 5 2"/></svg>
+      </div>
+      <div style="font-size: 14px; font-weight: 800; color: #4B4B4B; margin-bottom: 6px; line-height: 1.2;">Lego Ninjago</div>
+      <div style="height: 6px; background: #E5E5E5; border-radius: 4px; overflow: hidden; margin-bottom: 6px;">
+        <div style="width: 80%; height: 100%; background: #1CB0F6; border-radius: 4px;"></div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFC800"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+          <span style="font-size: 12px; font-weight: 800; color: #4B4B4B;">12<span style="color: #AFAFAF;">/15</span></span>
+        </div>
+        <span style="font-size: 10px; font-weight: 800; color: #1899D6; text-transform: uppercase; letter-spacing: 0.5px;">Falta 3</span>
+      </div>
+    </div>
+
+    <div class="ls-prize-card" style="background: white; border: 2px solid #E5E5E5; border-radius: 18px; padding: 14px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); position: relative;">
+      <div style="aspect-ratio: 1.4; background: linear-gradient(135deg, #DCFCE7 0%, #BBF7D0 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; border: 2px solid #58CC02; opacity: 0.85;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#46A302" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 11v9h14v-9"/><circle cx="12" cy="15" r="2"/></svg>
+      </div>
+      <div style="font-size: 14px; font-weight: 800; color: #4B4B4B; margin-bottom: 6px; line-height: 1.2;">Passeio no parque</div>
+      <div style="height: 6px; background: #E5E5E5; border-radius: 4px; overflow: hidden; margin-bottom: 6px;">
+        <div style="width: 60%; height: 100%; background: #58CC02; border-radius: 4px;"></div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFC800"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+          <span style="font-size: 12px; font-weight: 800; color: #4B4B4B;">12<span style="color: #AFAFAF;">/20</span></span>
+        </div>
+        <span style="font-size: 10px; font-weight: 800; color: #46A302; text-transform: uppercase; letter-spacing: 0.5px;">Falta 8</span>
+      </div>
+    </div>
+
+    <div class="ls-prize-card" style="background: white; border: 2px solid #E5E5E5; border-radius: 18px; padding: 14px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); position: relative;">
+      <div style="aspect-ratio: 1.4; background: linear-gradient(135deg, #FFF4DA 0%, #FDE68A 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; border: 2px solid #FFC800; opacity: 0.85;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#B36F00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-6 5 2 8-6-4-6 4 2-8-6-5h7z"/></svg>
+      </div>
+      <div style="font-size: 14px; font-weight: 800; color: #4B4B4B; margin-bottom: 6px; line-height: 1.2;">Dormir mais tarde</div>
+      <div style="height: 6px; background: #E5E5E5; border-radius: 4px; overflow: hidden; margin-bottom: 6px;">
+        <div style="width: 48%; height: 100%; background: #FFC800; border-radius: 4px;"></div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFC800"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+          <span style="font-size: 12px; font-weight: 800; color: #4B4B4B;">12<span style="color: #AFAFAF;">/25</span></span>
+        </div>
+        <span style="font-size: 10px; font-weight: 800; color: #B36F00; text-transform: uppercase; letter-spacing: 0.5px;">Falta 13</span>
+      </div>
+    </div>
+
+    <div class="ls-prize-card" style="background: white; border: 2px solid #E5E5E5; border-radius: 18px; padding: 14px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); position: relative; overflow: hidden;">
+      <div style="aspect-ratio: 1.4; background: linear-gradient(135deg, #F3E8FF 0%, #DDD6FE 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; border: 2px solid #CE82FF; opacity: 0.5; position: relative;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <div style="position: absolute; bottom: 6px; right: 6px; background: rgba(75,75,75,0.9); border-radius: 8px; padding: 3px 8px; display: flex; align-items: center; gap: 4px;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <span style="font-size: 10px; font-weight: 800; color: white; text-transform: uppercase; letter-spacing: 0.5px;">Surpresa</span>
+        </div>
+      </div>
+      <div style="font-size: 14px; font-weight: 800; color: #4B4B4B; margin-bottom: 6px; line-height: 1.2;">Prêmio surpresa</div>
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFC800"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+          <span style="font-size: 12px; font-weight: 800; color: #777;">50</span>
+        </div>
+        <span style="font-size: 10px; font-weight: 800; color: #777; text-transform: uppercase; letter-spacing: 0.5px;">🔒</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>

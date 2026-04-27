@@ -1,0 +1,6 @@
+.ls-profile-card { transition: transform 0.15s; cursor: pointer; }
+.ls-profile-card:hover { transform: translateY(-4px); }
+.ls-profile-card:active { transform: translateY(2px); }
+@media (prefers-reduced-motion: reduce) {
+  .ls-profile-card { transition: none; }
+}

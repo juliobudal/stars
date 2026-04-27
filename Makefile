@@ -16,7 +16,7 @@ RUN     := $(COMPOSE) run --rm web
         test rspec lint rubocop brakeman audit ci \
         routes assets-build assets-clobber \
         clean config \
-        deploy deploy-check deploy-logs
+        dokploy-deploy dokploy-migrate dokploy-seed dokploy-logs dokploy-status dokploy-restart dokploy-console
 
 help:
 	@echo "LittleStars Makefile — common targets:"
@@ -188,12 +188,94 @@ config:
 clean:
 	$(COMPOSE) down -v --remove-orphans
 
-# Kamal deploy -----------------------------------------------------------------
-deploy-check:
-	bundle exec kamal config
+# Dokploy production deploy ----------------------------------------------------
+# Same SSH-based pattern as ../study-flix. Requires .env.production at repo root
+# (see .env.production.example). Deploys to app.iacomcafe.com via rsync + SSH.
 
-deploy:
-	bundle exec kamal deploy
+ifneq (,$(wildcard ./.env.production))
+    include .env.production
+    export
+endif
 
-deploy-logs:
-	bundle exec kamal app logs -f
+SSH_CMD := ssh -o StrictHostKeyChecking=no
+ifneq ($(SSH_KEY_PATH),)
+    SSH_CMD += -i $(SSH_KEY_PATH)
+endif
+ifneq ($(DEPLOY_PORT),)
+    SSH_CMD += -p $(DEPLOY_PORT)
+else
+    DEPLOY_PORT := 22
+endif
+
+DOKPLOY_COMPOSE := docker compose --env-file .env.production -f docker-compose.dokploy.yml
+
+dokploy-deploy:
+	@echo "→ deploying LittleStars to Dokploy server..."
+	@if [ -z "$(DEPLOY_HOST)" ] || [ -z "$(DEPLOY_USER)" ] || [ -z "$(DEPLOY_DIR)" ]; then \
+		echo "✗ DEPLOY_HOST, DEPLOY_USER, DEPLOY_DIR must be set in .env.production"; exit 1; \
+	fi
+	@if [ ! -f .env.production ]; then \
+		echo "✗ .env.production not found — copy .env.production.example and fill"; exit 1; \
+	fi
+	@echo "→ syncing files..."
+	rsync -avz -e "ssh -p $(DEPLOY_PORT)" --progress --delete \
+		--exclude .git --exclude node_modules --exclude tmp --exclude log \
+		--exclude .planning --exclude .claude --exclude spec \
+		--exclude '.env' --exclude '.env.local' --exclude '.env.development' \
+		--exclude 'public/assets' --exclude 'public/vite' \
+		--exclude '*.png' --exclude '*.md' \
+		./ $(DEPLOY_USER)@$(DEPLOY_HOST):$(DEPLOY_DIR)/
+	@echo "→ building + recreating containers on server..."
+	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
+		$(DOKPLOY_COMPOSE) down --remove-orphans || true && \
+		docker rm -f littlestars-app littlestars-db 2>/dev/null || true && \
+		DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 $(DOKPLOY_COMPOSE) build --parallel && \
+		$(DOKPLOY_COMPOSE) up -d --force-recreate --remove-orphans"
+	@echo "→ waiting for /up health check..."
+	@$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) '\
+		for i in 1 2 3 4 5 6 7 8 9 10 11 12; do \
+			if docker exec littlestars-app curl -fsS http://127.0.0.1:3000/up > /dev/null 2>&1; then \
+				echo "✓ healthy on attempt $$i"; exit 0; \
+			fi; \
+			echo "  attempt $$i/12 — waiting 5s..."; sleep 5; \
+		done; \
+		echo "✗ health check failed — see make dokploy-logs"; exit 1'
+	@echo "→ running db:prepare (create + migrate + seed if empty)..."
+	@$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
+		$(DOKPLOY_COMPOSE) exec -T littlestars-app bin/rails db:prepare" || \
+		echo "⚠ db:prepare failed — run make dokploy-migrate manually"
+	@echo "✓ deployed → https://$${DOMAIN_LITTLESTARS:-stars.iacomcafe.com}"
+
+dokploy-migrate:
+	@echo "→ running migrations on Dokploy..."
+	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
+	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
+		$(DOKPLOY_COMPOSE) exec -T littlestars-app bin/rails db:migrate"
+	@echo "✓ migrations applied"
+
+dokploy-seed:
+	@echo "→ seeding production DB (idempotent)..."
+	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
+	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
+		$(DOKPLOY_COMPOSE) exec -T littlestars-app bin/rails db:seed"
+
+dokploy-logs:
+	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
+	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
+		$(DOKPLOY_COMPOSE) logs -f --tail=100"
+
+dokploy-status:
+	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
+	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
+		$(DOKPLOY_COMPOSE) ps && \
+		docker stats --no-stream littlestars-app littlestars-db || true"
+
+dokploy-restart:
+	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
+	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
+		$(DOKPLOY_COMPOSE) restart"
+
+dokploy-console:
+	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
+	$(SSH_CMD) -t $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
+		$(DOKPLOY_COMPOSE) exec littlestars-app bin/rails console"

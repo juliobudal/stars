@@ -21,7 +21,7 @@
     @apply left-0 -translate-x-1/2 -translate-y-1/2 border-t-0 border-r-0 top-1/2;
   }
   .popover__title {
-    @apply px-3 py-3 font-semibold text-foreground bg-muted border-b border-border;
+    @apply px-3 py-3 font-bold text-foreground bg-muted border-b border-border;
     @apply rounded-tl-dropdown rounded-tr-dropdown;
   }
   .popover__body {

@@ -1,0 +1,161 @@
+<h2 class="sr-only">LittleStars kid dashboard redesigned in Duolingo style with mascot, streak counter, level progress, today's missions list, and daily goal tracker.</h2>
+
+<style>
+.ls-btn-3d { transition: transform 0.05s; cursor: pointer; }
+.ls-btn-3d:active { transform: translateY(2px); box-shadow: none !important; }
+.ls-mission-card { transition: transform 0.1s; cursor: pointer; }
+.ls-mission-card:hover { transform: translateY(-2px); }
+.ls-mascot-bounce { animation: bounce 2.5s ease-in-out infinite; transform-origin: bottom center; }
+.ls-star-twinkle { animation: twinkle 1.8s ease-in-out infinite; }
+.ls-star-twinkle-2 { animation: twinkle 2.2s ease-in-out infinite 0.4s; }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.02); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ls-btn-3d, .ls-mission-card, .ls-mascot-bounce, .ls-star-twinkle, .ls-star-twinkle-2 { animation: none; transition: none; }
+}
+</style>
+
+<div style="background: linear-gradient(180deg, #DDF4FF 0%, #FFFFFF 280px); border-radius: 16px; border: 2px solid #E5E5E5; padding: 18px 20px; font-family: 'Nunito', system-ui, sans-serif; font-weight: 700; min-height: 880px;">
+
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 6px; background: white; border: 2px solid #FFC800; padding: 6px 12px; border-radius: 12px; box-shadow: 0 3px 0 #E0A800;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF9600" class="ls-mascot-bounce" style="animation-duration: 1.5s;"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67z"/></svg>
+        <span style="font-size: 16px; font-weight: 800; color: #FF9600;">5</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 6px; background: white; border: 2px solid #FFC800; padding: 6px 12px; border-radius: 12px; box-shadow: 0 3px 0 #E0A800;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFC800"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+        <span style="font-size: 16px; font-weight: 800; color: #B36F00;">12</span>
+      </div>
+    </div>
+    <button class="ls-btn-3d" style="background: white; border: 2px solid #E5E5E5; padding: 6px 12px; border-radius: 12px; font-size: 11px; font-weight: 800; color: #777; box-shadow: 0 3px 0 #E5E5E5; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit; display: flex; align-items: center; gap: 6px;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 17l5-5-5-5M21 12H9M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
+      Trocar
+    </button>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding: 0 4px;">
+    <div style="position: relative; flex-shrink: 0;">
+      <div class="ls-mascot-bounce" style="width: 96px; height: 96px; border-radius: 50%; background: #CE82FF; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 0 #A855E0;">
+        <svg width="58" height="58" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="white"/><circle cx="9" cy="10" r="1.6" fill="#7C3AED"/><circle cx="15" cy="10" r="1.6" fill="#7C3AED"/><path d="M8 14s1.5 2.5 4 2.5 4-2.5 4-2.5" stroke="#7C3AED" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M6 6l1 1M18 6l-1 1" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <svg class="ls-star-twinkle" width="14" height="14" viewBox="0 0 24 24" fill="#FFC800" style="position: absolute; top: -2px; right: -4px;"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+      <svg class="ls-star-twinkle-2" width="10" height="10" viewBox="0 0 24 24" fill="#FFC800" style="position: absolute; bottom: 6px; left: -6px;"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+    </div>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 11px; font-weight: 800; color: #1899D6; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Boa noite, Theo!</div>
+      <h1 style="margin: 0 0 6px; font-size: 22px; font-weight: 800; color: #4B4B4B; line-height: 1.2;">Bora pegar mais ⭐ hoje?</h1>
+      <p style="margin: 0; font-size: 13px; color: #777; font-weight: 700;">Você tem <strong style="color: #1899D6;">3 missões</strong> pra completar</p>
+    </div>
+  </div>
+
+  <div style="background: white; border: 2px solid #E5E5E5; border-radius: 18px; padding: 16px 18px; margin-bottom: 18px; box-shadow: 0 4px 0 rgba(0,0,0,0.08);">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px;">
+      <div>
+        <div style="font-size: 11px; font-weight: 800; color: #777; text-transform: uppercase; letter-spacing: 0.5px;">Você está no</div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-top: 2px;">
+          <div style="background: #58CC02; color: white; padding: 4px 10px; border-radius: 8px; font-size: 14px; font-weight: 800; box-shadow: 0 2px 0 #46A302;">NÍVEL 1</div>
+          <span style="font-size: 13px; font-weight: 800; color: #46A302;">→ Nível 2</span>
+        </div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-size: 22px; font-weight: 800; color: #46A302; line-height: 1;">12<span style="font-size: 14px; color: #AFAFAF;">/20</span></div>
+        <div style="font-size: 10px; font-weight: 800; color: #777; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px;">Estrelinhas</div>
+      </div>
+    </div>
+    <div style="height: 18px; background: #E5E5E5; border-radius: 10px; overflow: hidden; position: relative;">
+      <div style="width: 60%; height: 100%; background: linear-gradient(90deg, #58CC02 0%, #89E219 100%); border-radius: 10px; box-shadow: inset 0 -4px 0 rgba(0,0,0,0.18); position: relative;">
+        <div style="position: absolute; right: 6px; top: 50%; transform: translateY(-50%); display: flex; align-items: center;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="white"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFC800"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+        <span style="font-size: 12px; color: #4B4B4B; font-weight: 700;">Faltam <strong style="font-weight: 800; color: #46A302;">8 estrelinhas</strong> pra subir!</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 4px;">
+    <h2 style="margin: 0; font-size: 16px; font-weight: 800; color: #4B4B4B;">Missões de hoje</h2>
+    <div style="display: flex; align-items: center; gap: 6px; background: #DCFCE7; border: 2px solid #58CC02; padding: 4px 10px; border-radius: 10px; box-shadow: 0 2px 0 #46A302;">
+      <span style="font-size: 11px; font-weight: 800; color: #46A302; text-transform: uppercase; letter-spacing: 0.5px;">1 de 3 ✓</span>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px;">
+
+    <div class="ls-mission-card" style="background: #DCFCE7; border: 2px solid #58CC02; border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 0 #46A302; display: flex; align-items: center; gap: 14px; position: relative; overflow: hidden;">
+      <div style="width: 48px; height: 48px; border-radius: 12px; background: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 2px solid #58CC02;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#46A302" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg>
+      </div>
+      <div style="flex: 1; min-width: 0;">
+        <div style="font-size: 15px; font-weight: 800; color: #46A302; text-decoration: line-through; text-decoration-thickness: 2px;">Arrumar a cama</div>
+        <div style="font-size: 11px; font-weight: 800; color: #46A302; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px;">Aguardando carimbo do papai</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 4px; background: white; border: 2px solid #FFC800; padding: 4px 10px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 2px 0 #E0A800;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#FFC800"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+        <span style="font-size: 13px; font-weight: 800; color: #B36F00;">+3</span>
+      </div>
+    </div>
+
+    <div class="ls-mission-card" style="background: white; border: 2px solid #E5E5E5; border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); display: flex; align-items: center; gap: 14px;">
+      <div style="width: 48px; height: 48px; border-radius: 12px; background: #DCFCE7; border: 2px solid #58CC02; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#46A302" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 22V12h6v10M3 9l9-7 9 7v13H3z"/></svg>
+      </div>
+      <div style="flex: 1; min-width: 0;">
+        <div style="font-size: 15px; font-weight: 800; color: #4B4B4B;">Escovar os dentes</div>
+        <div style="display: flex; align-items: center; gap: 6px; margin-top: 4px;">
+          <span style="font-size: 10px; font-weight: 800; color: #46A302; background: #DCFCE7; padding: 2px 7px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.5px;">Saúde</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 4px; background: #FFF4DA; border: 2px solid #FFC800; padding: 4px 10px; border-radius: 10px; box-shadow: 0 2px 0 #E0A800;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#FFC800"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+          <span style="font-size: 13px; font-weight: 800; color: #B36F00;">+2</span>
+        </div>
+        <button class="ls-btn-3d" style="background: #58CC02; color: white; border: 2px solid #58CC02; padding: 8px 14px; border-radius: 12px; font-size: 11px; font-weight: 800; box-shadow: 0 3px 0 #46A302; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit;">Fiz!</button>
+      </div>
+    </div>
+
+    <div class="ls-mission-card" style="background: white; border: 2px solid #E5E5E5; border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); display: flex; align-items: center; gap: 14px;">
+      <div style="width: 48px; height: 48px; border-radius: 12px; background: #DDF4FF; border: 2px solid #1CB0F6; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1899D6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18l-2-7H5z"/><path d="M5 12v7h14v-7"/></svg>
+      </div>
+      <div style="flex: 1; min-width: 0;">
+        <div style="font-size: 15px; font-weight: 800; color: #4B4B4B;">Guardar os brinquedos</div>
+        <div style="display: flex; align-items: center; gap: 6px; margin-top: 4px;">
+          <span style="font-size: 10px; font-weight: 800; color: #1899D6; background: #DDF4FF; padding: 2px 7px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.5px;">Casa</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 4px; background: #FFF4DA; border: 2px solid #FFC800; padding: 4px 10px; border-radius: 10px; box-shadow: 0 2px 0 #E0A800;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#FFC800"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+          <span style="font-size: 13px; font-weight: 800; color: #B36F00;">+5</span>
+        </div>
+        <button class="ls-btn-3d" style="background: #58CC02; color: white; border: 2px solid #58CC02; padding: 8px 14px; border-radius: 12px; font-size: 11px; font-weight: 800; box-shadow: 0 3px 0 #46A302; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit;">Fiz!</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ls-btn-3d" style="background: linear-gradient(135deg, #FFF4DA 0%, #FCE7F3 100%); border: 2px solid #F472B6; border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 0 #BE185D; display: flex; align-items: center; gap: 14px; cursor: pointer;">
+    <div style="width: 48px; height: 48px; border-radius: 12px; background: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 2px solid #F472B6;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#BE185D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14v12H5z"/><path d="M3 8h18V5H3z"/><path d="M12 5v15"/></svg>
+    </div>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 15px; font-weight: 800; color: #BE185D;">Loja de prêmios 🎁</div>
+      <div style="font-size: 11px; font-weight: 700; color: #BE185D; margin-top: 2px;">Troca suas estrelinhas por coisas legais!</div>
+    </div>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BE185D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M9 18l6-6-6-6"/></svg>
+  </div>
+
+</div>

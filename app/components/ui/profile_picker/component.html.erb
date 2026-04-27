@@ -1,19 +1,43 @@
-<div class="w-full max-w-[480px]"
+<div class="w-full"
      data-controller="profile-picker"
      data-profile-picker-selected-id-value="<%= selected&.id %>">
 
-  <div class="grid grid-cols-2 gap-3 mb-6">
+  <div class="flex flex-wrap justify-center gap-5 mb-8 max-w-[720px] mx-auto">
     <% profiles.each do |profile| %>
+      <% palette = helpers.smiley_palette(profile.color) %>
+      <% is_selected = selected&.id == profile.id %>
       <%= link_to new_profile_session_path(profile_id: profile.id),
-                  class: "p-4 rounded-md bg-white border-2 border-hairline hover:border-primary text-center font-bold #{'border-primary' if selected&.id == profile.id}",
-                  data: { turbo_frame: "pin_modal" } do %>
-        <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-primary-soft grid place-items-center font-extrabold text-xl">
-          <%= profile.name.first %>
+                  class: "ls-profile-card relative bg-surface rounded-[20px] p-6 w-[160px] text-center no-underline border-2 #{is_selected ? 'border-[3px]' : ''}",
+                  style: "border-color: #{is_selected ? 'var(--primary)' : 'var(--hairline)'}; box-shadow: 0 4px 0 #{is_selected ? 'var(--primary-2)' : 'rgba(0,0,0,0.08)'};",
+                  data: { turbo_frame: "pin_modal", palette: profile.color } do %>
+        <% if profile.parent? %>
+          <div class="absolute top-3 right-3 w-6 h-6 rounded-full grid place-items-center" style="background: var(--c-info-100); border: 2px solid var(--c-info-500);">
+            <%= render Ui::Icon::Component.new("lock", size: 11, color: "var(--c-info-600)") %>
+          </div>
+        <% end %>
+        <div class="w-[88px] h-[88px] rounded-full mx-auto mb-3.5 grid place-items-center"
+             style="background: <%= palette[:fill] %>; box-shadow: 0 5px 0 <%= palette[:ring] %>;">
+          <%= render Ui::SmileyAvatar::Component.new(kid: profile, size: 50) %>
         </div>
-        <div><%= profile.name %></div>
-        <div class="text-xs text-muted-foreground"><%= profile.parent? ? "Pai/Mãe" : "Criança" %></div>
+        <div class="text-[17px] font-extrabold mb-1" style="color: var(--text);"><%= profile.name %></div>
+        <% if profile.parent? %>
+          <div class="inline-block text-[10px] font-extrabold uppercase tracking-[0.5px] px-2.5 py-1 rounded-[8px]"
+               style="background: var(--c-info-100); color: var(--c-info-600);">Responsável</div>
+        <% else %>
+          <div class="inline-flex items-center gap-1 text-[10px] font-extrabold uppercase tracking-[0.5px] px-2.5 py-1 rounded-[8px]"
+               style="background: <%= palette[:tile] %>; color: <%= palette[:ink] %>;">
+            <%= render Ui::Icon::Component.new("star", size: 10, color: "var(--star)") %>
+            <%= profile.points %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
+  </div>
+
+  <div class="mx-auto inline-flex items-center gap-2 px-4 py-2.5 rounded-[14px] border-2"
+       style="background: var(--surface-muted); border-color: var(--hairline);">
+    <%= render Ui::Icon::Component.new("lock", size: 14, color: "var(--text-muted)") %>
+    <span class="text-[12px] font-bold" style="color: var(--text-muted);">Cada perfil é protegido por um PIN de 4 dígitos</span>
   </div>
 
   <%= turbo_frame_tag "pin_modal" do %>

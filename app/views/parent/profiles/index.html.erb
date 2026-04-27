@@ -1,19 +1,28 @@
 <div class="screen screen-enter-right with-nav">
   <%= render Ui::BgShapes::Component.new(variant: "warm") %>
 
-  <%= render Ui::TopBar::Component.new(
-    title: "Crianças",
-    subtitle: "Gerencie as crianças da família. Adicione novas, mude cor, nome ou expressão.",
-  ) do |bar| %>
-    <% bar.with_right_slot do %>
-      <%= render Ui::Btn::Component.new(variant: "primary", url: new_parent_profile_path) do %>
-        <%= render Ui::Icon::Component.new("star", size: 16, color: "white") %> + Adicionar criança
+  <%# ─── Header ─── %>
+  <div class="flex items-start justify-between gap-4 mb-[22px] z-content shrink-0">
+    <div class="min-w-0">
+      <h1 class="text-[26px] font-extrabold leading-tight m-0 mb-1" style="color: var(--text);">
+        Crianças
+      </h1>
+      <p class="text-[14px] font-bold m-0" style="color: var(--text-muted);">
+        Gerencie as crianças da família. Adicione novas, mude cor, nome ou expressão.
+      </p>
+    </div>
+    <div class="flex items-center gap-3 shrink-0">
+      <%= link_to new_parent_profile_path,
+            class: "ls-btn-3d inline-flex items-center gap-2 px-5 py-3 rounded-[14px] text-white text-[14px] font-extrabold uppercase tracking-[0.5px] no-underline border-2",
+            style: "background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 0 var(--primary-2);" do %>
+        <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
+        Nova criança
       <% end %>
-    <% end %>
-  <% end %>
+    </div>
+  </div>
 
-  <div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-5 z-2 items-start">
-    <% if @profiles.any? %>
+  <% if @profiles.any? %>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 z-content">
       <% @profiles.each do |k| %>
         <%= render Ui::KidProgressCard::Component.new(
               kid: k,
@@ -22,19 +31,26 @@
               manage: true
             ) %>
       <% end %>
-    <% end %>
+    </div>
 
-    <%= render Ui::KidPlaceholderCard::Component.new(href: new_parent_profile_path) %>
-
-    <% if @profiles.empty? %>
-      <div class="col-[1/-1]">
-        <%= render Ui::Empty::Component.new(
-          icon: "users",
-          title: "Nenhum perfil",
-          subtitle: "Adicione sua primeira criança para começar!",
-          color: "peach"
-        ) %>
-      </div>
+    <div class="mt-4 z-content">
+      <%= link_to new_parent_profile_path,
+            class: "ls-btn-3d flex items-center justify-center gap-2 w-full py-4 rounded-[16px] text-[14px] font-extrabold uppercase tracking-[0.5px] no-underline border-2 border-dashed",
+            style: "background: var(--surface); color: var(--text-muted); border-color: var(--hairline);" do %>
+        <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
+        Adicionar outra criança
+      <% end %>
+    </div>
+  <% else %>
+    <%= render Ui::Empty::Component.new(
+      icon: "users",
+      title: "Nenhum perfil",
+      subtitle: "Adicione sua primeira criança para começar!",
+      color: "peach"
+    ) do %>
+      <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: new_parent_profile_path) do %>
+        + Nova criança
+      <% end %>
     <% end %>
-  </div>
+  <% end %>
 </div>

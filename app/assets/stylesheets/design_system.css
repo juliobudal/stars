@@ -45,7 +45,7 @@
 
 .screen::-webkit-scrollbar { width: 8px; }
 .screen::-webkit-scrollbar-thumb {
-  background: rgba(26, 42, 74, 0.12);
+  background: var(--hairline);
   border-radius: 4px;
 }
 

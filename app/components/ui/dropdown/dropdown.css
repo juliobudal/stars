@@ -8,7 +8,7 @@
     @apply bg-popover border border-border text-foreground rounded-dropdown;
   }
   .dropdown__title {
-    @apply px-4 py-1 font-semibold text-sm text-foreground;
+    @apply px-4 py-1 font-bold text-sm text-foreground;
   }
   .dropdown__item {
     @apply block mx-2;
