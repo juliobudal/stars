@@ -91,6 +91,14 @@ RSpec.describe "Parent::Profiles", type: :request do
         patch parent_profile_path(child_profile), params: { profile: { name: "Maria Clara" } }
         expect(child_profile.reload.role).to eq("child")
       end
+
+      it "updates self and redirects to settings" do
+        patch parent_profile_path(parent_profile), params: { profile: { name: "Papai", color: "mint" } }
+
+        expect(response).to redirect_to(parent_settings_path)
+        expect(parent_profile.reload.name).to eq("Papai")
+        expect(parent_profile.reload.color).to eq("mint")
+      end
     end
 
     describe "DELETE /parent/profiles/:id" do
@@ -103,6 +111,14 @@ RSpec.describe "Parent::Profiles", type: :request do
 
         expect(response).to redirect_to(parent_root_path)
         expect(Profile.exists?(child.id)).to be false
+      end
+
+      it "returns 404 when trying to destroy self" do
+        expect {
+          delete parent_profile_path(parent_profile)
+        }.not_to change(Profile, :count)
+
+        expect(response).to have_http_status(:not_found)
       end
     end
   end
