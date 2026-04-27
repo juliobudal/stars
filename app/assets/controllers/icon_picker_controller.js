@@ -30,6 +30,7 @@ export default class extends Controller {
     this.activeTab = "curated"
     this.catalogPage = 0
     this.filteredCatalog = []
+    this.renderToken = 0
     this.renderCurated()
   }
 
@@ -80,8 +81,11 @@ export default class extends Controller {
     this.activeTab = "catalog"
     this.applyTabUI()
     this.catalogPage = 0
+    const token = ++this.renderToken
     loadManifest().then(manifest => {
-      this.filteredCatalog = manifest
+      if (token !== this.renderToken) return
+      const q = this.searchInputTarget.value.trim().toLowerCase()
+      this.filteredCatalog = q.length >= 2 ? this.applyFilter(manifest, q) : manifest
       this.renderCatalogPage()
     })
   }
@@ -90,7 +94,9 @@ export default class extends Controller {
     const q = this.searchInputTarget.value.trim().toLowerCase()
     if (q.length < 2) {
       if (this.activeTab === "catalog") {
+        const token = ++this.renderToken
         loadManifest().then(manifest => {
+          if (token !== this.renderToken) return
           this.filteredCatalog = manifest
           this.catalogPage = 0
           this.renderCatalogPage()
@@ -100,14 +106,20 @@ export default class extends Controller {
     }
     this.activeTab = "catalog"
     this.applyTabUI()
+    const token = ++this.renderToken
     loadManifest().then(manifest => {
-      this.filteredCatalog = manifest.filter(entry => {
-        if (entry.name && entry.name.toLowerCase().includes(q)) return true
-        if (entry.slug && entry.slug.toLowerCase().includes(q)) return true
-        return Array.isArray(entry.tags) && entry.tags.some(t => t.toLowerCase().includes(q))
-      })
+      if (token !== this.renderToken) return
+      this.filteredCatalog = this.applyFilter(manifest, q)
       this.catalogPage = 0
       this.renderCatalogPage()
+    })
+  }
+
+  applyFilter(manifest, q) {
+    return manifest.filter(entry => {
+      if (entry.name && entry.name.toLowerCase().includes(q)) return true
+      if (entry.slug && entry.slug.toLowerCase().includes(q)) return true
+      return Array.isArray(entry.tags) && entry.tags.some(t => t.toLowerCase().includes(q))
     })
   }
 

@@ -17,7 +17,6 @@ RSpec.describe "Icon picker flow", type: :system do
 
     expect(page).to have_css("[data-icon-picker-target='searchInput']", visible: true, wait: 5)
 
-    find("[data-icon-picker-target='tabCatalog']").click
     find("[data-icon-picker-target='searchInput']").set("bed")
 
     find("[data-icon-picker-target='catalogGrid'] button[data-slug='bed-single-01']", wait: 10).click
