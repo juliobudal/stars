@@ -1,0 +1,16 @@
+.bg-shape {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.bg-shapes--blue .bg-shape--1 { background: var(--shape-blue-1); }
+.bg-shapes--blue .bg-shape--2 { background: var(--shape-blue-2); }
+.bg-shapes--blue .bg-shape--3 { background: var(--shape-blue-3); }
+
+.bg-shapes--warm .bg-shape--1 { background: var(--shape-warm-1); }
+.bg-shapes--warm .bg-shape--2 { background: var(--shape-warm-2); }
+.bg-shapes--warm .bg-shape--3 { background: var(--shape-warm-3); }
+
+.bg-shapes--cool .bg-shape--1 { background: var(--shape-cool-1); }
+.bg-shapes--cool .bg-shape--2 { background: var(--shape-cool-2); }
+.bg-shapes--cool .bg-shape--3 { background: var(--shape-cool-3); }

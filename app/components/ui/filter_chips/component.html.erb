@@ -2,9 +2,9 @@
   <div role="tablist" class="flex flex-wrap items-center gap-2 mb-5">
     <% items.each do |item|
          is_active = active?(item[:id])
-         pill_active   = "background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: 0 3px 0 var(--primary-2);"
+         pill_active   = "background: var(--primary); color: var(--surface-on-primary); border-color: var(--primary); box-shadow: 0 3px 0 var(--primary-2);"
          pill_inactive = "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 3px 0 var(--hairline);"
-         badge_active   = "background: rgba(255,255,255,0.25); color: #fff;"
+         badge_active   = "background: var(--overlay-soft); color: var(--surface-on-primary);"
          badge_inactive = "background: var(--surface-muted); color: var(--text-muted);"
     %>
       <button type="button"
