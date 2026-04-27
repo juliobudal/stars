@@ -10,7 +10,6 @@ RSpec.describe "Icon picker flow", type: :system do
   end
 
   it "lets a parent pick a mission icon from the catalog and persists the slug" do
-    skip "Icon picker catalog is JS-heavy and flaky in CI; covered by manual QA"
     visit new_parent_global_task_path
     expect(page).to have_content("Nova missão", wait: 10)
 
