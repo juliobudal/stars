@@ -1,23 +1,43 @@
-<div class="screen flex flex-col items-center p-10">
-  <div class="flex items-center gap-3 mb-6">
-    <div class="w-12 h-12 grid place-items-center rounded-[14px]" style="background: var(--star); box-shadow: 0 4px 0 var(--star-2);">
-      <%= render Ui::Icon::Component.new("star", size: 26, color: "white") %>
+<div class="screen screen-enter relative">
+  <%= render Ui::BgShapes::Component.new(variant: "cool") %>
+
+  <div class="relative z-2 flex flex-col items-center justify-center p-10 pt-12">
+    <%# Logo %>
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-12 h-12 grid place-items-center rounded-[14px]"
+           style="background: var(--star); box-shadow: 0 4px 0 var(--star-2);">
+        <%= render Ui::Icon::Component.new("star", size: 26, color: "white") %>
+      </div>
+      <div class="text-[22px] font-extrabold leading-none" style="color: var(--text);">LittleStars</div>
     </div>
-    <div class="text-[22px] font-extrabold leading-none" style="color: var(--text);">LittleStars</div>
+
+    <%# Eyebrow + headline %>
+    <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase mb-1.5"
+         style="color: var(--c-sky-dark);">Vamos começar!</div>
+    <h1 class="text-[26px] font-extrabold mb-1 text-center" style="color: var(--text);">
+      Criar família
+    </h1>
+    <p class="mb-6 text-[14px] font-bold text-center" style="color: var(--text-muted);">
+      Junta a turma e bora colecionar estrelinhas!
+    </p>
+
+    <% if flash[:alert] %>
+      <p class="text-destructive mb-4 font-bold"><%= flash[:alert] %></p>
+    <% end %>
+
+    <%# Form anchored in card %>
+    <div class="ls-card-3d w-full max-w-[360px]"
+         style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-card);">
+      <%= form_with model: @family, url: registration_path, local: true,
+                    class: "flex flex-col gap-3" do |f| %>
+        <%= f.text_field :name, placeholder: "Nome da família", required: true,
+            class: "w-full px-4 py-3 rounded-[14px] border-2 border-hairline bg-white text-[15px] font-bold focus:outline-none focus:border-primary" %>
+        <%= f.email_field :email, placeholder: "Email", required: true,
+            class: "w-full px-4 py-3 rounded-[14px] border-2 border-hairline bg-white text-[15px] font-bold focus:outline-none focus:border-primary" %>
+        <%= f.password_field :password, placeholder: "Senha (mín. 12 caracteres)", required: true,
+            class: "w-full px-4 py-3 rounded-[14px] border-2 border-hairline bg-white text-[15px] font-bold focus:outline-none focus:border-primary" %>
+        <%= render Ui::Btn::Component.new(variant: "primary", size: "md", type: "submit") do %>Criar<% end %>
+      <% end %>
+    </div>
   </div>
-
-  <h1 class="text-[26px] font-extrabold mb-6" style="color: var(--text);">Criar família</h1>
-
-  <% if flash[:alert] %><p class="text-destructive mb-4 font-bold"><%= flash[:alert] %></p><% end %>
-
-  <%= form_with model: @family, url: registration_path, local: true,
-                class: "flex flex-col gap-3 max-w-[320px] w-full" do |f| %>
-    <%= f.text_field :name, placeholder: "Nome da família", required: true,
-        class: "w-full px-4 py-3 rounded-[14px] border-2 border-hairline bg-white text-[15px] font-bold focus:outline-none focus:border-primary" %>
-    <%= f.email_field :email, placeholder: "Email", required: true,
-        class: "w-full px-4 py-3 rounded-[14px] border-2 border-hairline bg-white text-[15px] font-bold focus:outline-none focus:border-primary" %>
-    <%= f.password_field :password, placeholder: "Senha (mín. 12 caracteres)", required: true,
-        class: "w-full px-4 py-3 rounded-[14px] border-2 border-hairline bg-white text-[15px] font-bold focus:outline-none focus:border-primary" %>
-    <%= render Ui::Btn::Component.new(variant: "primary", size: "md", type: "submit") do %>Criar<% end %>
-  <% end %>
 </div>
