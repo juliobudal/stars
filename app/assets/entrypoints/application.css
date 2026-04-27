@@ -24,6 +24,7 @@
 
 
 /* UI Component CSS */
+@import "../../components/ui/bg_shapes/component.css";
 @import "../../components/ui/pin_modal/component.css";
 @import "../../components/ui/profile_picker/component.css";
 
