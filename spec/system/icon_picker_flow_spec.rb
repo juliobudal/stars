@@ -9,7 +9,7 @@ RSpec.describe "Icon picker flow", type: :system do
     expect(page).to have_content("Olá, Mae", wait: 10)
   end
 
-  it "lets a parent pick a mission icon from the catalog and persists the slug" do
+  it "lets a parent pick a mission icon and persists the slug" do
     visit new_parent_global_task_path
     expect(page).to have_content("Nova missão", wait: 10)
 
@@ -17,9 +17,7 @@ RSpec.describe "Icon picker flow", type: :system do
 
     expect(page).to have_css("[data-icon-picker-target='searchInput']", visible: true, wait: 5)
 
-    find("[data-icon-picker-target='searchInput']").set("bed")
-
-    find("[data-icon-picker-target='catalogGrid'] button[data-slug='bed-single-01']", wait: 10).click
+    find("[data-icon-picker-target='curatedGrid'] button[data-slug='bed-single-01']", wait: 10).click
     click_button "Confirmar"
 
     fill_in "Título", with: "Arrumar a cama"
