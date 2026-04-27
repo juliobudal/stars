@@ -7,7 +7,7 @@
         html: { class: "space-y-4" } do |f| %>
     <% if flash[:alert].present? %>
       <div class="rounded-[12px] border-2 px-4 py-3 text-[13px] font-bold"
-           style="background: var(--danger-soft, #FFE9E9); color: var(--c-red-dark, #B91C1C); border-color: var(--c-red-dark, #B91C1C);">
+           style="background: var(--danger-soft); color: var(--c-red-dark); border-color: var(--c-red-dark);">
         <%= flash[:alert] %>
       </div>
     <% end %>
