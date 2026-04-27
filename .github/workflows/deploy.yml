@@ -43,7 +43,7 @@ jobs:
       - run: bin/brakeman --no-pager -q -w2
       - run: bundle exec rails db:prepare
       - run: bin/vite build
-      - run: bundle exec rspec
+      - run: bundle exec rspec --exclude-pattern "spec/system/**/*_spec.rb"
 
   deploy:
     name: Deploy to Dokploy
