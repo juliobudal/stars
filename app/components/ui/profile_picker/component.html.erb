@@ -34,12 +34,6 @@
     <% end %>
   </div>
 
-  <div class="mx-auto inline-flex items-center gap-2 px-4 py-2.5 rounded-[14px] border-2"
-       style="background: var(--surface-muted); border-color: var(--hairline);">
-    <%= render Ui::Icon::Component.new("lock", size: 14, color: "var(--text-muted)") %>
-    <span class="text-[12px] font-bold" style="color: var(--text-muted);">Cada perfil é protegido por um PIN de 4 dígitos</span>
-  </div>
-
   <%= turbo_frame_tag "pin_modal" do %>
     <% if selected %>
       <%= render Ui::PinModal::Component.new(profile: selected) %>
