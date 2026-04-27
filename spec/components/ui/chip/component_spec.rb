@@ -32,7 +32,7 @@ RSpec.describe Ui::Chip::Component, type: :component do
     it "applies md size classes by default" do
       render_inline(described_class.new) { "x" }
       html = page.native.to_html
-      expect(html).to include("font-semibold")
+      expect(html).to include("font-bold")
       expect(html).to include("px-3")
     end
   end

@@ -6,7 +6,7 @@ RSpec.describe Ui::StatCard::Component, type: :component do
 
   it "renders value and label" do
     render_inline(described_class.new(value: 42, label: "Estrelas", icon: "star", tint: "star"))
-    expect(page).to have_css(".bg-surface")
+    expect(page).to have_css('div[style*="var(--star-soft)"]')
     expect(page).to have_text("42")
     expect(page).to have_text("Estrelas")
   end

@@ -15,7 +15,7 @@ RSpec.describe Ui::KidProgressCard::Component, type: :component do
 
   it "shows awaiting badge when count > 0" do
     render_inline(described_class.new(kid: kid, awaiting_count: 2, missions_count: 0))
-    expect(page).to have_text("2 aguardando aprovação")
+    expect(page).to have_text("2 pendentes")
   end
 
   it "hides awaiting badge at 0" do

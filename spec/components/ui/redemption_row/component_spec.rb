@@ -19,7 +19,7 @@ RSpec.describe Ui::RedemptionRow::Component, type: :component do
   it "renders pending as Disponível" do
     render_inline(described_class.new(redemption: build_redemption(:pending)))
     expect(page).to have_text("Sorvete")
-    expect(page).to have_text(/−10\b/)
+    expect(page).to have_text(:all, /−10\b/)
     expect(page).to have_text("Disponível")
   end
 

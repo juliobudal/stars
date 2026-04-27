@@ -24,9 +24,9 @@ RSpec.describe "Icon picker flow", type: :system do
     click_button "Confirmar"
 
     fill_in "Título", with: "Arrumar a cama"
-    fill_in "Estrelinhas", with: "5"
+    find("button[aria-label='5 estrelinhas']").click
     select "Diária", from: "Frequência"
-    click_on "Salvar Missão"
+    click_on "Salvar missão"
 
     expect(page).to have_content("Tarefa criada com sucesso.", wait: 10)
     expect(GlobalTask.last.icon).to eq("bed-single-01")

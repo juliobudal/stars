@@ -28,7 +28,7 @@ RSpec.describe "Activity Log e Saldo", type: :system do
       sign_in_as_child(child)
       visit kid_rewards_path
       expect(page).to have_content("Sorvete Duplo", wait: 10)
-      open_modal_and_click("modal_reward_#{reward.id}", "Resgatar!")
+      open_modal_and_click("modal_reward_#{reward.id}", "Sim, quero!")
       expect(page).to have_content("Resgate solicitado!", wait: 10)
 
       # 4. Pai aprova o resgate (revela painel via JS pois tabs_controller não controla painéis irmãos)
@@ -70,11 +70,22 @@ RSpec.describe "Activity Log e Saldo", type: :system do
       visit kid_rewards_path
       expect(page).to have_content("Videogame", wait: 10)
 
-      # Tenta resgatar via modal — o kid rewards controller faz redirect com :alert
-      open_modal_and_click("modal_reward_#{reward.id}", "Resgatar!")
+      # A UI desabilita o botão quando saldo insuficiente; testa a proteção backend
+      # submetendo um form HTML diretamente (sem Turbo), recebe redirect + flash
+      page.execute_script(<<~JS)
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '#{redeem_kid_reward_path(reward)}';
+        form.style.display = 'none';
+        var csrf = document.createElement('input');
+        csrf.type = 'hidden';
+        csrf.name = 'authenticity_token';
+        csrf.value = document.head.querySelector('[name=csrf-token]').content;
+        form.appendChild(csrf);
+        document.body.appendChild(form);
+        form.submit();
+      JS
 
-      # open_modal_and_click dispara via Turbo (button_to envia turbo_stream);
-      # o controller responde com turbo_stream.update(:flash, "Saldo insuficiente.")
       expect(page).to have_content("Saldo insuficiente.", wait: 10)
 
       # Saldo e contagem de resgates permanecem inalterados

@@ -21,7 +21,7 @@ RSpec.describe "Full Mission Flow", type: :system do
     sign_in_as_parent(parent_profile)
 
     expect(page).to have_content("Olá, Papai")
-    click_on "Ver aprovações →"
+    visit parent_approvals_path
 
     expect(page).to have_content("Arrumar Quarto")
     click_on "Aprovar"

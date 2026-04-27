@@ -10,36 +10,36 @@ RSpec.describe "Parent Flow", type: :system do
   end
 
   it "permite gerenciar a família (perfis, tarefas e recompensas)" do
-    # 1. Criar Filho — form labels: "Nome", submit "Salvar Perfil", page title "Novo perfil"
+    # 1. Criar Filho
     visit new_parent_profile_path
 
     expect(page).to have_content("Novo perfil", wait: 10)
-    fill_in "Nome", with: "Zezinho"
+    fill_in "Nome da criança", with: "Zezinho"
     fill_in "PIN (4 dígitos)", with: "1234"
-    click_on "Salvar Perfil"
+    click_on "Salvar perfil"
 
     expect(page).to have_content("Perfil criado.", wait: 10)
     expect(page).to have_content("Zezinho")
 
-    # 2. Criar Tarefa Global — labels: "Título", "Estrelinhas", "Frequência" (select), submit "Salvar Missão"
+    # 2. Criar Tarefa Global — points via star-picker (1–10), submit "Salvar missão"
     visit new_parent_global_task_path
 
     expect(page).to have_content("Nova missão", wait: 10)
     fill_in "Título", with: "Arrumar a cama"
-    fill_in "Estrelinhas", with: "50"
+    find("button[aria-label='5 estrelinhas']").click
     select "Diária", from: "Frequência"
-    click_on "Salvar Missão"
+    click_on "Salvar missão"
 
     expect(page).to have_content("Tarefa criada com sucesso.", wait: 10)
     expect(GlobalTask.exists?(title: "Arrumar a cama")).to be(true)
 
-    # 3. Criar Recompensa — labels: "Nome da Recompensa", "Custo (⭐)", submit "Salvar Recompensa"
+    # 3. Criar Recompensa — labels: "Nome do prêmio", cost field, submit "Salvar prêmio"
     visit new_parent_reward_path
 
     expect(page).to have_content("Nova recompensa", wait: 10)
-    fill_in "Nome da Recompensa", with: "Video Game 30min"
-    fill_in "Custo", with: "100"
-    click_on "Salvar Recompensa"
+    fill_in "Nome do prêmio", with: "Video Game 30min"
+    fill_in "Quantas estrelinhas custa?", with: "100"
+    click_on "Salvar prêmio"
 
     expect(page).to have_content("Recompensa criada com sucesso!", wait: 10)
     expect(page).to have_content("Video Game 30min")

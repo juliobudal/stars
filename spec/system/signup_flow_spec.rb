@@ -11,9 +11,9 @@ RSpec.describe "Family signup flow", type: :system do
 
     expect(page).to have_current_path(new_parent_profile_path(onboarding: true))
 
-    fill_in "Nome", with: "Mamãe Silva"
+    fill_in "Seu nome", with: "Mamãe Silva"
     fill_in "PIN (4 dígitos)", with: "5555"
-    click_on "Salvar Perfil"
+    click_on "Salvar perfil"
 
     expect(page).to have_current_path(parent_root_path)
     expect(Family.find_by(email: "silva@example.com")).to be_present

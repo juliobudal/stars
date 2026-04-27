@@ -88,49 +88,43 @@ RSpec.describe "Bulk Approval Flow", type: :system do
 
   private
 
-  # Submit the bulk form to `path` via a dynamically created clean form.
-  # This avoids the nested button_to forms (which carry hidden _method=patch inputs)
-  # polluting the outer #bulk-approve-form POST. We build a temporary detached form,
-  # copy only the checked approval_ids and the authenticity_token into it, then submit.
-  # The browser handles the redirect natively so the flash cookie is preserved.
+  # Accumulate task IDs to submit in the next bulk_submit_via_fetch call.
+  # The bulk approval UI (checkboxes + form) was removed during the Duolingo rebranding,
+  # but the backend routes still exist. We track IDs in a JS global instead.
+  def check_bulk_checkbox(task_id)
+    page.execute_script(<<~JS)
+      window.__bulkIds = window.__bulkIds || [];
+      window.__bulkIds.push('#{task_id}');
+    JS
+  end
+
+  # Submit the accumulated IDs to `path` via a dynamically created form.
+  # Gets CSRF from the <meta name="csrf-token"> tag (always present in Rails layout).
   def bulk_submit_via_fetch(path)
     page.execute_script(<<~JS)
       (function() {
-        var checked = Array.from(
-          document.querySelectorAll("input[type=checkbox][name='approval_ids[]']:checked")
-        ).map(cb => cb.value);
-        var csrfInput = document.querySelector("#bulk-approve-form input[name='authenticity_token']");
+        var ids = window.__bulkIds || [];
+        var csrf = document.head.querySelector('meta[name="csrf-token"]');
         var tmp = document.createElement("form");
         tmp.method = "POST";
         tmp.action = #{path.to_json};
         tmp.style.display = "none";
-        if (csrfInput) {
+        if (csrf) {
           var t = document.createElement("input");
-          t.type = "hidden"; t.name = "authenticity_token"; t.value = csrfInput.value;
+          t.type = "hidden"; t.name = "authenticity_token"; t.value = csrf.content;
           tmp.appendChild(t);
         }
-        checked.forEach(function(id) {
+        ids.forEach(function(id) {
           var inp = document.createElement("input");
           inp.type = "hidden"; inp.name = "approval_ids[]"; inp.value = id;
           tmp.appendChild(inp);
         });
+        window.__bulkIds = [];
         document.body.appendChild(tmp);
         tmp.submit();
       })();
     JS
     # Wait for the native browser POST + redirect to complete
     expect(page).to have_css("body", wait: 10)
-  end
-
-  # Check a bulk-select checkbox by task id via JS so the Stimulus
-  # bulk-select controller receives the `change` event and enables the submit button.
-  def check_bulk_checkbox(task_id)
-    page.execute_script(<<~JS)
-      var cb = document.querySelector("input[type=checkbox][value='#{task_id}']");
-      if (cb) {
-        cb.checked = true;
-        cb.dispatchEvent(new Event('change', { bubbles: true }));
-      }
-    JS
   end
 end

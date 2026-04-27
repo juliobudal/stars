@@ -18,13 +18,13 @@ RSpec.describe Ui::HistoryRow::Component, type: :component do
   it "renders earn row with plus sign and Conquista label" do
     render_inline(described_class.new(log: build_log("earn", points: 7)))
     expect(page).to have_text("Missão")
-    expect(page).to have_text(/\+7\b/)
+    expect(page).to have_text(:all, /\+7\b/)
     expect(page).to have_text("Conquista")
   end
 
   it "renders redeem row with minus sign and Compra label" do
     render_inline(described_class.new(log: build_log("redeem", points: 3)))
-    expect(page).to have_text(/−3\b/)
+    expect(page).to have_text(:all, /−3\b/)
     expect(page).to have_text("Compra")
   end
 

@@ -14,7 +14,7 @@ RSpec.describe "Reward Rejection Flow", type: :system do
     expect(page).to have_content("Sorvete")
 
     # RedeemService desconta pontos imediatamente (500 - 300 = 200)
-    open_modal_and_click("modal_reward_#{reward.id}", "Resgatar!")
+    open_modal_and_click("modal_reward_#{reward.id}", "Sim, quero!")
 
     expect(page).to have_content("Resgate solicitado!")
 

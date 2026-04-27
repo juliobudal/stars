@@ -14,7 +14,7 @@ RSpec.describe "Reward Redemption Flow", type: :system do
     expect(page).to have_content("Sorvete")
 
     # Open modal and click submit via JS (modal starts display:none; Capybara visibility checks fail on hidden ancestors)
-    open_modal_and_click("modal_reward_#{reward.id}", "Resgatar!")
+    open_modal_and_click("modal_reward_#{reward.id}", "Sim, quero!")
 
     expect(page).to have_content("Resgate solicitado!")
 

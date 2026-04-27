@@ -12,8 +12,8 @@ RSpec.describe "Kid::Wallet week_start", type: :request do
       family = create(:family, week_start: 0)
       child  = create(:profile, :child, family: family)
 
-      # Find the most recent Sunday
-      sunday = Date.current.beginning_of_week(:sunday)
+      # Use a Sunday at least 2 days in the past to avoid "Hoje"/"Ontem" labels
+      sunday = 2.weeks.ago.to_date.beginning_of_week(:sunday)
 
       create(:activity_log, :earn, profile: child, points: 5, title: "Tarefa Dom",
              created_at: sunday.to_time.in_time_zone + 10.hours)
