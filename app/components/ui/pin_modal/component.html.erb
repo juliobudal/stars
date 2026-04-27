@@ -1,7 +1,7 @@
 <div class="pin-modal-overlay" data-controller="pin-pad" data-pin-pad-target="overlay" data-action="click->pin-pad#closeOnOverlay" data-palette="<%= helpers.palette_for(profile) %>">
 <div class="pin-card" data-pin-pad-target="card">
-  <button type="button" aria-label="Fechar" class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-[10px] border-2 cursor-pointer" style="background: var(--surface); border-color: var(--hairline); box-shadow: 0 2px 0 var(--hairline);" data-action="click->pin-pad#close">
-    <%= render Ui::Icon::Component.new("cancel", size: 14, color: "var(--text-muted)") %>
+  <button type="button" aria-label="Fechar" class="absolute top-3 right-3 w-9 h-9 grid place-items-center rounded-[12px] border-2 cursor-pointer" style="background: var(--surface); border-color: var(--hairline); box-shadow: 0 2px 0 var(--hairline); color: var(--text-muted);" data-action="click->pin-pad#close">
+    <%= render Ui::Icon::Component.new("close", size: 16, color: "currentColor") %>
   </button>
   <div class="pin-avatar" style="background: var(--primary);">
     <%= render Ui::SmileyAvatar::Component.new(kid: profile, size: 42) %>

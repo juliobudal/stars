@@ -27,34 +27,35 @@
     </div>
   </div>
 
-  <%# ── Yellow balance hero ── %>
-  <div class="ls-card-3d flex items-center justify-between gap-3.5 mb-4 z-2 shrink-0"
-       style="background: linear-gradient(135deg, var(--star) 0%, var(--c-coral) 100%); border: 2px solid var(--star-2); border-radius: 18px; padding: 16px 20px; box-shadow: 0 5px 0 var(--c-amber-dark);">
-    <div class="flex items-center gap-3.5 min-w-0">
-      <div class="ls-coin-shake grid place-items-center shrink-0"
-           style="width: 60px; height: 60px; background: var(--surface); border-radius: 50%; box-shadow: 0 3px 0 rgba(0,0,0,0.15);">
-        <%= render Ui::Icon::Component.new(:star, size: 38, color: "var(--star)") %>
+  <%# ── Balance hero (clean) ── %>
+  <div class="flex items-center justify-between gap-3 mb-4 z-2 shrink-0"
+       style="background: var(--surface); border: 2px solid var(--star); border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 0 var(--star-2);">
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="grid place-items-center shrink-0"
+           style="width: 44px; height: 44px; background: var(--star-soft); border-radius: 12px; border: 2px solid var(--star);">
+        <%= render Ui::Icon::Component.new(:star, size: 24, color: "var(--star)") %>
       </div>
       <div class="min-w-0">
-        <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase" style="color: var(--c-amber-dark);">Você tem</div>
-        <div class="flex items-baseline gap-1.5">
+        <div class="font-display text-[10px] font-extrabold tracking-[0.8px] uppercase" style="color: var(--text-muted);">Saldo</div>
+        <div class="flex items-baseline gap-1">
           <span id="profile_points_<%= current_profile.id %>"
                 data-controller="count-up"
                 data-count-up-current-value="<%= balance %>"
-                class="font-display text-[36px] font-extrabold leading-none text-white"
-                style="text-shadow: 0 2px 0 var(--c-amber-dark);">
+                class="font-display text-[26px] font-extrabold leading-none"
+                style="color: var(--c-amber-dark);">
             <span data-count-up-target="display"><%= balance %></span>
           </span>
-          <span class="font-display text-[14px] font-extrabold text-white">estrelinhas</span>
+          <span class="font-display text-[12px] font-extrabold" style="color: var(--text-muted);">estrelinhas</span>
         </div>
       </div>
     </div>
 
     <%= link_to kid_wallet_index_path,
-                class: "text-right pr-1 no-underline shrink-0",
+                class: "inline-flex items-center gap-1.5 no-underline shrink-0",
+                style: "background: var(--surface); border: 2px solid var(--hairline); border-radius: 10px; padding: 6px 10px; box-shadow: 0 2px 0 var(--hairline); color: var(--text-muted);",
                 aria: { label: "Histórico" } do %>
-      <div class="font-display text-[10px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--c-amber-dark);">Histórico</div>
-      <%= render Ui::Icon::Component.new("clock", size: 22, color: "white", class: "mt-1") %>
+      <%= render Ui::Icon::Component.new("clock", size: 14, color: "currentColor") %>
+      <span class="font-display text-[10px] font-extrabold tracking-[0.5px] uppercase">Histórico</span>
     <% end %>
   </div>
 
