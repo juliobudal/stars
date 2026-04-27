@@ -7,6 +7,8 @@
   --surface: #ffffff;
   --surface-2: #F7F7F7;
   --surface-ink: #4B4B4B;
+  --surface-on-primary: #FFFFFF;
+  --overlay-soft: rgba(255, 255, 255, 0.25);
 
   /* Primary — Duolingo green */
   --primary: #58CC02;
@@ -18,6 +20,7 @@
   --star: #FFC800;
   --star-2: #E0A800;
   --star-soft: #FFF4DA;
+  --star-stroke: var(--c-amber-dark);
 
   /* Hairline */
   --hairline: #E5E5E5;
@@ -84,15 +87,17 @@
   --font-display: 'Nunito', system-ui, sans-serif;
   --font-body: 'Nunito', system-ui, sans-serif;
 
+  /* BgShapes palettes — values mirror the legacy hex arrays in
+     app/components/ui/bg_shapes/component.rb */
+  --shape-blue-1: #c7ddff;
+  --shape-blue-2: #ffd6e6;
+  --shape-blue-3: #c2f0dd;
   --shape-warm-1: #ffe0b3;
   --shape-warm-2: #ffcad4;
   --shape-warm-3: #e0ccff;
   --shape-cool-1: #c2e7ff;
   --shape-cool-2: #dccfff;
   --shape-cool-3: #c2f0dd;
-  --shape-blue-1: #c7ddff;
-  --shape-blue-2: #ffd6e6;
-  --shape-blue-3: #c2f0dd;
 
   --space-1: 4px;
   --space-2: 8px;
@@ -198,7 +203,6 @@
 
 @theme {
   --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  --font-serif: ui-serif, georgia, cambria, 'Times New Roman', times, serif;
 
   /* Canonical type scale (see .planning/ui-reviews/ui-review-pixel-perfect.md:136-143) */
   --text-xs: 11px;     /* label / caption */
