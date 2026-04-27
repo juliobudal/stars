@@ -64,13 +64,17 @@
 
   <%# Footer: profile + switch profile %>
   <div class="px-[14px] pb-5 pt-3">
-    <div class="flex items-center gap-2.5 p-3 rounded-[14px] border-2" style="background: var(--surface-muted); border-color: var(--hairline);">
+    <%= link_to edit_parent_profile_path(current_profile),
+          class: "flex items-center gap-2.5 p-3 rounded-[14px] border-2 no-underline hover:scale-[1.01] transition-transform",
+          style: "background: var(--surface-muted); border-color: var(--hairline);",
+          aria: { label: "Editar meu perfil" } do %>
       <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 34) %>
       <div class="flex-1 min-w-0">
         <div class="text-[13px] font-extrabold overflow-hidden text-ellipsis whitespace-nowrap" style="color: var(--text);"><%= current_profile.name %></div>
-        <div class="text-[11px] font-bold" style="color: var(--text-soft);">Responsável</div>
+        <div class="text-[11px] font-bold" style="color: var(--text-soft);">Responsável · Editar</div>
       </div>
-    </div>
+      <%= render Ui::Icon::Component.new("edit", size: 14, color: "var(--text-soft)") %>
+    <% end %>
     <div data-controller="switch-profile" class="mt-2">
       <%= form_with url: profile_session_path, method: :delete, local: true,
                     data: { switch_profile_target: "form" } do %>

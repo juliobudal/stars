@@ -15,6 +15,18 @@
     color_options = %w[peach rose mint sky lilac coral]
     current_color = profile.color.presence || color_options.first
     current_avatar = profile.avatar.presence || (profile.parent? ? "user-circle" : "happy-01")
+    is_parent = profile.parent?
+    name_label   = is_parent ? "Seu nome" : "Nome da criança"
+    name_hint    = is_parent ? "Como a família vai te chamar." : "Use um nome curto e carinhoso."
+    avatar_label = is_parent ? "Escolha um avatar" : "Escolha um rostinho"
+    pin_hint     = is_parent ? "Use esse PIN para entrar como responsável." : "A criança digita esse PIN para entrar."
+    cancel_path  = if params[:onboarding].present?
+                     parent_root_path
+                   elsif is_parent
+                     parent_settings_path
+                   else
+                     parent_profiles_path
+                   end
   %>
 
   <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 items-start">
@@ -23,7 +35,7 @@
       <%# ─── Nome ─── %>
       <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
                style="box-shadow: var(--shadow-card);">
-        <%= f.label :name, "Nome da criança",
+        <%= f.label :name, name_label,
               class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-2.5",
               style: "color: var(--text-muted);" %>
         <%= f.text_field :name,
@@ -31,14 +43,14 @@
               style: "color: var(--text);",
               placeholder: "Ex: Lila",
               data: { form_preview_field: "name" } %>
-        <div class="text-[11px] font-bold mt-2" style="color: var(--text-muted);">Use um nome curto e carinhoso.</div>
+        <div class="text-[11px] font-bold mt-2" style="color: var(--text-muted);"><%= name_hint %></div>
       </section>
 
       <%# ─── Avatar ─── %>
       <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
                style="box-shadow: var(--shadow-card);">
         <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3"
-               style="color: var(--text-muted);">Escolha um rostinho</label>
+               style="color: var(--text-muted);"><%= avatar_label %></label>
         <%= render Ui::IconPicker::Component.new(
               field_name: "profile[avatar]",
               value: current_avatar,
@@ -81,7 +93,7 @@
               placeholder: "••••",
               class: "w-[140px] px-4 py-3.5 bg-white border-2 border-hairline rounded-[14px] font-extrabold text-[18px] tracking-[8px] text-center focus:outline-none transition-all",
               style: "color: var(--text);" %>
-        <div class="text-[11px] font-bold mt-2" style="color: var(--text-muted);">A criança digita esse PIN para entrar.</div>
+        <div class="text-[11px] font-bold mt-2" style="color: var(--text-muted);"><%= pin_hint %></div>
       </section>
 
       <% if params[:onboarding].present? %>
@@ -93,7 +105,7 @@
 
       <%# ─── Save bar ─── %>
       <div class="flex items-center justify-end gap-2.5 pt-2 pb-1">
-        <%= link_to (params[:onboarding].present? ? parent_root_path : parent_profiles_path),
+        <%= link_to cancel_path,
               class: "ls-btn-3d inline-flex items-center px-5 py-3 rounded-[14px] text-[13px] font-extrabold uppercase tracking-[0.5px] no-underline border-2",
               style: "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 4px 0 var(--hairline);" do %>
           Voltar
@@ -106,7 +118,7 @@
         </button>
       </div>
 
-      <% unless profile.new_record? %>
+      <% unless profile.new_record? || profile.parent? %>
         <% confirm_msg = profile.parent? ? "Remover este responsável? Esta ação é permanente." : "Remover #{profile.name}? Todas as missões e histórico serão perdidos." %>
         <div class="mt-2 pt-5 border-t-2 border-hairline">
           <%= button_to parent_profile_path(profile), method: :delete,

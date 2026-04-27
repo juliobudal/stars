@@ -5,7 +5,8 @@ class Parent::ProfilesController < ApplicationController
 
   before_action :require_parent!, except: [ :new, :create ]
   before_action :require_parent_unless_onboarding!, only: [ :new, :create ]
-  before_action :set_profile, only: [ :edit, :update, :destroy ]
+  before_action :set_profile, only: [ :edit, :update ]
+  before_action :set_child_profile, only: [ :destroy ]
 
   layout "parent"
 
@@ -42,7 +43,11 @@ class Parent::ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
-      redirect_to parent_root_path, notice: "Filho atualizado com sucesso!"
+      if @profile.parent?
+        redirect_to parent_settings_path, notice: "Perfil atualizado."
+      else
+        redirect_to parent_root_path, notice: "Filho atualizado com sucesso!"
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -71,6 +76,13 @@ class Parent::ProfilesController < ApplicationController
   end
 
   def set_profile
+    scope = current_family.profiles.where(role: :child).or(
+      current_family.profiles.where(id: current_profile.id)
+    )
+    @profile = scope.find(params[:id])
+  end
+
+  def set_child_profile
     @profile = current_family.profiles.child.find(params[:id])
   end
 

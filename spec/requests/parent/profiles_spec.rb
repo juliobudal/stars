@@ -66,7 +66,12 @@ RSpec.describe "Parent::Profiles", type: :request do
         expect(response).to have_http_status(:success)
       end
 
-      it "returns 404 if trying to edit a parent profile" do
+      it "renders the edit form when editing self" do
+        get edit_parent_profile_path(parent_profile)
+        expect(response).to have_http_status(:success)
+      end
+
+      it "returns 404 when trying to edit another parent" do
         parent2 = create(:profile, :parent, family: family)
         get edit_parent_profile_path(parent2)
         expect(response).to have_http_status(:not_found)
