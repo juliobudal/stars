@@ -50,7 +50,7 @@
     <% items.each do |item| %>
       <% active = current_page?(item[:path]) %>
       <%= link_to item[:path],
-          class: "flex items-center gap-3 px-3 py-2.5 rounded-[14px] transition-colors font-extrabold text-[14px] border-2 #{active ? 'bg-info-100 text-info-600 border-info-500' : 'text-muted-foreground border-transparent hover:bg-muted hover:text-foreground'}",
+          class: "flex items-center gap-3 px-3 py-2.5 rounded-[14px] transition-colors font-extrabold text-[14px] border-2 #{active ? 'bg-accent text-accent-foreground border-primary' : 'text-muted-foreground border-transparent hover:bg-muted hover:text-foreground'}",
           title: item[:label],
           aria: { current: active ? "page" : nil } do %>
         <%= render Ui::Icon::Component.new(item[:icon], size: 18, color: "currentColor") %>
@@ -108,7 +108,7 @@
   <% mobile_nav_items.each do |item| %>
     <% active = current_page?(item[:path]) %>
     <%= link_to item[:path], class: "flex flex-col items-center justify-center gap-1 flex-1 py-2 relative", title: item[:label] do %>
-      <span class="flex flex-col items-center gap-1 px-3 py-1 rounded-[12px] border-2 transition-colors #{active ? 'bg-info-100 text-info-600 border-info-500' : 'text-muted-foreground border-transparent'}">
+      <span class="flex flex-col items-center gap-1 px-3 py-1 rounded-[12px] border-2 transition-colors #{active ? 'bg-accent text-accent-foreground border-primary' : 'text-muted-foreground border-transparent'}">
         <%= render Ui::Icon::Component.new(item[:icon], size: 22, color: "currentColor") %>
         <span class="text-[10px] font-extrabold tracking-[0.5px] uppercase"><%= item[:label] %></span>
       </span>
