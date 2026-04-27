@@ -56,7 +56,7 @@ module Tasks
 
     def activity_log_title
       base = "Missão Concluída: #{@profile_task.title}"
-      parts = [base]
+      parts = [ base ]
       parts << "[Sugerida pela criança]" if @profile_task.custom?
       parts << "💬 #{@profile_task.submission_comment}" if @profile_task.submission_comment.present?
       parts.join(" ")
