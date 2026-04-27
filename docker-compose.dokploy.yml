@@ -21,7 +21,10 @@ services:
       - RAILS_LOG_TO_STDOUT=true
       - RAILS_SERVE_STATIC_FILES=true
       - SOLID_QUEUE_IN_PUMA=true
-      - DATABASE_URL=postgresql://postgres:${PROD_POSTGRES_PASSWORD}@littlestars-db:5432/littlestars_production
+      - DATABASE_HOST=littlestars-db
+      - DATABASE_PORT=5432
+      - DATABASE_USER=postgres
+      - PROD_POSTGRES_PASSWORD=${PROD_POSTGRES_PASSWORD}
       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
       - APP_HOST=${DOMAIN_LITTLESTARS:-stars.iacomcafe.com}
       - SMTP_ADDRESS=${SMTP_ADDRESS}
@@ -71,6 +74,7 @@ services:
       - POSTGRES_DB=littlestars_production
     volumes:
       - littlestars-db-data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
     networks:
       - dokploy-network
     labels:

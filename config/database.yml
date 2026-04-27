@@ -19,8 +19,8 @@ production:
   primary: &primary_production
     <<: *default
     database: littlestars_production
-    username: littlestars
-    password: <%= ENV["APP_DATABASE_PASSWORD"] %>
+    username: <%= ENV.fetch("DATABASE_USER") { "postgres" } %>
+    password: <%= ENV["APP_DATABASE_PASSWORD"] || ENV["PROD_POSTGRES_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: littlestars_production_cache
