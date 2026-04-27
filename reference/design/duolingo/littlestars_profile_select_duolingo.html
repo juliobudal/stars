@@ -1,0 +1,88 @@
+<h2 class="sr-only">LittleStars profile selection screen redesigned in Duolingo style with character avatars, role badges, and visual identity per family member.</h2>
+
+<style>
+.ls-btn-3d { transition: transform 0.05s; }
+.ls-btn-3d:active { transform: translateY(2px); box-shadow: none !important; }
+.ls-profile-card { transition: transform 0.15s; cursor: pointer; }
+.ls-profile-card:hover { transform: translateY(-4px); }
+@media (prefers-reduced-motion: reduce) {
+  .ls-btn-3d, .ls-profile-card { transition: none; }
+}
+</style>
+
+<div style="background: #FFFFFF; border-radius: 16px; border: 2px solid #E5E5E5; padding: 40px 24px; font-family: 'Nunito', system-ui, sans-serif; font-weight: 700; min-height: 720px; display: flex; flex-direction: column; align-items: center;">
+
+  <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+    <div style="width: 48px; height: 48px; background: #FFC800; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #E0A800;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+    </div>
+    <div>
+      <div style="font-size: 22px; font-weight: 800; color: #4B4B4B; line-height: 1;">LittleStars</div>
+    </div>
+  </div>
+
+  <h1 style="margin: 24px 0 6px; font-size: 28px; font-weight: 800; color: #4B4B4B; text-align: center;">Quem é você?</h1>
+  <p style="margin: 0 0 36px; font-size: 14px; color: #777; font-weight: 700; text-align: center;">Toque no seu rostinho pra entrar</p>
+
+  <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 720px;">
+
+    <div class="ls-profile-card" style="background: white; border: 2px solid #E5E5E5; border-radius: 20px; padding: 24px 20px; width: 160px; text-align: center; box-shadow: 0 4px 0 rgba(0,0,0,0.08); position: relative;">
+      <div style="position: absolute; top: 12px; right: 12px; width: 24px; height: 24px; background: #DDF4FF; border: 2px solid #84D8FF; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#1899D6" stroke-width="3" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      </div>
+      <div style="width: 88px; height: 88px; border-radius: 50%; background: #1CB0F6; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 0 #1899D6;">
+        <svg width="50" height="50" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="white"/><circle cx="9" cy="10" r="1.4" fill="#1899D6"/><circle cx="15" cy="10" r="1.4" fill="#1899D6"/><path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="#1899D6" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M5 8c1-2 3-3 4-3M19 8c-1-2-3-3-4-3" stroke="#1899D6" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+      </div>
+      <div style="font-size: 17px; font-weight: 800; color: #4B4B4B; margin-bottom: 4px;">Pai</div>
+      <div style="display: inline-block; background: #DDF4FF; color: #1899D6; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Responsável</div>
+    </div>
+
+    <div class="ls-profile-card" style="background: white; border: 2px solid #E5E5E5; border-radius: 20px; padding: 24px 20px; width: 160px; text-align: center; box-shadow: 0 4px 0 rgba(0,0,0,0.08); position: relative;">
+      <div style="position: absolute; top: 12px; right: 12px; background: #FFF4DA; border: 2px solid #FFC800; padding: 3px 8px; border-radius: 8px; display: flex; align-items: center; gap: 3px; box-shadow: 0 2px 0 #E0A800;">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#FF9600"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67z"/></svg>
+        <span style="font-size: 10px; font-weight: 800; color: #B36F00;">5</span>
+      </div>
+      <div style="width: 88px; height: 88px; border-radius: 50%; background: #CE82FF; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 0 #A855E0;">
+        <svg width="50" height="50" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="white"/><circle cx="9" cy="10" r="1.5" fill="#7C3AED"/><circle cx="15" cy="10" r="1.5" fill="#7C3AED"/><path d="M8 14s1.5 2.5 4 2.5 4-2.5 4-2.5" stroke="#7C3AED" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      </div>
+      <div style="font-size: 17px; font-weight: 800; color: #4B4B4B; margin-bottom: 4px;">Theo</div>
+      <div style="display: inline-flex; align-items: center; gap: 4px; background: #F3E8FF; color: #7C3AED; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#FFC800"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+        12 · Nível 1
+      </div>
+    </div>
+
+    <div class="ls-profile-card" style="background: white; border: 2px solid #E5E5E5; border-radius: 20px; padding: 24px 20px; width: 160px; text-align: center; box-shadow: 0 4px 0 rgba(0,0,0,0.08); position: relative;">
+      <div style="position: absolute; top: 12px; right: 12px; background: #FFF4DA; border: 2px solid #FFC800; padding: 3px 8px; border-radius: 8px; display: flex; align-items: center; gap: 3px; box-shadow: 0 2px 0 #E0A800;">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#FF9600"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67z"/></svg>
+        <span style="font-size: 10px; font-weight: 800; color: #B36F00;">12</span>
+      </div>
+      <div style="width: 88px; height: 88px; border-radius: 50%; background: #F472B6; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 0 #BE185D;">
+        <svg width="50" height="50" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="white"/><circle cx="9" cy="10" r="1.5" fill="#BE185D"/><circle cx="15" cy="10" r="1.5" fill="#BE185D"/><path d="M9 15c1 1 5 1 6 0" stroke="#BE185D" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M6 7l2 1M18 7l-2 1" stroke="#BE185D" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </div>
+      <div style="font-size: 17px; font-weight: 800; color: #4B4B4B; margin-bottom: 4px;">Laura</div>
+      <div style="display: inline-flex; align-items: center; gap: 4px; background: #FCE7F3; color: #BE185D; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#FFC800"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+        38 · Nível 3
+      </div>
+    </div>
+
+    <div class="ls-profile-card" style="background: white; border: 2px solid #E5E5E5; border-radius: 20px; padding: 24px 20px; width: 160px; text-align: center; box-shadow: 0 4px 0 rgba(0,0,0,0.08); position: relative;">
+      <div style="width: 88px; height: 88px; border-radius: 50%; background: #FFC800; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 0 #E0A800;">
+        <svg width="50" height="50" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="white"/><circle cx="9" cy="10" r="1.5" fill="#B36F00"/><circle cx="15" cy="10" r="1.5" fill="#B36F00"/><circle cx="12" cy="15" r="2.5" fill="none" stroke="#B36F00" stroke-width="1.8"/></svg>
+      </div>
+      <div style="font-size: 17px; font-weight: 800; color: #4B4B4B; margin-bottom: 4px;">Lis</div>
+      <div style="display: inline-flex; align-items: center; gap: 4px; background: #FFF4DA; color: #B36F00; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#FFC800"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+        5 · Nível 1
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top: 40px; display: flex; align-items: center; gap: 8px; padding: 10px 18px; background: #F7F7F7; border: 2px solid #E5E5E5; border-radius: 14px;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#777" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+    <span style="font-size: 12px; color: #777; font-weight: 700;">Cada perfil é protegido por um PIN de 4 dígitos</span>
+  </div>
+
+</div>

@@ -5,7 +5,7 @@
     @apply inline-flex gap-1 p-1 text-sm list-none bg-muted rounded-btn-md;
   }
   .tabs__link {
-    @apply inline-flex items-center gap-2 px-3 py-1.5 font-medium transition-colors;
+    @apply inline-flex items-center gap-2 px-3 py-1.5 font-bold transition-colors;
     @apply text-muted-foreground rounded-btn-md;
     @apply hover:text-foreground;
     @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-ring;

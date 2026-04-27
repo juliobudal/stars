@@ -1,0 +1,112 @@
+<h2 class="sr-only">LittleStars PIN entry modal overlaid on dimmed profile selection screen, with character header, dot indicators, and 3D number pad.</h2>
+
+<style>
+.ls-key-3d { transition: transform 0.05s; cursor: pointer; user-select: none; }
+.ls-key-3d:active { transform: translateY(2px); box-shadow: none !important; }
+.ls-aux-key { transition: transform 0.05s; cursor: pointer; user-select: none; }
+.ls-aux-key:active { transform: translateY(2px); box-shadow: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .ls-key-3d, .ls-aux-key { transition: none; }
+}
+</style>
+
+<div style="position: relative; background: #FFFFFF; border-radius: 16px; border: 2px solid #E5E5E5; padding: 40px 24px; font-family: 'Nunito', system-ui, sans-serif; font-weight: 700; min-height: 760px; overflow: hidden;">
+
+  <div style="filter: blur(2px); opacity: 0.4; display: flex; flex-direction: column; align-items: center;">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+      <div style="width: 48px; height: 48px; background: #FFC800; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #E0A800;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+      </div>
+      <div style="font-size: 22px; font-weight: 800; color: #4B4B4B;">LittleStars</div>
+    </div>
+    <h1 style="margin: 24px 0 6px; font-size: 28px; font-weight: 800; color: #4B4B4B;">Quem é você?</h1>
+    <p style="margin: 0 0 36px; font-size: 14px; color: #777; font-weight: 700;">Toque no seu rostinho pra entrar</p>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+      <div style="background: white; border: 2px solid #E5E5E5; border-radius: 20px; padding: 24px 20px; width: 160px; text-align: center; box-shadow: 0 4px 0 rgba(0,0,0,0.08);">
+        <div style="width: 88px; height: 88px; border-radius: 50%; background: #1CB0F6; margin: 0 auto 14px; box-shadow: 0 5px 0 #1899D6;"></div>
+        <div style="font-size: 17px; font-weight: 800; color: #4B4B4B;">Pai</div>
+      </div>
+      <div style="background: white; border: 3px solid #58CC02; border-radius: 20px; padding: 24px 20px; width: 160px; text-align: center; box-shadow: 0 4px 0 #46A302;">
+        <div style="width: 88px; height: 88px; border-radius: 50%; background: #CE82FF; margin: 0 auto 14px; box-shadow: 0 5px 0 #A855E0;"></div>
+        <div style="font-size: 17px; font-weight: 800; color: #4B4B4B;">Theo</div>
+      </div>
+      <div style="background: white; border: 2px solid #E5E5E5; border-radius: 20px; padding: 24px 20px; width: 160px; text-align: center; box-shadow: 0 4px 0 rgba(0,0,0,0.08);">
+        <div style="width: 88px; height: 88px; border-radius: 50%; background: #F472B6; margin: 0 auto 14px; box-shadow: 0 5px 0 #BE185D;"></div>
+        <div style="font-size: 17px; font-weight: 800; color: #4B4B4B;">Laura</div>
+      </div>
+      <div style="background: white; border: 2px solid #E5E5E5; border-radius: 20px; padding: 24px 20px; width: 160px; text-align: center; box-shadow: 0 4px 0 rgba(0,0,0,0.08);">
+        <div style="width: 88px; height: 88px; border-radius: 50%; background: #FFC800; margin: 0 auto 14px; box-shadow: 0 5px 0 #E0A800;"></div>
+        <div style="font-size: 17px; font-weight: 800; color: #4B4B4B;">Lis</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position: absolute; inset: 0; background: rgba(75,75,75,0.45); display: flex; align-items: center; justify-content: center; padding: 20px;">
+
+    <div style="background: white; border: 2px solid #E5E5E5; border-radius: 24px; padding: 28px 24px 20px; width: 340px; box-shadow: 0 8px 0 rgba(0,0,0,0.12); position: relative;">
+
+      <button class="ls-aux-key" style="position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; background: white; border: 2px solid #E5E5E5; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 0 #E5E5E5; padding: 0;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#777" stroke-width="3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 18px;">
+        <div style="width: 72px; height: 72px; border-radius: 50%; background: #CE82FF; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #A855E0; margin-bottom: 12px;">
+          <svg width="42" height="42" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="white"/><circle cx="9" cy="10" r="1.4" fill="#7C3AED"/><circle cx="15" cy="10" r="1.4" fill="#7C3AED"/><path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="#7C3AED" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </div>
+        <div style="font-size: 18px; font-weight: 800; color: #4B4B4B; margin-bottom: 2px;">Olá, Theo!</div>
+        <div style="font-size: 12px; color: #777; font-weight: 700;">Digite seu PIN secreto</div>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 24px;">
+        <div style="width: 16px; height: 16px; border-radius: 50%; background: #7C3AED; box-shadow: 0 2px 0 #5B21B6;"></div>
+        <div style="width: 16px; height: 16px; border-radius: 50%; background: #7C3AED; box-shadow: 0 2px 0 #5B21B6;"></div>
+        <div style="width: 16px; height: 16px; border-radius: 50%; background: white; border: 2px solid #E5E5E5;"></div>
+        <div style="width: 16px; height: 16px; border-radius: 50%; background: white; border: 2px solid #E5E5E5;"></div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px;">
+        <div class="ls-key-3d" style="aspect-ratio: 1.2; background: white; border: 2px solid #E5E5E5; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #E5E5E5;">
+          <span style="font-size: 22px; font-weight: 800; color: #4B4B4B;">1</span>
+        </div>
+        <div class="ls-key-3d" style="aspect-ratio: 1.2; background: white; border: 2px solid #E5E5E5; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #E5E5E5;">
+          <span style="font-size: 22px; font-weight: 800; color: #4B4B4B;">2</span>
+        </div>
+        <div class="ls-key-3d" style="aspect-ratio: 1.2; background: white; border: 2px solid #E5E5E5; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #E5E5E5;">
+          <span style="font-size: 22px; font-weight: 800; color: #4B4B4B;">3</span>
+        </div>
+        <div class="ls-key-3d" style="aspect-ratio: 1.2; background: white; border: 2px solid #E5E5E5; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #E5E5E5;">
+          <span style="font-size: 22px; font-weight: 800; color: #4B4B4B;">4</span>
+        </div>
+        <div class="ls-key-3d" style="aspect-ratio: 1.2; background: white; border: 2px solid #E5E5E5; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #E5E5E5;">
+          <span style="font-size: 22px; font-weight: 800; color: #4B4B4B;">5</span>
+        </div>
+        <div class="ls-key-3d" style="aspect-ratio: 1.2; background: white; border: 2px solid #E5E5E5; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #E5E5E5;">
+          <span style="font-size: 22px; font-weight: 800; color: #4B4B4B;">6</span>
+        </div>
+        <div class="ls-key-3d" style="aspect-ratio: 1.2; background: white; border: 2px solid #E5E5E5; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #E5E5E5;">
+          <span style="font-size: 22px; font-weight: 800; color: #4B4B4B;">7</span>
+        </div>
+        <div class="ls-key-3d" style="aspect-ratio: 1.2; background: white; border: 2px solid #E5E5E5; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #E5E5E5;">
+          <span style="font-size: 22px; font-weight: 800; color: #4B4B4B;">8</span>
+        </div>
+        <div class="ls-key-3d" style="aspect-ratio: 1.2; background: white; border: 2px solid #E5E5E5; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #E5E5E5;">
+          <span style="font-size: 22px; font-weight: 800; color: #4B4B4B;">9</span>
+        </div>
+        <div></div>
+        <div class="ls-key-3d" style="aspect-ratio: 1.2; background: white; border: 2px solid #E5E5E5; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #E5E5E5;">
+          <span style="font-size: 22px; font-weight: 800; color: #4B4B4B;">0</span>
+        </div>
+        <div class="ls-key-3d" style="aspect-ratio: 1.2; background: #F7F7F7; border: 2px solid #E5E5E5; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #E5E5E5;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#777" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M18 9l-6 6M12 9l6 6"/></svg>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 8px;">
+        <a style="font-size: 12px; color: #1899D6; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px;">Esqueci meu PIN</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

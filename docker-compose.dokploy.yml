@@ -1,0 +1,87 @@
+# Dokploy deployment for LittleStars (Rails 8 monolith)
+# Reuses existing dokploy-network + Traefik + Let's Encrypt on app.iacomcafe.com.
+
+services:
+  littlestars-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    image: littlestars-app:latest
+    container_name: littlestars-app
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
+    environment:
+      - RAILS_ENV=production
+      - PORT=3000
+      - RAILS_LOG_TO_STDOUT=true
+      - RAILS_SERVE_STATIC_FILES=true
+      - SOLID_QUEUE_IN_PUMA=true
+      - DATABASE_URL=postgresql://postgres:${PROD_POSTGRES_PASSWORD}@littlestars-db:5432/littlestars_production
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+      - APP_HOST=${DOMAIN_LITTLESTARS:-stars.iacomcafe.com}
+      - SMTP_ADDRESS=${SMTP_ADDRESS}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_DOMAIN=${SMTP_DOMAIN}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - MAIL_FROM=${MAIL_FROM}
+    depends_on:
+      - littlestars-db
+    networks:
+      - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=dokploy-network"
+      # HTTP -> HTTPS redirect
+      - "traefik.http.middlewares.littlestars-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.littlestars-redirect.redirectscheme.permanent=true"
+      - "traefik.http.routers.littlestars-http.rule=Host(`${DOMAIN_LITTLESTARS:-stars.iacomcafe.com}`)"
+      - "traefik.http.routers.littlestars-http.entrypoints=web"
+      - "traefik.http.routers.littlestars-http.middlewares=littlestars-redirect@docker"
+      # HTTPS
+      - "traefik.http.routers.littlestars.rule=Host(`${DOMAIN_LITTLESTARS:-stars.iacomcafe.com}`)"
+      - "traefik.http.routers.littlestars.entrypoints=websecure"
+      - "traefik.http.routers.littlestars.tls=true"
+      - "traefik.http.routers.littlestars.tls.certresolver=letsencrypt"
+      - "traefik.http.services.littlestars.loadbalancer.server.port=3000"
+      # Security headers
+      - "traefik.http.middlewares.littlestars-security.headers.frameDeny=true"
+      - "traefik.http.middlewares.littlestars-security.headers.contentTypeNosniff=true"
+      - "traefik.http.middlewares.littlestars-security.headers.browserXssFilter=true"
+      - "traefik.http.middlewares.littlestars-security.headers.forceSTSHeader=true"
+      - "traefik.http.middlewares.littlestars-security.headers.stsSeconds=31536000"
+      - "traefik.http.routers.littlestars.middlewares=littlestars-security@docker"
+      # Dokploy
+      - "dokploy.enabled=true"
+      - "dokploy.name=littlestars-app"
+      - "dokploy.type=app"
+
+  littlestars-db:
+    image: postgres:16-alpine
+    container_name: littlestars-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${PROD_POSTGRES_PASSWORD}
+      - POSTGRES_DB=littlestars_production
+    volumes:
+      - littlestars-db-data:/var/lib/postgresql/data
+    networks:
+      - dokploy-network
+    labels:
+      - "dokploy.enabled=true"
+      - "dokploy.name=littlestars-db"
+      - "dokploy.type=app"
+
+networks:
+  dokploy-network:
+    external: true
+
+volumes:
+  littlestars-db-data:
+    driver: local

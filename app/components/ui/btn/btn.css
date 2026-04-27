@@ -1,7 +1,7 @@
 @reference "../../../assets/stylesheets/tailwind/engine.css";
 
 .ui-btn {
-  @apply inline-flex items-center justify-center font-display font-extrabold rounded-full gap-2 transition-all duration-[80ms] ease-out select-none tracking-tight whitespace-nowrap cursor-pointer border-none;
+  @apply inline-flex items-center justify-center font-display font-extrabold rounded-[14px] gap-2 transition-all duration-[80ms] ease-out select-none uppercase tracking-[0.5px] whitespace-nowrap cursor-pointer border-none;
 }
 .ui-btn:disabled { @apply opacity-40 cursor-not-allowed grayscale-[0.3] pointer-events-none; }
 
@@ -9,7 +9,7 @@
 .ui-btn--primary:hover  { @apply shadow-btn-primary-hover; }
 .ui-btn--primary:active { @apply shadow-btn-primary-active; }
 
-.ui-btn--secondary  { @apply bg-muted text-foreground border-2 border-hairline shadow-btn-secondary hover:-translate-y-1 active:translate-y-1; }
+.ui-btn--secondary  { @apply bg-surface text-foreground border-2 border-hairline shadow-btn-secondary hover:-translate-y-1 active:translate-y-1; }
 .ui-btn--secondary:hover  { @apply shadow-btn-secondary-hover; }
 .ui-btn--secondary:active { @apply shadow-btn-secondary-active; }
 
@@ -32,3 +32,8 @@
 .ui-btn--md   { @apply text-[16px] px-5 py-3; }
 .ui-btn--lg   { @apply text-[18px] px-6 py-3.5; }
 .ui-btn--icon { @apply w-11 h-11 p-0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-btn { transition: none !important; }
+  .ui-btn:hover, .ui-btn:active { transform: none !important; }
+}

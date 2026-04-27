@@ -6,7 +6,7 @@ let manifestPromise = null
 function loadManifest() {
   if (window.__hugeiconsManifest) return Promise.resolve(window.__hugeiconsManifest)
   if (manifestPromise) return manifestPromise
-  manifestPromise = fetch("/hugeicons-manifest.json", { credentials: "same-origin" })
+  manifestPromise = fetch("/hugeicons-manifest.json", { credentials: "same-origin", cache: "no-cache" })
     .then(r => r.json())
     .then(data => { window.__hugeiconsManifest = data; return data })
   return manifestPromise

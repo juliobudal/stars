@@ -1,0 +1,106 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: littlestars_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/littlestars_test
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: bin/rubocop
+      - run: bin/brakeman --no-pager -q -w2
+      - run: bundle exec rails db:prepare
+      - run: bin/vite build
+      - run: bundle exec rspec
+
+  deploy:
+    name: Deploy to Dokploy
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          command_timeout: 20m
+          script: |
+            set -e
+            cd ${{ secrets.DEPLOY_DIR }}
+
+            echo "==> Pulling latest code..."
+            git fetch origin main
+            git reset --hard origin/main
+
+            echo "==> Stopping running containers to free memory..."
+            docker compose --env-file .env.production \
+              -f docker-compose.dokploy.yml down --remove-orphans || true
+
+            echo "==> Building image..."
+            DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 \
+              docker compose --env-file .env.production \
+              -f docker-compose.dokploy.yml build --parallel
+
+            echo "==> Recreating containers..."
+            docker compose --env-file .env.production \
+              -f docker-compose.dokploy.yml up -d \
+              --force-recreate --remove-orphans
+
+            echo "==> Health check (/up)..."
+            for i in $(seq 1 12); do
+              if docker exec littlestars-app curl -fsS http://127.0.0.1:3000/up > /dev/null 2>&1; then
+                echo "Health check passed on attempt $i"
+                break
+              fi
+              if [ "$i" -eq 12 ]; then
+                echo "Health check FAILED"
+                docker logs littlestars-app --tail 80
+                exit 1
+              fi
+              echo "Attempt $i/12 - waiting 5s..."
+              sleep 5
+            done
+
+            echo "==> Running migrations..."
+            docker compose --env-file .env.production \
+              -f docker-compose.dokploy.yml exec -T littlestars-app \
+              bin/rails db:migrate
+
+            echo "==> Pruning old images..."
+            docker image prune -f
+
+            echo "==> Deploy complete!"

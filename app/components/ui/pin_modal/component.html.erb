@@ -1,9 +1,13 @@
-<div class="pin-card" data-controller="pin-pad" data-pin-pad-target="card">
-  <div class="pin-avatar bg-primary text-white">
-    <%= profile.name.first %>
+<div class="pin-modal-overlay" data-controller="pin-pad" data-pin-pad-target="overlay" data-action="click->pin-pad#closeOnOverlay" data-palette="<%= helpers.palette_for(profile) %>">
+<div class="pin-card" data-pin-pad-target="card">
+  <button type="button" aria-label="Fechar" class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-[10px] border-2 cursor-pointer" style="background: var(--surface); border-color: var(--hairline); box-shadow: 0 2px 0 var(--hairline);" data-action="click->pin-pad#close">
+    <%= render Ui::Icon::Component.new("cancel", size: 14, color: "var(--text-muted)") %>
+  </button>
+  <div class="pin-avatar" style="background: var(--primary);">
+    <%= render Ui::SmileyAvatar::Component.new(kid: profile, size: 42) %>
   </div>
-  <div class="pin-name"><%= profile.name %></div>
-  <div class="pin-hint">Digite seu PIN</div>
+  <div class="pin-name">Olá, <%= profile.name %>!</div>
+  <div class="pin-hint">Digite seu PIN secreto</div>
 
   <div class="pin-dots" data-pin-pad-target="dots">
     <% 4.times do %><div class="pin-dot"></div><% end %>
@@ -23,9 +27,14 @@
       <% [1,2,3,4,5,6,7,8,9].each do |n| %>
         <button type="button" class="pin-key" data-action="click->pin-pad#press" data-digit="<%= n %>"><%= n %></button>
       <% end %>
-      <button type="button" class="pin-key action" data-action="click->pin-pad#clear">esc</button>
+      <div></div>
       <button type="button" class="pin-key" data-action="click->pin-pad#press" data-digit="0">0</button>
-      <button type="button" class="pin-key action" data-action="click->pin-pad#backspace">⌫</button>
+      <button type="button" class="pin-key action" data-action="click->pin-pad#backspace" aria-label="Apagar">⌫</button>
     </div>
   <% end %>
+
+  <div class="text-center mt-2">
+    <a class="text-[12px] font-extrabold uppercase tracking-[0.5px] cursor-pointer no-underline" style="color: var(--c-info-600);">Esqueci meu PIN</a>
+  </div>
+</div>
 </div>

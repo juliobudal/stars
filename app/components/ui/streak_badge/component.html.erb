@@ -1,0 +1,5 @@
+<span class="inline-flex items-center gap-1 bg-star-soft border-2 border-star rounded-[14px] px-2 py-0.5" style="box-shadow: 0 2px 0 var(--c-streak-2, #CC7700);">
+  <%= render Ui::Icon::Component.new(:fire, size: size == :sm ? 12 : 14, color: "var(--c-amber-dark)") %>
+  <span class="font-extrabold text-amber-dark leading-none" style="font-size: <%= size == :sm ? '13px' : '15px' %>"><%= streak %></span>
+  <span class="font-extrabold text-amber-dark uppercase tracking-[0.5px]" style="font-size: 9px;">DIAS</span>
+</span>

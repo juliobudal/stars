@@ -10,6 +10,7 @@ LittleStars — gamified family task manager with "star economy" for kids. Rails
 - `TECHSPEC.md` — authoritative architecture reference (models, services, routes, UI mapping)
 - `.planning/` — GSD workflow artifacts (ROADMAP, REQUIREMENTS, codebase/)
 - Current milestone: UI/UX Duolingo rebranding (MVP core done)
+- Visual language: **Duolingo style** (green primary `#58CC02`, Nunito 700/800, 3D `0 4px 0` shadows, 10–16px radii). See `DESIGN.md` for the full system. Old Berry Pop / lilac / Fraunces tokens retired.
 
 ## Stack
 

@@ -15,7 +15,7 @@ class Ui::Accordion::SummaryComponent < ApplicationComponent
 
   def classes
     class_names(
-      "flex items-center justify-between gap-3 py-3.5 font-medium cursor-pointer",
+      "flex items-center justify-between gap-3 py-3.5 font-bold cursor-pointer",
       @options.delete(:class)
     )
   end

@@ -30,11 +30,11 @@ class Parent::DashboardController < ApplicationController
       rewards_count:     Reward.where(family_id: @family.id).count
     }
 
-    # Recent activity across all children
-    child_ids = @children.pluck(:id)
-    @recent_activity = ActivityLog.includes(:profile)
-                                  .where(profile_id: child_ids)
-                                  .order(created_at: :desc)
-                                  .limit(10)
+    @pending_tasks = ProfileTask.includes(:profile, :global_task)
+                               .joins(:profile)
+                               .where(profiles: { family_id: @family.id })
+                               .awaiting_approval
+                               .order(updated_at: :asc)
+                               .limit(5)
   end
 end

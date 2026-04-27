@@ -1,13 +1,14 @@
 <%= form_with(model: [:parent, profile], html: { data: { controller: "form-preview" } }, class: "block") do |f| %>
   <% if profile.errors.any? %>
-    <%= render Ui::Card::Component.new(variant: "flat", class: "bg-danger-soft text-danger p-4 mb-4") do %>
-      <%= render Ui::Heading::Component.new(size: :h3) do %>Ops! Algo deu errado:<% end %>
-      <ul class="text-[14px] text-muted-foreground font-semibold list-disc ml-5">
+    <section class="mb-4 rounded-[16px] border-2 p-4"
+             style="background: var(--c-rose-soft); border-color: var(--danger); box-shadow: 0 4px 0 rgba(0,0,0,0.08);">
+      <div class="text-[14px] font-extrabold mb-2" style="color: var(--danger-2);">Ops! Algo deu errado:</div>
+      <ul class="text-[13px] font-bold list-disc ml-5" style="color: var(--danger-2);">
         <% profile.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
-    <% end %>
+    </section>
   <% end %>
 
   <%
@@ -16,18 +17,28 @@
     current_avatar = profile.avatar.presence || (profile.parent? ? "user-circle" : "happy-01")
   %>
 
-  <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 items-start">
-    <div class="flex flex-col gap-5">
-      <div class="flex flex-col gap-2">
-        <%= f.label :name, "Nome", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
+  <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 items-start">
+    <div class="flex flex-col gap-[18px]">
+
+      <%# ─── Nome ─── %>
+      <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+               style="box-shadow: var(--shadow-card);">
+        <%= f.label :name, "Nome da criança",
+              class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-2.5",
+              style: "color: var(--text-muted);" %>
         <%= f.text_field :name,
-              class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm",
+              class: "w-full px-4 py-3.5 bg-white border-2 border-hairline rounded-[14px] font-bold text-[15px] focus:outline-none transition-all",
+              style: "color: var(--text);",
               placeholder: "Ex: Lila",
               data: { form_preview_field: "name" } %>
-      </div>
+        <div class="text-[11px] font-bold mt-2" style="color: var(--text-muted);">Use um nome curto e carinhoso.</div>
+      </section>
 
-      <div class="flex flex-col gap-2">
-        <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Avatar</label>
+      <%# ─── Avatar ─── %>
+      <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+               style="box-shadow: var(--shadow-card);">
+        <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3"
+               style="color: var(--text-muted);">Escolha um rostinho</label>
         <%= render Ui::IconPicker::Component.new(
               field_name: "profile[avatar]",
               value: current_avatar,
@@ -36,16 +47,42 @@
               id: "profile_avatar_picker",
               input_data: { form_preview_field: "avatar" }
             ) %>
-      </div>
+      </section>
 
-      <%= render Ui::ColorPicker::Component.new(form: f, field: :color, options: color_options, label: "Cor", input_data: { form_preview_field: "color" }) %>
+      <%# ─── Cor ─── %>
+      <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+               style="box-shadow: var(--shadow-card);">
+        <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3"
+               style="color: var(--text-muted);">Cor do perfil</label>
+        <div class="grid grid-cols-6 gap-2.5">
+          <% color_options.each do |col| %>
+            <label class="cursor-pointer">
+              <%= f.radio_button :color, col, class: "peer sr-only", data: { form_preview_field: "color" } %>
+              <div class="relative aspect-square rounded-full transition-all peer-checked:scale-105 peer-checked:[&>span]:opacity-100 hover:scale-105 border-2"
+                   style="background: var(--c-<%= col %>); border-color: var(--c-<%= col %>-dark, var(--c-<%= col %>)); box-shadow: 0 3px 0 var(--c-<%= col %>-dark, rgba(0,0,0,0.15));"
+                   aria-label="<%= col %>">
+                <span class="absolute inset-0 flex items-center justify-center text-white opacity-0 transition-opacity">
+                  <%= render Ui::Icon::Component.new("check", size: 18, color: "white") %>
+                </span>
+              </div>
+            </label>
+          <% end %>
+        </div>
+      </section>
 
-      <div class="flex flex-col gap-2">
-        <%= f.label :pin, "PIN (4 dígitos)", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
+      <%# ─── PIN ─── %>
+      <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+               style="box-shadow: var(--shadow-card);">
+        <%= f.label :pin, "PIN (4 dígitos)",
+              class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-2.5",
+              style: "color: var(--text-muted);" %>
         <%= f.text_field :pin, pattern: "\\d{4}", maxlength: 4, inputmode: "numeric",
               autocomplete: "off", required: action_name == "new",
-              class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm" %>
-      </div>
+              placeholder: "••••",
+              class: "w-[140px] px-4 py-3.5 bg-white border-2 border-hairline rounded-[14px] font-extrabold text-[18px] tracking-[8px] text-center focus:outline-none transition-all",
+              style: "color: var(--text);" %>
+        <div class="text-[11px] font-bold mt-2" style="color: var(--text-muted);">A criança digita esse PIN para entrar.</div>
+      </section>
 
       <% if params[:onboarding].present? %>
         <%= hidden_field_tag :onboarding, params[:onboarding] %>
@@ -54,43 +91,58 @@
         <%= hidden_field_tag :invited, params[:invited] %>
       <% end %>
 
-      <div class="flex flex-row mt-4 gap-2.5 justify-end">
-        <%= render Ui::Btn::Component.new(variant: "secondary", url: (params[:onboarding].present? ? parent_root_path : parent_profiles_path)) do %>Voltar<% end %>
-        <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>Salvar Perfil<% end %>
+      <%# ─── Save bar ─── %>
+      <div class="flex items-center justify-end gap-2.5 pt-2 pb-1">
+        <%= link_to (params[:onboarding].present? ? parent_root_path : parent_profiles_path),
+              class: "ls-btn-3d inline-flex items-center px-5 py-3 rounded-[14px] text-[13px] font-extrabold uppercase tracking-[0.5px] no-underline border-2",
+              style: "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 4px 0 var(--hairline);" do %>
+          Voltar
+        <% end %>
+        <button type="submit"
+                class="ls-btn-3d inline-flex items-center gap-2 px-6 py-3 rounded-[14px] text-white text-[13px] font-extrabold uppercase tracking-[0.5px] border-2"
+                style="background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 0 var(--primary-2);">
+          <%= render Ui::Icon::Component.new("check", size: 14, color: "currentColor") %>
+          Salvar perfil
+        </button>
       </div>
+
+      <% unless profile.new_record? %>
+        <% confirm_msg = profile.parent? ? "Remover este responsável? Esta ação é permanente." : "Remover #{profile.name}? Todas as missões e histórico serão perdidos." %>
+        <div class="mt-2 pt-5 border-t-2 border-hairline">
+          <%= button_to parent_profile_path(profile), method: :delete,
+                form: { data: { turbo_confirm: confirm_msg } },
+                class: "ls-btn-3d inline-flex items-center gap-2 px-4 py-2.5 rounded-[12px] text-white text-[12px] font-extrabold uppercase tracking-[0.5px] border-2 cursor-pointer",
+                style: "background: var(--danger); border-color: var(--danger); box-shadow: 0 3px 0 var(--danger-2);" do %>
+            <%= render Ui::Icon::Component.new("trash", size: 14, color: "white") %>
+            Remover perfil
+          <% end %>
+        </div>
+      <% end %>
     </div>
 
+    <%# ─── Live preview (Duolingo profile-card) ─── %>
     <aside class="hidden lg:block">
       <div class="sticky top-6">
-        <%= render Ui::Card::Component.new(class: "p-6 flex flex-col items-center gap-4 text-center") do %>
-          <div data-form-preview-target="color" data-form-preview-palette="true" data-palette="<%= current_color %>"
-               class="flex flex-col items-center gap-4">
-            <div class="w-32 h-32 rounded-full flex items-center justify-center shrink-0"
-                 style="background: var(--primary-soft); border: 4px solid var(--primary);">
-              <i data-form-preview-target="avatar" data-form-preview-icon="true"
-                 class="hgi-stroke hgi-<%= current_avatar %>"
-                 style="font-size:80px; line-height:1; color: var(--primary); display:inline-flex; align-items:center; justify-content:center; width:80px; height:80px;"
-                 aria-hidden="true"></i>
-            </div>
-            <div class="flex flex-col gap-1 w-full">
-              <div data-form-preview-target="name" data-form-preview-fallback="Pré-visualização"
-                   class="font-display font-extrabold text-[20px] text-foreground truncate"><%= profile.name.presence || "Pré-visualização" %></div>
-              <div class="text-[12px] text-muted-foreground font-semibold uppercase tracking-wider">
-                <%= profile.parent? ? "Responsável" : "Criança" %>
-              </div>
-            </div>
+        <div data-form-preview-target="color" data-form-preview-palette="true" data-palette="<%= current_color %>"
+             class="bg-surface rounded-[20px] border-2 border-hairline p-6 text-center relative"
+             style="box-shadow: var(--shadow-card);">
+          <div class="text-[11px] font-extrabold uppercase tracking-[0.5px] mb-3" style="color: var(--text-muted);">Pré-visualização</div>
+          <div class="w-[88px] h-[88px] rounded-full grid place-items-center mx-auto mb-3.5"
+               style="background: var(--primary-soft); box-shadow: 0 5px 0 var(--primary);">
+            <i data-form-preview-target="avatar" data-form-preview-icon="true"
+               class="hgi-stroke hgi-<%= current_avatar %>"
+               style="font-size:44px; color: var(--primary);"
+               aria-hidden="true"></i>
           </div>
-        <% end %>
+          <div data-form-preview-target="name" data-form-preview-fallback="Pré-visualização"
+               class="text-[17px] font-extrabold mb-1.5 truncate"
+               style="color: var(--text);"><%= profile.name.presence || "Pré-visualização" %></div>
+          <div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-[8px] text-[10px] font-extrabold uppercase tracking-[0.5px]"
+               style="background: var(--primary-soft); color: var(--primary-2);">
+            <%= profile.parent? ? "Responsável" : "Criança" %>
+          </div>
+        </div>
       </div>
     </aside>
   </div>
-
-  <% unless profile.new_record? %>
-    <div class="mt-8 pt-6 border-t-2 border-border">
-      <% confirm_msg = profile.parent? ? "Remover este responsável? Esta ação é permanente." : "Remover #{profile.name}? Todas as missões e histórico serão perdidos." %>
-      <%= render Ui::Btn::Component.new(variant: "danger", size: "sm", url: parent_profile_path(profile), method: :delete, data: { turbo_confirm: confirm_msg }) do %>
-        <%= render Ui::Icon::Component.new("trash", size: 16, color: "white") %> Remover Perfil
-      <% end %>
-    </div>
-  <% end %>
 <% end %>

@@ -6,28 +6,39 @@ export default class extends Controller {
   connect() {
     const active = this.tabTargets.find(t => t.getAttribute("aria-selected") === "true")
                    || this.tabTargets.find(t => t.classList.contains("active"))
+                   || this.tabTargets[0]
     if (active) {
-      active.classList.add("active")
-      this.apply(active.dataset.filterTabsIdParam || active.dataset.key || "all")
+      const key = active.dataset.filterTabsIdParam || active.dataset.key || "all"
+      this.activate(active, key)
     }
   }
 
-  // Called via data-action="click->filter-tabs#show" (FilterChips component uses #show)
+  // Called via data-action="click->filter-tabs#show"
   show(event) {
-    const key = event.currentTarget.dataset.filterTabsIdParam || event.currentTarget.dataset.key
+    const button = event.currentTarget
+    const key = button.dataset.filterTabsIdParam || button.dataset.key
     if (!key) return
+    this.activate(button, key)
+  }
+
+  activate(activeBtn, key) {
     this.tabTargets.forEach(t => {
-      const isActive = t === event.currentTarget
+      const isActive = t === activeBtn
       t.classList.toggle("active", isActive)
+      t.setAttribute("aria-selected", isActive ? "true" : "false")
+
       if (t.classList.contains("cat-tab")) {
         t.classList.toggle("cat-tab--active", isActive)
-      } else {
-        t.classList.toggle("bg-white", isActive)
-        t.classList.toggle("text-primary", isActive)
-        t.classList.toggle("shadow-sm", isActive)
-        t.classList.toggle("text-muted-foreground", !isActive)
       }
-      t.setAttribute("aria-selected", isActive)
+
+      const styleAttr = isActive ? t.dataset.activeStyle : t.dataset.inactiveStyle
+      if (styleAttr) t.setAttribute("style", styleAttr)
+
+      const badge = t.querySelector("[data-pill-badge]")
+      if (badge) {
+        const badgeStyle = isActive ? badge.dataset.activeStyle : badge.dataset.inactiveStyle
+        if (badgeStyle) badge.setAttribute("style", badgeStyle)
+      }
     })
     this.apply(key)
   }

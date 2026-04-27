@@ -6,16 +6,27 @@
   ]
 %>
 
-<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white rounded-[28px] px-6 py-3 flex items-center gap-8 z-40" style="box-shadow:0 4px 24px rgba(44,42,58,.14)">
+<nav
+  class="fixed bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 z-40 px-2 py-2 ls-card-3d"
+  style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 18px; box-shadow: 0 4px 0 rgba(0,0,0,0.08);"
+>
   <% nav_items.each do |item| %>
     <% active = current_page?(item[:path]) %>
-    <%= link_to item[:path], class: "flex flex-col items-center gap-1 #{active ? 'text-primary' : 'text-muted-foreground'}", title: item[:label] do %>
-      <%= render Ui::Icon::Component.new(item[:icon], size: 22) %>
-      <span class="text-[10px] font-display font-extrabold tracking-wider uppercase"><%= item[:label] %></span>
+    <%= link_to item[:path],
+          class: "ls-btn-3d flex flex-col items-center gap-0.5 px-4 py-2",
+          style: (active ?
+            "background: var(--primary-soft); border: 2px solid var(--primary); color: var(--primary); border-radius: 12px; box-shadow: 0 3px 0 var(--primary-2);" :
+            "background: transparent; border: 2px solid transparent; color: var(--text-muted); border-radius: 12px;"),
+          title: item[:label] do %>
+      <%= render Ui::Icon::Component.new(item[:icon], size: 20, color: "currentColor") %>
+      <span class="text-[10px] font-display font-extrabold tracking-[0.5px] uppercase"><%= item[:label] %></span>
     <% end %>
   <% end %>
-  <%= button_to profile_session_path, method: :delete, class: "flex flex-col items-center gap-1 text-muted-foreground", title: "Sair" do %>
-    <%= render Ui::Icon::Component.new("logout", size: 22) %>
-    <span class="text-[10px] font-display font-extrabold tracking-wider uppercase">Sair</span>
+  <%= button_to profile_session_path, method: :delete,
+        class: "ls-btn-3d flex flex-col items-center gap-0.5 px-4 py-2",
+        style: "background: transparent; border: 2px solid transparent; color: var(--text-muted); border-radius: 12px;",
+        title: "Sair" do %>
+    <%= render Ui::Icon::Component.new("logout", size: 20, color: "currentColor") %>
+    <span class="text-[10px] font-display font-extrabold tracking-[0.5px] uppercase">Sair</span>
   <% end %>
 </nav>

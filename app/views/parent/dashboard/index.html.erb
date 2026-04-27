@@ -1,51 +1,63 @@
 <div class="screen screen-enter with-nav">
 
   <%# ─── Header ─── %>
-  <div class="flex items-start justify-between mb-5 z-content shrink-0">
-    <div>
-      <%= render Ui::Heading::Component.new(size: :h1, class: "flex items-center gap-2 text-[26px] mb-1") do %>
-        Olá, <%= current_profile.name %> <%= render Ui::Icon::Component.new(:sparkle, size: 22, color: "var(--c-amber-dark)") %>
-      <% end %>
-      <p class="text-[13px] font-semibold text-muted-foreground m-0">
-        Você tem <strong><%= @stats[:pending_approvals] %></strong> aprovações aguardando e <strong><%= @stats[:children] %></strong> crianças ativas.
+  <div class="flex items-start justify-between gap-4 mb-[22px] z-content shrink-0">
+    <div class="min-w-0">
+      <h1 class="text-[26px] font-extrabold leading-tight m-0 mb-1" style="color: var(--text);">
+        Olá, <%= current_profile.name %>! 👋
+      </h1>
+      <p class="text-[14px] font-bold m-0" style="color: var(--text-muted);">
+        <% if @stats[:pending_approvals].to_i > 0 %>
+          <%= @children.first&.name || "Sua família" %> tem missões esperando sua aprovação
+        <% elsif @children.any? %>
+          <%= @children.size == 1 ? @children.first.name : "Suas crianças" %> está em dia com as missões
+        <% else %>
+          Adicione sua primeira criança para começar
+        <% end %>
       </p>
     </div>
-    <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: new_parent_global_task_path, class: "whitespace-nowrap shrink-0") do %>
-      + Nova missão
-    <% end %>
-  </div>
-
-  <%# ─── Pending approvals banner ─── %>
-  <% if @stats[:pending_approvals].to_i > 0 %>
-    <div class="bg-gradient-to-br from-primary to-primary-depth rounded-card px-6 py-5 mb-5 text-white flex items-center flex-wrap gap-[18px] shadow-[0_8px_28px_rgba(167,139,250,0.35)] z-content shrink-0">
-      <div class="w-13 h-13 rounded-[14px] bg-white/20 grid place-items-center shrink-0">
-        <%= render Ui::Icon::Component.new("bell", size: 26, color: "white") %>
-      </div>
-      <div class="flex-1">
-        <div class="font-display font-bold text-lg mb-0.5 text-white" id="pending_approvals_kpi"><%= @stats[:pending_approvals] %> aprovações aguardando</div>
-        <div class="text-[13px] font-semibold opacity-90"><%= @stats[:active_missions] %> missões · <%= @stats[:rewards_count] %> prêmios</div>
-      </div>
-      <%= link_to "Ver aprovações →", parent_approvals_path, class: "bg-white text-primary px-5 py-2.5 rounded-[10px] font-display font-black text-[13px] shadow-[0_3px_0_rgba(76,29,149,0.2)] no-underline whitespace-nowrap" %>
+    <div class="flex items-center gap-3 shrink-0">
+      <% top_streak = @children.map { |c| c.respond_to?(:streak) ? c.streak.to_i : 0 }.max.to_i %>
+      <% if top_streak > 0 %>
+        <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-[14px] border-2"
+             style="background: var(--star-soft); border-color: var(--star); box-shadow: 0 3px 0 var(--star-2);">
+          <%= render Ui::Icon::Component.new("flame", size: 20, color: "var(--c-streak)") %>
+          <div>
+            <div class="text-[18px] font-extrabold leading-none" style="color: var(--c-streak);"><%= top_streak %></div>
+            <div class="text-[9px] font-extrabold tracking-[0.5px]" style="color: var(--c-amber-dark);">DIAS</div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to new_parent_global_task_path,
+            class: "ls-btn-3d inline-flex items-center gap-2 px-5 py-3 rounded-[14px] text-white text-[14px] font-extrabold uppercase tracking-[0.5px] no-underline border-2",
+            style: "background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 0 var(--primary-2);" do %>
+        <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
+        Nova missão
+      <% end %>
     </div>
-  <% end %>
-
-  <%# ─── Stats grid (2-col mobile → 4-col desktop) ─── %>
-  <div class="z-10 relative grid grid-cols-2 lg:grid-cols-4 gap-4 mb-7">
-    <%= render Ui::StatCard::Component.new(value: @stats[:total_stars],     label: "Estrelas em circulação", icon: "star",   tint: "star") %>
-    <%= render Ui::StatCard::Component.new(value: @stats[:active_missions], label: "Missões ativas",         icon: "target", tint: "primary") %>
-    <%= render Ui::StatCard::Component.new(value: @stats[:rewards_count],   label: "Prêmios no catálogo",    icon: "bag",    tint: "rose") %>
-    <%= render Ui::StatCard::Component.new(value: @stats[:children],        label: "Crianças ativas",        icon: "users",  tint: "mint") %>
   </div>
 
-  <%# ─── Kid cards ─── %>
-  <div class="mb-5 z-content">
-    <div class="flex items-center justify-between mb-3">
-      <%= render Ui::Heading::Component.new(size: :h2, class: "m-0") do %>Suas crianças<% end %>
-      <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: parent_profiles_path) do %>+ Adicionar criança<% end %>
+  <%# ─── Stats grid ─── %>
+  <div class="z-10 relative grid grid-cols-2 lg:grid-cols-4 gap-3 mb-[22px]">
+    <%= render Ui::StatCard::Component.new(value: @stats[:total_stars],       label: "Estrelinhas",     icon: "star",   tint: "reward") %>
+    <%= render Ui::StatCard::Component.new(value: @stats[:active_missions],   label: "Missões ativas",  icon: "target", tint: "info") %>
+    <%= render Ui::StatCard::Component.new(value: @stats[:rewards_count],     label: "Prêmios",         icon: "bag",    tint: "prize") %>
+    <%= render Ui::StatCard::Component.new(value: @stats[:pending_approvals], label: "Pendentes →",     icon: "clock",  tint: "danger") %>
+  </div>
+
+  <%# ─── Suas crianças ─── %>
+  <section class="mb-[22px] z-content">
+    <div class="flex items-center justify-between mb-[14px]">
+      <h2 class="text-[16px] font-extrabold m-0" style="color: var(--text);">Suas crianças</h2>
+      <%= link_to parent_profiles_path,
+            class: "ls-btn-3d inline-flex items-center px-3.5 py-2 rounded-[12px] text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline border-2",
+            style: "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 3px 0 var(--hairline);" do %>
+        + Adicionar
+      <% end %>
     </div>
 
     <% if @children.any? %>
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 lg:grid-cols-1 gap-3">
         <% @children.each do |child| %>
           <%= render Ui::KidProgressCard::Component.new(
                 kid: child,
@@ -63,28 +75,40 @@
         <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: parent_profiles_path) do %>Adicionar Criança<% end %>
       <% end %>
     <% end %>
-  </div>
+  </section>
 
-  <%# ─── Atividade recente ─── %>
-  <div class="z-content">
-    <div class="flex items-center justify-between mb-3">
-      <%= render Ui::Heading::Component.new(size: :h2, class: "m-0") do %>Atividade recente<% end %>
-      <%= link_to "Ver tudo", parent_activity_logs_path, class: "text-[13px] font-bold text-primary no-underline hover:underline" %>
+  <%# ─── Aprovações pendentes ─── %>
+  <section class="z-content">
+    <div class="flex items-center justify-between mb-[14px]">
+      <h2 class="text-[16px] font-extrabold m-0" style="color: var(--text);">Aprovações pendentes</h2>
+      <%= link_to "Ver tudo", parent_approvals_path, class: "text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline", style: "color: var(--c-info-600);" %>
     </div>
-    <% if @recent_activity.any? %>
-      <%= render Ui::Card::Component.new(padding: "sm") do %>
-        <% @recent_activity.each_with_index do |log, i| %>
-          <%= render Ui::ActivityRow::Component.new(log: log, with_divider: i < @recent_activity.size - 1) %>
+    <% if @pending_tasks.any? %>
+      <div class="flex flex-col gap-2.5">
+        <% @pending_tasks.each do |task| %>
+          <%= render Ui::ApprovalRow::Component.new(
+                dom_id: dom_id(task),
+                kid: task.profile,
+                title: task.title,
+                kid_chip_text: task.profile&.name,
+                category: task.category,
+                meta: "há #{time_ago_in_words(task.updated_at)}",
+                points: task.points,
+                points_sign: "+",
+                approve_url: approve_parent_approval_path(task),
+                reject_url: reject_parent_approval_path(task),
+                reject_confirm: "Rejeitar esta missão?",
+                compact: true
+              ) %>
         <% end %>
-      <% end %>
+      </div>
     <% else %>
-      <%= render Ui::Card::Component.new(padding: "md") do %>
-        <%= render Ui::Empty::Component.new(
-          icon: "clock",
-          title: "Sem atividade ainda",
-          subtitle: "Quando suas crianças completarem missões, aparecerá aqui."
-        ) %>
-      <% end %>
+      <%= render Ui::Empty::Component.new(
+        icon: "check",
+        title: "Tudo em dia!",
+        subtitle: "Nenhuma missão aguardando aprovação."
+      ) %>
     <% end %>
-  </div>
+  </section>
+
 </div>

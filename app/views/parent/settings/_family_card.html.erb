@@ -1,19 +1,22 @@
-<%= render Ui::Card::Component.new(padding: "p-5") do %>
-  <%= render Ui::Heading::Component.new(size: :h3, class: "mb-4") do %>Família<% end %>
-  <div class="flex flex-col gap-0">
+<section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+         style="box-shadow: var(--shadow-card);">
+  <div class="text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3" style="color: var(--text-muted);">
+    Família
+  </div>
+  <div class="flex flex-col">
 
-    <div class="row justify-between items-center py-2.5 border-b border-hairline">
-      <div>
-        <div class="text-[13px] font-bold text-foreground">Nome da família</div>
-        <div class="text-[11px] text-muted-foreground">Aparece no app das crianças</div>
+    <div class="flex justify-between items-center gap-3 py-3 border-b-2 border-hairline">
+      <div class="min-w-0">
+        <div class="text-[14px] font-extrabold" style="color: var(--text);">Nome da família</div>
+        <div class="text-[11px] font-bold" style="color: var(--text-muted);">Aparece no app das crianças</div>
       </div>
-      <div class="font-display font-bold text-[14px] text-foreground italic">
+      <div class="text-[14px] font-extrabold truncate" style="color: var(--text);">
         <%= family.name %>
       </div>
     </div>
 
-    <div class="row justify-between items-center gap-3 py-2.5 border-b border-hairline">
-      <div class="text-[13px] font-bold text-foreground shrink-0">Idioma</div>
+    <div class="flex justify-between items-center gap-3 py-3 border-b-2 border-hairline">
+      <div class="text-[14px] font-extrabold shrink-0" style="color: var(--text);">Idioma</div>
       <div class="w-[200px]">
         <%= render Ui::Select::Component.new(
               name: "family[locale]",
@@ -25,8 +28,8 @@
       </div>
     </div>
 
-    <div class="row justify-between items-center gap-3 py-2.5 border-b border-hairline">
-      <div class="text-[13px] font-bold text-foreground shrink-0">Fuso horário</div>
+    <div class="flex justify-between items-center gap-3 py-3 border-b-2 border-hairline">
+      <div class="text-[14px] font-extrabold shrink-0" style="color: var(--text);">Fuso horário</div>
       <div class="w-[220px]">
         <%= render Ui::Select::Component.new(
               name: "family[timezone]",
@@ -42,18 +45,21 @@
       </div>
     </div>
 
-    <div class="row justify-between items-center py-2.5">
-      <div class="text-[13px] font-bold text-foreground">Início de semana</div>
-      <div class="row gap-1 bg-surface-2 rounded-full p-0.5">
-        <% [[0, "dom"], [1, "seg"]].each do |val, lbl|
+    <div class="flex justify-between items-center gap-3 py-3">
+      <div class="text-[14px] font-extrabold" style="color: var(--text);">Início de semana</div>
+      <div class="flex gap-1 p-1 rounded-[12px] border-2 border-hairline" style="background: var(--surface-2);">
+        <% [[0, "DOM"], [1, "SEG"]].each do |val, lbl|
           active = family.week_start == val %>
-          <label class="cursor-pointer relative">
-            <input type="radio" name="family[week_start]" value="<%= val %>" <%= 'checked' if active %> class="absolute opacity-0" />
-            <span class="inline-block py-1 px-2.5 rounded-full font-body text-[12px] font-extrabold <%= active ? 'bg-foreground text-white' : 'bg-transparent text-muted-foreground' %>"><%= lbl %></span>
+          <label class="cursor-pointer">
+            <input type="radio" name="family[week_start]" value="<%= val %>" <%= 'checked' if active %> class="absolute opacity-0 sr-only" />
+            <span class="inline-block py-1.5 px-3.5 rounded-[10px] text-[11px] font-extrabold uppercase tracking-[0.5px] transition-colors"
+                  style="<%= active ? 'background: var(--primary); color: white; box-shadow: 0 2px 0 var(--primary-2);' : 'background: transparent; color: var(--text-muted);' %>">
+              <%= lbl %>
+            </span>
           </label>
         <% end %>
       </div>
     </div>
 
   </div>
-<% end %>
+</section>

@@ -14,7 +14,7 @@
     @apply border-b border-border;
   }
   .drawer__title {
-    @apply text-xl font-semibold leading-tight text-foreground;
+    @apply text-xl font-bold leading-tight text-foreground;
   }
   .drawer__subtitle {
     @apply mt-1 text-sm text-muted-foreground;

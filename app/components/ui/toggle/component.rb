@@ -20,33 +20,41 @@ module Ui
         name.present?
       end
 
+      def track_style
+        "box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);"
+      end
+
       def track_classes
         class_names(
           "rounded-full bg-hairline transition-colors duration-200 relative",
-          size == :sm ? "w-[34px] h-[20px]" : "w-11 h-6",
+          size == :sm ? "w-[34px] h-[20px]" : "w-[52px] h-[30px]",
           { "bg-primary": checked && !form_bound? }
         )
       end
 
       def thumb_classes
         class_names(
-          "rounded-full bg-white absolute top-[2px] left-[2px] transition-transform duration-200 shadow-sm",
-          size == :sm ? "w-[16px] h-[16px]" : "w-[20px] h-[20px]",
-          { (size == :sm ? "translate-x-[16px]" : "translate-x-[22px]") => checked && !form_bound? }
+          "rounded-full bg-white absolute top-[3px] left-[3px] transition-transform duration-200",
+          size == :sm ? "w-[14px] h-[14px]" : "w-[24px] h-[24px]",
+          { (size == :sm ? "translate-x-[14px]" : "translate-x-[22px]") => checked && !form_bound? }
         )
+      end
+
+      def thumb_style
+        "box-shadow: 0 2px 0 rgba(0,0,0,0.15);"
       end
 
       def peer_track_classes
         class_names(
           "rounded-full bg-hairline transition-colors duration-200 relative peer-checked:bg-primary",
-          size == :sm ? "w-[34px] h-[20px]" : "w-11 h-6"
+          size == :sm ? "w-[34px] h-[20px]" : "w-[52px] h-[30px]"
         )
       end
 
       def peer_thumb_classes
         class_names(
-          "rounded-full bg-white absolute top-[2px] left-[2px] transition-transform duration-200 shadow-sm",
-          size == :sm ? "w-[16px] h-[16px] peer-checked:translate-x-[14px]" : "w-[20px] h-[20px] peer-checked:translate-x-[18px]"
+          "rounded-full bg-white absolute top-[3px] left-[3px] transition-transform duration-200",
+          size == :sm ? "w-[14px] h-[14px] group-has-[:checked]:translate-x-[14px]" : "w-[24px] h-[24px] group-has-[:checked]:translate-x-[22px]"
         )
       end
     end

@@ -1,11 +1,31 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["dots", "input", "form"];
+  static targets = ["dots", "input", "form", "overlay", "card"];
 
   connect() {
     this.value = "";
     this.render();
+    this._onKey = (e) => { if (e.key === "Escape") this.close(); };
+    document.addEventListener("keydown", this._onKey);
+  }
+
+  disconnect() {
+    document.removeEventListener("keydown", this._onKey);
+  }
+
+  close() {
+    const frame = this.element.closest("turbo-frame");
+    if (frame) {
+      frame.removeAttribute("src");
+      frame.innerHTML = "";
+    } else {
+      this.element.remove();
+    }
+  }
+
+  closeOnOverlay(event) {
+    if (event.target === this.element) this.close();
   }
 
   press(event) {

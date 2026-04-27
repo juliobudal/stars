@@ -1,0 +1,211 @@
+<h2 class="sr-only">LittleStars dashboard redesigned in Duolingo's playful gamified style with bold colors, 3D buttons, streak counter, and child progress card.</h2>
+
+<style>
+.ls-btn-3d { position: relative; transition: transform 0.05s; }
+.ls-btn-3d:active { transform: translateY(2px); box-shadow: none !important; }
+.ls-card-3d { box-shadow: 0 4px 0 rgba(0,0,0,0.08); }
+.ls-nav-item { transition: background 0.15s; cursor: pointer; }
+.ls-nav-item:hover { background: #F7F7F7; }
+.ls-approve-row { transition: transform 0.1s; }
+.ls-approve-row:hover { transform: translateX(2px); }
+</style>
+
+<div style="background: #FFFFFF; border-radius: 16px; border: 2px solid #E5E5E5; overflow: hidden; font-family: 'Nunito', var(--font-sans); font-weight: 700;">
+
+<div style="display: grid; grid-template-columns: 220px 1fr; min-height: 760px;">
+
+  <aside style="background: #FFFFFF; border-right: 2px solid #E5E5E5; padding: 20px 14px; display: flex; flex-direction: column;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px 18px;">
+      <div style="width: 32px; height: 32px; background: #FFC800; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 0 #E0A800;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+      </div>
+      <div>
+        <div style="font-size: 17px; font-weight: 800; color: #4B4B4B;">LittleStars</div>
+        <div style="font-size: 10px; color: #AFAFAF; letter-spacing: 1px; font-weight: 700;">MODO PAIS</div>
+      </div>
+    </div>
+
+    <nav style="display: flex; flex-direction: column; gap: 4px; flex: 1;">
+      <a class="ls-nav-item" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; background: #DDF4FF; color: #1899D6; font-size: 14px; font-weight: 800; border: 2px solid #84D8FF;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+        Início
+      </a>
+      <a class="ls-nav-item" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; color: #777; font-size: 14px; font-weight: 800;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg>
+        Crianças
+      </a>
+      <a class="ls-nav-item" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; color: #777; font-size: 14px; font-weight: 800;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+        Missões
+      </a>
+      <a class="ls-nav-item" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; color: #777; font-size: 14px; font-weight: 800;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M5 8h14v12H5z"/><path d="M3 8h18V5H3z"/><path d="M12 5v15"/></svg>
+        Prêmios
+      </a>
+      <a class="ls-nav-item" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; color: #777; font-size: 14px; font-weight: 800;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/></svg>
+        Categorias
+      </a>
+      <a class="ls-nav-item" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; color: #777; font-size: 14px; font-weight: 800;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        Aprovações
+        <span style="margin-left: auto; background: #FF4B4B; color: white; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 800; box-shadow: 0 2px 0 #C53232;">3</span>
+      </a>
+      <a class="ls-nav-item" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; color: #777; font-size: 14px; font-weight: 800;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+        Configurações
+      </a>
+    </nav>
+
+    <div style="padding: 12px; background: #F7F7F7; border-radius: 14px; display: flex; align-items: center; gap: 10px; border: 2px solid #E5E5E5;">
+      <div style="width: 34px; height: 34px; border-radius: 50%; background: #58CC02; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; font-weight: 800; box-shadow: 0 2px 0 #46A302;">JB</div>
+      <div style="flex: 1; min-width: 0;">
+        <div style="font-size: 13px; font-weight: 800; color: #4B4B4B;">Pai</div>
+        <div style="font-size: 11px; color: #AFAFAF; font-weight: 700;">Responsável</div>
+      </div>
+    </div>
+  </aside>
+
+  <main style="padding: 24px 28px; background: #FFFFFF; overflow: hidden;">
+
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 22px;">
+      <div>
+        <h1 style="margin: 0 0 4px; font-size: 26px; font-weight: 800; color: #4B4B4B;">Olá, Pai! 👋</h1>
+        <p style="margin: 0; font-size: 14px; color: #777; font-weight: 700;">Theo tem missões esperando sua aprovação</p>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 6px; background: #FFF4DA; border: 2px solid #FFC800; padding: 8px 14px; border-radius: 14px; box-shadow: 0 3px 0 #E0A800;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF9600"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>
+          <div>
+            <div style="font-size: 18px; font-weight: 800; color: #FF9600; line-height: 1;">5</div>
+            <div style="font-size: 9px; color: #B36F00; letter-spacing: 0.5px; font-weight: 800;">DIAS</div>
+          </div>
+        </div>
+        <button class="ls-btn-3d" style="background: #58CC02; color: white; border: none; padding: 12px 20px; border-radius: 14px; font-size: 14px; font-weight: 800; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 0 #46A302; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          Nova missão
+        </button>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-bottom: 22px;">
+      <div class="ls-card-3d" style="background: #FFF4DA; border: 2px solid #FFC800; border-radius: 16px; padding: 14px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFC800" style="margin-bottom: 6px;"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+        <div style="font-size: 24px; font-weight: 800; color: #B36F00; line-height: 1;">12</div>
+        <div style="font-size: 11px; color: #B36F00; margin-top: 4px; font-weight: 800;">ESTRELINHAS</div>
+      </div>
+      <div class="ls-card-3d" style="background: #DDF4FF; border: 2px solid #84D8FF; border-radius: 16px; padding: 14px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1CB0F6" stroke-width="2.8" style="margin-bottom: 6px;"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+        <div style="font-size: 24px; font-weight: 800; color: #1899D6; line-height: 1;">2</div>
+        <div style="font-size: 11px; color: #1899D6; margin-top: 4px; font-weight: 800;">MISSÕES ATIVAS</div>
+      </div>
+      <div class="ls-card-3d" style="background: #FCE7F3; border: 2px solid #F472B6; border-radius: 16px; padding: 14px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#DB2777" stroke-width="2.8" stroke-linejoin="round" style="margin-bottom: 6px;"><path d="M5 8h14v12H5z"/><path d="M3 8h18V5H3z"/></svg>
+        <div style="font-size: 24px; font-weight: 800; color: #BE185D; line-height: 1;">1</div>
+        <div style="font-size: 11px; color: #BE185D; margin-top: 4px; font-weight: 800;">PRÊMIO</div>
+      </div>
+      <div class="ls-card-3d" style="background: #FFE4E1; border: 2px solid #FF9999; border-radius: 16px; padding: 14px; cursor: pointer;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF4B4B" stroke-width="2.8" style="margin-bottom: 6px;"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div style="font-size: 24px; font-weight: 800; color: #C53232; line-height: 1;">3</div>
+        <div style="font-size: 11px; color: #C53232; margin-top: 4px; font-weight: 800;">PENDENTES →</div>
+      </div>
+    </div>
+
+    <section style="margin-bottom: 22px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <h2 style="margin: 0; font-size: 16px; font-weight: 800; color: #4B4B4B;">Suas crianças</h2>
+        <button class="ls-btn-3d" style="background: white; border: 2px solid #E5E5E5; padding: 8px 14px; border-radius: 12px; font-size: 12px; cursor: pointer; color: #777; font-weight: 800; box-shadow: 0 3px 0 #E5E5E5; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit;">+ Adicionar</button>
+      </div>
+
+      <div class="ls-card-3d" style="background: white; border: 2px solid #E5E5E5; border-radius: 16px; padding: 16px; display: flex; align-items: center; gap: 16px;">
+        <div style="position: relative; flex-shrink: 0;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: #CE82FF; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 0 #A855E0;">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="10" fill="white"/><circle cx="9" cy="10" r="1.3" fill="#7C3AED"/><circle cx="15" cy="10" r="1.3" fill="#7C3AED"/><path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="#7C3AED" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          </div>
+          <div style="position: absolute; bottom: -4px; right: -4px; background: #58CC02; color: white; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px; border: 3px solid white; box-shadow: 0 2px 0 #46A302;">N1</div>
+        </div>
+
+        <div style="flex: 1; min-width: 0;">
+          <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px;">
+            <span style="font-size: 18px; font-weight: 800; color: #4B4B4B;">Theo</span>
+            <span style="font-size: 12px; color: #777; font-weight: 700;">faltam 8 ⭐ pro nível 2</span>
+          </div>
+
+          <div style="height: 14px; background: #E5E5E5; border-radius: 8px; overflow: hidden; margin-bottom: 12px; position: relative;">
+            <div style="width: 35%; height: 100%; background: #58CC02; border-radius: 8px; position: relative; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);"></div>
+          </div>
+
+          <div style="display: flex; gap: 18px; font-size: 13px; font-weight: 800;">
+            <span style="display: flex; align-items: center; gap: 5px; color: #B36F00;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFC800"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/></svg>
+              12 saldo
+            </span>
+            <span style="display: flex; align-items: center; gap: 5px; color: #1899D6;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1CB0F6" stroke-width="3"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+              2 ativas
+            </span>
+            <span style="display: flex; align-items: center; gap: 5px; color: #C53232;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF4B4B" stroke-width="3"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              3 pendentes
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <h2 style="margin: 0; font-size: 16px; font-weight: 800; color: #4B4B4B;">Aprovações pendentes</h2>
+        <a style="font-size: 12px; color: #1CB0F6; cursor: pointer; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">Ver tudo</a>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+
+        <div class="ls-approve-row ls-card-3d" style="display: flex; align-items: center; gap: 14px; padding: 12px 16px; background: white; border: 2px solid #E5E5E5; border-radius: 14px;">
+          <div style="width: 42px; height: 42px; border-radius: 12px; background: #DDF4FF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 2px solid #84D8FF;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1899D6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18l-2-7H5z"/><path d="M5 12v7h14v-7"/></svg>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-size: 14px; font-weight: 800; color: #4B4B4B; margin-bottom: 2px;">Arrumar a cama</div>
+            <div style="font-size: 12px; color: #777; font-weight: 700;">Theo · há 12 minutos · vale 3 ⭐</div>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="ls-btn-3d" style="background: white; border: 2px solid #E5E5E5; padding: 8px 14px; border-radius: 12px; font-size: 12px; cursor: pointer; color: #777; font-weight: 800; box-shadow: 0 3px 0 #E5E5E5; text-transform: uppercase; font-family: inherit;">Recusar</button>
+            <button class="ls-btn-3d" style="background: #58CC02; color: white; border: none; padding: 8px 16px; border-radius: 12px; font-size: 12px; cursor: pointer; font-weight: 800; box-shadow: 0 3px 0 #46A302; text-transform: uppercase; font-family: inherit;">Aprovar</button>
+          </div>
+        </div>
+
+        <div class="ls-approve-row ls-card-3d" style="display: flex; align-items: center; gap: 14px; padding: 12px 16px; background: white; border: 2px solid #E5E5E5; border-radius: 14px;">
+          <div style="width: 42px; height: 42px; border-radius: 12px; background: #DCFCE7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 2px solid #58CC02;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#46A302" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 22V12h6v10M3 9l9-7 9 7v13H3z"/></svg>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-size: 14px; font-weight: 800; color: #4B4B4B; margin-bottom: 2px;">Escovar os dentes</div>
+            <div style="font-size: 12px; color: #777; font-weight: 700;">Theo · há 1 hora · vale 2 ⭐</div>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="ls-btn-3d" style="background: white; border: 2px solid #E5E5E5; padding: 8px 14px; border-radius: 12px; font-size: 12px; cursor: pointer; color: #777; font-weight: 800; box-shadow: 0 3px 0 #E5E5E5; text-transform: uppercase; font-family: inherit;">Recusar</button>
+            <button class="ls-btn-3d" style="background: #58CC02; color: white; border: none; padding: 8px 16px; border-radius: 12px; font-size: 12px; cursor: pointer; font-weight: 800; box-shadow: 0 3px 0 #46A302; text-transform: uppercase; font-family: inherit;">Aprovar</button>
+          </div>
+        </div>
+
+        <div class="ls-approve-row ls-card-3d" style="display: flex; align-items: center; gap: 14px; padding: 12px 16px; background: white; border: 2px solid #E5E5E5; border-radius: 14px;">
+          <div style="width: 42px; height: 42px; border-radius: 12px; background: #FCE7F3; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 2px solid #F472B6;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#BE185D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h2l1 12h12l1-12h2"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-size: 14px; font-weight: 800; color: #4B4B4B; margin-bottom: 2px;">Guardar os brinquedos</div>
+            <div style="font-size: 12px; color: #777; font-weight: 700;">Theo · há 2 horas · vale 5 ⭐</div>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="ls-btn-3d" style="background: white; border: 2px solid #E5E5E5; padding: 8px 14px; border-radius: 12px; font-size: 12px; cursor: pointer; color: #777; font-weight: 800; box-shadow: 0 3px 0 #E5E5E5; text-transform: uppercase; font-family: inherit;">Recusar</button>
+            <button class="ls-btn-3d" style="background: #58CC02; color: white; border: none; padding: 8px 16px; border-radius: 12px; font-size: 12px; cursor: pointer; font-weight: 800; box-shadow: 0 3px 0 #46A302; text-transform: uppercase; font-family: inherit;">Aprovar</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+</div>

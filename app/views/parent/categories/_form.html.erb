@@ -1,25 +1,40 @@
 <%= form_with(model: [:parent, category], class: "block") do |f| %>
   <% if category.errors.any? %>
-    <div class="bg-danger-soft text-danger p-4 mb-4 rounded-2xl">
-      <h3 class="font-display font-extrabold text-[18px] mb-2">Ops! Algo deu errado:</h3>
-      <ul class="text-[14px] font-semibold list-disc ml-5">
+    <section class="mb-[18px] p-[18px] rounded-[16px] border-2"
+             style="background: var(--c-rose-soft); border-color: var(--danger); box-shadow: 0 4px 0 rgba(0,0,0,0.08);">
+      <div class="text-[12px] font-extrabold uppercase tracking-[0.5px] mb-2" style="color: var(--danger-2);">
+        Ops! Algo deu errado
+      </div>
+      <ul class="text-[14px] font-bold list-disc ml-5" style="color: var(--text);">
         <% category.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
-    </div>
+    </section>
   <% end %>
 
-  <div class="flex flex-col gap-5">
-    <div class="flex flex-col gap-2">
-      <%= f.label :name, "Nome", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
-      <%= f.text_field :name,
-            class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm",
-            placeholder: "Ex: Música" %>
-    </div>
+  <div class="grid grid-cols-1 gap-[18px] max-w-[720px]">
 
-    <div class="flex flex-col gap-2">
-      <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Ícone</label>
+    <%# ─── Nome ─── %>
+    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+             style="box-shadow: var(--shadow-card);">
+      <%= f.label :name,
+            "Nome da categoria",
+            class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[10px]",
+            style: "color: var(--text-muted);" %>
+      <%= f.text_field :name,
+            class: "form-input w-full px-4 py-[14px] rounded-[14px] border-2 border-hairline font-bold text-[15px] outline-none box-border",
+            style: "color: var(--text); font-family: inherit;",
+            placeholder: "Ex: Música" %>
+    </section>
+
+    <%# ─── Ícone ─── %>
+    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+             style="box-shadow: var(--shadow-card);">
+      <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[12px]"
+             style="color: var(--text-muted);">
+        Escolha um ícone
+      </label>
       <%= render Ui::IconPicker::Component.new(
             field_name: "category[icon]",
             value: category.icon.presence || "bookmark-01",
@@ -27,19 +42,34 @@
             color: "var(--primary)",
             id: "category_icon_picker"
           ) %>
-    </div>
+    </section>
 
-    <div class="flex flex-col gap-2">
-      <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Cor</label>
+    <%# ─── Cor ─── %>
+    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
+             style="box-shadow: var(--shadow-card);">
+      <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[12px]"
+             style="color: var(--text-muted);">
+        Cor da categoria
+      </label>
       <%= render Ui::ColorSwatchPicker::Component.new(
             field_name: "category[color]",
             value: category.color.presence || "lilac"
           ) %>
-    </div>
+    </section>
 
-    <div class="flex flex-row mt-4 gap-2.5 justify-end">
-      <%= render Ui::Btn::Component.new(variant: "secondary", url: parent_categories_path) do %>Voltar<% end %>
-      <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>Salvar<% end %>
+    <%# ─── Action bar ─── %>
+    <div class="flex flex-row justify-end gap-[10px] py-1">
+      <%= link_to parent_categories_path,
+            class: "ls-btn-3d inline-flex items-center px-[22px] py-3 rounded-[14px] text-[13px] font-extrabold uppercase tracking-[0.5px] no-underline border-2",
+            style: "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 4px 0 var(--hairline);" do %>
+        Cancelar
+      <% end %>
+      <button type="submit"
+              class="ls-btn-3d inline-flex items-center gap-2 px-[26px] py-3 rounded-[14px] text-white text-[13px] font-extrabold uppercase tracking-[0.5px] border-2 cursor-pointer"
+              style="background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 0 var(--primary-2); font-family: inherit;">
+        <%= render Ui::Icon::Component.new("check", size: 14, color: "currentColor") %>
+        Salvar categoria
+      </button>
     </div>
   </div>
 <% end %>

@@ -1,152 +1,248 @@
-<%= form_with(model: global_task, url: global_task.new_record? ? parent_global_tasks_path : parent_global_task_path(global_task), html: { data: { controller: "form-preview" } }, class: "block") do |f| %>
+<%
+  cat_name = global_task.category.presence || "casa"
+  cat_data = Ui::Tokens.category_for(cat_name)
+  current_icon = global_task.icon.presence || Ui::IconPicker::Component::CONTEXT_GROUPS[:mission].first
+  current_points = (global_task.points.presence || 3).to_i.clamp(1, 10)
+  current_freq = global_task.frequency.to_s.presence || "daily"
+  kids = @kids || current_profile.family.profiles.child.order(:name)
+  selected_kid_ids = global_task.assigned_profile_ids.map(&:to_i)
+  freq_options = [
+    { key: "daily",   label: "Diária",    helper: "Todo dia",        icon: "clock" },
+    { key: "weekly",  label: "Semanal",   helper: "Uma vez/semana",  icon: "scroll" },
+    { key: "monthly", label: "Mensal",    helper: "Uma vez/mês",     icon: "scroll" },
+    { key: "once",   label: "Única",      helper: "Só uma vez",      icon: "check" }
+  ]
+%>
+
+<%= form_with(model: global_task,
+              url: global_task.new_record? ? parent_global_tasks_path : parent_global_task_path(global_task),
+              html: { data: { controller: "form-preview" } },
+              class: "block") do |f| %>
+
   <% if global_task.errors.any? %>
-    <%= render Ui::Card::Component.new(variant: "flat", class: "bg-danger-soft text-danger p-4 mb-4") do %>
-      <%= render Ui::Heading::Component.new(size: :h3) do %>Ops! Algo deu errado:<% end %>
-      <ul class="text-[14px] text-muted-foreground font-semibold list-disc ml-5">
+    <div class="rounded-[16px] border-2 p-4 mb-4"
+         style="background: var(--c-red-soft); border-color: var(--danger); box-shadow: var(--shadow-card); color: var(--danger);">
+      <div class="font-extrabold text-[14px] mb-1">Ops! Algo deu errado:</div>
+      <ul class="text-[13px] font-bold list-disc ml-5">
         <% global_task.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
-    <% end %>
+    </div>
   <% end %>
 
-  <%
-    cat_name = global_task.category || "geral"
-    cat_data = Ui::MissionCard::Component::CATEGORIES[cat_name.to_s] || Ui::MissionCard::Component::CATEGORIES["geral"]
-    current_icon = global_task.icon.presence || Ui::IconPicker::Component::CONTEXT_GROUPS[:mission].first
-  %>
+  <div class="flex flex-col gap-[18px] max-w-[720px]">
 
-  <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 items-start">
-    <div class="flex flex-col gap-5">
-      <div class="flex flex-col gap-2">
-        <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Ícone</label>
-        <%= render Ui::IconPicker::Component.new(
-              field_name: "global_task[icon]",
-              value: current_icon,
-              context: :mission,
-              color: "var(--c-#{cat_data[:color]})",
-              id: "global_task_icon_picker",
-              input_data: { form_preview_field: "icon" }
-            ) %>
+    <%# Title section %>
+    <section class="rounded-[16px] border-2 p-[18px]"
+             style="background: var(--surface); border-color: var(--hairline); box-shadow: var(--shadow-card);">
+      <%= f.label :title, "Título da missão",
+            class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-2.5",
+            style: "color: var(--text-muted);" %>
+      <%= f.text_field :title,
+            class: "w-full px-4 py-3.5 rounded-[14px] font-bold text-[15px] outline-none border-2 transition-all focus:shadow-[0_0_0_3px_var(--primary-soft)] focus:!border-primary",
+            style: "color: var(--text); border-color: var(--hairline); background: var(--surface);",
+            placeholder: "Ex: Arrumar a cama",
+            data: { form_preview_field: "title" } %>
+      <div class="text-[11px] font-bold mt-2" style="color: var(--text-muted);">Use frases curtas que a criança entenda.</div>
+    </section>
+
+    <%# Icon picker %>
+    <section class="rounded-[16px] border-2 p-[18px]"
+             style="background: var(--surface); border-color: var(--hairline); box-shadow: var(--shadow-card);">
+      <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3"
+             style="color: var(--text-muted);">Escolha um ícone</label>
+      <%= render Ui::IconPicker::Component.new(
+            field_name: "global_task[icon]",
+            value: current_icon,
+            context: :mission,
+            color: Ui::Tokens.tint_fg(cat_data[:tint]),
+            id: "global_task_icon_picker",
+            input_data: { form_preview_field: "icon" }
+          ) %>
+    </section>
+
+    <%# Stars (points) %>
+    <section class="rounded-[16px] border-2 p-[18px]"
+             style="background: var(--surface); border-color: var(--hairline); box-shadow: var(--shadow-card);">
+      <label class="flex items-center gap-2 text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3.5"
+             style="color: var(--text-muted);">
+        <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
+        Quantas estrelinhas vale?
+      </label>
+      <div class="flex gap-1.5 items-center"
+           data-controller="star-picker"
+           data-star-picker-value-value="<%= current_points %>"
+           data-star-picker-input-value="global_task_points">
+        <% (1..10).each do |i| %>
+          <% filled = i <= current_points %>
+          <button type="button"
+                  class="ls-star-cell flex-1 aspect-square rounded-[10px] flex items-center justify-center border-2 cursor-pointer"
+                  data-action="click->star-picker#select"
+                  data-star-picker-target="cell"
+                  data-value="<%= i %>"
+                  style="<%= filled ? 'background: var(--star-soft); border-color: var(--star); box-shadow: 0 3px 0 var(--star-2);' : 'background: var(--surface-muted); border-color: var(--hairline);' %>"
+                  aria-label="<%= i %> <%= 'estrelinha'.pluralize(i == 1 ? 1 : 2) %>">
+            <%= render Ui::Icon::Component.new("star", size: 18, color: filled ? "var(--star)" : "var(--text-soft)") %>
+          </button>
+        <% end %>
+      </div>
+      <%= f.hidden_field :points, value: current_points, id: "global_task_points", data: { form_preview_field: "points" } %>
+      <div class="flex justify-between items-center mt-3">
+        <span class="text-[11px] font-bold" style="color: var(--text-soft);">Tarefa fácil</span>
+        <span class="text-[13px] font-extrabold" data-star-picker-target="readout"
+              style="color: var(--c-reward-text);"><%= current_points %> <%= "estrelinha".pluralize(current_points == 1 ? 1 : 2) %></span>
+        <span class="text-[11px] font-bold" style="color: var(--text-soft);">Tarefa difícil</span>
+      </div>
+    </section>
+
+    <%# Frequency %>
+    <section class="rounded-[16px] border-2 p-[18px]"
+             style="background: var(--surface); border-color: var(--hairline); box-shadow: var(--shadow-card);">
+      <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3"
+             style="color: var(--text-muted);">Frequência</label>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" data-controller="selectable-group">
+        <% freq_options.each do |opt|
+             selected = current_freq == opt[:key]
+             selected_style   = "background: var(--c-info-100); border-color: var(--c-info-500); box-shadow: 0 3px 0 var(--c-info-600); color: var(--c-info-600);"
+             unselected_style = "background: var(--surface); border-color: var(--hairline); color: var(--text-muted);"
+        %>
+          <label class="ls-icon-cell rounded-[12px] p-3.5 text-center border-2 cursor-pointer flex flex-col items-center gap-1.5"
+                 data-selectable-group-target="option"
+                 data-selected-style="<%= selected_style %>"
+                 data-unselected-style="<%= unselected_style %>"
+                 style="<%= selected ? selected_style : unselected_style %>">
+            <%= f.radio_button :frequency, opt[:key],
+                  class: "sr-only",
+                  data: { action: "change->fields#enable", controls: "day_of_month_field" } %>
+            <%= render Ui::Icon::Component.new(opt[:icon], size: 22, color: "currentColor") %>
+            <div class="text-[13px] font-extrabold"><%= opt[:label] %></div>
+            <div class="text-[10px] font-bold"><%= opt[:helper] %></div>
+          </label>
+        <% end %>
       </div>
 
-      <div class="flex flex-col gap-2">
-        <%= f.label :title, "Título", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
-        <%= f.text_field :title,
-              class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm",
-              placeholder: "Ex: Arrumar a cama",
-              data: { form_preview_field: "title" } %>
-      </div>
+      <fieldset id="day_of_month_field" class="flex flex-col gap-2 mt-4 <%= 'hidden' unless global_task.monthly? %>" <%= "disabled" unless global_task.monthly? %>>
+        <legend class="text-[11px] font-extrabold uppercase tracking-[0.5px]" style="color: var(--text-muted);">Dia do mês</legend>
+        <%= f.number_field :day_of_month,
+              class: "w-full px-4 py-3.5 rounded-[14px] font-bold text-[15px] outline-none border-2 transition-all focus:shadow-[0_0_0_3px_var(--primary-soft)] focus:!border-primary",
+              style: "color: var(--text); border-color: var(--hairline); background: var(--surface);",
+              min: 1, max: 31, placeholder: "Ex: 15" %>
+        <p class="text-[11px] font-bold" style="color: var(--text-muted);">Dia do mês em que a missão será criada (1–31).</p>
+      </fieldset>
+    </section>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div class="flex flex-col gap-2">
-          <%= f.label :points, "Estrelinhas", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
-          <%= f.number_field :points,
-                class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm",
-                data: { form_preview_field: "points" } %>
-        </div>
-        <div class="flex flex-col gap-2">
-          <%= f.label :frequency, "Frequência", class: "font-display font-extrabold text-[15px] text-foreground tracking-tight" %>
-          <%= render Ui::Select::Component.new(
-                name: "global_task[frequency]",
-                id: "global_task_frequency",
-                options: [["Diária", "daily"], ["Semanal", "weekly"], ["Mensal", "monthly"], ["Única vez", "once"]],
-                selected: global_task.frequency,
-                size: :lg,
-                native_data: { action: "change->fields#enable", controls: "day_of_month_field" }
-              ) %>
-        </div>
+    <%# Category %>
+    <section class="rounded-[16px] border-2 p-[18px]"
+             style="background: var(--surface); border-color: var(--hairline); box-shadow: var(--shadow-card);">
+      <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3"
+             style="color: var(--text-muted);">Categoria</label>
+      <div class="flex flex-wrap gap-2" data-controller="selectable-group">
+        <% Ui::Tokens::MISSION_CATEGORIES.each do |key, data|
+             next if key == "geral"
+             selected = cat_name == key
+             tint_soft = Ui::Tokens.tint_soft(data[:tint])
+             tint_fg   = Ui::Tokens.tint_fg(data[:tint])
+             selected_style   = "background: #{tint_soft}; color: #{tint_fg}; border-color: #{tint_fg}; box-shadow: 0 3px 0 #{tint_fg};"
+             unselected_style = "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 3px 0 var(--hairline);"
+        %>
+          <label class="ls-btn-3d inline-flex items-center gap-1.5 px-3.5 py-2 rounded-[12px] border-2 text-[12px] font-extrabold uppercase tracking-[0.5px] cursor-pointer"
+                 data-selectable-group-target="option"
+                 data-selected-style="<%= selected_style %>"
+                 data-unselected-style="<%= unselected_style %>"
+                 style="<%= selected ? selected_style : unselected_style %>">
+            <%= f.radio_button :category, key, class: "sr-only" %>
+            <%= render Ui::Icon::Component.new(data[:icon], size: 13, color: "currentColor") %>
+            <%= data[:label] %>
+          </label>
+        <% end %>
       </div>
+    </section>
 
-      <div class="flex flex-col gap-2">
-        <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Categoria</label>
-        <div class="flex flex-row flex-wrap gap-2 items-center">
-          <% Ui::MissionCard::Component::CATEGORIES.each do |key, data| %>
-            <% next if data[:label] == "Geral" %>
-            <label class="cursor-pointer">
-              <%= f.radio_button :category, key, class: "peer sr-only" %>
-              <%= render Ui::Chip::Component.new(variant: data[:color], class: "peer-checked:outline peer-checked:outline-3 peer-checked:outline-offset-2 outline-c-#{data[:color]}") do %>
-                <%= render Ui::Icon::Component.new(data[:icon], size: 14) %>
-                <%= data[:label] %>
-              <% end %>
+    <%# Children assignment %>
+    <% if kids.any? %>
+      <section class="rounded-[16px] border-2 p-[18px]"
+               style="background: var(--surface); border-color: var(--hairline); box-shadow: var(--shadow-card);">
+        <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-1"
+               style="color: var(--text-muted);">Para quem é essa missão?</label>
+        <p class="text-[11px] font-bold mb-3" style="color: var(--text-soft);">Selecione uma ou mais crianças. Deixe em branco para atribuir a todas.</p>
+        <div class="flex flex-wrap gap-2.5" data-controller="selectable-group">
+          <%= hidden_field_tag "global_task[assigned_profile_ids][]", "" %>
+          <% kids.each do |kid|
+               checked = selected_kid_ids.include?(kid.id)
+               palette = Ui::SmileyAvatar::Component::COLOR_MAP[kid.color.to_s] || Ui::SmileyAvatar::Component::COLOR_MAP["primary"]
+               selected_style   = "background: #{palette[:tile]}; border-color: #{palette[:ring]}; box-shadow: 0 3px 0 #{palette[:ink]};"
+               unselected_style = "background: var(--surface); border-color: var(--hairline); box-shadow: 0 3px 0 var(--hairline);"
+               name_selected_style   = "color: #{palette[:ink]};"
+               name_unselected_style = "color: var(--text);"
+               check_bg_selected   = "background: var(--primary); box-shadow: 0 2px 0 var(--primary-2);"
+               check_bg_unselected = "background: var(--surface-muted); border: 2px solid var(--hairline);"
+          %>
+            <label class="ls-icon-cell relative inline-flex items-center gap-2.5 pl-2 pr-9 py-2 rounded-[14px] border-2 cursor-pointer"
+                   data-selectable-group-target="option"
+                   data-selected-style="<%= selected_style %>"
+                   data-unselected-style="<%= unselected_style %>"
+                   data-selected-text-style="<%= name_selected_style %>"
+                   data-unselected-text-style="<%= name_unselected_style %>"
+                   style="<%= checked ? selected_style : unselected_style %>">
+              <%= check_box_tag "global_task[assigned_profile_ids][]", kid.id, checked, class: "sr-only" %>
+              <span class="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
+                    style="background: <%= palette[:ring] %>;">
+                <%= render Ui::Icon::Component.new("happy-01", size: 20, color: palette[:ink]) %>
+              </span>
+              <span class="text-[13px] font-extrabold"
+                    data-selectable-text
+                    style="<%= checked ? name_selected_style : name_unselected_style %>"><%= kid.name %></span>
+              <span class="absolute top-1/2 right-2 -translate-y-1/2 w-5 h-5 rounded-full flex items-center justify-center"
+                    data-selectable-check-bg
+                    data-selected-style="<%= check_bg_selected %>"
+                    data-unselected-style="<%= check_bg_unselected %>"
+                    style="<%= checked ? check_bg_selected : check_bg_unselected %>">
+                <span data-selectable-check style="<%= 'display: none;' unless checked %>">
+                  <%= render Ui::Icon::Component.new("check", size: 12, color: "white") %>
+                </span>
+              </span>
             </label>
           <% end %>
         </div>
+      </section>
+    <% end %>
+
+    <%# Active toggle %>
+    <section class="rounded-[16px] border-2 p-[18px] flex items-center justify-between gap-3"
+             style="background: var(--surface); border-color: var(--hairline); box-shadow: var(--shadow-card);">
+      <div class="flex-1 min-w-0">
+        <div class="text-[14px] font-extrabold mb-0.5" style="color: var(--text);">Missão ativa</div>
+        <div class="text-[12px] font-bold" style="color: var(--text-muted);">Missões pausadas não aparecem para a criança</div>
       </div>
+      <%= render Ui::Toggle::Component.new(name: "global_task[active]", checked: global_task.active?) %>
+    </section>
 
-      <div class="flex flex-row justify-between items-center py-3 border-y border-hairline">
-        <div>
-          <div class="text-[13px] font-bold text-foreground">Missão ativa</div>
-          <div class="text-[11px] text-muted-foreground">Missões inativas não aparecem para as crianças</div>
-        </div>
-        <%= render Ui::Toggle::Component.new(name: "global_task[active]", checked: global_task.active?) %>
-      </div>
-
-      <% kids = @kids || current_profile.family.profiles.child.order(:name) %>
-      <% if kids.any? %>
-        <div class="flex flex-col gap-2">
-          <label class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Atribuir a</label>
-          <div class="text-[11px] text-muted-foreground mb-2">Deixe em branco para atribuir a todas as crianças.</div>
-          <div class="flex flex-row flex-wrap gap-2 items-center">
-            <% kids.each do |kid| %>
-              <% checked = global_task.assigned_profile_ids.include?(kid.id) %>
-              <label class="cursor-pointer">
-                <%= check_box_tag "global_task[assigned_profile_ids][]", kid.id, checked, class: "peer sr-only" %>
-                <%= render Ui::Chip::Component.new(variant: checked ? "primary" : "neutral", class: "border #{checked ? 'border-primary' : 'border-hairline'}") do %>
-                  <%= kid.name %>
-                <% end %>
-              </label>
-            <% end %>
-          </div>
-          <%= hidden_field_tag "global_task[assigned_profile_ids][]", "" %>
-        </div>
-      <% end %>
-
-      <fieldset id="day_of_month_field" class="flex flex-col gap-2 <%= 'hidden' unless global_task.monthly? %>" <%= "disabled" unless global_task.monthly? %>>
-        <legend class="font-display font-extrabold text-[15px] text-foreground tracking-tight">Dia do mês</legend>
-        <%= f.number_field :day_of_month, class: "w-full px-5 py-4 bg-white border-2 border-hairline rounded-2xl font-semibold text-[17px] text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-0 transition-all shadow-sm", min: 1, max: 31, placeholder: "Ex: 15" %>
-        <p class="text-[11px] text-muted-foreground mt-1">Dia do mês em que a missão será criada (1–31).</p>
-      </fieldset>
-
-      <div class="flex flex-row mt-4 gap-2.5 justify-end">
-        <%= render Ui::Btn::Component.new(variant: "secondary", url: parent_global_tasks_path) do %>Voltar<% end %>
-        <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>Salvar Missão<% end %>
-      </div>
+    <%# Action bar %>
+    <div class="flex flex-wrap justify-end gap-2.5 pt-1 pb-2">
+      <%= link_to "Cancelar", parent_global_tasks_path,
+            class: "ls-btn-3d inline-flex items-center px-5 py-3 rounded-[14px] text-[13px] font-extrabold uppercase tracking-[0.5px] no-underline border-2",
+            style: "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 4px 0 var(--hairline);" %>
+      <button type="submit"
+              class="ls-btn-3d inline-flex items-center gap-2 px-6 py-3 rounded-[14px] text-white text-[13px] font-extrabold uppercase tracking-[0.5px] cursor-pointer border-2"
+              style="background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 0 var(--primary-2);">
+        <%= render Ui::Icon::Component.new("check", size: 14, color: "currentColor") %>
+        Salvar missão
+      </button>
     </div>
 
-    <aside class="hidden lg:block">
-      <div class="sticky top-6">
-        <%= render Ui::Card::Component.new(class: "p-6 flex flex-col items-center gap-4 text-center") do %>
-          <div class="w-28 h-28 rounded-3xl flex items-center justify-center shrink-0"
-               style="background: var(--c-<%= cat_data[:color] %>-soft); border: 3px solid var(--c-<%= cat_data[:color] %>);">
-            <i data-form-preview-target="icon" data-form-preview-icon="true"
-               class="hgi-stroke hgi-<%= current_icon %>"
-               style="font-size:64px; line-height:1; color: var(--c-<%= cat_data[:color] %>); display:inline-flex; width:64px; height:64px;"
-               aria-hidden="true"></i>
-          </div>
-          <div class="flex flex-col gap-1 w-full">
-            <div data-form-preview-target="title" data-form-preview-fallback="Título da missão"
-                 class="font-display font-extrabold text-[18px] text-foreground truncate">
-              <%= global_task.title.presence || "Título da missão" %>
-            </div>
-            <%= render Ui::StarValue::Component.new(
-                  value: global_task.points || 0,
-                  size: :sm,
-                  color: :gold,
-                  class: "text-muted-foreground",
-                  value_data: { form_preview_target: "points", form_preview_fallback: "0" }
-                ) %>
-          </div>
+    <% unless global_task.new_record? %>
+      <div class="pt-4 mt-2 border-t-2" style="border-color: var(--hairline);">
+        <%= button_to parent_global_task_path(global_task),
+              method: :delete,
+              data: { turbo_confirm: "Remover esta missão de todas as crianças? Esta ação não pode ser desfeita." },
+              form_class: "inline",
+              class: "ls-btn-3d inline-flex items-center gap-2 px-4 py-2.5 rounded-[12px] text-[12px] font-extrabold uppercase tracking-[0.5px] cursor-pointer border-2 text-white",
+              style: "background: var(--danger); border-color: var(--danger); box-shadow: 0 4px 0 var(--danger-2);" do %>
+          <%= render Ui::Icon::Component.new("trash", size: 14, color: "currentColor") %>
+          Remover missão
         <% end %>
       </div>
-    </aside>
+    <% end %>
   </div>
-
-  <% unless global_task.new_record? %>
-    <div class="mt-8 pt-6 border-t-2 border-border">
-      <%= render Ui::Btn::Component.new(variant: "danger", size: "sm", url: parent_global_task_path(global_task), method: :delete, data: { turbo_confirm: "Remover esta missão de todas as crianças? Esta ação não pode ser desfeita." }) do %>
-        <%= render Ui::Icon::Component.new("trash", size: 16, color: "white") %> Remover Missão
-      <% end %>
-    </div>
-  <% end %>
 <% end %>

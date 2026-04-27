@@ -29,6 +29,14 @@ module Ui
       def level
         [ (points / 100) + 1, 1 ].max
       end
+
+      def xp_progress
+        points % 100
+      end
+
+      def stars_to_next
+        100 - xp_progress
+      end
     end
   end
 end

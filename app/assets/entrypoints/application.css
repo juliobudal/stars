@@ -20,10 +20,12 @@
 @import "../stylesheets/components/typography";
 @import "../stylesheets/components/wrapper";
 @import "../stylesheets/components/wysiwyg";
+@import "../stylesheets/components/redeem_modal";
 
 
 /* UI Component CSS */
 @import "../../components/ui/pin_modal/component.css";
+@import "../../components/ui/profile_picker/component.css";
 
 /* Vendors */
 @import "../stylesheets/vendors/hugeicons";

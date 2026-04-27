@@ -11,7 +11,7 @@ class Ui::Card::TitleComponent < ApplicationComponent
 
   def classes
     class_names(
-      "flex items-center gap-2 text-lg font-semibold",
+      "flex items-center gap-2 text-lg font-bold",
       @options.delete(:class)
     )
   end

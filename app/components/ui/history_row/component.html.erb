@@ -7,7 +7,7 @@
       <div class="text-[14px] font-bold"><%= log.title %></div>
       <div class="flex items-center gap-1.25">
         <%= render Ui::Chip::Component.new(variant: kind[:chip_variant], size: "sm", uppercase: true) do %><%= kind[:label] %><% end %>
-        <span class="text-[13px] text-muted-foreground font-medium"><%= log.created_at.strftime("%H:%M") %></span>
+        <span class="text-[13px] text-muted-foreground font-bold"><%= log.created_at.strftime("%H:%M") %></span>
       </div>
     </div>
     <div class="shrink-0 whitespace-nowrap <%= points_color %>">

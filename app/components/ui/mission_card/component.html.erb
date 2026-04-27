@@ -3,9 +3,9 @@
     class="flex items-center gap-3.5 pop-on-tap anim-tile w-full text-left <%= @options[:class] %>"
     style="
       background: white;
-      border-radius: var(--r-md);
-      border: 2px solid rgba(26,42,74,0.08);
-      box-shadow: <%= shadow_value %>;
+      border-radius: var(--r-xl);
+      border: 2px solid var(--hairline);
+      box-shadow: var(--shadow-card);
       padding: 14px;
       cursor: <%= waiting? ? 'default' : 'pointer' %>;
       animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= @index * 0.04 %>s both;
@@ -43,9 +43,9 @@
     class="pop-on-tap anim-tile w-full text-left flex items-center gap-4 <%= @options[:class] %>"
     style="
       background: <%= waiting? ? (category_data[:color] == 'primary' ? 'var(--primary-soft)' : "var(--c-#{category_data[:color]}-soft)") : 'white' %>;
-      border-radius: var(--r-lg);
-      border: 3px solid <%= category_data[:color] == 'primary' ? 'var(--primary)' : "var(--c-#{category_data[:color]})" %>;
-      box-shadow: <%= shadow_value %>;
+      border-radius: var(--r-xl);
+      border: 2px solid <%= category_data[:color] == 'primary' ? 'var(--primary)' : "var(--c-#{category_data[:color]})" %>;
+      box-shadow: 0 4px 0 <%= category_data[:color] == 'primary' ? 'var(--primary-2)' : "var(--c-#{category_data[:color]}-dark)" %>;
       padding: 18px 20px;
       cursor: <%= waiting? ? 'default' : 'pointer' %>;
       animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= [@index, 5].min * 0.04 %>s both;

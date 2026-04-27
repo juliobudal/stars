@@ -60,7 +60,7 @@ module Ui
       def trigger_class
         class_names(
           "ui-select__trigger inline-flex items-center justify-between gap-3 w-full",
-          "bg-white border-2 border-hairline font-semibold text-foreground",
+          "bg-white border-2 border-hairline font-bold text-foreground",
           "transition-all shadow-sm cursor-pointer",
           "hover:border-primary/40 focus:border-primary focus:outline-none",
           SIZES[@size],
@@ -76,7 +76,7 @@ module Ui
         active = value.to_s == selected_value.to_s
         class_names(
           "flex items-center justify-between gap-2 w-full px-4 py-2.5 cursor-pointer text-left",
-          "font-semibold text-[14px] transition-colors",
+          "font-bold text-[14px] transition-colors",
           active ? "bg-primary-soft text-primary" : "text-foreground hover:bg-muted"
         )
       end
