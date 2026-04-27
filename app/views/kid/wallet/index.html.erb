@@ -75,23 +75,35 @@
     </div>
 
     <%# Panel: Aguardando %>
-    <div id="panel-pending" class="flex flex-col gap-0 hidden">
-      <%= render Ui::Empty::Component.new(
-        icon: "clock",
-        title: "Aguardando aprovação",
-        subtitle: "Missões enviadas para aprovação aparecerão aqui em breve",
-        color: "primary"
-      ) %>
+    <div id="panel-pending" class="flex flex-col gap-2.5 hidden">
+      <% if @pending_tasks.any? %>
+        <% @pending_tasks.each do |task| %>
+          <%= render partial: "kid/dashboard/awaiting_task", locals: { awaiting_task: task } %>
+        <% end %>
+      <% else %>
+        <%= render Ui::Empty::Component.new(
+          icon: "clock",
+          title: "Aguardando aprovação",
+          subtitle: "Missões enviadas para aprovação aparecerão aqui em breve",
+          color: "primary"
+        ) %>
+      <% end %>
     </div>
 
     <%# Panel: Rejeitadas %>
-    <div id="panel-rejected" class="flex flex-col gap-0 hidden">
-      <%= render Ui::Empty::Component.new(
-        icon: "scroll",
-        title: "Nenhuma missão rejeitada",
-        subtitle: "Ótimo trabalho! Missões rejeitadas aparecerão aqui",
-        color: "rose"
-      ) %>
+    <div id="panel-rejected" class="flex flex-col gap-2.5 hidden">
+      <% if @rejected_tasks.any? %>
+        <% @rejected_tasks.each do |task| %>
+          <%= render partial: "kid/wallet/rejected_task", locals: { rejected_task: task } %>
+        <% end %>
+      <% else %>
+        <%= render Ui::Empty::Component.new(
+          icon: "scroll",
+          title: "Nenhuma missão rejeitada",
+          subtitle: "Ótimo trabalho! Missões rejeitadas aparecerão aqui",
+          color: "rose"
+        ) %>
+      <% end %>
     </div>
   </div>
 </div>

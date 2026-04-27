@@ -17,5 +17,8 @@ class Kid::WalletController < ApplicationController
     @all_grouped      = @activity_logs.group_by { |l| l.created_at.to_date }
     @earned_grouped   = @activity_logs.select(&:earn?).group_by { |l| l.created_at.to_date }
     @purchase_grouped = @activity_logs.select(&:redeem?).group_by { |l| l.created_at.to_date }
+
+    @pending_tasks  = current_profile.profile_tasks.awaiting_approval.includes(:global_task, :custom_category).order(updated_at: :desc)
+    @rejected_tasks = current_profile.profile_tasks.rejected.includes(:global_task, :custom_category).order(updated_at: :desc).limit(50)
   end
 end

@@ -1,0 +1,17 @@
+<%# Kid — Rejected task partial (LittleStars Duolingo design) %>
+<div class="ls-card-3d flex items-center gap-3.5 p-4" style="background: var(--surface); border: 2px solid var(--danger); border-radius: 14px; box-shadow: 0 4px 0 rgba(0,0,0,0.08);">
+  <div class="flex items-center justify-center shrink-0 w-[48px] h-[48px] rounded-[12px]" style="background: var(--danger-soft); border: 2px solid var(--danger);">
+    <%= render Ui::Icon::Component.new("close", size: 22, color: "var(--danger)") %>
+  </div>
+  <div class="flex flex-col flex-1 gap-1 min-w-0">
+    <div class="font-display text-[15px] leading-tight font-extrabold tracking-[-0.01em] line-through opacity-80" style="color: var(--text);"><%= rejected_task.title %></div>
+    <span class="inline-flex items-center gap-1 w-fit px-2.5 py-1 rounded-full font-display font-extrabold text-[11px] tracking-[0.5px] uppercase" style="background: var(--danger-soft); color: var(--danger); border: 2px solid var(--danger);">
+      <%= render Ui::Icon::Component.new("close", size: 10, color: "currentColor") %>
+      Rejeitada
+    </span>
+  </div>
+  <div class="flex flex-col items-center justify-center shrink-0 leading-none">
+    <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--text-soft)") %>
+    <div class="font-display text-[16px] font-extrabold mt-0.5" style="color: var(--text-soft);"><%= rejected_task.points %></div>
+  </div>
+</div>
