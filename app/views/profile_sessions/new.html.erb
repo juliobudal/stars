@@ -2,13 +2,9 @@
   <%= render Ui::BgShapes::Component.new(variant: "warm") %>
 
   <div class="relative z-2 flex flex-col items-center justify-start p-10 pt-10">
-    <%# Logo row %>
-    <div class="flex items-center gap-3 mb-6">
-      <div class="w-12 h-12 grid place-items-center rounded-[14px]"
-           style="background: var(--star); box-shadow: 0 4px 0 var(--star-2);">
-        <%= render Ui::Icon::Component.new("star", size: 26, color: "white") %>
-      </div>
-      <div class="text-[22px] font-extrabold leading-none" style="color: var(--text);">LittleStars</div>
+    <%# Brand lockup %>
+    <div class="mb-6">
+      <%= render Ui::Brand::Component.new(size: :md, tagline: "Bora começar!") %>
     </div>
 
     <%# Mascot — bounces in %>
@@ -20,8 +16,6 @@
     <% end %>
 
     <%# Hero %>
-    <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase mb-1.5"
-         style="color: var(--c-sky-dark);">Bora começar!</div>
     <h1 class="font-display text-[26px] font-extrabold tracking-[-0.01em] text-center mb-1.5"
         style="color: var(--text);">Quem é você?</h1>
     <p class="mb-8 text-[14px] font-bold text-center" style="color: var(--text-muted);">
