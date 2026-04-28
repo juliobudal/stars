@@ -114,6 +114,22 @@ module ApplicationHelper
     icon_tag(icon_name, options)
   end
 
+  # Count of items awaiting parent action (task approvals + redemption requests)
+  # for the current profile's family. Memoized per request to avoid duplicate
+  # queries when rendered in both the desktop sidebar and the mobile bottom nav.
+  def pending_approvals_count
+    return 0 unless current_profile&.family_id
+
+    @pending_approvals_count ||= begin
+      tasks = current_profile.family.profile_tasks.awaiting_approval.count
+      redemptions = Redemption.pending
+                              .joins(:profile)
+                              .where(profiles: { family_id: current_profile.family_id })
+                              .count
+      tasks + redemptions
+    end
+  end
+
   # Returns a color palette hash for a given profile color key.
   # Used in the profile picker to style SmileyAvatar rings/fills.
   def smiley_palette(color_key)

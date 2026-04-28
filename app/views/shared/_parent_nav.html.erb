@@ -1,8 +1,3 @@
-<%
-  pending_count = current_profile.family.profile_tasks.awaiting_approval.count +
-                  Redemption.pending.joins(:profile).where(profiles: { family_id: current_profile.family_id }).count
-%>
-
 <%# Mobile sticky header — hidden on desktop via CSS %>
 <%# Mobile sticky header — hidden on desktop via CSS %>
 <div data-controller="sidebar-toggle">
@@ -43,7 +38,7 @@
         { icon: "list-checks", path: parent_global_tasks_path, label: "Missões" },
         { icon: "bag", path: parent_rewards_path, label: "Prêmios" },
         { icon: "bookmark-01", path: parent_categories_path, label: "Categorias" },
-        { icon: "clock", path: parent_approvals_path, label: "Aprovações", badge: pending_count > 0 ? pending_count : nil },
+        { icon: "clock", path: parent_approvals_path, label: "Aprovações", badge: pending_approvals_count.positive? ? pending_approvals_count : nil },
         { icon: "gear", path: parent_settings_path, label: "Configurações" }
       ]
     %>
@@ -100,7 +95,7 @@
   <%
     mobile_nav_items = [
       { icon: "house", path: parent_root_path, label: "Início" },
-      { icon: "clock", path: parent_approvals_path, label: "Pendências", badge: pending_count > 0 ? pending_count : nil },
+      { icon: "clock", path: parent_approvals_path, label: "Pendências", badge: pending_approvals_count.positive? ? pending_approvals_count : nil },
       { icon: "list-checks", path: parent_global_tasks_path, label: "Missões" },
       { icon: "bag", path: parent_rewards_path, label: "Prêmios" }
     ]
