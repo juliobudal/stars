@@ -25,7 +25,7 @@ class Ui::Card::Component < ApplicationComponent
 
     variant_classes = case @variant
     when "primary"
-        "bg-primary text-white shadow-[0_2px_0_rgba(44,42,58,0.04),_0_6px_16px_rgba(44,42,58,0.05)]"
+        "bg-primary text-white shadow-btn-primary"
     when "flat"
         "shadow-none"
     else
