@@ -69,6 +69,32 @@ class Profile < ApplicationRecord
   end
 
   def broadcast_points
-    broadcast_update_to self, "notifications", target: "profile_points_#{id}", html: points.to_s
+    # Re-render the wrapper's inner content so the
+    # [data-count-up-target="display"] node survives the broadcast (the prior
+    # `html: points.to_s` blew it away). Then append a sibling
+    # data-controller="redeem" blip — same pattern as
+    # app/views/kid/rewards/redeem.turbo_stream.erb — so count_up_controller's
+    # currentValueChanged callback fires and animates to the new balance.
+    renderer = ApplicationController.renderer
+    inner_html = renderer.render(
+      inline: <<~ERB,
+        <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--star)") %>
+        <span data-count-up-target="display"><%= points %></span>
+      ERB
+      locals: { points: points }
+    )
+    broadcast_update_to self, "notifications", target: "profile_points_#{id}", html: inner_html.html_safe
+    broadcast_append_to self,
+      "notifications",
+      target: "body",
+      html: ApplicationController.helpers.tag.div(
+        "",
+        data: {
+          controller: "redeem",
+          "redeem-balance-value": points,
+          "redeem-balance-target-value": "profile_points_#{id}"
+        },
+        hidden: true
+      )
   end
 end
