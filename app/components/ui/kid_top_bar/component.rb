@@ -13,8 +13,9 @@ module Ui
     # "profile_points_<id>") still update the live count and screen
     # readers announce changes.
     class Component < ApplicationComponent
-      def initialize(profile:, show_streak: true, show_balance: true, show_switch: true, switch_url: nil, **options)
+      def initialize(profile:, streak: nil, show_streak: true, show_balance: true, show_switch: true, switch_url: nil, **options)
         @profile = profile
+        @streak_override = streak
         @show_streak = show_streak
         @show_balance = show_balance
         @show_switch = show_switch
@@ -24,6 +25,7 @@ module Ui
       end
 
       def streak
+        return @streak_override.to_i unless @streak_override.nil?
         @profile.respond_to?(:streak) ? @profile.streak.to_i : 0
       end
 

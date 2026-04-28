@@ -11,37 +11,7 @@
   <%= render Ui::Celebration::Component.new %>
 
   <%# ── Header: streak + stars + switch ── %>
-  <div class="flex items-center justify-between mb-4 z-2 shrink-0">
-    <div class="flex items-center gap-2">
-      <% if @streak_days.positive? %>
-        <div class="flex items-center gap-1.5 ls-card-3d"
-             style="background: var(--surface); border: 2px solid var(--star); padding: 6px 12px; border-radius: 12px; box-shadow: 0 3px 0 var(--star-2);">
-          <%= render Ui::Icon::Component.new("fire", size: 18, color: "var(--c-streak)") %>
-          <span class="font-display text-[16px] font-extrabold leading-none" style="color: var(--c-streak);"><%= @streak_days %></span>
-        </div>
-      <% end %>
-
-      <div class="flex items-center gap-1.5 ls-card-3d"
-           style="background: var(--surface); border: 2px solid var(--star); padding: 6px 12px; border-radius: 12px; box-shadow: 0 3px 0 var(--star-2);">
-        <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--star)") %>
-        <span id="profile_points_<%= current_profile.id %>"
-              data-controller="count-up"
-              data-count-up-current-value="<%= current_profile.points %>"
-              class="font-display text-[16px] font-extrabold leading-none" style="color: var(--c-amber-dark);">
-          <span data-count-up-target="display"><%= current_profile.points %></span>
-        </span>
-      </div>
-    </div>
-
-    <%= form_with url: profile_session_path, method: :delete, local: true, class: "contents" do %>
-      <button type="submit"
-              class="ls-card-3d inline-flex items-center gap-1.5 font-display"
-              style="background: var(--surface); border: 2px solid var(--hairline); padding: 6px 12px; border-radius: 12px; box-shadow: 0 3px 0 var(--hairline); color: var(--text-muted); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">
-        <%= render Ui::Icon::Component.new("logout", size: 12, color: "currentColor") %>
-        Trocar
-      </button>
-    <% end %>
-  </div>
+  <%= render Ui::KidTopBar::Component.new(profile: current_profile, streak: @streak_days) %>
 
   <%# ── Greeting block: avatar + headline ── %>
   <div class="flex items-center gap-4 mb-5 px-1 z-2 shrink-0">
