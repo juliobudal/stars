@@ -1,7 +1,7 @@
 @reference "../../../assets/stylesheets/tailwind/engine.css";
 
   .popover {
-    @apply absolute z-10 w-64 text-sm transition-opacity duration-300 shadow-sm opacity-0 pointer-events-none;
+    @apply absolute z-10 w-64 text-sm transition-opacity duration-300 shadow-card opacity-0 pointer-events-none;
     @apply text-muted-foreground bg-popover border border-border rounded-dropdown;
   }
   .popover::after {

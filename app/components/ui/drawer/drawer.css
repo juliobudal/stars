@@ -1,7 +1,7 @@
 @reference "../../../assets/stylesheets/tailwind/engine.css";
 
   .drawer {
-    @apply fixed inset-0 left-auto flex-col hidden m-0 min-h-full shadow-sm w-2xl;
+    @apply fixed inset-0 left-auto flex-col hidden m-0 min-h-full shadow-card w-2xl;
     @apply bg-card backdrop:bg-overlay rounded-tl-modal rounded-bl-modal;
   }
   .drawer[open] {

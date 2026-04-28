@@ -61,7 +61,7 @@ module Ui
         class_names(
           "ui-select__trigger inline-flex items-center justify-between gap-3 w-full",
           "bg-white border-2 border-hairline font-bold text-foreground",
-          "transition-all shadow-sm cursor-pointer",
+          "transition-all shadow-card cursor-pointer",
           "hover:border-primary/40 focus:border-primary focus:outline-none",
           SIZES[@size],
           @class

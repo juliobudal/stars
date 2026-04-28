@@ -234,7 +234,7 @@
   --radius-btn-md: var(--radius-btn);
   --radius-btn-lg: calc(var(--radius-btn) * 1.25);
   --radius-card: calc(var(--radius-base) * 2);
-  --radius-modal: calc(var(--radius-base) * 3);
+  --radius-modal: 20px;
   --radius-dropdown: calc(var(--radius-base) * 1.5);
   --radius-field: var(--radius-field);
   --radius-tooltip: calc(var(--radius-base) * 0.5);
