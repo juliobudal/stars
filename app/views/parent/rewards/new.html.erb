@@ -1,22 +1,10 @@
 <div class="screen screen-enter with-nav">
 
-  <%# ─── Header ─── %>
-  <div class="flex items-center gap-[14px] mb-[22px] z-content shrink-0">
-    <%= link_to parent_rewards_path,
-          class: "ls-btn-3d inline-flex items-center justify-center w-10 h-10 rounded-[12px] border-2 no-underline shrink-0",
-          style: "background: var(--surface); border-color: var(--hairline); box-shadow: 0 3px 0 var(--hairline);",
-          aria: { label: "Voltar" } do %>
-      <%= render Ui::Icon::Component.new("arrow-left-01", size: 18, color: "var(--text-muted)") %>
-    <% end %>
-    <div class="min-w-0">
-      <h1 class="text-[26px] font-extrabold leading-tight m-0 mb-0.5" style="color: var(--text);">
-        Novo prêmio
-      </h1>
-      <p class="text-[13px] font-bold m-0" style="color: var(--text-muted);">
-        Crie um prêmio para as crianças trocarem suas estrelinhas
-      </p>
-    </div>
-  </div>
+  <%= render Ui::TopBar::Component.new(
+        title: "Novo prêmio",
+        subtitle: "Crie um prêmio para as crianças trocarem suas estrelinhas",
+        back_url: parent_rewards_path
+      ) %>
 
   <%= render "form", reward: @reward %>
 </div>
