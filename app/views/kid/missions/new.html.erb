@@ -55,12 +55,8 @@
     </div>
 
     <div class="flex gap-3 pt-2">
-      <%= link_to "Cancelar", kid_root_path,
-            class: "flex-1 text-center text-[14px] uppercase tracking-[0.5px]",
-            style: "background: var(--surface); color: var(--text-muted); border: 2px solid var(--hairline); border-radius: 12px; padding: 12px 0; font-weight: 800; box-shadow: 0 3px 0 var(--hairline);" %>
-      <%= f.submit "Enviar pra aprovação",
-            class: "flex-1 text-[14px] uppercase tracking-[0.5px]",
-            style: "background: var(--primary); color: white; border: 2px solid var(--primary); border-radius: 12px; padding: 12px 0; font-weight: 800; cursor: pointer; box-shadow: 0 4px 0 var(--primary-2);" %>
+      <%= render Ui::Btn::Component.new(variant: "secondary", url: kid_root_path, block: true) do %>Cancelar<% end %>
+      <%= render Ui::Btn::Component.new(variant: "primary", type: "submit", block: true) do %>Enviar pra aprovação<% end %>
     </div>
   <% end %>
 </div>
