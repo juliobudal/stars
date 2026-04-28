@@ -7,13 +7,9 @@
 
     <%# ─── Título ─── %>
     <%= render Ui::FormSection::Component.new do %>
-      <%= f.label :title,
-            "Nome do prêmio",
-            class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[10px]",
-            style: "color: var(--text-muted);" %>
+      <%= f.label :title, "Nome do prêmio", class: "form-label mb-[10px]" %>
       <%= f.text_field :title,
-            class: "form-input w-full px-4 py-[14px] rounded-[14px] border-2 border-hairline font-bold text-[15px] outline-none box-border",
-            style: "color: var(--text); font-family: inherit;",
+            class: "form-input",
             placeholder: "Ex: Sorvete de chocolate",
             data: { form_preview_field: "title" } %>
       <div class="text-[11px] font-bold mt-2" style="color: var(--text-muted);">
@@ -42,8 +38,7 @@
         Quantas estrelinhas custa?
       <% end %>
       <%= f.number_field :cost,
-            class: "form-input w-full px-4 py-[14px] rounded-[14px] border-2 border-hairline font-bold text-[15px] outline-none box-border",
-            style: "color: var(--text); font-family: inherit;",
+            class: "form-input",
             min: 1,
             placeholder: "Ex: 10",
             data: { form_preview_field: "cost" } %>
@@ -51,10 +46,7 @@
 
     <%# ─── Categoria ─── %>
     <%= render Ui::FormSection::Component.new do %>
-      <%= f.label :category_id,
-            "Categoria",
-            class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[12px]",
-            style: "color: var(--text-muted);" %>
+      <%= f.label :category_id, "Categoria", class: "form-label mb-[12px]" %>
       <%= render Ui::Select::Component.new(
             name: "reward[category_id]",
             id: "reward_category_id",

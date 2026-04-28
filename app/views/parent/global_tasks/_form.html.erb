@@ -25,12 +25,9 @@
 
     <%# Title section %>
     <%= render Ui::FormSection::Component.new do %>
-      <%= f.label :title, "Título da missão",
-            class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-2.5",
-            style: "color: var(--text-muted);" %>
+      <%= f.label :title, "Título da missão", class: "form-label mb-2.5" %>
       <%= f.text_field :title,
-            class: "w-full px-4 py-3.5 rounded-[14px] font-bold text-[15px] outline-none border-2 transition-all focus:shadow-[0_0_0_3px_var(--primary-soft)] focus:!border-primary",
-            style: "color: var(--text); border-color: var(--hairline); background: var(--surface);",
+            class: "form-input",
             placeholder: "Ex: Arrumar a cama",
             data: { form_preview_field: "title" } %>
       <div class="text-[11px] font-bold mt-2" style="color: var(--text-muted);">Use frases curtas que a criança entenda.</div>
@@ -105,10 +102,9 @@
       </div>
 
       <fieldset id="day_of_month_field" class="flex flex-col gap-2 mt-4 <%= 'hidden' unless global_task.monthly? %>" <%= "disabled" unless global_task.monthly? %>>
-        <legend class="text-[11px] font-extrabold uppercase tracking-[0.5px]" style="color: var(--text-muted);">Dia do mês</legend>
+        <legend class="form-label">Dia do mês</legend>
         <%= f.number_field :day_of_month,
-              class: "w-full px-4 py-3.5 rounded-[14px] font-bold text-[15px] outline-none border-2 transition-all focus:shadow-[0_0_0_3px_var(--primary-soft)] focus:!border-primary",
-              style: "color: var(--text); border-color: var(--hairline); background: var(--surface);",
+              class: "form-input",
               min: 1, max: 31, placeholder: "Ex: 15" %>
         <p class="text-[11px] font-bold" style="color: var(--text-muted);">Dia do mês em que a missão será criada (1–31).</p>
       </fieldset>

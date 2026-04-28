@@ -1,32 +1,28 @@
-<%= render Ui::TopBar::Component.new(
-      title: "Convidar responsável",
-      back_url: parent_settings_path
-    ) %>
+<div class="screen screen-enter with-nav">
 
-<%= render Ui::Card::Component.new(class: "max-w-[480px] mx-auto my-10") do %>
+  <%= render Ui::TopBar::Component.new(
+        title: "Convidar responsável",
+        subtitle: "Envie um convite por email para outro adulto da família",
+        back_url: parent_settings_path
+      ) %>
 
-  <% if @invitation.errors.any? %>
-    <%= render Ui::Card::Component.new(variant: "flat", class: "bg-destructive-soft text-destructive-soft-foreground p-4 mb-4") do %>
-      <% @invitation.errors.full_messages.each do |msg| %>
-        <p class="text-[14px] font-bold"><%= msg %></p>
+  <%= form_with model: @invitation, url: parent_invitations_path, method: :post, class: "block" do |f| %>
+    <%= render Ui::FormErrors::Component.new(record: @invitation) %>
+
+    <div class="grid grid-cols-1 gap-[18px] max-w-[720px]">
+      <%= render Ui::FormSection::Component.new do %>
+        <%= f.label :email, "Email do responsável", class: "form-label mb-[10px]" %>
+        <%= f.email_field :email, placeholder: "email@exemplo.com", class: "form-input" %>
       <% end %>
-    <% end %>
-  <% end %>
 
-  <%= form_with model: @invitation, url: parent_invitations_path, method: :post do |f| %>
-    <div class="mb-5">
-      <%= f.label :email, "Email do responsável", class: "block font-bold mb-1.5" %>
-      <%= f.email_field :email, placeholder: "email@exemplo.com",
-            class: "w-full py-2.5 px-3 border-2 border-hairline rounded-[14px] text-[14px] font-bold focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--primary-soft)]" %>
-    </div>
-
-    <div class="flex gap-3">
-      <%= render Ui::Btn::Component.new(variant: "primary", size: "md", block: false, type: "submit", class: "flex-1") do %>
-        Enviar convite
-      <% end %>
-      <%= render Ui::Btn::Component.new(variant: "ghost", size: "md", url: parent_settings_path, class: "flex-1 text-center") do %>
-        Cancelar
-      <% end %>
+      <div class="flex flex-row justify-end gap-[10px] py-1">
+        <%= render Ui::Btn::Component.new(variant: "secondary", url: parent_settings_path) do %>
+          Cancelar
+        <% end %>
+        <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>
+          Enviar convite
+        <% end %>
+      </div>
     </div>
   <% end %>
-<% end %>
+</div>

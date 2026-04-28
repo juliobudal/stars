@@ -5,14 +5,8 @@
 
     <%# ─── Nome ─── %>
     <%= render Ui::FormSection::Component.new do %>
-      <%= f.label :name,
-            "Nome da categoria",
-            class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[10px]",
-            style: "color: var(--text-muted);" %>
-      <%= f.text_field :name,
-            class: "form-input w-full px-4 py-[14px] rounded-[14px] border-2 border-hairline font-bold text-[15px] outline-none box-border",
-            style: "color: var(--text); font-family: inherit;",
-            placeholder: "Ex: Música" %>
+      <%= f.label :name, "Nome da categoria", class: "form-label mb-[10px]" %>
+      <%= f.text_field :name, class: "form-input", placeholder: "Ex: Música" %>
     <% end %>
 
     <%# ─── Ícone ─── %>
