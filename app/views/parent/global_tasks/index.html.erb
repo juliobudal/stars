@@ -1,5 +1,4 @@
-<div class="screen screen-enter-right with-nav" data-controller="filter-tabs">
-  <%= render Ui::BgShapes::Component.new(variant: "blue") %>
+<div class="page-enter-right" data-controller="filter-tabs">
 
   <%
     total_count    = @global_tasks.size
@@ -36,13 +35,13 @@
       { id: "inactive", label: "Inativas",  count: inactive_count }
     ]
   %>
-  <div class="mb-[20px] z-content">
+  <div class="mb-[20px]">
     <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all", controller: "filter-tabs") %>
   </div>
 
   <%# Mission grid %>
   <% if @global_tasks.any? %>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 z-content">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
       <% @global_tasks.each do |m|
         cm = Ui::Tokens.category_for(m.category)
         fm = Ui::Tokens.frequency_for(m.frequency)
@@ -109,7 +108,7 @@
       <% end %>
     </div>
   <% else %>
-    <div class="bg-surface rounded-[16px] border-2 p-5 z-content"
+    <div class="bg-surface rounded-[16px] border-2 p-5"
          style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
       <%= render Ui::Empty::Component.new(
         icon: "target",

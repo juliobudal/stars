@@ -1,4 +1,4 @@
-<div class="screen screen-enter-right with-nav">
+<div class="page-enter-right">
 
   <%# ─── Header ─── %>
   <% pending_total = @profile_tasks.count + @redemptions.count %>
@@ -27,7 +27,7 @@
             ]
           ) %>
 
-      <div id="panel-missions" class="flex flex-col z-content gap-2.5">
+      <div id="panel-missions" class="flex flex-col gap-2.5">
         <% if @profile_tasks.any? %>
           <% @profile_tasks.each do |task| %>
             <%= render Ui::ApprovalRow::Component.new(
@@ -58,7 +58,7 @@
         <% end %>
       </div>
 
-      <div id="panel-rewards" class="flex flex-col z-content gap-2.5 hidden">
+      <div id="panel-rewards" class="flex flex-col gap-2.5 hidden">
         <% if @redemptions.any? %>
           <% @redemptions.each do |redemption| %>
             <%= render Ui::ApprovalRow::Component.new(

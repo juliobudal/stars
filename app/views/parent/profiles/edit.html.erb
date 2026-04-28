@@ -1,5 +1,4 @@
-<div class="screen screen-enter-right">
-  <%= render Ui::BgShapes::Component.new(variant: "warm") %>
+<div class="page-enter-right">
 
   <%= render Ui::TopBar::Component.new(
         title: "Editar #{@profile.name}",
@@ -7,7 +6,5 @@
         back_url: parent_profiles_path
       ) %>
 
-  <div class="z-content">
     <%= render 'form', profile: @profile %>
-  </div>
 </div>

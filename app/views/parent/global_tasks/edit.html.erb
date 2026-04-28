@@ -1,5 +1,4 @@
-<div class="screen screen-enter-right with-nav">
-  <%= render Ui::BgShapes::Component.new(variant: "blue") %>
+<div class="page-enter-right">
 
   <%= render Ui::TopBar::Component.new(
     title: "Editar missão",
@@ -7,7 +6,5 @@
     back_url: parent_global_tasks_path
   ) %>
 
-  <div class="z-content">
     <%= render 'form', global_task: @global_task %>
-  </div>
 </div>

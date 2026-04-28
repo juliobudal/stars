@@ -1,4 +1,4 @@
-<div class="screen screen-enter with-nav">
+<div class="page-enter">
 
   <%# ─── Header ─── %>
   <%
@@ -34,7 +34,7 @@
   </div>
 
   <%# ─── Suas crianças ─── %>
-  <section class="mb-[22px] z-content">
+  <section class="mb-[22px]">
     <div class="flex items-center justify-between mb-[14px]">
       <h2 class="text-[16px] font-extrabold m-0" style="color: var(--text);">Suas crianças</h2>
       <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: parent_profiles_path) do %>
@@ -64,7 +64,7 @@
   </section>
 
   <%# ─── Aprovações pendentes ─── %>
-  <section class="z-content">
+  <section>
     <div class="flex items-center justify-between mb-[14px]">
       <h2 class="text-[16px] font-extrabold m-0" style="color: var(--text);">Aprovações pendentes</h2>
       <%= link_to "Ver tudo", parent_approvals_path, class: "text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline", style: "color: var(--c-info-600);" %>

@@ -1,4 +1,4 @@
-<div class="screen screen-enter with-nav">
+<div class="page-enter">
 
   <%# ─── Header ─── %>
   <%= render Ui::PageHeader::Component.new(
@@ -16,7 +16,7 @@
   <% reward_counts = Reward.where(family_id: current_profile.family_id).group(:category_id).count %>
 
   <% if @categories.any? %>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-[14px] z-content">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[14px]">
       <% @categories.each do |category| %>
         <%= render Ui::CategoryRow::Component.new(category: category, reward_count: reward_counts[category.id].to_i) %>
       <% end %>

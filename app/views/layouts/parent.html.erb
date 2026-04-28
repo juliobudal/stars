@@ -11,7 +11,7 @@
       <%= turbo_stream_from current_profile.family, "approvals" %>
       <%= render "shared/parent_nav" %>
     <% end %>
-    <div class="p-6 w-full max-w-[900px] mx-auto lg:px-10 pb-24 lg:pb-6 <%= content_for?(:container_class) ? content_for(:container_class) : '' %>">
+    <div class="p-6 w-full max-w-[1100px] mx-auto lg:px-10 pb-24 lg:pb-6 <%= content_for?(:container_class) ? content_for(:container_class) : '' %>">
       <%= render Ui::Flash::Component.new %>
       <%= yield %>
     </div>

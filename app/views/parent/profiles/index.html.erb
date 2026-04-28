@@ -1,6 +1,4 @@
-<div class="screen screen-enter-right with-nav">
-  <%= render Ui::BgShapes::Component.new(variant: "warm") %>
-
+<div class="page-enter-right">
   <%# ─── Header ─── %>
   <%= render Ui::PageHeader::Component.new(
         title: "Crianças",
@@ -15,7 +13,7 @@
   <% end %>
 
   <% if @profiles.any? %>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 z-content">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
       <% @profiles.each do |k| %>
         <%= render Ui::KidProgressCard::Component.new(
               kid: k,
@@ -26,13 +24,13 @@
       <% end %>
     </div>
 
-    <div class="mt-4 z-content">
+    <div class="mt-4">
       <%= render Ui::Btn::Component.new(
             variant: "secondary",
             size: "lg",
             url: new_parent_profile_path,
             block: true,
-            class: "border-dashed text-muted-foreground"
+            class: "border-dashed"
           ) do %>
         <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
         Adicionar outra criança

@@ -18,8 +18,8 @@
 .ui-btn--primary:hover  { @apply shadow-btn-primary-hover; }
 .ui-btn--primary:active { transform: translateY(2px); box-shadow: none; }
 
-.ui-btn--secondary  { @apply bg-surface text-foreground border-2 border-hairline shadow-btn-secondary hover:-translate-y-1; }
-.ui-btn--secondary:hover  { @apply shadow-btn-secondary-hover; }
+.ui-btn--secondary  { @apply bg-surface text-foreground border-2 shadow-btn-secondary hover:-translate-y-1; border-color: #D1D5DB; }
+.ui-btn--secondary:hover  { @apply shadow-btn-secondary-hover; background: #F3F4F6; }
 .ui-btn--secondary:active { transform: translateY(2px); box-shadow: none; }
 
 .ui-btn--ghost      { @apply bg-transparent text-foreground border-2 border-[rgba(26,42,74,0.1)] shadow-none; }

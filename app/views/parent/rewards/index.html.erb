@@ -1,4 +1,4 @@
-<div class="screen screen-enter with-nav">
+<div class="page-enter">
 
   <%# ─── Header ─── %>
   <%= render Ui::PageHeader::Component.new(
@@ -21,11 +21,11 @@
       end
     %>
     <div data-controller="filter-tabs">
-      <div class="mb-[20px] z-content">
+      <div class="mb-[20px]">
         <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all", controller: "filter-tabs") %>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-[14px] z-content">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-[14px]">
         <% @rewards.each do |reward| %>
           <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>">
             <%= render Ui::RewardCatalogCard::Component.new(reward: reward) %>
@@ -36,7 +36,7 @@
   <% end %>
 
   <% if @rewards.empty? %>
-    <div class="mt-4 z-content">
+    <div class="mt-4">
       <%= render Ui::Empty::Component.new(
         icon: "gift",
         title: "Loja vazia",

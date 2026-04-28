@@ -76,6 +76,8 @@
 /* ── Screen entry animations ── */
 .screen-enter       { animation: slideIn  0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
 .screen-enter-right { animation: slideInR 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
+.page-enter         { animation: slideIn  0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
+.page-enter-right   { animation: slideInR 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
 
 @keyframes slideIn {
   from { opacity: 0; transform: translateX(-24px); }
