@@ -3,19 +3,16 @@
   <div data-fx-event="celebrate" data-fx-tier="big" class="hidden"></div>
 <% end %>
 
-<%# Close any open redeem modal + animate balance count-down.
-    Bumping data-count-up-current-value triggers count_up_controller#currentValueChanged → animateTo. %>
+<%# Close any open redeem modal + animate balance count-down via Stimulus.
+    The redeem controller (app/assets/controllers/redeem_controller.js)
+    bumps data-count-up-current-value, which count_up_controller's
+    currentValueChanged callback animates to. %>
 <% new_balance = current_profile.reload.points %>
 <%= turbo_stream.append "body" do %>
-  <script data-redeem-after>
-    (() => {
-      document.querySelectorAll(".modal-overlay").forEach(o => o.style.display = "none");
-      document.body.style.overflow = "auto";
-      const el = document.getElementById("profile_points_<%= current_profile.id %>");
-      if (el) el.setAttribute("data-count-up-current-value", "<%= new_balance %>");
-      document.querySelectorAll("script[data-redeem-after]").forEach(s => s.remove());
-    })();
-  </script>
+  <div data-controller="redeem"
+       data-redeem-balance-value="<%= new_balance %>"
+       data-redeem-balance-target-value="profile_points_<%= current_profile.id %>"
+       hidden></div>
 <% end %>
 
 <%# Ritual toast %>
