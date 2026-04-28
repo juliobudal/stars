@@ -1,0 +1,31 @@
+<header class="flex items-center justify-between mb-4 z-2 shrink-0 <%= @options[:class] %>">
+  <div class="flex items-center gap-2">
+    <% if @show_streak && streak.positive? %>
+      <%= render Ui::StreakBadge::Component.new(streak: streak) %>
+    <% end %>
+
+    <% if @show_balance %>
+      <span id="profile_points_<%= @profile.id %>"
+            aria-live="polite"
+            data-controller="count-up"
+            data-count-up-current-value="<%= points %>"
+            class="inline-flex items-center gap-1.5 font-display font-extrabold leading-none px-3 py-1.5 rounded-[12px] border-2"
+            style="background: var(--surface); border-color: var(--star); box-shadow: 0 3px 0 var(--star-2); color: var(--c-amber-dark); font-size: 16px;">
+        <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--star)") %>
+        <span data-count-up-target="display"><%= points %></span>
+      </span>
+    <% end %>
+  </div>
+
+  <% if @show_switch %>
+    <%= form_with url: (@switch_url || profile_session_path), method: :delete, local: true, class: "contents" do %>
+      <button type="submit"
+              aria-label="Trocar de perfil"
+              class="inline-flex items-center gap-1.5 font-display"
+              style="background: var(--surface); border: 2px solid var(--hairline); padding: 6px 12px; border-radius: 12px; box-shadow: 0 3px 0 var(--hairline); color: var(--text-muted); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">
+        <%= render Ui::Icon::Component.new("logout", size: 12, color: "currentColor") %>
+        Trocar
+      </button>
+    <% end %>
+  <% end %>
+</header>

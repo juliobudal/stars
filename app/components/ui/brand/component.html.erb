@@ -1,0 +1,18 @@
+<div class="flex flex-col items-center <%= @options[:class] %>">
+  <div class="flex items-center gap-3">
+    <div class="grid place-items-center"
+         style="width: <%= spec[:tile] %>px; height: <%= spec[:tile] %>px; border-radius: <%= spec[:radius] %>px; background: var(--star); box-shadow: 0 4px 0 var(--star-2);">
+      <%= render Ui::Icon::Component.new("star", size: spec[:icon], color: "white") %>
+    </div>
+    <div class="font-display font-extrabold leading-none text-foreground"
+         style="font-size: <%= spec[:wordmark] %>px;">
+      LittleStars
+    </div>
+  </div>
+  <% if @tagline.present? %>
+    <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase mt-3"
+         style="color: var(--c-sky-dark);">
+      <%= @tagline %>
+    </div>
+  <% end %>
+</div>
