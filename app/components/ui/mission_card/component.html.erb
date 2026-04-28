@@ -7,9 +7,9 @@
       border: 2px solid var(--hairline);
       box-shadow: var(--shadow-card);
       padding: 14px;
-      cursor: <%= waiting? ? 'default' : 'pointer' %>;
+      cursor: <%= status_locked? ? 'default' : 'pointer' %>;
       animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= @index * 0.04 %>s both;
-      opacity: <%= waiting? ? 0.7 : 1 %>;
+      opacity: <%= status_locked? ? 0.7 : 1 %>;
       position: relative;
       transition: all 0.1s;
       <%= @options[:style] %>
@@ -19,7 +19,7 @@
     <%= render Ui::IconTile::Component.new(icon: category_data[:icon], color: category_data[:color], size: 56) %>
 
     <div class="flex flex-col flex-1 gap-1">
-      <div class="font-display text-[17px] leading-tight font-extrabold tracking-[-0.02em] text-foreground"><%= @mission.title %></div>
+      <div class="font-display text-[17px] leading-tight font-extrabold tracking-[-0.02em] <%= rejected? ? 'line-through' : '' %> text-foreground"><%= @mission.title %></div>
       <div class="flex items-center gap-1.5">
         <%= render Ui::Badge::Component.new(variant: category_data[:color], size: "sm", icon: category_data[:icon]) do %>
           <%= category_data[:label] %>
@@ -29,6 +29,14 @@
           <%= render Ui::Badge::Component.new(variant: "peach", size: "sm", icon: "clock") do %>
             Aguardando
           <% end %>
+        <% elsif approved? %>
+          <%= render Ui::Badge::Component.new(variant: "primary", size: "sm", icon: "check") do %>
+            Aprovada
+          <% end %>
+        <% elsif rejected? %>
+          <%= render Ui::Badge::Component.new(variant: "rose", size: "sm", icon: "x") do %>
+            Rejeitada
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -37,8 +45,58 @@
       <%= render Ui::StarValue::Component.new(value: points_value, size: :lg, color: :gold, class: "tracking-[-0.02em] flex-col gap-0.5") %>
     </div>
   </div>
+<% elsif approved? %>
+  <%# bubble — approved (line-through, primary check tile) %>
+  <div
+    class="ls-card-3d flex items-center gap-3.5 px-4 py-3.5 w-full <%= @options[:class] %>"
+    style="
+      background: var(--primary-soft);
+      border: 2px solid var(--primary);
+      border-radius: var(--r-xl);
+      box-shadow: 0 4px 0 var(--primary-2);
+      animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= [@index, 5].min * 0.04 %>s both;
+      <%= @options[:style] %>
+    "
+    <%= extra_html_attrs %>
+  >
+    <div class="grid place-items-center shrink-0"
+         style="width: 48px; height: 48px; border-radius: 12px; background: var(--surface); border: 2px solid var(--primary);">
+      <%= render Ui::Icon::Component.new("check", size: 26, color: "var(--primary-2)") %>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="font-display text-[15px] font-extrabold line-through" style="color: var(--primary-2);"><%= @mission.title %></div>
+      <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase mt-0.5" style="color: var(--primary-2);">
+        +<%= points_value %> ★ ganhas!
+      </div>
+    </div>
+  </div>
+<% elsif rejected? %>
+  <%# bubble — rejected (line-through, danger x tile) %>
+  <div
+    class="ls-card-3d flex items-center gap-3.5 px-4 py-3.5 w-full <%= @options[:class] %>"
+    style="
+      background: var(--c-rose-soft);
+      border: 2px solid var(--danger);
+      border-radius: var(--r-xl);
+      box-shadow: 0 4px 0 var(--danger-2);
+      animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= [@index, 5].min * 0.04 %>s both;
+      <%= @options[:style] %>
+    "
+    <%= extra_html_attrs %>
+  >
+    <div class="grid place-items-center shrink-0"
+         style="width: 48px; height: 48px; border-radius: 12px; background: var(--surface); border: 2px solid var(--danger);">
+      <%= render Ui::Icon::Component.new("x", size: 26, color: "var(--danger)") %>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="font-display text-[15px] font-extrabold line-through" style="color: var(--danger-2);"><%= @mission.title %></div>
+      <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase mt-0.5" style="color: var(--danger-2);">
+        Rejeitada
+      </div>
+    </div>
+  </div>
 <% else %>
-  <%# bubble style %>
+  <%# bubble style — pending / waiting (category-tinted) %>
   <div
     class="pop-on-tap anim-tile w-full text-left flex items-center gap-4 <%= @options[:class] %>"
     style="

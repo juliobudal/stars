@@ -7,9 +7,22 @@ module Ui
         { color: v[:tint], icon: v[:icon], label: v[:label] }
       }.freeze
 
+      # status:
+      #   "pending"  → default interactive card (tinted by category)
+      #   "waiting"  → submitted, awaiting parent approval
+      #   "approved" → approved by parent (alias: "done")
+      #   "rejected" → rejected by parent
+      #
+      # See .planning/ui-reviews/20260428-audit/02-kid-surfaces.md §7
+      # (top-fix #2). Replaces partials kid/dashboard/_awaiting_row,
+      # _awaiting_task, _completed_task plus inline blocks in
+      # kid/dashboard/index.html.erb:135-173.
+      STATUSES = %w[pending waiting approved done rejected].freeze
+
       def initialize(mission:, status: "pending", variant: "bubble", index: 0, **options)
         @mission = mission
-        @status = status.to_s # "pending", "waiting", "done"
+        @status = status.to_s
+        @status = "approved" if @status == "done"
         @variant = variant.to_s # "bubble", "ticket"
         @index = index
         @options = options
@@ -28,6 +41,23 @@ module Ui
 
       def waiting?
         @status == "waiting"
+      end
+
+      def approved?
+        @status == "approved"
+      end
+
+      def rejected?
+        @status == "rejected"
+      end
+
+      def completed?
+        approved? || rejected?
+      end
+
+      # True for any non-interactive state (waiting/approved/rejected).
+      def status_locked?
+        waiting? || completed?
       end
 
       def pressed_transform
