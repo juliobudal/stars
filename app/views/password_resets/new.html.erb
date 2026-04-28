@@ -1,27 +1,41 @@
-<div class="screen animate-slide-in flex flex-col items-center justify-center p-10">
-  <div class="max-w-[430px] mx-auto px-5 pt-8 pb-12 flex flex-col items-center text-center relative z-[1] md:max-w-[768px] w-full">
+<div class="screen screen-enter relative">
+  <%= render Ui::BgShapes::Component.new(variant: "cool") %>
+
+  <div class="relative z-2 flex flex-col items-center justify-center p-10 pt-12">
+    <%# Brand lockup %>
     <div class="mb-6">
       <%= render Ui::Brand::Component.new(size: :md, tagline: "Recuperar senha") %>
     </div>
-    <%= render Ui::Heading::Component.new(size: :h1) do %>Recuperar senha<% end %>
+
+    <h1 class="text-[26px] font-extrabold mb-1 text-center" style="color: var(--text);">
+      Recuperar senha
+    </h1>
+    <p class="mb-6 text-[14px] font-bold text-center max-w-[360px]" style="color: var(--text-muted);">
+      Te enviamos um link pra criar uma nova senha
+    </p>
 
     <% if flash[:notice] %>
-      <p class="mb-4 font-bold" style="color: var(--success);"><%= flash[:notice] %></p>
+      <p role="status" class="mb-4 font-bold" style="color: var(--success);"><%= flash[:notice] %></p>
     <% end %>
 
-    <%= form_with url: password_reset_path, method: :post, local: true,
-        class: "flex flex-col gap-4 max-w-[360px] w-full mx-auto mt-4" do |f| %>
-      <div class="form-field">
-        <%= label_tag :email, "Seu email", class: "form-label sr-only" %>
-        <%= f.email_field :email, placeholder: "Seu email", required: true,
-            autocomplete: "email",
-            class: "form-input" %>
-      </div>
-      <%= render Ui::Btn::Component.new(variant: "primary", size: "md", type: "submit") do %>Enviar instruções<% end %>
-    <% end %>
+    <%# Form anchored in card %>
+    <div class="ls-card-3d w-full max-w-[360px]"
+         style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-card);">
+      <%= form_with url: password_reset_path, method: :post, local: true,
+          class: "flex flex-col gap-4" do |f| %>
+        <div class="form-field">
+          <%= label_tag :email, "Seu email", class: "form-label sr-only" %>
+          <%= f.email_field :email, placeholder: "Seu email", required: true,
+              autocomplete: "email",
+              class: "form-input" %>
+        </div>
+        <%= render Ui::Btn::Component.new(variant: "primary", size: "md", type: "submit") do %>Enviar instruções<% end %>
+      <% end %>
+    </div>
 
-    <div class="mt-4 text-center">
-      <%= link_to "Voltar", root_path, class: "text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline", style: "color: var(--c-info-600);" %>
+    <div class="mt-5 text-center">
+      <%= link_to "Voltar", root_path,
+                  class: "text-primary uppercase tracking-[0.5px] text-[12px] font-extrabold no-underline" %>
     </div>
   </div>
 </div>
