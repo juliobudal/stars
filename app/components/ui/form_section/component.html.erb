@@ -1,0 +1,8 @@
+<section class="bg-surface rounded-card border-2 border-hairline p-[18px] shadow-card <%= @options[:class] %>">
+  <% if @title.present? %>
+    <div class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[12px] text-muted-foreground">
+      <%= @title %>
+    </div>
+  <% end %>
+  <%= content %>
+</section>
