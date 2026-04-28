@@ -163,13 +163,8 @@ module ComponentDocsHelper
   end
 
   def load_component_docs(component_name)
-    paths = [
-      Rails.root.join("app/components/ui/#{component_name}/component.yml"),
-      Rails.root.join("app/components/form_builders/#{component_name}/component.yml")
-    ]
-
-    path = paths.find { |p| File.exist?(p) }
-    return nil unless path
+    path = Rails.root.join("app/components/ui/#{component_name}/component.yml")
+    return nil unless File.exist?(path)
 
     YAML.safe_load_file(path)
   end
