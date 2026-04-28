@@ -1,0 +1,26 @@
+@reference "../../../assets/stylesheets/tailwind/engine.css";
+
+/* Ui::SmileyAvatar — palette tints resolved via CSS tokens.
+   Component sets data-avatar-palette="<name>" and exposes
+   --avatar-fill / --avatar-ring / --avatar-ink via these rules.
+   Tokens live in app/assets/stylesheets/tailwind/theme.css. */
+.ui-smiley-avatar {
+  --avatar-fill: var(--avatar-primary-fill);
+  --avatar-ring: var(--avatar-primary-ring);
+  --avatar-ink:  var(--avatar-primary-ink);
+  background: var(--avatar-fill);
+  border-color: var(--avatar-ring);
+  color: var(--avatar-ink);
+}
+
+.ui-smiley-avatar[data-avatar-palette="lilac"]   { --avatar-fill: var(--avatar-lilac-fill);   --avatar-ring: var(--avatar-lilac-ring);   --avatar-ink: var(--avatar-lilac-ink); }
+.ui-smiley-avatar[data-avatar-palette="theo"]    { --avatar-fill: var(--avatar-theo-fill);    --avatar-ring: var(--avatar-theo-ring);    --avatar-ink: var(--avatar-theo-ink); }
+.ui-smiley-avatar[data-avatar-palette="zoe"]     { --avatar-fill: var(--avatar-zoe-fill);     --avatar-ring: var(--avatar-zoe-ring);     --avatar-ink: var(--avatar-zoe-ink); }
+.ui-smiley-avatar[data-avatar-palette="mom"]     { --avatar-fill: var(--avatar-mom-fill);     --avatar-ring: var(--avatar-mom-ring);     --avatar-ink: var(--avatar-mom-ink); }
+.ui-smiley-avatar[data-avatar-palette="dad"]     { --avatar-fill: var(--avatar-dad-fill);     --avatar-ring: var(--avatar-dad-ring);     --avatar-ink: var(--avatar-dad-ink); }
+.ui-smiley-avatar[data-avatar-palette="primary"] { --avatar-fill: var(--avatar-primary-fill); --avatar-ring: var(--avatar-primary-ring); --avatar-ink: var(--avatar-primary-ink); }
+.ui-smiley-avatar[data-avatar-palette="mint"]    { --avatar-fill: var(--avatar-mint-fill);    --avatar-ring: var(--avatar-mint-ring);    --avatar-ink: var(--avatar-mint-ink); }
+.ui-smiley-avatar[data-avatar-palette="sky"]     { --avatar-fill: var(--avatar-sky-fill);     --avatar-ring: var(--avatar-sky-ring);     --avatar-ink: var(--avatar-sky-ink); }
+.ui-smiley-avatar[data-avatar-palette="peach"]   { --avatar-fill: var(--avatar-peach-fill);   --avatar-ring: var(--avatar-peach-ring);   --avatar-ink: var(--avatar-peach-ink); }
+.ui-smiley-avatar[data-avatar-palette="rose"]    { --avatar-fill: var(--avatar-rose-fill);    --avatar-ring: var(--avatar-rose-ring);    --avatar-ink: var(--avatar-rose-ink); }
+.ui-smiley-avatar[data-avatar-palette="coral"]   { --avatar-fill: var(--avatar-coral-fill);   --avatar-ring: var(--avatar-coral-ring);   --avatar-ink: var(--avatar-coral-ink); }

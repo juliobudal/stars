@@ -59,6 +59,44 @@
   --c-red-soft: #FFE4E1;
   --c-red-dark: #C53232;
 
+  /* ─── Smiley avatar palettes ─────────────────────────────────────
+     Per-kid avatar tints. Used by Ui::SmileyAvatar via the
+     `data-avatar-palette="<name>"` attribute. Keep names in sync
+     with Ui::SmileyAvatar::Component::PALETTES. */
+  --avatar-lilac-fill:   #EDE9FE;
+  --avatar-lilac-ring:   #C4B5FD;
+  --avatar-lilac-ink:    #6D28D9;
+  --avatar-theo-fill:    #CFFAFE;
+  --avatar-theo-ring:    #67E8F9;
+  --avatar-theo-ink:     #0E7490;
+  --avatar-zoe-fill:     #FCE7F3;
+  --avatar-zoe-ring:     #F472B6;
+  --avatar-zoe-ink:      #BE185D;
+  --avatar-mom-fill:     #FCE7F3;
+  --avatar-mom-ring:     #F9A8D4;
+  --avatar-mom-ink:      #BE185D;
+  --avatar-dad-fill:     #DBEAFE;
+  --avatar-dad-ring:     #93C5FD;
+  --avatar-dad-ink:      #1D4ED8;
+  --avatar-primary-fill: #EDE9FE;
+  --avatar-primary-ring: #C4B5FD;
+  --avatar-primary-ink:  #6D28D9;
+  --avatar-mint-fill:    #D1FAE5;
+  --avatar-mint-ring:    #6EE7B7;
+  --avatar-mint-ink:     #047857;
+  --avatar-sky-fill:     #E0F2FE;
+  --avatar-sky-ring:     #7DD3FC;
+  --avatar-sky-ink:      #0369A1;
+  --avatar-peach-fill:   #FCE7F3;
+  --avatar-peach-ring:   #F9A8D4;
+  --avatar-peach-ink:    #BE185D;
+  --avatar-rose-fill:    #FCE7F3;
+  --avatar-rose-ring:    #F472B6;
+  --avatar-rose-ink:     #BE185D;
+  --avatar-coral-fill:   #FCE7F3;
+  --avatar-coral-ring:   #F9A8D4;
+  --avatar-coral-ink:    #BE185D;
+
   --danger: #FF4B4B;
   --danger-2: #C53232;
   --success: #58CC02;

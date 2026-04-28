@@ -27,6 +27,7 @@
 @import "../../components/ui/bg_shapes/component.css";
 @import "../../components/ui/pin_modal/component.css";
 @import "../../components/ui/profile_picker/component.css";
+@import "../../components/ui/smiley_avatar/component.css";
 
 /* Vendors */
 @import "../stylesheets/vendors/hugeicons";

@@ -1,8 +1,17 @@
 module Ui
   module SmileyAvatar
     class Component < ApplicationComponent
+      # Whitelist of palette names. Colors are defined as CSS tokens
+      # in app/assets/stylesheets/tailwind/theme.css and resolved by
+      # component.css via [data-avatar-palette="<name>"].
+      PALETTES = %w[lilac theo zoe mom dad primary mint sky peach rose coral].freeze
+
+      # Back-compat shim: external callers (approval_row, kid_initial_chip,
+      # kid_progress_card, profile_card, parent/global_tasks/_form) still
+      # read raw hex from this constant for inline-style interpolation.
+      # When those callers are migrated to data-avatar-palette, this
+      # constant can be removed. Note: no `lila` key — `lilac` is canonical.
       COLOR_MAP = {
-        "lila"    => { fill: "#EDE9FE", tile: "#F8F5FF", ring: "#C4B5FD", ink: "#6D28D9" },
         "lilac"   => { fill: "#EDE9FE", tile: "#F8F5FF", ring: "#C4B5FD", ink: "#6D28D9" },
         "theo"    => { fill: "#CFFAFE", tile: "#F0FDFF", ring: "#67E8F9", ink: "#0E7490" },
         "zoe"     => { fill: "#FCE7F3", tile: "#FFF0F6", ring: "#F472B6", ink: "#BE185D" },
@@ -17,7 +26,7 @@ module Ui
       }.freeze
 
       FACE_BY_COLOR = {
-        "lila" => "wink", "lilac" => "wink",
+        "lilac" => "wink",
         "zoe" => "tongue",
         "theo" => "smile",
         "mint" => "smile", "sky" => "smile",
@@ -25,18 +34,21 @@ module Ui
         "primary" => "smile"
       }.freeze
 
-      def initialize(kid: nil, face: nil, size: 84, fill: nil, ring: nil, ink: nil, **options)
+      def initialize(kid: nil, face: nil, size: 84, **options)
         @kid = kid
         @size = size
         @face = (face || derive_face(kid)).to_s
-        palette = color_data(kid)
-        @fill = fill || palette[:fill]
-        @ring = ring || palette[:ring]
-        @ink  = ink  || palette[:ink]
         @options = options
       end
 
-      attr_reader :size, :face, :fill, :ring, :ink
+      attr_reader :size, :face
+
+      def palette
+        key = @kid.respond_to?(:color) ? @kid.color.to_s.presence : nil
+        # Alias legacy `lila` → canonical `lilac`.
+        key = "lilac" if key == "lila"
+        PALETTES.include?(key) ? key : "primary"
+      end
 
       def avatar_slug
         explicit = @kid.respond_to?(:avatar) ? @kid.avatar.presence : nil
@@ -54,12 +66,8 @@ module Ui
         return "adult" if kid.respond_to?(:parent?) && kid.parent?
         return kid.face if kid.respond_to?(:face) && kid.face.present?
         key = kid&.respond_to?(:color) ? kid.color.to_s : ""
+        key = "lilac" if key == "lila"
         FACE_BY_COLOR[key] || "smile"
-      end
-
-      def color_data(kid)
-        key = kid.respond_to?(:color) ? kid.color.to_s.presence : nil
-        COLOR_MAP[key] || COLOR_MAP["primary"]
       end
     end
   end
