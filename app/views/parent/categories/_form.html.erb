@@ -16,8 +16,7 @@
   <div class="grid grid-cols-1 gap-[18px] max-w-[720px]">
 
     <%# ─── Nome ─── %>
-    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-             style="box-shadow: var(--shadow-card);">
+    <%= render Ui::FormSection::Component.new do %>
       <%= f.label :name,
             "Nome da categoria",
             class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[10px]",
@@ -26,15 +25,10 @@
             class: "form-input w-full px-4 py-[14px] rounded-[14px] border-2 border-hairline font-bold text-[15px] outline-none box-border",
             style: "color: var(--text); font-family: inherit;",
             placeholder: "Ex: Música" %>
-    </section>
+    <% end %>
 
     <%# ─── Ícone ─── %>
-    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-             style="box-shadow: var(--shadow-card);">
-      <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[12px]"
-             style="color: var(--text-muted);">
-        Escolha um ícone
-      </label>
+    <%= render Ui::FormSection::Component.new(title: "Escolha um ícone") do %>
       <%= render Ui::IconPicker::Component.new(
             field_name: "category[icon]",
             value: category.icon.presence || "bookmark-01",
@@ -42,20 +36,15 @@
             color: "var(--primary)",
             id: "category_icon_picker"
           ) %>
-    </section>
+    <% end %>
 
     <%# ─── Cor ─── %>
-    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-             style="box-shadow: var(--shadow-card);">
-      <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[12px]"
-             style="color: var(--text-muted);">
-        Cor da categoria
-      </label>
+    <%= render Ui::FormSection::Component.new(title: "Cor da categoria") do %>
       <%= render Ui::ColorSwatchPicker::Component.new(
             field_name: "category[color]",
             value: category.color.presence || "lilac"
           ) %>
-    </section>
+    <% end %>
 
     <%# ─── Action bar ─── %>
     <div class="flex flex-row justify-end gap-[10px] py-1">

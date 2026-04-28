@@ -33,8 +33,7 @@
     <div class="flex flex-col gap-[18px]">
 
       <%# ─── Nome ─── %>
-      <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-               style="box-shadow: var(--shadow-card);">
+      <%= render Ui::FormSection::Component.new do %>
         <%= f.label :name, name_label,
               class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-2.5",
               style: "color: var(--text-muted);" %>
@@ -44,13 +43,10 @@
               placeholder: "Ex: Lila",
               data: { form_preview_field: "name" } %>
         <div class="text-[11px] font-bold mt-2" style="color: var(--text-muted);"><%= name_hint %></div>
-      </section>
+      <% end %>
 
       <%# ─── Avatar ─── %>
-      <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-               style="box-shadow: var(--shadow-card);">
-        <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3"
-               style="color: var(--text-muted);"><%= avatar_label %></label>
+      <%= render Ui::FormSection::Component.new(title: avatar_label) do %>
         <%= render Ui::IconPicker::Component.new(
               field_name: "profile[avatar]",
               value: current_avatar,
@@ -59,13 +55,10 @@
               id: "profile_avatar_picker",
               input_data: { form_preview_field: "avatar" }
             ) %>
-      </section>
+      <% end %>
 
       <%# ─── Cor ─── %>
-      <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-               style="box-shadow: var(--shadow-card);">
-        <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3"
-               style="color: var(--text-muted);">Cor do perfil</label>
+      <%= render Ui::FormSection::Component.new(title: "Cor do perfil") do %>
         <div class="grid grid-cols-6 gap-2.5">
           <% color_options.each do |col| %>
             <label class="cursor-pointer">
@@ -80,11 +73,10 @@
             </label>
           <% end %>
         </div>
-      </section>
+      <% end %>
 
       <%# ─── PIN ─── %>
-      <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-               style="box-shadow: var(--shadow-card);">
+      <%= render Ui::FormSection::Component.new do %>
         <%= f.label :pin, "PIN (4 dígitos)",
               class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-2.5",
               style: "color: var(--text-muted);" %>
@@ -94,7 +86,7 @@
               class: "w-[140px] px-4 py-3.5 bg-white border-2 border-hairline rounded-[14px] font-extrabold text-[18px] tracking-[8px] text-center focus:outline-none transition-all",
               style: "color: var(--text);" %>
         <div class="text-[11px] font-bold mt-2" style="color: var(--text-muted);"><%= pin_hint %></div>
-      </section>
+      <% end %>
 
       <% if params[:onboarding].present? %>
         <%= hidden_field_tag :onboarding, params[:onboarding] %>

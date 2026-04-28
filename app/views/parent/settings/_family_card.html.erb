@@ -1,8 +1,4 @@
-<section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-         style="box-shadow: var(--shadow-card);">
-  <div class="text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3" style="color: var(--text-muted);">
-    Família
-  </div>
+<%= render Ui::FormSection::Component.new(title: "Família") do %>
   <div class="flex flex-col">
 
     <div class="flex justify-between items-center gap-3 py-3 border-b-2 border-hairline">
@@ -62,4 +58,4 @@
     </div>
 
   </div>
-</section>
+<% end %>

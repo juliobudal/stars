@@ -27,11 +27,7 @@
 
   <%# ─── PINs dos perfis ─── %>
   <section class="mt-8 z-content">
-    <div class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-         style="box-shadow: var(--shadow-card);">
-      <div class="text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3" style="color: var(--text-muted);">
-        PINs dos perfis
-      </div>
+    <%= render Ui::FormSection::Component.new(title: "PINs dos perfis") do %>
       <ul class="flex flex-col gap-2">
         <% current_family.profiles.order(:name).each do |profile| %>
           <li class="flex items-center justify-between gap-3 py-2.5 px-3 rounded-[12px] border-2 border-hairline"
@@ -60,7 +56,7 @@
           </li>
         <% end %>
       </ul>
-    </div>
+    <% end %>
   </section>
 
   <%# ─── Sair desta família ─── %>

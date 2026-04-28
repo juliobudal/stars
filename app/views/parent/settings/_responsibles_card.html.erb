@@ -1,8 +1,4 @@
-<section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-         style="box-shadow: var(--shadow-card);">
-  <div class="text-[12px] font-extrabold uppercase tracking-[0.5px] mb-3" style="color: var(--text-muted);">
-    Responsáveis
-  </div>
+<%= render Ui::FormSection::Component.new(title: "Responsáveis") do %>
   <div class="flex flex-col gap-2">
     <% family.profiles.parent.each do |p| %>
       <div class="flex items-center gap-3 py-2.5 px-3 rounded-[12px] border-2 border-hairline"
@@ -29,4 +25,4 @@
       Convidar responsável
     <% end %>
   </div>
-</section>
+<% end %>

@@ -18,8 +18,7 @@
   <div class="grid grid-cols-1 gap-[18px] max-w-[720px]">
 
     <%# ─── Título ─── %>
-    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-             style="box-shadow: var(--shadow-card);">
+    <%= render Ui::FormSection::Component.new do %>
       <%= f.label :title,
             "Nome do prêmio",
             class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[10px]",
@@ -32,15 +31,10 @@
       <div class="text-[11px] font-bold mt-2" style="color: var(--text-muted);">
         Use frases curtas que a criança entenda.
       </div>
-    </section>
+    <% end %>
 
     <%# ─── Ícone ─── %>
-    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-             style="box-shadow: var(--shadow-card);">
-      <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[12px]"
-             style="color: var(--text-muted);">
-        Escolha um ícone
-      </label>
+    <%= render Ui::FormSection::Component.new(title: "Escolha um ícone") do %>
       <%= render Ui::IconPicker::Component.new(
             field_name: "reward[icon]",
             value: current_icon,
@@ -49,11 +43,10 @@
             id: "reward_icon_picker",
             input_data: { form_preview_field: "icon" }
           ) %>
-    </section>
+    <% end %>
 
     <%# ─── Custo ─── %>
-    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-             style="box-shadow: var(--shadow-card);">
+    <%= render Ui::FormSection::Component.new do %>
       <%= f.label :cost,
             class: "flex items-center gap-2 text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[10px]",
             style: "color: var(--text-muted);" do %>
@@ -66,11 +59,10 @@
             min: 1,
             placeholder: "Ex: 10",
             data: { form_preview_field: "cost" } %>
-    </section>
+    <% end %>
 
     <%# ─── Categoria ─── %>
-    <section class="bg-surface rounded-[16px] border-2 border-hairline p-[18px]"
-             style="box-shadow: var(--shadow-card);">
+    <%= render Ui::FormSection::Component.new do %>
       <%= f.label :category_id,
             "Categoria",
             class: "block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-[12px]",
@@ -82,7 +74,7 @@
             selected: reward.category_id,
             size: :lg
           ) %>
-    </section>
+    <% end %>
 
     <%# ─── Action bar ─── %>
     <div class="flex flex-row justify-end gap-[10px] py-1">
