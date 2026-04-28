@@ -87,26 +87,25 @@
 
       <%# ─── Save bar ─── %>
       <div class="flex items-center justify-end gap-2.5 pt-2 pb-1">
-        <%= link_to cancel_path,
-              class: "ls-btn-3d inline-flex items-center px-5 py-3 rounded-[14px] text-[13px] font-extrabold uppercase tracking-[0.5px] no-underline border-2",
-              style: "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 4px 0 var(--hairline);" do %>
+        <%= render Ui::Btn::Component.new(variant: "secondary", url: cancel_path) do %>
           Voltar
         <% end %>
-        <button type="submit"
-                class="ls-btn-3d inline-flex items-center gap-2 px-6 py-3 rounded-[14px] text-white text-[13px] font-extrabold uppercase tracking-[0.5px] border-2"
-                style="background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 0 var(--primary-2);">
+        <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>
           <%= render Ui::Icon::Component.new("check", size: 14, color: "currentColor") %>
           Salvar perfil
-        </button>
+        <% end %>
       </div>
 
       <% unless profile.new_record? || profile.parent? %>
         <% confirm_msg = profile.parent? ? "Remover este responsável? Esta ação é permanente." : "Remover #{profile.name}? Todas as missões e histórico serão perdidos." %>
         <div class="mt-2 pt-5 border-t-2 border-hairline">
-          <%= button_to parent_profile_path(profile), method: :delete,
-                form: { data: { turbo_confirm: confirm_msg } },
-                class: "ls-btn-3d inline-flex items-center gap-2 px-4 py-2.5 rounded-[12px] text-white text-[12px] font-extrabold uppercase tracking-[0.5px] border-2 cursor-pointer",
-                style: "background: var(--danger); border-color: var(--danger); box-shadow: 0 3px 0 var(--danger-2);" do %>
+          <%= render Ui::Btn::Component.new(
+                variant: "danger",
+                size: "sm",
+                url: parent_profile_path(profile),
+                method: :delete,
+                form: { data: { turbo_confirm: confirm_msg } }
+              ) do %>
             <%= render Ui::Icon::Component.new("trash", size: 14, color: "white") %>
             Remover perfil
           <% end %>

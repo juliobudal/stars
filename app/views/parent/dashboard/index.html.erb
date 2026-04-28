@@ -37,9 +37,7 @@
   <section class="mb-[22px] z-content">
     <div class="flex items-center justify-between mb-[14px]">
       <h2 class="text-[16px] font-extrabold m-0" style="color: var(--text);">Suas crianças</h2>
-      <%= link_to parent_profiles_path,
-            class: "ls-btn-3d inline-flex items-center px-3.5 py-2 rounded-[12px] text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline border-2",
-            style: "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 3px 0 var(--hairline);" do %>
+      <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: parent_profiles_path) do %>
         + Adicionar
       <% end %>
     </div>

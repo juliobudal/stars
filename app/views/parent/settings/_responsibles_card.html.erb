@@ -18,9 +18,12 @@
       </div>
     <% end %>
 
-    <%= link_to new_parent_invitation_path,
-          class: "ls-btn-3d inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-[12px] text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline border-2 mt-1",
-          style: "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 3px 0 var(--hairline);" do %>
+    <%= render Ui::Btn::Component.new(
+          variant: "secondary",
+          size: "sm",
+          url: new_parent_invitation_path,
+          class: "justify-center mt-1"
+        ) do %>
       <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
       Convidar responsável
     <% end %>

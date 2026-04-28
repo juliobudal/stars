@@ -16,12 +16,10 @@
     <%= render partial: "rules_card", locals: { family: @family } %>
 
     <div class="flex items-center justify-end gap-2.5 pt-2 pb-1">
-      <button type="submit"
-              class="ls-btn-3d inline-flex items-center gap-2 px-6 py-3 rounded-[14px] text-white text-[13px] font-extrabold uppercase tracking-[0.5px] border-2"
-              style="background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 0 var(--primary-2);">
+      <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>
         <%= render Ui::Icon::Component.new("check", size: 14, color: "currentColor") %>
         Salvar alterações
-      </button>
+      <% end %>
     </div>
   <% end %>
 
@@ -47,11 +45,9 @@
                   autocomplete: "off", placeholder: "Novo PIN", required: true,
                   class: "w-[110px] px-3 py-2 border-2 border-hairline rounded-[10px] font-extrabold text-center bg-white focus:outline-none",
                   style: "color: var(--text);" %>
-              <button type="submit"
-                      class="ls-btn-3d inline-flex items-center px-3 py-2 rounded-[10px] text-[11px] font-extrabold uppercase tracking-[0.5px] border-2"
-                      style="background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 3px 0 var(--hairline);">
+              <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", type: "submit") do %>
                 Resetar
-              </button>
+              <% end %>
             <% end %>
           </li>
         <% end %>
@@ -61,10 +57,12 @@
 
   <%# ─── Sair desta família ─── %>
   <section class="mt-6 z-content">
-    <%= button_to family_session_path, method: :delete,
-          class: "ls-btn-3d inline-flex items-center gap-2 px-4 py-2.5 rounded-[12px] text-white text-[12px] font-extrabold uppercase tracking-[0.5px] border-2 cursor-pointer",
-          form: { class: "" },
-          style: "background: var(--danger); border-color: var(--danger); box-shadow: 0 3px 0 var(--danger-2);" do %>
+    <%= render Ui::Btn::Component.new(
+          variant: "danger",
+          size: "sm",
+          url: family_session_path,
+          method: :delete
+        ) do %>
       Sair desta família neste dispositivo
     <% end %>
   </section>

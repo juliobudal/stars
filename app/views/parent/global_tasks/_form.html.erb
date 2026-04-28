@@ -198,25 +198,24 @@
 
     <%# Action bar %>
     <div class="flex flex-wrap justify-end gap-2.5 pt-1 pb-2">
-      <%= link_to "Cancelar", parent_global_tasks_path,
-            class: "ls-btn-3d inline-flex items-center px-5 py-3 rounded-[14px] text-[13px] font-extrabold uppercase tracking-[0.5px] no-underline border-2",
-            style: "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 4px 0 var(--hairline);" %>
-      <button type="submit"
-              class="ls-btn-3d inline-flex items-center gap-2 px-6 py-3 rounded-[14px] text-white text-[13px] font-extrabold uppercase tracking-[0.5px] cursor-pointer border-2"
-              style="background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 0 var(--primary-2);">
+      <%= render Ui::Btn::Component.new(variant: "secondary", url: parent_global_tasks_path) do %>
+        Cancelar
+      <% end %>
+      <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>
         <%= render Ui::Icon::Component.new("check", size: 14, color: "currentColor") %>
         Salvar missão
-      </button>
+      <% end %>
     </div>
 
     <% unless global_task.new_record? %>
       <div class="pt-4 mt-2 border-t-2" style="border-color: var(--hairline);">
-        <%= button_to parent_global_task_path(global_task),
+        <%= render Ui::Btn::Component.new(
+              variant: "danger",
+              size: "sm",
+              url: parent_global_task_path(global_task),
               method: :delete,
-              data: { turbo_confirm: "Remover esta missão de todas as crianças? Esta ação não pode ser desfeita." },
-              form_class: "inline",
-              class: "ls-btn-3d inline-flex items-center gap-2 px-4 py-2.5 rounded-[12px] text-[12px] font-extrabold uppercase tracking-[0.5px] cursor-pointer border-2 text-white",
-              style: "background: var(--danger); border-color: var(--danger); box-shadow: 0 4px 0 var(--danger-2);" do %>
+              data: { turbo_confirm: "Remover esta missão de todas as crianças? Esta ação não pode ser desfeita." }
+            ) do %>
           <%= render Ui::Icon::Component.new("trash", size: 14, color: "currentColor") %>
           Remover missão
         <% end %>
