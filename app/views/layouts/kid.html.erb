@@ -9,7 +9,7 @@
   <body class="min-h-screen bg-bg-deep overflow-x-hidden" data-palette="<%= palette_for(current_profile) %>" data-controller="fx">
     <%= render "shared/kid_nav" %>
     <%= render "kid/shared/fx_stage" %>
-    <main class="p-6 w-full max-w-screen-md mx-auto pb-24 md:pb-10">
+    <main class="p-6 w-full max-w-[430px] mx-auto pb-24 md:pb-10">
       <%= render Ui::Flash::Component.new %>
       <%= yield %>
     </main>
