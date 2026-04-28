@@ -1,13 +1,37 @@
-<div class="screen flex flex-col items-center p-10">
-  <div class="mb-6">
-    <%= render Ui::Brand::Component.new(size: :md, tagline: "Convite recebido") %>
+<div class="screen screen-enter relative">
+  <%= render Ui::BgShapes::Component.new(variant: "cool") %>
+
+  <div class="relative z-2 flex flex-col items-center justify-center p-10 pt-12">
+    <%# Brand lockup %>
+    <div class="mb-6">
+      <%= render Ui::Brand::Component.new(size: :md, tagline: "Convite recebido") %>
+    </div>
+
+    <h1 class="text-[26px] font-extrabold mb-1 text-center" style="color: var(--text);">
+      Bem-vindo à família<br>
+      <span style="color: var(--primary);"><%= @invitation.family.name %></span>
+    </h1>
+    <p class="mb-6 text-[14px] font-bold text-center max-w-[360px]" style="color: var(--text-muted);">
+      <% if @invitation.invited_by %>
+        <strong style="color: var(--text);"><%= @invitation.invited_by.name %></strong> te chamou
+        para participar da família. Aceita o convite pra começar.
+      <% else %>
+        Aceita o convite pra entrar e começar a colecionar estrelinhas com a turma.
+      <% end %>
+    </p>
+
+    <%# Action card %>
+    <div class="ls-card-3d w-full max-w-[360px]"
+         style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-card);">
+      <%= render Ui::Btn::Component.new(
+            variant: "primary",
+            size: "md",
+            block: true,
+            url: accept_invitation_path(token: @invitation.token),
+            method: :post
+          ) do %>
+        Aceitar convite
+      <% end %>
+    </div>
   </div>
-  <h1 class="text-[26px] font-extrabold mb-6" style="color: var(--text);">Aceitar convite</h1>
-  <p class="mb-6 text-center max-w-[400px] font-bold" style="color: var(--text-muted);">
-    Você foi convidado para se juntar à família
-    <strong style="color: var(--text);"><%= @invitation.family.name %></strong>.
-  </p>
-  <%= button_to "Aceitar convite", accept_invitation_path(token: @invitation.token), method: :post,
-                class: "px-5 py-3 rounded-[14px] text-white text-[14px] font-extrabold uppercase tracking-[0.5px] cursor-pointer border-2",
-                style: "background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 0 var(--primary-2);" %>
 </div>
