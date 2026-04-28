@@ -69,6 +69,7 @@ jobs:
             fi
 
             echo "==> Pulling latest code..."
+            git config --global --add safe.directory ${{ secrets.DEPLOY_DIR }}
             git fetch origin main
             git reset --hard origin/main
 
