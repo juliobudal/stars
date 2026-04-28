@@ -2,30 +2,20 @@
 
   <%# ─── Header ─── %>
   <% pending_total = @profile_tasks.count + @redemptions.count %>
-  <div class="flex items-start justify-between gap-4 mb-[22px] z-content shrink-0">
-    <div class="min-w-0">
-      <h1 class="text-[26px] font-extrabold leading-tight m-0 mb-1" style="color: var(--text);">
-        Aprovações
-      </h1>
-      <p class="text-[14px] font-bold m-0" style="color: var(--text-muted);">
-        <% if pending_total > 0 %>
-          <%= pending_total %> <%= pending_total == 1 ? "pendência aguardando" : "pendências aguardando" %> sua revisão
-        <% else %>
-          Nenhuma pendência no momento
-        <% end %>
-      </p>
-    </div>
+  <%
+    approvals_subtitle = if pending_total > 0
+                          "#{pending_total} #{pending_total == 1 ? 'pendência aguardando' : 'pendências aguardando'} sua revisão"
+                        else
+                          "Nenhuma pendência no momento"
+                        end
+  %>
+  <%= render Ui::PageHeader::Component.new(title: "Aprovações", subtitle: approvals_subtitle) do |h| %>
     <% if pending_total > 0 %>
-      <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-[14px] border-2 shrink-0"
-           style="background: var(--c-rose-soft); border-color: var(--danger); box-shadow: 0 3px 0 var(--danger-2);">
-        <%= render Ui::Icon::Component.new("clock", size: 18, color: "var(--danger)") %>
-        <div>
-          <div id="pending_approvals_kpi" class="text-[18px] font-extrabold leading-none" style="color: var(--danger);"><%= pending_total %></div>
-          <div class="text-[9px] font-extrabold tracking-[0.5px]" style="color: var(--danger-2);">PENDENTES</div>
-        </div>
-      </div>
+      <% h.with_right_slot do %>
+        <%= render Ui::HeaderStatChip::Component.new(label: "PENDENTES", value: pending_total, icon: "clock", variant: :danger, value_id: "pending_approvals_kpi") %>
+      <% end %>
     <% end %>
-  </div>
+  <% end %>
 
   <%= turbo_frame_tag "approvals_list" do %>
     <div data-controller="tabs">

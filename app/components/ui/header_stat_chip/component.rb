@@ -45,15 +45,18 @@ module Ui
         }
       }.freeze
 
-      def initialize(label:, value:, icon: nil, variant: :default, **options)
+      def initialize(label:, value:, icon: nil, variant: :default, value_id: nil, **options)
         @label = label
         @value = value
         @icon = icon
+        @value_id = value_id
         key = variant.to_sym
         @variant = VARIANTS.key?(key) ? key : :default
         @options = options
         super()
       end
+
+      attr_reader :value_id
 
       def tokens
         VARIANTS[@variant]

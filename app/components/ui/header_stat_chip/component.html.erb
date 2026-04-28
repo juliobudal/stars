@@ -4,7 +4,7 @@
     <%= render Ui::Icon::Component.new(@icon, size: 18, color: tokens[:icon_color]) %>
   <% end %>
   <div>
-    <div class="text-[18px] font-extrabold leading-none" style="color: <%= tokens[:value_color] %>;">
+    <div<%= value_id ? %( id="#{value_id}").html_safe : "" %> class="text-[18px] font-extrabold leading-none" style="color: <%= tokens[:value_color] %>;">
       <%= @value %>
     </div>
     <div class="text-[9px] font-extrabold tracking-[0.5px] uppercase mt-0.5" style="color: <%= tokens[:label_color] %>;">

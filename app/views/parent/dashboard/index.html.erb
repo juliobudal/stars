@@ -1,41 +1,29 @@
 <div class="screen screen-enter with-nav">
 
   <%# ─── Header ─── %>
-  <div class="flex items-start justify-between gap-4 mb-[22px] z-content shrink-0">
-    <div class="min-w-0">
-      <h1 class="text-[26px] font-extrabold leading-tight m-0 mb-1" style="color: var(--text);">
-        Olá, <%= current_profile.name %>! 👋
-      </h1>
-      <p class="text-[14px] font-bold m-0" style="color: var(--text-muted);">
-        <% if @stats[:pending_approvals].to_i > 0 %>
-          <%= @children.first&.name || "Sua família" %> tem missões esperando sua aprovação
-        <% elsif @children.any? %>
-          <%= @children.size == 1 ? @children.first.name : "Suas crianças" %> está em dia com as missões
-        <% else %>
-          Adicione sua primeira criança para começar
+  <%
+    dashboard_subtitle = if @stats[:pending_approvals].to_i > 0
+                          "#{@children.first&.name || 'Sua família'} tem missões esperando sua aprovação"
+                        elsif @children.any?
+                          "#{@children.size == 1 ? @children.first.name : 'Suas crianças'} está em dia com as missões"
+                        else
+                          "Adicione sua primeira criança para começar"
+                        end
+    top_streak = @children.map { |c| c.respond_to?(:streak) ? c.streak.to_i : 0 }.max.to_i
+  %>
+  <%= render Ui::PageHeader::Component.new(title: "Olá, #{current_profile.name}! 👋", subtitle: dashboard_subtitle) do |h| %>
+    <% h.with_right_slot do %>
+      <div class="flex items-center gap-3 shrink-0">
+        <% if top_streak > 0 %>
+          <%= render Ui::HeaderStatChip::Component.new(label: "DIAS", value: top_streak, icon: "flame", variant: :warning) %>
         <% end %>
-      </p>
-    </div>
-    <div class="flex items-center gap-3 shrink-0">
-      <% top_streak = @children.map { |c| c.respond_to?(:streak) ? c.streak.to_i : 0 }.max.to_i %>
-      <% if top_streak > 0 %>
-        <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-[14px] border-2"
-             style="background: var(--star-soft); border-color: var(--star); box-shadow: 0 3px 0 var(--star-2);">
-          <%= render Ui::Icon::Component.new("flame", size: 20, color: "var(--c-streak)") %>
-          <div>
-            <div class="text-[18px] font-extrabold leading-none" style="color: var(--c-streak);"><%= top_streak %></div>
-            <div class="text-[9px] font-extrabold tracking-[0.5px]" style="color: var(--c-amber-dark);">DIAS</div>
-          </div>
-        </div>
-      <% end %>
-      <%= link_to new_parent_global_task_path,
-            class: "ls-btn-3d inline-flex items-center gap-2 px-5 py-3 rounded-[14px] text-white text-[14px] font-extrabold uppercase tracking-[0.5px] no-underline border-2",
-            style: "background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 0 var(--primary-2);" do %>
-        <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
-        Nova missão
-      <% end %>
-    </div>
-  </div>
+        <%= render Ui::Btn::Component.new(variant: "primary", url: new_parent_global_task_path) do %>
+          <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
+          Nova missão
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
 
   <%# ─── Stats grid ─── %>
   <div class="z-10 relative grid grid-cols-2 lg:grid-cols-4 gap-3 mb-[22px]">
