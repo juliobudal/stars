@@ -39,6 +39,7 @@
         <div class="font-display text-[10px] font-extrabold tracking-[0.8px] uppercase" style="color: var(--text-muted);">Saldo</div>
         <div class="flex items-baseline gap-1">
           <span id="profile_points_<%= current_profile.id %>"
+                aria-live="polite"
                 data-controller="count-up"
                 data-count-up-current-value="<%= balance %>"
                 class="font-display text-[26px] font-extrabold leading-none"
