@@ -77,8 +77,8 @@
     <%# Panel: Aguardando %>
     <div id="panel-pending" class="flex flex-col gap-2.5 hidden">
       <% if @pending_tasks.any? %>
-        <% @pending_tasks.each do |task| %>
-          <%= render partial: "kid/dashboard/awaiting_task", locals: { awaiting_task: task } %>
+        <% @pending_tasks.each_with_index do |task, i| %>
+          <%= render Ui::MissionCard::Component.new(mission: task, status: "waiting", variant: "bubble", index: i) %>
         <% end %>
       <% else %>
         <%= render Ui::Empty::Component.new(

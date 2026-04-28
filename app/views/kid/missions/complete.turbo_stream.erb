@@ -2,7 +2,7 @@
 <%= turbo_stream.remove "modal_#{dom_id(@profile_task)}" %>
 
 <%= turbo_stream.prepend "panel-waiting" do %>
-  <%= render "kid/dashboard/awaiting_row", task: @profile_task %>
+  <%= render Ui::MissionCard::Component.new(mission: @profile_task, status: "waiting", variant: "bubble", id: dom_id(@profile_task)) %>
 <% end %>
 
 <%= turbo_stream.update "flash" do %>

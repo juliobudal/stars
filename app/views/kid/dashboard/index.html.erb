@@ -100,91 +100,29 @@
   <div class="flex flex-col gap-2.5 mb-5 relative z-2">
 
     <%# Completed (approved today) %>
-    <% @completed_today.each do |task| %>
-      <% cat = Ui::Tokens.category_for(task.global_task&.category) %>
-      <div class="ls-card-3d flex items-center gap-3.5 px-4 py-3.5"
-           style="background: var(--primary-soft); border: 2px solid var(--primary); border-radius: 16px; box-shadow: 0 4px 0 var(--primary-2);">
-        <div class="grid place-items-center shrink-0"
-             style="width: 48px; height: 48px; border-radius: 12px; background: var(--surface); border: 2px solid var(--primary);">
-          <%= render Ui::Icon::Component.new("check", size: 26, color: "var(--primary-2)") %>
-        </div>
-        <div class="flex-1 min-w-0">
-          <div class="font-display text-[15px] font-extrabold line-through" style="color: var(--primary-2);"><%= task.title %></div>
-          <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase mt-0.5" style="color: var(--primary-2);">
-            +<%= task.points %> ★ ganhas!
-          </div>
-        </div>
-      </div>
+    <% @completed_today.each_with_index do |task, i| %>
+      <%= render Ui::MissionCard::Component.new(mission: task, status: "approved", variant: "bubble", index: i) %>
     <% end %>
 
     <%# Awaiting approval ── stays in turbo-stream target id %>
     <div id="panel-waiting" class="contents">
-      <% @awaiting_tasks.each do |task| %>
-        <% cat = Ui::Tokens.category_for(task.global_task&.category) %>
-        <div id="<%= dom_id(task) %>"
-             class="ls-card-3d flex items-center gap-3.5 px-4 py-3.5"
-             style="background: var(--primary-soft); border: 2px solid var(--primary); border-radius: 16px; box-shadow: 0 4px 0 var(--primary-2);">
-          <div class="grid place-items-center shrink-0"
-               style="width: 48px; height: 48px; border-radius: 12px; background: var(--surface); border: 2px solid var(--primary);">
-            <%= render Ui::Icon::Component.new("check", size: 26, color: "var(--primary-2)") %>
-          </div>
-          <div class="flex-1 min-w-0">
-            <div class="font-display text-[15px] font-extrabold line-through" style="color: var(--primary-2);"><%= task.title %></div>
-            <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase mt-0.5" style="color: var(--primary-2);">
-              Aguardando carimbo
-            </div>
-          </div>
-          <div class="ls-card-3d inline-flex items-center gap-1 shrink-0"
-               style="background: var(--surface); border: 2px solid var(--star); padding: 4px 10px; border-radius: 10px; box-shadow: 0 2px 0 var(--star-2);">
-            <%= render Ui::Icon::Component.new(:star, size: 13, color: "var(--star)") %>
-            <span class="font-display text-[13px] font-extrabold" style="color: var(--c-amber-dark);">+<%= task.points %></span>
-          </div>
-        </div>
+      <% @awaiting_tasks.each_with_index do |task, i| %>
+        <%= render Ui::MissionCard::Component.new(mission: task, status: "waiting", variant: "bubble", index: i, id: dom_id(task)) %>
       <% end %>
     </div>
 
     <%# Pending — flat row, click opens confirmation modal %>
     <% @profile_tasks.each_with_index do |profile_task, i| %>
       <% cat = Ui::Tokens.category_for(profile_task.global_task&.category) %>
-      <% tint_soft = Ui::Tokens.tint_soft(cat[:tint]) %>
-      <% tint_fg   = Ui::Tokens.tint_fg(cat[:tint]) %>
 
       <div id="<%= dom_id(profile_task) %>" data-controller="ui-modal">
-        <div class="ls-card-3d flex items-center gap-3.5 px-4 py-3.5 cursor-pointer"
-             style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= [i, 5].min * 0.04 %>s both;"
-             data-action="click->ui-modal#open"
-             data-ui-modal-id-param="modal_<%= dom_id(profile_task) %>">
-          <div class="grid place-items-center shrink-0"
-               style="width: 48px; height: 48px; border-radius: 12px; background: <%= tint_soft %>; border: 2px solid <%= tint_fg %>;">
-            <%= render Ui::Icon::Component.new(cat[:icon], size: 26, color: tint_fg) %>
-          </div>
-
-          <div class="flex-1 min-w-0">
-            <div class="font-display text-[15px] font-extrabold" style="color: var(--text);"><%= profile_task.title %></div>
-            <div class="flex items-center gap-1.5 mt-1">
-              <span class="font-display text-[10px] font-extrabold tracking-[0.5px] uppercase px-2 py-0.5 rounded-md"
-                    style="background: <%= tint_soft %>; color: <%= tint_fg %>;">
-                <%= cat[:label] %>
-              </span>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-2.5 shrink-0">
-            <div class="ls-card-3d inline-flex items-center gap-1"
-                 style="background: var(--star-soft); border: 2px solid var(--star); padding: 4px 10px; border-radius: 10px; box-shadow: 0 2px 0 var(--star-2);">
-              <%= render Ui::Icon::Component.new(:star, size: 13, color: "var(--star)") %>
-              <span class="font-display text-[13px] font-extrabold" style="color: var(--c-amber-dark);">+<%= profile_task.points %></span>
-            </div>
-
-            <button type="button"
-                    class="ls-btn-3d font-display"
-                    data-action="click->ui-modal#open"
-                    data-ui-modal-id-param="modal_<%= dom_id(profile_task) %>"
-                    style="background: var(--primary); color: white; border: 2px solid var(--primary); padding: 8px 14px; border-radius: 12px; box-shadow: 0 3px 0 var(--primary-2); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">
-              Fiz!
-            </button>
-          </div>
-        </div>
+        <%= render Ui::MissionCard::Component.new(
+              mission: profile_task,
+              status: "pending",
+              variant: "bubble",
+              index: i,
+              data: { action: "click->ui-modal#open", ui_modal_id_param: "modal_#{dom_id(profile_task)}" }
+            ) %>
 
         <%# Confirmation modal — reuses existing flow %>
         <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(profile_task)}") do %>
