@@ -67,7 +67,7 @@ RSpec.describe Tasks::SlotRefresher do
     it "respects the assigned_date when computing the period" do
       yesterday = date - 1
       create(:profile_task, profile: profile, global_task: gt, assigned_date: yesterday, status: :approved)
-      expect { call }.to change { ProfileTask.where(assigned_date: date, status: :pending).count }.by(1)
+      expect { call }.to change { ProfileTask.where(profile: profile, global_task: gt, assigned_date: date, status: :pending).count }.by(1)
     end
   end
 
