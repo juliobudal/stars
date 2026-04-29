@@ -31,16 +31,17 @@ module Tasks
           return ok(:cap_reached)
         end
 
-        unless period_pts.pending.exists?
+        if period_pts.pending.exists?
+          ok(:slot_available)
+        else
           ProfileTask.create!(
             profile: @profile,
             global_task: @global_task,
             assigned_date: @date,
             status: :pending
           )
+          ok(:slot_created)
         end
-
-        ok(:slot_available)
       end
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
       Rails.logger.error("[Tasks::SlotRefresher] error profile_id=#{@profile.id} global_task_id=#{@global_task&.id} error=#{e.message}")

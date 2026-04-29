@@ -29,9 +29,8 @@ module Tasks
         end
 
         target_profiles.each do |child|
-          before_count = ProfileTask.where(profile: child, global_task: global_task).count
-          Tasks::SlotRefresher.new(profile: child, global_task: global_task, date: @date).call
-          created_count += 1 if ProfileTask.where(profile: child, global_task: global_task).count > before_count
+          result = Tasks::SlotRefresher.new(profile: child, global_task: global_task, date: @date).call
+          created_count += 1 if result.success? && result.data == :slot_created
         end
       end
 

@@ -20,6 +20,19 @@ RSpec.describe Tasks::SlotRefresher do
       )
     end
 
+    it "returns :slot_created when a new pending row is inserted" do
+      result = call
+      expect(result).to be_success
+      expect(result.data).to eq(:slot_created)
+    end
+
+    it "returns :slot_available when a pending row already exists" do
+      call
+      result = described_class.new(profile: profile, global_task: gt, date: date).call
+      expect(result).to be_success
+      expect(result.data).to eq(:slot_available)
+    end
+
     it "does not duplicate the pending row on repeated calls" do
       call
       expect { call }.not_to change { ProfileTask.count }
@@ -35,8 +48,10 @@ RSpec.describe Tasks::SlotRefresher do
 
     it "does not respawn after approval (cap reached)" do
       create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :approved)
-      expect { call }.not_to change { ProfileTask.where(profile: profile, global_task: gt, status: :pending).count }
+      result = nil
+      expect { result = described_class.new(profile: profile, global_task: gt, date: date).call }.not_to change { ProfileTask.where(profile: profile, global_task: gt, status: :pending).count }
       expect(ProfileTask.where(profile: profile, global_task: gt, status: :pending)).to be_empty
+      expect(result.data).to eq(:cap_reached)
     end
   end
 
