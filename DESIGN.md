@@ -1,6 +1,6 @@
 # LittleStars Design System
 
-Source of truth for the **LittleStars Duolingo Style** visual language. If a pattern isn't in here, it shouldn't ship. Reference mocks live at the repo root: `littlestars_dashboard_duolingo_style.html`, `littlestars_missions_list_duolingo.html`, `littlestars_new_mission_form_duolingo.html`.
+Source of truth for the **LittleStars Duolingo Style** visual language. If a pattern isn't in here, it shouldn't ship.
 
 ---
 
@@ -125,25 +125,107 @@ Cards lift on hover: `transform: translateY(-2px); box-shadow: var(--shadow-lift
 
 ## 6. Components
 
-Location: `app/components/ui/<name>/`.
+Location: `app/components/ui/<name>/`. Always reach for a `Ui::*` first; only write inline markup if no component fits.
 
-| Component | Path | Used by | Props |
-|---|---|---|---|
-| `Ui::Btn` | `ui/btn/` | everywhere | `variant:`, `size:`, `tone:` (drives `shadow-btn-*`) |
-| `Ui::StatCard` | `ui/stat_card/` | parent dashboard, kid wallet | `value:`, `label:`, `icon:`, `tint:` (pastel bg + 2px colored border + 0 4px 0 shadow) |
-| `Ui::KidProgressCard` | `ui/kid_progress_card/` | parent dashboard | `kid:`, `awaiting_count:`, `missions_count:` (avatar 3D ring, level pill `N1`, progress bar with inset depth) |
-| `Ui::ApprovalRow` | `ui/approval_row/` | parent approvals, dashboard | `kid:`, `title:`, `meta:`, `points:`, `approve_url:`, `reject_url:`, ... (rounded card + icon tile with tint+border + two-button group) |
-| `Ui::ActivityRow` | `ui/activity_row/` | dashboard, activity_logs, kid wallet | `log:` or explicit `kid:/description:/timestamp:/amount:/direction:`, `with_divider:` |
-| `Ui::FilterChips` | `ui/filter_chips/` | parent approvals, missions list | `items:`, `active:`, `controller:` (3D pills: active = colored fill + colored border + depth shadow; idle = white + hairline border) |
-| `Ui::SmileyAvatar` | `ui/smiley_avatar/` | dashboards, approvals | `kid:`, `size:`, `face:` — uses internal `COLOR_MAP` for per-kid fills |
-| `Ui::Icon` | `ui/icon/` | everywhere | `name`, `size:`, `color:`, `weight:` |
-| `Ui::Empty` | `ui/empty/` | zero-state screens | `icon:`, `title:`, `subtitle:`, `color:` |
-| `Ui::TopBar` | `ui/top_bar/` | parent sub-pages | `title:`, `subtitle:`, `back_url:` |
-| `Ui::MissionCard` | `ui/mission_card/` | kid missions, dashboards, missions list | `mission:`, `status:`, `variant:` (16px radius, 2px hairline border, 0 4px 0 card shadow, hover lift) |
-| `Ui::StreakBadge` | `ui/streak_badge/` | parent dashboard | `streak:`, `size:` (yellow tint + flame + count) |
-| `Ui::Toggle` | `ui/toggle/` | settings, mission form | green track 52×30 with white thumb, inset depth shadow |
-| `Ui::Flash` | `ui/flash/` | layouts | reads Rails `flash` |
-| `Ui::Tokens` | `ui/tokens.rb` (module) | shared metadata | `category_for(key)`, `frequency_for(key)`, `tint_soft`, `tint_fg` |
+### Navigation & layout
+
+| Component | Path | Key props / notes |
+|---|---|---|
+| `Ui::TopBar` | `ui/top_bar/` | `title:`, `subtitle:`, `back_url:` — parent sub-page header |
+| `Ui::KidTopBar` | `ui/kid_top_bar/` | kid-shell page header with avatar + palette |
+| `Ui::PageHeader` | `ui/page_header/` | hero section with eyebrow + title + subtitle |
+| `Ui::Drawer` | `ui/drawer/` | off-canvas sidebar panel (mobile parent nav) |
+| `Ui::Tabs` | `ui/tabs/` | horizontal tab bar; use for top-level content switching |
+| `Ui::CategoryTabs` | `ui/category_tabs/` | pill-style category switcher inside a page |
+| `Ui::FilterChips` | `ui/filter_chips/` | `items:`, `active:`, `controller:` (3D pills: active = colored fill + colored border + depth shadow; idle = white + hairline border) |
+| `Ui::BgShapes` | `ui/bg_shapes/` | floating blurred orb layer; rendered inside kid layout |
+
+### Buttons & actions
+
+| Component | Path | Key props / notes |
+|---|---|---|
+| `Ui::Btn` | `ui/btn/` | `variant:`, `size:`, `tone:` — primary driver of `shadow-btn-*` depth utilities |
+
+### Cards & data display
+
+| Component | Path | Key props / notes |
+|---|---|---|
+| `Ui::Card` | `ui/card/` | base white surface with `2px hairline` + `0 4px 0` shadow |
+| `Ui::StatCard` | `ui/stat_card/` | `value:`, `label:`, `icon:`, `tint:` (pastel bg + 2px colored border) |
+| `Ui::StatMetric` | `ui/stat_metric/` | compact inline stat (number + label) |
+| `Ui::HeaderStatChip` | `ui/header_stat_chip/` | pill stat chip in page headers |
+| `Ui::KidProgressCard` | `ui/kid_progress_card/` | `kid:`, `awaiting_count:`, `missions_count:` (avatar 3D ring + level pill + progress bar) |
+| `Ui::KidPlaceholderCard` | `ui/kid_placeholder_card/` | empty slot card (add-kid CTA) |
+| `Ui::MissionCard` | `ui/mission_card/` | `mission:`, `status:`, `variant:` (16px radius, 2px border, card shadow, hover lift) |
+| `Ui::MissionListRow` | `ui/mission_list_row/` | compact row variant for mission lists |
+| `Ui::ApprovalRow` | `ui/approval_row/` | `kid:`, `title:`, `points:`, `approve_url:`, `reject_url:` |
+| `Ui::ActivityRow` | `ui/activity_row/` | `log:` or explicit fields; `with_divider:` — earn/redeem ledger entry |
+| `Ui::HistoryRow` | `ui/history_row/` | read-only log row for activity history pages |
+| `Ui::RedemptionRow` | `ui/redemption_row/` | reward redemption record with status badge |
+| `Ui::RewardCatalogCard` | `ui/reward_catalog_card/` | `reward:` — icon cell (56×56, tint + border) + star pill + edit/delete actions |
+| `Ui::CategoryRow` | `ui/category_row/` | category label + grouped items in a list |
+
+### Avatars & identity
+
+| Component | Path | Key props / notes |
+|---|---|---|
+| `Ui::SmileyAvatar` | `ui/smiley_avatar/` | `kid:`, `size:`, `face:` — per-kid palette from `COLOR_MAP` |
+| `Ui::Avatar` | `ui/avatar/` | generic avatar (initials fallback) |
+| `Ui::KidAvatar` | `ui/kid_avatar/` | kid-specific avatar with palette ring |
+| `Ui::KidInitialChip` | `ui/kid_initial_chip/` | inline chip with kid initial + palette color |
+| `Ui::ProfileCard` | `ui/profile_card/` | profile-select card (160px, 20px radius, avatar + name + role badge) |
+| `Ui::ProfilePicker` | `ui/profile_picker/` | full profile selection grid |
+| `Ui::LogoMark` | `ui/logo_mark/` | LittleStars star logo glyph |
+| `Ui::Brand` | `ui/brand/` | full logo lockup (mark + wordmark) |
+
+### Badges & chips
+
+| Component | Path | Key props / notes |
+|---|---|---|
+| `Ui::Badge` | `ui/badge/` | generic status/count badge |
+| `Ui::Chip` | `ui/chip/` | small pill label |
+| `Ui::BalanceChip` | `ui/balance_chip/` | star balance display pill |
+| `Ui::StarBadge` | `ui/star_badge/` | star count badge with yellow tint |
+| `Ui::StarValue` | `ui/star_value/` | inline star icon + number |
+| `Ui::StreakBadge` | `ui/streak_badge/` | `streak:`, `size:` (yellow tint + flame + count) |
+
+### Forms
+
+| Component | Path | Key props / notes |
+|---|---|---|
+| `Ui::Toggle` | `ui/toggle/` | green track 52×30 + white thumb + inset depth shadow |
+| `Ui::Select` | `ui/select/` | styled `<select>` with hairline border + focus ring |
+| `Ui::IconPicker` | `ui/icon_picker/` | 8-col grid of icon cells; selected = tint bg + colored border + depth |
+| `Ui::ColorSwatchPicker` | `ui/color_swatch_picker/` | per-kid color picker swatches |
+| `Ui::FormSection` | `ui/form_section/` | grouped form block with eyebrow label |
+| `Ui::FormErrors` | `ui/form_errors/` | model error summary (list above form) |
+
+### Overlays & feedback
+
+| Component | Path | Key props / notes |
+|---|---|---|
+| `Ui::Modal` | `ui/modal/` | Turbo-compatible dialog; 20px radius; 24px for PIN exception |
+| `Ui::PinModal` | `ui/pin_modal/` | 340px PIN entry dialog (see §15) |
+| `Ui::Toast` | `ui/toast/` | auto-dismiss 3–5 s; `type: success|error|info`; `aria-live="polite"` |
+| `Ui::Flash` | `ui/flash/` | reads Rails `flash`; delegates to Toast |
+| `Ui::Alert` | `ui/alert/` | inline alert banner (non-dismissible) |
+| `Ui::Spinner` | `ui/spinner/` | loading indicator; use inside `Ui::Btn` during async ops |
+| `Ui::Tooltip` | `ui/tooltip/` | hover/focus tooltip; always keyboard-reachable |
+| `Ui::TurboConfirm` | `ui/turbo_confirm/` | custom Turbo confirm dialog (replaces browser `confirm()`) |
+| `Ui::Celebration` | `ui/celebration/` | full-screen success overlay |
+| `Ui::Confetti` | `ui/confetti/` | confetti particle burst layer |
+
+### Utility
+
+| Component | Path | Key props / notes |
+|---|---|---|
+| `Ui::Empty` | `ui/empty/` | `icon:`, `title:`, `subtitle:`, `color:` — zero-state screen |
+| `Ui::Icon` | `ui/icon/` | `name`, `size:`, `color:`, `weight:` — SVG icon wrapper |
+| `Ui::IconTile` | `ui/icon_tile/` | square tile with icon + tint background |
+| `Ui::Group` | `ui/group/` | grouped list container with hairline dividers |
+| `Ui::Heading` | `ui/heading/` | semantic heading with Nunito 800 + optional eyebrow |
+| `Ui::Clipboard` | `ui/clipboard/` | copy-to-clipboard button wrapper |
+| `Ui::Tokens` | `ui/tokens.rb` (module) | `category_for(key)`, `frequency_for(key)`, `tint_soft`, `tint_fg` |
 
 ---
 
@@ -179,24 +261,80 @@ Location: `app/components/ui/<name>/`.
 
 ## 9. Motion
 
-| Animation | Duration | When |
+### Easing tokens (`tailwind/motion.css`)
+
+| Token | Value | Use |
 |---|---|---|
-| Button press | 0.05s `transform` | `:active` translateY(2px) |
-| Card hover lift | 0.1s `transform` | mouse hover |
-| Filter pill state | 0.15s `all` | toggle active |
-| `slideInCard` | 0.35s cubic-bezier | Card mount |
-| `slideInR` | 0.4s cubic-bezier(0.22,1,0.36,1) | Right-in page transitions |
-| `popIn` | 0.3s cubic-bezier(0.34,1.56,0.64,1) | Modals, toasts |
-| `shake` | 0.4s | Input error |
-| `float` | 3s infinite | Hero decorations |
-| `popCard` | 0.3s | Card success |
+| `--ease-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Modals, pop-ins, spring feedback |
+| `--ease-spring-soft` | `cubic-bezier(0.22, 1.4, 0.36, 1)` | Card hover lifts, tile reveals |
+| `--ease-snap` | `cubic-bezier(0.4, 0, 0.2, 1)` | Shake, error states, snappy transitions |
+| `--dur-fast` | `120ms` | Micro-interactions (press feedback) |
+| `--dur-base` | `240ms` | Standard state transitions |
+| `--dur-pop` | `380ms` | Spring pops, reveals |
 
-**Stagger rule:** `style="animation-delay: #{index * 0.04}s"`, cap at 5 items.
+### Motion utility classes
 
-**Reduced motion:** every component using transforms must include:
+**Use these classes — never write ad-hoc `transition`/`animation` CSS in components.**
+
+#### 3D press utilities (`ls-*`)
+
+| Class | Behavior |
+|---|---|
+| `ls-btn-3d` | `transition: transform 0.05s` + `:active → translateY(2px), box-shadow: none` |
+| `ls-filter-pill` | Same as `ls-btn-3d` — for filter/tab pills |
+| `ls-key-3d` | Same — for PIN numpad keys |
+| `ls-aux-key` | Same — for secondary keys (backspace) |
+| `ls-icon-cell` | `transition 0.05s` + `:active → scale(0.92)` |
+| `ls-star-cell` | Same as `ls-icon-cell` — for star difficulty pickers |
+| `ls-card-3d` | `transition: transform/box-shadow 0.1s` + `:hover → translateY(-2px), shadow-lift` |
+
+#### Spring animation utilities (`anim-*`)
+
+| Class | Keyframe | Duration | Easing |
+|---|---|---|---|
+| `anim-press` | `scale(0.96)` on `:active` | `--dur-fast` | `--ease-spring` |
+| `anim-tile` | hover lift + shadow | `--dur-base` | `--ease-spring-soft` |
+| `anim-pop-in` | fade + scale(0.9) + translateY(8px) → none | `--dur-pop` | `--ease-spring` |
+| `anim-pulse-once` | scale 1 → 1.12 → 1 | `--dur-pop` | `--ease-spring` |
+| `anim-shake` | translateX zig-zag | `360ms` | `--ease-snap` |
+| `anim-bounce-once` | translateY bounce | `500ms` | `--ease-spring` |
+| `anim-fade-up` | opacity + translateY(8px) → none | `--dur-base` | `--ease-spring-soft` |
+| `anim-shimmer` | loading shimmer gradient | `1.4s infinite` | linear |
+
+#### Legacy `animate-*` classes (`animations.css`)
+
+| Class | Keyframe | Duration |
+|---|---|---|
+| `animate-slide-in` | `slideIn` (left) | 0.4s |
+| `animate-slide-in-right` | `slideInR` (right) | 0.4s |
+| `animate-pop-in` | `popIn` | 0.3s |
+| `animate-float` | `float` (infinite) | 3s |
+| `animate-shake` | `shake` | 0.4s |
+| `animate-slide-in-card` | `slideInCard` | 0.4s |
+| `animate-pop-card` | `popCard` | 0.4s |
+| `animate-star-pulse` | `starPulse` (infinite) | 2s |
+| `hover-wobble` | `wobble` on hover | 0.3s |
+
+#### Thematic animations
+
+| Class | Use |
+|---|---|
+| `ls-mascot-bounce` | Mascot idle bounce (2.5s infinite) |
+| `ls-coin-shake` | Coin/star idle rattle (3s infinite) |
+
+### Stagger rule
+
+```erb
+style="animation-delay: <%= index * 0.04 %>s"
+```
+Cap at 5 items (0.16s max delay). Beyond 5, no delay.
+
+### Reduced motion
+
+All `ls-*` and `anim-*` classes have `prefers-reduced-motion: reduce` overrides in `motion.css` — no manual `@media` needed when using these classes. For custom animations, always add:
 ```css
 @media (prefers-reduced-motion: reduce) {
-  .my-class { transition: none; }
+  .my-class { animation: none; transition: none; }
 }
 ```
 
@@ -206,9 +344,12 @@ Location: `app/components/ui/<name>/`.
 
 - Icon-only buttons must carry `aria-label`.
 - Tab switchers need `role=tablist` on container and `role=tab` with `aria-selected` on buttons (`Ui::FilterChips` does this).
-- Focus rings: inputs use `box-shadow: 0 0 0 3px var(--primary-soft)`.
-- All interactive nodes must have a non-icon text fallback (sr-only if needed).
+- Focus rings: inputs use `box-shadow: 0 0 0 3px var(--primary-soft)`. Buttons use `:focus-visible` outline (not `:focus`).
+- All interactive nodes must have a non-icon text fallback (`sr-only` if needed).
 - 3D buttons keep `:focus-visible` outline distinct from `:active` press state.
+- **Modals:** use `inert` on all body siblings when open; return focus to the trigger element on close via WeakMap (not a stored selector). `Ui::Modal` implements this.
+- **Toasts:** use `aria-live="polite"` so screen readers announce without stealing focus.
+- Minimum touch target: 44×44px. Expand hit area with padding rather than changing the visual size.
 
 ---
 
@@ -236,18 +377,57 @@ Location: `app/components/ui/<name>/`.
 
 Before adding a page, scan the mock for these patterns. If any recur, use the listed component:
 
+**Navigation**
+- Page header with back arrow → `Ui::TopBar` (parent) or `Ui::KidTopBar` (kid)
+- Hero title + eyebrow + subtitle section → `Ui::PageHeader`
+- Segmented pill switcher → `Ui::FilterChips`
+- Category/content tabs → `Ui::Tabs` or `Ui::CategoryTabs`
+- Off-canvas sidebar → `Ui::Drawer`
+
+**Cards & rows**
 - Stat tile → `Ui::StatCard`
 - Kid dashboard card → `Ui::KidProgressCard`
-- Mission / redemption row with two actions → `Ui::ApprovalRow`
+- Reward catalog tile → `Ui::RewardCatalogCard`
+- Mission card → `Ui::MissionCard`
+- Compact mission row → `Ui::MissionListRow`
+- Approval row with two actions → `Ui::ApprovalRow`
 - Ledger / activity entry → `Ui::ActivityRow`
-- Segmented pill switcher → `Ui::FilterChips`
-- Top page title with back arrow → `Ui::TopBar`
-- Empty state → `Ui::Empty`
-- Reusable per-kid avatar → `Ui::SmileyAvatar`
-- Streak counter → `Ui::StreakBadge`
-- On/off setting → `Ui::Toggle`
+- Redemption record → `Ui::RedemptionRow`
+- Read-only log row → `Ui::HistoryRow`
+- Category + items group → `Ui::CategoryRow`
+- Empty slot / placeholder → `Ui::KidPlaceholderCard`
 
-If the page needs a pattern not in the list, add a row to §6 of this file in the same PR.
+**Identity**
+- Per-kid avatar → `Ui::SmileyAvatar`
+- Avatar with initials fallback → `Ui::Avatar`
+- Inline kid initial chip → `Ui::KidInitialChip`
+- Profile select card → `Ui::ProfileCard`
+
+**Badges & chips**
+- Star balance display → `Ui::BalanceChip`
+- Streak counter → `Ui::StreakBadge`
+- Star count → `Ui::StarBadge` or `Ui::StarValue`
+- Status label → `Ui::Badge` or `Ui::Chip`
+
+**Feedback & overlays**
+- Dialog / modal → `Ui::Modal`
+- Confirmation before destructive action → `Ui::TurboConfirm`
+- Auto-dismiss notification → `Ui::Toast`
+- Inline alert → `Ui::Alert`
+- Full-screen success → `Ui::Celebration` + `Ui::Confetti`
+- Loading indicator → `Ui::Spinner`
+
+**Forms**
+- On/off setting → `Ui::Toggle`
+- Icon picker → `Ui::IconPicker`
+- Color picker → `Ui::ColorSwatchPicker`
+- Grouped form block → `Ui::FormSection`
+- Validation errors → `Ui::FormErrors`
+
+**Zero states**
+- Empty screen → `Ui::Empty`
+
+If a pattern doesn't fit any entry above, add a row to §6 of this file in the same PR.
 
 ---
 
@@ -268,8 +448,6 @@ If the page needs a pattern not in the list, add a row to §6 of this file in th
 
 ## 14. Profile selection (entry screen)
 
-Reference: `littlestars_profile_select_duolingo.html`.
-
 Layout: centered column. Header = 48px yellow logo tile + "LittleStars" 22px/800. H1 "Quem é você?" 28px/800. Subtitle 14px/700 muted. Profile cards in a flex-wrap row (max-width 720px).
 
 **Profile card** (`Ui::ProfileCard`):
@@ -284,8 +462,6 @@ Layout: centered column. Header = 48px yellow logo tile + "LittleStars" 22px/800
 Footer chip: "Cada perfil é protegido por um PIN" — 14px radius, 2px hairline, surface-muted bg, 12px/700 muted text.
 
 ## 15. PIN modal
-
-Reference: `littlestars_pin_modal_duolingo.html`.
 
 Backdrop: dim profile select (`filter: blur(2px); opacity: 0.4`) + overlay `rgba(75,75,75,0.45)`.
 
@@ -304,3 +480,90 @@ Modal card (`Ui::PinModal`):
   - Empty grid slot at position 10 (left of 0).
   - All keys honor `prefers-reduced-motion: reduce`.
 - "Esqueci meu PIN" link: centered below pad, 12px/800 uppercase tracking 0.5 sky-dark.
+
+---
+
+## 16. Tailwind v4 authoring rules
+
+This project uses **Tailwind v4** (CSS-first config, no `tailwind.config.js`).
+
+### Token authoring
+
+```css
+/* tokens live in :root — never in @theme */
+:root {
+  --primary: #58CC02;
+}
+
+/* expose to Tailwind utilities in @theme inline */
+@theme inline {
+  --color-primary: var(--primary);
+}
+/* now bg-primary, text-primary, border-primary all work */
+```
+
+**Rule:** design tokens → `:root` in `theme.css`. Tailwind utility mapping → `@theme inline` in the same file. Never put raw hex inside `@theme`.
+
+### Adding new utilities
+
+Use `@utility`, not `@layer utilities` with `@apply`:
+
+```css
+/* ✓ correct — Tailwind v4 */
+@utility shadow-btn-primary {
+  box-shadow: 0 4px 0 var(--color-primary-depth);
+}
+
+/* ✗ wrong — v4 dropped @apply support in @layer */
+@layer utilities {
+  .shadow-btn-primary { @apply shadow-md; }
+}
+```
+
+### Adding new animations
+
+```css
+/* put @keyframes in @layer base, expose class in @layer utilities */
+@layer base {
+  @keyframes myAnim {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+}
+@layer utilities {
+  .animate-my-anim {
+    animation: myAnim 0.3s var(--ease-spring) both;
+  }
+}
+```
+
+Prefer `anim-*` naming for new spring/motion classes; `animate-*` for one-off keyframe wrappers.
+
+### Arbitrary values
+
+Use CSS var references for dynamic values, not hardcoded strings:
+
+```html
+<!-- ✓ -->
+<div class="bg-[var(--primary-soft)]">
+<div style="width: 73%">               <!-- truly dynamic only -->
+
+<!-- ✗ raw hex in markup -->
+<div class="bg-[#DCFCE7]">
+```
+
+### Safe areas (iOS)
+
+`viewport-fit=cover` is set in `_head.html.erb`. Reference safe area insets with:
+```css
+padding-bottom: env(safe-area-inset-bottom, 0px);
+```
+The bottom nav and fixed CTAs must account for this. Tailwind arbitrary: `pb-[env(safe-area-inset-bottom)]`.
+
+### Icon system
+
+Icons use `Ui::Icon::Component` which wraps HugeIcons SVG glyphs. Pass name as string or symbol:
+```erb
+<%= render Ui::Icon::Component.new("star", size: 20, color: "var(--star)") %>
+```
+Never use emoji as icons. Never `<img>` for icons. Stroke weight defaults to 1.5; use `weight: 2` for heavier context.

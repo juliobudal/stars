@@ -54,3 +54,12 @@ Namespaced dual-interface app: `parent/` vs `kid/` routes, controllers, views, a
 - Never allow negative `Profile.points` — `RedeemService` rolls back transaction if balance goes negative after decrement
 - Race conditions on points matter (concurrent approve/redeem): keep mutations inside transactions with `reload` checks
 - Commits/PRs/code in English; conversational responses in Brazilian Portuguese per user workspace CLAUDE.md
+
+## UI work
+
+Before writing or editing any view/component/stylesheet: **read `DESIGN.md`**. It is the single source of truth for tokens, components, motion, and a11y rules.
+
+- Reach for `Ui::*` ViewComponents first; only write inline markup if no component fits (then add a row to DESIGN.md §6 in the same PR).
+- All color/font/radius/shadow values via CSS variables from `app/assets/stylesheets/tailwind/theme.css`. Raw hex outside that file is forbidden.
+- Any element with a depth shadow (`0 4px 0`) must honor the 3D motion contract (DESIGN.md §5) and `prefers-reduced-motion`.
+- Do not reintroduce retired tokens: Fraunces, lilac `#A78BFA`, Berry Pop / Soft Candy shadows.
