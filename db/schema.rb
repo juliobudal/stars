@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_26_233731) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_29_200942) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -106,10 +106,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_26_233731) do
     t.bigint "family_id", null: false
     t.integer "frequency"
     t.string "icon"
+    t.integer "max_completions_per_period", default: 1, null: false
     t.integer "points"
     t.string "title"
     t.datetime "updated_at", null: false
     t.index ["family_id"], name: "index_global_tasks_on_family_id"
+    t.check_constraint "max_completions_per_period >= 1", name: "max_completions_positive"
   end
 
   create_table "profile_invitations", force: :cascade do |t|

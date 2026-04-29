@@ -75,4 +75,39 @@ RSpec.describe GlobalTask, type: :model do
       end
     end
   end
+
+  describe "max_completions_per_period" do
+    subject(:task) { build(:global_task, max_completions_per_period: 3) }
+
+    it "is valid with a value between 1 and 20" do
+      expect(task).to be_valid
+    end
+
+    it "rejects values below 1" do
+      task.max_completions_per_period = 0
+      expect(task).not_to be_valid
+      expect(task.errors[:max_completions_per_period]).to be_present
+    end
+
+    it "rejects values above 20" do
+      task.max_completions_per_period = 21
+      expect(task).not_to be_valid
+    end
+
+    it "forces max=1 when frequency is once" do
+      task = build(:global_task, frequency: :once, max_completions_per_period: 5)
+      task.valid?
+      expect(task.max_completions_per_period).to eq(1)
+    end
+  end
+
+  describe "#repeatable?" do
+    it "is false when max_completions_per_period is 1" do
+      expect(build(:global_task, max_completions_per_period: 1).repeatable?).to be(false)
+    end
+
+    it "is true when max_completions_per_period is greater than 1" do
+      expect(build(:global_task, max_completions_per_period: 2).repeatable?).to be(true)
+    end
+  end
 end

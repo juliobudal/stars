@@ -37,4 +37,26 @@ class GlobalTask < ApplicationRecord
   validates :points, numericality: { greater_than: 0 }
   validates :day_of_month, presence: true, if: :monthly?
   validates :day_of_month, numericality: { only_integer: true, in: 1..31 }, allow_nil: true, if: :monthly?
+
+  MAX_COMPLETIONS_RANGE = (1..20).freeze
+
+  before_validation :force_single_completion_for_once
+
+  validates :max_completions_per_period,
+            presence: true,
+            numericality: {
+              only_integer: true,
+              greater_than_or_equal_to: MAX_COMPLETIONS_RANGE.min,
+              less_than_or_equal_to: MAX_COMPLETIONS_RANGE.max
+            }
+
+  def repeatable?
+    max_completions_per_period.to_i > 1
+  end
+
+  private
+
+  def force_single_completion_for_once
+    self.max_completions_per_period = 1 if frequency.to_s == "once"
+  end
 end

@@ -34,6 +34,11 @@ FactoryBot.define do
     icon { "⭐" }
     description { Faker::Lorem.paragraph }
     days_of_week { [] }
+    max_completions_per_period { 1 }
+
+    trait :repeatable do
+      max_completions_per_period { 3 }
+    end
 
     trait :daily do
       frequency { :daily }
