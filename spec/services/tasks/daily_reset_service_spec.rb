@@ -129,5 +129,26 @@ RSpec.describe Tasks::DailyResetService do
         }.to change(ProfileTask, :count).by(2)
       end
     end
+
+    context 'with repeatable daily missions (max=3)' do
+      let(:monday) { Date.new(2024, 1, 1) }
+      let!(:repeatable_task) { create(:global_task, :daily, family: family, max_completions_per_period: 3) }
+
+      it 'creates exactly one pending row per child (not three)' do
+        described_class.new(date: monday, family: family).call
+        expect(ProfileTask.where(global_task: repeatable_task, assigned_date: monday, status: :pending).count).to eq(2) # one per child
+      end
+
+      it 'does not respawn pending rows already consumed by prior runs' do
+        described_class.new(date: monday, family: family).call
+        ProfileTask.where(global_task: repeatable_task).each do |pt|
+          pt.update!(status: :awaiting_approval)
+        end
+
+        expect {
+          described_class.new(date: monday, family: family).call
+        }.to change { ProfileTask.where(global_task: repeatable_task, status: :pending).count }.from(0).to(2)
+      end
+    end
   end
 end
