@@ -349,15 +349,11 @@
   --font-display: var(--font-display);
   --font-body: var(--font-body);
 
-  /* Spacing aliases */
-  --spacing-1: var(--space-1);
-  --spacing-2: var(--space-2);
-  --spacing-3: var(--space-3);
-  --spacing-4: var(--space-4);
-  --spacing-5: var(--space-5);
-  --spacing-6: var(--space-6);
-  --spacing-7: var(--space-7);
-  --spacing-8: var(--space-8);
+  /* Spacing: stay on Tailwind v4 default scale (0.25rem base * N) so
+     w-N / h-N / p-N / gap-N produce predictable sizes. The airier
+     --space-* tokens stay available for layout containers via
+     var(--space-N) direct reference (see .screen padding). Coupling
+     them to --spacing-* would inflate every absolute-size utility. */
 
   /* Shadows */
   --shadow-btn: var(--shadow-btn);
