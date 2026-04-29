@@ -40,6 +40,14 @@ module Tasks
           title: activity_log_title,
           points: @profile_task.points
         )
+
+        if @profile_task.global_task.present?
+          Tasks::SlotRefresher.new(
+            profile: @profile,
+            global_task: @profile_task.global_task,
+            date: @profile_task.assigned_date
+          ).call
+        end
       end
 
       points_after = @profile.reload.points

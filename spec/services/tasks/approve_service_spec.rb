@@ -87,6 +87,25 @@ RSpec.describe Tasks::ApproveService do
     end
   end
 
+  describe "post-approval slot refresh on a repeatable mission" do
+    let(:family) { create(:family) }
+    let(:profile) { create(:profile, :child, family: family) }
+    let(:gt) { create(:global_task, :daily, family: family, max_completions_per_period: 3) }
+    let(:awaiting) { create(:profile_task, profile: profile, global_task: gt, assigned_date: Date.current, status: :awaiting_approval) }
+
+    it "leaves a pending row available when there is still slot capacity" do
+      described_class.new(awaiting).call
+      expect(ProfileTask.where(profile: profile, global_task: gt, status: :pending).count).to eq(1)
+    end
+
+    it "does not create a pending row when the cap has been reached" do
+      create(:profile_task, profile: profile, global_task: gt, assigned_date: Date.current, status: :approved)
+      create(:profile_task, profile: profile, global_task: gt, assigned_date: Date.current, status: :approved)
+      described_class.new(awaiting).call
+      expect(ProfileTask.where(profile: profile, global_task: gt, status: :pending)).to be_empty
+    end
+  end
+
   describe "custom missions" do
     let(:family) { create(:family) }
     let(:profile) { create(:profile, family: family, role: :child) }
