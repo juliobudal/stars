@@ -12,7 +12,18 @@ module Tasks
         return fail_with("Tarefa não está aguardando aprovação")
       end
 
-      @profile_task.update!(status: :rejected)
+      ActiveRecord::Base.transaction do
+        @profile_task.update!(status: :rejected)
+
+        if @profile_task.global_task.present?
+          Tasks::SlotRefresher.new(
+            profile: @profile_task.profile,
+            global_task: @profile_task.global_task,
+            date: @profile_task.assigned_date
+          ).call
+        end
+      end
+
       Rails.logger.info("[Tasks::RejectService] success id=#{@profile_task.id}")
       ok(@profile_task)
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e

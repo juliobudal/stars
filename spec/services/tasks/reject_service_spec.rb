@@ -35,4 +35,28 @@ RSpec.describe Tasks::RejectService do
       end
     end
   end
+
+  describe "post-reject slot refresh on a repeatable mission" do
+    let(:family) { create(:family) }
+    let(:profile) { create(:profile, :child, family: family) }
+    let(:gt) { create(:global_task, :daily, family: family, max_completions_per_period: 3) }
+    let(:awaiting) { create(:profile_task, profile: profile, global_task: gt, assigned_date: Date.current, status: :awaiting_approval) }
+
+    it "spawns a fresh pending row after a rejection so the kid can retry" do
+      expect {
+        described_class.new(awaiting).call
+      }.to change {
+        ProfileTask.where(profile: profile, global_task: gt, status: :pending).count
+      }.from(0).to(1)
+    end
+
+    it "does not double-spawn if a pending row already exists" do
+      create(:profile_task, profile: profile, global_task: gt, assigned_date: Date.current, status: :pending)
+      expect {
+        described_class.new(awaiting).call
+      }.not_to change {
+        ProfileTask.where(profile: profile, global_task: gt, status: :pending).count
+      }
+    end
+  end
 end
