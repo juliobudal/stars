@@ -42,69 +42,8 @@
   <%# Mission grid %>
   <% if @global_tasks.any? %>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-      <% @global_tasks.each do |m|
-        cm = Ui::Tokens.category_for(m.category)
-        fm = Ui::Tokens.frequency_for(m.frequency)
-        tint_soft = Ui::Tokens.tint_soft(cm[:tint])
-        tint_fg   = Ui::Tokens.tint_fg(cm[:tint])
-        assigned  = m.assigned_profiles.any? ? m.assigned_profiles : @kids
-        assigned_label = assigned.size <= 1 ? "Atribuída a #{assigned.first&.name || 'todas'}" : "Atribuída a #{assigned.size} crianças"
-        panel_keys = [ "all", m.frequency.to_s ]
-        panel_keys << "inactive" unless m.active?
-      %>
-        <div id="mission_row_<%= m.id %>" data-filter-tabs-target="item" data-panels="<%= panel_keys.join(' ') %>" class="relative">
-          <%= button_to toggle_active_parent_global_task_path(m), method: :patch,
-                form_class: "absolute top-3 right-3 z-2",
-                class: "ls-btn-3d inline-flex items-center justify-center w-8 h-8 rounded-[10px] border-2 cursor-pointer bg-surface",
-                style: "border-color: var(--hairline); box-shadow: 0 2px 0 var(--hairline);",
-                aria: { label: m.active? ? "Desativar missão" : "Ativar missão" } do %>
-            <%= render Ui::Icon::Component.new(m.active? ? "check" : "close", size: 14, color: "var(--text-muted)") %>
-          <% end %>
-          <%= link_to edit_parent_global_task_path(m),
-                class: "ls-card-3d block rounded-[16px] p-4 no-underline border-2 cursor-pointer",
-                style: "background: var(--surface); border-color: var(--hairline); box-shadow: var(--shadow-card); opacity: #{m.active? ? 1 : 0.85};" do %>
-            <div class="flex items-start gap-3.5">
-              <div class="w-14 h-14 rounded-[14px] flex items-center justify-center shrink-0 border-2"
-                   style="background: <%= tint_soft %>; border-color: <%= tint_fg %>;">
-                <%= render Ui::Icon::Component.new(cm[:icon], size: 28, color: tint_fg) %>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex justify-between items-start gap-2">
-                  <div class="min-w-0">
-                    <div class="text-[15px] font-extrabold mb-0.5 truncate" style="color: var(--text);"><%= m.title %></div>
-                    <div class="flex items-center gap-1.5 flex-wrap">
-                      <span class="text-[10px] font-extrabold uppercase tracking-[0.5px] rounded-[6px] px-2 py-0.5"
-                            style="color: <%= tint_fg %>; background: <%= tint_soft %>;"><%= cm[:label] %></span>
-                      <span class="text-[11px] font-bold" style="color: var(--text-muted);"><%= fm[:label] %></span>
-                    </div>
-                  </div>
-                  <div class="flex items-center gap-1 px-2 py-1 rounded-[8px] border-2 shrink-0"
-                       style="background: var(--star-soft); border-color: var(--star);">
-                    <%= render Ui::Icon::Component.new("star", size: 12, color: "var(--star)") %>
-                    <span class="text-[12px] font-extrabold" style="color: var(--c-reward-text);"><%= m.points %></span>
-                  </div>
-                </div>
-                <div class="mt-3 pt-2.5 flex justify-between items-center border-t-2"
-                     style="border-color: var(--surface-muted);">
-                  <span class="text-[11px] font-bold" style="color: var(--text-muted);"><%= assigned_label %></span>
-                  <% if m.active? %>
-                    <span class="text-[10px] font-extrabold uppercase tracking-[0.5px] flex items-center gap-1"
-                          style="color: var(--primary-2);">
-                      <span class="w-1.5 h-1.5 rounded-full" style="background: var(--primary);"></span>
-                      Ativa
-                    </span>
-                  <% else %>
-                    <span class="text-[10px] font-extrabold uppercase tracking-[0.5px] flex items-center gap-1"
-                          style="color: var(--c-reward-text);">
-                      <span class="w-1.5 h-1.5 rounded-full" style="background: var(--star);"></span>
-                      Pausada
-                    </span>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
+      <% @global_tasks.each do |m| %>
+        <%= render "mission_card", mission: m, assigned: (m.assigned_profiles.any? ? m.assigned_profiles : @kids) %>
       <% end %>
     </div>
   <% else %>

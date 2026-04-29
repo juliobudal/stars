@@ -53,10 +53,8 @@ class Parent::GlobalTasksController < ApplicationController
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(
           "mission_row_#{@global_task.id}",
-          Ui::MissionListRow::Component.new(
-            mission: @global_task,
-            assigned_profiles: resolved_profiles_for(@global_task)
-          )
+          partial: "parent/global_tasks/mission_card",
+          locals: { mission: @global_task, assigned: resolved_profiles_for(@global_task) }
         )
       end
       format.html { redirect_to parent_global_tasks_path }

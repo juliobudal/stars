@@ -43,8 +43,8 @@
           <%= link_to edit_parent_profile_path(kid),
                 class: "flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline",
                 style: "color: #{palette[:ink]};" do %>
-            <%= render Ui::Icon::Component.new("sparkle", size: 14, color: palette[:ink]) %>
-            Ver jornada
+            <%= render Ui::Icon::Component.new("pencil", size: 14, color: palette[:ink]) %>
+            Editar
           <% end %>
           <%= button_to parent_profile_path(kid), method: :delete,
                 form: { data: { turbo_confirm: "Remover #{kid.name}? Todas as missões e histórico serão perdidos." } },

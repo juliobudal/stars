@@ -24,7 +24,6 @@ module UiHelper
     private
 
     def resolve_component(name)
-      # turbo_confirm -> try Ui::TurboConfirm::Component first, then Ui::Turbo::ConfirmComponent
       parts = name.to_s.split("_")
       "Ui::#{name.to_s.camelize}::Component".safe_constantize ||
         "Ui::#{parts.first.camelize}::#{parts.drop(1).map(&:camelize).join}Component".constantize
