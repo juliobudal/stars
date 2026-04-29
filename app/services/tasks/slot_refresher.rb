@@ -42,7 +42,7 @@ module Tasks
 
         ok(:slot_available)
       end
-    rescue ActiveRecord::RecordInvalid => e
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
       Rails.logger.error("[Tasks::SlotRefresher] error profile_id=#{@profile.id} global_task_id=#{@global_task&.id} error=#{e.message}")
       fail_with(e.message)
     end

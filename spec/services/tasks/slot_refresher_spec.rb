@@ -26,16 +26,16 @@ RSpec.describe Tasks::SlotRefresher do
     end
 
     it "destroys the pending row once a slot is consumed (awaiting_approval)" do
-      pending_pt = create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :awaiting_approval)
+      awaiting_pt = create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :awaiting_approval)
       orphan = create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :pending)
 
       expect { call }.to change { ProfileTask.where(id: orphan.id).count }.from(1).to(0)
-      expect(ProfileTask.where(id: pending_pt.id)).to exist
+      expect(ProfileTask.where(id: awaiting_pt.id)).to exist
     end
 
     it "does not respawn after approval (cap reached)" do
       create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :approved)
-      expect { call }.not_to change { ProfileTask.where(status: :pending).count }
+      expect { call }.not_to change { ProfileTask.where(profile: profile, global_task: gt, status: :pending).count }
       expect(ProfileTask.where(profile: profile, global_task: gt, status: :pending)).to be_empty
     end
   end
@@ -51,17 +51,17 @@ RSpec.describe Tasks::SlotRefresher do
     it "creates a fresh pending row after one approval and one awaiting_approval (1 + 1 = 2 < 3)" do
       create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :approved)
       create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :awaiting_approval)
-      expect { call }.to change { ProfileTask.where(status: :pending).count }.by(1)
+      expect { call }.to change { ProfileTask.where(profile: profile, global_task: gt, status: :pending).count }.by(1)
     end
 
     it "stops creating pending rows once the cap of 3 is reached" do
       3.times { create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :approved) }
-      expect { call }.not_to change { ProfileTask.where(status: :pending).count }
+      expect { call }.not_to change { ProfileTask.where(profile: profile, global_task: gt, status: :pending).count }
     end
 
     it "treats rejected rows as not consuming a slot" do
       create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :rejected)
-      expect { call }.to change { ProfileTask.where(status: :pending).count }.by(1)
+      expect { call }.to change { ProfileTask.where(profile: profile, global_task: gt, status: :pending).count }.by(1)
     end
 
     it "respects the assigned_date when computing the period" do
@@ -80,7 +80,7 @@ RSpec.describe Tasks::SlotRefresher do
       create(:profile_task, profile: profile, global_task: gt, assigned_date: monday, status: :approved)
       create(:profile_task, profile: profile, global_task: gt, assigned_date: wednesday, status: :approved)
 
-      expect { call }.not_to change { ProfileTask.where(status: :pending).count }
+      expect { call }.not_to change { ProfileTask.where(profile: profile, global_task: gt, status: :pending).count }
     end
   end
 end
