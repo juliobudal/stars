@@ -319,6 +319,12 @@
   --color-destructive-soft-foreground: var(--destructive);
   --color-destructive-border: oklch(from var(--destructive) l c h / 25%);
 
+  /* Danger (alias surface for nav/wallet badges) */
+  --color-danger: var(--danger);
+  --color-danger-2: var(--danger-2);
+  --color-danger-soft: oklch(from var(--danger) l c h / 12%);
+  --color-danger-border: oklch(from var(--danger) l c h / 25%);
+
   /* Success */
   --color-success: var(--success);
   --color-success-depth: var(--success-depth);
