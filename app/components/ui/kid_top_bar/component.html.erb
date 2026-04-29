@@ -23,7 +23,7 @@
         <%= form_with url: (@switch_url || profile_session_path), method: :delete, local: true, class: "contents" do %>
           <button type="submit"
                   aria-label="Trocar de perfil"
-                  class="inline-flex items-center gap-1.5 font-display"
+                  class="inline-flex items-center gap-1.5 font-display min-h-[44px]"
                   style="background: var(--surface); border: 2px solid var(--hairline); padding: 6px 12px; border-radius: 12px; box-shadow: 0 3px 0 var(--hairline); color: var(--text-muted); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">
             <%= render Ui::Icon::Component.new("logout", size: 12, color: "currentColor") %>
             Trocar
