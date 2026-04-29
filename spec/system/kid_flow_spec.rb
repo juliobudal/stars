@@ -23,4 +23,14 @@ RSpec.describe "Kid Flow", type: :system do
     # Verify it appears as waiting
     expect(page).to have_content(/Aguardando/i)
   end
+
+  it "kid bottom nav exposes only journey/shop/diary, never logout" do
+    within("nav[aria-label='Navegação principal']") do
+      expect(page).to have_link("Jornada")
+      expect(page).to have_link("Lojinha")
+      expect(page).to have_link("Diário")
+      expect(page).not_to have_button("Sair")
+      expect(page).not_to have_link("Sair")
+    end
+  end
 end
