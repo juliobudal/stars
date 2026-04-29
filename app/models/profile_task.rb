@@ -83,6 +83,7 @@ class ProfileTask < ApplicationRecord
 
   after_commit :broadcast_approval_count
   after_update_commit :remove_from_kid_dashboard, if: -> { saved_change_to_status? && (awaiting_approval? || approved?) }
+  after_create_commit :broadcast_pending_to_kid_dashboard, if: :pending_with_global_task?
 
   def title
     custom? ? custom_title : global_task&.title
@@ -151,5 +152,20 @@ class ProfileTask < ApplicationRecord
 
   def remove_from_kid_dashboard
     broadcast_remove_to Profile.find(profile_id), "notifications", target: self
+  end
+
+  def pending_with_global_task?
+    pending? && global_task_id.present?
+  end
+
+  def broadcast_pending_to_kid_dashboard
+    Turbo::StreamsChannel.broadcast_append_to(
+      "kid_#{profile_id}",
+      target: "panel-pending",
+      partial: "kid/dashboard/pending_card",
+      locals: { profile_task: self, index: 0 }
+    )
+  rescue StandardError => e
+    Rails.logger.warn("[ProfileTask] broadcast pending failed id=#{id} error=#{e.message}")
   end
 end

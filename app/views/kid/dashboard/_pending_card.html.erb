@@ -1,0 +1,43 @@
+<% cat = Ui::Tokens.category_for(profile_task.global_task&.category) %>
+
+<div id="<%= dom_id(profile_task) %>" data-controller="ui-modal">
+  <%= render Ui::MissionCard::Component.new(
+        mission: profile_task,
+        status: "pending",
+        variant: "bubble",
+        index: index,
+        data: { action: "click->ui-modal#open", ui_modal_id_param: "modal_#{dom_id(profile_task)}" }
+      ) %>
+
+  <%# Confirmation modal — reuses existing flow %>
+  <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(profile_task)}") do %>
+    <div class="flex items-center justify-center flex-col text-center gap-4">
+      <%= render Ui::IconTile::Component.new(icon: cat[:icon], color: cat[:tint], size: 88) %>
+      <h3 class="font-display text-[26px] leading-tight font-extrabold tracking-[-0.02em] text-foreground"><%= profile_task.title %></h3>
+      <div class="flex gap-2.5 justify-center items-center">
+        <%= render Ui::Badge::Component.new(variant: cat[:tint], size: "sm", icon: cat[:icon]) do %>
+          <%= cat[:label] %>
+        <% end %>
+        <%= render Ui::Badge::Component.new(variant: "star") do %>
+          <%= render Ui::StarValue::Component.new(value: profile_task.points, prefix: "+", size: :sm, color: :gold) %>
+        <% end %>
+      </div>
+      <p class="text-muted-foreground font-bold text-[17px] mt-1">Terminou essa missão? Um responsável vai confirmar.</p>
+      <%= form_with url: complete_kid_mission_path(profile_task), method: :patch, class: "w-full" do %>
+        <div class="mt-3 text-left">
+          <label class="block text-[13px] font-extrabold mb-1.5" style="color: var(--text);">Quer mandar um recado? (opcional)</label>
+          <textarea name="submission_comment" rows="2" maxlength="500"
+                    placeholder="Conta como foi…"
+                    class="w-full px-3 py-2 rounded-[12px] border-2 text-[14px] font-medium"
+                    style="border-color: var(--hairline); background: var(--surface); color: var(--text);"></textarea>
+        </div>
+        <div class="flex gap-3 mt-2 w-full justify-center items-center">
+          <%= render Ui::Btn::Component.new(variant: "secondary", type: "button", data: { action: "click->ui-modal#close" }) do %>Ainda não<% end %>
+          <%= render Ui::Btn::Component.new(variant: "primary", size: "lg", type: "submit") do %>
+            <%= render Ui::Icon::Component.new("check", size: 20) %> Terminei!
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

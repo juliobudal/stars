@@ -35,12 +35,11 @@ RSpec.describe "Kid completes a repeatable mission", type: :system, js: true do
                       .order(:created_at).last
       Tasks::ApproveService.new(pt).call
 
-      # The new pending row exists in the DB. The kid dashboard does not auto-rebroadcast
-      # the new card today (out of scope for this feature), so we re-enter the page to
-      # render the fresh state for the next iteration.
+      # SlotRefresher creates a new pending ProfileTask after approval.
+      # The after_create_commit broadcast appends it to #panel-pending automatically —
+      # no page reload needed.
       if i < 2
-        visit kid_root_path
-        expect(page).to have_content("Escovar dentes", wait: 10)
+        expect(page).to have_content("Escovar dentes", wait: 5)
       end
     end
 
