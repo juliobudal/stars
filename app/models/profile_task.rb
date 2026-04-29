@@ -46,6 +46,7 @@ class ProfileTask < ApplicationRecord
   PROOF_PHOTO_MAX_SIZE = 5.megabytes
   CUSTOM_TITLE_MAX = 120
   CUSTOM_POINTS_RANGE = (1..1000).freeze
+  ONCE_PERIOD_FLOOR = Date.new(2000, 1, 1).freeze
 
   validate :proof_photo_valid, if: -> { proof_photo.attached? }
   validate :catalog_requires_global_task, if: :catalog?
@@ -74,7 +75,7 @@ class ProfileTask < ApplicationRecord
     when "monthly"
       date.beginning_of_month..date.end_of_month
     when "once"
-      Date.new(2000, 1, 1)..date.end_of_day.to_date
+      ONCE_PERIOD_FLOOR..date
     else
       date..date
     end
