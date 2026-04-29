@@ -13,10 +13,10 @@
     <div>
       <% if @title.present? %>
         <% heading_tag = @back_url.present? || left_action? ? :h2 : :h1 %>
-        <%= content_tag heading_tag, @title, class: "font-display font-extrabold text-[26px] leading-tight text-foreground overflow-hidden text-ellipsis whitespace-nowrap max-w-[380px]" %>
+        <%= content_tag heading_tag, @title, id: @title_id, class: "font-display font-extrabold text-[26px] leading-tight text-foreground overflow-hidden text-ellipsis whitespace-nowrap max-w-[380px]" %>
       <% end %>
       <% if @subtitle.present? %>
-        <div class="text-muted-foreground font-bold text-[14px] mt-0.5"><%= @subtitle %></div>
+        <div<%= " id=\"#{@subtitle_id}\"".html_safe if @subtitle_id %> class="text-muted-foreground font-bold text-[14px] mt-0.5"><%= @subtitle %></div>
       <% end %>
     </div>
   </div>

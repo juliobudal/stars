@@ -34,4 +34,33 @@ RSpec.describe Ui::Modal::Component, type: :component do
     render_inline(described_class.new(title: 'X', variant: :wat))
     expect(page).to have_css('[data-modal-variant="default"]', visible: false)
   end
+
+  describe "WAI-ARIA dialog semantics" do
+    it "renders the inner shell with role=dialog and aria-modal=true" do
+      render_inline(described_class.new(title: "Hi", id: "m1"))
+      expect(page).to have_css('div[role="dialog"][aria-modal="true"]', visible: false)
+    end
+
+    it "wires aria-labelledby to the title node" do
+      render_inline(described_class.new(title: "Confirm", id: "m2"))
+      expect(page).to have_css('div[role="dialog"][aria-labelledby="m2-title"]', visible: false)
+      expect(page).to have_css('#m2-title', text: "Confirm", visible: false)
+    end
+
+    it "wires aria-describedby to the subtitle node when subtitle is present" do
+      render_inline(described_class.new(title: "Confirm", subtitle: "This cannot be undone", id: "m3"))
+      expect(page).to have_css('div[role="dialog"][aria-describedby="m3-desc"]', visible: false)
+      expect(page).to have_css('#m3-desc', text: "This cannot be undone", visible: false)
+    end
+
+    it "omits aria-describedby when no subtitle" do
+      render_inline(described_class.new(title: "Plain", id: "m4"))
+      expect(page).not_to have_css('[aria-describedby]', visible: false)
+    end
+
+    it "auto-generates an id when caller omits it" do
+      render_inline(described_class.new(title: "X"))
+      expect(page).to have_css('div[role="dialog"][aria-labelledby$="-title"]', visible: false)
+    end
+  end
 end

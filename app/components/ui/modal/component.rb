@@ -22,9 +22,13 @@ class Ui::Modal::Component < ApplicationComponent
     else "max-w-2xl"
     end
 
+    resolved_id = @id || "ls-modal-#{SecureRandom.hex(4)}"
+    title_id    = @title    ? "#{resolved_id}-title" : nil
+    desc_id     = @subtitle ? "#{resolved_id}-desc"  : nil
+
     overlay_data = {
       controller: "ui-modal",
-      action: "click->ui-modal#closeOnOverlay",
+      action: "click->ui-modal#closeOnOverlay keydown@window->ui-modal#onKeydown",
       modal_variant: @variant.to_s
     }
 
@@ -34,9 +38,17 @@ class Ui::Modal::Component < ApplicationComponent
       overlay_data[:fx_dismiss_after] = "2500"
     end
 
-    content_tag :div, class: overlay_classes, style: "display: none;", data: overlay_data, id: @id do
-      content_tag :div, class: class_names(modal_classes, size_classes, @options[:class]) do
-        concat header if @title || @subtitle
+    dialog_attrs = {
+      role: "dialog",
+      "aria-modal": "true",
+      "aria-labelledby": title_id,
+      "aria-describedby": desc_id,
+      tabindex: "-1"
+    }.compact
+
+    content_tag :div, class: overlay_classes, style: "display: none;", data: overlay_data, id: resolved_id do
+      content_tag :div, class: class_names(modal_classes, size_classes, @options[:class]), **dialog_attrs do
+        concat header(title_id: title_id, desc_id: desc_id) if @title || @subtitle
         concat content_tag(:div, content, class: "p-6")
       end
     end
@@ -53,10 +65,10 @@ class Ui::Modal::Component < ApplicationComponent
     end
   end
 
-  def header
-    render Ui::TopBar::Component.new(title: @title, subtitle: @subtitle) do |c|
+  def header(title_id: nil, desc_id: nil)
+    render Ui::TopBar::Component.new(title: @title, subtitle: @subtitle, title_id: title_id, subtitle_id: desc_id) do |c|
       c.with_right_slot do
-        render Ui::Btn::Component.new(variant: "ghost", size: "icon", data: { action: "click->ui-modal#close" }) do
+        render Ui::Btn::Component.new(variant: "ghost", size: "icon", "aria-label": "Fechar", data: { action: "click->ui-modal#close" }) do
           render Ui::Icon::Component.new("close", size: 20)
         end
       end
