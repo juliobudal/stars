@@ -144,6 +144,30 @@ RSpec.describe Tasks::CompleteService do
     end
   end
 
+  describe "with a repeatable mission (max=3)" do
+    let(:family) { create(:family) }
+    let(:profile) { create(:profile, :child, family: family) }
+    let(:gt) { create(:global_task, :daily, family: family, max_completions_per_period: 3) }
+    let(:pt) { create(:profile_task, profile: profile, global_task: gt, assigned_date: Date.current, status: :pending) }
+
+    before { pt } # materialize so the pending row exists before the change block evaluates
+
+    it "spawns a new pending row after the current one moves to awaiting_approval" do
+      # the original row flips to awaiting_approval, a new pending row is created — net unchanged at 1
+      described_class.new(profile_task: pt).call
+      expect(pt.reload.status).to eq("awaiting_approval")
+      expect(ProfileTask.where(profile: profile, global_task: gt, status: :pending).count).to eq(1)
+    end
+
+    it "does not spawn a new pending row once the cap is reached" do
+      create(:profile_task, profile: profile, global_task: gt, assigned_date: Date.current, status: :approved)
+      create(:profile_task, profile: profile, global_task: gt, assigned_date: Date.current, status: :approved)
+      # 2 approved + 1 about-to-be-awaiting = 3, cap reached
+      described_class.new(profile_task: pt).call
+      expect(ProfileTask.where(profile: profile, global_task: gt, status: :pending)).to be_empty
+    end
+  end
+
   describe "submission_comment" do
     let(:family) { create(:family, require_photo: false, auto_approve_threshold: nil) }
     let(:profile) { create(:profile, family: family, role: :child) }

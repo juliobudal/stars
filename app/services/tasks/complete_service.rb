@@ -28,6 +28,13 @@ module Tasks
         @profile_task.proof_photo.attach(@proof_photo) if @proof_photo.present?
         @profile_task.submission_comment = @submission_comment unless @submission_comment.nil?
         @profile_task.update!(status: :awaiting_approval)
+
+        Tasks::SlotRefresher.new(
+          profile: @profile_task.profile,
+          global_task: @profile_task.global_task,
+          date: @profile_task.assigned_date
+        ).call if @profile_task.global_task.present?
+
         # Status must be :awaiting_approval before ApproveService runs —
         # ApproveService guards on awaiting_approval? so the flip above must
         # happen first. Both run inside the same transaction (Rails re-entrant).
