@@ -44,4 +44,9 @@ export default class extends Controller {
       this.close()
     }
   }
+
+  // Placeholder — full implementation lands in Task 5 (focus trap + Esc + restore).
+  onKeydown(event) {
+    // intentionally empty
+  }
 }
