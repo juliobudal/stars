@@ -22,24 +22,24 @@ Background jobs/cache/cable backed by Solid {Queue,Cache,Cable} → Postgres. No
 
 ## Commands
 
-- `bin/dev` — start Rails + Vite (uses `Procfile.dev`)
-- `bin/setup` — fresh-clone bootstrap (bundle + db:prepare)
-- `bin/rails db:prepare` — create + migrate + seed
-- `bin/rails db:seed` — reseed only
-- `bundle exec rspec` — full suite; `bundle exec rspec spec/services/tasks/approve_service_spec.rb:42` — single example
-- `bin/rubocop` — lint (rubocop-rails-omakase + standard)
-- `bin/brakeman` — security static analysis
-- `bin/bundler-audit` — gem CVE scan
-- `bin/ci` — runs full CI locally
-- `bin/vite build` — asset build
+Dev workflow is Docker Compose. Use `make` targets — they exec inside the `web` container. Running `bundle exec rspec` or `bin/rails` from the host fails (db host unreachable).
+
+- `make setup` — full bootstrap (build image, migrate, seed)
+- `make dev` / `make dev-detached` — start stack
+- `make rspec` (alias `make test`) — full RSpec suite. For a single example: `make shell` then `bundle exec rspec spec/services/tasks/approve_service_spec.rb:42` inside the container
+- `make lint` (alias `make rubocop`) — rubocop-rails-omakase + standard
+- `make brakeman` · `make audit` · `make ci` — security + full CI
+- `make migrate` · `make seed` · `make db-reseed` · `make reset` — db ops
+- `make shell` — bash into web container · `make c` — rails console · `make shell-db` — psql
+- `make routes` · `make assets-build`
 
 ## Architecture
 
-Namespaced dual-interface app: `parent/` vs `kid/` routes, controllers, views, and components. Root `SessionsController` sets `session[:profile_id]` (no auth in MVP — just profile selection).
+Namespaced dual-interface app: `parent/` vs `kid/` routes, controllers, views, and components. Two-tier session: `FamilySessionsController` (parent password login) → `ProfileSessionsController` (PIN-gated profile select, sets `session[:profile_id]`). Invitation + password reset flows live under `app/services/auth/` with corresponding mailers.
 
 **Data model** (`Family` → `Profile{role: child|parent}` → `ProfileTask{status enum}` ↔ `GlobalTask`; `Reward`; `ActivityLog{log_type: earn|redeem}`). Points live on `Profile.points`; `ActivityLog` is the append-only ledger.
 
-**Business logic lives in service objects** under `app/services/` (e.g. `Tasks::ApproveService`, `Rewards::RedeemService`, `Tasks::DailyResetService`). Services wrap multi-step mutations in `ActiveRecord::Base.transaction` and return `OpenStruct(success?:, error:)`. Controllers never mutate points directly — always go through a service.
+**Business logic lives in service objects** under `app/services/` — namespaces: `tasks/`, `rewards/`, `auth/`, `streaks/`, `categories/`, `ui/`. All inherit `ApplicationService` (callable via `Service.call(...)`), wrap multi-step mutations in `ActiveRecord::Base.transaction`, and return `ApplicationService::Result = Data.define(:success, :error, :data)` via `ok(data)` / `fail_with(error)` helpers. Check `result.success?` then read `result.data` or `result.error`. Controllers never mutate points directly — always go through a service.
 
 **UI layer**: ViewComponents under `app/components/{kid,parent}/` for reusable cards/widgets. ERB views under `app/views/{kid,parent}/`. Two layouts: `layouts/kid.html.erb` (playful) and `layouts/parent.html.erb` (dashboard).
 

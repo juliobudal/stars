@@ -91,8 +91,8 @@ Radius scale: `--r-sm 10 · --r-md 12 · --r-lg 14 · --r-xl 16 · --r-featured 
 | Avatars / circular badges | 999px |
 
 Shells:
-- **Kid shell** — single column, `max-w-[430px]`, sticky bottom nav, `BgShapes` background.
-- **Parent shell** — fixed sidebar `220px` at ≥1024px (`--width-sidebar`), off-canvas (<1024px) with mobile header bar. Main column `max-w-[900px]`, white background.
+- **Kid shell** — `max-w-[430px] md:max-w-[560px] lg:max-w-[720px]`, sticky bottom pill nav, `BgShapes` background, body class `min-h-screen bg-bg-deep`.
+- **Parent shell** — fixed sidebar `220px` at ≥1024px (`lg:pl-[220px]` on body), off-canvas (<1024px) with mobile header bar. Main column `max-w-[1100px]`, padding `p-6 lg:px-10 pb-24 lg:pb-6`, body bg `bg-bg-deep` (matches kid).
 
 ---
 
@@ -232,17 +232,18 @@ Location: `app/components/ui/<name>/`. Always reach for a `Ui::*` first; only wr
 ## 7. Page Patterns
 
 ### Kid shell
-- `div.screen.with-nav` wrapped in `layouts/kid.html.erb`
-- `max-w-[430px]`, single column, bottom pill nav
+- `layouts/kid.html.erb` body: `min-h-screen bg-bg-deep` + `data-palette` + `data-controller="fx"`
+- Main: `p-6 w-full max-w-[430px] md:max-w-[560px] lg:max-w-[720px] mx-auto pb-24 md:pb-10`
+- Sticky bottom pill nav
 - `Ui::BgShapes` renders floating orbs
 - `data-palette="<%= palette_for(current_profile) %>"` on `<body>` enables per-kid accent
 
 ### Parent shell
-- `layouts/parent.html.erb` — defaults inherit Duolingo green (no explicit `data-palette`)
+- `layouts/parent.html.erb` body: `min-h-screen bg-bg-deep overflow-x-hidden lg:pl-[220px]` — defaults inherit Duolingo green (no `data-palette`)
 - Side nav fixed left at ≥1024px (220px wide, white bg, 2px right hairline)
 - Active nav item: soft tint background + 2px colored border + colored text (sky-blue accent in mocks; primary green also valid)
 - Off-canvas drawer on mobile with header bar toggle
-- Main: `max-w-[900px]`, centered, `padding: var(--space-6) var(--space-7) 120px`
+- Main: `max-w-[1100px]`, centered, `p-6 lg:px-10 pb-24 lg:pb-6`
 - Sidebar footer profile chip: 34×34 green avatar + name + role label
 
 ---
