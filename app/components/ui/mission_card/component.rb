@@ -20,13 +20,13 @@ module Ui
       STATUSES = %w[pending waiting approved done rejected].freeze
 
       def initialize(mission:, status: "pending", variant: "bubble", index: 0, **options)
+        super()
         @mission = mission
         @status = status.to_s
         @status = "approved" if @status == "done"
         @variant = variant.to_s # "bubble", "ticket"
         @index = index
         @options = options
-        super()
       end
 
       def category_data
