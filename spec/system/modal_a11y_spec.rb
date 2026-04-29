@@ -19,8 +19,7 @@ RSpec.describe "Modal a11y", type: :system, js: true do
 
     expect(page).to have_css("[role='dialog']", visible: true, wait: 5)
 
-    in_dialog = page.evaluate_script("document.activeElement && document.activeElement.closest('[role=\"dialog\"]') !== null")
-    expect(in_dialog).to be(true)
+    expect(page).to have_css("[role='dialog'] :focus", wait: 5)
 
     page.send_keys(:escape)
     expect(page).to have_css("[role='dialog']", visible: false, wait: 5)

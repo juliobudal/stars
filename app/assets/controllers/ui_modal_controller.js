@@ -10,9 +10,9 @@ const FOCUSABLE_SELECTOR = [
   "[tabindex]:not([tabindex='-1'])"
 ].join(",")
 
-// Module-level store so the open() instance (wrapper) and close()/onKeydown()
-// instance (overlay) can share the previously-focused element reference.
-let _previouslyFocused = null
+// Key: modal overlay element. Value: the element that triggered it.
+// WeakMap so entries are garbage-collected with their overlays.
+const _focusReturn = new WeakMap()
 
 export default class extends Controller {
   static values = { id: String }
@@ -37,9 +37,9 @@ export default class extends Controller {
     // as the logical trigger; make it programmatically focusable if it isn't already.
     const trigger = this.element
     if (!trigger.hasAttribute("tabindex")) trigger.setAttribute("tabindex", "-1")
-    _previouslyFocused = (document.activeElement && document.activeElement !== document.body)
+    _focusReturn.set(modal, (document.activeElement && document.activeElement !== document.body)
       ? document.activeElement
-      : trigger
+      : trigger)
 
     modal.style.display = "flex"
     document.body.style.overflow = "hidden"
@@ -64,9 +64,10 @@ export default class extends Controller {
     document.body.style.overflow = "auto"
     this._restoreBackgroundInert(false)
 
-    if (_previouslyFocused && typeof _previouslyFocused.focus === "function") {
-      _previouslyFocused.focus({ preventScroll: true })
-      _previouslyFocused = null
+    const trigger = _focusReturn.get(overlay)
+    if (trigger && typeof trigger.focus === "function") {
+      trigger.focus({ preventScroll: true })
+      _focusReturn.delete(overlay)
     }
   }
 
@@ -108,15 +109,19 @@ export default class extends Controller {
   }
 
   _restoreBackgroundInert(activate, modal = null) {
-    const main = document.querySelector("main, #main, [data-modal-root='main']")
-    if (!main) return
-    if (activate && modal && main.contains(modal)) return
-    if (activate) {
-      main.setAttribute("inert", "")
-      main.setAttribute("aria-hidden", "true")
-    } else {
-      main.removeAttribute("inert")
-      main.removeAttribute("aria-hidden")
+    // Toggle inert + aria-hidden on every direct child of <body> except the modal itself.
+    // This prevents screen-reader virtual cursors from reaching header / nav / main while
+    // a dialog is open, satisfying the WAI-ARIA Authoring Practices for modal dialogs.
+    const children = Array.from(document.body.children)
+    for (const el of children) {
+      if (activate && modal && el === modal) continue
+      if (activate) {
+        el.setAttribute("inert", "")
+        el.setAttribute("aria-hidden", "true")
+      } else {
+        el.removeAttribute("inert")
+        el.removeAttribute("aria-hidden")
+      }
     }
   }
 }
