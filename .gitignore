@@ -69,3 +69,6 @@ package-lock.json
 
 # Shell history
 .lesshst
+
+# Claude Code session runtime
+.claude/scheduled_tasks.lock
