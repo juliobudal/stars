@@ -138,13 +138,13 @@
   --shape-cool-3: #c2f0dd;
 
   --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 40px;
-  --space-8: 56px;
+  --space-2: 10px;
+  --space-3: 14px;
+  --space-4: 20px;
+  --space-5: 28px;
+  --space-6: 36px;
+  --space-7: 48px;
+  --space-8: 64px;
 
   /* Aliases for @theme compatibility */
   --background: var(--bg-deep);

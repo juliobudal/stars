@@ -78,7 +78,7 @@ All font weights default to 700 (`font-bold`). 800 (`font-extrabold`) is the emp
 
 ## 4. Spacing & Layout
 
-Spacing scale (`--space-1..8`): `4 / 8 / 12 / 16 / 24 / 32 / 40 / 56`.
+Spacing scale (`--space-1..8`): `4 / 10 / 14 / 20 / 28 / 36 / 48 / 64`.
 
 Radius scale: `--r-sm 10 · --r-md 12 · --r-lg 14 · --r-xl 16 · --r-featured 20 · --r-full 999`.
 
