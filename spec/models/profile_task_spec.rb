@@ -208,4 +208,57 @@ RSpec.describe ProfileTask, type: :model do
       end
     end
   end
+
+  describe ".period_range" do
+    let(:family) { create(:family, week_start: 1) } # Monday
+    let(:date)   { Date.new(2026, 4, 29) } # Wednesday
+
+    it "returns a single-day range for daily" do
+      gt = create(:global_task, :daily, family: family)
+      expect(ProfileTask.period_range(gt, date)).to eq(date..date)
+    end
+
+    it "returns the Monday-to-Sunday range for weekly when week_start is Monday" do
+      gt = create(:global_task, :weekly, family: family)
+      expected = Date.new(2026, 4, 27)..Date.new(2026, 5, 3)
+      expect(ProfileTask.period_range(gt, date)).to eq(expected)
+    end
+
+    it "returns the calendar month for monthly" do
+      gt = create(:global_task, family: family, frequency: :monthly, day_of_month: 15)
+      expected = Date.new(2026, 4, 1)..Date.new(2026, 4, 30)
+      expect(ProfileTask.period_range(gt, date)).to eq(expected)
+    end
+
+    it "returns a wide-open range starting at the epoch for once" do
+      gt = create(:global_task, family: family, frequency: :once)
+      range = ProfileTask.period_range(gt, date)
+      expect(range.cover?(Date.new(2000, 1, 1))).to be(true)
+      expect(range.cover?(date)).to be(true)
+    end
+  end
+
+  describe ".in_period_for and .consuming_slot" do
+    let(:family) { create(:family, week_start: 1) }
+    let(:profile) { create(:profile, :child, family: family) }
+    let(:gt)      { create(:global_task, :daily, family: family) }
+    let(:date)    { Date.new(2026, 4, 29) }
+
+    it "scopes profile_tasks by the period's date range" do
+      pt_today    = create(:profile_task, profile: profile, global_task: gt, assigned_date: date)
+      _pt_yday    = create(:profile_task, profile: profile, global_task: gt, assigned_date: date - 1)
+
+      expect(ProfileTask.in_period_for(gt, date)).to eq([pt_today])
+    end
+
+    it "filters to rows that consume a slot" do
+      create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :pending)
+      awa  = create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :awaiting_approval)
+      appr = create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :approved)
+      create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :rejected)
+
+      expect(ProfileTask.consuming_slot.where(id: [awa.id, appr.id])).to match_array([awa, appr])
+      expect(ProfileTask.consuming_slot.where(profile: profile, global_task: gt).count).to eq(2)
+    end
+  end
 end

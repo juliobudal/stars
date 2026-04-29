@@ -61,6 +61,24 @@ class ProfileTask < ApplicationRecord
 
   scope :for_today, ->(date = Date.current) { where(assigned_date: date) }
   scope :actionable, -> { pending.or(awaiting_approval) }
+  scope :in_period_for, ->(global_task, date) {
+    where(assigned_date: ProfileTask.period_range(global_task, date))
+  }
+  scope :consuming_slot, -> { where(status: %i[awaiting_approval approved]) }
+
+  def self.period_range(global_task, date)
+    case global_task.frequency.to_s
+    when "weekly"
+      week_start_sym = global_task.family.week_start.to_i.zero? ? :sunday : :monday
+      date.beginning_of_week(week_start_sym)..date.end_of_week(week_start_sym)
+    when "monthly"
+      date.beginning_of_month..date.end_of_month
+    when "once"
+      Date.new(2000, 1, 1)..date.end_of_day.to_date
+    else
+      date..date
+    end
+  end
 
   after_commit :broadcast_approval_count
   after_update_commit :remove_from_kid_dashboard, if: -> { saved_change_to_status? && (awaiting_approval? || approved?) }
