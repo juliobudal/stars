@@ -72,4 +72,13 @@ RSpec.describe Ui::Btn::Component, type: :component do
       expect(page).to have_css("button[type='submit']")
     end
   end
+
+  describe "touch-target floor (WCAG 2.5.5)" do
+    %w[sm md lg icon].each do |sz|
+      it "size #{sz} renders with min-h-[44px] floor class" do
+        render_inline(described_class.new(size: sz)) { "X" }
+        expect(page.native.to_html).to include("min-h-[44px]")
+      end
+    end
+  end
 end
