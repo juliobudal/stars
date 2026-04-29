@@ -110,6 +110,47 @@
       </fieldset>
     <% end %>
 
+    <%# Repetível no período %>
+    <%
+      current_max = (global_task.max_completions_per_period.presence || 1).to_i
+      repeatable_initial = current_max > 1
+    %>
+    <%= render Ui::FormSection::Component.new(title: "Repetível no período") do %>
+      <div data-controller="repeatable" data-repeatable-default-max-value="3">
+        <label class="flex items-center gap-3 cursor-pointer">
+          <input type="checkbox"
+                 class="form-checkbox"
+                 data-repeatable-target="toggle"
+                 data-action="change->repeatable#toggle"
+                 <%= "checked" if repeatable_initial %>
+                 <%= "disabled" if global_task.frequency.to_s == "once" %>
+                 aria-controls="repeatable_field"
+                 aria-label="Permitir múltiplas execuções por período" />
+          <span class="text-[13px] font-extrabold" style="color: var(--text);">
+            Permitir mais de uma execução por período
+          </span>
+        </label>
+
+        <fieldset id="repeatable_field"
+                  data-repeatable-target="field"
+                  class="flex flex-col gap-2 mt-3 <%= 'hidden' unless repeatable_initial %>">
+          <%= f.label :max_completions_per_period,
+                "Quantas vezes por dia?",
+                class: "form-label",
+                data: { repeatable_target: "helper" } %>
+          <%= f.number_field :max_completions_per_period,
+                value: current_max,
+                min: 1,
+                max: 20,
+                class: "form-input",
+                data: { repeatable_target: "input" } %>
+          <p class="text-[11px] font-bold" style="color: var(--text-muted);">
+            Cap de execuções por período. Por exemplo: escovar dentes 3x/dia.
+          </p>
+        </fieldset>
+      </div>
+    <% end %>
+
     <%# Category %>
     <%= render Ui::FormSection::Component.new(title: "Categoria") do %>
       <div class="flex flex-wrap gap-2" data-controller="selectable-group">
