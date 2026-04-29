@@ -248,7 +248,7 @@ RSpec.describe ProfileTask, type: :model do
       pt_today    = create(:profile_task, profile: profile, global_task: gt, assigned_date: date)
       _pt_yday    = create(:profile_task, profile: profile, global_task: gt, assigned_date: date - 1)
 
-      expect(ProfileTask.in_period_for(gt, date)).to eq([pt_today])
+      expect(ProfileTask.in_period_for(gt, date)).to eq([ pt_today ])
     end
 
     it "filters to rows that consume a slot" do
@@ -257,7 +257,7 @@ RSpec.describe ProfileTask, type: :model do
       appr = create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :approved)
       create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :rejected)
 
-      expect(ProfileTask.consuming_slot.where(id: [awa.id, appr.id])).to match_array([awa, appr])
+      expect(ProfileTask.consuming_slot.where(id: [ awa.id, appr.id ])).to match_array([ awa, appr ])
       expect(ProfileTask.consuming_slot.where(profile: profile, global_task: gt).count).to eq(2)
     end
   end

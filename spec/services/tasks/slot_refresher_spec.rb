@@ -87,7 +87,7 @@ RSpec.describe Tasks::SlotRefresher do
   end
 
   describe "with a repeatable weekly task (max=2)" do
-    let(:gt) { create(:global_task, :weekly, family: family, days_of_week: ["3"], max_completions_per_period: 2) }
+    let(:gt) { create(:global_task, :weekly, family: family, days_of_week: [ "3" ], max_completions_per_period: 2) }
 
     it "treats approvals across the same calendar week as part of the same cap" do
       monday    = date - 2 # 2026-04-27
