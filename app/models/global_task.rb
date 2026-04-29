@@ -51,6 +51,8 @@ class GlobalTask < ApplicationRecord
               less_than_or_equal_to: MAX_COMPLETIONS_RANGE.max
             }
 
+  after_update_commit :refresh_slots_after_cap_change, if: :saved_change_to_max_completions_per_period?
+
   def repeatable?
     max_completions_per_period.to_i > 1
   end
@@ -59,5 +61,14 @@ class GlobalTask < ApplicationRecord
 
   def force_single_completion_for_once
     self.max_completions_per_period = 1 if once?
+  end
+
+  def refresh_slots_after_cap_change
+    target_profiles = assigned_profiles.any? ? assigned_profiles.select(&:child?) : family.profiles.select(&:child?)
+    target_profiles.each do |child|
+      Tasks::SlotRefresher.new(profile: child, global_task: self).call
+    end
+  rescue StandardError => e
+    Rails.logger.warn("[GlobalTask] refresh_slots_after_cap_change failed id=#{id} error=#{e.message}")
   end
 end

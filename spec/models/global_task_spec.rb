@@ -111,4 +111,25 @@ RSpec.describe GlobalTask, type: :model do
       expect(build(:global_task, max_completions_per_period: 2).repeatable?).to be(true)
     end
   end
+
+  describe "after_update_commit cap reduction" do
+    let(:family) { create(:family) }
+    let!(:child)  { create(:profile, :child, family: family) }
+    let!(:gt)     { create(:global_task, :daily, family: family, max_completions_per_period: 5) }
+
+    it "destroys orphan pending rows when the cap drops below current consumed count" do
+      create(:profile_task, profile: child, global_task: gt, assigned_date: Date.current, status: :awaiting_approval)
+      create(:profile_task, profile: child, global_task: gt, assigned_date: Date.current, status: :approved)
+      pending = create(:profile_task, profile: child, global_task: gt, assigned_date: Date.current, status: :pending)
+
+      gt.update!(max_completions_per_period: 2)
+
+      expect(ProfileTask.where(id: pending.id)).to be_empty
+    end
+
+    it "is a no-op when max_completions_per_period does not change" do
+      pending = create(:profile_task, profile: child, global_task: gt, assigned_date: Date.current, status: :pending)
+      expect { gt.update!(title: "Renamed") }.not_to change { ProfileTask.where(id: pending.id).count }
+    end
+  end
 end
