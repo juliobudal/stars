@@ -2,24 +2,33 @@
 #
 # Table name: profile_tasks
 #
-#  id             :bigint           not null, primary key
-#  assigned_date  :date
-#  completed_at   :datetime
-#  status         :integer          default("pending")
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  global_task_id :bigint           not null
-#  profile_id     :bigint           not null
+#  id                 :bigint           not null, primary key
+#  assigned_date      :date
+#  completed_at       :datetime
+#  custom_description :text
+#  custom_points      :integer
+#  custom_title       :string
+#  source             :integer          default("catalog"), not null
+#  status             :integer          default("pending")
+#  submission_comment :text
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  custom_category_id :bigint
+#  global_task_id     :bigint
+#  profile_id         :bigint           not null
 #
 # Indexes
 #
+#  index_profile_tasks_on_custom_category_id            (custom_category_id)
 #  index_profile_tasks_on_global_task_id                (global_task_id)
 #  index_profile_tasks_on_profile_id                    (profile_id)
 #  index_profile_tasks_on_profile_id_and_assigned_date  (profile_id,assigned_date)
 #  index_profile_tasks_on_profile_id_and_status         (profile_id,status)
+#  index_profile_tasks_on_source                        (source)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (custom_category_id => categories.id) ON DELETE => nullify
 #  fk_rails_...  (global_task_id => global_tasks.id)
 #  fk_rails_...  (profile_id => profiles.id)
 #

@@ -2,19 +2,20 @@
 #
 # Table name: global_tasks
 #
-#  id           :bigint           not null, primary key
-#  active       :boolean          default(TRUE), not null
-#  category     :integer
-#  day_of_month :integer
-#  days_of_week :string           default([]), is an Array
-#  description  :text
-#  frequency    :integer
-#  icon         :string
-#  points       :integer
-#  title        :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  family_id    :bigint           not null
+#  id                         :bigint           not null, primary key
+#  active                     :boolean          default(TRUE), not null
+#  category                   :integer
+#  day_of_month               :integer
+#  days_of_week               :string           default([]), is an Array
+#  description                :text
+#  frequency                  :integer
+#  icon                       :string
+#  max_completions_per_period :integer          default(1), not null
+#  points                     :integer
+#  title                      :string
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  family_id                  :bigint           not null
 #
 # Indexes
 #
