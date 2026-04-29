@@ -2,7 +2,7 @@
 
 module Ui
   module KidTopBar
-    # Kid-shell header: streak badge + balance chip + profile-switch.
+    # Kid-shell header: streak badge + balance chip + profile-switch + sign-out.
     # Replaces the bespoke headers on dashboard, rewards, missions/new
     # (wallet uses Ui::TopBar instead). See
     # .planning/ui-reviews/20260428-audit/02-kid-surfaces.md §6, top-fix #3.
@@ -13,13 +13,15 @@ module Ui
     # "profile_points_<id>") still update the live count and screen
     # readers announce changes.
     class Component < ApplicationComponent
-      def initialize(profile:, streak: nil, show_streak: true, show_balance: true, show_switch: true, switch_url: nil, **options)
+      def initialize(profile:, streak: nil, show_streak: true, show_balance: true, show_switch: true, show_signout: true, switch_url: nil, signout_url: nil, **options)
         @profile = profile
         @streak_override = streak
         @show_streak = show_streak
         @show_balance = show_balance
         @show_switch = show_switch
+        @show_signout = show_signout
         @switch_url = switch_url
+        @signout_url = signout_url
         @options = options
         super()
       end
@@ -31,6 +33,10 @@ module Ui
 
       def points
         @profile.respond_to?(:points) ? @profile.points.to_i : 0
+      end
+
+      def signout_path
+        @signout_url || profile_session_path
       end
     end
   end

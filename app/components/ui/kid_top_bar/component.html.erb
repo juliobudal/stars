@@ -17,15 +17,30 @@
     <% end %>
   </div>
 
-  <% if @show_switch %>
-    <%= form_with url: (@switch_url || profile_session_path), method: :delete, local: true, class: "contents" do %>
-      <button type="submit"
-              aria-label="Trocar de perfil"
-              class="inline-flex items-center gap-1.5 font-display"
-              style="background: var(--surface); border: 2px solid var(--hairline); padding: 6px 12px; border-radius: 12px; box-shadow: 0 3px 0 var(--hairline); color: var(--text-muted); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">
-        <%= render Ui::Icon::Component.new("logout", size: 12, color: "currentColor") %>
-        Trocar
-      </button>
-    <% end %>
+  <% if @show_switch || @show_signout %>
+    <div class="flex items-center gap-2">
+      <% if @show_switch %>
+        <%= form_with url: (@switch_url || profile_session_path), method: :delete, local: true, class: "contents" do %>
+          <button type="submit"
+                  aria-label="Trocar de perfil"
+                  class="inline-flex items-center gap-1.5 font-display"
+                  style="background: var(--surface); border: 2px solid var(--hairline); padding: 6px 12px; border-radius: 12px; box-shadow: 0 3px 0 var(--hairline); color: var(--text-muted); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">
+            <%= render Ui::Icon::Component.new("logout", size: 12, color: "currentColor") %>
+            Trocar
+          </button>
+        <% end %>
+      <% end %>
+
+      <% if @show_signout %>
+        <%= form_with url: signout_path, method: :delete, local: true, class: "contents" do %>
+          <button type="submit"
+                  aria-label="Sair"
+                  class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] font-display"
+                  style="background: var(--surface); border: 2px solid var(--hairline); padding: 6px 10px; border-radius: 12px; box-shadow: 0 3px 0 var(--hairline); color: var(--text-muted);">
+            <%= render Ui::Icon::Component.new("logout", size: 16, color: "currentColor") %>
+          </button>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
 </header>
