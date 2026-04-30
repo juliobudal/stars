@@ -1,9 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Visual 1–10 star difficulty selector. Updates a hidden input + readout +
-// repaints each cell as filled/empty according to the chosen value.
+// Visual 1–10 star difficulty selector + free-form numeric input.
+// Picker repaints visually for 1..10. Custom input accepts 1..999 and
+// drives the hidden form field. Picker click syncs the custom input.
 export default class extends Controller {
-  static targets = ["cell", "readout"]
+  static targets = ["cell", "readout", "custom", "hidden"]
   static values = {
     value: Number,
     input: String
@@ -18,21 +19,47 @@ export default class extends Controller {
     const cell = event.currentTarget
     const next = parseInt(cell.dataset.value, 10)
     if (Number.isNaN(next)) return
+    this.applyValue(next)
+  }
+
+  typeCustom(event) {
+    const raw = parseInt(event.target.value, 10)
+    if (Number.isNaN(raw)) return
+    const next = Math.min(Math.max(raw, 1), 999)
     this.valueValue = next
-    const input = this.inputValue ? document.getElementById(this.inputValue) : null
-    if (input) {
-      input.value = String(next)
-      input.dispatchEvent(new Event("input", { bubbles: true }))
-      input.dispatchEvent(new Event("change", { bubbles: true }))
-    }
+    this.writeHidden(next)
+    this.repaintCells()
+    this.repaintReadout()
+  }
+
+  applyValue(next) {
+    const clamped = Math.min(Math.max(next, 1), 999)
+    this.valueValue = clamped
+    this.writeHidden(clamped)
+    if (this.hasCustomTarget) this.customTarget.value = String(clamped)
     this.repaint()
   }
 
+  writeHidden(value) {
+    const input = this.hasHiddenTarget
+      ? this.hiddenTarget
+      : (this.inputValue ? document.getElementById(this.inputValue) : null)
+    if (!input) return
+    input.value = String(value)
+    input.dispatchEvent(new Event("input", { bubbles: true }))
+    input.dispatchEvent(new Event("change", { bubbles: true }))
+  }
+
   repaint() {
-    const value = this.valueValue
+    this.repaintCells()
+    this.repaintReadout()
+  }
+
+  repaintCells() {
+    const visualValue = Math.min(this.valueValue, 10)
     this.cellTargets.forEach((cell) => {
       const i = parseInt(cell.dataset.value, 10)
-      const filled = i <= value
+      const filled = i <= visualValue
       const svg = cell.querySelector("svg, i")
       if (filled) {
         cell.style.background = "var(--star-soft)"
@@ -47,9 +74,11 @@ export default class extends Controller {
         svg.style.color = filled ? "var(--star)" : "var(--text-soft)"
       }
     })
-    if (this.hasReadoutTarget) {
-      const word = value === 1 ? "estrelinha" : "estrelinhas"
-      this.readoutTarget.textContent = `${value} ${word}`
-    }
+  }
+
+  repaintReadout() {
+    if (!this.hasReadoutTarget) return
+    const word = this.valueValue === 1 ? "estrelinha" : "estrelinhas"
+    this.readoutTarget.textContent = word
   }
 }

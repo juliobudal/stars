@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_29_200942) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_30_124818) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -104,12 +104,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_29_200942) do
     t.string "days_of_week", default: [], array: true
     t.text "description"
     t.bigint "family_id", null: false
+    t.boolean "featured", default: false, null: false
     t.integer "frequency"
     t.string "icon"
     t.integer "max_completions_per_period", default: 1, null: false
     t.integer "points"
     t.string "title"
     t.datetime "updated_at", null: false
+    t.index ["family_id", "featured"], name: "index_global_tasks_on_family_id_and_featured", where: "(featured = true)"
     t.index ["family_id"], name: "index_global_tasks_on_family_id"
     t.check_constraint "max_completions_per_period >= 1", name: "max_completions_positive"
   end

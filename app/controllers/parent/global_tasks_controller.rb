@@ -72,7 +72,7 @@ class Parent::GlobalTasksController < ApplicationController
   end
 
   def global_task_params
-    p = params.require(:global_task).permit(:title, :points, :category, :frequency, :active, :icon, :description,
+    p = params.require(:global_task).permit(:title, :points, :category, :frequency, :active, :featured, :icon, :description,
                                              :day_of_month, :max_completions_per_period,
                                              days_of_week: [], assigned_profile_ids: [])
     p[:days_of_week]&.reject!(&:blank?)
