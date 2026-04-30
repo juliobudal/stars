@@ -58,5 +58,18 @@ RSpec.describe Tasks::RejectService do
         ProfileTask.where(profile: profile, global_task: gt, status: :pending).count
       }
     end
+
+    context "with cap reached by a prior approval" do
+      let(:gt) { create(:global_task, :daily, family: family, max_completions_per_period: 1) }
+      let!(:approved) { create(:profile_task, profile: profile, global_task: gt, assigned_date: Date.current, status: :approved, completed_at: Time.current) }
+      let(:awaiting) { create(:profile_task, profile: profile, global_task: gt, assigned_date: Date.current, status: :awaiting_approval) }
+
+      it "rejects without spawning a new pending while cap remains met by the approval" do
+        expect {
+          described_class.new(awaiting).call
+        }.not_to change { ProfileTask.where(profile: profile, global_task: gt, status: :pending).count }
+        expect(awaiting.reload.status).to eq("rejected")
+      end
+    end
   end
 end
