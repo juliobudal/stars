@@ -6,26 +6,15 @@
 <div class="screen screen-enter-right with-nav">
   <%= render Ui::Celebration::Component.new %>
 
-  <%# ── Header: back + shop icon + title ── %>
-  <div class="flex items-center gap-2.5 mb-4 z-2 shrink-0">
-    <%= render Ui::Btn::Component.new(variant: "secondary", size: "icon", url: kid_root_path, aria: { label: "Voltar" }) do %>
-      <%= render Ui::Icon::Component.new("arrow-left", size: 16, color: "var(--text-muted)") %>
-    <% end %>
-
-    <div class="flex items-center gap-2.5 flex-1 min-w-0">
-      <div class="grid place-items-center shrink-0"
-           style="width: 32px; height: 32px; background: var(--c-peach-dark); border-radius: 12px; box-shadow: 0 3px 0 var(--c-peach-depth);">
-        <%= render Ui::Icon::Component.new("gift", size: 18, color: "white") %>
-      </div>
-      <div class="min-w-0">
-        <div class="font-display text-[18px] font-extrabold leading-none" style="color: var(--text);">Loja de Prêmios</div>
-        <div class="text-[11px] font-bold mt-0.5" style="color: var(--text-muted);">Troca estrelinhas por coisas legais!</div>
-      </div>
-    </div>
-  </div>
+  <%# ── Header: standard top bar ── %>
+  <%= render Ui::TopBar::Component.new(
+    title: "Loja de Prêmios",
+    subtitle: "Troca estrelinhas por coisas legais!",
+    back_url: kid_root_path
+  ) %>
 
   <%# ── Balance hero (clean) ── %>
-  <div class="flex items-center justify-between gap-3 mb-4 z-2 shrink-0"
+  <div class="flex items-center justify-between gap-3 mb-5 z-2 shrink-0"
        style="background: var(--surface); border: 2px solid var(--star); border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 0 var(--star-2);">
     <div class="flex items-center gap-3 min-w-0">
       <div class="grid place-items-center shrink-0"
@@ -86,11 +75,11 @@
           <h2 class="font-display text-[15px] font-extrabold uppercase tracking-[0.5px] m-0" style="color: var(--primary-2);">Posso resgatar agora!</h2>
         </div>
 
-        <div class="grid grid-cols-2 gap-5 mb-5">
+        <div class="grid grid-cols-2 gap-5 mb-6">
           <% @affordable_rewards.each_with_index do |reward, i| %>
             <% icon_name = (reward.respond_to?(:icon) && reward.icon.presence) || reward.category&.icon.presence || "gift" %>
             <% pal = Ui::Tokens.color_palette_entry(reward.category&.color || "lilac") %>
-            <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>">
+            <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>" data-controller="ui-modal">
               <button type="button"
                       class="ls-card-3d w-full text-left border-none p-3.5 flex flex-col gap-2.5 cursor-pointer relative overflow-hidden"
                       style="background: var(--surface); border: 3px solid var(--primary); border-radius: 16px; box-shadow: 0 4px 0 var(--primary-2); animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= [i, 5].min * 0.04 %>s both;"
@@ -134,13 +123,13 @@
           <h2 class="font-display text-[15px] font-extrabold uppercase tracking-[0.5px] m-0" style="color: var(--text-muted);">Continua juntando!</h2>
         </div>
 
-        <div class="grid grid-cols-2 gap-5 mb-5">
+        <div class="grid grid-cols-2 gap-5 mb-6">
           <% @locked_rewards.each_with_index do |reward, i| %>
             <% icon_name = (reward.respond_to?(:icon) && reward.icon.presence) || reward.category&.icon.presence || "gift" %>
             <% pal = Ui::Tokens.color_palette_entry(reward.category&.color || "lilac") %>
             <% pct = reward.cost.zero? ? 0 : [(balance.to_f / reward.cost * 100).round, 100].min %>
             <% remaining = reward.cost - balance %>
-            <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>">
+            <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>" data-controller="ui-modal">
               <button type="button"
                       class="ls-card-3d w-full text-left border-none p-3.5 flex flex-col gap-2 cursor-pointer relative"
                       style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= [i, 5].min * 0.04 %>s both;"
