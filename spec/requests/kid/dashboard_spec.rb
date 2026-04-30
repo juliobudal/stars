@@ -46,4 +46,25 @@ RSpec.describe "Kid::Dashboard", type: :request do
       expect(response).to have_http_status(:not_found)
     end
   end
+
+  describe "completed_today scope" do
+    let(:today_global) { create(:global_task, family: family, title: "Today Mission Title", points: 10) }
+    # Use weekly with empty days_of_week so DailyResetService does not recreate a fresh
+    # pending instance for today (which would otherwise leak the title into the body).
+    let(:yesterday_global) { create(:global_task, :weekly, family: family, title: "Yesterday Mission Title", points: 10, days_of_week: []) }
+    let(:today_task) { create(:profile_task, :approved, profile: child, global_task: today_global, assigned_date: Date.current) }
+    let(:yesterday_task) { create(:profile_task, :approved, profile: child, global_task: yesterday_global, assigned_date: 1.day.ago.to_date) }
+
+    it "shows missions approved with assigned_date = today" do
+      today_task
+      get kid_root_path
+      expect(response.body).to include(today_task.title)
+    end
+
+    it "hides missions approved on a previous day" do
+      yesterday_task
+      get kid_root_path
+      expect(response.body).not_to include(yesterday_task.title)
+    end
+  end
 end
