@@ -16,7 +16,8 @@ RUN     := $(COMPOSE) run --rm web
         test rspec lint rubocop brakeman audit ci \
         routes assets-build assets-clobber \
         clean config \
-        dokploy-deploy dokploy-migrate dokploy-seed dokploy-logs dokploy-status dokploy-restart dokploy-console
+        dokploy-deploy dokploy-migrate dokploy-seed dokploy-logs dokploy-status dokploy-restart dokploy-console \
+        dokploy-db-reset
 
 help:
 	@echo "LittleStars Makefile — common targets:"
@@ -279,3 +280,32 @@ dokploy-console:
 	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
 	$(SSH_CMD) -t $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
 		$(DOKPLOY_COMPOSE) exec littlestars-app bin/rails console"
+
+# DESTRUCTIVE: drops + recreates + migrates + seeds production DB. Wipes ALL data.
+# Requires explicit confirm: make dokploy-db-reset CONFIRM=RESET-PROD
+dokploy-db-reset:
+	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
+	@if [ "$(CONFIRM)" != "RESET-PROD" ]; then \
+		echo ""; \
+		echo "⚠  DESTRUCTIVE: this will DROP the production database on $(DEPLOY_HOST)."; \
+		echo "   ALL families, profiles, tasks, rewards, activity logs will be lost."; \
+		echo ""; \
+		echo "   To proceed, re-run:"; \
+		echo "     make dokploy-db-reset CONFIRM=RESET-PROD"; \
+		echo ""; \
+		exit 1; \
+	fi
+	@echo "→ resetting production DB on $(DEPLOY_HOST)..."
+	@echo "→ stopping app to release connections..."
+	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
+		$(DOKPLOY_COMPOSE) stop littlestars-app"
+	@echo "→ drop + create + migrate + seed (DISABLE_DATABASE_ENVIRONMENT_CHECK=1)..."
+	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
+		$(DOKPLOY_COMPOSE) run --rm \
+			-e DISABLE_DATABASE_ENVIRONMENT_CHECK=1 \
+			-e RAILS_ENV=production \
+			littlestars-app bin/rails db:drop db:create db:migrate db:seed"
+	@echo "→ restarting app..."
+	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
+		$(DOKPLOY_COMPOSE) start littlestars-app"
+	@echo "✓ production DB reset complete"
