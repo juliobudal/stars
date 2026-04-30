@@ -72,4 +72,20 @@ RSpec.describe Tasks::RejectService do
       end
     end
   end
+
+  describe "once-frequency mission rejection" do
+    let(:family) { create(:family) }
+    let(:profile) { create(:profile, :child, family: family) }
+    let(:once_task) { create(:global_task, :once, family: family, max_completions_per_period: 1) }
+    let(:awaiting) { create(:profile_task, profile: profile, global_task: once_task, assigned_date: Date.current, status: :awaiting_approval) }
+
+    it "spawns a new pending row so the kid can retry the once-mission" do
+      expect {
+        described_class.new(awaiting).call
+      }.to change {
+        ProfileTask.where(profile: profile, global_task: once_task, status: :pending).count
+      }.from(0).to(1)
+      expect(awaiting.reload.status).to eq("rejected")
+    end
+  end
 end
