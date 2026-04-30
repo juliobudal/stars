@@ -58,13 +58,25 @@ RSpec.describe "Kid::Dashboard", type: :request do
     it "shows missions approved with assigned_date = today" do
       today_task
       get kid_root_path
-      expect(response.body).to include(today_task.title)
+      panel = Nokogiri::HTML(response.body).css("#panel-completed").to_s
+      expect(panel).to include(today_task.title)
     end
 
     it "hides missions approved on a previous day" do
       yesterday_task
       get kid_root_path
-      expect(response.body).not_to include(yesterday_task.title)
+      panel = Nokogiri::HTML(response.body).css("#panel-completed").to_s
+      expect(panel).not_to include(yesterday_task.title)
+    end
+
+    it "does not leak yesterday's daily task title into the completed panel" do
+      daily_global = create(:global_task, :daily, family: family, title: "Daily Yesterday Title", points: 50)
+      create(:profile_task, :approved, profile: child, global_task: daily_global, assigned_date: 1.day.ago.to_date)
+
+      get kid_root_path
+
+      panel = Nokogiri::HTML(response.body).css("#panel-completed").to_s
+      expect(panel).not_to include("Daily Yesterday Title")
     end
   end
 end

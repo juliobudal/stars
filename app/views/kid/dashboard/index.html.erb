@@ -104,9 +104,11 @@
   <div class="flex flex-col gap-5 mb-6 relative z-2">
 
     <%# Completed (approved today) %>
-    <% @completed_today.each_with_index do |task, i| %>
-      <%= render Ui::MissionCard::Component.new(mission: task, status: "approved", variant: "bubble", index: i) %>
-    <% end %>
+    <div id="panel-completed" class="contents">
+      <% @completed_today.each_with_index do |task, i| %>
+        <%= render Ui::MissionCard::Component.new(mission: task, status: "approved", variant: "bubble", index: i) %>
+      <% end %>
+    </div>
 
     <%# Awaiting approval ── stays in turbo-stream target id %>
     <div id="panel-waiting" class="contents">
