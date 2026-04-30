@@ -43,7 +43,7 @@
               <%= pf.text_field :pin, pattern: "\\d{4}", maxlength: 4, inputmode: "numeric",
                   autocomplete: "off", placeholder: "Novo PIN", required: true,
                   class: "form-input w-[110px] !px-3 !py-2 !rounded-[10px] text-center" %>
-              <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", type: "submit") do %>
+              <%= render Ui::Btn::Component.new(variant: "danger", size: "sm", type: "submit") do %>
                 Resetar
               <% end %>
             <% end %>

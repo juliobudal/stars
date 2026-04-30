@@ -24,9 +24,18 @@
         <%= render Ui::Icon::Component.new(cm[:icon], size: 28, color: tint_fg) %>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="flex justify-between items-start gap-2">
+        <div class="flex justify-between items-start gap-2 pr-11">
           <div class="min-w-0">
-            <div class="text-[15px] font-extrabold mb-0.5 truncate" style="color: var(--text);"><%= mission.title %></div>
+            <div class="text-[15px] font-extrabold mb-0.5 truncate inline-flex items-center gap-1.5" style="color: var(--text);">
+              <% if mission.featured? %>
+                <span class="inline-flex items-center justify-center rounded-full shrink-0"
+                      style="background: var(--star); width: 16px; height: 16px; box-shadow: 0 1px 0 var(--star-2);"
+                      aria-label="Missão em destaque" title="Em destaque">
+                  <%= render Ui::Icon::Component.new("star", size: 10, color: "white") %>
+                </span>
+              <% end %>
+              <span class="truncate"><%= mission.title %></span>
+            </div>
             <div class="flex items-center gap-1.5 flex-wrap">
               <span class="text-[10px] font-extrabold uppercase tracking-[0.5px] rounded-[6px] px-2 py-0.5"
                     style="color: <%= tint_fg %>; background: <%= tint_soft %>;"><%= cm[:label] %></span>

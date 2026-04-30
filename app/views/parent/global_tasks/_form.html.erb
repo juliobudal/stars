@@ -2,7 +2,8 @@
   cat_name = global_task.category.presence || "casa"
   cat_data = Ui::Tokens.category_for(cat_name)
   current_icon = global_task.icon.presence || Ui::IconPicker::Component::CONTEXT_GROUPS[:mission].first
-  current_points = (global_task.points.presence || 3).to_i.clamp(1, 10)
+  current_points = (global_task.points.presence || 3).to_i.clamp(1, 999)
+  picker_points  = current_points.clamp(1, 10)
   current_freq = global_task.frequency.to_s.presence || "daily"
   kids = @kids || current_profile.family.profiles.child.order(:name)
   selected_kid_ids = global_task.assigned_profile_ids.map(&:to_i)
@@ -52,29 +53,44 @@
         <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
         Quantas estrelinhas vale?
       </label>
-      <div class="flex gap-1.5 items-center"
-           data-controller="star-picker"
+      <div data-controller="star-picker"
            data-star-picker-value-value="<%= current_points %>"
            data-star-picker-input-value="global_task_points">
-        <% (1..10).each do |i| %>
-          <% filled = i <= current_points %>
-          <button type="button"
-                  class="ls-star-cell flex-1 aspect-square rounded-[10px] flex items-center justify-center border-2 cursor-pointer"
-                  data-action="click->star-picker#select"
-                  data-star-picker-target="cell"
-                  data-value="<%= i %>"
-                  style="<%= filled ? 'background: var(--star-soft); border-color: var(--star); box-shadow: 0 3px 0 var(--star-2);' : 'background: var(--surface-muted); border-color: var(--hairline);' %>"
-                  aria-label="<%= i %> <%= 'estrelinha'.pluralize(i == 1 ? 1 : 2) %>">
-            <%= render Ui::Icon::Component.new("star", size: 18, color: filled ? "var(--star)" : "var(--text-soft)") %>
-          </button>
-        <% end %>
-      </div>
-      <%= f.hidden_field :points, value: current_points, id: "global_task_points", data: { form_preview_field: "points" } %>
-      <div class="flex justify-between items-center mt-3">
-        <span class="text-[11px] font-bold" style="color: var(--text-soft);">Tarefa fácil</span>
-        <span class="text-[13px] font-extrabold" data-star-picker-target="readout"
-              style="color: var(--c-reward-text);"><%= current_points %> <%= "estrelinha".pluralize(current_points == 1 ? 1 : 2) %></span>
-        <span class="text-[11px] font-bold" style="color: var(--text-soft);">Tarefa difícil</span>
+        <div class="flex gap-1.5 items-center">
+          <% (1..10).each do |i| %>
+            <% filled = i <= picker_points %>
+            <button type="button"
+                    class="ls-star-cell flex-1 aspect-square rounded-[10px] flex items-center justify-center border-2 cursor-pointer"
+                    data-action="click->star-picker#select"
+                    data-star-picker-target="cell"
+                    data-value="<%= i %>"
+                    style="<%= filled ? 'background: var(--star-soft); border-color: var(--star); box-shadow: 0 3px 0 var(--star-2);' : 'background: var(--surface-muted); border-color: var(--hairline);' %>"
+                    aria-label="<%= i %> <%= 'estrelinha'.pluralize(i == 1 ? 1 : 2) %>">
+              <%= render Ui::Icon::Component.new("star", size: 18, color: filled ? "var(--star)" : "var(--text-soft)") %>
+            </button>
+          <% end %>
+        </div>
+        <%= f.hidden_field :points, value: current_points, id: "global_task_points", data: { star_picker_target: "hidden", form_preview_field: "points" } %>
+        <div class="flex justify-between items-center mt-3 gap-3">
+          <span class="text-[11px] font-bold" style="color: var(--text-soft);">Tarefa fácil</span>
+          <div class="inline-flex items-center gap-1.5 rounded-[10px] border-2 px-2 py-1"
+               style="background: var(--star-soft); border-color: var(--star);">
+            <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
+            <input type="number"
+                   inputmode="numeric"
+                   min="1"
+                   max="999"
+                   value="<%= current_points %>"
+                   data-star-picker-target="custom"
+                   data-action="input->star-picker#typeCustom"
+                   class="w-12 bg-transparent border-none outline-none text-center text-[14px] font-extrabold p-0"
+                   style="color: var(--c-reward-text);"
+                   aria-label="Quantidade de estrelinhas" />
+            <span class="text-[12px] font-extrabold" data-star-picker-target="readout"
+                  style="color: var(--c-reward-text);"><%= "estrelinha".pluralize(current_points == 1 ? 1 : 2) %></span>
+          </div>
+          <span class="text-[11px] font-bold" style="color: var(--text-soft);">Tarefa difícil</span>
+        </div>
       </div>
     <% end %>
 
@@ -236,6 +252,18 @@
         <div class="text-[12px] font-bold" style="color: var(--text-muted);">Missões pausadas não aparecem para a criança</div>
       </div>
       <%= render Ui::Toggle::Component.new(name: "global_task[active]", checked: global_task.active?) %>
+    <% end %>
+
+    <%# Featured toggle %>
+    <%= render Ui::FormSection::Component.new(class: "flex items-center justify-between gap-3") do %>
+      <div class="flex-1 min-w-0">
+        <div class="text-[14px] font-extrabold mb-0.5 inline-flex items-center gap-1.5" style="color: var(--text);">
+          <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
+          Missão em destaque
+        </div>
+        <div class="text-[12px] font-bold" style="color: var(--text-muted);">Aparece com selo de destaque na lista da criança</div>
+      </div>
+      <%= render Ui::Toggle::Component.new(name: "global_task[featured]", checked: global_task.featured?) %>
     <% end %>
 
     <%# Action bar %>

@@ -20,7 +20,7 @@
   </div>
 
   <%# Log entries — each is its own card via .history-entry %>
-  <div class="mb-2">
+  <div class="mb-5">
     <% logs.each do |h| %>
       <%= render Ui::HistoryRow::Component.new(log: h, with_divider: false) %>
     <% end %>
