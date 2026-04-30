@@ -30,7 +30,7 @@ jobs:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/littlestars_test
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
