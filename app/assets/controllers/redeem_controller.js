@@ -22,6 +22,15 @@ export default class extends Controller {
     })
     document.body.style.overflow = 'auto'
 
+    // ui_modal_controller#open marks all body children inert/aria-hidden while
+    // a dialog is open. After redeem the modal is hidden/removed without going
+    // through that controller's close path, so we restore the page state here
+    // — otherwise the rest of the screen stays click-blocked.
+    Array.from(document.body.children).forEach((el) => {
+      el.removeAttribute('inert')
+      el.removeAttribute('aria-hidden')
+    })
+
     if (this.hasBalanceTargetValue) {
       const el = document.getElementById(this.balanceTargetValue)
       if (el) {

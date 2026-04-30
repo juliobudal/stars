@@ -1,0 +1,10 @@
+<% if redeemed_rewards.any? %>
+  <div class="mt-7 mb-6 z-2 relative">
+    <div class="font-display text-[18px] font-extrabold mb-4" style="color: var(--text);">Meus prêmios</div>
+    <div class="flex flex-col gap-5">
+      <% redeemed_rewards.each do |redemption| %>
+        <%= render Ui::RedemptionRow::Component.new(redemption: redemption) %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

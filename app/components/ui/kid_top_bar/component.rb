@@ -13,7 +13,7 @@ module Ui
     # "profile_points_<id>") still update the live count and screen
     # readers announce changes.
     class Component < ApplicationComponent
-      def initialize(profile:, streak: nil, show_streak: true, show_balance: true, show_switch: true, show_signout: true, switch_url: nil, signout_url: nil, **options)
+      def initialize(profile:, streak: nil, show_streak: true, show_balance: true, show_switch: true, show_signout: false, switch_url: nil, signout_url: nil, **options)
         @profile = profile
         @streak_override = streak
         @show_streak = show_streak

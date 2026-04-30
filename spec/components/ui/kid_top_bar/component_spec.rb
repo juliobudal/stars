@@ -6,26 +6,25 @@ RSpec.describe Ui::KidTopBar::Component, type: :component do
 
   let(:profile) { create(:profile, :child, name: "Lia", points: 12) }
 
-  it "renders the Sair icon button by default" do
+  it "omits the Sair icon button by default" do
     with_request_url("/kid") do
       render_inline(described_class.new(profile: profile))
+    end
+    expect(page).not_to have_css("button[aria-label='Sair']")
+  end
+
+  it "renders the Sair button when show_signout: true" do
+    with_request_url("/kid") do
+      render_inline(described_class.new(profile: profile, show_signout: true))
     end
     expect(page).to have_css("button[aria-label='Sair']")
     expect(page).to have_css("form[action$='/profile_session']")
   end
 
-  it "omits the Sair button when show_signout: false" do
-    with_request_url("/kid") do
-      render_inline(described_class.new(profile: profile, show_signout: false))
-    end
-    expect(page).not_to have_css("button[aria-label='Sair']")
-  end
-
-  it "still renders the Trocar button alongside Sair" do
+  it "renders the Trocar button by default" do
     with_request_url("/kid") do
       render_inline(described_class.new(profile: profile))
     end
     expect(page).to have_css("button[aria-label='Trocar de perfil']")
-    expect(page).to have_css("button[aria-label='Sair']")
   end
 end

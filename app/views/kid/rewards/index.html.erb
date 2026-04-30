@@ -14,8 +14,8 @@
   ) %>
 
   <%# ── Balance hero (clean) ── %>
-  <div class="flex items-center justify-between gap-3 mb-5 z-2 shrink-0"
-       style="background: var(--surface); border: 2px solid var(--star); border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 0 var(--star-2);">
+  <div class="flex items-center justify-between gap-3 mb-6 z-2 shrink-0"
+       style="background: var(--surface); border: 2px solid var(--star); border-radius: 16px; padding: 16px 18px; box-shadow: 0 4px 0 var(--star-2);">
     <div class="flex items-center gap-3 min-w-0">
       <div class="grid place-items-center shrink-0"
            style="width: 44px; height: 44px; background: var(--star-soft); border-radius: 12px; border: 2px solid var(--star);">
@@ -66,104 +66,14 @@
       </div>
 
       <%# ── Available section ── %>
-      <% if @affordable_rewards.any? %>
-        <div class="flex items-center gap-2 mb-3 px-1">
-          <div class="grid place-items-center shrink-0"
-               style="width: 24px; height: 24px; background: var(--primary); border-radius: 8px; box-shadow: 0 2px 0 var(--primary-2);">
-            <%= render Ui::Icon::Component.new("check", size: 14, color: "white") %>
-          </div>
-          <h2 class="font-display text-[15px] font-extrabold uppercase tracking-[0.5px] m-0" style="color: var(--primary-2);">Posso resgatar agora!</h2>
-        </div>
-
-        <div class="grid grid-cols-2 gap-5 mb-6">
-          <% @affordable_rewards.each_with_index do |reward, i| %>
-            <% icon_name = (reward.respond_to?(:icon) && reward.icon.presence) || reward.category&.icon.presence || "gift" %>
-            <% pal = Ui::Tokens.color_palette_entry(reward.category&.color || "lilac") %>
-            <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>" data-controller="ui-modal">
-              <button type="button"
-                      class="ls-card-3d w-full text-left border-none p-3.5 flex flex-col gap-2.5 cursor-pointer relative overflow-hidden"
-                      style="background: var(--surface); border: 3px solid var(--primary); border-radius: 16px; box-shadow: 0 4px 0 var(--primary-2); animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= [i, 5].min * 0.04 %>s both;"
-                      data-action="click->ui-modal#open"
-                      data-ui-modal-id-param="modal_<%= dom_id(reward) %>">
-                <div class="absolute top-2 right-2 font-display font-extrabold uppercase tracking-[0.5px]"
-                     style="background: var(--primary); color: white; font-size: 9px; padding: 3px 7px; border-radius: 6px; box-shadow: 0 2px 0 var(--primary-2);">
-                  ✓ Pode
-                </div>
-
-                <div class="grid place-items-center w-full"
-                     style="aspect-ratio: 1.4; background: <%= pal[:soft_var] %>; border: 2px solid <%= pal[:fg_var] %>; border-radius: 12px;">
-                  <%= render Ui::Icon::Component.new(icon_name, size: 48, color: pal[:fg_var]) %>
-                </div>
-
-                <div class="font-display text-[14px] font-extrabold leading-tight" style="color: var(--text);">
-                  <%= reward.title %>
-                </div>
-
-                <div class="ls-btn-3d w-full font-display font-extrabold uppercase tracking-[0.5px] inline-flex items-center justify-center gap-1.5"
-                     style="background: var(--primary); color: white; border: 2px solid var(--primary); padding: 9px; border-radius: 12px; font-size: 12px; box-shadow: 0 4px 0 var(--primary-2);">
-                  Trocar por
-                  <span class="inline-flex items-center gap-1">
-                    <%= render Ui::Icon::Component.new(:star, size: 13, color: "white") %>
-                    <%= reward.cost %>
-                  </span>
-                </div>
-              </button>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+      <div id="rewards-affordable-section">
+        <%= render "kid/rewards/affordable", affordable_rewards: @affordable_rewards %>
+      </div>
 
       <%# ── Locked section ── %>
-      <% if @locked_rewards.any? %>
-        <div class="flex items-center gap-2 mb-3 px-1">
-          <div class="grid place-items-center shrink-0"
-               style="width: 24px; height: 24px; background: var(--text-soft); border-radius: 8px; box-shadow: 0 2px 0 var(--text-muted);">
-            <%= render Ui::Icon::Component.new("lock", size: 13, color: "white") %>
-          </div>
-          <h2 class="font-display text-[15px] font-extrabold uppercase tracking-[0.5px] m-0" style="color: var(--text-muted);">Continua juntando!</h2>
-        </div>
-
-        <div class="grid grid-cols-2 gap-5 mb-6">
-          <% @locked_rewards.each_with_index do |reward, i| %>
-            <% icon_name = (reward.respond_to?(:icon) && reward.icon.presence) || reward.category&.icon.presence || "gift" %>
-            <% pal = Ui::Tokens.color_palette_entry(reward.category&.color || "lilac") %>
-            <% pct = reward.cost.zero? ? 0 : [(balance.to_f / reward.cost * 100).round, 100].min %>
-            <% remaining = reward.cost - balance %>
-            <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>" data-controller="ui-modal">
-              <button type="button"
-                      class="ls-card-3d w-full text-left border-none p-3.5 flex flex-col gap-2 cursor-pointer relative"
-                      style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= [i, 5].min * 0.04 %>s both;"
-                      data-action="click->ui-modal#open"
-                      data-ui-modal-id-param="modal_<%= dom_id(reward) %>">
-                <div class="grid place-items-center w-full"
-                     style="aspect-ratio: 1.4; background: <%= pal[:soft_var] %>; border: 2px solid <%= pal[:fg_var] %>; border-radius: 12px; opacity: 0.85;">
-                  <%= render Ui::Icon::Component.new(icon_name, size: 48, color: pal[:fg_var]) %>
-                </div>
-
-                <div class="font-display text-[14px] font-extrabold leading-tight" style="color: var(--text);">
-                  <%= reward.title %>
-                </div>
-
-                <div class="overflow-hidden" style="height: 6px; background: var(--hairline); border-radius: 4px;">
-                  <div class="h-full" style="width: <%= pct %>%; background: <%= pal[:fg_var] %>; border-radius: 4px;"></div>
-                </div>
-
-                <div class="flex items-center justify-between">
-                  <div class="inline-flex items-center gap-1">
-                    <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--star)") %>
-                    <span class="font-display text-[12px] font-extrabold" style="color: var(--text);">
-                      <%= balance %><span style="color: var(--text-soft);">/<%= reward.cost %></span>
-                    </span>
-                  </div>
-                  <span class="font-display text-[10px] font-extrabold uppercase tracking-[0.5px]" style="color: <%= pal[:fg_var] %>;">
-                    Falta <%= remaining %>
-                  </span>
-                </div>
-              </button>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+      <div id="rewards-locked-section">
+        <%= render "kid/rewards/locked", locked_rewards: @locked_rewards, balance: balance %>
+      </div>
     </div>
   <% else %>
     <%= render Ui::Empty::Component.new(
@@ -174,16 +84,9 @@
     ) %>
   <% end %>
 
-  <% if @redeemed_rewards.any? %>
-    <div class="mt-6 mb-6 z-2 relative">
-      <div class="font-display text-[18px] font-extrabold mb-3" style="color: var(--text);">Meus prêmios</div>
-      <div class="flex flex-col gap-5">
-        <% @redeemed_rewards.each do |redemption| %>
-          <%= render Ui::RedemptionRow::Component.new(redemption: redemption) %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+  <div id="rewards-redeemed-section">
+    <%= render "kid/rewards/redeemed", redeemed_rewards: @redeemed_rewards %>
+  </div>
 
   <%# ── Redeem ritual modals ── %>
   <% @rewards.each do |reward| %>

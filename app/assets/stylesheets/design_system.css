@@ -123,3 +123,24 @@
   50%      { transform: scale(1.1); }
 }
 .pop-on-tap:active { animation: pop 0.3s; }
+
+/* ── Form inputs (Duolingo-style 3D) ── */
+.ls-textarea,
+.ls-input {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+.ls-textarea::placeholder,
+.ls-input::placeholder {
+  color: var(--text-muted);
+  font-weight: 700;
+  opacity: 0.7;
+}
+.ls-textarea:hover,
+.ls-input:hover {
+  border-color: var(--text-soft);
+}
+.ls-textarea:focus,
+.ls-input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 3px 0 var(--primary-2) !important;
+}

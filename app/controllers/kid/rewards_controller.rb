@@ -23,6 +23,14 @@ class Kid::RewardsController < ApplicationController
 
     result = Rewards::RedeemService.new(profile: current_profile, reward: @reward).call
     if result.success?
+      family_id = current_profile.family_id
+      balance = current_profile.reload.points
+      @rewards = Reward.where(family_id: family_id).includes(:category).order(:cost)
+      @affordable_rewards = @rewards.select { |r| r.cost <= balance }
+      @locked_rewards     = @rewards.reject { |r| r.cost <= balance }
+      @redeemed_rewards   = current_profile.redemptions.includes(:reward).order(created_at: :desc)
+      @balance = balance
+
       respond_to do |format|
         format.html { redirect_to kid_rewards_path, notice: "Resgate solicitado! Aguarde a aprovação." }
         format.turbo_stream

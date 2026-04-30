@@ -9,7 +9,7 @@ RSpec.describe "Switch profile flow", type: :system, js: true do
     sign_in_profile(kid, pin: "1234")
     expect(page).to have_current_path(kid_root_path, ignore_query: true)
 
-    find("button[aria-label='Sair']").click
+    find("button[aria-label='Trocar de perfil']").click
 
     expect(page).to have_current_path(new_profile_session_path)
     expect(page).to have_content("Theo")

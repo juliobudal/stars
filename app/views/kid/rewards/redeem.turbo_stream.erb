@@ -1,16 +1,27 @@
+<%# Close + remove the open redeem modal (it was teleported to <body>). %>
+<%= turbo_stream.remove "modal_#{dom_id(@reward)}" %>
+
+<%# Refresh shop sections so the just-redeemed reward moves and balance/locked
+    progress reflect the new balance. %>
+<%= turbo_stream.update "rewards-affordable-section",
+                        partial: "kid/rewards/affordable",
+                        locals: { affordable_rewards: @affordable_rewards } %>
+<%= turbo_stream.update "rewards-locked-section",
+                        partial: "kid/rewards/locked",
+                        locals: { locked_rewards: @locked_rewards, balance: @balance } %>
+<%= turbo_stream.update "rewards-redeemed-section",
+                        partial: "kid/rewards/redeemed",
+                        locals: { redeemed_rewards: @redeemed_rewards } %>
+
 <%# Trigger Celebration via fx controller (auto-fires on insert via MutationObserver) %>
 <%= turbo_stream.append "body" do %>
   <div data-fx-event="celebrate" data-fx-tier="big" class="hidden"></div>
 <% end %>
 
-<%# Close any open redeem modal + animate balance count-down via Stimulus.
-    The redeem controller (app/assets/controllers/redeem_controller.js)
-    bumps data-count-up-current-value, which count_up_controller's
-    currentValueChanged callback animates to. %>
-<% new_balance = current_profile.reload.points %>
+<%# Animate balance count-down via redeem controller (also restores body inert/scroll). %>
 <%= turbo_stream.append "body" do %>
   <div data-controller="redeem"
-       data-redeem-balance-value="<%= new_balance %>"
+       data-redeem-balance-value="<%= @balance %>"
        data-redeem-balance-target-value="profile_points_<%= current_profile.id %>"
        hidden></div>
 <% end %>
