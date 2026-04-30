@@ -48,5 +48,9 @@ FactoryBot.define do
     trait :weekly do
       frequency { :weekly }
     end
+
+    trait :once do
+      frequency { :once }
+    end
   end
 end

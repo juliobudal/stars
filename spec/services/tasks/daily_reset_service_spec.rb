@@ -151,4 +151,24 @@ RSpec.describe Tasks::DailyResetService do
       end
     end
   end
+
+  describe "timezone-aware @date" do
+    around do |example|
+      Time.use_zone("America/Sao_Paulo") { example.run }
+    end
+
+    it "uses today's BR date when called at 23:30 BRT" do
+      travel_to Time.zone.local(2026, 4, 30, 23, 30, 0) do
+        service = described_class.new(family: family)
+        expect(service.instance_variable_get(:@date)).to eq(Date.new(2026, 4, 30))
+      end
+    end
+
+    it "rolls over to next BR date past midnight" do
+      travel_to Time.zone.local(2026, 5, 1, 0, 30, 0) do
+        service = described_class.new(family: family)
+        expect(service.instance_variable_get(:@date)).to eq(Date.new(2026, 5, 1))
+      end
+    end
+  end
 end
