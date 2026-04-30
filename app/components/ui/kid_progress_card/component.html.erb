@@ -14,7 +14,11 @@
     <div class="flex-1 min-w-0">
       <div class="flex items-baseline gap-2.5 mb-2">
         <span class="text-[18px] font-extrabold" style="color: var(--text);"><%= kid.name %></span>
-        <span class="text-[12px] font-bold" style="color: var(--text-muted);">faltam <%= stars_to_next %> ⭐ pro nível <%= level + 1 %></span>
+        <span class="text-[12px] font-bold inline-flex items-center gap-1" style="color: var(--text-muted);">
+          <span>faltam <%= stars_to_next %></span>
+          <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--star)") %>
+          <span>pro nível <%= level + 1 %></span>
+        </span>
       </div>
 
       <div class="h-[14px] rounded-[8px] overflow-hidden mb-3 relative" style="background: var(--hairline);">

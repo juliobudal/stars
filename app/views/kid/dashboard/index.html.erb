@@ -27,16 +27,19 @@
       <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase mb-1" style="color: var(--c-sky-dark);">
         <%= greeting %> <%= current_profile.name %>!
       </div>
-      <h1 class="font-display text-[22px] leading-tight font-extrabold tracking-[-0.01em] m-0" style="color: var(--text);">
-        Bora pegar mais ⭐ hoje?
+      <h1 class="font-display text-[22px] leading-tight font-extrabold tracking-[-0.01em] m-0 inline-flex items-center gap-1.5 flex-wrap" style="color: var(--text);">
+        <span>Bora pegar mais</span>
+        <%= render Ui::Icon::Component.new(:star, size: 20, color: "var(--star)") %>
+        <span>hoje?</span>
       </h1>
-      <p class="text-[13px] font-bold mt-1.5 m-0" style="color: var(--text-muted);">
+      <p class="text-[13px] font-bold mt-1.5 m-0 inline-flex items-center gap-1.5 flex-wrap" style="color: var(--text-muted);">
         <% if remaining.positive? %>
-          Você tem <strong style="color: var(--c-sky-dark);"><%= pluralize(remaining, "missão", plural: "missões") %></strong> pra completar
+          <span>Você tem <strong style="color: var(--c-sky-dark);"><%= pluralize(remaining, "missão", plural: "missões") %></strong> pra completar</span>
         <% elsif @awaiting_tasks.any? %>
-          <strong style="color: var(--c-sky-dark);"><%= pluralize(@awaiting_tasks.count, "missão", plural: "missões") %></strong> esperando carimbo
+          <span><strong style="color: var(--c-sky-dark);"><%= pluralize(@awaiting_tasks.count, "missão", plural: "missões") %></strong> esperando carimbo</span>
         <% else %>
-          Tudo feito por hoje! 🎉
+          <span>Tudo feito por hoje!</span>
+          <%= render Ui::Icon::Component.new(:party, size: 16, color: "var(--c-peach-dark)") %>
         <% end %>
       </p>
     </div>
@@ -90,14 +93,15 @@
       <div class="ls-card-3d inline-flex items-center gap-1.5"
            style="background: var(--primary-soft); border: 2px solid var(--primary); padding: 4px 10px; border-radius: 10px; box-shadow: 0 2px 0 var(--primary-2);">
         <span class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--primary-2);">
-          <%= done_count %> de <%= total %> ✓
+          <%= done_count %> de <%= total %>
         </span>
+        <%= render Ui::Icon::Component.new(:check, size: 12, color: "var(--primary-2)") %>
       </div>
     <% end %>
   </div>
 
   <%# ── Mission list ── %>
-  <div class="flex flex-col gap-2.5 mb-5 relative z-2">
+  <div class="flex flex-col gap-3 mb-6 relative z-2">
 
     <%# Completed (approved today) %>
     <% @completed_today.each_with_index do |task, i| %>

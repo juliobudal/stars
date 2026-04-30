@@ -52,9 +52,16 @@
   --c-sky-depth: #1899D6;
   --c-lilac-depth: #A855E0;
 
+  --c-amber: #FFC800;
   --c-amber-soft: #FFF4DA;
   --c-amber-dark: #B36F00;
 
+  --c-star: var(--star);
+  --c-star-soft: var(--star-soft);
+  --c-star-dark: var(--star-2);
+
+  --c-violet: #A78BFA;
+  --c-violet-soft: #EDE9FE;
   --c-violet-dark: #7C3AED;
   --c-red-soft: #FFE4E1;
   --c-red-dark: #C53232;

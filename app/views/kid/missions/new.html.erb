@@ -1,7 +1,10 @@
 <%# Custom mission form — kid proposes a one-off task already done %>
 <div class="px-5 py-6 max-w-[480px] md:max-w-[560px] lg:max-w-[720px] mx-auto">
   <h1 class="font-display text-[26px] font-extrabold mb-1" style="color: var(--text);">Nova missão!</h1>
-  <p class="text-[14px] font-bold mb-5" style="color: var(--text-muted);">Conta o que você fez. Os pais aprovam e você ganha estrelas! ⭐</p>
+  <p class="text-[14px] font-bold mb-5 inline-flex items-center gap-1.5 flex-wrap" style="color: var(--text-muted);">
+    <span>Conta o que você fez. Os pais aprovam e você ganha estrelas!</span>
+    <%= render Ui::Icon::Component.new(:star, size: 16, color: "var(--star)") %>
+  </p>
 
   <%= form_with url: kid_missions_path, scope: :profile_task, multipart: true, local: true,
         html: { class: "space-y-4" } do |f| %>

@@ -25,13 +25,9 @@
     </div>
 
     <div class="mt-4">
-      <%= render Ui::Btn::Component.new(
-            variant: "secondary",
-            size: "lg",
-            url: new_parent_profile_path,
-            block: true,
-            class: "border-dashed"
-          ) do %>
+      <%= link_to new_parent_profile_path,
+            class: "ui-btn ui-btn--lg w-full min-h-[44px] anim-press border-2 border-dashed",
+            style: "background: var(--primary-soft); color: var(--primary-2); border-color: var(--primary);" do %>
         <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
         Adicionar outra criança
       <% end %>

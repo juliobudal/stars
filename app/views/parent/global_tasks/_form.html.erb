@@ -117,17 +117,22 @@
     %>
     <%= render Ui::FormSection::Component.new(title: "Repetível no período") do %>
       <div data-controller="repeatable" data-repeatable-default-max-value="3">
-        <label class="flex items-center gap-3 cursor-pointer">
+        <label class="flex items-center justify-between gap-3 cursor-pointer select-none group">
+          <span class="text-[13px] font-extrabold flex-1" style="color: var(--text);">
+            Permitir mais de uma execução por período
+          </span>
           <input type="checkbox"
-                 class="form-checkbox"
+                 class="sr-only peer"
                  data-repeatable-target="toggle"
                  data-action="change->repeatable#toggle"
                  <%= "checked" if repeatable_initial %>
                  <%= "disabled" if global_task.frequency.to_s == "once" %>
                  aria-controls="repeatable_field"
                  aria-label="Permitir múltiplas execuções por período" />
-          <span class="text-[13px] font-extrabold" style="color: var(--text);">
-            Permitir mais de uma execução por período
+          <span class="w-[52px] h-[30px] rounded-full bg-hairline transition-colors duration-200 relative peer-checked:bg-primary peer-disabled:opacity-50"
+                style="box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);">
+            <span class="w-[24px] h-[24px] rounded-full bg-white absolute top-[3px] left-[3px] transition-transform duration-200 peer-checked:translate-x-[22px]"
+                  style="box-shadow: 0 2px 0 rgba(0,0,0,0.15);"></span>
           </span>
         </label>
 

@@ -65,8 +65,10 @@
     </div>
     <div class="flex-1 min-w-0">
       <div class="font-display text-[15px] font-extrabold line-through" style="color: var(--primary-2);"><%= @mission.title %></div>
-      <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase mt-0.5" style="color: var(--primary-2);">
-        +<%= points_value %> ★ ganhas!
+      <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase mt-0.5 inline-flex items-center gap-1" style="color: var(--primary-2);">
+        <span>+<%= points_value %></span>
+        <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--star)") %>
+        <span>ganhas!</span>
       </div>
     </div>
   </div>
