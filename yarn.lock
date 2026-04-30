@@ -14,83 +14,6 @@
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.29.2.tgz"
   integrity sha512-JiDShH45zKHWyGe4ZNVRrCjBz8Nh9TMmZG1kh4QTK8hCBTWBi8Da+i7s1fJw7/lYpM4ccepSNfqzZ/QvABBi5g==
 
-"@easepick/amp-plugin@^1.1.0":
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/@easepick/amp-plugin/-/amp-plugin-1.2.1.tgz"
-  integrity sha512-LbGd7RU+fiucxTqJnBpT5SwACX1BoEK4yi1joLqN50O57jpN0jQMMvDO/vp/F4Zr8MO6kwaamRmOXhqo/Vb4aw==
-  dependencies:
-    "@easepick/base-plugin" "^1.1.0"
-
-"@easepick/base-plugin@^1.1.0":
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/@easepick/base-plugin/-/base-plugin-1.2.1.tgz"
-  integrity sha512-aonBQaRyZwNH/gmPzSzZDVjQjgy/rxWd+TXnM0E3Nxkeu4yMbXV+GnWVQbBwTvJx74M7iSCHJowdmZ5T46B7Vg==
-  dependencies:
-    "@easepick/core" "^1.1.0"
-
-"@easepick/bundle@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/@easepick/bundle/-/bundle-1.2.1.tgz"
-  integrity sha512-M9DGu7rrIltbTEPuBfc8fTOdK1E2CjTIiSqXmVRcof/peDnDC7U7h3XaTx7nbB0gq4HUTUO8BKHrofPC0jPqSw==
-  dependencies:
-    "@easepick/amp-plugin" "^1.1.0"
-    "@easepick/base-plugin" "^1.1.0"
-    "@easepick/core" "^1.1.0"
-    "@easepick/datetime" "^1.1.0"
-    "@easepick/kbd-plugin" "^1.1.0"
-    "@easepick/lock-plugin" "^1.1.0"
-    "@easepick/preset-plugin" "^1.1.0"
-    "@easepick/range-plugin" "^1.1.0"
-    "@easepick/time-plugin" "^1.1.0"
-
-"@easepick/core@^1.1.0":
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/@easepick/core/-/core-1.2.1.tgz"
-  integrity sha512-V/blEia/ykAq+0mnQ9djOU5wvMZ+iffL5iuQrKLObpMOw38kL/qo4inH4pCbB3wm7sDjrJTuDKf+6+FrgdFGsw==
-  dependencies:
-    "@easepick/datetime" "^1.1.0"
-
-"@easepick/datetime@^1.1.0":
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/@easepick/datetime/-/datetime-1.2.1.tgz"
-  integrity sha512-KIUvWo/kEipwBqPTazjfUf6R7dKb2ztPizPoB/0ZMYz3HrWJptsLSZQma3R1nM/zkaexnk/e4L4nX+vDjwBtYA==
-
-"@easepick/kbd-plugin@^1.1.0":
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/@easepick/kbd-plugin/-/kbd-plugin-1.2.1.tgz"
-  integrity sha512-t/bEtKuvAbo9b9iw4J5h5DsGYEL4Wm2sLA2VzR2rvmMfJuo1extktgzw2eCy+w6Q/s4ObdKzhXLnjMvFeiJ8Xg==
-  dependencies:
-    "@easepick/base-plugin" "^1.1.0"
-
-"@easepick/lock-plugin@^1.1.0":
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/@easepick/lock-plugin/-/lock-plugin-1.2.1.tgz"
-  integrity sha512-6sJCdliMpnQtzL9dwznS9vYaQUy66VRKPZ+jFdVR1ohiNUVM6C7dSGdG3dPntVTywTy2Z9uU+yJOeWcVFDT61A==
-  dependencies:
-    "@easepick/base-plugin" "^1.1.0"
-
-"@easepick/preset-plugin@^1.1.0":
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/@easepick/preset-plugin/-/preset-plugin-1.2.1.tgz"
-  integrity sha512-VAnjyWpf39kXTR6DYbpCJIBeBhbOgRoNTqntpSb5uF9O398KuHUpIM4Ep1id3fTIlfnRrKxzp54rAFwvc48eCA==
-  dependencies:
-    "@easepick/base-plugin" "^1.1.0"
-    "@easepick/range-plugin" "^1.1.0"
-
-"@easepick/range-plugin@^1.1.0":
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/@easepick/range-plugin/-/range-plugin-1.2.1.tgz"
-  integrity sha512-yEHLUq32Kj0exLz4txxchALQVJUbwyXvnovfN7yxTrCJLpi6uMmPXcW4lyYig2P9+xM9JqF6JsNqOsi0+5GlHQ==
-  dependencies:
-    "@easepick/base-plugin" "^1.1.0"
-
-"@easepick/time-plugin@^1.1.0":
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/@easepick/time-plugin/-/time-plugin-1.2.1.tgz"
-  integrity sha512-mjynAAppLxlqiDSdHdkBEqi4A67CH17FqO3UH2n6mfAIKPZLQA7R8Y6jEkp+Fpl5tj0/HFqdrk82ceiYYnLFYw==
-  dependencies:
-    "@easepick/base-plugin" "^1.1.0"
-
 "@emnapi/core@^1.8.1":
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/@emnapi/core/-/core-1.10.0.tgz#380ccc8f2412ea22d1d972df7f8ee23a3b9c7467"
@@ -993,13 +916,6 @@ cheerio@1.0.0-rc.12:
     parse5 "^7.0.0"
     parse5-htmlparser2-tree-adapter "^7.0.0"
 
-choices.js@^11.1.0:
-  version "11.2.2"
-  resolved "https://registry.npmjs.org/choices.js/-/choices.js-11.2.2.tgz"
-  integrity sha512-fvG4GcRTXw13SEKYzxydxikmN54PSTagO9SQaZwthr5g/L3iM4iVER8Mmy+9Ei50Df/XAqHItSmqcjZHx7tfhA==
-  dependencies:
-    fuse.js "^7.0.0"
-
 chokidar@^3.0.0:
   version "3.6.0"
   resolved "https://registry.npmjs.org/chokidar/-/chokidar-3.6.0.tgz"
@@ -1834,11 +1750,6 @@ functions-have-names@^1.2.3:
   resolved "https://registry.npmjs.org/functions-have-names/-/functions-have-names-1.2.3.tgz"
   integrity sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==
 
-fuse.js@^7.0.0:
-  version "7.3.0"
-  resolved "https://registry.npmjs.org/fuse.js/-/fuse.js-7.3.0.tgz"
-  integrity sha512-plz8RVjfcDedTGfVngWH1jmJvBvAwi1v2jecfDerbEnMcmOYUEEwKFTHbNoCiYyzaK2Ws8lABkTCcRSqCY1q4w==
-
 generator-function@^2.0.0:
   version "2.0.1"
   resolved "https://registry.npmjs.org/generator-function/-/generator-function-2.0.1.tgz"
@@ -2002,11 +1913,6 @@ he@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/he/-/he-1.2.0.tgz"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
-
-highlight.js@^11.11.1:
-  version "11.11.1"
-  resolved "https://registry.npmjs.org/highlight.js/-/highlight.js-11.11.1.tgz"
-  integrity sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w==
 
 html-minifier@^4.0.0:
   version "4.0.0"
