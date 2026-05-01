@@ -42,7 +42,7 @@
 **Plans:** 8 plans
 
 Plans:
-- [ ] 06-01-PLAN.md — Migration + Profile model (FK, association, broadcast callback) + spec extension (Wave 0)
+- [x] 06-01-PLAN.md — Migration + Profile model (FK, association, broadcast callback) + spec extension (Wave 0)
 - [ ] 06-02-PLAN.md — Profiles::SetWishlistService + spec (Wave 1)
 - [ ] 06-03-PLAN.md — Ui::WishlistGoal::Component + colocated CSS + broadcast partial + spec + DESIGN.md row (Wave 1)
 - [ ] 06-04-PLAN.md — Kid::WishlistController + routes + request spec (Wave 2)
