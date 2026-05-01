@@ -32,6 +32,11 @@ module Rewards
 
         @profile.decrement!(:points, @reward.cost)
 
+        # Auto-clear wishlist if redeeming the pinned reward (must stay inside the transaction).
+        if @profile.wishlist_reward_id == @reward.id
+          @profile.update!(wishlist_reward_id: nil)
+        end
+
         redemption = Redemption.create!(
           profile: @profile,
           reward: @reward,
