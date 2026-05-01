@@ -1,0 +1,23 @@
+<div hidden
+     class="install-prompt"
+     data-controller="install-prompt">
+  <div class="install-prompt__icon" aria-hidden="true">⭐</div>
+  <div class="install-prompt__body">
+    <p class="install-prompt__title">Instale o LittleStars</p>
+    <p class="install-prompt__subtitle">Acesso rápido pela tela inicial.</p>
+  </div>
+  <div class="install-prompt__actions">
+    <button type="button"
+            class="install-prompt__cta"
+            data-install-prompt-target="installButton"
+            data-action="click->install-prompt#install">
+      Instalar
+    </button>
+    <button type="button"
+            class="install-prompt__dismiss"
+            data-install-prompt-target="dismissButton"
+            data-action="click->install-prompt#dismiss">
+      Agora não
+    </button>
+  </div>
+</div>
