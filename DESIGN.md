@@ -50,6 +50,8 @@ All tokens defined in `app/assets/stylesheets/tailwind/theme.css`. Use the varia
 
 **Rule:** all color usage in views goes through a CSS variable. Raw hex is only allowed in `tailwind/theme.css`.
 
+**Exception — `public/offline.html`:** the PWA offline fallback page must render without `theme.css` being available (the service worker may serve it while the asset cache is cold or stale). It therefore inlines its own minimal Duolingo-token-equivalent CSS, including raw `#58CC02`, `#46A302`, `#F7F7F7`, `#4B4B4B`. This is the only view file outside `theme.css` where raw hex is tolerated. Any change to brand color tokens must be mirrored in `public/offline.html` by hand.
+
 ---
 
 ## 3. Typography
@@ -215,6 +217,8 @@ Location: `app/components/ui/<name>/`. Always reach for a `Ui::*` first; only wr
 | `Ui::TurboConfirm` | `ui/turbo_confirm/` | custom Turbo confirm dialog (replaces browser `confirm()`) |
 | `Ui::Celebration` | `ui/celebration/` | full-screen success overlay |
 | `Ui::Confetti` | `ui/confetti/` | confetti particle burst layer |
+| `Ui::InstallPrompt` | `ui/install_prompt/` | bottom-fixed PWA install card; reveals on `beforeinstallprompt`; dismissible with 7-day localStorage cooldown (`pwa-install-dismissed-at`); rendered hidden on every kid + parent layout. Tokens: `--primary`, `--primary-2`, `--text`, `--text-muted`, `--hairline`, `0 4px 0` depth shadow, 14px radius. Stimulus identifier `install-prompt`; auto-hides when `display-mode: standalone` or recent dismissal. |
+| `Ui::IosInstallHint` | `ui/ios_install_hint/` | iOS Safari hint pointing to Share → "Adicionar à Tela de Início"; iPad/iPhone/iPod only via UA + `navigator.standalone === false`; rendered hidden on every kid + parent layout. Tokens: neutral surface (`--surface`), `--text`, `--text-muted`, `--hairline`, `0 4px 0` depth shadow, 14px radius. Stimulus identifier `ios-install-hint`; 7-day localStorage dismissal. |
 
 ### Utility
 
