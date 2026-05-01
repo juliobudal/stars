@@ -164,6 +164,7 @@ Location: `app/components/ui/<name>/`. Always reach for a `Ui::*` first; only wr
 | `Ui::RedemptionRow` | `ui/redemption_row/` | reward redemption record with status badge |
 | `Ui::RewardCatalogCard` | `ui/reward_catalog_card/` | `reward:` — icon cell (56×56, tint + border) + star pill + edit/delete actions |
 | `Ui::CategoryRow` | `ui/category_row/` | category label + grouped items in a list |
+| `Ui::WishlistGoal` | `ui/wishlist_goal/` | `profile:` — pinned-reward goal card with progress bar; empty / filled / funded states; lives inside `turbo_frame_tag dom_id(profile, :wishlist)` for live broadcast (`Ui::Icon`, `--primary`, `--primary-2`, `--primary-soft`, `--star`, `--hairline`; `ls-card-3d`, `ls-btn-3d`; reduced-motion-safe progress fill) |
 
 ### Avatars & identity
 

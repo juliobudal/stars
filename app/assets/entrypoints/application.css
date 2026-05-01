@@ -34,6 +34,7 @@
 @import "../../components/ui/spinner/turbo_frame_spinner.css";
 @import "../../components/ui/tabs/tabs.css";
 @import "../../components/ui/tooltip/tooltip.css";
+@import "../../components/ui/wishlist_goal/component.css";
 
 /* Vendors */
 @import "../stylesheets/vendors/hugeicons";
