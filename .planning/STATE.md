@@ -3,13 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-05-01T00:21:22.701Z"
+stopped_at: Completed 06-02-PLAN.md
+last_updated: "2026-05-01T00:30:00Z"
 progress:
   total_phases: 6
   completed_phases: 0
   total_plans: 8
-  completed_plans: 1
-  percent: 13
+  completed_plans: 2
+  percent: 25
 ---
 
 # Project State
@@ -25,15 +26,18 @@ progress:
 - **Phase 6, Plan 01:** Single broadcast source for the wishlist Turbo Frame is `Profile#after_update_commit :broadcast_wishlist_card` (combined-condition lambda on `points` OR `wishlist_reward_id`). Services in this phase MUST NOT add their own wishlist broadcasts — that would double-fire (RESEARCH.md Q2/A6).
 - **Phase 6, Plan 01:** Placeholder `app/views/kid/wishlist/_goal.html.erb` (just a `turbo_frame_tag` shell) created in Plan 06-01 instead of waiting for Plan 06-03. Required because `Turbo::StreamsChannel.broadcast_replace_to` renders the partial synchronously; a missing partial raises `ActionView::MissingTemplate` which the rescue silently swallows, breaking broadcast assertions. Plan 06-03 will overwrite the stub with the real `Ui::WishlistGoal::Component` render.
 - **Phase 6, Plan 01:** RSpec broadcast assertions for `Turbo::StreamsChannel.broadcast_*_to` must use the bare `have_broadcasted_to("kid_<id>")` matcher — chaining `.from_channel(Turbo::StreamsChannel)` matches 0 broadcasts because the helper writes directly to `ActionCable.server.broadcast` without instantiating the channel.
+- **Phase 6, Plan 02:** `Profiles::SetWishlistService` is THE single entry point for setting/clearing `profile.wishlist_reward`. Controllers MUST NOT touch `profile.wishlist_reward_id` directly (CLAUDE.md C-1). The service is broadcast-free; the `Profile#after_update_commit :broadcast_wishlist_card` callback (Plan 06-01) is the single broadcast source.
+- **Phase 6, Plan 02:** Cross-family guard in `Profiles::SetWishlistService` uses Brazilian Portuguese error `"Reward não pertence a esta família"` and runs BEFORE the transaction (defense in depth on top of the controller-layer `Reward.where(family_id: …).find` scope landing in Plan 06-04).
 
 ### Completed Plans
 
 - **06-01** (2026-05-01) — Wishlist foundation: nullable FK + Profile association + broadcast callback. SUMMARY: `.planning/phases/06-wishlist-goal-tracking/06-01-SUMMARY.md`. Commits: `39251d8`, `e9a8f3b`, `859a133`.
+- **06-02** (2026-05-01) — `Profiles::SetWishlistService` (single entry point, cross-family guard, broadcast-free). SUMMARY: `.planning/phases/06-wishlist-goal-tracking/06-02-SUMMARY.md`. Commits: `e11e2d9`, `bedfbd4`.
 
 ### Last Session
 
-- **Last updated:** 2026-05-01T00:21:00Z
-- **Stopped at:** Completed 06-01-PLAN.md
+- **Last updated:** 2026-05-01T00:30:00Z
+- **Stopped at:** Completed 06-02-PLAN.md
 - **Blockers:** None
 
 ### Performance Metrics
@@ -41,6 +45,7 @@ progress:
 | Phase | Plan | Duration | Tasks | Files |
 | ----- | ---- | -------- | ----- | ----- |
 | 06    | 01   | 11min    | 3     | 6     |
+| 06    | 02   | 3min     | 2     | 2     |
 
 ### Out-of-Scope Items Logged
 
