@@ -28,6 +28,7 @@
 @import "../../components/ui/drawer/drawer.css";
 @import "../../components/ui/group/group.css";
 @import "../../components/ui/install_prompt/component.css";
+@import "../../components/ui/ios_install_hint/component.css";
 @import "../../components/ui/modal/modal.css";
 @import "../../components/ui/pin_modal/component.css";
 @import "../../components/ui/profile_picker/component.css";

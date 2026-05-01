@@ -16,6 +16,7 @@
       <%= yield %>
     </div>
     <%= render Ui::InstallPrompt::Component.new %>
+    <%= render Ui::IosInstallHint::Component.new %>
     <div hidden
          data-controller="pwa-update"
          class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 max-w-[420px] w-[calc(100%-2rem)] rounded-[14px] border-2 border-black/10 bg-white text-foreground shadow-[0_4px_0_rgba(0,0,0,0.12)] p-4 flex items-center gap-3 font-bold">
