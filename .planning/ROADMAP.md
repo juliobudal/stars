@@ -45,7 +45,7 @@ Plans:
 - [x] 06-01-PLAN.md — Migration + Profile model (FK, association, broadcast callback) + spec extension (Wave 0)
 - [x] 06-02-PLAN.md — Profiles::SetWishlistService + spec (Wave 1)
 - [x] 06-03-PLAN.md — Ui::WishlistGoal::Component + colocated CSS + broadcast partial + spec + DESIGN.md row (Wave 1)
-- [ ] 06-04-PLAN.md — Kid::WishlistController + routes + request spec (Wave 2)
+- [x] 06-04-PLAN.md — Kid::WishlistController + routes + request spec (Wave 2)
 - [ ] 06-05-PLAN.md — Rewards::RedeemService auto-clear inside transaction + spec extension (Wave 2)
 - [ ] 06-06-PLAN.md — Kid dashboard slot + reward card pin/unpin toggles (Wave 3)
 - [ ] 06-07-PLAN.md — Parent dashboard "Meta atual" via KidProgressCard + N+1 fix + spec extension (Wave 3)
