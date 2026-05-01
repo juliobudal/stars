@@ -50,5 +50,6 @@ Rails.application.routes.draw do
       member { post :redeem }
     end
     resources :wallet, only: [ :index ]
+    resource :wishlist, only: %i[create destroy], controller: "wishlist"
   end
 end
