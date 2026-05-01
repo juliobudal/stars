@@ -61,5 +61,5 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Everything else: pass through (browser default)
+  // Non-GET, cross-origin, and unmatched same-origin GETs pass through to network with no caching.
 });
