@@ -2,21 +2,35 @@
   "name": "LittleStars",
   "short_name": "LittleStars",
   "description": "Gerencie tarefas da família com economia de estrelas",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "orientation": "portrait",
+  "display": "standalone",
+  "display_override": ["standalone"],
+  "scope": "/",
+  "start_url": "/?source=pwa",
+  "id": "/?source=pwa",
+  "theme_color": "#58CC02",
+  "background_color": "#F7F7F7",
+  "categories": ["education", "kids", "productivity"],
   "icons": [
-    {
-      "src": "/icon.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    },
     {
       "src": "/icon.svg",
       "type": "image/svg+xml",
-      "sizes": "any"
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
-  ],
-  "theme_color": "#58CC02",
-  "background_color": "#F7F7F7",
-  "display": "standalone",
-  "scope": "/",
-  "start_url": "/"
+  ]
 }
