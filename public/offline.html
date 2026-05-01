@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sem conexão · LittleStars</title>
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --brand: #58CC02;
+      --bg: #F7F7F7;
+      --ink: #2B2B2B;
+      --muted: #6B6B6B;
+      --shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+    body {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-weight: 700;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    img { width: 96px; height: 96px; }
+    h1 { font-size: 1.75rem; margin: 1.5rem 0 0.5rem; font-weight: 800; }
+    p  { color: var(--muted); margin: 0 0 2rem; max-width: 28ch; line-height: 1.4; }
+    button {
+      appearance: none;
+      background: var(--brand);
+      color: white;
+      font: inherit;
+      font-weight: 800;
+      border: 2px solid rgba(0, 0, 0, 0.12);
+      border-radius: 14px;
+      padding: 0.875rem 1.75rem;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+    }
+    button:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.12); }
+    @media (prefers-reduced-motion: reduce) { button { transition: none; } }
+  </style>
+</head>
+<body>
+  <img src="/icon.svg" alt="LittleStars">
+  <h1>Sem conexão</h1>
+  <p>Tente novamente quando voltar a internet. Suas estrelas estão seguras.</p>
+  <button type="button" onclick="location.reload()">Tentar de novo</button>
+  <script>
+    window.addEventListener('online', () => location.reload());
+  </script>
+</body>
+</html>
