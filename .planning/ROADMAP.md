@@ -39,7 +39,7 @@
 - All mutations go through `Profiles::SetWishlistService` returning `ApplicationService::Result`
 - Single broadcast source: `Profile#after_update_commit :broadcast_wishlist_card` fires on `points` OR `wishlist_reward_id` change (services do not broadcast directly)
 **Depends on:** Phase 5
-**Plans:** 8 plans
+**Plans:** 8/8 plans complete
 
 Plans:
 - [x] 06-01-PLAN.md — Migration + Profile model (FK, association, broadcast callback) + spec extension (Wave 0)
@@ -49,7 +49,7 @@ Plans:
 - [x] 06-05-PLAN.md — Rewards::RedeemService auto-clear inside transaction + spec extension (Wave 2)
 - [x] 06-06-PLAN.md — Kid dashboard slot + reward card pin/unpin toggles (Wave 3)
 - [x] 06-07-PLAN.md — Parent dashboard "Meta atual" via KidProgressCard + N+1 fix + spec extension (Wave 3)
-- [ ] 06-08-PLAN.md — End-to-end system spec + full suite verification (Wave 4)
+- [x] 06-08-PLAN.md — End-to-end system spec + full suite verification (Wave 4)
 
 ---
 

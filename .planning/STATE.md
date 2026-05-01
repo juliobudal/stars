@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 06-07-PLAN.md
-last_updated: "2026-05-01T01:15:01.481Z"
+stopped_at: Completed 06-08-PLAN.md (Phase 6 complete)
+last_updated: "2026-05-01T01:34:54.663Z"
 progress:
   total_phases: 6
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 8
-  completed_plans: 7
-  percent: 88
+  completed_plans: 8
+  percent: 100
 ---
 
 # Project State
@@ -36,6 +36,7 @@ progress:
 - **Phase 6, Plan 06:** Kid dashboard slot uses the broadcast partial directly (`render "kid/wishlist/goal", profile: current_profile`) instead of the component — guarantees first-paint DOM matches Turbo Stream broadcast replace by construction. The partial wraps `Ui::WishlistGoal::Component.new(profile: profile)`. Plan's literal-grep acceptance criterion `grep -q 'Ui::WishlistGoal::Component.new(profile: current_profile)'` on the dashboard file is deliberately not met; semantic equivalent is satisfied via the partial.
 - **Phase 6, Plan 06:** Reward card outer wrapper convention established: `<div id="<%= dom_id(reward) %>" class="relative" data-filter-tabs-target="item" ...>`. Pin button positioned `absolute top-2 right-2 z-10` as SIBLING of modal-trigger button (NOT nested) — mitigates T-06-15 (click-jacking) via structural separation. Plan 06-08 system spec uses `within("##{dom_id(reward)}")` for stable card lookup.
 - **Phase 6, Plan 07:** Parent dashboard surfaces each kid's wishlist via a read-only `Meta atual` line inside the existing `Ui::KidProgressCard` flex row (no new `parent/profiles#show` route). Mandatory companion: `Parent::DashboardController#index` eager-loads `:wishlist_reward` to avoid N+1 (one query per child). Read-only contract is enforced structurally by spec (`not_to have_css("a[href*='wishlist']")` and `not_to have_css("form[action*='wishlist']")`) — mitigates T-06-16 regression. Established the "companion eager-load" rule: any new association lookup added to a `Ui::*` helper requires the rendering controller(s) to add `.includes(...)` in the same plan.
+- **Phase 6, Plan 08:** End-to-end Capybara system spec (`spec/system/kid_wishlist_spec.rb`, 4 examples) verifies the full wishlist mechanic under real Selenium + Turbo: pin → dashboard render → unpin → empty CTA → redeem auto-clear → parent visibility. Live Turbo Stream broadcast scenario intentionally omitted (covered at unit level by Plans 06-01/06-02). Three system-spec patterns established: (1) target aria-labelled buttons via `find("button[aria-label='...']")` not `click_on` (Capybara doesn't match aria-label by default); (2) when a Turbo `button_to` form responds `head :ok` and the source page has no matching Turbo Frame, poll DB state via inline `wait_for { ... }` before navigating away (no DOM change to anchor on); (3) match CSS-uppercased text with case-insensitive regex (`/text/i`). Phase 6 is end-to-end green: 585 examples / 4 failures (all pre-existing flakes documented in 06-06-SUMMARY, none caused by Phase 6); lint green.
 
 ### Completed Plans
 
@@ -46,11 +47,12 @@ progress:
 - **06-05** (2026-05-01) — Auto-clear wishlist when redeeming the pinned reward: 5-line in-transaction guarded `update!(wishlist_reward_id: nil)` inside `Rewards::RedeemService` between `decrement!` and `Redemption.create!`; 3 new spec examples (clear, decrement-coexistence, non-pinned no-op); 15/15 redeem_service_spec green; no service-side broadcast added. SUMMARY: `.planning/phases/06-wishlist-goal-tracking/06-05-SUMMARY.md`. Commits: `9b5985a`, `3d7cc81`.
 - **06-06** (2026-04-30) — Kid dashboard slot for the wishlist goal card + pin/unpin `button_to` toggle on every reward card (affordable + locked). Dashboard renders `kid/wishlist/goal` partial directly (matches Turbo Stream broadcast DOM by construction). Reward-card outer wrapper gains `id=dom_id(reward)` + `class=relative`; pin form is sibling of modal-trigger button (not nested), positioned `absolute top-2 right-2 z-10`. Brazilian Portuguese aria-labels (`Definir como meta` / `Remover meta`); zero raw hex introduced. SUMMARY: `.planning/phases/06-wishlist-goal-tracking/06-06-SUMMARY.md`. Commits: `af74d7e`, `9556b6d`, `a936368`.
 - **06-07** (2026-05-01) — Parent dashboard read-only `Meta atual` line inside `Ui::KidProgressCard` (filled state shows `Meta: <reward.title>` with gift icon; empty state shows italic `Sem meta`). `Parent::DashboardController#index` preloads `:wishlist_reward` to eliminate N+1. Spec extended with 3 new examples: empty/filled rendering plus structural read-only guard (`not_to have_css("a[href*='wishlist']")` + `not_to have_css("form[action*='wishlist']")`). 8/8 component examples and 72/72 parent request examples pass. SUMMARY: `.planning/phases/06-wishlist-goal-tracking/06-07-SUMMARY.md`. Commits: `960bd47`, `5a36d82`, `6599d13`, `565ddf1`.
+- **06-08** (2026-05-01) — Phase-gate system spec: `spec/system/kid_wishlist_spec.rb` (4 examples covering pin → dashboard, unpin → empty CTA, redeem auto-clear, parent visibility) green under real Selenium + Turbo. Pre-existing rubocop offence in Plan 06-01's migration fixed (2-char whitespace) to satisfy this plan's `make lint` gate. Full RSpec suite: 585 examples, 4 failures (all 4 are pre-existing flakes documented in 06-06-SUMMARY: kid_flow_spec, parent/global_task_repeatable_form_spec ×2, signup_flow_spec — zero new regressions). Lint green. **Phase 6 complete (8/8 plans).** SUMMARY: `.planning/phases/06-wishlist-goal-tracking/06-08-SUMMARY.md`. Commits: `4f0185f`, `1cf4f7b`.
 
 ### Last Session
 
-- **Last updated:** 2026-05-01T01:17:30Z
-- **Stopped at:** Completed 06-07-PLAN.md
+- **Last updated:** 2026-05-01T01:31:04Z
+- **Stopped at:** Completed 06-08-PLAN.md (Phase 6 complete)
 - **Blockers:** None
 
 ### Performance Metrics
@@ -64,6 +66,7 @@ progress:
 | 06    | 05   | 2min     | 2     | 2     |
 | 06    | 06   | 10min    | 3     | 3     |
 | 06    | 07   | 6min     | 4     | 4     |
+| 06    | 08   | 11min    | 2     | 2     |
 
 ### Out-of-Scope Items Logged
 
