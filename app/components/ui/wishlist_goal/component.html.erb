@@ -1,0 +1,59 @@
+<%= turbo_frame_tag dom_id(@profile, :wishlist) do %>
+  <% if pinned? %>
+    <div class="bg-surface rounded-[16px] border-2 border-hairline p-4 ls-card-3d mb-5"
+         style="box-shadow: var(--shadow-card);"
+         data-testid="wishlist-goal-filled">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="rounded-[12px] p-2"
+             style="background: var(--primary-soft);">
+          <%= render Ui::Icon::Component.new(
+                (reward.respond_to?(:icon) && reward.icon.presence) || (reward.category&.icon.presence) || "gift",
+                size: 22,
+                color: "var(--primary-2)"
+              ) %>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-[12px] font-bold uppercase tracking-wide" style="color: var(--text-muted);">Minha meta</p>
+          <p class="text-[16px] font-extrabold truncate" style="color: var(--text);"><%= reward.title %></p>
+        </div>
+      </div>
+
+      <div class="wishlist-goal__bar relative overflow-hidden"
+           style="height: 18px; background: var(--hairline); border-radius: 10px;">
+        <div class="wishlist-goal__fill h-full"
+             style="width: <%= progress_pct %>%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-soft) 100%); border-radius: 10px; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);">
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between mt-2.5">
+        <span class="text-[13px] font-bold" style="color: var(--text);">
+          <%= profile.points %>/<%= reward.cost %>⭐
+        </span>
+        <% if funded? %>
+          <span class="text-[13px] font-extrabold" style="color: var(--primary-2);">Pronto pra resgatar! 🎉</span>
+        <% else %>
+          <span class="text-[13px] font-bold" style="color: var(--text-muted);">
+            Faltam <strong style="color: var(--primary-2);"><%= stars_remaining %>⭐</strong>
+          </span>
+        <% end %>
+      </div>
+
+      <% if funded? %>
+        <%= link_to kid_rewards_path(anchor: dom_id(reward)),
+                    class: "ls-btn-3d block text-center mt-3 px-4 py-2.5 rounded-[12px] font-extrabold text-white",
+                    style: "background: var(--primary); box-shadow: 0 4px 0 var(--primary-2);" do %>
+          Resgatar agora
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <div data-testid="wishlist-goal-empty">
+      <%= link_to kid_rewards_path,
+                  class: "block text-center rounded-[16px] p-4 mb-5 ls-card-3d",
+                  style: "background: var(--surface); border: 2px dashed var(--hairline); color: var(--text-muted); text-decoration: none;" do %>
+        <p class="text-[14px] font-bold">Escolha um prêmio como meta ⭐</p>
+        <p class="text-[12px] mt-1" style="color: var(--text-soft);">Toque para escolher na sua loja</p>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
