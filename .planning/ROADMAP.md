@@ -70,9 +70,9 @@ Plans:
 **Plans:** 0/7 plans complete
 
 Plans:
-- [ ] 07-01-PLAN.md — Rails PWA routes + manifest expansion + head meta + manifest link tag (Wave 0)
-- [ ] 07-02-PLAN.md — Maskable PNG icons (192/512) + favicon manifest entries (Wave 0)
-- [ ] 07-03-PLAN.md — Service worker file + cache strategies + offline.html fallback page (Wave 1)
+- [x] 07-01-PLAN.md — Rails PWA routes + manifest expansion + head meta + manifest link tag (Wave 0)
+- [x] 07-02-PLAN.md — Maskable PNG icons (192/512) + favicon manifest entries (Wave 0)
+- [x] 07-03-PLAN.md — Service worker file + cache strategies + offline.html fallback page (Wave 1)
 - [ ] 07-04-PLAN.md — Service worker registration JS + update-available Stimulus controller (Wave 1)
 - [ ] 07-05-PLAN.md — Ui::InstallPrompt::Component + Stimulus controller catching beforeinstallprompt (Wave 2)
 - [ ] 07-06-PLAN.md — Ui::IosInstallHint::Component for iOS Safari non-standalone users (Wave 2)
