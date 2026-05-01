@@ -6,7 +6,7 @@ class Parent::DashboardController < ApplicationController
 
   def index
     @family = Family.includes(:profiles).find(current_profile.family_id)
-    @children = @family.profiles.child
+    @children = @family.profiles.child.includes(:wishlist_reward)
 
     # Per-child awaiting-approval count { child_id => count }
     @child_awaiting = ProfileTask.joins(:profile)
