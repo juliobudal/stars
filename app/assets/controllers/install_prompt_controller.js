@@ -43,12 +43,22 @@ export default class extends Controller {
   }
 
   dismiss() {
-    localStorage.setItem(KEY, String(Date.now()))
+    try {
+      localStorage.setItem(KEY, String(Date.now()))
+    } catch (_e) {
+      // localStorage may be unavailable (private mode); fail silently
+    }
     this.element.hidden = true
   }
 
   _isDismissed() {
-    const at = parseInt(localStorage.getItem(KEY) || "0", 10)
+    let raw = "0"
+    try {
+      raw = localStorage.getItem(KEY) || "0"
+    } catch (_e) {
+      return false
+    }
+    const at = parseInt(raw, 10)
     return at > 0 && (Date.now() - at) < COOLDOWN_MS
   }
 
