@@ -3,8 +3,7 @@
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/service-worker", { scope: "/" })
+    navigator.serviceWorker.register("/service-worker", { scope: "/" })
       .then((registration) => {
         console.info("[pwa] sw registered, scope:", registration.scope);
 
