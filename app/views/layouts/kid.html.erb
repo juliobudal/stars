@@ -15,18 +15,6 @@
     </main>
     <%= render Ui::InstallPrompt::Component.new %>
     <%= render Ui::IosInstallHint::Component.new %>
-    <div hidden
-         data-controller="pwa-update"
-         class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 max-w-[420px] w-[calc(100%-2rem)] rounded-[14px] border-2 border-black/10 bg-white text-foreground shadow-[0_4px_0_rgba(0,0,0,0.12)] p-4 flex items-center gap-3 font-bold">
-      <span class="flex-1">Atualização disponível.</span>
-      <button type="button" data-action="pwa-update#apply"
-              class="px-4 py-2 rounded-[12px] bg-primary text-primary-foreground font-extrabold border-2 border-black/10 shadow-btn-primary">
-        Atualizar
-      </button>
-      <button type="button" data-action="pwa-update#dismiss"
-              class="px-3 py-2 rounded-[12px] text-muted-foreground font-bold">
-        Depois
-      </button>
-    </div>
+    <%= render Ui::PwaUpdateToast::Component.new %>
   </body>
 </html>
