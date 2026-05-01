@@ -11,7 +11,30 @@
     <% affordable_rewards.each_with_index do |reward, i| %>
       <% icon_name = (reward.respond_to?(:icon) && reward.icon.presence) || reward.category&.icon.presence || "gift" %>
       <% pal = Ui::Tokens.color_palette_entry(reward.category&.color || "lilac") %>
-      <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>" data-controller="ui-modal">
+      <div id="<%= dom_id(reward) %>" class="relative" data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>" data-controller="ui-modal">
+        <% pinned_here = current_profile.wishlist_reward_id == reward.id %>
+        <% if pinned_here %>
+          <%= button_to kid_wishlist_path,
+                        method: :delete,
+                        form: { class: "absolute top-2 right-2 z-10", data: { turbo: true } },
+                        class: "ls-btn-3d inline-flex items-center gap-1 px-2 py-1 rounded-[10px] text-[11px] font-extrabold",
+                        style: "background: var(--star-soft); color: var(--c-amber-dark); box-shadow: 0 3px 0 var(--star-2);",
+                        aria: { label: "Remover meta" } do %>
+            <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--c-amber-dark)") %>
+            Meta
+          <% end %>
+        <% else %>
+          <%= button_to kid_wishlist_path,
+                        method: :post,
+                        params: { reward_id: reward.id },
+                        form: { class: "absolute top-2 right-2 z-10", data: { turbo: true } },
+                        class: "ls-btn-3d inline-flex items-center gap-1 px-2 py-1 rounded-[10px] text-[11px] font-bold",
+                        style: "background: var(--surface); color: var(--text-muted); border: 2px solid var(--hairline); box-shadow: 0 3px 0 var(--hairline);",
+                        aria: { label: "Definir como meta" } do %>
+            <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--text-muted)") %>
+            Meta
+          <% end %>
+        <% end %>
         <button type="button"
                 class="ls-card-3d w-full text-left border-none p-4 flex flex-col gap-3 cursor-pointer relative overflow-hidden"
                 style="background: var(--surface); border: 3px solid var(--primary); border-radius: 16px; box-shadow: 0 4px 0 var(--primary-2); animation: slideInCard 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) <%= [i, 5].min * 0.04 %>s both;"
