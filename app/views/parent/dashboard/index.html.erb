@@ -2,10 +2,23 @@
 
   <%# ─── Header ─── %>
   <%
-    dashboard_subtitle = if @stats[:pending_approvals].to_i > 0
-                          "#{@children.first&.name || 'Sua família'} tem missões esperando sua aprovação"
+    awaiting_children = @children.select { |c| @child_awaiting[c.id].to_i > 0 }
+    awaiting_names    = awaiting_children.map(&:name)
+
+    dashboard_subtitle = if awaiting_children.any?
+                          subject = case awaiting_names.size
+                                    when 1 then awaiting_names.first
+                                    when 2 then awaiting_names.join(" e ")
+                                    else        "Suas crianças"
+                                    end
+                          verb = awaiting_names.size == 1 ? "tem" : "têm"
+                          "#{subject} #{verb} missões esperando sua aprovação"
                         elsif @children.any?
-                          "#{@children.size == 1 ? @children.first.name : 'Suas crianças'} está em dia com as missões"
+                          if @children.size == 1
+                            "#{@children.first.name} está em dia com as missões"
+                          else
+                            "Suas crianças estão em dia com as missões"
+                          end
                         else
                           "Adicione sua primeira criança para começar"
                         end

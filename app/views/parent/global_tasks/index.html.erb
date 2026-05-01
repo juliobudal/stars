@@ -6,13 +6,11 @@
     weekly_count   = @global_tasks.count { |m| m.frequency.to_s == "weekly" }
     inactive_count = @global_tasks.count { |m| !m.active? }
     active_count   = total_count - inactive_count
-    first_kid_name = @kids.first&.name
     subtitle = if total_count.zero?
                  "Crie a primeira missão para a família"
     else
-                 base = "#{total_count} #{'missão'.pluralize(total_count == 1 ? 1 : 2)} no catálogo"
-                 base += first_kid_name.present? ? " · #{active_count} ativas para #{first_kid_name}" : " · #{active_count} ativas"
-                 base
+                 noun = total_count == 1 ? "missão" : "missões"
+                 "#{total_count} #{noun} no catálogo · #{active_count} ativas"
     end
   %>
 
