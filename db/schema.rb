@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_30_124818) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_01_000924) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -162,7 +162,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_30_124818) do
     t.integer "points", default: 0
     t.integer "role"
     t.datetime "updated_at", null: false
+    t.bigint "wishlist_reward_id"
     t.index ["family_id"], name: "index_profiles_on_family_id"
+    t.index ["wishlist_reward_id"], name: "index_profiles_on_wishlist_reward_id"
   end
 
   create_table "redemptions", force: :cascade do |t|
@@ -322,6 +324,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_30_124818) do
   add_foreign_key "profile_tasks", "global_tasks"
   add_foreign_key "profile_tasks", "profiles"
   add_foreign_key "profiles", "families"
+  add_foreign_key "profiles", "rewards", column: "wishlist_reward_id", on_delete: :nullify
   add_foreign_key "redemptions", "profiles"
   add_foreign_key "redemptions", "rewards"
   add_foreign_key "rewards", "categories"
