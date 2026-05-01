@@ -37,6 +37,10 @@ module Ui
       def stars_to_next
         100 - xp_progress
       end
+
+      def wishlist_reward
+        kid.respond_to?(:wishlist_reward) ? kid.wishlist_reward : nil
+      end
     end
   end
 end
