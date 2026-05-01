@@ -113,6 +113,41 @@ RSpec.describe Rewards::RedeemService do
       end
     end
 
+    context "when the redeemed reward is the kid's pinned wishlist" do
+      let(:family) { create(:family) }
+      let(:child)  { create(:profile, :child, family: family, points: 100) }
+      let(:reward) { create(:reward, family: family, cost: 70) }
+
+      before { child.update!(wishlist_reward: reward) }
+
+      it 'clears wishlist_reward_id inside the redeem transaction' do
+        expect {
+          described_class.new(profile: child, reward: reward).call
+        }.to change { child.reload.wishlist_reward_id }.from(reward.id).to(nil)
+      end
+
+      it 'still decrements points (clear happens after decrement)' do
+        expect {
+          described_class.new(profile: child, reward: reward).call
+        }.to change { child.reload.points }.by(-70)
+      end
+    end
+
+    context "when the redeemed reward is NOT the kid's pinned wishlist" do
+      let(:family) { create(:family) }
+      let(:child)  { create(:profile, :child, family: family, points: 100) }
+      let(:pinned) { create(:reward, family: family, cost: 200) }
+      let(:other)  { create(:reward, family: family, cost: 30) }
+
+      before { child.update!(wishlist_reward: pinned) }
+
+      it 'does not clear the wishlist' do
+        expect {
+          described_class.new(profile: child, reward: other).call
+        }.not_to change { child.reload.wishlist_reward_id }
+      end
+    end
+
     context 'race condition: two concurrent redeems for same profile' do
       let(:child) { create(:profile, :child, family: family, points: 70) }
       let!(:reward) { create(:reward, family: family, cost: 70) }
