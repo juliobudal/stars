@@ -34,6 +34,16 @@
           <%= render Ui::Icon::Component.new("target", size: 14, color: "var(--c-info-500)") %>
           <%= missions_count %> ativas
         </span>
+        <% if wishlist_reward %>
+          <span class="flex items-center gap-1.5" style="color: var(--text-muted);">
+            <%= render Ui::Icon::Component.new(:gift, size: 14, color: "var(--primary-2)") %>
+            Meta: <strong style="color: var(--text);"><%= wishlist_reward.title %></strong>
+          </span>
+        <% else %>
+          <span class="flex items-center gap-1.5 italic" style="color: var(--text-soft);">
+            Sem meta
+          </span>
+        <% end %>
         <% if awaiting_count.to_i > 0 %>
           <span class="flex items-center gap-1.5" style="color: var(--danger-2);">
             <%= render Ui::Icon::Component.new("clock", size: 14, color: "var(--danger)") %>
