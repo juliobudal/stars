@@ -2,30 +2,34 @@
 #
 # Table name: profiles
 #
-#  id         :bigint           not null, primary key
-#  avatar     :string
-#  color      :string
-#  email      :citext
-#  name       :string
-#  pin_digest :string
-#  points     :integer          default(0)
-#  role       :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  family_id  :bigint           not null
+#  id                 :bigint           not null, primary key
+#  avatar             :string
+#  color              :string
+#  email              :citext
+#  name               :string
+#  pin_digest         :string
+#  points             :integer          default(0)
+#  role               :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  family_id          :bigint           not null
+#  wishlist_reward_id :bigint
 #
 # Indexes
 #
-#  index_profiles_on_family_id  (family_id)
+#  index_profiles_on_family_id           (family_id)
+#  index_profiles_on_wishlist_reward_id  (wishlist_reward_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (family_id => families.id)
+#  fk_rails_...  (wishlist_reward_id => rewards.id) ON DELETE => nullify
 #
 class Profile < ApplicationRecord
   PIN_FORMAT = /\A\d{4}\z/
 
   belongs_to :family
+  belongs_to :wishlist_reward, class_name: "Reward", optional: true
   has_many :profile_tasks, dependent: :destroy
   has_many :redemptions, dependent: :destroy
   has_many :activity_logs, dependent: :destroy
@@ -40,6 +44,8 @@ class Profile < ApplicationRecord
   before_save :hash_pin, if: -> { pin.present? }
 
   after_update_commit :broadcast_points, if: :saved_change_to_points?
+  after_update_commit :broadcast_wishlist_card,
+                      if: -> { saved_change_to_points? || saved_change_to_wishlist_reward_id? }
 
   validates :name, presence: true
   validates :points, numericality: { greater_than_or_equal_to: 0 }, unless: -> { family&.allow_negative? }
@@ -96,5 +102,16 @@ class Profile < ApplicationRecord
         },
         hidden: true
       )
+  end
+
+  def broadcast_wishlist_card
+    Turbo::StreamsChannel.broadcast_replace_to(
+      "kid_#{id}",
+      target: ActionView::RecordIdentifier.dom_id(self, :wishlist),
+      partial: "kid/wishlist/goal",
+      locals: { profile: self }
+    )
+  rescue StandardError => e
+    Rails.logger.warn("[Profile##{id}] wishlist broadcast failed: #{e.message}")
   end
 end
