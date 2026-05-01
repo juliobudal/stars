@@ -36,4 +36,32 @@ RSpec.describe Ui::KidProgressCard::Component, type: :component do
 
     expect(page).to have_css('[data-palette="primary"]', count: 1)
   end
+
+  describe "Meta atual line" do
+    let(:family) { create(:family) }
+    let(:kid)    { create(:profile, :child, family: family, name: "Lila", points: 42) }
+
+    it "renders 'Sem meta' when no wishlist is set" do
+      render_inline(described_class.new(kid: kid, awaiting_count: 0, missions_count: 0))
+      expect(page).to have_text("Sem meta")
+    end
+
+    it "renders 'Meta:' and the reward title when wishlist is set" do
+      reward = create(:reward, family: family, title: "LEGO Star Wars", cost: 200)
+      kid.update!(wishlist_reward: reward)
+
+      render_inline(described_class.new(kid: kid, awaiting_count: 0, missions_count: 0))
+      expect(page).to have_text("Meta:")
+      expect(page).to have_text("LEGO Star Wars")
+    end
+
+    it "does not render any link or form to mutate the wishlist (read-only)" do
+      reward = create(:reward, family: family, title: "Switch", cost: 500)
+      kid.update!(wishlist_reward: reward)
+
+      render_inline(described_class.new(kid: kid, awaiting_count: 0, missions_count: 0))
+      expect(page).not_to have_css("a[href*='wishlist']")
+      expect(page).not_to have_css("form[action*='wishlist']")
+    end
+  end
 end
