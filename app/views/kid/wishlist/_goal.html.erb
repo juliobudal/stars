@@ -1,0 +1,6 @@
+<%# Placeholder partial for the wishlist goal Turbo Frame.
+    Wave 1 (Plan 06-03) will replace this with the real Ui::WishlistGoal::Component render.
+    Required now so Profile#broadcast_wishlist_card can render without raising
+    ActionView::MissingTemplate (which the rescue swallows, breaking broadcast assertions). %>
+<%= turbo_frame_tag dom_id(profile, :wishlist) do %>
+<% end %>
