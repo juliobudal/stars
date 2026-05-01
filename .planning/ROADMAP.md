@@ -51,6 +51,33 @@ Plans:
 - [x] 06-07-PLAN.md — Parent dashboard "Meta atual" via KidProgressCard + N+1 fix + spec extension (Wave 3)
 - [x] 06-08-PLAN.md — End-to-end system spec + full suite verification (Wave 4)
 
+### Phase 7: PWA (Progressive Web App)
+
+**Goal:** Make LittleStars installable on phones/tablets/desktops with offline shell, install prompt, and app-like UX. Currently `app/views/pwa/manifest.json.erb` exists but is orphaned: no route, no `<link rel="manifest">`, no service worker, no installable icons. Chrome/Edge will not show the install banner; iOS adds a generic icon. This phase fixes all of that so kids can launch the app from their home screen.
+**Requirements:**
+- `/manifest.json` and `/service-worker.js` resolve via Rails 8 PWA controller (`rails/pwa#manifest`, `rails/pwa#service_worker`)
+- `<link rel="manifest">` + `<meta name="theme-color">` present on every layout (kid, parent, application)
+- Service worker registered on first page load with versioned cache key + `skipWaiting`/`clients.claim` lifecycle
+- Offline app-shell strategy: precache critical assets (root HTML, application JS/CSS bundle hashes from Vite manifest), runtime cache-first for `/icon.*` and Vite-fingerprinted assets, network-first with offline fallback for HTML navigations
+- Static `/offline.html` rendered when network-first fails (Duolingo-styled, links back when online via `online` event)
+- Install prompt UI: `Ui::InstallPrompt::Component` Stimulus controller catches `beforeinstallprompt`, defers it, renders a dismissible Duolingo-style card on kid + parent layouts; tracks dismissal in `localStorage` (key `pwa-install-dismissed-at`, 7-day cooldown)
+- iOS hint banner (separate component): detect iOS Safari + non-standalone via `navigator.standalone === false && /iPad|iPhone|iPod/.test(navigator.userAgent)`, render "Toque em ⎙ depois Adicionar à Tela de Início" hint
+- Maskable icons: 192px + 512px PNGs with safe zone padding, manifest entries with `"purpose": "maskable"` AND `"any"`
+- Manifest expanded: `"lang": "pt-BR"`, `"dir": "ltr"`, `"orientation": "portrait"`, `"categories": ["education","kids","productivity"]`, `"id": "/?source=pwa"`, screenshots optional
+- Lighthouse PWA audit ≥ 90 (installable, fast on mobile, configured for splash screen)
+- All component CSS follows DESIGN.md tokens (no raw hex, no retired tokens)
+**Depends on:** Phase 6
+**Plans:** 0/7 plans complete
+
+Plans:
+- [ ] 07-01-PLAN.md — Rails PWA routes + manifest expansion + head meta + manifest link tag (Wave 0)
+- [ ] 07-02-PLAN.md — Maskable PNG icons (192/512) + favicon manifest entries (Wave 0)
+- [ ] 07-03-PLAN.md — Service worker file + cache strategies + offline.html fallback page (Wave 1)
+- [ ] 07-04-PLAN.md — Service worker registration JS + update-available Stimulus controller (Wave 1)
+- [ ] 07-05-PLAN.md — Ui::InstallPrompt::Component + Stimulus controller catching beforeinstallprompt (Wave 2)
+- [ ] 07-06-PLAN.md — Ui::IosInstallHint::Component for iOS Safari non-standalone users (Wave 2)
+- [ ] 07-07-PLAN.md — System spec + Lighthouse audit + DESIGN.md rows + verification (Wave 3)
+
 ---
 
 **Milestone 2 complete.** Next: launch readiness (rspec stabilization, prod secrets, deploy smoke test).
