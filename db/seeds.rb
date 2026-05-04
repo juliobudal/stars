@@ -39,18 +39,21 @@ puts "Creating Global Tasks (per-kid via assignments)..."
 #   Laura (11y) daily 5–20, weekly 25–50
 
 lis_missions = [
-  # Autocuidado (diária)
+  # Autocuidado individual (diária)
   { title: "Dentinhos brilhando (manhã)",     points: 5,  frequency: :daily,  category: :saude,  icon: "tooth-01" },
   { title: "Dentinhos brilhando (noite)",     points: 5,  frequency: :daily,  category: :saude,  icon: "tooth-01" },
   { title: "Lavar a carinha",                 points: 5,  frequency: :daily,  category: :saude,  icon: "soap" },
   { title: "Pentear o cabelo",                points: 5,  frequency: :daily,  category: :rotina, icon: "comb" },
   { title: "Ir no banheiro sozinha",          points: 10, frequency: :daily,  category: :rotina, icon: "happy-01" },
-  # Casa (diária)
-  { title: "Brinquedos vão pra casinha",      points: 10, frequency: :daily,  category: :casa,   icon: "puzzle" },
+  # Próprio espaço (diária)
   { title: "Roupinha no cesto",               points: 5,  frequency: :daily,  category: :casa,   icon: "shirt-01" },
   { title: "Pratinho na pia",                 points: 5,  frequency: :daily,  category: :casa,   icon: "dish-01" },
   { title: "Guardar sapatinhos no lugar",     points: 5,  frequency: :daily,  category: :casa,   icon: "shoes-01" },
   { title: "Fazer a caminha (com ajuda)",     points: 10, frequency: :daily,  category: :casa,   icon: "bed-bunk" },
+  # Casa compartilhada — DONA (diária)
+  { title: "Recolher os brinquedos da sala comum", points: 15, frequency: :daily, category: :casa, icon: "puzzle" },
+  # Pet Simba — DONA (diária)
+  { title: "Trocar a água do Simba",          points: 10, frequency: :daily,  category: :casa,   icon: "drink" },
   # Alimentação (diária)
   { title: "Comer toda a verdurinha",         points: 15, frequency: :daily,  category: :saude,  icon: "broccoli" },
   { title: "Beber 4 copos de água",           points: 10, frequency: :daily,  category: :saude,  icon: "drink" },
@@ -68,17 +71,21 @@ lis_missions = [
 ]
 
 theo_missions = [
-  # Autocuidado (diária)
+  # Autocuidado individual (diária)
   { title: "Expedição Dentes Limpos (manhã)", points: 5,  frequency: :daily,  category: :saude,  icon: "tooth-01" },
   { title: "Expedição Dentes Limpos (noite)", points: 5,  frequency: :daily,  category: :saude,  icon: "tooth-01" },
   { title: "Tomar banho sem ser chamado",     points: 10, frequency: :daily,  category: :saude,  icon: "shower-head" },
   { title: "Beber 6 copos de água",           points: 10, frequency: :daily,  category: :saude,  icon: "drink" },
-  # Casa (diária)
+  # Próprio espaço (diária)
   { title: "Operação Cama Pronta",            points: 10, frequency: :daily,  category: :casa,   icon: "bed-bunk" },
   { title: "Missão Mochila no Lugar",         points: 5,  frequency: :daily,  category: :casa,   icon: "school-bag-01" },
-  { title: "Quest do Pratinho",               points: 5,  frequency: :daily,  category: :casa,   icon: "dish-01" },
   { title: "Protocolo Roupa Pronta (amanhã)", points: 10, frequency: :daily,  category: :casa,   icon: "shirt-01" },
   { title: "Sapatos no rack ao chegar",       points: 5,  frequency: :daily,  category: :casa,   icon: "shoes-01" },
+  # Casa compartilhada — DONO (diária)
+  { title: "Levar pratos da família pra pia (após cada refeição)", points: 10, frequency: :daily, category: :casa, icon: "dish-01" },
+  { title: "Secar a louça do jantar",         points: 15, frequency: :daily,  category: :casa,   icon: "dish-washer" },
+  # Pet Simba — DONO (diária)
+  { title: "Dar comida pro Simba (manhã e noite)", points: 10, frequency: :daily, category: :casa, icon: "happy-01" },
   # Escola (diária)
   { title: "Lição de casa antes da brincadeira", points: 15, frequency: :daily, category: :escola, icon: "notebook-01" },
   { title: "Avisar prova/trabalho com antecedência", points: 15, frequency: :daily, category: :escola, icon: "alarm-clock" },
@@ -99,6 +106,8 @@ theo_missions = [
   { title: "Limpar a mesa da cozinha após jantar", points: 25, frequency: :weekly, category: :casa, icon: "dish-washer" },
   { title: "Organizar tênis e sapatos da entrada", points: 20, frequency: :weekly, category: :casa, icon: "shoes-01" },
   { title: "Tirar o pó dos móveis baixos",    points: 25, frequency: :weekly, category: :casa,   icon: "broom" },
+  # Pet Simba — DONO (semanal)
+  { title: "Dar banho no Simba",              points: 40, frequency: :weekly, category: :casa,   icon: "shower-head" },
   # Semanais — desafios
   { title: "Aprender uma palavra nova em inglês", points: 30, frequency: :weekly, category: :escola, icon: "language-skill" },
   { title: "Cozinhar algo simples com adulto", points: 40, frequency: :weekly, category: :outro, icon: "cake-slice" },
@@ -107,12 +116,15 @@ theo_missions = [
 
 laura_missions = [
   # Autocuidado e autonomia (diária)
-  { title: "Quarto organizado, chão livre",   points: 15, frequency: :daily,  category: :casa,   icon: "broom" },
   { title: "Mochila e uniforme prontos pra amanhã", points: 10, frequency: :daily, category: :casa, icon: "school-bag-01" },
-  { title: "Prato à pia sem ser pedido",      points: 5,  frequency: :daily,  category: :casa,   icon: "dish-01" },
   { title: "Cuidar dos próprios eletrônicos", points: 10, frequency: :daily,  category: :rotina, icon: "smart-phone-01" },
   { title: "Beber 8 copos de água",           points: 10, frequency: :daily,  category: :saude,  icon: "drink" },
   { title: "Skincare e higiene completa",     points: 10, frequency: :daily,  category: :saude,  icon: "soap" },
+  # Casa compartilhada — DONA (diária)
+  { title: "Quarto organizado, chão livre",   points: 15, frequency: :daily,  category: :casa,   icon: "broom" },
+  { title: "Lavar a louça do jantar",         points: 20, frequency: :daily,  category: :casa,   icon: "dish-washer" },
+  # Pet Simba — DONA (diária)
+  { title: "Levar o Simba pra passear",       points: 20, frequency: :daily,  category: :casa,   icon: "happy-01" },
   # Escola (diária)
   { title: "Lição de casa antes do lazer",    points: 20, frequency: :daily,  category: :escola, icon: "notebook-01" },
   { title: "Estudar 30 min de matéria difícil", points: 20, frequency: :daily, category: :escola, icon: "book-02" },
@@ -144,6 +156,12 @@ laura_missions = [
   { title: "Praticar instrumento/hobby (3x na semana)", points: 50, frequency: :weekly, category: :outro, icon: "music-note-01" }
 ]
 
+# Missões compartilhadas — atribuídas aos 3 (rotinas familiares e atitude coletiva).
+shared_missions = [
+  { title: "Fazer a oração antes de dormir",  points: 5,  frequency: :daily,  category: :rotina, icon: "praying-hands-01" },
+  { title: "Dia sem brigar com os irmãos",    points: 10, frequency: :daily,  category: :rotina, icon: "happy" }
+]
+
 per_kid_missions = { lis => lis_missions, theo => theo_missions, laura => laura_missions }
 
 per_kid_missions.each do |kid, missions|
@@ -153,13 +171,22 @@ per_kid_missions.each do |kid, missions|
   end
 end
 
-puts "Creating today's ProfileTasks for each kid..."
-per_kid_missions.each do |kid, missions|
-  daily_titles = missions.select { |m| m[:frequency] == :daily }.map { |m| m[:title] }
-  family.global_tasks.where(title: daily_titles).find_each do |task|
-    next if rand < 0.15 # ~85% assigned today
-    ProfileTask.create!(profile: kid, global_task: task, status: :pending, assigned_date: Date.current)
+shared_missions.each do |attrs|
+  task = GlobalTask.create!(family: family, **attrs)
+  per_kid_missions.keys.each do |kid|
+    GlobalTaskAssignment.create!(global_task: task, profile: kid)
   end
+end
+
+puts "Creating today's ProfileTasks for each kid..."
+per_kid_missions.keys.each do |kid|
+  GlobalTask
+    .joins(:global_task_assignments)
+    .where(global_task_assignments: { profile_id: kid.id }, frequency: :daily)
+    .find_each do |task|
+      next if rand < 0.15 # ~85% assigned today
+      ProfileTask.create!(profile: kid, global_task: task, status: :pending, assigned_date: Date.current)
+    end
 end
 
 puts "Seeding a few awaiting_approval items for parent triage..."
@@ -313,5 +340,5 @@ end
 puts "Seed complete! 🌟"
 puts "  Família Budal — login: familia@budal.dev / supersecret1234"
 puts "  Kids: Theo (sky), Lis (rose), Laura (lilac) — 50⭐ each — PINs: 1111/2222/3333"
-puts "  Missions per kid: Lis=#{lis_missions.size}, Theo=#{theo_missions.size}, Laura=#{laura_missions.size}"
+puts "  Missions per kid: Lis=#{lis_missions.size}, Theo=#{theo_missions.size}, Laura=#{laura_missions.size} (+#{shared_missions.size} compartilhadas)"
 puts "  Total: #{family.global_tasks.count} missions, #{family.rewards.count} rewards, #{family.categories.count} categories"
