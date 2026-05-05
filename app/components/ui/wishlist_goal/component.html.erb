@@ -47,12 +47,20 @@
       <% end %>
     </div>
   <% else %>
-    <div data-testid="wishlist-goal-empty">
+    <div data-testid="wishlist-goal-empty" class="mb-5">
       <%= link_to kid_rewards_path,
-                  class: "block text-center rounded-[16px] p-4 mb-5 ls-card-3d",
-                  style: "background: var(--surface); border: 2px dashed var(--hairline); color: var(--text-muted); text-decoration: none;" do %>
-        <p class="text-[14px] font-bold">Escolha um prêmio como meta ⭐</p>
-        <p class="text-[12px] mt-1" style="color: var(--text-soft);">Toque para escolher na sua loja</p>
+                  class: "ls-card-3d flex items-center gap-3 p-4 rounded-[16px] no-underline",
+                  style: "background: var(--surface); border: 2px solid var(--primary); box-shadow: 0 4px 0 var(--primary-2);" do %>
+        <div class="grid place-items-center rounded-[12px] shrink-0"
+             style="width: 44px; height: 44px; background: var(--primary-soft);">
+          <%= render Ui::Icon::Component.new(:star, size: 22, color: "var(--primary-2)") %>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-[12px] font-bold uppercase tracking-wide m-0" style="color: var(--text-muted);">Sua meta</p>
+          <p class="text-[15px] font-extrabold m-0" style="color: var(--text);">Escolher um prêmio</p>
+          <p class="text-[12px] font-bold m-0 mt-0.5" style="color: var(--text-soft);">Toque pra ir pra Lojinha</p>
+        </div>
+        <%= render Ui::Icon::Component.new(:"arrow-right-01", size: 20, color: "var(--primary-2)") %>
       <% end %>
     </div>
   <% end %>

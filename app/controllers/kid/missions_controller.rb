@@ -1,6 +1,7 @@
 class Kid::MissionsController < ApplicationController
   include Authenticatable
   before_action :require_child!
+  layout "kid"
 
   def new
     @categories = current_profile.family.categories.order(:name)

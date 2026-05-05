@@ -11,7 +11,8 @@ RSpec.describe Ui::WishlistGoal::Component, type: :component do
 
     it "renders the empty CTA copy" do
       render_inline(described_class.new(profile: child))
-      expect(page).to have_text("Escolha um prêmio como meta")
+      expect(page).to have_text("Sua meta")
+      expect(page).to have_text("Escolher um prêmio")
     end
 
     it "wraps in a turbo frame keyed on dom_id(profile, :wishlist)" do
