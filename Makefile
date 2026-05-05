@@ -255,10 +255,10 @@ dokploy-migrate:
 	@echo "✓ migrations applied"
 
 dokploy-seed:
-	@echo "→ seeding production DB (idempotent)..."
+	@echo "→ seeding production DB (SEED_FORCE=$(SEED_FORCE))..."
 	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
 	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
-		$(DOKPLOY_COMPOSE) exec -T littlestars-app bin/rails db:seed"
+		$(DOKPLOY_COMPOSE) exec -T -e SEED_FORCE=$(SEED_FORCE) littlestars-app bin/rails db:seed"
 
 dokploy-logs:
 	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
