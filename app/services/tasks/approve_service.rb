@@ -27,7 +27,7 @@ module Tasks
 
       points_before = @profile.points
 
-      ActiveRecord::Base.transaction do
+      committed = ActiveRecord::Base.transaction do
         if @points_override.present?
           @profile_task.update!(custom_points: @points_override.to_i)
         end
@@ -48,6 +48,13 @@ module Tasks
             date: @profile_task.assigned_date
           ).call
         end
+
+        true
+      end
+
+      unless committed
+        Rails.logger.warn("[Tasks::ApproveService] rollback id=#{@profile_task.id}")
+        return fail_with("Transação interrompida")
       end
 
       points_after = @profile.reload.points

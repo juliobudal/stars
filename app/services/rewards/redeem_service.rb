@@ -10,10 +10,7 @@ module Rewards
         "[Rewards::RedeemService] start profile_id=#{@profile.id} reward_id=#{@reward.id} cost=#{@reward.cost}"
       )
 
-      error = nil
-      redemption = nil
-
-      ActiveRecord::Base.transaction do
+      redemption = ActiveRecord::Base.transaction do
         @profile.lock!
 
         family = @profile.family
@@ -25,19 +22,15 @@ module Rewards
           @profile.points < @reward.cost
         end
 
-        if insufficient
-          error = "Saldo insuficiente"
-          raise ActiveRecord::Rollback
-        end
+        raise ActiveRecord::Rollback if insufficient
 
         @profile.decrement!(:points, @reward.cost)
 
-        # Auto-clear wishlist if redeeming the pinned reward (must stay inside the transaction).
         if @profile.wishlist_reward_id == @reward.id
           @profile.update!(wishlist_reward_id: nil)
         end
 
-        redemption = Redemption.create!(
+        new_redemption = Redemption.create!(
           profile: @profile,
           reward: @reward,
           points: @reward.cost,
@@ -50,15 +43,17 @@ module Rewards
           title: "Solicitado: #{@reward.title}",
           points: -@reward.cost
         )
+
+        new_redemption
       end
 
-      if error
-        Rails.logger.info("[Rewards::RedeemService] failure profile_id=#{@profile.id} error=#{error}")
-        fail_with(error)
-      else
+      if redemption
         Rails.logger.info("[Rewards::RedeemService] success profile_id=#{@profile.id}")
         broadcast_celebration(redemption)
         ok(redemption)
+      else
+        Rails.logger.info("[Rewards::RedeemService] failure profile_id=#{@profile.id} reason=insufficient_balance")
+        fail_with("Saldo insuficiente")
       end
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
       Rails.logger.error("[Rewards::RedeemService] exception profile_id=#{@profile.id} error=#{e.message}")
