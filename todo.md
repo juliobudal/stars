@@ -15,7 +15,7 @@ Order: CRITICAL → HIGH → QUICK WIN → TEST → TECH DEBT.
 - [x] **H1** — `Parent::ApprovalsController#approve_all`: lock `ProfileTask` inside TX (`lock.find_by`) to prevent double-credit (fixed at service layer in `Tasks::ApproveService`)
 - [x] **H2** — `Kid::WalletController#index`: replace `.load` + Ruby filter with scoped DB query (`.includes(:profile)`, `.where(created_at >=)`, `.limit`)
 - [x] **H3** — `Parent::DashboardController`: preload `:wishlist_reward` on `@children` to kill N+1 (verified — already preloaded; agent over-flagged)
-- [ ] **H4** — Migration: composite indexes
+- [x] **H4** — Migration: composite indexes
   - `profiles(family_id, role)`
   - `redemptions(profile_id, status)`
   - `activity_logs(profile_id, log_type)`

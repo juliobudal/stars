@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_01_000924) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_06_160000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_01_000924) do
     t.datetime "updated_at", null: false
     t.index ["decayed_at"], name: "index_activity_logs_undecayed_earns", where: "((decayed_at IS NULL) AND (log_type = 0))"
     t.index ["profile_id", "created_at"], name: "index_activity_logs_on_profile_id_and_created_at"
+    t.index ["profile_id", "log_type"], name: "index_activity_logs_on_profile_id_and_log_type"
     t.index ["profile_id"], name: "index_activity_logs_on_profile_id"
   end
 
@@ -163,6 +164,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_01_000924) do
     t.integer "role"
     t.datetime "updated_at", null: false
     t.bigint "wishlist_reward_id"
+    t.index ["family_id", "role"], name: "index_profiles_on_family_id_and_role"
     t.index ["family_id"], name: "index_profiles_on_family_id"
     t.index ["wishlist_reward_id"], name: "index_profiles_on_wishlist_reward_id"
   end
@@ -174,6 +176,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_01_000924) do
     t.bigint "reward_id", null: false
     t.integer "status"
     t.datetime "updated_at", null: false
+    t.index ["profile_id", "status"], name: "index_redemptions_on_profile_id_and_status"
     t.index ["profile_id"], name: "index_redemptions_on_profile_id"
     t.index ["reward_id"], name: "index_redemptions_on_reward_id"
   end
