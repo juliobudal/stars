@@ -130,7 +130,7 @@
 
     <div class="flex flex-col items-center justify-center shrink-0 gap-0">
       <% if waiting? %>
-        <%= render Ui::Badge::Component.new(variant: "peach", size: "sm", icon: "clock") %>
+        <%= render Ui::Badge::Component.new(variant: "peach", size: "sm", icon: "clock") do %>Aguardando<% end %>
       <% else %>
         <%= render Ui::StarValue::Component.new(value: points_value, size: :lg, color: :gold, class: "text-star-2 tracking-[-0.02em]") %>
       <% end %>

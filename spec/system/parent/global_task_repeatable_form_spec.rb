@@ -12,7 +12,7 @@ RSpec.describe "Repeatable mission form", type: :system do
 
     expect(page).to have_css('[data-repeatable-target="field"].hidden', visible: :all)
 
-    find('[data-repeatable-target="toggle"]').click
+    find("label", text: "Permitir mais de uma execução por período").click
 
     expect(page).not_to have_css('[data-repeatable-target="field"].hidden', visible: :all)
     expect(find('[data-repeatable-target="input"]').value).to eq("3")
@@ -32,7 +32,7 @@ RSpec.describe "Repeatable mission form", type: :system do
     expect(page).to have_field("Título da missão", wait: 10)
 
     fill_in "Título da missão", with: "Escovar dentes"
-    find('[data-repeatable-target="toggle"]').click
+    find("label", text: "Permitir mais de uma execução por período").click
     fill_in "global_task[max_completions_per_period]", with: 3
     click_on "Salvar missão"
 

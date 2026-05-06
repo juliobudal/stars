@@ -71,7 +71,7 @@ RSpec.describe "Kid Wishlist Flow", type: :system do
 
     visit kid_root_path
 
-    expect(page).to have_content("Escolha um prêmio como meta")
+    expect(page).to have_content("Escolher um prêmio")
     expect(page).not_to have_content(/minha meta/i)
     expect(child.reload.wishlist_reward_id).to be_nil
   end

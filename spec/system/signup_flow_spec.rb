@@ -6,7 +6,7 @@ RSpec.describe "Family signup flow", type: :system do
 
     fill_in "Nome da família", with: "Os Silva"
     fill_in "Email", with: "silva@example.com"
-    fill_in "Senha (mín. 12 caracteres)", with: "supersecret1234"
+    fill_in "Senha", with: "supersecret1234"
     click_on "Criar"
 
     expect(page).to have_current_path(new_parent_profile_path(onboarding: true))
