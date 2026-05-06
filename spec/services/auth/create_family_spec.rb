@@ -7,8 +7,8 @@ RSpec.describe Auth::CreateFamily do
     it "creates a family on valid params" do
       result = described_class.call(valid_params)
       expect(result.success?).to be true
-      expect(result.family).to be_persisted
-      expect(result.family.email).to eq("fam@example.com")
+      expect(result.data).to be_persisted
+      expect(result.data.email).to eq("fam@example.com")
     end
 
     it "fails on duplicate email" do

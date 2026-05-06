@@ -1,7 +1,5 @@
-require "ostruct"
-
 module Auth
-  class CreateFamily
+  class CreateFamily < ApplicationService
     def initialize(params)
       @params = params
     end
@@ -9,14 +7,10 @@ module Auth
     def call
       family = Family.new(@params)
       if family.save
-        OpenStruct.new(success?: true, family: family, error: nil)
+        ok(family)
       else
-        OpenStruct.new(success?: false, family: family, error: family.errors.full_messages.to_sentence)
+        fail_with(family.errors.full_messages.to_sentence, data: family)
       end
-    end
-
-    def self.call(params)
-      new(params).call
     end
   end
 end

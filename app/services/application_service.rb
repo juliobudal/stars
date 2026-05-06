@@ -8,5 +8,5 @@ class ApplicationService
   private
 
   def ok(data = nil) = Result.new(success: true, error: nil, data: data)
-  def fail_with(error) = Result.new(success: false, error: error, data: nil)
+  def fail_with(error, data: nil) = Result.new(success: false, error: error, data: data)
 end

@@ -27,13 +27,13 @@ class Parent::ProfilesController < ApplicationController
     result = Auth::CreateProfile.call(family: current_family, params: attrs, pin: pin)
     if result.success?
       if params[:onboarding] == "true"
-        session[:profile_id] = result.profile.id
-        redirect_to result.profile.parent? ? parent_root_path : kid_root_path
+        session[:profile_id] = result.data.id
+        redirect_to result.data.parent? ? parent_root_path : kid_root_path
       else
         redirect_to parent_profiles_path, notice: "Perfil criado."
       end
     else
-      @profile = result.profile
+      @profile = result.data || current_family.profiles.new(attrs)
       render :new, status: :unprocessable_entity
     end
   end
