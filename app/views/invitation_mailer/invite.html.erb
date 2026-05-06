@@ -1,22 +1,22 @@
-<p style="margin: 0 0 12px; font-family: 'Nunito', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; font-weight: 800; color: #1A2A4A;">
+<p style="margin: 0 0 12px; font-family: <%= email_font_stack %>; font-size: 18px; font-weight: 800; color: <%= email_token(:text) %>;">
   Você foi convidado!
 </p>
 
-<p style="margin: 0 0 20px; font-family: 'Nunito', 'Helvetica Neue', Arial, sans-serif; font-size: 15px; font-weight: 700; color: #1A2A4A; line-height: 1.55;">
-  Você foi convidado para se juntar à família <strong style="color: #58CC02;"><%= @invitation.family.name %></strong> no LittleStars.
+<p style="margin: 0 0 20px; font-family: <%= email_font_stack %>; font-size: 15px; font-weight: 700; color: <%= email_token(:text) %>; line-height: 1.55;">
+  Você foi convidado para se juntar à família <strong style="color: <%= email_token(:primary) %>;"><%= @invitation.family.name %></strong> no LittleStars.
 </p>
 
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto 20px;">
   <tr>
-    <td align="center" style="background: #58CC02; border-radius: 14px;">
+    <td align="center" style="background: <%= email_token(:primary) %>; border-radius: 14px;">
       <a href="<%= @url %>"
-         style="display: inline-block; padding: 14px 28px; font-family: 'Nunito', 'Helvetica Neue', Arial, sans-serif; font-size: 15px; font-weight: 800; color: #FFFFFF; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; border-radius: 14px;">
+         style="display: inline-block; padding: 14px 28px; font-family: <%= email_font_stack %>; font-size: 15px; font-weight: 800; color: <%= email_token(:surface) %>; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; border-radius: 14px;">
         Aceitar convite
       </a>
     </td>
   </tr>
 </table>
 
-<p style="margin: 0; font-family: 'Nunito', 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 700; color: #777777; text-align: center;">
+<p style="margin: 0; font-family: <%= email_font_stack %>; font-size: 13px; font-weight: 700; color: <%= email_token(:text_muted) %>; text-align: center;">
   O link expira em 7 dias. Se você não esperava este convite, pode ignorar este email.
 </p>

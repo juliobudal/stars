@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LittleStars</title>
   </head>
-  <body style="margin: 0; padding: 0; background: #F7F7F7; font-family: 'Nunito', 'Helvetica Neue', Arial, sans-serif; color: #1A2A4A;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #F7F7F7;">
+  <body style="margin: 0; padding: 0; background: <%= email_token(:bg) %>; font-family: <%= email_font_stack %>; color: <%= email_token(:text) %>;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background: <%= email_token(:bg) %>;">
       <tr>
         <td align="center" style="padding: 24px 12px;">
-          <table role="presentation" width="480" cellpadding="0" cellspacing="0" border="0" style="max-width: 480px; width: 100%; background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; overflow: hidden;">
+          <table role="presentation" width="480" cellpadding="0" cellspacing="0" border="0" style="max-width: 480px; width: 100%; background: <%= email_token(:surface) %>; border: 1px solid <%= email_token(:hairline) %>; border-radius: 16px; overflow: hidden;">
             <%# Header %>
             <tr>
-              <td style="padding: 20px 24px; border-bottom: 1px solid #E5E5E5; background: #FFFFFF;" align="center">
+              <td style="padding: 20px 24px; border-bottom: 1px solid <%= email_token(:hairline) %>; background: <%= email_token(:surface) %>;" align="center">
                 <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                   <tr>
-                    <td style="background: #FFD93D; width: 40px; height: 40px; border-radius: 12px; text-align: center; vertical-align: middle; color: #FFFFFF; font-size: 22px; font-weight: 800; line-height: 40px;">
+                    <td style="background: <%= email_token(:star) %>; width: 40px; height: 40px; border-radius: 12px; text-align: center; vertical-align: middle; color: <%= email_token(:surface) %>; font-size: 22px; font-weight: 800; line-height: 40px;">
                       &#9733;
                     </td>
-                    <td style="padding-left: 12px; font-family: 'Nunito', 'Helvetica Neue', Arial, sans-serif; font-size: 20px; font-weight: 800; color: #1A2A4A;">
+                    <td style="padding-left: 12px; font-family: <%= email_font_stack %>; font-size: 20px; font-weight: 800; color: <%= email_token(:text) %>;">
                       LittleStars
                     </td>
                   </tr>
@@ -28,14 +28,14 @@
 
             <%# Body %>
             <tr>
-              <td style="padding: 28px 24px; font-family: 'Nunito', 'Helvetica Neue', Arial, sans-serif; font-size: 15px; font-weight: 700; line-height: 1.55; color: #1A2A4A;">
+              <td style="padding: 28px 24px; font-family: <%= email_font_stack %>; font-size: 15px; font-weight: 700; line-height: 1.55; color: <%= email_token(:text) %>;">
                 <%= yield %>
               </td>
             </tr>
 
             <%# Footer %>
             <tr>
-              <td style="padding: 16px 24px 20px; border-top: 1px solid #E5E5E5; background: #FFFFFF; font-family: 'Nunito', 'Helvetica Neue', Arial, sans-serif; font-size: 12px; font-weight: 700; color: #777777;" align="center">
+              <td style="padding: 16px 24px 20px; border-top: 1px solid <%= email_token(:hairline) %>; background: <%= email_token(:surface) %>; font-family: <%= email_font_stack %>; font-size: 12px; font-weight: 700; color: <%= email_token(:text_muted) %>;" align="center">
                 LittleStars &mdash; Fam&iacute;lia organizada com estrelinhas.
               </td>
             </tr>
