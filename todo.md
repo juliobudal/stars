@@ -35,8 +35,8 @@ Order: CRITICAL → HIGH → QUICK WIN → TEST → TECH DEBT.
 ## TEST GAPS
 
 - [x] **T1** — Add concurrent-approval spec to `Tasks::ApproveService` (mirror redeem race-condition pattern)
-- [ ] **T2** — Add e2e spec: parent create task → kid complete → parent approve → ledger entry
-- [ ] **T3** — Add ViewComponent specs for: `Ui::Modal`, `Ui::Drawer`, `Ui::PinModal`, `Ui::FormSection`, `Ui::ProfilePicker`
+- [x] **T2** — Add e2e spec: parent create task → kid complete → parent approve → ledger entry (verified — `spec/system/full_mission_flow_spec.rb` already covers the loop)
+- [x] **T3** — Add ViewComponent specs for: `Ui::Modal`, `Ui::Drawer`, `Ui::PinModal`, `Ui::FormSection`, `Ui::ProfilePicker` (also fixed pre-existing FormSection bug where `class:` option was clobbered by an empty `super()`)
 
 ## TECH DEBT (lower priority — flagged, not solved this pass)
 

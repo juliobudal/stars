@@ -18,8 +18,7 @@ module Ui
     class Component < ApplicationComponent
       def initialize(title: nil, **options)
         @title = title
-        @options = options
-        super()
+        super(**options)
       end
     end
   end
