@@ -59,6 +59,33 @@ class Profile < ApplicationRecord
     BCrypt::Password.new(pin_digest) == candidate.to_s
   end
 
+  # Consecutive earn-log days up to and including today (in the family's
+  # timezone). Returns 0 if today isn't in the log set or there's no
+  # activity at all. Used by both Kid::DashboardController (full count)
+  # and Streaks::CheckService (gated on milestone values).
+  def streak_days(lookback_days: 30)
+    tz = family&.timezone || "UTC"
+    today = Time.current.in_time_zone(tz).to_date
+
+    days = activity_logs
+             .where(log_type: :earn)
+             .where("created_at >= ?", lookback_days.days.ago.beginning_of_day)
+             .pluck(:created_at)
+             .map { |t| t.in_time_zone(tz).to_date }
+             .uniq
+             .sort
+             .reverse
+
+    return 0 if days.empty? || days.first != today
+
+    streak = 1
+    days.each_cons(2) do |a, b|
+      break unless (a - b).to_i == 1
+      streak += 1
+    end
+    streak
+  end
+
   def full_name
     name
   end

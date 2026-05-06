@@ -18,32 +18,12 @@ class Kid::DashboardController < ApplicationController
     @level_size             = LEVEL_SIZE
     @level_remaining        = LEVEL_SIZE - @level_progress
     @level_pct              = (@level_progress.to_f / LEVEL_SIZE * 100).round
-    @streak_days            = compute_streak
+    @streak_days            = current_profile.streak_days
   end
 
   private
 
   def ensure_todays_tasks
     Tasks::DailyResetService.new(family: current_profile.family).call
-  end
-
-  def compute_streak
-    today = family_today(current_profile.family)
-    days = current_profile.activity_logs
-                          .where(log_type: :earn)
-                          .where("created_at >= ?", 30.days.ago.beginning_of_day)
-                          .pluck(:created_at)
-                          .map { |t| t.in_time_zone.to_date }
-                          .uniq
-                          .sort
-                          .reverse
-    return 0 if days.empty? || days.first != today
-
-    streak = 1
-    days.each_cons(2) do |a, b|
-      break unless (a - b).to_i == 1
-      streak += 1
-    end
-    streak
   end
 end

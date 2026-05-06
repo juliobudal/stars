@@ -1,7 +1,5 @@
-require "ostruct"
-
 module Categories
-  class SeedDefaultsService
+  class SeedDefaultsService < ApplicationService
     DEFAULTS = [
       { name: "Telinha",      icon: "game-controller-01", color: "sky"   },
       { name: "Docinhos",     icon: "ice-cream-01",       color: "rose"  },
@@ -15,12 +13,8 @@ module Categories
       @family = family
     end
 
-    def self.call(family)
-      new(family).call
-    end
-
     def call
-      return OpenStruct.new(success?: true, error: nil) if @family.categories.exists?
+      return ok if @family.categories.exists?
 
       ActiveRecord::Base.transaction do
         DEFAULTS.each_with_index do |attrs, index|
@@ -28,7 +22,10 @@ module Categories
         end
       end
 
-      OpenStruct.new(success?: true, error: nil)
+      ok
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
+      Rails.logger.error("[Categories::SeedDefaultsService] failed family_id=#{@family&.id} error=#{e.message}")
+      fail_with(e.message)
     end
   end
 end

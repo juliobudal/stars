@@ -50,6 +50,10 @@ class Family < ApplicationRecord
   private
 
   def seed_default_categories
-    Categories::SeedDefaultsService.call(self)
+    result = Categories::SeedDefaultsService.call(self)
+    return if result.success?
+
+    Rails.logger.error("[Family##{id}] category seeding failed: #{result.error}")
+    raise ActiveRecord::Rollback
   end
 end

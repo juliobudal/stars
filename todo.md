@@ -40,10 +40,10 @@ Order: CRITICAL → HIGH → QUICK WIN → TEST → TECH DEBT.
 
 ## TECH DEBT (lower priority — flagged, not solved this pass)
 
-- [ ] **D1** — Dedupe streak calc: `Kid::DashboardController#compute_streak` ↔ `Streaks::CheckService`
-- [ ] **D2** — `Family#after_create` → `Categories::SeedDefaultsService` rescue/retry
-- [ ] **D3** — Verify ActionCable `connection_identification` enforces profile match for `"kid_#{id}"` channel
-- [ ] **D4** — Solid Queue: `JOB_CONCURRENCY` ENV tuning; uncomment `cache.yml` `max_age`
+- [x] **D1** — Dedupe streak calc: extracted `Profile#streak_days` consumed by both `Kid::DashboardController` and `Streaks::CheckService`
+- [x] **D2** — `Family#after_create` → migrate `Categories::SeedDefaultsService` to `ApplicationService`; callback now logs + raises `Rollback` on seed failure (no half-created family)
+- [x] **D3** — Verify ActionCable `connection_identification` enforces profile match for `"kid_#{id}"` channel (verified — no custom channel; Rails uses signed Turbo Stream identifiers, only server-rendered subscriptions can subscribe)
+- [x] **D4** — Solid Queue: `JOB_CONCURRENCY` ENV tuning (already wired in `config/queue.yml`); uncommented `cache.yml` `max_age` to enforce 60-day retention
 
 ---
 

@@ -34,26 +34,7 @@ module Streaks
     end
 
     def detect_streak
-      logs = @profile.activity_logs
-                     .where(log_type: :earn)
-                     .where("created_at >= ?", 14.days.ago.beginning_of_day)
-                     .order(created_at: :desc)
-
-      days = logs.pluck(:created_at).map { |t| t.in_time_zone.to_date }.uniq.sort.reverse
-      return nil if days.empty?
-
-      today = Date.current
-      return nil if days.first != today
-
-      streak = 1
-      days.each_cons(2) do |a, b|
-        if (a - b).to_i == 1
-          streak += 1
-        else
-          break
-        end
-      end
-
+      streak = @profile.streak_days(lookback_days: 14)
       STREAK_MILESTONES.include?(streak) ? streak : nil
     end
   end
