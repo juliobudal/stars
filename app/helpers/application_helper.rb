@@ -133,8 +133,7 @@ module ApplicationHelper
   # Returns a color palette hash for a given profile color key.
   # Used in the profile picker to style SmileyAvatar rings/fills.
   def smiley_palette(color_key)
-    Ui::SmileyAvatar::Component::COLOR_MAP[color_key.to_s] ||
-      Ui::SmileyAvatar::Component::COLOR_MAP["primary"]
+    Ui::SmileyAvatar::Component.palette_vars(color_key)
   end
 
   # Returns the smiley face variant for a profile.

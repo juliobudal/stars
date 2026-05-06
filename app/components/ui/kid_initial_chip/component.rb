@@ -12,8 +12,7 @@ module Ui
       attr_reader :profile, :size
 
       def palette
-        Ui::SmileyAvatar::Component::COLOR_MAP[profile&.color.to_s] ||
-          Ui::SmileyAvatar::Component::COLOR_MAP["primary"]
+        Ui::SmileyAvatar::Component.palette_vars(profile&.color)
       end
 
       def initial

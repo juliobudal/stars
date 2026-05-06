@@ -6,25 +6,6 @@ module Ui
       # component.css via [data-avatar-palette="<name>"].
       PALETTES = %w[lilac theo zoe mom dad primary mint sky peach rose coral].freeze
 
-      # Back-compat shim: external callers (approval_row, kid_initial_chip,
-      # kid_progress_card, profile_card, parent/global_tasks/_form) still
-      # read raw hex from this constant for inline-style interpolation.
-      # When those callers are migrated to data-avatar-palette, this
-      # constant can be removed. Note: no `lila` key — `lilac` is canonical.
-      COLOR_MAP = {
-        "lilac"   => { fill: "#EDE9FE", tile: "#F8F5FF", ring: "#C4B5FD", ink: "#6D28D9" },
-        "theo"    => { fill: "#CFFAFE", tile: "#F0FDFF", ring: "#67E8F9", ink: "#0E7490" },
-        "zoe"     => { fill: "#FCE7F3", tile: "#FFF0F6", ring: "#F472B6", ink: "#BE185D" },
-        "mom"     => { fill: "#FCE7F3", tile: "#FFF0F6", ring: "#F9A8D4", ink: "#BE185D" },
-        "dad"     => { fill: "#DBEAFE", tile: "#EFF6FF", ring: "#93C5FD", ink: "#1D4ED8" },
-        "primary" => { fill: "#EDE9FE", tile: "#F8F5FF", ring: "#C4B5FD", ink: "#6D28D9" },
-        "mint"    => { fill: "#D1FAE5", tile: "#ECFDF5", ring: "#6EE7B7", ink: "#047857" },
-        "sky"     => { fill: "#E0F2FE", tile: "#F0F9FF", ring: "#7DD3FC", ink: "#0369A1" },
-        "peach"   => { fill: "#FCE7F3", tile: "#FFF0F6", ring: "#F9A8D4", ink: "#BE185D" },
-        "rose"    => { fill: "#FCE7F3", tile: "#FFF0F6", ring: "#F472B6", ink: "#BE185D" },
-        "coral"   => { fill: "#FCE7F3", tile: "#FFF0F6", ring: "#F9A8D4", ink: "#BE185D" }
-      }.freeze
-
       FACE_BY_COLOR = {
         "lilac" => "wink",
         "zoe" => "tongue",
@@ -33,6 +14,22 @@ module Ui
         "peach" => "smile", "rose" => "smile", "coral" => "smile",
         "primary" => "smile"
       }.freeze
+
+      # Returns the per-kid color hash with var() references that resolve
+      # to the --avatar-<name>-{fill,tile,ring,ink} tokens in theme.css.
+      # Use this for inline-style interpolation; prefer the
+      # data-avatar-palette attribute when CSS can carry the token.
+      def self.palette_vars(color_key)
+        key = color_key.to_s
+        key = "lilac" if key == "lila"
+        key = "primary" unless PALETTES.include?(key)
+        {
+          fill: "var(--avatar-#{key}-fill)",
+          tile: "var(--avatar-#{key}-tile)",
+          ring: "var(--avatar-#{key}-ring)",
+          ink:  "var(--avatar-#{key}-ink)"
+        }
+      end
 
       def initialize(kid: nil, face: nil, size: 84, **options)
         @kid = kid

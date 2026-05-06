@@ -206,8 +206,7 @@
           <%= hidden_field_tag "global_task[assigned_profile_ids][]", "" %>
           <% kids.each do |kid|
                checked = selected_kid_ids.include?(kid.id)
-               palette = Ui::SmileyAvatar::Component::COLOR_MAP[kid.color.to_s] || Ui::SmileyAvatar::Component::COLOR_MAP["primary"]
-               # TODO: route through Ui::Tokens var helper once palette object exposes vars
+               palette = Ui::SmileyAvatar::Component.palette_vars(kid.color)
                selected_style   = "background: #{palette[:tile]}; border-color: #{palette[:ring]}; box-shadow: 0 3px 0 #{palette[:ink]};"
                unselected_style = "background: var(--surface); border-color: var(--hairline); box-shadow: 0 3px 0 var(--hairline);"
                name_selected_style   = "color: #{palette[:ink]};"

@@ -58,8 +58,7 @@ module Ui
       end
 
       def palette
-        @palette ||= Ui::SmileyAvatar::Component::COLOR_MAP[kid&.color.to_s] ||
-                     Ui::SmileyAvatar::Component::COLOR_MAP["primary"]
+        @palette ||= Ui::SmileyAvatar::Component.palette_vars(kid&.color)
       end
     end
   end

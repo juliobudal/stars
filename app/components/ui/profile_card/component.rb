@@ -1,15 +1,13 @@
 module Ui
   module ProfileCard
     class Component < ApplicationComponent
-      PALETTE = Ui::SmileyAvatar::Component::COLOR_MAP
-
       def initialize(profile:, url:)
         @profile = profile
         @url = url
       end
 
       def palette
-        PALETTE[@profile.color.to_s] || PALETTE["primary"]
+        Ui::SmileyAvatar::Component.palette_vars(@profile.color)
       end
 
       def initial

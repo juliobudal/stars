@@ -25,7 +25,7 @@ Order: CRITICAL → HIGH → QUICK WIN → TEST → TECH DEBT.
 ## QUICK WIN
 
 - [x] **Q1** — Remove retired `--c-violet` / `--c-violet-soft` / `--c-violet-dark` from `theme.css`
-- [ ] **Q2** — `Ui::SmileyAvatar`: migrate `COLOR_MAP` raw hex → CSS tokens + `data-avatar-palette`
+- [x] **Q2** — `Ui::SmileyAvatar`: migrate `COLOR_MAP` raw hex → CSS tokens via `palette_vars(color)` returning var() refs
 - [ ] **Q3** — `Ui::StarValue`: move gradient hex to `theme.css` tokens
 - [ ] **Q4** — Email templates: extract inline hex to `app/assets/stylesheets/email.css` with var() refs
 - [x] **Q5** — Replace `focus:outline-none` in `kid/dashboard/_pending_card.html.erb` + `parent/global_tasks/_form.html.erb` with `focus-visible:ring-2`
