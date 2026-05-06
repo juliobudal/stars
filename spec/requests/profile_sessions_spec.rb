@@ -36,4 +36,25 @@ RSpec.describe "ProfileSessions", type: :request do
     post profile_session_path, params: { profile_id: other.id, pin: "9999" }
     expect(response).to have_http_status(:not_found)
   end
+
+  describe "PIN lockout" do
+    before { Rails.cache.clear }
+
+    it "locks the profile after 5 wrong PIN attempts" do
+      5.times do
+        post profile_session_path, params: { profile_id: kid.id, pin: "0000" }
+      end
+      post profile_session_path, params: { profile_id: kid.id, pin: "1234" }
+      expect(response).to have_http_status(:too_many_requests)
+      expect(session[:profile_id]).to be_blank
+    end
+
+    it "resets attempt counter on successful login" do
+      4.times do
+        post profile_session_path, params: { profile_id: kid.id, pin: "0000" }
+      end
+      post profile_session_path, params: { profile_id: kid.id, pin: "1234" }
+      expect(response).to redirect_to(kid_root_path)
+    end
+  end
 end

@@ -7,7 +7,7 @@ Order: CRITICAL → HIGH → QUICK WIN → TEST → TECH DEBT.
 
 - [x] **C1** — Migrate `Auth::CreateFamily`, `Auth::CreateProfile`, `Auth::ResetPin` to `ApplicationService::Result` contract (drop `OpenStruct`)
 - [x] **C2** — Move broadcasts in `Rewards::RedeemService` + `Tasks::ApproveService` to `after_commit` (avoid broadcast on rolled-back state)
-- [ ] **C3** — PIN brute-force: 6-digit PIN OR exponential backoff + lockout in `ProfileSessionsController`
+- [x] **C3** — PIN brute-force: 6-digit PIN OR exponential backoff + lockout in `ProfileSessionsController`
 - [ ] **C4** — Validate `assigned_profile_ids` in `Parent::GlobalTasksController` belong to `current_family`
 
 ## HIGH
