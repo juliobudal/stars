@@ -66,12 +66,11 @@ module Tasks
     private
 
     def last_pending_task_for_today?
-      remaining = @profile_task.profile
-                               .profile_tasks
-                               .where(status: :pending)
-                               .where("created_at >= ?", Date.current.beginning_of_day)
-                               .count
-      remaining.zero?
+      @profile_task.profile
+                   .profile_tasks
+                   .where(status: :pending)
+                   .where("created_at >= ?", Date.current.beginning_of_day)
+                   .none?
     end
 
     def broadcast_all_cleared

@@ -25,7 +25,6 @@ module Ui
       "amber"  => { label: "Âmbar",   soft_var: "var(--c-amber-soft)",  fg_var: "var(--c-amber)"  },
       "lilac"  => { label: "Lilás",   soft_var: "var(--c-lilac-soft)",  fg_var: "var(--c-lilac)"  },
       "peach"  => { label: "Pêssego", soft_var: "var(--c-peach-soft)",  fg_var: "var(--c-peach)"  },
-      "violet" => { label: "Violeta", soft_var: "var(--c-violet-soft)", fg_var: "var(--c-violet)" },
       "star"   => { label: "Dourado", soft_var: "var(--c-star-soft)",   fg_var: "var(--c-star)"   }
     }.freeze
 
