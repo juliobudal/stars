@@ -12,7 +12,7 @@ Order: CRITICAL → HIGH → QUICK WIN → TEST → TECH DEBT.
 
 ## HIGH
 
-- [ ] **H1** — `Parent::ApprovalsController#approve_all`: lock `ProfileTask` inside TX (`lock.find_by`) to prevent double-credit
+- [x] **H1** — `Parent::ApprovalsController#approve_all`: lock `ProfileTask` inside TX (`lock.find_by`) to prevent double-credit (fixed at service layer in `Tasks::ApproveService`)
 - [ ] **H2** — `Kid::WalletController#index`: replace `.load` + Ruby filter with scoped DB query (`.includes(:profile)`, `.where(created_at >=)`, `.limit`)
 - [ ] **H3** — `Parent::DashboardController`: preload `:wishlist_reward` on `@children` to kill N+1
 - [ ] **H4** — Migration: composite indexes
@@ -34,7 +34,7 @@ Order: CRITICAL → HIGH → QUICK WIN → TEST → TECH DEBT.
 
 ## TEST GAPS
 
-- [ ] **T1** — Add concurrent-approval spec to `Tasks::ApproveService` (mirror redeem race-condition pattern)
+- [x] **T1** — Add concurrent-approval spec to `Tasks::ApproveService` (mirror redeem race-condition pattern)
 - [ ] **T2** — Add e2e spec: parent create task → kid complete → parent approve → ledger entry
 - [ ] **T3** — Add ViewComponent specs for: `Ui::Modal`, `Ui::Drawer`, `Ui::PinModal`, `Ui::FormSection`, `Ui::ProfilePicker`
 

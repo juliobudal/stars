@@ -26,8 +26,17 @@ module Tasks
       end
 
       points_before = @profile.points
+      race_lost = false
 
       committed = ActiveRecord::Base.transaction do
+        @profile_task.lock!
+
+        unless @profile_task.awaiting_approval?
+          Rails.logger.info("[Tasks::ApproveService] race lost id=#{@profile_task.id} status=#{@profile_task.status}")
+          race_lost = true
+          next nil
+        end
+
         if @points_override.present?
           @profile_task.update!(custom_points: @points_override.to_i)
         end
@@ -50,6 +59,10 @@ module Tasks
         end
 
         true
+      end
+
+      if race_lost
+        return fail_with("Tarefa já foi processada")
       end
 
       unless committed

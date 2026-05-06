@@ -106,6 +106,37 @@ RSpec.describe Tasks::ApproveService do
     end
   end
 
+  describe "race condition: two concurrent approvals on the same profile_task" do
+    let!(:family) { create(:family) }
+    let!(:child) { create(:profile, :child, family: family, points: 0) }
+    let!(:global_task) { create(:global_task, family: family, points: 50) }
+    let!(:profile_task) { create(:profile_task, :awaiting_approval, profile: child, global_task: global_task) }
+
+    it "credits points exactly once and reports the loser as already processed" do
+      results = []
+      mutex = Mutex.new
+
+      threads = 2.times.map do
+        Thread.new do
+          ActiveRecord::Base.connection_pool.with_connection do
+            result = described_class.new(ProfileTask.find(profile_task.id)).call
+            mutex.synchronize { results << result }
+          end
+        end
+      end
+
+      threads.each(&:join)
+
+      successes = results.count(&:success?)
+      failures = results.reject(&:success?)
+
+      expect(successes).to eq(1)
+      expect(failures.size).to eq(1)
+      expect(failures.first.error).to match(/já foi processada|aguardando aprovação/i)
+      expect(child.reload.points).to eq(50)
+    end
+  end
+
   describe "custom missions" do
     let(:family) { create(:family) }
     let(:profile) { create(:profile, family: family, role: :child) }
