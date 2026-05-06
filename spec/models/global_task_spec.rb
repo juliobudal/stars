@@ -112,6 +112,29 @@ RSpec.describe GlobalTask, type: :model do
     end
   end
 
+  describe "assigned_profile_ids cross-family guard" do
+    let(:family) { create(:family) }
+    let(:other_family) { create(:family) }
+    let!(:own_kid) { create(:profile, :child, family: family) }
+    let!(:foreign_kid) { create(:profile, :child, family: other_family) }
+
+    it "accepts profiles from the same family" do
+      task = build(:global_task, family: family, assigned_profile_ids: [ own_kid.id ])
+      expect(task).to be_valid
+    end
+
+    it "rejects profiles from another family" do
+      task = build(:global_task, family: family, assigned_profile_ids: [ foreign_kid.id ])
+      expect(task).not_to be_valid
+      expect(task.errors[:assigned_profile_ids]).to be_present
+    end
+
+    it "rejects mixed family ids" do
+      task = build(:global_task, family: family, assigned_profile_ids: [ own_kid.id, foreign_kid.id ])
+      expect(task).not_to be_valid
+    end
+  end
+
   describe "after_update_commit cap reduction" do
     let(:family) { create(:family) }
     let!(:child)  { create(:profile, :child, family: family) }

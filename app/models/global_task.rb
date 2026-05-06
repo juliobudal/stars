@@ -51,6 +51,8 @@ class GlobalTask < ApplicationRecord
               less_than_or_equal_to: MAX_COMPLETIONS_RANGE.max
             }
 
+  validate :assigned_profiles_must_belong_to_family
+
   after_update_commit :refresh_slots_after_cap_change, if: :saved_change_to_max_completions_per_period?
 
   def repeatable?
@@ -70,5 +72,16 @@ class GlobalTask < ApplicationRecord
     end
   rescue StandardError => e
     Rails.logger.warn("[GlobalTask] refresh_slots_after_cap_change failed id=#{id} error=#{e.message}")
+  end
+
+  def assigned_profiles_must_belong_to_family
+    return if family_id.blank?
+    requested = assigned_profile_ids.map(&:to_i).reject(&:zero?).uniq
+    return if requested.empty?
+
+    valid_count = Profile.where(id: requested, family_id: family_id).count
+    return if valid_count == requested.length
+
+    errors.add(:assigned_profile_ids, "incluem perfis de outra família")
   end
 end
