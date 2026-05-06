@@ -13,8 +13,6 @@
       <%= render Ui::Flash::Component.new %>
       <%= yield %>
     </main>
-    <%= render Ui::InstallPrompt::Component.new %>
-    <%= render Ui::IosInstallHint::Component.new %>
-    <%= render Ui::PwaUpdateToast::Component.new %>
+    <%= render "shared/pwa_shell" %>
   </body>
 </html>

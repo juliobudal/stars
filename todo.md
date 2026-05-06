@@ -29,7 +29,7 @@ Order: CRITICAL → HIGH → QUICK WIN → TEST → TECH DEBT.
 - [x] **Q3** — `Ui::StarValue`: move gradient hex to `theme.css` tokens (`--star-grad-light`, `--star-grad-dark`, `--star-grad-pale`)
 - [x] **Q4** — Email templates: centralize inline hex via `EmailHelper#email_token` (CSS vars are unsupported by most email clients, so values stay inline but flow through one source of truth)
 - [x] **Q5** — Replace `focus:outline-none` in `kid/dashboard/_pending_card.html.erb` + `parent/global_tasks/_form.html.erb` with `focus-visible:ring-2`
-- [ ] **Q6** — Extract `shared/_pwa_shell.html.erb` from kid + parent layouts
+- [x] **Q6** — Extract `shared/_pwa_shell.html.erb` from kid + parent layouts
 - [x] **Q7** — `Tasks::CompleteService#last_pending_task_for_today?`: replace `.count.zero?` with `.none?`
 
 ## TEST GAPS
