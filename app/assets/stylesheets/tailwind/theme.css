@@ -60,6 +60,11 @@
   --c-star-soft: var(--star-soft);
   --c-star-dark: var(--star-2);
 
+  /* Star value gradient stops (Ui::StarValue gold + white variants) */
+  --star-grad-light: #FFD24C;
+  --star-grad-dark: #E69400;
+  --star-grad-pale: #F4F4F5;
+
   --c-red-soft: #FFE4E1;
   --c-red-dark: #C53232;
 

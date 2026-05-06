@@ -51,9 +51,9 @@ module Ui
 
       def stop_colors
         case @color
-        when :white   then [ "#FFFFFF", "#F4F4F5" ]
+        when :white   then [ "var(--surface)", "var(--star-grad-pale)" ]
         when :current then [ "currentColor", "currentColor" ]
-        else               [ "#FFD24C", "#E69400" ] # gold gradient
+        else               [ "var(--star-grad-light)", "var(--star-grad-dark)" ]
         end
       end
 
