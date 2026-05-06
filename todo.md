@@ -19,8 +19,8 @@ Order: CRITICAL → HIGH → QUICK WIN → TEST → TECH DEBT.
   - `profiles(family_id, role)`
   - `redemptions(profile_id, status)`
   - `activity_logs(profile_id, log_type)`
-- [ ] **H5** — `InvitationsController`: restore CSRF verification on POST routes
-- [ ] **H6** — Spec coverage: `Rewards::ApproveRedemptionService` + `Rewards::RejectRedemptionService` (refund rollback paths)
+- [x] **H5** — `InvitationsController`: restore CSRF verification on POST routes (verified — `ApplicationController#protect_from_forgery with: :exception` not skipped; agent over-flagged)
+- [x] **H6** — Spec coverage: `Rewards::ApproveRedemptionService` + `Rewards::RejectRedemptionService` (refund rollback paths)
 
 ## QUICK WIN
 
