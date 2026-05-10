@@ -25,11 +25,11 @@ pai = Profile.create!(family: family, name: "Papai", role: :parent,
                       color: "sky", email: "pai@budal.dev", pin: "2222")
 
 theo  = Profile.create!(family: family, name: "Theo",  role: :child,
-                        color: "sky",   points: 50, pin: "1111")
+                        color: "sky",   points: 0, pin: "1111")
 lis   = Profile.create!(family: family, name: "Lis",   role: :child,
-                        color: "rose",  points: 50, pin: "2222")
+                        color: "rose",  points: 0, pin: "2222")
 laura = Profile.create!(family: family, name: "Laura", role: :child,
-                        color: "lilac", points: 50, pin: "3333")
+                        color: "lilac", points: 0, pin: "3333")
 
 puts "Creating Global Tasks (per-kid via assignments)..."
 
@@ -123,39 +123,6 @@ shared_missions.each do |attrs|
   end
 end
 
-puts "Creating today's ProfileTasks for each kid..."
-per_kid_missions.keys.each do |kid|
-  GlobalTask
-    .joins(:global_task_assignments)
-    .where(global_task_assignments: { profile_id: kid.id }, frequency: :daily)
-    .find_each do |task|
-      next if rand < 0.15 # ~85% assigned today
-      ProfileTask.create!(profile: kid, global_task: task, status: :pending, assigned_date: Date.current)
-    end
-end
-
-puts "Seeding a few awaiting_approval items for parent triage..."
-[
-  [ lis,   "Escovar dentinhos 2x (manhã + noite)", "Escovei sozinha! ✨" ],
-  [ lis,   "Trocar a água do Simba",     nil ],
-  [ theo,  "Banho sozinho + cama pronta", "Cama prontíssima!" ],
-  [ theo,  "Leitura solo (15 min antes de dormir)", "Li mais que 15min 📖" ],
-  [ laura, "Quarto organizado, chão livre", "Tá brilhando" ],
-  [ laura, "Praticar inglês no Duolingo (15 min)", nil ]
-].each do |profile, title, comment|
-  task = family.global_tasks.find_by(title: title)
-  next unless task
-
-  existing = ProfileTask.find_by(profile: profile, global_task: task, assigned_date: Date.current)
-  if existing
-    existing.update!(status: :awaiting_approval, submission_comment: comment)
-  else
-    ProfileTask.create!(profile: profile, global_task: task,
-                        status: :awaiting_approval, assigned_date: Date.current,
-                        submission_comment: comment)
-  end
-end
-
 puts "Creating Rewards..."
 cats = family.categories.index_by(&:name)
 # Estrutura enxuta em 4 tiers: Micro (dopamina diária) · Médio (meta semanal) ·
@@ -213,6 +180,6 @@ end
 
 puts "Seed complete! 🌟"
 puts "  Família Budal — login: familia@budal.dev / supersecret1234"
-puts "  Kids: Theo (sky), Lis (rose), Laura (lilac) — 50⭐ each — PINs: 1111/2222/3333"
+puts "  Kids: Theo (sky), Lis (rose), Laura (lilac) — 0⭐ each — PINs: 1111/2222/3333"
 puts "  Missions per kid: Lis=#{lis_missions.size}, Theo=#{theo_missions.size}, Laura=#{laura_missions.size} (+#{shared_missions.size} compartilhadas)"
 puts "  Total: #{family.global_tasks.count} missions, #{family.rewards.count} rewards, #{family.categories.count} categories"
