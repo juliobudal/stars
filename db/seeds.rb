@@ -38,128 +38,73 @@ puts "Creating Global Tasks (per-kid via assignments)..."
 #   Theo (7y)  daily 5–15, weekly 20–40
 #   Laura (11y) daily 5–20, weekly 25–50
 
+# =============================================================================
+# Método 3-2-1 Familiar: cada kid dono de zona clara → tira peso da mamãe.
+#   3 âncoras diárias (rotina pessoal não-negociável)
+#   2 deveres de zona (contribuição à casa)
+#   1 bônus/desafio
+# Zonas: Lis = cantinho próprio + água Simba · Theo = louça/cozinha + comida Simba
+#        Laura = sala/banheiros + passeio Simba
+# =============================================================================
+
 lis_missions = [
-  # Autocuidado individual (diária)
-  { title: "Dentinhos brilhando (manhã)",     points: 5,  frequency: :daily,  category: :saude,  icon: "tooth-01" },
-  { title: "Dentinhos brilhando (noite)",     points: 5,  frequency: :daily,  category: :saude,  icon: "tooth-01" },
-  { title: "Lavar a carinha",                 points: 5,  frequency: :daily,  category: :saude,  icon: "soap" },
-  { title: "Pentear o cabelo",                points: 5,  frequency: :daily,  category: :rotina, icon: "comb" },
-  { title: "Ir no banheiro sozinha",          points: 10, frequency: :daily,  category: :rotina, icon: "happy-01" },
-  # Próprio espaço (diária)
-  { title: "Roupinha no cesto",               points: 5,  frequency: :daily,  category: :casa,   icon: "shirt-01" },
-  { title: "Pratinho na pia",                 points: 5,  frequency: :daily,  category: :casa,   icon: "dish-01" },
-  { title: "Guardar sapatinhos no lugar",     points: 5,  frequency: :daily,  category: :casa,   icon: "shoes-01" },
-  { title: "Fazer a caminha (com ajuda)",     points: 10, frequency: :daily,  category: :casa,   icon: "bed-bunk" },
-  # Casa compartilhada — DONA (diária)
-  { title: "Recolher os brinquedos da sala comum", points: 15, frequency: :daily, category: :casa, icon: "puzzle" },
-  # Pet Simba — DONA (diária)
+  # Âncoras pessoais (3)
+  { title: "Escovar dentinhos 2x (manhã + noite)", points: 10, frequency: :daily, category: :saude,  icon: "tooth-01" },
+  { title: "Rotina da manhã (lavar rosto + pentear + banheiro)", points: 15, frequency: :daily, category: :rotina, icon: "soap" },
+  { title: "Meu cantinho (roupa no cesto + sapatos + cama com ajuda)", points: 15, frequency: :daily, category: :casa, icon: "bed-bunk" },
+  # Zona Lis (2): cantinho + Simba água
   { title: "Trocar a água do Simba",          points: 10, frequency: :daily,  category: :casa,   icon: "drink" },
-  # Alimentação (diária)
-  { title: "Comer toda a verdurinha",         points: 15, frequency: :daily,  category: :saude,  icon: "broccoli" },
-  { title: "Beber 4 copos de água",           points: 10, frequency: :daily,  category: :saude,  icon: "drink" },
-  { title: "Tomar o café da manhã sem reclamar", points: 10, frequency: :daily, category: :saude, icon: "coffee-01" },
-  # Aprendizado e brincar (diária)
+  { title: "Comer toda a verdurinha + beber água do dia", points: 15, frequency: :daily, category: :saude, icon: "broccoli" },
+  # Bônus (1)
   { title: "Aprender algo novo (10 min)",     points: 15, frequency: :daily,  category: :escola, icon: "book-open-01" },
-  { title: "Brincar pra valer (20 min sem tela)", points: 10, frequency: :daily, category: :rotina, icon: "happy-01" },
-  { title: "Cantar uma música nova",          points: 10, frequency: :daily,  category: :rotina, icon: "music-note-01" },
-  { title: "Fazer um desenho do dia",         points: 10, frequency: :daily,  category: :rotina, icon: "pencil-edit-01" },
-  # Semanais
+  # Semanais — contribuição leve à casa (2)
   { title: "Ajudar a regar as plantinhas",    points: 20, frequency: :weekly, category: :casa,   icon: "plant-02" },
-  { title: "Escolher uma roupa pra doar",     points: 25, frequency: :weekly, category: :outro,  icon: "gift" },
-  { title: "Ajudar a guardar as compras",     points: 25, frequency: :weekly, category: :casa,   icon: "shopping-bag-01" },
-  { title: "Tomar banho sem reclamar 5x na semana", points: 30, frequency: :weekly, category: :saude, icon: "shower-head" }
+  { title: "Ajudar a guardar as compras",     points: 25, frequency: :weekly, category: :casa,   icon: "shopping-bag-01" }
 ]
 
 theo_missions = [
-  # Autocuidado individual (diária)
-  { title: "Expedição Dentes Limpos (manhã)", points: 5,  frequency: :daily,  category: :saude,  icon: "tooth-01" },
-  { title: "Expedição Dentes Limpos (noite)", points: 5,  frequency: :daily,  category: :saude,  icon: "tooth-01" },
-  { title: "Tomar banho sem ser chamado",     points: 10, frequency: :daily,  category: :saude,  icon: "shower-head" },
-  { title: "Beber 6 copos de água",           points: 10, frequency: :daily,  category: :saude,  icon: "drink" },
-  # Próprio espaço (diária)
-  { title: "Operação Cama Pronta",            points: 10, frequency: :daily,  category: :casa,   icon: "bed-bunk" },
-  { title: "Missão Mochila no Lugar",         points: 5,  frequency: :daily,  category: :casa,   icon: "school-bag-01" },
-  { title: "Protocolo Roupa Pronta (amanhã)", points: 10, frequency: :daily,  category: :casa,   icon: "shirt-01" },
-  { title: "Sapatos no rack ao chegar",       points: 5,  frequency: :daily,  category: :casa,   icon: "shoes-01" },
-  # Casa compartilhada — DONO (diária)
-  { title: "Levar pratos da família pra pia (após cada refeição)", points: 10, frequency: :daily, category: :casa, icon: "dish-01" },
+  # Âncoras pessoais (3)
+  { title: "Escovar dentes 2x (manhã + noite)", points: 10, frequency: :daily, category: :saude,  icon: "tooth-01" },
+  { title: "Banho sozinho + cama pronta",      points: 15, frequency: :daily, category: :rotina, icon: "shower-head" },
+  { title: "Prep escola (mochila + roupa amanhã + agenda)", points: 15, frequency: :daily, category: :casa, icon: "school-bag-01" },
+  # Zona Theo (2): cozinha + Simba comida
   { title: "Secar a louça do jantar",         points: 15, frequency: :daily,  category: :casa,   icon: "dish-washer" },
-  # Pet Simba — DONO (diária)
-  { title: "Dar comida pro Simba (manhã e noite)", points: 10, frequency: :daily, category: :casa, icon: "happy-01" },
-  # Escola (diária)
+  { title: "Dar comida pro Simba (manhã + noite)", points: 10, frequency: :daily, category: :casa, icon: "happy-01" },
+  # Estudo (2)
   { title: "Lição de casa antes da brincadeira", points: 15, frequency: :daily, category: :escola, icon: "notebook-01" },
-  { title: "Avisar prova/trabalho com antecedência", points: 15, frequency: :daily, category: :escola, icon: "alarm-clock" },
-  { title: "Conferir agenda da escola",       points: 5,  frequency: :daily,  category: :escola, icon: "calendar-01" },
-  # Aprendizado (diária)
-  { title: "Aprender algo novo (15 min)",     points: 15, frequency: :daily,  category: :escola, icon: "book-open-01" },
   { title: "Leitura solo (15 min antes de dormir)", points: 15, frequency: :daily, category: :escola, icon: "book-02" },
-  { title: "Treino de tabuada/cálculo (5 min)", points: 10, frequency: :daily, category: :escola, icon: "calculator" },
+  # Bônus (1)
   { title: "Praticar inglês no Duolingo (10 min)", points: 10, frequency: :daily, category: :escola, icon: "language-skill" },
-  # Atitude (diária)
-  { title: "Falar uma coisa boa do irmão/irmã", points: 10, frequency: :daily, category: :rotina, icon: "happy" },
-  { title: "Pedir 'por favor' e 'obrigado' o dia todo", points: 10, frequency: :daily, category: :rotina, icon: "happy-01" },
-  # Semanais (rotativas — sorteio dominical)
-  { title: "Caçada ao Lixo",                  points: 25, frequency: :weekly, category: :casa,   icon: "delete-02" },
-  { title: "Resgate das Plantas",             points: 25, frequency: :weekly, category: :casa,   icon: "plant-02" },
-  { title: "Missão Estante",                  points: 30, frequency: :weekly, category: :casa,   icon: "book-02" },
-  { title: "Patrulha do Espelho",             points: 25, frequency: :weekly, category: :casa,   icon: "mirror" },
-  { title: "Limpar a mesa da cozinha após jantar", points: 25, frequency: :weekly, category: :casa, icon: "dish-washer" },
-  { title: "Organizar tênis e sapatos da entrada", points: 20, frequency: :weekly, category: :casa, icon: "shoes-01" },
-  { title: "Tirar o pó dos móveis baixos",    points: 25, frequency: :weekly, category: :casa,   icon: "broom" },
-  # Pet Simba — DONO (semanal)
-  { title: "Dar banho no Simba",              points: 40, frequency: :weekly, category: :casa,   icon: "shower-head" },
-  # Semanais — desafios
-  { title: "Aprender uma palavra nova em inglês", points: 30, frequency: :weekly, category: :escola, icon: "language-skill" },
-  { title: "Cozinhar algo simples com adulto", points: 40, frequency: :weekly, category: :outro, icon: "cake-slice" },
-  { title: "Andar de bicicleta/patinete 2x na semana", points: 35, frequency: :weekly, category: :saude, icon: "bicycle" }
+  # Semanal rotativa — chore real + banho do Simba
+  { title: "Chore semanal rotativa (Caçada Lixo / Estante / Espelho)", points: 25, frequency: :weekly, category: :casa, icon: "broom" },
+  { title: "Dar banho no Simba",              points: 40, frequency: :weekly, category: :casa,   icon: "shower-head" }
 ]
 
 laura_missions = [
-  # Autocuidado e autonomia (diária)
-  { title: "Mochila e uniforme prontos pra amanhã", points: 10, frequency: :daily, category: :casa, icon: "school-bag-01" },
-  { title: "Cuidar dos próprios eletrônicos", points: 10, frequency: :daily,  category: :rotina, icon: "smart-phone-01" },
-  { title: "Beber 8 copos de água",           points: 10, frequency: :daily,  category: :saude,  icon: "drink" },
+  # Âncoras pessoais (3)
   { title: "Skincare e higiene completa",     points: 10, frequency: :daily,  category: :saude,  icon: "soap" },
-  # Casa compartilhada — DONA (diária)
+  { title: "Mochila e uniforme prontos pra amanhã", points: 10, frequency: :daily, category: :casa, icon: "school-bag-01" },
   { title: "Quarto organizado, chão livre",   points: 15, frequency: :daily,  category: :casa,   icon: "broom" },
+  # Zona Laura (2): louça pesada + passeio Simba
   { title: "Lavar a louça do jantar",         points: 20, frequency: :daily,  category: :casa,   icon: "dish-washer" },
-  # Pet Simba — DONA (diária)
   { title: "Levar o Simba pra passear",       points: 20, frequency: :daily,  category: :casa,   icon: "happy-01" },
-  # Escola (diária)
+  # Estudo (2)
   { title: "Lição de casa antes do lazer",    points: 20, frequency: :daily,  category: :escola, icon: "notebook-01" },
-  { title: "Estudar 30 min de matéria difícil", points: 20, frequency: :daily, category: :escola, icon: "book-02" },
-  { title: "Conferir agenda e prazos da semana", points: 10, frequency: :daily, category: :escola, icon: "calendar-01" },
-  # Aprendizado (diária)
-  { title: "Aprender algo novo (20 min)",     points: 20, frequency: :daily,  category: :escola, icon: "book-open-01" },
-  { title: "Leitura silenciosa (20 min antes de dormir)", points: 20, frequency: :daily, category: :escola, icon: "book-02" },
+  { title: "Estudar 30 min + ler 20 min antes de dormir", points: 25, frequency: :daily, category: :escola, icon: "book-02" },
+  # Bônus (1)
   { title: "Praticar inglês no Duolingo (15 min)", points: 15, frequency: :daily, category: :escola, icon: "language-skill" },
-  { title: "Escrever 3 frases no diário (PT/EN)", points: 15, frequency: :daily, category: :escola, icon: "pencil-edit-01" },
-  # Atitude (diária)
-  { title: "Falar com Theo/Lis com paciência mesmo cansada", points: 15, frequency: :daily, category: :rotina, icon: "happy" },
-  { title: "Ajudar sem ser pedido (1x no dia)", points: 15, frequency: :daily, category: :rotina, icon: "happy-01" },
-  # Semanais — rotativas
-  { title: "Organizar a sala comum",          points: 35, frequency: :weekly, category: :casa,   icon: "broom" },
-  { title: "Lixos dos banheiros",             points: 25, frequency: :weekly, category: :casa,   icon: "delete-02" },
-  { title: "Lista de compras da semana",      points: 30, frequency: :weekly, category: :casa,   icon: "shopping-bag-01" },
-  { title: "Tirar o pó das estantes altas",   points: 30, frequency: :weekly, category: :casa,   icon: "broom" },
-  { title: "Limpar e organizar a geladeira",  points: 35, frequency: :weekly, category: :casa,   icon: "dish-washer" },
-  { title: "Dobrar e guardar a própria roupa", points: 30, frequency: :weekly, category: :casa,  icon: "shirt-01" },
-  # Semanais — chapéu de irmã
-  { title: "Ler historinha pra Lis",          points: 25, frequency: :weekly, category: :rotina, icon: "book-open-01" },
-  { title: "Ajudar Theo na lição",            points: 30, frequency: :weekly, category: :escola, icon: "notebook-01" },
-  { title: "Brincar com Lis (20 min)",        points: 25, frequency: :weekly, category: :rotina, icon: "happy-01" },
-  { title: "Ajudar Lis no pijama/escovação",  points: 25, frequency: :weekly, category: :rotina, icon: "tooth-01" },
-  # Semanais — desafios
-  { title: "Aprender 5 palavras novas em inglês", points: 40, frequency: :weekly, category: :escola, icon: "language-skill" },
-  { title: "Cozinhar uma receita completa com supervisão", points: 50, frequency: :weekly, category: :outro, icon: "cake-slice" },
-  { title: "Apresentar pra família algo aprendido na semana", points: 40, frequency: :weekly, category: :escola, icon: "happy" },
-  { title: "Praticar instrumento/hobby (3x na semana)", points: 50, frequency: :weekly, category: :outro, icon: "music-note-01" }
+  # Semanal — chore rotativa + chapéu de irmã rotativo
+  { title: "Chore semanal rotativa (Sala / Geladeira / Banheiros)", points: 35, frequency: :weekly, category: :casa, icon: "broom" },
+  { title: "Chapéu de irmã: ler pra Lis OU ajudar Theo na lição", points: 30, frequency: :weekly, category: :rotina, icon: "happy-01" },
+  { title: "Cozinhar uma receita completa com supervisão", points: 50, frequency: :weekly, category: :outro, icon: "cake-slice" }
 ]
 
-# Missões compartilhadas — atribuídas aos 3 (rotinas familiares e atitude coletiva).
+# Compartilhadas — rotinas familiares mínimas + reposições do "cada um cuida".
 shared_missions = [
   { title: "Fazer a oração antes de dormir",  points: 5,  frequency: :daily,  category: :rotina, icon: "praying-hands-01" },
-  { title: "Dia sem brigar com os irmãos",    points: 10, frequency: :daily,  category: :rotina, icon: "happy" }
+  { title: "Dia sem brigar com os irmãos",    points: 10, frequency: :daily,  category: :rotina, icon: "happy" },
+  { title: "Repor o gelo no congelador",      points: 20, frequency: :weekly, category: :casa,   icon: "drink" },
+  { title: "Repor bala fini caseira",         points: 20, frequency: :weekly, category: :casa,   icon: "cake-slice" }
 ]
 
 per_kid_missions = { lis => lis_missions, theo => theo_missions, laura => laura_missions }
@@ -191,9 +136,9 @@ end
 
 puts "Seeding a few awaiting_approval items for parent triage..."
 [
-  [ lis,   "Dentinhos brilhando (manhã)", "Escovei sozinha! ✨" ],
-  [ lis,   "Fazer um desenho do dia",     nil ],
-  [ theo,  "Operação Cama Pronta",        "Cama prontíssima!" ],
+  [ lis,   "Escovar dentinhos 2x (manhã + noite)", "Escovei sozinha! ✨" ],
+  [ lis,   "Trocar a água do Simba",     nil ],
+  [ theo,  "Banho sozinho + cama pronta", "Cama prontíssima!" ],
   [ theo,  "Leitura solo (15 min antes de dormir)", "Li mais que 15min 📖" ],
   [ laura, "Quarto organizado, chão livre", "Tá brilhando" ],
   [ laura, "Praticar inglês no Duolingo (15 min)", nil ]
@@ -213,118 +158,46 @@ end
 
 puts "Creating Rewards..."
 cats = family.categories.index_by(&:name)
+# Estrutura enxuta em 4 tiers: Micro (dopamina diária) · Médio (meta semanal) ·
+# Aspiracional (meta longa) · Família (coletivo). Total ~30 itens, sem overlap.
 rewards = [
-  # Experiências do dia-a-dia
+  # Micro (15-80) — pequenas conquistas diárias
   { title: "Pedir uma música pro Alexa/Spotify",       cost: 15,    icon: "voice",            category: "Experiências" },
-  { title: "Escolher a música do carro",               cost: 20,    icon: "music-note-01",    category: "Experiências" },
-  { title: "Ser o primeiro a se servir no jantar",     cost: 20,    icon: "dish-01",          category: "Experiências" },
-  { title: "Sentar no banco da frente do carro",       cost: 25,    icon: "car-01",           category: "Experiências" },
-  { title: "Escolher o que assistir na TV à noite",    cost: 30,    icon: "tv-01",            category: "Experiências" },
-  { title: "Escolher o jantar da família",             cost: 50,    icon: "pizza-01",         category: "Experiências" },
-  { title: "Escolher o filme da família",              cost: 60,    icon: "film-01",          category: "Experiências" },
-
-  # Tela e tempo
+  { title: "Ligar pra avó/avô e bater papo",           cost: 30,    icon: "phone-call",       category: "Experiências" },
   { title: "30 min extra de celular/tablet",           cost: 30,    icon: "smart-phone-01",   category: "Telinha" },
-  { title: "Dormir 30 min mais tarde",                 cost: 50,    icon: "moon-02",          category: "Experiências" },
-  { title: "1 hora de tablet livre",                   cost: 70,    icon: "tablet-01",        category: "Telinha" },
-  { title: "Dormir na cama dos pais (noite especial)", cost: 80,    icon: "bed-double",       category: "Experiências" },
-  { title: "Acordar mais tarde no fim de semana",      cost: 80,    icon: "alarm-clock",      category: "Experiências" },
-
-  # Docinhos e comidinhas
+  { title: "Escolher o que assistir na TV à noite",    cost: 30,    icon: "tv-01",            category: "Experiências" },
   { title: "Sobremesa especial no jantar",             cost: 35,    icon: "cake-slice",       category: "Docinhos" },
   { title: "Sorvete com cobertura",                    cost: 40,    icon: "ice-cream-01",     category: "Docinhos" },
-  { title: "Cozinhar uma sobremesa com adulto",        cost: 50,    icon: "cake-slice",       category: "Experiências" },
-  { title: "Café da manhã na cama",                    cost: 60,    icon: "coffee-01",        category: "Experiências" },
+  { title: "Escolher o jantar da família",             cost: 50,    icon: "pizza-01",         category: "Experiências" },
+  { title: "Dormir 30 min mais tarde",                 cost: 50,    icon: "moon-02",          category: "Experiências" },
+  { title: "Adesivos / figurinhas",                    cost: 60,    icon: "sticker",          category: "Brinquedos" },
   { title: "Lanche favorito (McDonald's/BK)",          cost: 80,    icon: "hamburger-01",     category: "Docinhos" },
-  { title: "Pedir delivery do prato favorito",         cost: 120,   icon: "delivery-truck-01", category: "Docinhos" },
 
-  # Conexão (tempo de qualidade)
-  { title: "Ligar pra avó/avô e bater papo",           cost: 30,    icon: "phone-call",       category: "Experiências" },
-  { title: "Ir junto buscar irmão na escola",          cost: 40,    icon: "school-bag-01",    category: "Experiências" },
-  { title: "30 min só com a mamãe (sem irmãos)",       cost: 80,    icon: "happy",            category: "Experiências" },
-  { title: "30 min só com o papai (sem irmãos)",       cost: 80,    icon: "happy",            category: "Experiências" },
-  { title: "Visita aos avós",                          cost: 100,   icon: "gift",             category: "Passeios" },
-  { title: "Adotar uma planta que é 'sua'",            cost: 100,   icon: "plant-02",         category: "Outro" },
+  # Médio (100-400) — meta semanal/quinzenal
+  { title: "Slime, massinha ou esmalte novo",          cost: 100,   icon: "puzzle",           category: "Brinquedos" },
+  { title: "Hot Wheels ou acessório de cabelo",        cost: 120,   icon: "car-01",           category: "Brinquedos" },
   { title: "Saída pro parque com 1 dos pais",          cost: 120,   icon: "ferris-wheel",     category: "Passeios" },
-  { title: "Convidar 1 amigo pra brincar em casa",     cost: 150,   icon: "happy-01",         category: "Experiências" },
   { title: "Almoço fora só com 1 dos pais",            cost: 180,   icon: "dish-01",          category: "Experiências" },
-  { title: "Tarde no shopping com mãe ou pai",         cost: 200,   icon: "shopping-bag-01",  category: "Passeios" },
-  { title: "Festa do pijama com primo/amigo",          cost: 400,   icon: "moon-01",          category: "Experiências" },
-
-  # Coisinhas — pequenos achados
-  { title: "Adesivos/stickers",                        cost: 60,    icon: "sticker",          category: "Brinquedos" },
-  { title: "Esmalte novo",                             cost: 80,    icon: "lipstick",         category: "Brinquedos" },
-  { title: "Pacote de figurinhas/cards",               cost: 80,    icon: "gift-card",        category: "Brinquedos" },
-  { title: "Pulseira ou colar simples",                cost: 80,    icon: "bracelet",         category: "Brinquedos" },
-  { title: "Slime ou massinha nova",                   cost: 100,   icon: "puzzle",           category: "Brinquedos" },
-  { title: "Caneta ou estojo novo",                    cost: 100,   icon: "pencil-edit-01",   category: "Brinquedos" },
-  { title: "Carrinho Hot Wheels",                      cost: 120,   icon: "car-01",           category: "Brinquedos" },
-  { title: "Acessório pra cabelo bonito",              cost: 120,   icon: "bow",              category: "Brinquedos" },
-
-  # Coisinhas — médios
   { title: "Livro novo (escolha livre)",               cost: 200,   icon: "book-02",          category: "Brinquedos" },
-  { title: "Pelúcia média",                            cost: 200,   icon: "happy-01",         category: "Brinquedos" },
-  { title: "Material de arte (kit pintura, etc)",      cost: 250,   icon: "paint-brush",      category: "Brinquedos" },
-  { title: "Boneca / action figure",                   cost: 300,   icon: "happy-01",         category: "Brinquedos" },
-  { title: "Maquiagem infantil/teen (Laura)",          cost: 300,   icon: "lipstick",         category: "Brinquedos" },
+  { title: "Tarde no shopping com mãe ou pai",         cost: 200,   icon: "shopping-bag-01",  category: "Passeios" },
+  { title: "Brinquedo médio (pelúcia / boneca / action)", cost: 300, icon: "happy-01",        category: "Brinquedos" },
+  { title: "Maquiagem teen (Laura)",                   cost: 300,   icon: "lipstick",         category: "Brinquedos" },
   { title: "Jogo de tabuleiro novo",                   cost: 350,   icon: "puzzle",           category: "Brinquedos" },
-
-  # Vestir
-  { title: "Camiseta nova escolhida por você",         cost: 300,   icon: "shirt-01",         category: "Outro" },
-  { title: "Roupa especial pra ocasião",               cost: 400,   icon: "shirt-01",         category: "Outro" },
-  { title: "Tênis novo",                               cost: 600,   icon: "shoes-01",         category: "Outro" },
-
-  # Específicos da Laura
-  { title: "Decidir decoração de um cantinho do quarto (Laura)", cost: 300, icon: "palette", category: "Outro" },
-  { title: "Conta no Spotify/streaming dela (Laura)",  cost: 400,   icon: "music-note-01",    category: "Telinha" },
-  { title: "Cinema com amiga sem pais (Laura)",        cost: 500,   icon: "film-01",          category: "Passeios" },
-  { title: "Fone de ouvido bluetooth (Laura)",         cost: 600,   icon: "headphones",       category: "Telinha" },
-  { title: "Pintar uma parede do quarto (Laura)",      cost: 800,   icon: "paint-brush",      category: "Outro" },
-  { title: "Curso online de algo que ela escolha (Laura)", cost: 800, icon: "graduation-scroll", category: "Outro" },
-
-  # Aspiracionais — passeios
   { title: "Cinema com pipoca grande",                 cost: 400,   icon: "popcorn",          category: "Passeios" },
-  { title: "Trampolim/parque de diversão",             cost: 500,   icon: "ticket-01",        category: "Passeios" },
-  { title: "Zoológico ou aquário",                     cost: 600,   icon: "ferris-wheel",     category: "Passeios" },
-  { title: "Parque aquático",                          cost: 800,   icon: "ticket-01",        category: "Passeios" },
-  { title: "Parque temático (viagem dia inteiro)",     cost: 2500,  icon: "ferris-wheel",     category: "Passeios" },
-  { title: "Beto Carrero World",                       cost: 5000,  icon: "ferris-wheel",     category: "Passeios" },
 
-  # Aspiracionais — brinquedos grandes
-  { title: "LEGO médio",                               cost: 800,   icon: "cube",             category: "Brinquedos" },
-  { title: "Patinete novo",                            cost: 1200,  icon: "scooter-02",       category: "Brinquedos" },
-  { title: "LEGO grande",                              cost: 1500,  icon: "cube",             category: "Brinquedos" },
-  { title: "Skate ou patins",                          cost: 1500,  icon: "rollerskate",      category: "Brinquedos" },
+  # Aspiracional (800+) — wishlist longa
+  { title: "LEGO escolha livre",                       cost: 800,   icon: "cube",             category: "Brinquedos" },
+  { title: "Patinete ou skate novo",                   cost: 1200,  icon: "scooter-02",       category: "Brinquedos" },
   { title: "Microscópio ou kit de ciência",            cost: 1500,  icon: "microscope",       category: "Brinquedos" },
-  { title: "Instrumento musical (ukulele/teclado)",    cost: 2000,  icon: "music-note-01",    category: "Brinquedos" },
-  { title: "Câmera digital infantil",                  cost: 2500,  icon: "camera-01",        category: "Brinquedos" },
   { title: "Bicicleta nova",                           cost: 3000,  icon: "bicycle",          category: "Brinquedos" },
-
-  # Aspiracionais — tech
-  { title: "Headphone gamer",                          cost: 4000,  icon: "headphones",       category: "Telinha" },
-  { title: "Console Nintendo Switch Lite",             cost: 8000,  icon: "nintendo-switch",  category: "Telinha" },
-  { title: "Tablet novo",                              cost: 8000,  icon: "tablet-01",        category: "Telinha" },
-  { title: "Nintendo Switch novo",                     cost: 10000, icon: "nintendo-switch",  category: "Telinha" },
+  { title: "Máquina de sorvete",                       cost: 5000,  icon: "ice-cream-01",     category: "Brinquedos" },
+  { title: "Nintendo Switch",                          cost: 8000,  icon: "nintendo-switch",  category: "Telinha" },
   { title: "Celular novo (quando idade permitir)",     cost: 12000, icon: "smart-phone-01",   category: "Telinha" },
 
-  # Conquistas coletivas — semanais
-  { title: "[Família] Sorvete depois do jantar",       cost: 120,   icon: "ice-cream-01",     category: "Docinhos" },
+  # Família — coletivo (todos somam, todos ganham)
   { title: "[Família] Pizza no jantar de sexta",       cost: 150,   icon: "pizza-01",         category: "Experiências" },
-  { title: "[Família] Café da manhã reforçado de domingo", cost: 150, icon: "coffee-01",      category: "Experiências" },
-  { title: "[Família] Filme com pipoca em família",    cost: 180,   icon: "popcorn",          category: "Experiências" },
-  { title: "[Família] Acampamento na sala",            cost: 250,   icon: "moon-01",          category: "Experiências" },
-
-  # Conquistas coletivas — mensais
-  { title: "[Família] Tarde de jogos só de jogos",     cost: 300,   icon: "puzzle",           category: "Experiências" },
   { title: "[Família] Cinema todo mundo junto",        cost: 400,   icon: "film-01",          category: "Passeios" },
-  { title: "[Família] Restaurante em família",         cost: 500,   icon: "dish-01",          category: "Experiências" },
-  { title: "[Família] Passeio em parque/lugar novo",   cost: 600,   icon: "ferris-wheel",     category: "Passeios" },
-  { title: "[Família] Dia do 'sim'",                   cost: 800,   icon: "happy",            category: "Experiências" },
-
-  # Conquistas coletivas — aspiracionais
-  { title: "[Família] Final de semana fora",           cost: 3000,  icon: "ferris-wheel",     category: "Passeios" },
-  { title: "[Família] Viagem pequena (2-3 dias)",      cost: 6000,  icon: "rocket",           category: "Passeios" },
-  { title: "[Família] Disney / viagem grande",         cost: 20000, icon: "rocket",           category: "Passeios" }
+  { title: "[Família] Viagem pequena (2-3 dias)",      cost: 6000,  icon: "rocket",           category: "Passeios" }
 ]
 
 rewards.each do |r|
