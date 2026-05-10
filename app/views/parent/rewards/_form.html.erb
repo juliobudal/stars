@@ -56,6 +56,23 @@
           ) %>
     <% end %>
 
+    <%# ─── Meta familiar (coletiva) ─── %>
+    <%= render Ui::FormSection::Component.new do %>
+      <div class="flex items-start justify-between gap-4">
+        <div class="flex-1">
+          <div class="form-label mb-[6px]">Meta familiar</div>
+          <div class="text-[12px] font-bold" style="color: var(--text-muted);">
+            Premio coletivo. Soma estrelinhas de toda família na semana.
+          </div>
+        </div>
+        <%= render Ui::Toggle::Component.new(
+              name: "reward[collective]",
+              checked: reward.collective,
+              aria_label: "Meta familiar"
+            ) %>
+      </div>
+    <% end %>
+
     <%# ─── Action bar ─── %>
     <div class="flex flex-row justify-end gap-[10px] py-1">
       <%= render Ui::Btn::Component.new(variant: "secondary", url: parent_rewards_path) do %>
