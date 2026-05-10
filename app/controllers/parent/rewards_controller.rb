@@ -2,7 +2,7 @@ class Parent::RewardsController < ApplicationController
   include Authenticatable
   before_action :require_parent!
   before_action :set_categories, only: [ :index, :new, :create, :edit, :update ]
-  before_action :set_reward, only: [ :edit, :update, :destroy ]
+  before_action :set_reward, only: [ :edit, :update, :destroy, :redeem_collective ]
 
   layout "parent"
 
@@ -39,6 +39,20 @@ class Parent::RewardsController < ApplicationController
     redirect_to parent_rewards_path, notice: "Recompensa removida."
   end
 
+  def redeem_collective
+    result = Rewards::RedeemCollectiveService.call(
+      family: current_profile.family,
+      reward: @reward,
+      requested_by: current_profile
+    )
+
+    if result.success?
+      redirect_to parent_root_path, notice: "Meta coletiva resgatada! 🎉"
+    else
+      redirect_to parent_root_path, alert: result.error
+    end
+  end
+
   private
 
   def set_categories
@@ -50,6 +64,6 @@ class Parent::RewardsController < ApplicationController
   end
 
   def reward_params
-    params.require(:reward).permit(:title, :cost, :icon, :category_id)
+    params.require(:reward).permit(:title, :cost, :icon, :category_id, :collective)
   end
 end

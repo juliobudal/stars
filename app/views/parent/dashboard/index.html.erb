@@ -38,6 +38,11 @@
     <% end %>
   <% end %>
 
+  <%# ─── Meta coletiva semanal ─── %>
+  <div class="relative z-10 mb-4">
+    <%= render "shared/family_goal_widget", goal: @family_goal, viewer: current_profile %>
+  </div>
+
   <%# ─── Stats grid ─── %>
   <div class="z-10 relative grid grid-cols-2 lg:grid-cols-4 gap-3 mb-[22px]">
     <%= render Ui::StatCard::Component.new(value: @stats[:total_stars],       label: "Estrelinhas",     icon: "star",   tint: "reward") %>

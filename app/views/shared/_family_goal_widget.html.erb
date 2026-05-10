@@ -1,0 +1,37 @@
+<%# locals: (goal:, viewer: nil) %>
+<%# goal: result.data from Rewards::WeeklyFamilyGoalService %>
+<%# viewer: profile (kid or parent) — controls if redeem CTA shows %>
+<% if goal[:target].present? %>
+  <% target = goal[:target] %>
+  <% earned = goal[:earned] %>
+  <% pct = goal[:progress_pct] %>
+  <% eligible = goal[:eligible] %>
+
+  <%= render Ui::Card::Component.new(padding: "md", class: "family-goal-widget") do %>
+    <div class="flex items-start gap-4">
+      <div class="text-3xl shrink-0"><%= eligible ? "🎉" : "🌟" %></div>
+      <div class="flex-1 min-w-0">
+        <div class="text-xs font-bold uppercase tracking-wide text-muted">Meta da família</div>
+        <div class="text-base font-extrabold truncate"><%= target.title %></div>
+
+        <div class="mt-2 h-2.5 w-full rounded-full bg-hairline overflow-hidden">
+          <div class="h-full bg-primary transition-all" style="width: <%= pct %>%"></div>
+        </div>
+        <div class="mt-1 flex justify-between text-xs font-bold">
+          <span><%= earned %>⭐ / <%= target.cost %>⭐</span>
+          <span class="text-muted"><%= pct %>%</span>
+        </div>
+
+        <% if eligible && viewer&.parent? %>
+          <%= button_to "Resgatar meta 🎁",
+                redeem_collective_parent_reward_path(target),
+                method: :post,
+                data: { turbo_confirm: "Resgatar meta coletiva '#{target.title}'?" },
+                class: "mt-3 inline-block px-4 py-2 rounded-btn bg-primary text-white font-extrabold shadow-btn-primary" %>
+        <% elsif eligible %>
+          <div class="mt-3 text-sm font-bold text-success">✓ Meta batida! Mamãe ou Papai libera o prêmio.</div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

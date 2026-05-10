@@ -19,6 +19,7 @@ class Kid::DashboardController < ApplicationController
     @level_remaining        = LEVEL_SIZE - @level_progress
     @level_pct              = (@level_progress.to_f / LEVEL_SIZE * 100).round
     @streak_days            = current_profile.streak_days
+    @family_goal            = Rewards::WeeklyFamilyGoalService.call(family: current_profile.family).data
   end
 
   private

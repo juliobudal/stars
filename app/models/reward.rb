@@ -30,6 +30,9 @@ class Reward < ApplicationRecord
 
   validate :category_belongs_to_same_family
 
+  scope :collective, -> { where(collective: true) }
+  scope :individual, -> { where(collective: false) }
+
   private
 
   def category_belongs_to_same_family

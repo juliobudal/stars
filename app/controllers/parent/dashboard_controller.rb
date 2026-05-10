@@ -36,5 +36,7 @@ class Parent::DashboardController < ApplicationController
                                .awaiting_approval
                                .order(updated_at: :asc)
                                .limit(5)
+
+    @family_goal = Rewards::WeeklyFamilyGoalService.call(family: @family).data
   end
 end

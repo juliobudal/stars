@@ -206,7 +206,8 @@ rewards.each do |r|
     title:    r[:title],
     cost:     r[:cost],
     icon:     r[:icon],
-    category: cats.fetch(r[:category])
+    category: cats.fetch(r[:category]),
+    collective: r[:title].start_with?("[Família]")
   )
 end
 

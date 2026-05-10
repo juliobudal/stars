@@ -103,6 +103,11 @@
     <% end %>
   </div>
 
+  <%# ── Meta coletiva semanal ── %>
+  <div class="relative z-2 mb-4">
+    <%= render "shared/family_goal_widget", goal: @family_goal, viewer: current_profile %>
+  </div>
+
   <%# ── Mission list ── %>
   <div class="flex flex-col gap-5 mb-6 relative z-2">
 

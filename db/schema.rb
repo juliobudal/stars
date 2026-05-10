@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_06_160000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_10_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -170,6 +170,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_160000) do
   end
 
   create_table "redemptions", force: :cascade do |t|
+    t.boolean "collective", default: false, null: false
     t.datetime "created_at", null: false
     t.integer "points"
     t.bigint "profile_id", null: false
@@ -183,6 +184,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_160000) do
 
   create_table "rewards", force: :cascade do |t|
     t.bigint "category_id", null: false
+    t.boolean "collective", default: false, null: false
     t.integer "cost"
     t.datetime "created_at", null: false
     t.bigint "family_id", null: false
@@ -190,6 +192,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_160000) do
     t.string "title"
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_rewards_on_category_id"
+    t.index ["collective"], name: "index_rewards_on_collective"
     t.index ["family_id"], name: "index_rewards_on_family_id"
   end
 

@@ -25,7 +25,9 @@ Rails.application.routes.draw do
     resources :global_tasks, except: [ :show ] do
       member { patch :toggle_active }
     end
-    resources :rewards, only: [ :index, :new, :create, :edit, :update, :destroy ]
+    resources :rewards, only: [ :index, :new, :create, :edit, :update, :destroy ] do
+      member { post :redeem_collective }
+    end
     resources :categories
     resources :approvals, only: [ :index ] do
       collection do
