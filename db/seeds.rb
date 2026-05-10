@@ -129,8 +129,6 @@ cats = family.categories.index_by(&:name)
 # Aspiracional (meta longa) · Família (coletivo). Total ~30 itens, sem overlap.
 rewards = [
   # Micro (15-80) — pequenas conquistas diárias
-  { title: "Pedir uma música pro Alexa/Spotify",       cost: 15,    icon: "voice",            category: "Experiências" },
-  { title: "Ligar pra avó/avô e bater papo",           cost: 30,    icon: "phone-call",       category: "Experiências" },
   { title: "30 min extra de celular/tablet",           cost: 30,    icon: "smart-phone-01",   category: "Telinha" },
   { title: "Escolher o que assistir na TV à noite",    cost: 30,    icon: "tv-01",            category: "Experiências" },
   { title: "Sobremesa especial no jantar",             cost: 35,    icon: "cake-slice",       category: "Docinhos" },
