@@ -48,7 +48,7 @@
     background: var(--bg-deep);
     font-size: 16px;
     line-height: 1.5;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .bg-shape {
@@ -61,45 +61,36 @@
   }
 
   .screen {
-    position: absolute;
-    inset: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
     padding: var(--space-5) var(--space-6);
     display: flex;
     flex-direction: column;
   }
 
   .screen.with-nav {
-    padding-bottom: 120px;
+    padding-bottom: max(120px, calc(80px + env(safe-area-inset-bottom)));
   }
 
-  .screen::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  .screen::-webkit-scrollbar-thumb {
-    background: var(--hairline);
-    border-radius: 4px;
+  .screen.no-nav {
+    padding-bottom: var(--space-6);
   }
 
   @media (max-width: 640px) {
     .screen { padding: var(--space-4); }
+    .screen.with-nav { padding-bottom: max(120px, calc(80px + env(safe-area-inset-bottom))); }
+    .screen.no-nav { padding-bottom: var(--space-4); }
   }
 
   @media (min-width: 1024px) {
     html, body { overflow: visible; }
 
     .screen {
-      position: relative;
-      inset: unset;
-      max-width: 900px;
-      margin: 0 auto;
-      min-height: 100%;
-      padding: var(--space-6) var(--space-7) 120px;
-      overflow-y: visible;
-      overflow-x: visible;
+      min-height: 0;
+      padding: var(--space-6) 0;
     }
+    .screen.with-nav { padding-bottom: var(--space-6); }
   }
 }
 

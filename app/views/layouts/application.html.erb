@@ -6,10 +6,8 @@
     <%= yield :head %>
   </head>
 
-  <body class="app-shell" data-palette="sky">
+  <body class="min-h-screen bg-bg-deep overflow-x-hidden" data-palette="sky">
     <%= render Ui::Flash::Component.new %>
-    <div class="viewport">
-      <%= yield %>
-    </div>
+    <%= yield %>
   </body>
 </html>

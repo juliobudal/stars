@@ -19,9 +19,10 @@ RSpec.describe Ui::ProfileCard::Component, type: :component do
       expect(page).to have_text("CRIANÇA")
     end
 
-    it "renders the star points subtitle" do
+    it "renders the star points value and star icon" do
       render_inline(described_class.new(profile: profile, url: "/session"))
-      expect(page).to have_text("10 ★")
+      expect(page).to have_text("10")
+      expect(page).to have_css("i.hgi-stroke.hgi-star")
     end
 
     it "renders a submit button (form)" do
@@ -45,7 +46,7 @@ RSpec.describe Ui::ProfileCard::Component, type: :component do
 
     it "does not render a points subtitle for parent" do
       render_inline(described_class.new(profile: profile, url: "/session"))
-      expect(page).not_to have_text("★")
+      expect(page).not_to have_css("i.hgi-stroke.hgi-star")
     end
   end
 

@@ -274,9 +274,15 @@ Location: `app/components/ui/<name>/`. Always reach for a `Ui::*` first; only wr
 | `--ease-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Modals, pop-ins, spring feedback |
 | `--ease-spring-soft` | `cubic-bezier(0.22, 1.4, 0.36, 1)` | Card hover lifts, tile reveals |
 | `--ease-snap` | `cubic-bezier(0.4, 0, 0.2, 1)` | Shake, error states, snappy transitions |
-| `--dur-fast` | `120ms` | Micro-interactions (press feedback) |
+| `--ease-out-back` | `cubic-bezier(0.34, 1.20, 0.64, 1)` | Softer overshoot (alternative to spring) |
+| `--dur-instant` | `80ms` | 3D press feedback only |
+| `--dur-fast` | `120ms` | Micro-interactions, hover lifts |
 | `--dur-base` | `240ms` | Standard state transitions |
 | `--dur-pop` | `380ms` | Spring pops, reveals |
+| `--dur-long` | `600ms` | Progress fills, big reveals |
+| `--dur-ambient` | `2500ms` | Idle loops (mascot, coin, spinner) |
+
+**Rule:** Components must reference tokens via `var(--dur-*)` / `var(--ease-*)`. Raw `ms`/`s` literals in component CSS will be flagged by `make lint-motion` (see §9.4).
 
 ### Motion utility classes
 
@@ -306,6 +312,21 @@ Location: `app/components/ui/<name>/`. Always reach for a `Ui::*` first; only wr
 | `anim-bounce-once` | translateY bounce | `500ms` | `--ease-spring` |
 | `anim-fade-up` | opacity + translateY(8px) → none | `--dur-base` | `--ease-spring-soft` |
 | `anim-shimmer` | loading shimmer gradient | `1.4s infinite` | linear |
+| `anim-spin` | continuous rotation (spinners) | `--dur-ambient` infinite | `--ease-snap` |
+| `anim-card-enter` | fade + translateY(8px) → none | `--dur-base` | `--ease-spring-soft` |
+| `anim-progress` | width transition (progress bars) | `--dur-long` | `--ease-spring-soft` |
+
+#### Effects catalog (opt-in, trigger-driven)
+
+| Class | Trigger | Use |
+|---|---|---|
+| `anim-count-up` | Turbo Stream re-render of `Profile.points` balance | Pulse-green tick on points change (`ApproveService`, `RedeemService` broadcasts) |
+| `anim-streak-flame` | Always-on while element visible | Streak badge flicker (kid dashboard streak indicator) |
+| `anim-reward-unlock` | Turbo Stream replace `_locked` → `_affordable` | Reward becomes affordable — spring + brightness pop |
+| `anim-approve-check` | Approval row state transition to "approved" | SVG checkmark stroke draws in (apply to `<svg class="anim-approve-check">`) |
+| `anim-toast-slide` | Mount of toast / flash | Top-down slide entry (PWA update, flash messages) |
+| `anim-progress-shimmer` | While progress bar is `> 0%` and `< 100%` | Ambient sheen over filled portion (uses `::after` pseudo) |
+| `anim-haptic` | Opt-in on 3D press elements | Warm halo flash on `:active` (uses `::after` pseudo). Layer over `.ls-btn-3d` for extra tactile feedback on celebration CTAs |
 
 #### Legacy `animate-*` classes (`animations.css`)
 
@@ -334,6 +355,15 @@ Location: `app/components/ui/<name>/`. Always reach for a `Ui::*` first; only wr
 style="animation-delay: <%= index * 0.04 %>s"
 ```
 Cap at 5 items (0.16s max delay). Beyond 5, no delay.
+
+### Lint guardrail (§9.4)
+
+`make lint-motion` (also run in CI via `bin/ci`) fails the build if it finds:
+
+- Raw durations in `transition:` / `animation:` declarations under `app/components/**` or `app/views/**` (use `var(--dur-*)`).
+- Tailwind `duration-N` utilities in ERB (use a tokenized `style="transition: ... var(--dur-*) ..."` or an `.anim-*` class).
+
+To allow a justified exception, add `motion-lint: allow` as a comment on the same line.
 
 ### Reduced motion
 

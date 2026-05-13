@@ -26,8 +26,8 @@ module Ui
         @profile.child? ? "CRIANÇA" : "RESPONSÁVEL"
       end
 
-      def subtitle
-        @profile.child? ? "#{@profile.points} ★" : nil
+      def points_text
+        @profile.points.to_s if @profile.child?
       end
     end
   end

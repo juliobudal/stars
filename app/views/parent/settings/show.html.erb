@@ -27,7 +27,7 @@
     <%= render Ui::FormSection::Component.new(title: "PINs dos perfis") do %>
       <ul class="flex flex-col gap-2">
         <% current_family.profiles.order(:name).each do |profile| %>
-          <li class="flex items-center justify-between gap-3 py-2.5 px-3 rounded-[12px] border-2 border-hairline"
+          <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-3 px-3 rounded-[12px] border-2 border-hairline"
               style="background: var(--surface-2);">
             <div class="flex items-center gap-3 min-w-0">
               <%= render Ui::SmileyAvatar::Component.new(kid: profile, size: 32) %>
@@ -39,10 +39,11 @@
               </div>
             </div>
             <%= form_with url: reset_pin_parent_profile_path(profile), method: :patch, local: true,
-                          class: "flex gap-2 shrink-0" do |pf| %>
+                          class: "flex gap-2 shrink-0 w-full sm:w-auto" do |pf| %>
               <%= pf.text_field :pin, pattern: "\\d{4}", maxlength: 4, inputmode: "numeric",
                   autocomplete: "off", placeholder: "Novo PIN", required: true,
-                  class: "form-input w-[110px] !px-3 !py-2 !rounded-[10px] text-center" %>
+                  aria: { label: "Novo PIN para #{profile.name}" },
+                  class: "form-input flex-1 sm:flex-none sm:w-[120px] min-h-[44px] !px-3 !rounded-[10px] text-center" %>
               <%= render Ui::Btn::Component.new(variant: "danger", size: "sm", type: "submit") do %>
                 Resetar
               <% end %>

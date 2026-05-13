@@ -25,7 +25,10 @@
         </div>
         <div class="flex flex-col gap-0">
           <div class="text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--c-info-600);">Ganhou</div>
-          <div class="text-[20px] font-extrabold leading-tight tracking-[-0.02em]" style="color: var(--c-info-600);">+<%= total_earn %> ★</div>
+          <div class="text-[20px] font-extrabold leading-tight tracking-[-0.02em] inline-flex items-center gap-1" style="color: var(--c-info-600);">
+            +<%= total_earn %>
+            <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--star)") %>
+          </div>
         </div>
       </div>
     </div>
@@ -38,7 +41,10 @@
         </div>
         <div class="flex flex-col gap-0">
           <div class="text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--c-rose-dark);">Gastou</div>
-          <div class="text-[20px] font-extrabold leading-tight tracking-[-0.02em]" style="color: var(--c-rose-dark);">−<%= total_spend %> ★</div>
+          <div class="text-[20px] font-extrabold leading-tight tracking-[-0.02em] inline-flex items-center gap-1" style="color: var(--c-rose-dark);">
+            −<%= total_spend %>
+            <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--c-rose-dark)") %>
+          </div>
         </div>
       </div>
     </div>
@@ -48,8 +54,8 @@
   <div class="flex flex-col gap-3 relative z-10">
     <% if grouped.any? %>
       <% grouped.each_with_index do |(day, logs), gi| %>
-        <div class="bg-surface rounded-[16px] border-2 border-hairline overflow-hidden"
-             style="box-shadow: var(--shadow-card); animation: slideInCard 0.3s ease #{gi * 0.03}s both;">
+        <div class="anim-card-enter bg-surface rounded-[16px] border-2 border-hairline overflow-hidden"
+             style="box-shadow: var(--shadow-card); animation-delay: <%= gi * 0.03 %>s;">
           <%# Day header %>
           <div class="flex items-center justify-between px-4 py-2.5 border-b-2"
                style="background: var(--surface-muted); border-color: var(--hairline);">
@@ -87,8 +93,9 @@
                     </span>
                   </div>
                 </div>
-                <div class="text-[15px] font-extrabold tracking-[-0.02em] shrink-0" style="color: <%= chip_fg %>;">
-                  <%= earn ? "+" : "−" %><%= log.points.abs %> ★
+                <div class="text-[15px] font-extrabold tracking-[-0.02em] shrink-0 inline-flex items-center gap-1" style="color: <%= chip_fg %>;">
+                  <%= earn ? "+" : "−" %><%= log.points.abs %>
+                  <%= render Ui::Icon::Component.new(:star, size: 13, color: chip_fg) %>
                 </div>
               </div>
             <% end %>

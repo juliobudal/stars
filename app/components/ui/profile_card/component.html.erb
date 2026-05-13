@@ -1,13 +1,18 @@
 <div data-palette="<%= helpers.palette_for(@profile) %>">
   <%= helpers.form_with url: @url, method: :post do |f| %>
     <%= f.hidden_field :profile_id, value: @profile.id %>
-    <button type="submit" class="bg-surface rounded-md px-6 py-5 cursor-pointer shadow-card flex flex-row items-center gap-5 w-full font-body text-foreground no-underline text-left h-full transition-[box-shadow,transform] duration-150 hover:shadow-lift hover:-translate-y-0.5 border-none">
+    <button type="submit" class="ls-card-3d bg-surface rounded-md px-6 py-5 cursor-pointer shadow-card flex flex-row items-center gap-5 w-full font-body text-foreground no-underline text-left h-full border-none">
       <div class="w-13 h-13 shrink-0 rounded-full border-[3px] border-transparent grid place-items-center text-xl font-extrabold" style="background: <%= palette[:fill] %>; border-color: <%= palette[:ring] %>;">
         <span style="color: <%= palette[:ink] %>"><%= initial %></span>
       </div>
       <div class="flex flex-col gap-0.5">
         <p class="font-bold text-base text-foreground m-0"><%= @profile.name %></p>
-        <% if subtitle %><p class="text-[13px] text-muted-foreground m-0"><%= subtitle %></p><% end %>
+        <% if points_text %>
+          <p class="text-[13px] text-muted-foreground m-0 inline-flex items-center gap-1">
+            <%= points_text %>
+            <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--star)") %>
+          </p>
+        <% end %>
         <%= render Ui::Chip::Component.new(variant: chip_variant, size: "sm", class: "mt-1", uppercase: true) do %><%= chip_label %><% end %>
       </div>
     </button>

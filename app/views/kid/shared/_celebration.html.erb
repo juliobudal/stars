@@ -12,16 +12,26 @@
     <%= render Ui::Modal::Component.new(title: payload[:message] || "Conquista!", variant: :celebration, id: "celebration_modal_#{ts}") do %>
       <div class="text-center py-4">
         <% if payload[:points] %>
-          <p class="text-3xl font-display font-extrabold text-warning">+<%= payload[:points] %> ★</p>
+          <p class="text-3xl font-display font-extrabold text-warning inline-flex items-center gap-2 justify-center">
+            +<%= payload[:points] %>
+            <%= render Ui::Icon::Component.new(:star, size: 26, color: "var(--star)") %>
+          </p>
         <% end %>
         <% if payload[:reward_title] %>
           <p class="mt-2 text-lg font-bold"><%= payload[:reward_title] %></p>
         <% end %>
         <% if payload[:days] %>
-          <p class="mt-2 text-lg font-bold"><%= payload[:days] %> dias seguidos! 🔥</p>
+          <p class="mt-2 text-lg font-bold inline-flex items-center gap-1.5 justify-center">
+            <%= payload[:days] %> dias seguidos!
+            <%= render Ui::Icon::Component.new("flame", size: 18, color: "var(--c-streak)") %>
+          </p>
         <% end %>
         <% if payload[:threshold] %>
-          <p class="mt-2 text-lg font-bold">Você passou de <%= payload[:threshold] %> ★!</p>
+          <p class="mt-2 text-lg font-bold inline-flex items-center gap-1.5 justify-center">
+            Você passou de <%= payload[:threshold] %>
+            <%= render Ui::Icon::Component.new(:star, size: 16, color: "var(--star)") %>
+            !
+          </p>
         <% end %>
       </div>
     <% end %>

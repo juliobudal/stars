@@ -66,7 +66,7 @@ module Ui
           "inline-flex items-center font-display font-extrabold leading-none",
           text_class,
           number_color_class,
-          { "animate-pop": animate == :pop, "animate-star-pulse": animate == :pulse },
+          { "anim-pulse-once": animate == :pop, "anim-star-pulse": animate == :pulse },
           @class
         )
       end

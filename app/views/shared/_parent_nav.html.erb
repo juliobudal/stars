@@ -1,21 +1,25 @@
 <%# Mobile sticky header — hidden on desktop via CSS %>
-<%# Mobile sticky header — hidden on desktop via CSS %>
 <div data-controller="sidebar-toggle">
-<div class="flex lg:hidden items-center justify-between px-4 h-[64px] bg-white border-b border-hairline sticky top-0 z-40">
+<div class="flex lg:hidden items-center justify-between px-4 h-[64px] bg-white border-b border-hairline sticky top-0 z-40"
+     style="padding-top: env(safe-area-inset-top); height: calc(64px + env(safe-area-inset-top));">
   <div class="flex items-center gap-2.5">
     <%= render Ui::LogoMark::Component.new(size: 20) %>
     <span class="font-display font-extrabold tracking-tight text-[18px] text-foreground">LittleStars</span>
   </div>
   <button type="button" id="sidebar-toggle"
           data-action="click->sidebar-toggle#open"
-          class="flex items-center justify-center w-9 h-9 rounded-[10px] bg-muted border-none cursor-pointer text-foreground">
-    <%= render Ui::Icon::Component.new("list", size: 20) %>
+          aria-label="Abrir menu"
+          class="flex items-center justify-center w-11 h-11 rounded-[10px] bg-muted border-none cursor-pointer text-foreground">
+    <%= render Ui::Icon::Component.new("list", size: 22) %>
   </button>
 </div>
 
 <%# Sidebar %>
-<%# Sidebar %>
-<nav class="flex flex-col fixed left-0 top-0 bottom-0 w-[220px] bg-surface border-r-2 border-hairline z-50 -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0" id="parent-sidebar" data-sidebar-toggle-target="sidebar" aria-label="Principal">
+<nav class="flex flex-col fixed left-0 top-0 bottom-0 w-[220px] bg-surface border-r-2 border-hairline z-50 -translate-x-full lg:translate-x-0"
+     id="parent-sidebar"
+     data-sidebar-toggle-target="sidebar"
+     aria-label="Principal"
+     style="padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); transition: transform var(--dur-base) var(--ease-snap);">
   <%# Brand %>
   <div class="px-[14px] pt-5 pb-[18px]">
     <div class="flex items-center gap-2.5">
@@ -89,28 +93,43 @@
      data-sidebar-toggle-target="backdrop"
      data-action="click->sidebar-toggle#close"></div>
 
-</div><%# end data-controller="sidebar-toggle" %>
-
-<div class="fixed bottom-0 left-0 right-0 h-[72px] bg-white/80 backdrop-blur-lg border-t border-hairline flex justify-around items-center px-4 z-40 lg:hidden">
+<div class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-hairline flex justify-around items-stretch px-2 z-40 lg:hidden"
+     style="padding-bottom: env(safe-area-inset-bottom); min-height: calc(72px + env(safe-area-inset-bottom));">
   <%
     mobile_nav_items = [
-      { icon: "house", path: parent_root_path, label: "Início" },
-      { icon: "clock", path: parent_approvals_path, label: "Pendências", badge: pending_approvals_count.positive? ? pending_approvals_count : nil },
+      { icon: "house",       path: parent_root_path,         label: "Início" },
+      { icon: "clock",       path: parent_approvals_path,    label: "Pendências", badge: pending_approvals_count.positive? ? pending_approvals_count : nil },
       { icon: "list-checks", path: parent_global_tasks_path, label: "Missões" },
-      { icon: "bag", path: parent_rewards_path, label: "Prêmios" }
+      { icon: "bag",         path: parent_rewards_path,      label: "Prêmios" }
     ]
   %>
   <% mobile_nav_items.each do |item| %>
     <% active = current_page?(item[:path]) %>
-    <%= link_to item[:path], class: "flex flex-col items-center justify-center gap-1 flex-1 py-2 relative", title: item[:label] do %>
-      <span class="flex flex-col items-center gap-1 px-3 py-1 rounded-[12px] border-2 transition-colors #{active ? 'bg-accent text-accent-foreground border-primary' : 'text-muted-foreground border-transparent'}">
+    <%= link_to item[:path],
+          class: "flex flex-col items-center justify-center gap-1 flex-1 py-2 relative min-h-[44px] no-underline",
+          title: item[:label],
+          aria: { current: active ? "page" : nil, label: item[:label] } do %>
+      <span class="flex flex-col items-center gap-0.5 px-2 py-1 rounded-[12px] border-2 transition-colors #{active ? 'bg-accent text-accent-foreground border-primary' : 'text-muted-foreground border-transparent'}">
         <%= render Ui::Icon::Component.new(item[:icon], size: 22, color: "currentColor") %>
-        <span class="text-[10px] font-extrabold tracking-[0.5px] uppercase"><%= item[:label] %></span>
+        <span class="text-[10px] font-extrabold tracking-[0.5px] uppercase whitespace-nowrap"><%= item[:label] %></span>
       </span>
       <% if item[:badge] %>
         <span class="absolute top-1 right-1/4 -translate-x-1 bg-danger text-white text-[9px] font-extrabold px-1 rounded-full min-w-[16px] h-4 flex items-center justify-center border-2 border-white"><%= item[:badge] %></span>
       <% end %>
     <% end %>
   <% end %>
+
+  <%# "Mais" — opens the drawer to reach Crianças / Categorias / Configurações %>
+  <button type="button"
+          data-action="click->sidebar-toggle#open"
+          aria-label="Mais opções"
+          class="flex flex-col items-center justify-center gap-1 flex-1 py-2 min-h-[44px] bg-transparent border-0 cursor-pointer">
+    <span class="flex flex-col items-center gap-0.5 px-2 py-1 rounded-[12px] border-2 border-transparent text-muted-foreground transition-colors">
+      <%= render Ui::Icon::Component.new("list", size: 22, color: "currentColor") %>
+      <span class="text-[10px] font-extrabold tracking-[0.5px] uppercase whitespace-nowrap">Mais</span>
+    </span>
+  </button>
 </div>
+
+</div><%# end data-controller="sidebar-toggle" %>
 

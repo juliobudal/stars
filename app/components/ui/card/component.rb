@@ -6,9 +6,10 @@ class Ui::Card::Component < ApplicationComponent
     "lg"   => "p-7"
   }.freeze
 
-  def initialize(variant: "default", padding: "lg", **options)
+  def initialize(variant: "default", padding: "lg", lift: false, **options)
     @variant = variant
     @padding = padding
+    @lift = lift
     @options = options
   end
 
@@ -36,6 +37,7 @@ class Ui::Card::Component < ApplicationComponent
       base_classes,
       padding_class,
       variant_classes,
+      ("ls-card-3d" if @lift),
       @options.delete(:class)
     )
   end

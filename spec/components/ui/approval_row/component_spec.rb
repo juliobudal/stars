@@ -16,7 +16,8 @@ RSpec.describe Ui::ApprovalRow::Component, type: :component do
       reject_url: "/reject"
     ))
     expect(page).to have_text("Escovar dentes")
-    expect(page).to have_text("+10 ★")
+    expect(page).to have_text("+10")
+    expect(page).to have_css("i.hgi-stroke.hgi-star")
     expect(page).to have_css("form[action='/approve']")
     expect(page).to have_css("form[action='/reject']")
   end
@@ -27,7 +28,8 @@ RSpec.describe Ui::ApprovalRow::Component, type: :component do
       points_sign: "−",
       approve_url: "/a", reject_url: "/r"
     ))
-    expect(page).to have_text("−30 ★")
+    expect(page).to have_text("−30")
+    expect(page).to have_css("i.hgi-stroke.hgi-star")
   end
 
   it "wraps root in data-palette matching kid color" do

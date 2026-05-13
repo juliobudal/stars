@@ -102,7 +102,7 @@
              selected_style   = "background: var(--c-info-100); border-color: var(--c-info-500); box-shadow: 0 3px 0 var(--c-info-600); color: var(--c-info-600);"
              unselected_style = "background: var(--surface); border-color: var(--hairline); color: var(--text-muted);"
         %>
-          <label class="ls-icon-cell rounded-[12px] p-3.5 text-center border-2 cursor-pointer flex flex-col items-center gap-1.5"
+          <label class="ls-icon-cell rounded-[12px] p-3 sm:p-3.5 min-w-0 text-center border-2 cursor-pointer flex flex-col items-center gap-1.5"
                  data-selectable-group-target="option"
                  data-selected-style="<%= selected_style %>"
                  data-unselected-style="<%= unselected_style %>"
@@ -111,8 +111,8 @@
                   class: "sr-only",
                   data: { action: "change->fields#enable", controls: "day_of_month_field" } %>
             <%= render Ui::Icon::Component.new(opt[:icon], size: 22, color: "currentColor") %>
-            <div class="text-[13px] font-extrabold"><%= opt[:label] %></div>
-            <div class="text-[10px] font-bold"><%= opt[:helper] %></div>
+            <div class="text-[13px] font-extrabold whitespace-nowrap"><%= opt[:label] %></div>
+            <div class="text-[10px] font-bold w-full truncate"><%= opt[:helper] %></div>
           </label>
         <% end %>
       </div>
@@ -145,10 +145,10 @@
                  <%= "disabled" if global_task.frequency.to_s == "once" %>
                  aria-controls="repeatable_field"
                  aria-label="Permitir múltiplas execuções por período" />
-          <span class="w-[52px] h-[30px] rounded-full bg-hairline transition-colors duration-200 relative peer-checked:bg-primary peer-disabled:opacity-50"
-                style="box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);">
-            <span class="w-[24px] h-[24px] rounded-full bg-white absolute top-[3px] left-[3px] transition-transform duration-200 peer-checked:translate-x-[22px]"
-                  style="box-shadow: 0 2px 0 rgba(0,0,0,0.15);"></span>
+          <span class="w-[52px] h-[30px] rounded-full bg-hairline relative peer-checked:bg-primary peer-disabled:opacity-50"
+                style="box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15); transition: background-color var(--dur-base) var(--ease-snap);">
+            <span class="w-[24px] h-[24px] rounded-full bg-white absolute top-[3px] left-[3px] peer-checked:translate-x-[22px]"
+                  style="box-shadow: 0 2px 0 rgba(0,0,0,0.15); transition: transform var(--dur-base) var(--ease-spring);"></span>
           </span>
         </label>
 

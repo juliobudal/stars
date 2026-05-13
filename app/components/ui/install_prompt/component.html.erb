@@ -1,7 +1,9 @@
 <div hidden
      class="install-prompt"
      data-controller="install-prompt">
-  <div class="install-prompt__icon" aria-hidden="true">⭐</div>
+  <div class="install-prompt__icon" aria-hidden="true">
+    <%= render Ui::Icon::Component.new(:star, size: 24, color: "var(--star)") %>
+  </div>
   <div class="install-prompt__body">
     <p class="install-prompt__title">Instale o LittleStars</p>
     <p class="install-prompt__subtitle">Acesso rápido pela tela inicial.</p>

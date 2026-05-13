@@ -1,11 +1,18 @@
 @layer base {
   :root {
+    /* easings */
     --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     --ease-spring-soft: cubic-bezier(0.22, 1.4, 0.36, 1);
     --ease-snap: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out-back: cubic-bezier(0.34, 1.20, 0.64, 1);
+
+    /* durations */
+    --dur-instant: 80ms;
     --dur-fast: 120ms;
     --dur-base: 240ms;
     --dur-pop: 380ms;
+    --dur-long: 600ms;
+    --dur-ambient: 2500ms;
   }
 }
 
@@ -94,6 +101,14 @@
     animation: fxFadeUp var(--dur-base) var(--ease-spring-soft) both;
   }
 
+  .anim-star-pulse {
+    animation: fxStarPulse 2s ease-in-out infinite;
+  }
+  @keyframes fxStarPulse {
+    0%, 100% { transform: scale(1);    filter: drop-shadow(0 0 0 rgba(234, 179, 8, 0)); }
+    50%      { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(234, 179, 8, 0.4)); }
+  }
+
   .ls-mascot-bounce {
     animation: lsMascotBounce 2.5s ease-in-out infinite;
     transform-origin: bottom center;
@@ -118,6 +133,144 @@
     to { opacity: 1; transform: none; }
   }
 
+  /* ── Shell route-entry animations ── */
+  .screen-enter,
+  .page-enter {
+    animation: fxSlideLeft var(--dur-pop) var(--ease-spring-soft) backwards;
+  }
+  .screen-enter-right,
+  .page-enter-right {
+    animation: fxSlideRight var(--dur-pop) var(--ease-spring-soft) backwards;
+  }
+  @keyframes fxSlideLeft {
+    from { opacity: 0; transform: translateX(-24px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes fxSlideRight {
+    from { opacity: 0; transform: translateX(24px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .anim-spin {
+    animation: fxSpin 1.6s var(--ease-snap) infinite;
+  }
+  @keyframes fxSpin {
+    to { transform: rotate(360deg); }
+  }
+
+  .anim-card-enter {
+    animation: fxFadeUp var(--dur-base) var(--ease-spring-soft) both;
+  }
+
+  .anim-progress {
+    transition: width var(--dur-long) var(--ease-spring-soft);
+  }
+
+  /* ── Effects catalog (opt-in) ── */
+
+  .anim-count-up {
+    animation: fxCountPop var(--dur-fast) var(--ease-spring) both;
+  }
+  @keyframes fxCountPop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.18); color: var(--primary); }
+    100% { transform: scale(1); }
+  }
+
+  .anim-streak-flame {
+    animation: fxFlicker 1.8s ease-in-out infinite;
+    transform-origin: bottom center;
+  }
+  @keyframes fxFlicker {
+    0%, 100% { transform: rotate(-1deg) scale(1);     filter: brightness(1); }
+    50%      { transform: rotate(1.5deg) scale(1.04); filter: brightness(1.1); }
+  }
+
+  .anim-reward-unlock {
+    animation: fxUnlock 700ms var(--ease-spring) both;
+  }
+  @keyframes fxUnlock {
+    0%   { transform: scale(0.85) rotate(-3deg); opacity: 0; filter: brightness(0.7); }
+    60%  { transform: scale(1.08) rotate(2deg);  opacity: 1; filter: brightness(1.2); }
+    100% { transform: scale(1) rotate(0);                    filter: brightness(1); }
+  }
+
+  .anim-approve-check path {
+    stroke-dasharray: 24;
+    stroke-dashoffset: 24;
+    animation: fxDraw var(--dur-pop) var(--ease-snap) forwards;
+  }
+  @keyframes fxDraw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .anim-toast-slide {
+    animation: fxToast var(--dur-base) var(--ease-spring) both;
+  }
+  @keyframes fxToast {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+  }
+
+  /* ── View Transitions API (Turbo 8) — shell-level page swaps ── */
+  @supports (view-transition-name: root) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: var(--dur-base);
+      animation-timing-function: var(--ease-spring-soft);
+    }
+    ::view-transition-old(root) {
+      animation-name: fxFadeOut;
+    }
+    ::view-transition-new(root) {
+      animation-name: fxFadeUp;
+    }
+  }
+  @keyframes fxFadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+
+  .anim-haptic {
+    position: relative;
+  }
+  .anim-haptic::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: var(--star, #ffc41a);
+    opacity: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+  .anim-haptic:active::after {
+    animation: fxHaptic var(--dur-base) ease-out;
+  }
+  @keyframes fxHaptic {
+    0%   { opacity: 0.55; transform: scale(1); }
+    100% { opacity: 0;    transform: scale(1.15); }
+  }
+
+  .anim-progress-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .anim-progress-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.35) 50%,
+      rgba(255,255,255,0) 100%
+    );
+    background-size: 200% 100%;
+    animation: fxShimmer 1.8s linear infinite;
+    pointer-events: none;
+  }
+
   .anim-shimmer {
     background: linear-gradient(
       90deg,
@@ -136,6 +289,12 @@
 
 @layer utilities {
   @media (prefers-reduced-motion: reduce) {
+    @supports (view-transition-name: root) {
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation: none !important;
+      }
+    }
     .anim-press,
     .anim-tile,
     .anim-pop-in,
@@ -144,6 +303,18 @@
     .anim-bounce-once,
     .anim-fade-up,
     .anim-shimmer,
+    .anim-spin,
+    .anim-card-enter,
+    .screen-enter,
+    .screen-enter-right,
+    .page-enter,
+    .page-enter-right,
+    .anim-progress,
+    .anim-count-up,
+    .anim-streak-flame,
+    .anim-reward-unlock,
+    .anim-toast-slide,
+    .anim-star-pulse,
     .ls-mascot-bounce,
     .ls-coin-shake,
     .ls-btn-3d,
@@ -155,6 +326,18 @@
     .ls-card-3d {
       animation: none !important;
       transition: none !important;
+    }
+    .anim-haptic::after {
+      animation: none !important;
+      opacity: 0 !important;
+    }
+    .anim-progress-shimmer::after {
+      animation: none !important;
+      display: none;
+    }
+    .anim-approve-check path {
+      stroke-dashoffset: 0 !important;
+      animation: none !important;
     }
     .anim-tile:hover, .ls-card-3d:hover {
       transform: none;

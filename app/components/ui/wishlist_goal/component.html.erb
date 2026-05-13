@@ -25,25 +25,38 @@
         </div>
       </div>
 
-      <div class="flex items-center justify-between mt-2.5">
-        <span class="text-[13px] font-bold" style="color: var(--text);">
-          <%= profile.points %>/<%= reward.cost %>⭐
+      <div class="flex items-center justify-between mt-2.5 gap-2">
+        <span class="text-[13px] font-bold inline-flex items-center gap-1" style="color: var(--text);">
+          <%= profile.points %>/<%= reward.cost %>
+          <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--star)") %>
         </span>
         <% if funded? %>
-          <span class="text-[13px] font-extrabold" style="color: var(--primary-2);">Pronto pra resgatar! 🎉</span>
+          <span class="text-[13px] font-extrabold inline-flex items-center gap-1" style="color: var(--primary-2);">
+            <%= render Ui::Icon::Component.new("check", size: 12, color: "var(--primary-2)") %>
+            Pronto pra resgatar!
+          </span>
         <% else %>
-          <span class="text-[13px] font-bold" style="color: var(--text-muted);">
-            Faltam <strong style="color: var(--primary-2);"><%= stars_remaining %>⭐</strong>
+          <span class="text-[13px] font-bold inline-flex items-center gap-1" style="color: var(--text-muted);">
+            Faltam
+            <strong class="inline-flex items-center gap-0.5" style="color: var(--primary-2);">
+              <%= stars_remaining %>
+              <%= render Ui::Icon::Component.new(:star, size: 11, color: "var(--star)") %>
+            </strong>
           </span>
         <% end %>
       </div>
 
       <% if funded? %>
-        <%= link_to kid_rewards_path(anchor: dom_id(reward)),
-                    class: "ls-btn-3d block text-center mt-3 px-4 py-2.5 rounded-[12px] font-extrabold text-white",
-                    style: "background: var(--primary); box-shadow: 0 4px 0 var(--primary-2);" do %>
-          Resgatar agora
-        <% end %>
+        <div class="mt-3">
+          <%= render Ui::Btn::Component.new(
+                variant: "primary",
+                size: "md",
+                block: true,
+                url: kid_rewards_path(anchor: dom_id(reward))
+              ) do %>
+            Resgatar agora
+          <% end %>
+        </div>
       <% end %>
     </div>
   <% else %>

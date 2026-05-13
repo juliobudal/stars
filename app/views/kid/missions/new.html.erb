@@ -7,7 +7,7 @@
   ) %>
 
   <%= form_with url: kid_missions_path, scope: :profile_task, multipart: true, local: true,
-        html: { class: "space-y-4" } do |f| %>
+        html: { class: "flex flex-col gap-[18px]" } do |f| %>
     <% if flash[:alert].present? %>
       <div class="rounded-[12px] border-2 px-4 py-3 text-[13px] font-bold"
            style="background: var(--danger-soft); color: var(--c-red-dark); border-color: var(--c-red-dark);">
@@ -15,47 +15,43 @@
       </div>
     <% end %>
 
-    <div>
-      <%= f.label :custom_title, "O que você fez?", class: "block text-[14px] font-extrabold mb-1.5", style: "color: var(--text);" %>
+    <%= render Ui::FormSection::Component.new do %>
+      <%= f.label :custom_title, "O que você fez?", class: "form-label mb-2.5" %>
       <%= f.text_field :custom_title, required: true, maxlength: 120,
             placeholder: "Ex.: Arrumei a estante",
-            class: "w-full px-4 py-3 rounded-[12px] border-2 text-[15px] font-bold",
-            style: "border-color: var(--hairline); background: var(--surface); color: var(--text);" %>
-    </div>
+            class: "form-input" %>
+    <% end %>
 
-    <div>
-      <%= f.label :custom_description, "Conta mais (opcional)", class: "block text-[14px] font-extrabold mb-1.5", style: "color: var(--text);" %>
+    <%= render Ui::FormSection::Component.new do %>
+      <%= f.label :custom_description, "Conta mais (opcional)", class: "form-label mb-2.5" %>
       <%= f.text_area :custom_description, rows: 3,
             placeholder: "Como foi?",
-            class: "w-full px-4 py-3 rounded-[12px] border-2 text-[14px] font-medium",
-            style: "border-color: var(--hairline); background: var(--surface); color: var(--text);" %>
-    </div>
+            class: "form-input" %>
+    <% end %>
 
-    <div>
-      <%= f.label :custom_points, "Quanto vale?", class: "block text-[14px] font-extrabold mb-1.5", style: "color: var(--text);" %>
+    <%= render Ui::FormSection::Component.new do %>
+      <%= f.label :custom_points, "Quanto vale?", class: "form-label mb-2.5" %>
       <%= f.number_field :custom_points, required: true, min: 1, max: 1000, value: 10,
-            class: "w-full px-4 py-3 rounded-[12px] border-2 text-[15px] font-bold",
-            style: "border-color: var(--hairline); background: var(--surface); color: var(--text);" %>
-      <p class="text-[12px] font-bold mt-1" style="color: var(--text-muted);">Os pais podem ajustar.</p>
-    </div>
+            inputmode: "numeric",
+            class: "form-input" %>
+      <p class="text-[12px] font-bold mt-2" style="color: var(--text-muted);">Os pais podem ajustar.</p>
+    <% end %>
 
-    <div>
-      <%= f.label :custom_category_id, "Categoria", class: "block text-[14px] font-extrabold mb-1.5", style: "color: var(--text);" %>
+    <%= render Ui::FormSection::Component.new do %>
+      <%= f.label :custom_category_id, "Categoria", class: "form-label mb-2.5" %>
       <%= f.select :custom_category_id,
             @categories.map { |c| [c.name, c.id] },
             { include_blank: "Escolha uma..." },
             required: true,
-            class: "w-full px-4 py-3 rounded-[12px] border-2 text-[15px] font-bold",
-            style: "border-color: var(--hairline); background: var(--surface); color: var(--text);" %>
-    </div>
+            class: "form-select" %>
+    <% end %>
 
-    <div>
-      <%= f.label :submission_comment, "Recado pros pais (opcional)", class: "block text-[14px] font-extrabold mb-1.5", style: "color: var(--text);" %>
+    <%= render Ui::FormSection::Component.new do %>
+      <%= f.label :submission_comment, "Recado pros pais (opcional)", class: "form-label mb-2.5" %>
       <%= f.text_area :submission_comment, rows: 2, maxlength: 500,
             placeholder: "Quer mandar um recado?",
-            class: "w-full px-4 py-3 rounded-[12px] border-2 text-[14px] font-medium",
-            style: "border-color: var(--hairline); background: var(--surface); color: var(--text);" %>
-    </div>
+            class: "form-input" %>
+    <% end %>
 
     <div class="flex gap-3 pt-2">
       <%= render Ui::Btn::Component.new(variant: "secondary", url: kid_root_path, block: true) do %>Cancelar<% end %>

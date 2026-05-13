@@ -45,17 +45,17 @@
     </span>
     <div class="flex items-center gap-1.5">
       <%= link_to edit_parent_reward_path(reward),
-            class: "ls-btn-3d inline-flex items-center justify-center w-9 h-9 rounded-[10px] border-2 no-underline",
+            class: "ls-btn-3d inline-flex items-center justify-center w-11 h-11 rounded-[10px] border-2 no-underline",
             style: "background: var(--primary-soft); border-color: var(--primary); box-shadow: 0 2px 0 var(--primary-2);",
             aria: { label: "Editar #{reward.title}" } do %>
-        <%= render Ui::Icon::Component.new("pencil", size: 14, color: "var(--primary-2)") %>
+        <%= render Ui::Icon::Component.new("pencil", size: 16, color: "var(--primary-2)") %>
       <% end %>
       <%= button_to parent_reward_path(reward), method: :delete,
-            class: "ls-btn-3d inline-flex items-center justify-center w-9 h-9 rounded-[10px] border-2 cursor-pointer p-0",
+            class: "ls-btn-3d inline-flex items-center justify-center w-11 h-11 rounded-[10px] border-2 cursor-pointer p-0",
             style: "background: var(--c-rose-soft); border-color: var(--danger); box-shadow: 0 2px 0 var(--danger-2);",
             data: { turbo_confirm: "Remover \"#{reward.title}\" do catálogo? Esta ação não pode ser desfeita." },
             aria: { label: "Remover #{reward.title}" } do %>
-        <%= render Ui::Icon::Component.new("trash", size: 14, color: "var(--danger)") %>
+        <%= render Ui::Icon::Component.new("trash", size: 16, color: "var(--danger)") %>
       <% end %>
     </div>
   </div>

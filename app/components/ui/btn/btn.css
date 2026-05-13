@@ -1,7 +1,8 @@
 @reference "../../../assets/stylesheets/tailwind/engine.css";
 
 .ui-btn {
-  @apply inline-flex items-center justify-center font-display font-extrabold rounded-[14px] gap-2 transition-all duration-[80ms] ease-out select-none uppercase tracking-[0.5px] whitespace-nowrap cursor-pointer border-none;
+  @apply inline-flex items-center justify-center font-display font-extrabold rounded-[14px] gap-2 ease-out select-none uppercase tracking-[0.5px] whitespace-nowrap cursor-pointer border-none;
+  transition: transform var(--dur-instant) ease-out, box-shadow var(--dur-instant) ease-out, background var(--dur-instant) ease-out;
 }
 .ui-btn:disabled,
 .ui-btn[aria-disabled="true"] {

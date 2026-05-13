@@ -33,7 +33,7 @@
   padding: 0.5rem 1rem;
   box-shadow: var(--shadow-btn);
   cursor: pointer;
-  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  transition: transform var(--dur-instant) ease, box-shadow var(--dur-instant) ease;
 }
 
 .pwa-update-toast__cta:active {

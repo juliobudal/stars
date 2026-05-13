@@ -8,8 +8,9 @@
 
 .cat-tab {
   @apply inline-flex items-center justify-center gap-1.5 whitespace-nowrap;
-  @apply px-3.5 py-2 font-display font-extrabold cursor-pointer uppercase;
-  @apply text-[12px] transition-all duration-150 ease-out;
+  @apply px-3.5 py-2.5 min-h-[44px] font-display font-extrabold cursor-pointer uppercase;
+  @apply text-[12px];
+  transition: transform var(--dur-fast) var(--ease-snap), background var(--dur-fast) var(--ease-snap), color var(--dur-fast) var(--ease-snap);
   background: var(--surface);
   color: var(--text-muted);
   border: 2px solid var(--hairline);
@@ -25,3 +26,7 @@
   box-shadow: 0 3px 0 var(--primary-2);
 }
 .cat-tab--active:hover { color: white; }
+@media (prefers-reduced-motion: reduce) {
+  .cat-tab { transition: none; }
+  .cat-tab:active { transform: none; }
+}

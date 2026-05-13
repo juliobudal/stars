@@ -129,6 +129,9 @@ lint:
 
 rubocop: lint
 
+lint-motion:
+	bash scripts/check-motion-tokens.sh
+
 brakeman:
 	$(EXEC) bin/brakeman
 
