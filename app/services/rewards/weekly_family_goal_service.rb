@@ -1,9 +1,8 @@
 module Rewards
-  # Calcula meta coletiva semanal da família.
+  # Calcula metas coletivas semanais da família.
   # Janela = semana corrente baseada em family.week_start.
   # Earned = soma de ActivityLog#earn de TODOS profiles da família na janela.
-  # Target = primeira reward collective cujo cost > earned (próxima meta),
-  #          ou maior reward collective já atingida (eligible: true).
+  # Retorna lista de goals — uma por reward coletiva, com progresso e elegibilidade.
   class WeeklyFamilyGoalService < ApplicationService
     def initialize(family:, now: Time.current)
       @family = family
@@ -20,23 +19,16 @@ module Rewards
                  .sum(:points)
 
       collectives = @family.rewards.collective.order(:cost)
-      return ok(empty_payload(earned, window)) if collectives.empty?
 
-      eligible = collectives.where("cost <= ?", earned).reorder(cost: :desc).first
-      target = eligible || collectives.first
-
-      progress_pct = target.cost.positive? ? [ (earned.to_f / target.cost * 100).round, 100 ].min : 0
-
-      ok(
+      goals = collectives.map do |reward|
         {
-          earned: earned,
-          target: target,
-          eligible: !eligible.nil?,
-          eligible_reward: eligible,
-          progress_pct: progress_pct,
-          window: window
+          reward: reward,
+          eligible: earned >= reward.cost,
+          progress_pct: reward.cost.positive? ? [ (earned.to_f / reward.cost * 100).round, 100 ].min : 0
         }
-      )
+      end
+
+      ok(earned: earned, goals: goals, window: window)
     end
 
     private
@@ -47,10 +39,6 @@ module Rewards
       offset = (today.wday - wday_start) % 7
       start_date = today - offset
       start_date.beginning_of_day..(start_date + 6.days).end_of_day
-    end
-
-    def empty_payload(earned, window)
-      { earned: earned, target: nil, eligible: false, eligible_reward: nil, progress_pct: 0, window: window }
     end
   end
 end

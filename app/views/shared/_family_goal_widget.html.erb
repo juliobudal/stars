@@ -1,56 +1,61 @@
 <%# locals: (goal:, viewer: nil) %>
 <%# goal: result.data from Rewards::WeeklyFamilyGoalService %>
 <%# viewer: profile (kid or parent) — controls if redeem CTA shows %>
-<% if goal[:target].present? %>
-  <% target = goal[:target] %>
-  <% earned = goal[:earned] %>
-  <% pct = goal[:progress_pct] %>
-  <% eligible = goal[:eligible] %>
+<% earned = goal[:earned] %>
+<% goals = goal[:goals] || [] %>
+<% if goals.any? %>
+  <div class="flex flex-col gap-3">
+    <% goals.each do |g|
+         reward = g[:reward]
+         eligible = g[:eligible]
+         pct = g[:progress_pct]
+    %>
+      <%= render Ui::Card::Component.new(padding: "md", class: "family-goal-widget") do %>
+        <div class="flex items-start gap-4">
+          <div class="shrink-0 w-12 h-12 rounded-[14px] grid place-items-center"
+               style="background: <%= eligible ? 'var(--primary-soft)' : 'var(--star-soft)' %>; border: 2px solid <%= eligible ? 'var(--primary)' : 'var(--star)' %>;">
+            <%= render Ui::Icon::Component.new(eligible ? "gift" : "star", size: 24, color: eligible ? "var(--primary-2)" : "var(--star-2)") %>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-xs font-extrabold uppercase tracking-[0.5px]" style="color: var(--text-muted);">Meta da família</div>
+            <div class="text-base font-extrabold truncate" style="color: var(--text);"><%= reward.title %></div>
 
-  <%= render Ui::Card::Component.new(padding: "md", class: "family-goal-widget") do %>
-    <div class="flex items-start gap-4">
-      <div class="shrink-0 w-12 h-12 rounded-[14px] grid place-items-center"
-           style="background: <%= eligible ? 'var(--primary-soft)' : 'var(--star-soft)' %>; border: 2px solid <%= eligible ? 'var(--primary)' : 'var(--star)' %>;">
-        <%= render Ui::Icon::Component.new(eligible ? "gift" : "star", size: 24, color: eligible ? "var(--primary-2)" : "var(--star-2)") %>
-      </div>
-      <div class="flex-1 min-w-0">
-        <div class="text-xs font-extrabold uppercase tracking-[0.5px]" style="color: var(--text-muted);">Meta da família</div>
-        <div class="text-base font-extrabold truncate" style="color: var(--text);"><%= target.title %></div>
+            <div class="mt-2 h-2.5 w-full rounded-full bg-hairline overflow-hidden">
+              <div class="h-full bg-primary transition-all" style="width: <%= pct %>%"></div>
+            </div>
+            <div class="mt-1 flex justify-between items-center text-xs font-bold gap-2">
+              <span class="inline-flex items-center gap-1" style="color: var(--text);">
+                <%= earned %>
+                <%= render Ui::Icon::Component.new(:star, size: 11, color: "var(--star)") %>
+                <span class="mx-0.5" style="color: var(--text-soft);">/</span>
+                <%= reward.cost %>
+                <%= render Ui::Icon::Component.new(:star, size: 11, color: "var(--star)") %>
+              </span>
+              <span style="color: var(--text-muted);"><%= pct %>%</span>
+            </div>
 
-        <div class="mt-2 h-2.5 w-full rounded-full bg-hairline overflow-hidden">
-          <div class="h-full bg-primary transition-all" style="width: <%= pct %>%"></div>
-        </div>
-        <div class="mt-1 flex justify-between items-center text-xs font-bold gap-2">
-          <span class="inline-flex items-center gap-1" style="color: var(--text);">
-            <%= earned %>
-            <%= render Ui::Icon::Component.new(:star, size: 11, color: "var(--star)") %>
-            <span class="mx-0.5" style="color: var(--text-soft);">/</span>
-            <%= target.cost %>
-            <%= render Ui::Icon::Component.new(:star, size: 11, color: "var(--star)") %>
-          </span>
-          <span style="color: var(--text-muted);"><%= pct %>%</span>
-        </div>
-
-        <% if eligible && viewer&.parent? %>
-          <div class="mt-3">
-            <%= render Ui::Btn::Component.new(
-                  variant: "primary",
-                  size: "sm",
-                  url: redeem_collective_parent_reward_path(target),
-                  method: :post,
-                  data: { turbo_confirm: "Resgatar meta coletiva '#{target.title}'?" }
-                ) do %>
-              <%= render Ui::Icon::Component.new("gift", size: 14, color: "currentColor") %>
-              Resgatar meta
+            <% if eligible && viewer&.parent? %>
+              <div class="mt-3">
+                <%= render Ui::Btn::Component.new(
+                      variant: "primary",
+                      size: "sm",
+                      url: redeem_collective_parent_reward_path(reward),
+                      method: :post,
+                      data: { turbo_confirm: "Resgatar meta coletiva '#{reward.title}'?" }
+                    ) do %>
+                  <%= render Ui::Icon::Component.new("gift", size: 14, color: "currentColor") %>
+                  Resgatar meta
+                <% end %>
+              </div>
+            <% elsif eligible %>
+              <div class="mt-3 inline-flex items-center gap-1.5 text-sm font-extrabold" style="color: var(--success);">
+                <%= render Ui::Icon::Component.new("check", size: 14, color: "var(--success)") %>
+                Meta batida! Mamãe ou Papai libera o prêmio.
+              </div>
             <% end %>
           </div>
-        <% elsif eligible %>
-          <div class="mt-3 inline-flex items-center gap-1.5 text-sm font-extrabold" style="color: var(--success);">
-            <%= render Ui::Icon::Component.new("check", size: 14, color: "var(--success)") %>
-            Meta batida! Mamãe ou Papai libera o prêmio.
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>

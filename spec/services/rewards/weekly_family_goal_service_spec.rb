@@ -9,11 +9,11 @@ RSpec.describe Rewards::WeeklyFamilyGoalService do
 
   describe '#call' do
     context 'with no collective rewards' do
-      it 'returns empty target' do
+      it 'returns empty goals list' do
         result = described_class.call(family: family)
         expect(result.success?).to be true
-        expect(result.data[:target]).to be_nil
-        expect(result.data[:eligible]).to be false
+        expect(result.data[:goals]).to eq([])
+        expect(result.data[:earned]).to eq(0)
       end
     end
 
@@ -27,25 +27,29 @@ RSpec.describe Rewards::WeeklyFamilyGoalService do
 
         result = described_class.call(family: family)
         expect(result.data[:earned]).to eq(110)
-        expect(result.data[:target]).to eq(small)
-        expect(result.data[:eligible]).to be true
       end
 
-      it 'targets next unreached reward when below smallest goal' do
-        create(:activity_log, profile: kid1, log_type: :earn, points: 30)
+      it 'returns one goal entry per collective reward, ordered by cost' do
+        result = described_class.call(family: family)
+        expect(result.data[:goals].map { |g| g[:reward] }).to eq([ small, big ])
+      end
+
+      it 'marks each goal eligible based on earned vs its cost' do
+        create(:activity_log, profile: kid1, log_type: :earn, points: 150)
 
         result = described_class.call(family: family)
-        expect(result.data[:target]).to eq(small)
-        expect(result.data[:eligible]).to be false
-        expect(result.data[:progress_pct]).to eq(30)
+        small_goal = result.data[:goals].find { |g| g[:reward] == small }
+        big_goal   = result.data[:goals].find { |g| g[:reward] == big }
+        expect(small_goal[:eligible]).to be true
+        expect(big_goal[:eligible]).to be false
       end
 
-      it 'picks largest reached when multiple eligible' do
+      it 'computes progress_pct per goal, capped at 100' do
         create(:activity_log, profile: kid1, log_type: :earn, points: 600)
 
         result = described_class.call(family: family)
-        expect(result.data[:target]).to eq(big)
-        expect(result.data[:eligible]).to be true
+        expect(result.data[:goals].find { |g| g[:reward] == small }[:progress_pct]).to eq(100)
+        expect(result.data[:goals].find { |g| g[:reward] == big }[:progress_pct]).to eq(100)
       end
 
       it 'excludes earns from previous week' do
@@ -61,6 +65,12 @@ RSpec.describe Rewards::WeeklyFamilyGoalService do
         create(:activity_log, profile: kid1, log_type: :redeem, points: -50)
         result = described_class.call(family: family)
         expect(result.data[:earned]).to eq(0)
+      end
+
+      it 'reflects newly uncollectivized rewards by excluding them from goals' do
+        small.update!(collective: false)
+        result = described_class.call(family: family)
+        expect(result.data[:goals].map { |g| g[:reward] }).to eq([ big ])
       end
     end
   end
