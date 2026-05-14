@@ -10,7 +10,7 @@ RSpec.describe "config/recurring.yml" do
     expect(entry["class"]).to eq("DailyResetJob")
   end
 
-  it "schedules daily_reset at midnight" do
-    expect(config.dig("production", "daily_reset", "schedule")).to eq("0 0 * * *")
+  it "schedules daily_reset hourly so each family's local midnight is processed" do
+    expect(config.dig("production", "daily_reset", "schedule")).to eq("5 * * * *")
   end
 end

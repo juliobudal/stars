@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_10_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_14_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -74,8 +74,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_10_120000) do
     t.boolean "allow_negative", default: false
     t.integer "auto_approve_threshold"
     t.datetime "created_at", null: false
+    t.integer "day_start_hour", default: 0, null: false
     t.boolean "decay_enabled", default: false
     t.citext "email"
+    t.date "last_reset_on"
     t.string "locale", default: "pt-BR"
     t.integer "max_debt", default: 100, null: false
     t.string "name"

@@ -143,6 +143,13 @@
     <% end %>
   </div>
 
+  <%# ── Upcoming weekly/monthly missions ── %>
+  <% if @upcoming_missions.any? %>
+    <div class="relative z-2 mb-4">
+      <%= render "kid/dashboard/upcoming_missions_widget", upcoming: @upcoming_missions %>
+    </div>
+  <% end %>
+
   <%# ── Ghost CTA: create custom mission ── %>
   <%= link_to new_kid_mission_path,
         class: "font-display flex items-center justify-center gap-2 w-full text-center mb-4 z-2 shrink-0 no-underline",

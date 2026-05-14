@@ -6,6 +6,7 @@ class Parent::DashboardController < ApplicationController
 
   def index
     @family = Family.includes(:profiles).find(current_profile.family_id)
+    Tasks::DailyResetService.new(family: @family).call
     @children = @family.profiles.child.includes(:wishlist_reward)
 
     # Per-child awaiting-approval count { child_id => count }

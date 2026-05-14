@@ -27,5 +27,15 @@
              placeholder="—" min="0"
              class="form-input w-[90px] !py-2 !px-2.5 !rounded-[10px] text-right" />
     </div>
+
+    <div class="flex justify-between items-center gap-4 py-3.5 border-t-2 border-hairline">
+      <div class="flex flex-col gap-0.5 min-w-0">
+        <div class="text-[14px] font-extrabold" style="color: var(--text);">Início do dia (hora local)</div>
+        <div class="text-[12px] font-bold" style="color: var(--text-muted);">Hora em que o "novo dia" começa para as missões diárias (0–23). Padrão: 0 (meia-noite).</div>
+      </div>
+      <input type="number" name="family[day_start_hour]" value="<%= family.day_start_hour %>"
+             min="0" max="23"
+             class="form-input w-[90px] !py-2 !px-2.5 !rounded-[10px] text-right" />
+    </div>
   </div>
 <% end %>

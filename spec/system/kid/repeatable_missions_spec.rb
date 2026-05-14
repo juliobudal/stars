@@ -43,12 +43,14 @@ RSpec.describe "Kid completes a repeatable mission", type: :system, js: true do
       end
     end
 
-    # All three approvals fired. Refresh once more — cap is now reached, the card
-    # must be gone for the rest of the day.
+    # All three approvals fired. Refresh once more — cap is now reached, the
+    # pending action card must be gone (no new "Terminei!" button available),
+    # though the three approved cards remain visible as completed-today summary.
     visit kid_root_path
-    expect(page).to have_no_content("Escovar dentes", wait: 10)
+    expect(page).to have_no_button("Terminei!", wait: 10)
 
     expect(ProfileTask.where(profile: kid, global_task: gt, status: :pending)).to be_empty
     expect(ProfileTask.where(profile: kid, global_task: gt, status: :approved).count).to eq(3)
+    expect(page).to have_content(/3 de 3/i)
   end
 end

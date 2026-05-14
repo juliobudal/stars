@@ -23,9 +23,10 @@ RSpec.describe Tasks::DailyResetService do
       end
 
       it 'does not duplicate tasks if run twice' do
-        service = described_class.new(date: wednesday, family: family)
-        service.call
-        expect { service.call }.not_to change(ProfileTask, :count)
+        described_class.new(date: wednesday, family: family).call
+        expect {
+          described_class.new(date: wednesday, family: family).call
+        }.not_to change(ProfileTask, :count)
       end
 
       it 'assigns the correct date' do
@@ -42,7 +43,6 @@ RSpec.describe Tasks::DailyResetService do
           described_class.new(date: monday, family: family).call
         }.to change(ProfileTask, :count).by(2) # 2 children * 1 task (daily_task)
 
-        # Verify weekly task was NOT created
         expect(ProfileTask.where(profile: child1, global_task: weekly_task, assigned_date: monday)).to be_empty
       end
     end
@@ -107,6 +107,19 @@ RSpec.describe Tasks::DailyResetService do
           described_class.new(date: any_date + 1, family: family).call
         }.not_to change { ProfileTask.where(global_task: once_task).count }
       end
+
+      it 'still creates the slot for kids who have not done it, even if a sibling has' do
+        # Pretend child1 already completed the once-task on a previous run
+        ProfileTask.create!(profile: child1, global_task: once_task, assigned_date: any_date - 1, status: :approved)
+
+        expect {
+          family.update_column(:last_reset_on, nil)
+          described_class.new(date: any_date, family: family).call
+        }.to change { ProfileTask.where(global_task: once_task, profile: child2).count }.by(1)
+
+        # child1 is NOT re-issued the once-task
+        expect(ProfileTask.where(global_task: once_task, profile: child1).count).to eq(1)
+      end
     end
 
     context 'with explicit assignments' do
@@ -144,6 +157,7 @@ RSpec.describe Tasks::DailyResetService do
         ProfileTask.where(global_task: repeatable_task).each do |pt|
           pt.update!(status: :awaiting_approval)
         end
+        family.update_column(:last_reset_on, nil)
 
         expect {
           described_class.new(date: monday, family: family).call
@@ -152,7 +166,138 @@ RSpec.describe Tasks::DailyResetService do
     end
   end
 
-  describe "timezone-aware @date" do
+  describe 'idempotency via family.last_reset_on' do
+    let(:wednesday) { Date.new(2024, 1, 3) }
+
+    it 'short-circuits when family already reset for today' do
+      family.update_column(:last_reset_on, wednesday)
+      expect(ProfileTask).not_to receive(:where)
+      described_class.new(date: wednesday, family: family).call
+    end
+
+    it 'sets last_reset_on after a successful run' do
+      described_class.new(date: wednesday, family: family).call
+      expect(family.reload.last_reset_on).to eq(wednesday)
+    end
+
+    it 'returns 0 from the second call within the same local day' do
+      described_class.new(date: wednesday, family: family).call
+      expect(described_class.new(date: wednesday, family: family).call).to eq(0)
+    end
+
+    it 'runs again when called for a newer local date' do
+      described_class.new(date: wednesday, family: family).call
+      expect {
+        described_class.new(date: wednesday + 1, family: family).call
+      }.to change(ProfileTask, :count) # next day creates new daily slot
+    end
+  end
+
+  describe 'sweep of stale pending slots' do
+    let(:today) { Date.new(2024, 1, 3) }
+    let(:yesterday) { Date.new(2024, 1, 2) }
+
+    it 'marks yesterday\'s pending slots as missed' do
+      stale = ProfileTask.create!(
+        profile: child1,
+        global_task: daily_task,
+        assigned_date: yesterday,
+        status: :pending
+      )
+
+      described_class.new(date: today, family: family).call
+
+      expect(stale.reload.status).to eq("missed")
+    end
+
+    it 'does not touch approved or awaiting_approval slots from past days' do
+      approved = ProfileTask.create!(
+        profile: child1,
+        global_task: daily_task,
+        assigned_date: yesterday,
+        status: :approved
+      )
+      awaiting = ProfileTask.create!(
+        profile: child2,
+        global_task: daily_task,
+        assigned_date: yesterday,
+        status: :awaiting_approval
+      )
+
+      described_class.new(date: today, family: family).call
+
+      expect(approved.reload.status).to eq("approved")
+      expect(awaiting.reload.status).to eq("awaiting_approval")
+    end
+
+    it 'does not touch today\'s pending slots' do
+      todays = ProfileTask.create!(
+        profile: child1,
+        global_task: daily_task,
+        assigned_date: today,
+        status: :pending
+      )
+
+      described_class.new(date: today, family: family).call
+
+      expect(todays.reload.status).to eq("pending")
+    end
+
+    it 'does not bleed across families' do
+      other_family = create(:family)
+      other_child = create(:profile, :child, family: other_family)
+      other_task = create(:global_task, :daily, family: other_family)
+      other_stale = ProfileTask.create!(
+        profile: other_child,
+        global_task: other_task,
+        assigned_date: yesterday,
+        status: :pending
+      )
+
+      described_class.new(date: today, family: family).call
+
+      expect(other_stale.reload.status).to eq("pending")
+    end
+  end
+
+  describe 'argument validation' do
+    it 'raises when family is nil' do
+      expect { described_class.new(family: nil) }.to raise_error(ArgumentError, /family is required/)
+    end
+  end
+
+  describe "day_start_hour offset" do
+    around do |example|
+      Time.use_zone("America/Sao_Paulo") { example.run }
+    end
+
+    it "treats local time before day_start_hour as still belonging to yesterday" do
+      family.update!(day_start_hour: 6)
+
+      travel_to Time.zone.local(2026, 5, 1, 5, 30, 0) do
+        service = described_class.new(family: family)
+        expect(service.instance_variable_get(:@today)).to eq(Date.new(2026, 4, 30))
+      end
+    end
+
+    it "rolls over to the new day once day_start_hour is reached" do
+      family.update!(day_start_hour: 6)
+
+      travel_to Time.zone.local(2026, 5, 1, 6, 0, 0) do
+        service = described_class.new(family: family)
+        expect(service.instance_variable_get(:@today)).to eq(Date.new(2026, 5, 1))
+      end
+    end
+
+    it "defaults to midnight when day_start_hour is 0" do
+      travel_to Time.zone.local(2026, 5, 1, 0, 30, 0) do
+        service = described_class.new(family: family)
+        expect(service.instance_variable_get(:@today)).to eq(Date.new(2026, 5, 1))
+      end
+    end
+  end
+
+  describe "timezone-aware @today" do
     around do |example|
       Time.use_zone("America/Sao_Paulo") { example.run }
     end
@@ -160,14 +305,14 @@ RSpec.describe Tasks::DailyResetService do
     it "uses today's BR date when called at 23:30 BRT" do
       travel_to Time.zone.local(2026, 4, 30, 23, 30, 0) do
         service = described_class.new(family: family)
-        expect(service.instance_variable_get(:@date)).to eq(Date.new(2026, 4, 30))
+        expect(service.instance_variable_get(:@today)).to eq(Date.new(2026, 4, 30))
       end
     end
 
     it "rolls over to next BR date past midnight" do
       travel_to Time.zone.local(2026, 5, 1, 0, 30, 0) do
         service = described_class.new(family: family)
-        expect(service.instance_variable_get(:@date)).to eq(Date.new(2026, 5, 1))
+        expect(service.instance_variable_get(:@today)).to eq(Date.new(2026, 5, 1))
       end
     end
   end

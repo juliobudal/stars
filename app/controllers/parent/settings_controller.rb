@@ -22,7 +22,7 @@ class Parent::SettingsController < ApplicationController
   def settings_params
     raw = params.require(:family).permit(
       :locale, :timezone, :week_start, :require_photo, :decay_enabled,
-      :allow_negative, :auto_approve_threshold
+      :allow_negative, :auto_approve_threshold, :day_start_hour
     )
     raw[:require_photo]   = ActiveModel::Type::Boolean.new.cast(raw[:require_photo]) if raw.key?(:require_photo)
     raw[:decay_enabled]   = ActiveModel::Type::Boolean.new.cast(raw[:decay_enabled]) if raw.key?(:decay_enabled)

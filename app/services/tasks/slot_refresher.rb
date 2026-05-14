@@ -27,7 +27,7 @@ module Tasks
         max = @global_task.max_completions_per_period.to_i
 
         if consumed >= max
-          period_pts.pending.destroy_all
+          period_pts.pending.update_all(status: ProfileTask.statuses[:expired], updated_at: Time.current)
           return ok(:cap_reached)
         end
 

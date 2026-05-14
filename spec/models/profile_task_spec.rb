@@ -42,7 +42,7 @@ RSpec.describe ProfileTask, type: :model do
   end
 
   describe "enums" do
-    it { is_expected.to define_enum_for(:status).with_values(pending: 0, awaiting_approval: 1, approved: 2, rejected: 3) }
+    it { is_expected.to define_enum_for(:status).with_values(pending: 0, awaiting_approval: 1, approved: 2, rejected: 3, missed: 4, expired: 5) }
   end
 
   describe "scopes" do

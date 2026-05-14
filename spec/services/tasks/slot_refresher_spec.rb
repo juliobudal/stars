@@ -38,11 +38,11 @@ RSpec.describe Tasks::SlotRefresher do
       expect { call }.not_to change { ProfileTask.count }
     end
 
-    it "destroys the pending row once a slot is consumed (awaiting_approval)" do
+    it "marks the pending row as expired once the cap is reached (was awaiting_approval)" do
       awaiting_pt = create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :awaiting_approval)
       orphan = create(:profile_task, profile: profile, global_task: gt, assigned_date: date, status: :pending)
 
-      expect { call }.to change { ProfileTask.where(id: orphan.id).count }.from(1).to(0)
+      expect { call }.to change { orphan.reload.status }.from("pending").to("expired")
       expect(ProfileTask.where(id: awaiting_pt.id)).to exist
     end
 

@@ -1,0 +1,45 @@
+<%# locals: (upcoming:) %>
+<%# upcoming: Array of { date:, global_task: } from Tasks::UpcomingService %>
+<% if upcoming.any? %>
+  <% weekdays = %w[Domingo Segunda Terça Quarta Quinta Sexta Sábado] %>
+  <%= render Ui::Card::Component.new(padding: "md", class: "upcoming-missions") do %>
+    <div class="flex items-center gap-2 mb-3">
+      <%= render Ui::Icon::Component.new(:calendar, size: 16, color: "var(--text-muted)") %>
+      <div class="text-xs font-extrabold uppercase tracking-[0.5px]" style="color: var(--text-muted);">
+        Próximas missões
+      </div>
+    </div>
+
+    <ul class="flex flex-col gap-2">
+      <% upcoming.each do |entry|
+           gt = entry[:global_task]
+           date = entry[:date]
+           label = if date == Date.current.next_day
+                     "Amanhã"
+                   elsif date - Date.current <= 6
+                     weekdays[date.wday]
+                   else
+                     I18n.l(date, format: "%d/%m")
+                   end
+      %>
+        <li class="flex items-center gap-3 py-2 px-3 rounded-[12px] border-2 border-hairline"
+            style="background: var(--surface-2);">
+          <div class="shrink-0 w-9 h-9 rounded-[10px] grid place-items-center"
+               style="background: var(--star-soft); border: 2px solid var(--star);">
+            <%= render Ui::Icon::Component.new(gt.icon.presence || :target, size: 16, color: "var(--star-2)") %>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[13px] font-extrabold truncate" style="color: var(--text);"><%= gt.title %></div>
+            <div class="text-[11px] font-bold uppercase tracking-[0.5px]" style="color: var(--text-muted);">
+              <%= label %>
+            </div>
+          </div>
+          <div class="shrink-0 inline-flex items-center gap-1 text-[12px] font-extrabold" style="color: var(--text);">
+            +<%= gt.points %>
+            <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--star)") %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>

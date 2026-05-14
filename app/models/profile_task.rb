@@ -39,7 +39,7 @@ class ProfileTask < ApplicationRecord
 
   has_one_attached :proof_photo
 
-  enum :status, { pending: 0, awaiting_approval: 1, approved: 2, rejected: 3 }, default: :pending
+  enum :status, { pending: 0, awaiting_approval: 1, approved: 2, rejected: 3, missed: 4, expired: 5 }, default: :pending
   enum :source, { catalog: 0, custom: 1 }, default: :catalog
 
   PROOF_PHOTO_CONTENT_TYPES = %w[image/jpeg image/png image/webp].freeze
