@@ -13,6 +13,8 @@ services:
   web:
     build: .
     command: bin/dev
+    mem_limit: 4g
+    memswap_limit: 4g
     ports:
       - "10301:3000"
       - "10302:3036"
