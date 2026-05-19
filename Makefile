@@ -125,7 +125,7 @@ reset: db-reset
 # RAILS_ENV=test prevents env drift that triggers EnvironmentMismatchError +
 # protects dev DB from rspec's db:test:purge stomping if last command ran in dev.
 test:
-	$(EXEC) env RAILS_ENV=test bundle exec rspec $(ARGS)
+	$(EXEC) env RAILS_ENV=test DATABASE_URL=postgres://littlestars:littlestars_dev@db:5432/littlestars_test bundle exec rspec $(ARGS)
 
 rspec: test
 
@@ -134,7 +134,7 @@ rspec: test
 # OpenRouter — uses stubbed LLM responses for fast feedback in CI.
 # Live LLM eval is opt-in: ACADEMY_LIVE_EVAL=1 make eval-v5.
 eval-v5:
-	$(EXEC) env RAILS_ENV=test bundle exec rspec \
+	$(EXEC) env RAILS_ENV=test DATABASE_URL=postgres://littlestars:littlestars_dev@db:5432/littlestars_test bundle exec rspec \
 	  spec/services/academy/lens/ \
 	  spec/services/academy/missions/lifecycle_spec.rb \
 	  spec/services/academy/pokedex/

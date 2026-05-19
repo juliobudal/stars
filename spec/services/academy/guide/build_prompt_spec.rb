@@ -75,24 +75,21 @@ RSpec.describe Academy::Guide::BuildPrompt do
   end
 
   it "drops newest-first lens summaries until under MAX_SYSTEM_TOKENS, preserving floor" do
-    bloated = "x" * 600 # ~150 tokens per lens, after 10 lenses ~1500 tokens
-    cache_rows = 10.times.map do |i|
-      cache_row(
-        lens_type: %w[narrative scientific statistical engineering first_person ethical historical analogy_bridge].cycle.to_a[i],
-        claim: "Claim #{i} #{bloated}",
-        source: "Source #{i}",
-        generated_at: i.hours.ago
-      )
-    end
-    cache_rows.each_with_index { |c, i| visit(lens_type: c.lens_type, position: i + 1, cache: c) }
+    # Pure-functional test of the `compose` truncation loop — `BuildPrompt`'s
+    # token budget logic doesn't depend on DB state, only on the lens
+    # summaries it receives. Driving it directly avoids creating 10 real
+    # LensCache + LearnerLensVisit rows per example.
+    service = described_class.new(learner: learner, mission: mission)
+    floor   = service.send(:base_floor, concept: concept, mission: mission)
 
-    result = described_class.call(learner: learner, mission: mission)
-    sys = result.data[:system]
+    fat_summary = "📈 statistical — #{"x" * 220}"
+    summaries = Array.new(10) { fat_summary.dup }
+    result    = service.send(:compose, floor: floor, lens_summaries: summaries)
 
-    tokens = (sys.length / 4.0).ceil
+    tokens = (result.length / 4.0).ceil
     expect(tokens).to be <= Academy::Guide::BuildPrompt::MAX_SYSTEM_TOKENS
-    expect(sys).to include("Atenção é caríssima") # floor preserved
-    expect(sys).to include("Se você é interrompido") # central insight preserved
+    expect(result).to include("Atenção é caríssima") # floor preserved
+    expect(result).to include("Se você é interrompido") # central insight preserved
   end
 
   it "returns no LIÇÕES section when learner has not visited any lens" do

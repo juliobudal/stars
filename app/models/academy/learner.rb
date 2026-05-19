@@ -16,13 +16,17 @@ module Academy
       )
     end
 
-    # Keep the pre-existing 3-keyword constructor working — modules added the
-    # `timezone` field after several callsites already passed only the original
-    # three. Default to UTC when absent.
-    def self.new(id:, display_name:, age_band:, timezone: "UTC")
-      super(id: id, display_name: display_name, age_band: age_band, timezone: timezone)
-    end
-
     def kid?  = age_band == "kid"
+  end
+
+  # Keep the pre-existing 3-keyword constructor working — `timezone` was added
+  # after several callsites already passed only the original three. Default to
+  # UTC when absent. Done via singleton alias rather than `super` inside the
+  # `Data.define` block (which doesn't resolve cleanly on Ruby 3.3 Data classes).
+  class << Learner
+    alias_method :_data_new, :new
+    def new(id:, display_name:, age_band:, timezone: "UTC")
+      _data_new(id: id, display_name: display_name, age_band: age_band, timezone: timezone)
+    end
   end
 end
