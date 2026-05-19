@@ -2,7 +2,7 @@
   "character": {
     "name": "Tristan Harris",
     "age": 16,
-    "trait": "Magico amador obcecado por como prender a atenção das pessoas."
+    "trait": "Mágico amador obcecado por como prender a atenção das pessoas."
   },
   "scenes": [
     {
@@ -11,14 +11,14 @@
     },
     {
       "id": "s2",
-      "text": "Dentro do Google, Tristan vê as planilhas. Times de mil engenheiros otimizando uma métrica: 'tempo de tela'. Não 'usuário satisfeito'. Não 'aprendeu algo'. Apenas tempo. Cada notificação, cor de botão, ordem do feed — testado em milhões de pessoas até descobrir o que prende mais."
+      "text": "Dentro do Google, Tristan vê as planilhas. Times inteiros de engenheiros otimizando uma métrica: 'tempo de tela'. Não 'usuário satisfeito'. Não 'aprendeu algo'. Apenas tempo. Cada notificação, cor de botão, ordem do feed — testado em milhões de pessoas até descobrir o que prende mais."
     },
     {
       "id": "s3",
       "text": "Em 2013, Tristan manda um documento interno: 'A Call to Minimize Distraction & Respect Users' Attention'. Em duas semanas, dezesseis mil colegas leem. Em 2015, ele sai do Google. Hoje fala em parlamentos sobre o que ajudou a construir."
     }
   ],
-  "ending": "Quando você desliza o feed às onze da noite e não consegue parar, lembra: você não está fraco. Está sozinho contra mil pessoas que testaram cada pixel pra te segurar mais um minuto. Saber o nome do truque é o primeiro passo pra não cair nele.",
+  "ending": "Quando você desliza o feed às onze da noite e não consegue parar, lembra: você não está fraco. Está sozinho contra um exército de gente que testou cada pixel pra te segurar mais um minuto. Saber o nome do truque é o primeiro passo pra não cair nele.",
   "micro_check": {
     "question": "Por que Tristan Harris saiu do Google?",
     "options": [

@@ -76,25 +76,26 @@ JSON estrito conforme schema `analogy_bridge.json`. SEM prosa antes ou depois.
 ```
 <% end %>
 
-# EXEMPLO DE REFERÊNCIA (conceito: "recompensa variável" — NÃO COPIE)
+# EXEMPLO DE REFERÊNCIA (conceito: "rede de distribuição com hub central" — NÃO COPIE)
 
 ```json
 {
   "source_domain": {
-    "name": "Cachorro recebendo petisco",
-    "elements": ["dono mostra petisco", "cachorro senta", "petisco vem TODA vez", "petisco vem ÀS VEZES", "cachorro fica obcecado"]
+    "name": "Sistema circulatório humano",
+    "elements": ["coração bombeia", "artérias grossas saem do coração", "capilares finos chegam em cada célula", "veias trazem sangue de volta", "se uma artéria entupe, a região fica sem oxigênio"]
   },
   "target_domain": {
-    "name": "Você puxando a tela do Instagram",
-    "elements": ["você abre o app", "puxa pra baixo", "às vezes tem post novo", "às vezes não tem nada", "você não consegue parar de puxar"]
+    "name": "Rede de metrô de São Paulo",
+    "elements": ["estação central distribui passageiro", "linhas troncais grossas (azul, vermelha)", "linhas de bairro finas chegam em cada região", "linhas de retorno levam gente de volta ao centro", "se a Linha 4 trava, bairros inteiros ficam sem ligação"]
   },
   "mapping": [
-    {"from": "dono mostra petisco", "to": "você abre o app"},
-    {"from": "cachorro senta", "to": "puxa pra baixo"},
-    {"from": "petisco vem ÀS VEZES", "to": "às vezes tem post novo / às vezes não tem nada"},
-    {"from": "cachorro fica obcecado", "to": "você não consegue parar de puxar"}
+    {"from": "coração bombeia", "to": "estação central distribui passageiro"},
+    {"from": "artérias grossas saem do coração", "to": "linhas troncais grossas (azul, vermelha)"},
+    {"from": "capilares finos chegam em cada célula", "to": "linhas de bairro finas chegam em cada região"},
+    {"from": "veias trazem sangue de volta", "to": "linhas de retorno levam gente de volta ao centro"},
+    {"from": "se uma artéria entupe, a região fica sem oxigênio", "to": "se a Linha 4 trava, bairros inteiros ficam sem ligação"}
   ],
-  "transfer_question": "Olhando esse mapeamento: por que cassino e Roblox lootbox prendem MAIS que jogo de tabuleiro normal? Onde está a 'recompensa que vem às vezes' nesses dois?"
+  "transfer_question": "Olhando esse mapeamento: onde {{learner_name}} já viu MAIS uma 'rede que entrega coisa em cada cantinho a partir de um ponto central'? Pensa em coisas que viu na escola, em casa, ou em algum jogo que jogou."
 }
 ```
 

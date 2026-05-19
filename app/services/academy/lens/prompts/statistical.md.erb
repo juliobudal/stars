@@ -77,17 +77,17 @@ JSON estrito conforme schema `statistical.json`. SEM prosa antes ou depois. SEM 
 ```
 <% end %>
 
-# EXEMPLO DE REFERÊNCIA (conceito: "dopamina" — NÃO COPIE)
+# EXEMPLO DE REFERÊNCIA (conceito: "paradoxo do aniversário" — NÃO COPIE)
 
 ```json
 {
-  "predict_prompt": "Quantas vezes por dia um adolescente médio desbloqueia o celular SEM ter recebido notificação? Chuta antes de ler.",
-  "predict_unit": "vezes/dia",
-  "predict_min": 0,
-  "predict_max": 200,
-  "reveal_value": 96,
-  "reveal_source": "Estimativa derivada de estudos de uso de smartphone em adolescentes (Common Sense Media e medições internas de SO, faixa 2020-2023).",
-  "interpretation": "96 vezes. A cada 10 minutos acordado. Nenhuma notificação. É o cérebro indo atrás da POSSIBILIDADE de recompensa — esse é o trabalho da dopamina."
+  "predict_prompt": "Numa sala com 23 crianças, qual a chance de DUAS delas terem aniversário no MESMO dia do ano? Chuta antes de ler.",
+  "predict_unit": "%",
+  "predict_min": 1,
+  "predict_max": 100,
+  "reveal_value": 50,
+  "reveal_source": "Cálculo combinatorial clássico: probabilidade complementar de 23 datas distintas em 365 dias ≈ 50,7%. Conhecido como 'paradoxo do aniversário'.",
+  "interpretation": "50%. Numa sala do tamanho da sua, é cara-ou-coroa ter dois colegas com aniversário no mesmo dia. A intuição diz '23 em 365, ~6%'. Erra porque você não compara CADA UM com TODOS — são 253 pares possíveis escondidos na sala."
 }
 ```
 

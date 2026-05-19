@@ -75,25 +75,25 @@ JSON estrito conforme schema `engineering.json`. SEM prosa antes ou depois.
 ```
 <% end %>
 
-# EXEMPLO DE REFERÊNCIA (conceito: "dopamina" — NÃO COPIE)
+# EXEMPLO DE REFERÊNCIA (conceito: "design de mochila escolar" — NÃO COPIE)
 
 ```json
 {
-  "challenge": "{{learner_name}} virou designer de um app de vídeos. Escolha 3 mecânicas pra MAXIMIZAR engajamento.",
+  "challenge": "{{learner_name}} virou designer de uma marca de mochila escolar pra crianças de 11 anos. Escolha 3 features pra criar a mochila que mais VENDE no início do ano letivo.",
   "constraints": [
-    {"id": "autoplay",   "label": "Autoplay do próximo vídeo",          "cost": "Usuário perde noção do tempo, sai cansado."},
-    {"id": "scroll",     "label": "Scroll infinito",                    "cost": "Não há ponto natural de parada."},
-    {"id": "variavel",   "label": "Algoritmo de recompensa variável",   "cost": "Vira loteria — o cérebro fica preso na próxima."},
-    {"id": "likes",      "label": "Mostrar curtidas em tempo real",     "cost": "Ansiedade social, conferência compulsiva."},
-    {"id": "limites",    "label": "Pausa obrigatória a cada 20min",     "cost": "Engajamento diário cai 18%. Reclamações sobem."},
-    {"id": "cronologico","label": "Feed em ordem cronológica",          "cost": "Acaba o conteúdo novo cedo. Tempo no app despenca."}
+    {"id": "rodinhas",     "label": "Rodinhas embutidas (vira mala)",        "cost": "Não sobe escada, faz barulho, fica feia se enche demais."},
+    {"id": "alca_gel",     "label": "Alças acolchoadas com gel",             "cost": "Aumenta 15% o peso vazio, encarece 40% o produto final."},
+    {"id": "notebook",     "label": "Compartimento rígido pra notebook",     "cost": "Ocupa espaço de 4 cadernos; serve só pra quem tem notebook."},
+    {"id": "led",          "label": "LED refletivo nas alças",               "cost": "Bateria pra trocar, +R$30 no preço, fica brega depois de 2 anos."},
+    {"id": "leve",         "label": "Tecido ultra-leve (200g vazia)",        "cost": "Rasga em 1 ano se levar livro grosso todo dia."},
+    {"id": "personalizar", "label": "Patches de velcro pra colar adesivos",  "cost": "Patches enroscam em cabelo e soltam fiapo no inverno."}
   ],
   "must_pick": 3,
   "outcomes": {
-    "autoplay+scroll+variavel": "Engajamento explode. Usuários ficam 4h/dia. Dopamina puxando antecipação infinita — exatamente o desenho do TikTok.",
-    "autoplay+likes+scroll": "Funciona, mas o usuário fica ansioso, não viciado. Engajamento bom, churn alto.",
-    "cronologico+limites+likes": "Engajamento despenca 60%. App vira saudável. Você é demitido na próxima reunião.",
-    "variavel+likes+limites": "Tensão estranha: o algoritmo puxa, a pausa empurra. Usuário fica irritado e desinstala."
+    "alca_gel+notebook+rodinhas": "Mochila premium de estudante de 9º ano. Vende caro, vende pouco. Encalha em escola pública — preço final passa de R$500.",
+    "alca_gel+leve+personalizar": "Mochila do 6º ano. Vira hit nas redes. Em 2 anos as rasgadas voltam pra trocar — você fatura no ciclo de reposição.",
+    "led+personalizar+rodinhas": "Mochila do horror estético. Patches enroscam no LED. Crianças odeiam, pais voltam reclamar.",
+    "alca_gel+notebook+led": "Pais compram (LED 'pra segurança'). Crianças escondem o LED com adesivo. Vende, mas o rótulo da campanha tá errado."
   }
 }
 ```
