@@ -10,21 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_19_000001) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_20_000002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
-
-  create_table "academy_aula_skills", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.bigint "mission_id", null: false
-    t.bigint "skill_id", null: false
-    t.datetime "updated_at", null: false
-    t.integer "weight", default: 1, null: false, comment: "How much this skill is exercised by this aula (1=co-primary, 2=primary)"
-    t.index ["mission_id", "skill_id"], name: "idx_academy_aula_skills_unique", unique: true
-    t.index ["mission_id"], name: "index_academy_aula_skills_on_mission_id"
-    t.index ["skill_id"], name: "index_academy_aula_skills_on_skill_id"
-  end
 
   create_table "academy_concept_edges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -139,14 +128,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_000001) do
     t.index ["mission_progress_id", "ordering_position"], name: "idx_academy_lens_visits_position", unique: true
   end
 
-  create_table "academy_learner_ranks", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.bigint "learner_id", null: false
-    t.integer "rank", default: 0, null: false, comment: "0=aprendiz, 1=explorador, 2=construtor, 3=estrategista, 4=criador, 5=mentor"
-    t.datetime "updated_at", null: false
-    t.index ["learner_id"], name: "idx_academy_learner_rank_unique", unique: true
-  end
-
   create_table "academy_learner_signals", force: :cascade do |t|
     t.integer "affinity_score", default: 0, null: false, comment: "Cumulative weighted signal: completions + correct checkpoints + done challenges"
     t.integer "completion_count", default: 0, null: false
@@ -159,18 +140,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_000001) do
     t.integer "wrong_checkpoints", default: 0, null: false
     t.index ["learner_id", "subject_id"], name: "idx_academy_signals_learner_subject", unique: true
     t.index ["subject_id"], name: "index_academy_learner_signals_on_subject_id"
-  end
-
-  create_table "academy_learner_skills", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "last_event_at"
-    t.bigint "learner_id", null: false
-    t.integer "score", default: 0, null: false
-    t.bigint "skill_id", null: false
-    t.datetime "updated_at", null: false
-    t.index ["learner_id", "skill_id"], name: "idx_academy_learner_skills_unique", unique: true
-    t.index ["learner_id"], name: "idx_academy_learner_skills_learner"
-    t.index ["skill_id"], name: "index_academy_learner_skills_on_skill_id"
   end
 
   create_table "academy_learner_story_paths", force: :cascade do |t|
@@ -191,25 +160,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_000001) do
     t.bigint "concept_id", null: false
     t.datetime "created_at", null: false
     t.datetime "generated_at", null: false
-    t.text "judge_critique"
-    t.integer "judge_overall_score"
-    t.integer "judge_revision_cycles", default: 0, null: false
-    t.string "judge_verdict"
     t.string "lens_type", null: false
     t.string "locale", default: "pt-BR", null: false
-    t.string "mastery_tier", default: "any", null: false
-    t.string "model_id"
     t.jsonb "payload", default: {}, null: false
-    t.string "prompt_digest", default: "legacy", null: false
     t.boolean "quality_flagged", default: false, null: false
-    t.string "source", default: "llm", null: false
-    t.string "template_version", null: false
-    t.integer "tokens_in"
-    t.integer "tokens_out"
+    t.string "source", default: "curated", null: false
     t.datetime "updated_at", null: false
-    t.index ["concept_id", "lens_type", "age_band", "locale", "template_version", "mastery_tier", "prompt_digest"], name: "idx_academy_lens_cache_unique", unique: true
+    t.index ["concept_id", "lens_type", "age_band", "locale"], name: "idx_academy_lens_cache_unique", unique: true
     t.index ["concept_id", "lens_type", "source"], name: "idx_academy_lens_cache_source_lookup"
-    t.index ["judge_verdict"], name: "idx_academy_lens_cache_judge_verdict", where: "(judge_verdict IS NOT NULL)"
     t.index ["lens_type"], name: "index_academy_lens_cache_on_lens_type"
     t.index ["quality_flagged"], name: "idx_academy_lens_cache_quality_flagged", where: "(quality_flagged = true)"
   end
@@ -228,33 +186,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_000001) do
     t.index ["learner_id", "concept_id", "lens_type", "recorded_at"], name: "idx_academy_lens_signals_learner_concept_lens_time"
     t.index ["learner_id", "signal_type", "recorded_at"], name: "idx_academy_lens_signals_learner_type_time"
     t.index ["mission_progress_id", "recorded_at"], name: "idx_academy_lens_signals_progress_time"
-  end
-
-  create_table "academy_medal_awards", force: :cascade do |t|
-    t.datetime "awarded_at", null: false
-    t.datetime "created_at", null: false
-    t.bigint "learner_id", null: false
-    t.bigint "medal_id", null: false
-    t.datetime "updated_at", null: false
-    t.index ["learner_id", "medal_id"], name: "idx_academy_medal_awards_unique", unique: true
-    t.index ["learner_id"], name: "idx_academy_medal_awards_learner"
-    t.index ["medal_id"], name: "index_academy_medal_awards_on_medal_id"
-  end
-
-  create_table "academy_medals", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "description"
-    t.string "icon", default: "medal"
-    t.integer "kind", default: 0, null: false
-    t.bigint "mission_id"
-    t.string "name", null: false
-    t.string "slug", null: false
-    t.bigint "subject_id"
-    t.integer "threshold", default: 0
-    t.datetime "updated_at", null: false
-    t.index ["mission_id"], name: "index_academy_medals_on_mission_id"
-    t.index ["slug"], name: "index_academy_medals_on_slug", unique: true
-    t.index ["subject_id"], name: "index_academy_medals_on_subject_id"
   end
 
   create_table "academy_messages", force: :cascade do |t|
@@ -319,20 +250,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_000001) do
     t.index ["trail_id"], name: "index_academy_missions_on_trail_id"
   end
 
-  create_table "academy_parent_digests", force: :cascade do |t|
-    t.datetime "composed_at", null: false
-    t.datetime "created_at", null: false
-    t.datetime "delivered_at"
-    t.bigint "learner_id", null: false, comment: "Learner value-object id (no FK)"
-    t.datetime "opened_at"
-    t.bigint "parent_id", null: false, comment: "Parent profile id (no FK — module isolation)"
-    t.jsonb "payload", default: {}, null: false, comment: "Pre-rendered blocks: {patterns_discovered, biggest_reveal, conversation_starter, kid_sent_you}"
-    t.datetime "updated_at", null: false
-    t.date "week_starting", null: false, comment: "Monday of the digest's week (timezone-normalized)"
-    t.index ["learner_id", "week_starting"], name: "idx_academy_parent_digests_unique", unique: true
-    t.index ["parent_id", "composed_at"], name: "idx_academy_parent_digests_parent_time"
-  end
-
   create_table "academy_practice_wagers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "guide_bet_count", null: false, comment: "The Guide's numeric wager (extracted from LLM payload)"
@@ -347,20 +264,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_000001) do
     t.index ["learner_id", "mission_id"], name: "idx_academy_practice_wagers_unique", unique: true
     t.index ["learner_id", "reported_at"], name: "idx_academy_practice_wagers_learner_reported"
     t.index ["mission_id"], name: "index_academy_practice_wagers_on_mission_id"
-  end
-
-  create_table "academy_recall_reviews", force: :cascade do |t|
-    t.bigint "card_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "due_at", null: false
-    t.integer "interval_days", default: 1, null: false
-    t.datetime "last_reviewed_at"
-    t.bigint "learner_id", null: false
-    t.integer "streak", default: 0, null: false, comment: "Consecutive successful recalls (0 means fresh / just reset)"
-    t.datetime "updated_at", null: false
-    t.index ["card_id"], name: "index_academy_recall_reviews_on_card_id"
-    t.index ["learner_id", "card_id"], name: "idx_academy_recall_unique", unique: true
-    t.index ["learner_id", "due_at"], name: "idx_academy_recall_learner_due"
   end
 
   create_table "academy_secret_unlocks", force: :cascade do |t|
@@ -399,17 +302,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_000001) do
     t.datetime "updated_at", null: false
     t.index ["mission_progress_id", "session_index"], name: "idx_academy_sessions_unique_idx", unique: true
     t.index ["mission_progress_id"], name: "idx_academy_sessions_progress"
-  end
-
-  create_table "academy_skills", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "icon", default: "sparkle", null: false
-    t.string "name", null: false
-    t.integer "position", default: 0, null: false
-    t.string "short_label", comment: "Kid-facing 1-word label for the radar"
-    t.string "slug", null: false
-    t.datetime "updated_at", null: false
-    t.index ["slug"], name: "index_academy_skills_on_slug", unique: true
   end
 
   create_table "academy_subjects", force: :cascade do |t|
@@ -454,18 +346,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_000001) do
     t.index ["learner_id", "detected_at"], name: "idx_academy_transfer_detections_learner_time"
     t.index ["message_id"], name: "index_academy_transfer_detections_on_message_id"
     t.index ["to_concept_id"], name: "idx_academy_transfer_detections_to_concept"
-  end
-
-  create_table "academy_virtue_sightings", force: :cascade do |t|
-    t.text "context", null: false, comment: "1-2 sentences describing what happened"
-    t.datetime "created_at", null: false
-    t.bigint "learner_id", null: false, comment: "Learner value-object id (no FK)"
-    t.string "source", null: false, comment: "self_reported | parent_confirmed | guide_inferred"
-    t.datetime "spotted_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "virtue_slug", null: false, comment: "honra-palavra | conserta-erro | espera | conta-verdade-que-custa | ..."
-    t.index ["learner_id", "virtue_slug", "spotted_at"], name: "idx_academy_virtue_sightings_learner_slug_time"
-    t.index ["source"], name: "idx_academy_virtue_sightings_source"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -772,8 +652,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_000001) do
     t.index ["key"], name: "index_solid_queue_semaphores_on_key", unique: true
   end
 
-  add_foreign_key "academy_aula_skills", "academy_missions", column: "mission_id"
-  add_foreign_key "academy_aula_skills", "academy_skills", column: "skill_id"
   add_foreign_key "academy_concept_edges", "academy_concepts", column: "from_concept_id"
   add_foreign_key "academy_concept_edges", "academy_concepts", column: "to_concept_id"
   add_foreign_key "academy_discovery_cards", "academy_missions", column: "mission_id"
@@ -784,21 +662,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_000001) do
   add_foreign_key "academy_learner_lens_visits", "academy_lens_cache", column: "lens_cache_id"
   add_foreign_key "academy_learner_lens_visits", "academy_mission_progresses", column: "mission_progress_id"
   add_foreign_key "academy_learner_signals", "academy_subjects", column: "subject_id"
-  add_foreign_key "academy_learner_skills", "academy_skills", column: "skill_id"
   add_foreign_key "academy_learner_story_paths", "academy_missions", column: "mission_id"
   add_foreign_key "academy_lens_cache", "academy_concepts", column: "concept_id"
   add_foreign_key "academy_lens_signals", "academy_learner_lens_visits", column: "lens_visit_id"
   add_foreign_key "academy_lens_signals", "academy_mission_progresses", column: "mission_progress_id"
-  add_foreign_key "academy_medal_awards", "academy_medals", column: "medal_id"
-  add_foreign_key "academy_medals", "academy_missions", column: "mission_id"
-  add_foreign_key "academy_medals", "academy_subjects", column: "subject_id"
   add_foreign_key "academy_messages", "academy_sessions", column: "session_id"
   add_foreign_key "academy_mission_progresses", "academy_missions", column: "mission_id"
   add_foreign_key "academy_missions", "academy_concepts", column: "concept_id"
   add_foreign_key "academy_missions", "academy_subjects", column: "subject_id"
   add_foreign_key "academy_missions", "academy_trails", column: "trail_id"
   add_foreign_key "academy_practice_wagers", "academy_missions", column: "mission_id"
-  add_foreign_key "academy_recall_reviews", "academy_discovery_cards", column: "card_id"
   add_foreign_key "academy_secret_unlocks", "academy_secrets", column: "secret_id"
   add_foreign_key "academy_secrets", "academy_missions", column: "mission_id"
   add_foreign_key "academy_sessions", "academy_mission_progresses", column: "mission_progress_id"

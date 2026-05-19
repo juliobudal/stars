@@ -1,0 +1,37 @@
+{
+  "character": {
+    "name": "Camila",
+    "age": 12,
+    "trait": "tem certeza absoluta dos detalhes de coisas antigas e briga com quem disser que foi diferente"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sábado de manhã. Camila e a mãe organizam uma caixa de fotos antigas no chão da sala. Camila pega uma foto de aniversário: 'Olha, meus 8 anos! Lembra do robô gigante que a prima Lara me deu naquele ano? Foi o melhor presente que eu já ganhei.' A mãe pega a foto, vira pra luz, franze a testa."
+    },
+    {
+      "id": "s2",
+      "text": "A mãe devolve a foto: 'Filha, esse robô foi da tia Patrícia. A Lara nem veio nesse aniversário, ela estava doente, lembra?' Camila: 'Mãe, eu lembro EXATAMENTE. A Lara entregou e eu abracei ela.' Mãe: 'Olha a foto direito.' Na foto, Camila abraça uma mulher de cabelo curto preto. Patrícia. Não Lara, que tem cabelo cacheado loiro e era 30cm mais baixa."
+    },
+    {
+      "id": "s3",
+      "text": "Camila revira a caixa. Patrícia aparece em mais três fotos do aniversário, sempre com o mesmo vestido azul. Nenhuma com Lara. Camila: 'Mas... eu tinha CERTEZA. Eu vejo a cena na minha cabeça, com a Lara entregando.' A mãe: 'A gente preenche os buracos com o que faz sentido. Você queria que a Lara tivesse vindo, então sua cabeça pôs ela lá. Foi sendo retocada cada vez que você contava a história.'"
+    },
+    {
+      "id": "s4",
+      "text": "Camila guarda a foto na caixa. Pega outra, do Natal de 2018. Abre a boca pra contar a história da rabanada que a vovó fez — e para. Olha pra mãe: 'Mãe, naquele Natal, foi você ou foi a vovó que fritou a rabanada?' A mãe sorri sem responder e aponta a foto: vovó na mesa, faca na mão, pão amanhecido cortado em fatias. Camila ri baixinho."
+    }
+  ],
+  "ending": "Camila vira a foto e lê o que ela mesma escreveu atrás aos 9 anos: 'Vovó cortando o pão pra rabanada de mamãe.' Solta o ar. Quem fritou ainda não dá pra saber. Mas pelo menos agora ela sabe que não sabe.",
+  "micro_check": {
+    "question": "{{learner_name}}, por que Camila tinha tanta certeza que a prima Lara entregou o robô?",
+    "options": [
+      "Porque a prima Lara esteve no aniversário e a mãe esqueceu",
+      "Porque Camila viu o presente num vídeo e confundiu com o aniversário",
+      "Porque o cérebro preencheu um buraco da memória com a pessoa que fazia mais sentido pra ela",
+      "Porque Camila mentiu pra mãe sem perceber"
+    ],
+    "correct_index": 2,
+    "rationale": "A cena na cabeça parece nítida porque o cérebro montou um quebra-cabeça e desenhou a peça que faltava (quem entregou o robô) com a pessoa que ela queria que tivesse vindo. A foto mostra a peça verdadeira: tia Patrícia."
+  }
+}

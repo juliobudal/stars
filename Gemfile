@@ -81,7 +81,7 @@ gem "database_cleaner-active_record", "~> 2.2", group: :test
 
 gem "rails-i18n", "~> 8.0"
 
-# Academy module — LLM-guided pedagogical missions
-gem "langchainrb", "~> 0.19"
-gem "ruby-openai", "~> 7.4"
+# Schema validation used by the curated lens payload seeder.
+gem "json-schema", "~> 5.1"
+
 gem "dotenv-rails", groups: [ :development, :test ]

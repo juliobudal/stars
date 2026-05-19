@@ -20,18 +20,11 @@ RSpec.describe Academy::Lens::Catalog do
 
   describe "entry shape" do
     described_class::TYPES.each_pair do |type, entry|
-      it "pins ui_primitive, template, schema, version for #{type}" do
+      it "pins ui_primitive and schema for #{type}" do
         expect(entry.ui_primitive).to be_a(Symbol)
-        expect(entry.prompt_template).to end_with(".md.erb")
         expect(entry.schema_file).to end_with(".json")
-        expect(entry.template_version).to match(/\A#{type}\.v\d+\z/)
       end
     end
-  end
-
-  it "resolves prompt_path under the lens module root" do
-    path = described_class.prompt_path(:scientific)
-    expect(path.to_s).to end_with("app/services/academy/lens/prompts/scientific.md.erb")
   end
 
   it "resolves schema_path under the lens module root" do

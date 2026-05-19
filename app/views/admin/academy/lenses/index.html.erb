@@ -19,7 +19,7 @@
 
   <% if @rows.empty? %>
     <p class="font-display text-[14px]" style="color: var(--text-muted);">
-      Nenhuma lente gerada ainda. Lentes são criadas sob demanda quando o aprendiz abre uma missão (ou em batch pelo WarmCacheJob).
+      Nenhuma lente curada ainda. Para adicionar conteúdo, edite db/seeds/academy_lens_payloads/&lt;type&gt;/&lt;slug&gt;.json e rode o seeder.
     </p>
   <% else %>
     <div class="flex flex-col gap-2">
@@ -41,18 +41,14 @@
               <% end %>
             </div>
             <div class="font-display text-[11px]" style="color: var(--text-muted);">
-              <%= row.template_version %> · <%= row.locale %> · <%= row.age_band %> · gerada <%= time_ago_in_words(row.generated_at) %> atrás
+              <%= row.source %> · <%= row.locale %> · <%= row.age_band %> · atualizada <%= time_ago_in_words(row.generated_at) %> atrás
             </div>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
             <%= link_to "Editar", edit_admin_academy_lens_path(row),
                         class: "px-2.5 py-1 rounded-full font-display text-[11px] font-extrabold",
                         style: "background: var(--surface); border: 1.5px solid var(--hairline); color: var(--text);" %>
-            <%= button_to "Regenerar", regenerate_admin_academy_lens_path(row), method: :post,
-                          class: "px-2.5 py-1 rounded-full font-display text-[11px] font-extrabold",
-                          style: "background: var(--c-sky-soft); border: 1.5px solid var(--c-sky); color: var(--c-sky-dark); border-width: 1.5px; padding: 4px 10px;",
-                          data: { turbo_confirm: "Regenerar via LLM?" } %>
-            <%= button_to (row.quality_flagged ? "Reabilitar" : "Sinalizar"),
+<%= button_to (row.quality_flagged ? "Reabilitar" : "Sinalizar"),
                           flag_admin_academy_lens_path(row), method: :patch,
                           class: "px-2.5 py-1 rounded-full font-display text-[11px] font-extrabold",
                           style: "background: #{row.quality_flagged ? 'var(--primary-soft)' : 'var(--surface)'}; " +

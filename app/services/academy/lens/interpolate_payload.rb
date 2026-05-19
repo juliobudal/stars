@@ -2,9 +2,8 @@
 
 module Academy
   module Lens
-    # Deep-walks a generated lens payload and substitutes the personalization
-    # tokens the LLM was instructed to preserve VERBATIM (see Generators::Base
-    # VOICE — REQ-LGEN-PERSON):
+    # Deep-walks a curated lens payload and substitutes the personalization
+    # tokens that authors are instructed to preserve VERBATIM:
     #
     #   {{learner_name}}      → learner.display_name
     #   {{sibling_or_friend}} → "um amigo" (Academy doesn't reach into Family —

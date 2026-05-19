@@ -40,16 +40,6 @@ RSpec.configure do |config|
   # examples (Rails.cache is memory_store in test).
   config.before(:each) { Rails.cache.clear }
 
-  # Academy's LLM-as-judge runs as part of `Lens::Generators::Base#attempt`
-  # in production, doubling the LLM calls per lens generation. Specs that
-  # don't care about the quality gate would have to stub the judge on top
-  # of the LLM client — so we disable it by default and let judge-focused
-  # specs flip it back on explicitly.
-  config.before(:each) do
-    Academy.config.judge_enabled = false
-    Academy.config.judge_max_revision_cycles = 1
-  end
-
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join("spec/fixtures")
@@ -98,8 +88,8 @@ RSpec.configure do |config|
   # (some specs run job code that opens its own connection; some tests touch
   # FK-less columns like learner_id). Wipe per-test to keep specs isolated.
   ACADEMY_TEST_TABLES = %w[
-    academy_recall_reviews academy_discovery_cards academy_transfer_detections
-    academy_virtue_sightings academy_parent_digests academy_practice_wagers
+    academy_discovery_cards academy_transfer_detections
+    academy_practice_wagers
     academy_lens_signals academy_learner_signals academy_learner_lens_visits
     academy_messages academy_sessions academy_mission_progresses
     academy_learner_concepts academy_lens_cache

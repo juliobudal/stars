@@ -28,7 +28,6 @@ class Kid::Academy::MissionsController < Kid::Academy::BaseController
     end
 
     @stage = result.data
-    prewarm_next_lenses(@stage.progress)
     render :lens_stage
   end
 
@@ -62,7 +61,6 @@ class Kid::Academy::MissionsController < Kid::Academy::BaseController
     return render_unavailable(result.error) unless result.success?
 
     @stage = result.data
-    prewarm_next_lenses(@progress) unless @stage.mission_complete?
     # Always redirect after POST. Turbo Drive treats a 200-HTML response to a
     # form submission as an error ("Form responses must redirect to another
     # location"); a 303 → GET show is idempotent because Begin replays the
@@ -86,13 +84,6 @@ class Kid::Academy::MissionsController < Kid::Academy::BaseController
 
     permitted = raw.respond_to?(:permit) ? raw.permit(*SIGNAL_PAYLOAD_KEYS) : ActionController::Parameters.new(raw).permit(*SIGNAL_PAYLOAD_KEYS)
     permitted.to_h
-  end
-
-  def prewarm_next_lenses(progress)
-    return unless progress&.id
-    ::Academy::Lens::PrewarmNextJob.perform_later(mission_progress_id: progress.id)
-  rescue StandardError => e
-    Rails.logger.warn("[Kid::Academy::MissionsController] prewarm dispatch failed: #{e.message}")
   end
 
   def load_subject_and_mission

@@ -19,8 +19,9 @@ Rails.application.config.to_prepare do
     c.referer             = ENV.fetch("ACADEMY_LLM_REFERER", "https://littlestars.app")
     c.app_title           = ENV.fetch("ACADEMY_LLM_APP_TITLE", "LittleStars Academy")
 
-    # Judge model — cheap + deterministic. Used by Academy::Llm::Judge
-    # (transfer detection today; lens output evals in v5 Phase 8).
+    # Judge model — cheap + deterministic. Used by Academy::Transfer::Detect
+    # (Pokédex transfer detector). The lens-generation judge that previously
+    # consumed these keys was retired with the curated-static pivot.
     # gpt-5-nano: OpenAI's cheapest reasoning model ($0.05/1M in, $0.40/1M out).
     # NOTE on reasoning_effort: gpt-5-nano is "pre-5.1" and does NOT accept
     # `none` (would 400). Minimum allowed is `minimal`, which is what we use.

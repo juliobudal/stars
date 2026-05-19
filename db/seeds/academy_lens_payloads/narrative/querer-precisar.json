@@ -1,0 +1,37 @@
+{
+  "character": {
+    "name": "Heitor",
+    "age": 11,
+    "trait": "vê algo brilhante numa vitrine, jura que precisa, leva pra casa e esquece dentro de uma semana"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sábado, shopping com a avó. Heitor para na vitrine da loja de tênis: 'Vó, eu preciso desse, olha.' Aponta um Nike branco com sola azul. R$219. A avó olha o tênis sem expressão: 'Quantos tênis você tem em casa, Heitor?' Heitor: 'Quatro. Mas esse é diferente, vó, olha a sola.' Avó: 'Combinado. Antes de decidir, passamos na livraria.'"
+    },
+    {
+      "id": "s2",
+      "text": "Na livraria, prateleira do fundo. Heitor pega uma edição especial de O Hobbit, capa dura, ilustrada. Folheia até achar um mapa dobrável escondido na última página. R$197. Ele lia esse livro toda noite numa versão velha, capa amarelada caindo aos pedaços. Coloca o livro de volta na prateleira: 'Tô vendo só, vó. Mas o tênis a gente combinou.' Avó: 'Hoje eu pago um dos dois. Você escolhe.'"
+    },
+    {
+      "id": "s3",
+      "text": "Heitor olha o relógio: meia hora pra fechar o shopping. Volta na loja de tênis. Para na frente do caixa. Pega a caixa do Nike, leva pra avó. Avó paga, recibo, sacola. Saída. No carro, Heitor olha pela janela e fica em silêncio. A avó: 'O que foi?' Heitor: 'Nada.' Avó: 'Hmm.'"
+    },
+    {
+      "id": "s4",
+      "text": "Quinta-feira de manhã, Heitor abre o guarda-roupa pra escolher tênis pra escola. Cinco enfileirados — o Nike novo no canto, com o papel ainda dentro. Pega o de educação física, mesmo. À noite, abre o site da livraria, procura O Hobbit ilustrado: 'esgotada.' Fecha o computador. Pega a versão velha na cabeceira e abre na página marcada."
+    }
+  ],
+  "ending": "O Nike branco fica na caixa por mais duas semanas. Heitor usa três vezes. O Hobbit velho continua na cabeceira, página 87, marcadinho dobrado. Na próxima vez que Heitor entra num shopping, para na vitrine, pensa, e segue andando. A avó nota. Não diz nada.",
+  "micro_check": {
+    "question": "{{learner_name}}, qual foi a diferença entre o que Heitor QUERIA e o que ele PRECISAVA?",
+    "options": [
+      "Queria o tênis pelo brilho da vitrine; usava de verdade o livro que já estava na cabeceira",
+      "Queria o livro mas a avó forçou ele a comprar o tênis",
+      "Precisava de mais um tênis porque o de educação física era velho",
+      "Não tinha diferença — era tudo só vontade"
+    ],
+    "correct_index": 0,
+    "rationale": "Querer dispara rápido na vitrine — brilho novo, cor diferente. Precisar revela quando você olha pro que já usa: Heitor lia o Hobbit toda noite, mas o cérebro escolheu o brilho. O custo da escolha só aparece depois."
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, quantas vezes por semana você acha que alguém quebra uma promessa pequena — tipo 'te mando a foto' ou 'vou no seu aniversário' — sem nem perceber? Chuta antes de ler.",
-  "predict_unit": "vezes/semana",
-  "predict_min": 0,
-  "predict_max": 50,
-  "reveal_value": 3,
-  "reveal_source": "Estimativa baseada em estudo de confiança interpessoal (Rotter, 1967) e dados de autorrelato em diários de adolescentes: média de 2,7 promessas não cumpridas por semana entre amigos próximos.",
-  "interpretation": "3 vezes por semana. Três promessas furadas que você nem anotou. Cada uma é um tijolinho a menos na confiança — invisível, mas real. A conta que ninguém faz: promessa quebrada vira dívida social, e o saldo aparece quando você precisa de algo de verdade."
-}

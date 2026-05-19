@@ -9,7 +9,7 @@
     <%= @row.concept.name %> · <%= @row.lens_type.tr('_', ' ') %>
   </h1>
   <div class="font-display text-[11px] mb-4" style="color: var(--text-muted);">
-    <%= @row.template_version %> · <%= @row.locale %> · <%= @row.age_band %>
+    <%= @row.source %> · <%= @row.locale %> · <%= @row.age_band %>
   </div>
 
   <% if @row.errors.any? %>

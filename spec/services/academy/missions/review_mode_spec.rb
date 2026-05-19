@@ -17,7 +17,7 @@ RSpec.describe Academy::Missions::ReviewMode do
   def make_closed_visit(progress, lens_type, position)
     cache = Academy::LensCache.create!(
       concept_id: concept.id, lens_type: lens_type.to_s, age_band: "kid", locale: "pt-BR",
-      template_version: "v1", payload: { "h" => "x" }, generated_at: Time.current
+      payload: { "h" => "x" }, generated_at: Time.current
     )
     Academy::LearnerLensVisit.create!(
       mission_progress: progress, learner_id: learner.id, concept_id: concept.id,

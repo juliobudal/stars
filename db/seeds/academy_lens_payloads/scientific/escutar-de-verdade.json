@@ -1,0 +1,20 @@
+{
+  "headline": "Escutar de verdade exige mais trabalho cerebral do que falar.",
+  "mechanism_steps": [
+    "Enquanto alguém fala com você, o cérebro segura o que está sendo dito na memória de trabalho — o estoque curto que cabe só 4 a 7 itens de cada vez.",
+    "Em paralelo, a área de produção de fala (Broca) começa a montar sua resposta antes do outro terminar — e consome a mesma memória de trabalho.",
+    "Escutar de verdade é segurar essa resposta no freio por alguns segundos — o outro nota a diferença pela qualidade da pergunta de volta, não pelo silêncio."
+  ],
+  "illustration_hint": "Cérebro em corte com duas oficinas: uma marcada 'segurar o que ele tá dizendo' com 4 caixas empilhadas equilibrando-se; outra marcada 'já tô montando minha resposta' com um operário ansioso querendo passar na frente. Uma mão grande, vinda de fora, empurra o operário de volta enquanto as caixas se acomodam.",
+  "micro_check": {
+    "question": "{{learner_name}} pergunta pro {{sibling_or_friend}} sobre o dia dele. {{sibling_or_friend}} começa a contar. O que ATRAPALHA a escuta de verdade no cérebro do {{learner_name}}?",
+    "options": [
+      "O cérebro do {{learner_name}} fica fazendo uma lista de compras do mercado",
+      "A parte que monta resposta dispara cedo e rouba espaço da memória de trabalho que segura a fala do outro",
+      "O cérebro precisa traduzir o que o {{sibling_or_friend}} fala pra outra língua",
+      "O cérebro guarda só palavras feias e descarta o resto"
+    ],
+    "correct_index": 1,
+    "rationale": "Escutar exige segurar o impulso de já responder. Quando a parte que monta resposta acelera cedo demais, tira capacidade da memória de trabalho — e {{learner_name}} perde detalhes do que o outro diz."
+  }
+}

@@ -6,9 +6,9 @@ require "json"
 module Academy
   module Llm
     # Minimal OpenRouter client (OpenAI-compatible chat completions).
-    # We don't pull all of langchainrb's transport here — OpenRouter speaks
-    # the OpenAI schema directly and we want a thin, testable surface.
-    # Used by Academy::Lens::Generate (v5) and Academy::Transfer::Detect.
+    # Thin, testable surface — OpenRouter speaks the OpenAI schema
+    # directly. Used by Academy::Guide::Ask (kid chat) and
+    # Academy::Transfer::Detect (Pokédex transfer judge).
     class Client
       class Error < StandardError; end
 

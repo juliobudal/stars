@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, numa conversa normal, quantos por cento das pausas naturais de 2 a 3 segundos são cortadas por alguém — com uma palavra, uma pergunta, um 'né?' — só pra preencher o silêncio?",
+  "predict_unit": "%",
+  "predict_min": 0,
+  "predict_max": 100,
+  "reveal_value": 75,
+  "reveal_source": "Estimativa de ordem de grandeza, ancorada em Stivers et al. (PNAS, 2009): silêncios acima de 500ms já viram desconforto. Em pt-BR cotidiano, pausas de 2-3s são quase sempre quebradas.",
+  "interpretation": "3 em cada 4 silêncios viram fala vazia. O cérebro lê o silêncio como ameaça social — 'devo dizer algo, qualquer coisa'. Quem aguenta 3 segundos parece confiante porque parou de obedecer essa pressão. O outro sente: aquele silêncio mostra que alguém ouviu de verdade."
+}

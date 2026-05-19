@@ -49,10 +49,10 @@ module Academy
 
     def to_param = slug
 
-    # Returns the curator-locked essence sentence if curated; otherwise falls
-    # back to `definition`. Generators read this — never `definition` directly
-    # — so a concept without curation still ships, and a curated concept gets
-    # the tighter north star.
+    # Returns the curator-locked essence sentence if curated; otherwise
+    # falls back to `definition`. The Guide chat prompt reads this (never
+    # `definition` directly) so a concept without curation still ships,
+    # and a curated concept gets the tighter north star.
     def the_essence_or_definition
       v = attributes["the_essence"].to_s.strip
       v.empty? ? definition.to_s.strip : v

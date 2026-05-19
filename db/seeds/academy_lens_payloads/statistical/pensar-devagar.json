@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, quantos por cento das decisões que você toma num dia normal — o que comer, qual caminho fazer, o que responder numa mensagem — saem no automático, sem você notar que decidiu?",
+  "predict_unit": "%",
+  "predict_min": 0,
+  "predict_max": 100,
+  "reveal_value": 95,
+  "reveal_source": "Daniel Kahneman, 'Rápido e Devagar' (2011): a maioria absoluta das decisões diárias (90 a 95% em estimativas comuns) passa pelo sistema-1 automático. O sistema-2 só é acionado em problema novo ou conflito real.",
+  "interpretation": "9 entre 10 decisões nem chegam à consciência. O sistema-2 só acorda quando há conflito ou novidade. Saber qual sistema decidiu não muda a decisão — mas muda quanto você confia nela. As escolhas mais importantes do dia provavelmente não foram pensadas, foram disparadas."
+}

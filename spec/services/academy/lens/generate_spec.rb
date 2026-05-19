@@ -3,132 +3,57 @@
 require "rails_helper"
 
 RSpec.describe Academy::Lens::Generate do
-  let(:concept) { create(:academy_concept, slug: "dopamina-test", name: "Dopamina") }
-
-  let(:valid_payload) do
-    {
-      "headline" => "Dopamina sobe antes da recompensa.",
-      "mechanism_steps" => [
-        "O cérebro lê o sinal de algo bom chegando.",
-        "Lança dopamina mesmo antes do prêmio aparecer.",
-        "Quando o prêmio chega, o pico já passou — a busca recomeça."
-      ],
-      "illustration_hint" => "onda subindo e descendo",
-      "micro_check" => {
-        "question" => "Qual destas situações libera MAIS dopamina?",
-        "options" => [ "Saber exatamente que vem", "Não saber se vem", "Não vir nada" ],
-        "correct_index" => 1,
-        "rationale" => "Incerteza é o gatilho do pico."
-      }
-    }
+  let(:concept) do
+    create(:academy_concept, slug: "switch-cost-gen-#{SecureRandom.hex(3)}",
+           name: "Custo da troca (spec)", definition: "Cada interrupção paga um pedágio.")
   end
 
-  let(:fake_generator) do
-    payload = valid_payload
-    Class.new(Academy::Lens::Generators::Base) do
-      self.lens_type = :scientific
-      define_method(:call) do
-        @run_count ||= 0
-        @run_count += 1
-        Class.new.tap do |c|
-          c.define_singleton_method(:success?) { true }
-          c.define_singleton_method(:data) do
-            { payload: payload, model_id: "mock", tokens_in: 100, tokens_out: 200 }
-          end
-        end
-      end
-    end
+  def curated_row(lens_type:, quality_flagged: false)
+    Academy::LensCache.create!(
+      concept_id: concept.id, lens_type: lens_type, age_band: "kid", locale: "pt-BR",
+      source: "curated",
+      payload: { "headline" => "x" * 30,
+                 "mechanism_steps" => Array.new(3) { "y" * 40 },
+                 "illustration_hint" => "z" * 60,
+                 "micro_check" => { "question" => "?" * 30, "options" => %w[a b c],
+                                    "correct_index" => 0, "rationale" => "r" * 50 } },
+      generated_at: Time.current, quality_flagged: quality_flagged
+    )
   end
 
-  describe "cache miss → generate → persist" do
-    it "creates a LensCache row keyed by the 5-tuple" do
-      result = described_class.call(
-        concept: concept, lens_type: :scientific, generator: fake_generator
-      )
-      expect(result.success?).to be true
-      row = result.data
-      expect(row.concept_id).to eq(concept.id)
-      expect(row.lens_type).to eq("scientific")
-      expect(row.age_band).to eq("kid")
-      expect(row.locale).to eq("pt-BR")
-      expect(row.template_version).to eq(Academy::Lens::Catalog.fetch(:scientific).template_version)
-      expect(row.payload).to eq(valid_payload)
-      expect(row.tokens_in).to eq(100)
-      expect(row.tokens_out).to eq(200)
-    end
+  it "returns the curated row when one exists" do
+    row = curated_row(lens_type: "scientific")
+    result = described_class.call(concept: concept, lens_type: :scientific)
+    expect(result).to be_success
+    expect(result.data.id).to eq(row.id)
   end
 
-  describe "cache hit short-circuits the LLM" do
-    it "does not invoke the generator on second call" do
-      gen = fake_generator
-      described_class.call(concept: concept, lens_type: :scientific, generator: gen)
-
-      tripwire = Class.new(Academy::Lens::Generators::Base) do
-        self.lens_type = :scientific
-        define_method(:call) { raise "must not be called on cache hit" }
-      end
-
-      result = described_class.call(concept: concept, lens_type: :scientific, generator: tripwire)
-      expect(result.success?).to be true
-      expect(LensCacheCount.for(concept)).to eq(1)
-    end
+  it "fails with :no_curated_payload when no curated row exists" do
+    result = described_class.call(concept: concept, lens_type: :scientific)
+    expect(result).not_to be_success
+    expect(result.error).to eq(:no_curated_payload)
   end
 
-  describe "generator failure propagates and never caches" do
-    let(:failing_generator) do
-      Class.new(Academy::Lens::Generators::Base) do
-        self.lens_type = :scientific
-        define_method(:call) do
-          Class.new.tap do |c|
-            c.define_singleton_method(:success?) { false }
-            c.define_singleton_method(:error) { :llm_invalid_json }
-            c.define_singleton_method(:data) { { exception: "boom" } }
-          end
-        end
-      end
-    end
-
-    it "returns the failure and writes no cache row" do
-      result = described_class.call(
-        concept: concept, lens_type: :scientific, generator: failing_generator
-      )
-      expect(result.success?).to be false
-      expect(result.error).to eq(:llm_invalid_json)
-      expect(LensCacheCount.for(concept)).to eq(0)
-    end
+  it "ignores quality_flagged curated rows" do
+    curated_row(lens_type: "scientific", quality_flagged: true)
+    result = described_class.call(concept: concept, lens_type: :scientific)
+    expect(result).not_to be_success
+    expect(result.error).to eq(:no_curated_payload)
   end
 
-  describe "force_refresh re-runs even on cache hit" do
-    it "calls the generator again and upserts" do
-      described_class.call(concept: concept, lens_type: :scientific, generator: fake_generator)
-
-      call_count = 0
-      tracking_gen = Class.new(Academy::Lens::Generators::Base) do
-        self.lens_type = :scientific
-        define_method(:call) do
-          call_count += 1
-          Class.new.tap do |c|
-            c.define_singleton_method(:success?) { true }
-            c.define_singleton_method(:data) do
-              { payload: { "headline" => "force-refresh", "mechanism_steps" => %w[a b c], "illustration_hint" => "x",
-                            "micro_check" => { "question" => "q", "options" => %w[a b c], "correct_index" => 0, "rationale" => "r" } },
-                model_id: "mock2", tokens_in: 50, tokens_out: 60 }
-            end
-          end
-        end
-      end
-
-      result = described_class.call(
-        concept: concept, lens_type: :scientific, generator: tracking_gen, force_refresh: true
-      )
-      expect(result.success?).to be true
-      expect(call_count).to eq(1)
-    end
+  it "is locale-scoped" do
+    curated_row(lens_type: "scientific") # pt-BR
+    result = described_class.call(concept: concept, lens_type: :scientific, locale: "en-US")
+    expect(result).not_to be_success
   end
 
-  module LensCacheCount
-    def self.for(concept)
-      Academy::LensCache.where(concept_id: concept.id).count
-    end
+  it "accepts the retired generator:/force_refresh:/learner_id: kwargs as no-ops" do
+    row = curated_row(lens_type: "scientific")
+    result = described_class.call(
+      concept: concept, lens_type: :scientific,
+      generator: :ignored, force_refresh: true, learner_id: 42
+    )
+    expect(result).to be_success
+    expect(result.data.id).to eq(row.id)
   end
 end

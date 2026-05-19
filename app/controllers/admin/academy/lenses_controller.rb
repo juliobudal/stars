@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
-# v5 admin surface for the LLM-generated lens cache. Curator ops:
+# Admin surface for curated lens cache. Curator ops:
 #
 #   index   — list cache rows (with concept + lens_type filters)
 #   edit    — JSON editor for the override
-#   update  — saves a curator-authored payload (override)
-#   regen   — purges the row and queues a fresh Generate run
+#   update  — saves a curator-authored payload override
 #   flag    — toggles quality_flagged (hides from runtime serving)
+#
+# Regeneration via LLM was retired with the curated-static pivot;
+# fresh content lands by editing db/seeds/academy_lens_payloads/<type>/<slug>.json
+# and rerunning the seeder.
 class Admin::Academy::LensesController < ApplicationController
   include Authenticatable
   before_action :require_parent!
@@ -38,25 +41,6 @@ class Admin::Academy::LensesController < ApplicationController
   rescue JSON::ParserError => e
     @row.errors.add(:payload, "JSON inválido: #{e.message}")
     render :edit, status: :unprocessable_entity
-  end
-
-  def regenerate
-    row = ::Academy::LensCache.find(params[:id])
-    concept = row.concept
-    lens_type = row.lens_type.to_sym
-    age_band = row.age_band
-    locale = row.locale
-
-    row.destroy!
-    result = ::Academy::Lens::Generate.call(
-      concept: concept, lens_type: lens_type, age_band: age_band, locale: locale
-    )
-
-    if result.success?
-      redirect_to admin_academy_lenses_path, notice: "Lente regenerada."
-    else
-      redirect_to admin_academy_lenses_path, alert: "Regeneração falhou: #{result.error}"
-    end
   end
 
   def flag

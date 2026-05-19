@@ -26,8 +26,6 @@ module Academy
     :judge_temperature,
     :judge_max_tokens,
     :judge_reasoning_effort,
-    :judge_enabled,
-    :judge_max_revision_cycles,
     keyword_init: true
   )
 
@@ -44,9 +42,7 @@ module Academy
         judge_model: "openai/gpt-5-nano",
         judge_temperature: 0.0,
         judge_max_tokens: 4000,
-        judge_reasoning_effort: "minimal",
-        judge_enabled: true,
-        judge_max_revision_cycles: 1
+        judge_reasoning_effort: "minimal"
       )
     end
 

@@ -3,24 +3,34 @@
 require "rails_helper"
 
 # Integration spec for Mission::{Begin, AdvanceLens, Finalize}. Drives a
-# synthetic learner through a complete journey with mocked LLM so we never
-# hit OpenRouter.
+# synthetic learner through a complete journey with stubbed Lens::Generate
+# so the test doesn't depend on actual curated seed data.
 RSpec.describe "Mission lifecycle (v5)" do
   let(:concept) { create(:academy_concept, slug: "mlc-c", name: "MLCC") }
   let(:subject_) { create(:academy_subject) }
   let(:mission)  { create(:academy_mission, subject: subject_, concept: concept) }
   let(:learner)  { Academy::Learner.new(id: 7, display_name: "Lia", age_band: "kid") }
 
+  # Pre-seed all 8 lens types as curated rows so ChooseNext sees full
+  # coverage from the start. Without this, the curated_types_for set
+  # would grow mid-loop and bias rotation in unrealistic ways.
   before do
-    # Each Lens::Generate call returns a stub cache row matching the lens type.
+    Academy::Lens::Catalog.types.each do |lens_type|
+      Academy::LensCache.find_or_create_by!(
+        concept_id: concept.id, lens_type: lens_type.to_s,
+        age_band: "kid", locale: "pt-BR"
+      ) do |r|
+        r.source = "curated"
+        r.payload = { "stub" => true, "lens" => lens_type.to_s }
+        r.generated_at = Time.current
+      end
+    end
+
+    # Lens::Generate now resolves to the pre-seeded curated row.
     allow(Academy::Lens::Generate).to receive(:call) do |kwargs|
       lens_type = kwargs[:lens_type].to_s
-      entry = Academy::Lens::Catalog.fetch(lens_type)
-      row = Academy::LensCache.create!(
-        concept_id: concept.id, lens_type: lens_type, age_band: "kid", locale: "pt-BR",
-        template_version: entry.template_version,
-        payload: { "stub" => true, "lens" => lens_type },
-        generated_at: Time.current
+      row = Academy::LensCache.curated.find_by!(
+        concept_id: concept.id, lens_type: lens_type, age_band: "kid", locale: "pt-BR"
       )
       Academy::ApplicationService::Result.new(success: true, error: nil, data: row)
     end

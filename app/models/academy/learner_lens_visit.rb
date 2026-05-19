@@ -53,24 +53,7 @@ module Academy
     scope :closed_visits, -> { where.not(closed_at: nil) }
     scope :completed, -> { where(outcome: "completed") }
 
-    # Reactive quality check: when a visit closes with the kid having gotten
-    # the micro_check wrong, ask FlagLowQuality whether enough wrongs have
-    # piled up on this exact cache row to flag it for regeneration.
-    after_update_commit :maybe_flag_low_quality, if: :just_closed?
-
     def closed? = closed_at.present?
     def completed? = outcome == "completed"
-
-    private
-
-    def just_closed?
-      saved_change_to_closed_at? && closed_at.present?
-    end
-
-    def maybe_flag_low_quality
-      ::Academy::Lens::FlagLowQuality.call(visit: self)
-    rescue StandardError => e
-      Rails.logger.warn("[Academy::LearnerLensVisit] FlagLowQuality error: #{e.message}")
-    end
   end
 end

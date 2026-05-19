@@ -10,8 +10,8 @@
 # Validates each payload against its lens schema before upsert — a curator
 # typo blocks the seed and surfaces the file at fault.
 #
-# Idempotent: re-running updates payload in place. Curated rows live at
-# (template_version='curated.v1', prompt_digest='curated', mastery_tier='any').
+# Idempotent: re-running updates payload in place. Unique key:
+# (concept_id, lens_type, age_band, locale).
 
 require "json"
 require "json-schema"
@@ -22,8 +22,9 @@ SCHEMA_ROOT  = Rails.root.join("app/services/academy/lens/schemas")
 unless PAYLOAD_ROOT.exist?
   puts "↪ Curated payloads: no #{PAYLOAD_ROOT} yet — skipping"
 else
-  # Same patterns the LLM-runtime generator enforces (Generators::Base).
-  # Curated content must clear the same bar — drift here defeats the pivot.
+  # Tone patterns that curated content must clear — these are the bar
+  # the kid-facing voice contract holds itself to. Drift here defeats
+  # the curated-static pivot.
   FORBIDDEN_TONE_PATTERNS = [
     /\bdeixa eu te contar uma coisa importante\b/i,
     /\breflita sobre\b/i,
@@ -107,21 +108,15 @@ else
       concept_id: mission.concept_id,
       lens_type: lens_type,
       age_band: "kid",
-      locale: "pt-BR",
-      template_version: "curated.v1",
-      mastery_tier: "any",
-      prompt_digest: "curated"
+      locale: "pt-BR"
     }
 
     row = ::Academy::LensCache.find_or_initialize_by(key)
     row.assign_attributes(
       payload: payload,
       source: "curated",
-      model_id: "curated",
       generated_at: Time.current,
-      quality_flagged: false,
-      judge_verdict: "approved_human",
-      judge_revision_cycles: 0
+      quality_flagged: false
     )
     row.save!
     upserted += 1

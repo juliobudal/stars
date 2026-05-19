@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, durante uma conversa de 5 minutos com alguém, quantos por cento desse tempo a pessoa média realmente escuta — em vez de já estar montando a própria resposta na cabeça?",
+  "predict_unit": "%",
+  "predict_min": 0,
+  "predict_max": 100,
+  "reveal_value": 25,
+  "reveal_source": "Estimativa baseada em Nichols, 'The Lost Art of Listening' (1995) e outros estudos de comunicação interpessoal: pessoas retêm cerca de 25% do que ouvem em conversa comum — o cérebro fica ocupado redigindo resposta.",
+  "interpretation": "1 em cada 4 frases é ouvida de verdade. O resto se perde porque o cérebro decidiu cedo que já entendeu e começou a montar o que vai responder. Escutar de propósito dobra ou triplica esse número — é o ganho mais barato de qualidade de conversa que existe."
+}

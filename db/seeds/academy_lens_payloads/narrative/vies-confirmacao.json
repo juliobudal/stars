@@ -1,0 +1,37 @@
+{
+  "character": {
+    "name": "Antônia",
+    "age": 12,
+    "trait": "decide rápido se gosta ou não de alguém e depois só guarda na memória as cenas que confirmam o que já decidiu"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Segunda, aula de ciências. Renato, o professor novo, pede pra Antônia resolver uma equação no quadro. Ela troca um sinal. Renato, calmo: 'Olha de novo, falta um detalhe.' Ela apaga, refaz, acerta, senta. Pensa: 'Esse professor implica comigo.' Anota mentalmente: corrigiu na frente da turma."
+    },
+    {
+      "id": "s2",
+      "text": "Quarta, mesma aula. Renato devolve o trabalho: 'Antônia, parágrafo 2 ficou bem encadeado.' Ela recebe a folha de volta. Pensa: 'Foi porque eu fiquei até tarde, ele não tem opção de elogiar.' Não anota nada. Não conta pra ninguém em casa."
+    },
+    {
+      "id": "s3",
+      "text": "Sexta, Renato chama 4 alunos ao quadro. Antônia primeiro. Acerta. Renato: 'Boa.' Marina, atrás dela, sussurra: 'Você nem agradeceu. Tava com certeza que ele ia te criticar de novo, né?' Antônia: 'Ele só elogiou porque tinha mais 3 no quadro.' Marina: 'Hmm. Faz um teste: anota na agenda, por uma semana, TUDO que o Renato fala com você. Bom e ruim.'"
+    },
+    {
+      "id": "s4",
+      "text": "Sexta seguinte. Antônia abre a agenda no banco do ônibus. Coluna esquerda 'cobrou', coluna direita 'elogiou'. Conta: 2 correções na semana, 8 elogios. Anota mais uma que tinha esquecido: 'segunda, ofereceu trocar minha entrega do trabalho de feira pro dia seguinte.' Fecha a agenda. Olha pela janela. Não sabe o que fazer com a informação."
+    }
+  ],
+  "ending": "Na segunda seguinte, Antônia chega antes do sinal. Renato escreve no quadro de costas. Ela diz: 'Bom dia, prof.' Ele responde sem virar: 'Bom dia, Antônia.' Ela senta. Não anota nada. Mas presta atenção até o fim da aula, sem o filtro ligado.",
+  "micro_check": {
+    "question": "{{learner_name}}, o que o teste da agenda (anotar tudo) revelou pra Antônia?",
+    "options": [
+      "Que o professor implicava com ela o tempo todo, como ela achava",
+      "Que Antônia inventava brigas com o professor",
+      "Que a cabeça dela guardava só as cenas que confirmavam o que ela já achava e descartava as que contradiziam",
+      "Que Marina era amiga do professor escondido"
+    ],
+    "correct_index": 2,
+    "rationale": "Antônia não inventava. Ela lembrava as 2 correções e esquecia os 8 elogios. O cérebro filtra: o que confirma 'ele implica comigo' fica; o que contradiz some. Anotar TUDO revela o que o filtro tinha cortado."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, numa semana típica, quantos MINUTOS por dia uma criança de 10 a 12 anos passa CRIANDO alguma coisa própria — desenho, vídeo, texto, código, música?",
+  "predict_unit": "minutos",
+  "predict_min": 0,
+  "predict_max": 300,
+  "reveal_value": 15,
+  "reveal_source": "Estimativa baseada em Common Sense Media (2019/2021) sobre uso de mídia infantil: cerca de 15 min/dia criando contra 4 a 7 horas consumindo. A proporção varia, mas a ordem de grandeza é estável.",
+  "interpretation": "15 minutos criando contra 5 horas consumindo é uma diferença de 20×. Cada minuto criando faz o cérebro reorganizar, achar erro e costurar de novo — coisa que ver vídeo de tutorial nunca obriga. Trocar 30 minutos de consumo por 30 de criação muda mais que assistir 3 horas a mais de aula gravada."
+}

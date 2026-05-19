@@ -1,0 +1,37 @@
+{
+  "character": {
+    "name": "Pedro",
+    "age": 11,
+    "trait": "chega da escola toda terça-feira jogando a mochila no sofá e listando em voz alta tudo que deu errado no dia"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Terça, 18h. Pedro entra resmungando: 'A prova de matemática teve duas pegadinhas, a professora me chamou pra ler em voz alta sem aviso, e o lanche acabou antes do recreio.' A avó, descascando cenoura na pia, não responde. Coloca um caderno pequeno na mesa: 'Toda terça, antes de dormir, anota três coisas pequenas que aconteceram hoje. Só três.' Pedro: 'Mas hoje foi horrível.' Avó: 'Anota mesmo assim.'"
+    },
+    {
+      "id": "s2",
+      "text": "Terça seguinte, 22h. Pedro pega o caderno com má vontade. Olha o teto. Escreve: '1) a Helena me passou cola na chamada oral; 2) o ônibus tinha o assento da janela vazio; 3) o tio do RU pôs duas almôndegas no prato sem perguntar.' Fecha o caderno. Acha bobo. No dia seguinte, esquece que existe."
+    },
+    {
+      "id": "s3",
+      "text": "Quarta terça. Já meio acostumado, Pedro anota durante a aula de geografia, no canto do caderno: 'professora deixou eu ir ao banheiro fora da hora.' Na volta pra casa, pensa: 'preciso lembrar mais uma pra hoje.' Repara no cheiro da padaria da esquina. Anota. Sem perceber, começou a procurar."
+    },
+    {
+      "id": "s4",
+      "text": "Quinta terça. No jantar, a avó pergunta: 'Como foi o dia?' Pedro abre a boca pra reclamar do treino, mas antes diz: 'O Bruno me ensinou um drible novo. E a tia da cantina sorriu pra mim.' Ele para. Não tinha planejado falar disso. Olha a avó. Ela continua descascando a cenoura, sem comentar."
+    }
+  ],
+  "ending": "Sexta semana, Pedro acorda terça de manhã pensando em qual ônibus pega — não em qual aula vai dar errado. O caderno está cheio de letras pequenas. A avó nunca leu uma página sequer. Não precisava.",
+  "micro_check": {
+    "question": "{{learner_name}}, o que mudou em Pedro depois de cinco terças anotando?",
+    "options": [
+      "As terças ficaram mais fáceis na escola por sorte",
+      "Ele aprendeu a fingir que o dia foi bom pra avó não chatear",
+      "Ele começou a reparar nas coisas pequenas DURANTE o dia, sem precisar do caderno",
+      "Ele convenceu a professora a não dar prova nas terças"
+    ],
+    "correct_index": 2,
+    "rationale": "Os fatos da terça continuaram iguais — provas, leitura em voz alta, treino. O que mudou foi o filtro: Pedro passou a notar o que estava lá (a almôndega extra, o cheiro da padaria) em vez de só o que faltou."
+  }
+}

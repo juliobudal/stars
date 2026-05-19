@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 module Academy
-  # Curated pool of one-line wisdom quotes shown inside the Academy loading
-  # overlay while the LLM generates the next lens (5–30s on cold start).
+  # Curated pool of one-line wisdom quotes shown inside the Academy
+  # loading overlay during page/lens transitions. With curated-static
+  # content the wait is short, but the overlay still masks the transition
+  # and gives the kid a beat to read one line.
   #
   # Editorial mix: Provérbios/Eclesiastes/Tiago (acessível para crianças)
   # + filósofos e educadores universais + ensinamentos originais d'O Guia.

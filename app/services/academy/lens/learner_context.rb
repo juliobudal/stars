@@ -2,16 +2,20 @@
 
 module Academy
   module Lens
-    # Snapshot of everything the LLM should know about the learner-vs-concept
-    # state at generation time. Stays inside the Academy boundary — the host
+    # Snapshot of the learner-vs-concept state used by the Guide chat
+    # prompt builder. Stays inside the Academy boundary — the host
     # (Profile/Family) is never reached. Built from `learner_id` + `concept`.
     #
-    # `mastery_tier` is bucketed (2 tiers + the learner-agnostic "any") to
-    # keep the LensCache footprint bounded:
+    # `mastery_tier` is bucketed (2 tiers + the learner-agnostic "any"):
     #
     #   level 0..1  → "introductory"  (silhouette / spotted)
     #   level 2..3  → "advanced"      (recognized / mastered)
-    #   no learner  → "any"           (warmup / prewarm)
+    #   no learner  → "any"           (no mastery signal yet)
+    #
+    # Historical: this used to drive the lens-generation cache key
+    # (mastery-tier-segmented LLM output). With the curated-static pivot
+    # mastery_tier is informational only — surfaced into BuildPrompt's
+    # ESTADO DO APRENDIZ block to nudge the Guide voice.
     class LearnerContext < Data.define(:learner_id, :mastery_tier, :wrong_streak, :related_concept_names)
       MASTERY_TIERS = %w[any introductory advanced].freeze
 
