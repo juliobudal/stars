@@ -447,12 +447,13 @@ Estratégia: **híbrido HugeIcons** (decidido pelo usuário). Fallback por categ
 
 ### Diferidos (não-bloqueadores)
 
-- `[ ]` Backfill `Academy::LearnerRanks::AssignTitles` — `academy_learner_ranks.title_slug` ainda NULL nos ranks existentes. Sem urgência se ranks são populados on-demand pelo `Rank::Recompute`; confirmar antes de criar service novo.
-- `[ ]` Tipar as 27 arestas restantes em `concept_edges` (default `relates_to`). Spec coloca para Sprint 3.
-- `[ ]` 3 story_choice missions adicionais (Sociedade, Resolver, Tech) — entram via CMS, sem deploy.
+- `[ ]` Backfill `Academy::LearnerRanks::AssignTitles` — `academy_learner_ranks.title_slug` ainda NULL nos ranks existentes. Sem urgência se ranks são populados on-demand pelo `Rank::Recompute`; confirmar antes de criar service novo. **2026-05-19:** revisitado durante limpeza Lens v3 → segue diferido (sem rules definidas; spec v4 atribui semântica a `PracticeWager`/`TransferDetection` ainda não-implementados).
+- `[x]` Tipar as 27 arestas restantes em `concept_edges`. **2026-05-19:** 30/39 arestas agora tipadas (composes_with=13, predicts=9, manifests_in=4, generalizes=2, specializes=1, contrasts_with=1). 9 seguem `relates_to` por ambiguidade pedagógica legítima. Backfill via `rake academy:concept_edges:backfill`.
+- `[~]` 3 story_choice missions adicionais — **OBSOLETO** em v5: formato `story_choice` retirado; bifurcação narrativa absorvida pelo tipo `narrative` lens (ver `db/seeds/academy_stories.rb`).
 
 ### Como continuar em sessão futura
 
 1. Abrir este arquivo + `.planning/designs/academy-v4-spec.md`.
 2. Auditoria 2026-05-16 fechada: PR1, PR2, PR3, PR4 done.
-3. Resta apenas a fila de **Diferidos** acima (LearnerRanks::AssignTitles, typar 27 arestas restantes, 3 stories adicionais via CMS) — nenhuma bloqueia a tese pedagógica v4.
+3. Limpeza Lens v3 (2026-05-19): Gap #1 (clonagem few-shot) + Gap #2 (nav fixa) + edges tipadas — ver `.planning/designs/academy-migration-cleanup-plan.md`.
+4. Remanescente: `LearnerRanks::AssignTitles` (diferido por ausência de regras) e geração das ~120 lentes restantes (Fase 3 do plano de limpeza, batch em andamento).
