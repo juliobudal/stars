@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Raul",
+    "age": 10,
+    "trait": "tenta consertar o ventilador quebrado da cozinha com fita isolante e boa vontade"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sexta à noite, o ventilador de teto da cozinha range, treme e para. Raul sobe na cadeira, passa fita isolante no eixo, aperta os parafusos. Liga. Range mais alto. Desliga. 'A fita não segurou, vou passar três camadas.'"
+    },
+    {
+      "id": "s2",
+      "text": "A mãe chega, olha o ventilador, não fala nada. Abre o armário, pega uma chave de fenda, tira a carcaça. Mostra o motor — um fio solto balança dentro. 'Você colou o eixo, mas o motor não gira porque um fio perdeu contato.' Raul: 'Então não é o eixo?' Mãe: 'O eixo é o sintoma. O fio é a causa.'"
+    },
+    {
+      "id": "s3",
+      "text": "Raul segura a lanterna enquanto a mãe solda o fio. 'Mas por que o fio soltou?' Mãe: 'Porque o parafuso que prende o fio enferrujou.' 'E por que enferrujou?' 'Porque a cozinha tem umidade do fogão.' 'E por que não seca?' 'Porque o exaustor não funciona.' 'E por que o exaustor não funciona?' A mãe ri. 'Porque ninguém limpou o filtro em dois anos.'"
+    }
+  ],
+  "ending": "O ventilador gira. Raul sobe no banco, tira a tampa do exaustor, puxa o filtro preto de gordura. Leva pra pia. 'Amanhã eu limpo isso.' A mãe sorri e liga o ventilador de novo.",
+  "micro_check": {
+    "question": "{{learner_name}}, quantas perguntas a mãe de Raul respondeu até chegar na causa mais funda do ventilador quebrado?",
+    "options": [
+      "Uma — o fio solto",
+      "Três — fio solto, parafuso enferrujado, umidade",
+      "Cinco — fio solto, parafuso, umidade, exaustor quebrado, filtro sujo",
+      "Duas — fita isolante não cola, eixo não é o problema"
+    ],
+    "correct_index": 2,
+    "rationale": "Cada 'por quê' cavou um nível: fio solto → parafuso enferrujado → umidade → exaustor quebrado → filtro sujo. Cinco níveis abaixo do sintoma."
+  }
+}

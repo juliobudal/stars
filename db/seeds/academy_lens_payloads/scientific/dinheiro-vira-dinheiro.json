@@ -1,0 +1,20 @@
+{
+  "headline": "Ganho que ganha ganho — o tempo é o ingrediente raro, não o valor inicial.",
+  "mechanism_steps": [
+    "Você coloca R$100 numa conta que rende 10% ao ano; no fim do ano, o banco arranca R$10 do nada e coloca no seu saldo.",
+    "No segundo ano, os 10% não batem só nos R$100 iniciais — batem nos R$110, puxando R$11 de ganho, que viram R$121.",
+    "A cada ano, o ganho do ano anterior vira semente do novo ganho — e o tempo monta uma bola de neve que cresce sozinha, desde que a taxa (10% ao ano) não mude."
+  ],
+  "illustration_hint": "Ilustração de uma bolinha de neve rolando ladeira abaixo, crescendo a cada volta; ao lado, uma tabelinha numérica: R$100 → R$110 → R$121 → R$133,10, com setas curvas indicando que o ganho do passo anterior vira base do próximo.",
+  "micro_check": {
+    "question": "{{learner_name}} e {{sibling_or_friend}} receberam R$100 cada. {{learner_name}} guarda numa conta que rende 10% ao ano. {{sibling_or_friend}} enterra o dinheiro no quintal. Quem terá mais daqui a 3 anos?",
+    "options": [
+      "{{learner_name}}, porque o dinheiro rende juros compostos e o do quintal não rende nada.",
+      "{{sibling_or_friend}}, porque enterrar é mais seguro e o dinheiro não some.",
+      "Os dois terão o mesmo valor, porque R$100 é R$100.",
+      "{{learner_name}}, mas só se a taxa for maior que 10% ao ano."
+    ],
+    "correct_index": 0,
+    "rationale": "Os R$100 de {{learner_name}} viram R$110 no ano 1, R$121 no ano 2 e R$133,10 no ano 3 — o ganho ganha ganho. O dinheiro enterrado continua R$100, porque sem taxa de juros o tempo não faz nada."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "Quantas vezes por dia {{learner_name}} acha que o cérebro forma uma nova conexão enquanto você erra e corrige um erro? Chuta antes de ler.",
+  "predict_unit": "vezes/dia",
+  "predict_min": 0,
+  "predict_max": 100,
+  "reveal_value": 1,
+  "reveal_source": "Pesquisas mostram que o cérebro muda quando aprendemos e praticamos, criando novas ligações com cada prática — e o erro é o momento em que essa criação é mais intensa.",
+  "interpretation": "Não é que a cada erro brote uma conexão nova como mágica. É que, quando você erra e tenta de novo, o cérebro 'solda' um caminho que antes era um atalho fraco. Um erro corrigido vale mais que dez acertos repetidos."
+}

@@ -1,0 +1,20 @@
+{
+  "headline": "Seu cérebro vira detetive só de um lado — só procura pistas que confirmam o que já acha.",
+  "mechanism_steps": [
+    "Você pensa 'essa pessoa é legal' e seu cérebro arranca da memória só os momentos em que ela foi simpática — esquece os outros.",
+    "Quando aparece uma prova contra (ela foi grossa), seu cérebro dispara um filtro: 'foi exceção, não conta' — e descarta.",
+    "Cada pista que passa pelo filtro reforça a ideia original, que fica mais forte — e o filtro, mais apertado na próxima vez."
+  ],
+  "illustration_hint": "Cena em duas metades: lado esquerdo, uma pessoa com óculos escuros olhando para um mural de fotos — só as fotos felizes estão iluminadas, as tristes estão apagadas. Lado direito, dentro da cabeça da pessoa, um detetive com uma lupa só procura pistas num lado da sala, ignorando o outro lado todo.",
+  "micro_check": {
+    "question": "{{learner_name}} acha que o videogame novo é o melhor do mundo. Um amigo mostra um vídeo com 5 bugs do jogo. O que o viés de confirmação faz com {{learner_name}}?",
+    "options": [
+      "Faz {{learner_name}} pensar que o amigo está certo e desistir do jogo",
+      "Faz o cérebro de {{learner_name}} ignorar os bugs e lembrar só das fases que funcionaram bem",
+      "Faz {{learner_name}} odiar o amigo por mostrar o vídeo",
+      "Faz o cérebro de {{learner_name}} esquecer que gostava do jogo"
+    ],
+    "correct_index": 1,
+    "rationale": "O cérebro caça provas do que já acredita. Como {{learner_name}} já acredita que o jogo é bom, ele filtra os bugs como 'exceção' e só guarda as partes que confirmam a crença original — mesmo sem perceber."
+  }
+}

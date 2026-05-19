@@ -1,0 +1,20 @@
+{
+  "headline": "Errar não é falha — é o cérebro montando atalho novo.",
+  "mechanism_steps": [
+    "Você tenta algo e erra; o cérebro dispara sinais elétricos suaves que avisam 'essa rota não deu certo'.",
+    "Na repetição, os neurônios envolvidos trocam sinais mais rápido e montam uma trilha química — cada tentativa reforça a conexão.",
+    "Com prática, a trilha vira atalho: o que exigia esforço vira automático, porque o cérebro soldou os neurônios certos."
+  ],
+  "illustration_hint": "Ilustração de um neurônio A tentando alcançar neurônio B. Na primeira tentativa, um raio fino e torto; na segunda, o raio fica mais grosso; na terceira, um feixe reto e brilhante conecta os dois, com um letreiro 'atalho formado'.",
+  "micro_check": {
+    "question": "{{learner_name}} errou três vezes seguidas um golpe no jogo de luta. O que está acontecendo no cérebro dele?",
+    "options": [
+      "O cérebro está desistindo daquele golpe porque errou.",
+      "O cérebro está ajustando as conexões entre neurônios a cada tentativa, montando um atalho.",
+      "O cérebro apagou a memória do golpe pra não repetir o erro.",
+      "O cérebro só aprende quando acerta de primeira."
+    ],
+    "correct_index": 1,
+    "rationale": "Cada erro é um sinal elétrico que diz 'tenta de outro jeito'. O cérebro não desiste nem apaga — ele reforça as conexões que funcionam, e com repetição a rota vira automática."
+  }
+}

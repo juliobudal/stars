@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, quantas vezes por dia você acha que uma criança da sua idade sente um frio na barriga e faz algo mesmo assim? Chuta um número.",
+  "predict_unit": "vezes/dia",
+  "predict_min": 0,
+  "predict_max": 30,
+  "reveal_value": 12,
+  "reveal_source": "Estimativa educativa baseada em relatos de crianças de 8 a 14 anos em atividades escolares e sociais — número médio de situações em que agir apesar do medo é possível num dia comum.",
+  "interpretation": "12 vezes por dia. Não são 12 sustos de cinema — são 12 microdecisões: levantar a mão na aula, pedir desculpa, falar com alguém novo, tentar um exercício difícil. Coragem não é ausência de medo; é o botão que você aperta mesmo com o alerta ligado."
+}

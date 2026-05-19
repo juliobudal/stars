@@ -1,0 +1,20 @@
+{
+  "headline": "Honestidade é um contrato que você assina primeiro com você mesmo.",
+  "mechanism_steps": [
+    "Você decide o que é verdade (ex: 'peguei o brinquedo sem pedir') e seu cérebro registra esse julgamento como um compromisso interno.",
+    "Cada vez que você age contra esse julgamento, o cérebro dispara um alerta de 'inconsistência' — um desconforto que arranha sua confiança em si mesmo.",
+    "Repetir a verdade fortalece o contrato: seu cérebro aprende que pode confiar no próprio juízo, e a honestidade vira automática."
+  ],
+  "illustration_hint": "Ilustração de uma pessoa segurando um papel com um contrato escrito 'Eu, comigo mesmo', e uma caneta. À esquerda, o papel está rasgado e a pessoa franze a testa. À direita, o papel está inteiro e a pessoa sorri, com um selo de 'confiável'.",
+  "micro_check": {
+    "question": "{{learner_name}} esbarrou sem querer no amigo e o amigo não viu. Ninguém vai saber. O que a honestidade exige aqui?",
+    "options": [
+      "Nada, porque não foi de propósito e ninguém viu.",
+      "Contar o que aconteceu, porque você sabe a verdade e seu cérebro registra esse saber.",
+      "Fingir que foi outra pessoa, pra não ter que se desculpar.",
+      "Esperar o amigo descobrir sozinho."
+    ],
+    "correct_index": 1,
+    "rationale": "Honestidade não depende de plateia. O contrato é com seu próprio julgamento — você sabe o que aconteceu, e seu cérebro já registrou. Contar alinha ação com esse saber."
+  }
+}

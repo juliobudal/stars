@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Rafa",
+    "age": 11,
+    "trait": "sempre acha que troco a mais é 'sorte' e que ninguém vai sentir falta"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sexta à noite, Rafa vai na venda da tia Marta comprar um salgadinho. Paga com 10 reais. O salgadinho custa 6. Tia Marta, distraída no celular, devolve 6 de troco. Dois reais a mais. Rafa guarda o dinheiro no bolso e sai rápido, sem falar nada."
+    },
+    {
+      "id": "s2",
+      "text": "Em casa, Rafa conta pro irmão mais velho, Léo. 'A tia Marta me deu 6 de troco. Peguei e vazei.' Léo levanta a sobrancelha: 'Você vai devolver?' Rafa: 'Ela nem vai perceber. É dois reais.' Léo: 'Não é sobre ela perceber. É sobre você saber.' Rafa fica quieto."
+    },
+    {
+      "id": "s3",
+      "text": "No dia seguinte, Rafa volta na venda antes do almoço. Tira os 2 reais do bolso e põe no balcão. 'Tia Marta, ontem a senhora me deu troco errado. É seu.' A tia Marta para, olha pra ele, pega o dinheiro. 'Obrigada, Rafa. Senta aqui, come um pão de queijo.' Ela serve um pão de queijo quente. Não fala mais nada sobre o dinheiro."
+    }
+  ],
+  "ending": "Rafa morde o pão de queijo e sente um gosto diferente — não o do queijo, mas o de não ter que esconder o olho de ninguém naquela venda. A tia Marta, no fundo, sorri sozinha arrumando as balas.",
+  "micro_check": {
+    "question": "{{learner_name}}, o que Rafa fez com os 2 reais a mais do troco?",
+    "options": [
+      "Guardou e gastou no dia seguinte",
+      "Devolveu pra tia Marta no outro dia",
+      "Falou pro Léo e depois esqueceu",
+      "Comprou outro salgadinho e comeu escondido"
+    ],
+    "correct_index": 1,
+    "rationale": "Rafa devolveu o dinheiro. O custo verdadeiro não era os 2 reais — era a confiança que ele tinha no próprio juízo. Quando ele devolveu, mostrou que ele mesmo sabia que a 'sorte' ali era um erro que ele não podia engolir."
+  }
+}

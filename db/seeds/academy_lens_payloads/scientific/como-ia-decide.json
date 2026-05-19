@@ -1,0 +1,20 @@
+{
+  "headline": "Quantas vezes o dado cai em 6 antes de você desistir?",
+  "mechanism_steps": [
+    "Você joga o dado. Cada face tem 1 chance em 6 de aparecer — o dado não lembra do último lance, então a chance é sempre a mesma.",
+    "Jogue muitas vezes (100, 1000) e o número de 6s vai se aproximando de 1/6 do total — as exceções viram regra.",
+    "A probabilidade não diz qual vai ser o próximo lance — ela só avisa: 'se repetir bastante, a conta fecha'."
+  ],
+  "illustration_hint": "Close de um dado de plástico branco girando no ar contra fundo escuro. Ao lado, uma tabela crescendo com palitos contando 6s — primeiras fileiras bagunçadas, depois se alinhando. Texto no canto: '1/6 não é previsão, é promessa de longo prazo'.",
+  "micro_check": {
+    "question": "{{learner_name}} joga uma moeda 10 vezes e dá CARA em 8 delas. O que a probabilidade (1/2 pra cada lado) diz sobre a próxima jogada?",
+    "options": [
+      "Que a próxima tem mais chance de dar COROA, porque CARA já saiu demais.",
+      "Que a próxima tem chance igual de dar CARA ou COROA — a moeda não tem memória.",
+      "Que a próxima com certeza vai dar COROA, porque 8 CARAS quebrou a regra.",
+      "Que a probabilidade agora mudou pra 80% de dar CARA."
+    ],
+    "correct_index": 1,
+    "rationale": "Cada lance é independente — a moeda não 'sabe' o que aconteceu antes. A probabilidade só funciona em muitas repetições, não corrige jogada a jogada."
+  }
+}

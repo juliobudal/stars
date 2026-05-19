@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, de 10 amigos seus, quantos você acha que respondem 80% das mensagens do grupo? Chuta antes de ler.",
+  "predict_unit": "vezes/dia",
+  "predict_min": 1,
+  "predict_max": 10,
+  "reveal_value": 2,
+  "reveal_source": "Exemplos comuns mostram padrões pareto; não é uma regra fixa. Em muitos grupos, 2 pessoas geram a maior parte das conversas.",
+  "interpretation": "2 de 10 amigos fazem 80% do barulho no grupo. O princípio de Pareto diz que 20% das causas geram 80% dos efeitos — escolha bem o 20%."
+}

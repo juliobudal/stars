@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, chuta: quantas vezes por dia uma pessoa pega o celular só por impulso — sem ter recebido notificação, sem abrir app, só o dedo coçando pra tocar na tela? Palpita antes de ver.",
+  "predict_unit": "vezes/dia",
+  "predict_min": 1,
+  "predict_max": 200,
+  "reveal_value": 96,
+  "reveal_source": "estimativa baseada em estudos de uso de tela: cerca de 90 a 100 toques/dia em média, com variações entre indivíduos (Dscout 2022, amostra de 94 usuários Android).",
+  "interpretation": "96 vezes por dia. Quase uma vez a cada 10 minutos acordado. O celular vira uma máquina de recompensa imediata: você toca, ele acende, pronto — dopamina de graça. O problema? Você troca o que queria de verdade (ler, jogar, conversar) pelo brilho instantâneo da tela. Preferir pouco-agora a muito-depois, em ação."
+}

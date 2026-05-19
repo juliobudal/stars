@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, quantas horas por dia você acha que um adolescente fica com a mente vagando à toa — sem celular, sem tela, sem nada pra fazer? Chuta antes de ver.",
+  "predict_unit": "horas",
+  "predict_min": 0,
+  "predict_max": 6,
+  "reveal_value": 1.5,
+  "reveal_source": "Estimativa baseada em dados do American Time Use Survey (2022) e Common Sense Media (2023): adolescentes passam cerca de 1,5 hora/dia em 'tempo livre não estruturado' — sem tela, sem tarefa definida.",
+  "interpretation": "1 hora e meia. Parece pouco, mas é o suficiente pra sua mente começar a vagar e conectar ideias soltas — o que os psicólogos chamam de incubação criativa. Sem esse tédio, seu cérebro nunca tem espaço pra inventar algo novo."
+}

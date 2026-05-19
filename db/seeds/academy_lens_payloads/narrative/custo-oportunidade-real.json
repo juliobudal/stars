@@ -1,0 +1,33 @@
+{
+  "ending": "Na volta pra casa, Luan segura o álbum e o saquinho de brigadeiro. O carrinho ficou na prateleira. Mas, quando ele abre o álbum e vê a primeira figurinha colada, sente que trocou certo — mesmo que o carrinho ainda esteja na cabeça dele.",
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sábado, 14h30. Luan entra na papelaria com 15 reais no bolso — mesada da semana. A mão vai direto pro carrinho Hot Wheels da estante, o dourado com roda cromada, 12 reais. Mas, no balcão, tem um álbum de figurinhas novo, 7 reais, e um saquinho de brigadeiro de leite ninho, 5 reais. Luan para. Os 15 reais não dão pras três coisas."
+    },
+    {
+      "id": "s2",
+      "text": "Ele pega o carrinho, sente o peso. Depois vai pro álbum, folheia: faltam 47 figurinhas pra completar a coleção. A mão dele aperta o dinheiro no bolso. A tia do caixa espia: 'Vai levar o quê, moço?' Luan olha pras três coisas. Nenhuma cabe junto."
+    },
+    {
+      "id": "s3",
+      "text": "Ele coloca o carrinho de volta na prateleira. Sente um aperto. Pega o álbum e o brigadeiro. Vai pro caixa, paga 12 reais. Sobram 3. A tia entrega o troco e o saquinho. Luan guarda as moedas."
+    }
+  ],
+  "character": {
+    "age": 10,
+    "name": "Luan",
+    "trait": "junta dinheiro da mesada toda semana e sempre quer comprar mais de uma coisa ao mesmo tempo"
+  },
+  "micro_check": {
+    "options": [
+      "Porque o carrinho era muito caro",
+      "Porque ele não gostava mais de Hot Wheels",
+      "Porque ele escolheu o álbum e o brigadeiro — e deixou o carrinho pra trás",
+      "Porque a tia do caixa mandou ele escolher"
+    ],
+    "question": "{{learner_name}}, por que Luan não levou o carrinho, mesmo tendo dinheiro pra ele?",
+    "rationale": "Luan tinha 15 reais — cabia o carrinho OU o álbum com brigadeiro. Ele escolheu o que mais queria naquele momento, mas isso custou abrir mão do carrinho. O tradeoff é exatamente isso: escolher uma coisa é perder outra.",
+    "correct_index": 2
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "headline": "Feedback que mostra o caminho vs. rótulo que fecha a porta.",
+  "mechanism_steps": [
+    "Você faz algo (ex: escreve um texto) e alguém descreve o que viu no resultado — 'aqui faltou data, ali o tom mudou' — isso monta um mapa do que pode melhorar.",
+    "Se em vez da descrição a pessoa diz 'você é desatento', o cérebro não monta mapa nenhum — só dispara defesa ou vergonha, e a cena fecha.",
+    "Com o mapa, você sabe pra onde ir; com o rótulo, você só sabe que 'algo em você está errado' — e aprende menos."
+  ],
+  "illustration_hint": "Ilustração de uma mão desenhando um mapa com setas coloridas saindo de um dever de casa (mapa do lado bom) e do outro lado uma parede cinzenta fechando a passagem com um balão 'você é bagunceiro' rabiscado. A criança do lado do mapa olha curiosa; a do muro olha para baixo.",
+  "micro_check": {
+    "question": "{{learner_name}} bagunçou o quarto e quando vai arrumar, a mãe fala de dois jeitos. Qual deles descreve o comportamento e mostra um caminho?",
+    "options": [
+      "'Você é uma criança bagunceira.'",
+      "'Nossa, que zona. Pega o cesto, joga as roupas sujas e depois ajeita os livros na prateleira.'",
+      "'Arrume isso agora, senão vai ficar de castigo.'",
+      "'Você nunca aprende, sempre a mesma coisa.'"
+    ],
+    "correct_index": 1,
+    "rationale": "A opção certa descreve o que viu ('zona') e dá passos concretos de ação (cesto, prateleira). As outras ou rotulam a pessoa ou só ameaçam — não formam mapa de melhora."
+  }
+}

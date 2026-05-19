@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Carla",
+    "age": 12,
+    "trait": "adora vídeos de gatos travessos e tem o celular cheio de print de meme que manda pra mãe no almoço"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sexta à noite, Carla deita no sofá e abre o YouTube. A página inicial já veio montada: três gatos, um tutorial de trança, um cara montando PC gamer. Ela abre o primeiro — gato derruba vaso — ri, passa. No terceiro, um gato abre a porta de armário sozinho. Ela ri, comenta com a mãe, fica até o fim."
+    },
+    {
+      "id": "s2",
+      "text": "Sábado de manhã, ela abre o YouTube de novo. Agora a página tá cheia de gato abrindo porta, gato saindo de caixa, gato fugindo de pepino. O tutorial sumiu. O PC gamer sumiu. Ela pensa: 'ué, cadê o resto?' e clica no gato que aperta descarga."
+    },
+    {
+      "id": "s3",
+      "text": "Domingo à noite, a mãe pede: 'mostra aquele vídeo do tutorial de trança que você falou.' Carla abre o YouTube, digita 'tutorial trança' na busca. O feed sugerido agora é só gato — gato de trança, gato com lacinho, gato enroscado em novelo. Ela mostra o resultado e diz: 'a plataforma acha que eu só gosto de gato.'"
+    }
+  ],
+  "ending": "A mãe ri, pega o celular, e digita 'tutorial trança simples'. Aparecem só vídeos de cabelo. 'Engraçado', ela fala, 'ela lembra o que você faz, mas esquece o que você diz.'",
+  "micro_check": {
+    "question": "{{learner_name}}, por que o feed de Carla ficou cheio de gato depois que ela assistiu alguns vídeos de gato?",
+    "options": [
+      "Porque o YouTube decidiu que gato é mais popular que trança",
+      "Porque cada clique vira voto — o sistema entende que gato é o que ela quer ver",
+      "Porque tranças são difíceis de recomendar e gato é mais leve de carregar",
+      "Porque a Carla só gosta de gato, mesmo que ela não saiba"
+    ],
+    "correct_index": 1,
+    "rationale": "O feed não lê pensamentos — lê cliques. Cada vez que Carla assiste um gato até o fim, o sistema interpreta: 'mais um voto pra gato'. O que não foi clicado não vira voto, e some."
+  }
+}

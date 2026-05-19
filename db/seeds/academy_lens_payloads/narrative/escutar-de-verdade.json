@@ -1,0 +1,37 @@
+{
+  "character": {
+    "name": "Lia",
+    "age": 12,
+    "trait": "passa o recreio todo falando do próprio personagem no RPG de mesa, mas nunca deixa os outros terminarem uma fala"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Quarta, 10h15. Recreio. Lia mal senta na mesa do pátio e já dispara: — Gente, meu elfo conseguiu a adaga de gelo! O mestre falou que… Ela fala sem pausa enquanto tira o lanche da mochila, sem reparar que Pedro está com a mão erguida há três segundos."
+    },
+    {
+      "id": "s2",
+      "text": "Pedro abaixa a mão. Começa a falar mesmo assim: — Então, eu tava pensando em… — e Lia corta: — Ah, mas deixa eu contar o resto, é muito doido! O mestre disse que a adaga brilha azul quando… Pedro pega o celular, mexe distraído. A amiga ao lado, a Carol, que ia contar uma história do gato dela, só morde o lanche em silêncio."
+    },
+    {
+      "id": "s3",
+      "text": "No sábado, o grupo de RPG se reúne na casa do mestre. Todo mundo senta no chão da sala. Lia chega animada, mas percebe que Pedro sentou longe, de fone. Carol mal olha pra ela. O mestre começa a sessão, e quando Lia abre a boca pra contar da adaga, Pedro levanta: — Gente, hoje eu queria explorar a parte da floresta sombria. Ninguém interrompe. Pedro fala até o fim. Lia fica quieta, segurando a ficha de personagem."
+    },
+    {
+      "id": "s4",
+      "text": "Depois da sessão, Lia encontra Carol na cozinha, pegando refrigerante. Carol fala baixinho: — É que você nunca deixa ninguém terminar. Aí a gente meio que desiste. Lia para. Engole seco. Na segunda-feira, no recreio, Pedro começa: — Sobre a floresta sombria, eu achei um mapa… Lia morde a língua. Espera. Pedro termina. Então ela pergunta: — E aí, o que tinha no mapa? Pedro sorri."
+    }
+  ],
+  "ending": "Pedro tira um papel amassado do bolso e desenha o mapa na mesa. Lia escuta os próximos dez minutos sem cortar uma sílaba. O recreio acaba e ela nem tocou no sanduíche.",
+  "micro_check": {
+    "question": "{{learner_name}}, o que mudou no recreio de Lia na segunda-feira?",
+    "options": [
+      "Ela contou a história da adaga primeiro",
+      "Ela deixou Pedro terminar de falar antes de responder",
+      "Ela sentou com outra turma",
+      "Ela pediu desculpas em voz alta pra todo mundo"
+    ],
+    "correct_index": 1,
+    "rationale": "Lia não pediu desculpas nem mudou de assunto. Ela simplesmente parou de cortar. Deixou Pedro terminar. Aí perguntou algo sobre o que ele disse — o que mostra que ela ouviu de verdade."
+  }
+}

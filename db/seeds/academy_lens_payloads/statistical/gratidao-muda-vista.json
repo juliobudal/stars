@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, quantas vezes por dia você acha que passa por algo legal — um cheiro bom, um sorriso, o sol na janela — e simplesmente NÃO percebe? Chuta um número.",
+  "predict_unit": "vezes/dia",
+  "predict_min": 0,
+  "predict_max": 100,
+  "reveal_value": 12,
+  "reveal_source": "Estimativa baseada em psicologia da atenção: uma pessoa distraída pode deixar passar dezenas de momentos positivos por dia sem registrá-los. A prática de gratidão treina o filtro para notar o que já estava ali.",
+  "interpretation": "12 momentos por dia que você não nota. Gratidão não é inventar coisa boa — é ligar o radar pro que já existe. Quando você agradece por algo específico (o gosto do café, a conversa rápida), está treinando seu cérebro a ver o que antes passava batido."
+}

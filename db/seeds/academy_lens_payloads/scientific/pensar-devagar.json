@@ -1,0 +1,20 @@
+{
+  "headline": "Seu cérebro tem dois pilotos: um automático e um que acorda na hora do perigo.",
+  "mechanism_steps": [
+    "O Sistema-1 varre tudo ao redor e decide rápido — reconhece um rosto, pega um copo, responde 'tudo bem' sem pensar.",
+    "Quando o estímulo é fácil, o Sistema-1 resolve sozinho; o Sistema-2 entra quando a situação exige cuidado ou cálculo — como fazer 17 × 24 de cabeça.",
+    "O Sistema-2 raramente acorda sozinho: precisa de um alarme — uma conta difícil, uma pergunta inesperada, ou o Sistema-1 gritar 'não sei'."
+  ],
+  "illustration_hint": "Ilustração de um cockpit com dois pilotos: um robô (Sistema-1) no piloto automático, mãos soltas, olhando pro horizonte; ao lado, um humano (Sistema-2) dormindo na cadeira, com um alarme vermelho piscando 'PROBLEMA' no painel.",
+  "micro_check": {
+    "question": "{{learner_name}} está andando de bicicleta na rua plana e vazia. De repente, um carro freia na frente dele. Qual sistema acorda primeiro?",
+    "options": [
+      "Sistema-1, porque ele já sabe desviar sem pensar.",
+      "Sistema-2, porque andar de bicicleta é difícil.",
+      "Nenhum dos dois, porque o cérebro desliga em emergências.",
+      "Sistema-2, porque ele precisa calcular a distância do carro."
+    ],
+    "correct_index": 0,
+    "rationale": "O Sistema-1 já treinou desviar de obstáculos milhares de vezes — ele arranca a resposta antes do Sistema-2 terminar de pensar. O Sistema-2 só entra depois, se o desvio não deu certo ou a situação for nova."
+  }
+}

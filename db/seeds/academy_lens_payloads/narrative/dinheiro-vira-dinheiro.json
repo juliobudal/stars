@@ -1,0 +1,37 @@
+{
+  "ending": "Lara olha pro papel. R$ 0,50 de juros no primeiro mês. Parece nada. Mas ela já entendeu o truque: mês que vem, o banco vai pagar juros em cima dos R$ 100,50. E depois em cima de R$ 101,00. O crescimento não é reto — é uma bola de neve que cresce sozinha. Ela dobra o papel e guarda no bolso.",
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Lara ganhou R$ 100 do avô no aniversário de 11 anos. Podia gastar tudo agora — um tênis novo, um jogo, uma pilha de revistas. Mas ela lembra do que o avô falou: 'Se você guardar, daqui a um ano ele cresce sozinho.' Lara franze a testa. Dinheiro não cresce em árvore."
+    },
+    {
+      "id": "s2",
+      "text": "Ela decide testar. Abre uma conta no banco digital que o pai configurou. Deposita os R$ 100. O aplicativo mostra: 'Rendimento: 0,5% ao mês.' Lara pega uma calculadora. 0,5% de 100 é 0,50. 'Um mês rendendo R$ 0,50? Isso é piada.' Mas o avô insiste: 'Deixa um ano.'"
+    },
+    {
+      "id": "s3",
+      "text": "Passa o primeiro mês. Lara abre o app: saldo R$ 100,50. Ela esperava R$ 100,50, mas vê que o banco pagou os juros em cima do saldo anterior. 'Então mês que vem vai render em cima de R$ 100,50?' Ela calcula: 0,5% de 100,50 é 0,5025. O banco arredonda pra R$ 0,50 de novo. 'Ainda é pouco.'"
+    },
+    {
+      "id": "s4",
+      "text": "No sexto mês, Lara já tem R$ 103,04. Ela não colocou mais nada. Só os juros chegando todo mês. No décimo segundo mês, o app mostra R$ 106,17. 'Ganhei R$ 6,17 sem fazer nada.' Ela pega uma folha e desenha: mês 1: R$ 100,50; mês 2: R$ 101,00; mês 3: R$ 101,51; mês 12: R$ 106,17. A linha sobe igual uma escada que fica mais íngreme."
+    }
+  ],
+  "character": {
+    "age": 11,
+    "name": "Lara",
+    "trait": "ganhou R$ 100 do avô e quer saber se dinheiro realmente cresce sozinho"
+  },
+  "micro_check": {
+    "question": "{{learner_name}}, por que Lara ganhou R$ 6,17 em um ano mesmo sem colocar mais dinheiro?",
+    "options": [
+      "Porque o avô deu mais dinheiro escondido",
+      "Porque o banco paga juros todo mês sobre o valor que já está na conta, e com o tempo os juros geram mais juros",
+      "Porque ela colocou os R$ 100 em uma aplicação que rende 0,5% ao ano",
+      "Porque o dinheiro simplesmente vale mais com o passar do tempo"
+    ],
+    "correct_index": 1,
+    "rationale": "O erro comum é achar que precisa de muito dinheiro pra começar. Mas o segredo é o tempo: os juros de cada mês viram parte do saldo, e no mês seguinte rendem também. É uma bola de neve que cresce sozinha."
+  }
+}

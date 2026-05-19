@@ -1,0 +1,20 @@
+{
+  "headline": "Seu cérebro acha que raro é melhor (mesmo quando não é)",
+  "mechanism_steps": [
+    "Você vê algo que parece difícil de conseguir — um brinquedo que só tem um na loja — e seu cérebro dispara um sinal: 'isso pode ser importante, vamos comparar com outras opções antes de decidir'.",
+    "Esse sinal faz você prestar mais atenção naquilo e ignorar outras opções iguais que estão por perto — o cérebro monta uma fila de prioridade só pra ele.",
+    "A sensação de 'quase perdendo' acelera a decisão: você escolhe antes de pensar se aquilo é realmente melhor — e nem sempre o que parece rápido é o melhor."
+  ],
+  "illustration_hint": "Ilustração de um cérebro com um 'sinal de alerta' amarelo piscando sobre uma prateleira com um único brinquedo; do lado, uma prateleira cheia do mesmo brinquedo, mas o cérebro ignora. O sinal tem um balão: 'Vamos comparar?'.",
+  "micro_check": {
+    "question": "{{learner_name}} vê um anúncio: 'ÚLTIMA UNIDADE! Tênis voador edição limitada!'. O que o cérebro faz com essa informação?",
+    "options": [
+      "Dispara um sinal que diz 'isso pode ser importante' e faz você querer comprar sem comparar com outros tênis.",
+      "Ignora completamente porque tênis não voam de verdade.",
+      "Lembra que você já tem um tênis e decide não se importar.",
+      "Faz você pesquisar todos os tênis voadores do mundo antes de decidir."
+    ],
+    "correct_index": 0,
+    "rationale": "O cérebro não para pra checar se o tênis é bom ou se existem opções melhores — o 'sinal de escassez' acelera a decisão, fazendo você querer o raro antes de pensar se ele é realmente melhor."
+  }
+}

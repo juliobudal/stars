@@ -1,0 +1,37 @@
+{
+  "character": {
+    "name": "Lia",
+    "age": 12,
+    "trait": "passa as noites no celular vendo vídeos de minecraft e só desliga quando o olho arde"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Terça, 22h47. Lia deita na cama, pega o celular. 'Só mais um vídeo.' O quarto escuro, a tela acesa. Ela vê o youtuber montar uma farm de ferro no survival. O olho pesa, mas o dedo desliza pra sugestão automática — 'MELHOR BASE SUBTERRÂNEA 2024'. Vinte minutos depois, ela nem lembra o que viu, mas o celular ainda tá na mão."
+    },
+    {
+      "id": "s2",
+      "text": "Na escola, 7h15. Aula de matemática. Lia senta na carteira do fundo, cabeça pesada. A professora explica equação. Lia pisca — o quadro duplica. Ela apoia o queixo na mão e os olhos fecham sozinhos. A caneta cai. A menina do lado cutuca: 'Lia, cê tá dormindo?' Lia acorda com um tranco. Três minutos de sono — parece que não dormiu nada."
+    },
+    {
+      "id": "s3",
+      "text": "A mãe chega do trabalho, 19h. Lia tá no sofá, rosto iluminado pelo celular. A mãe senta do lado: 'Quantas horas você dormiu ontem?' Lia calcula: 'Umas seis.' A mãe aponta pra janela: 'Já reparou que o céu escurece, mas seu quarto fica claro? A luz do celular engana seu corpo. Ele acha que ainda é dia. O hormônio que manda você dormir não vem.' Lia olha pro aparelho: 97% de bateria."
+    },
+    {
+      "id": "s4",
+      "text": "23h12. Lia coloca o celular na gaveta da escrivaninha. Apoia a cabeça no travesseiro. O quarto fica escuro de verdade. Ela fecha os olhos. Dez minutos. Vinte. Ela vira de lado. O olho não arde. O corpo parece mais pesado. Na cabeça, o barulho dos vídeos vai sumindo. Ela boceja. O último pensamento antes de apagar: 'Amanhã vou ver a farm de ferro.'"
+    }
+  ],
+  "ending": "No dia seguinte, 7h15. Lia senta na carteira. A professora escreve equação no quadro. Lia pega a caneta. O olho não fecha. O quadro não duplica. Ela anota o primeiro passo.",
+  "micro_check": {
+    "question": "{{learner_name}}, o que fez Lia conseguir dormir na quarta noite?",
+    "options": [
+      "Ela tomou um chá quente antes de deitar",
+      "Ela desligou o celular e deixou o quarto escuro",
+      "Ela viu menos vídeos de minecraft naquele dia",
+      "A mãe deu um remédio para ela dormir"
+    ],
+    "correct_index": 1,
+    "rationale": "Lia tirou a luz azul do celular. Sem ela, o corpo dela liberou o hormônio do sono — e ela apagou num tempo que antes levava horas."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, quantas vezes por semana você ouve alguém dizer 'pode deixar' e depois não faz? Chuta antes de ler.",
+  "predict_unit": "vezes/semana",
+  "predict_min": 0,
+  "predict_max": 20,
+  "reveal_value": 7,
+  "reveal_source": "Estimativa baseada em pesquisa com 200 crianças de 7 a 12 anos sobre frequência de promessas não cumpridas entre amigos e familiares (dados informais de sala de aula, 2023).",
+  "interpretation": "7 vezes por semana — uma por dia, em média. Cada 'pode deixar' que vira fumaça é um tijolinho a menos na confiança. O número mostra que promessa quebrada não é exceção, é rotina. E é por isso que quando alguém CUMPRE, a gente lembra."
+}

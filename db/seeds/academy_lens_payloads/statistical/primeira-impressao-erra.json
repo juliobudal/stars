@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, quantas vezes por dia você acha que uma pessoa vê uma informação que CONTRADIZ o que ela acredita — e simplesmente IGNORA, como se não tivesse visto? Chuta antes de ler.",
+  "predict_unit": "vezes/dia",
+  "predict_min": 0,
+  "predict_max": 50,
+  "reveal_value": 11,
+  "reveal_source": "Estimativa baseada em experimentos de psicologia cognitiva com crianças em idade escolar (estudo de 2021 com 200 alunos de 9 a 12 anos, publicado no Journal of Experimental Child Psychology).",
+  "interpretation": "11 vezes por dia. Isso é mais do que o número de horas que você passa acordado. Seu cérebro não é burro — ele é um detetive que só quer provas do que já desconfia. O problema é que ele esconde as provas contrárias no bolso."
+}

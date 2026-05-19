@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, quantas vezes por semana você acha que um anúncio de 'últimas unidades' ou 'estoque limitado' aparece no seu feed? Chuta antes de ler.",
+  "predict_unit": "vezes/semana",
+  "predict_min": 0,
+  "predict_max": 100,
+  "reveal_value": 30,
+  "reveal_source": "Estimativa baseada em análise de frequência de anúncios com gatilho de escassez em feeds de redes sociais (Common Sense Media, 2023).",
+  "interpretation": "30 vezes por semana — mais de 4 por dia. Quando parece faltar algo, ele vira mais valioso — é o que lojas tentam fazer com promoções de 'últimas peças'. Seu cérebro acelera: 'corre, senão acaba'. O truque é perceber que a escassez muitas vezes é encenada."
+}

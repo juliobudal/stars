@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Gabriel",
+    "age": 12,
+    "trait": "montou uma barraca de suco no quintal e quer vender cem copos por dia"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sexta, 14h. Gabriel coloca a placa 'SUCO NATURAL R$ 2'. Bate a primeira laranja no espremedor. Copo cheio. Cliente: o porteiro. 'Tá gostoso, mas queria gelado.' Gabriel corre pra geladeira — não tinha gelo. Faz gelo. 15 minutos."
+    },
+    {
+      "id": "s2",
+      "text": "16h. A mãe chega: 'Gabriel, acabei de comprar laranja. Você já usou tudo?' Ele olha o balde: vazio. Vendeu 8 copos em duas horas. 'Preciso de mais laranja, mais gelo, e alguém pra avisar que acabou.' A mãe: 'Ou você monta um sistema. Desenha num papel o que entra, o que sai, o que avisa.'"
+    },
+    {
+      "id": "s3",
+      "text": "Sábado, 10h. Gabriel cola três potes no balcão: 'LARANJA' (cheio), 'GELO' (cheio), 'SINAL' (verde). 'Quando o pote de laranja ficar pela metade, eu aviso a mãe. Quando o gelo baixar, eu reposso. O sinal verde mostra que tem tudo.' 11h: 22 copos. 12h: 48. O pote de laranja já tá na metade."
+    }
+  ],
+  "ending": "Às 13h, o sinal fica amarelo — Gabriel pintou um lado de amarelo. A mãe já chega com o saco de laranja. Ele vira o sinal pra verde de novo. O porteiro pede o terceiro copo.",
+  "micro_check": {
+    "question": "{{learner_name}}, o que mudou na barraca de Gabriel entre sexta e sábado?",
+    "options": [
+      "Ele comprou mais laranja e gelo",
+      "Ele montou potes que mostram o que entra, o que sai e quando avisar",
+      "Ele colocou a placa mais bonita",
+      "Ele pediu pro porteiro ajudar"
+    ],
+    "correct_index": 1,
+    "rationale": "Na sexta, tudo dependia de Gabriel lembrar. No sábado, os potes vazios viram o próprio aviso — o sistema regula a reposição sem ele pensar."
+  }
+}

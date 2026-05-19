@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Lia",
+    "age": 12,
+    "trait": "adora desenhar mangá, mas sempre apaga o traço antes de terminar"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Quarta, 17h03. Lia encara o papel. O olho do personagem ficou torto — o direito maior que o esquerdo. Ela pega a borracha, passa oito segundos apagando. A folha fica manchada de cinza. Ela puxa outra folha do bloco. Recomeça."
+    },
+    {
+      "id": "s2",
+      "text": "Na mesa do lado, o irmão mais velho desenha sem parar. O traço dele é torto também, mas ele não apaga — contorna, encaixa, faz o erro virar cicatriz no rosto do samurai. Lia olha de lado. 'Como você não se importa de errar?' Ele levanta o ombro: 'Erro não é defeito. É informação.'"
+    },
+    {
+      "id": "s3",
+      "text": "Lia tenta de novo. O olho direito sai torto de novo. Ela segura a borracha, respira, e em vez de apagar, desenha um tapa-olho por cima. O personagem agora parece um pirata. Ela ri sozinha, termina o capuz, finaliza a página. Não é a melhor, mas tá inteira."
+    }
+  ],
+  "ending": "Lia coloca o desenho na parede. O olho torto ainda tá ali, mas o tapa-olho virou o detalhe favorito dela. Ela puxa a próxima folha.",
+  "micro_check": {
+    "question": "{{learner_name}}, o que fez Lia conseguir terminar o desenho dessa vez?",
+    "options": [
+      "Ela desistiu de desenhar mangá",
+      "Ela ouviu o irmão falar que erro é informação e usou o erro como parte do desenho",
+      "Ela comprou uma borracha nova que apagava melhor",
+      "Ela copiou o desenho do irmão"
+    ],
+    "correct_index": 1,
+    "rationale": "O irmão não falou 'você consegue' nem 'tenta de novo'. Ele deu um feedback que descrevia o comportamento dela (apagar tudo) e o impacto (nunca terminar)."
+  }
+}

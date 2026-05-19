@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, quantas horas de sono uma criança de 10 anos precisa por noite para o cérebro conseguir guardar o que aprendeu no dia? Chuta antes de ler.",
+  "predict_unit": "horas",
+  "predict_min": 4,
+  "predict_max": 12,
+  "reveal_value": 10,
+  "reveal_source": "Recomendação da National Sleep Foundation para crianças de 6 a 12 anos: 9 a 11 horas por noite. Valor médio adotado: 10 horas.",
+  "interpretation": "10 horas. Enquanto você dorme, o cérebro não descansa — ele ensaia o que você aprendeu, reforça as conexões e joga fora o que não serve. Se dormir menos, o ensaio é cortado e o aprendizado escapa. Estudar até tarde rouba justamente o tempo em que o cérebro salvaria o que você estudou."
+}

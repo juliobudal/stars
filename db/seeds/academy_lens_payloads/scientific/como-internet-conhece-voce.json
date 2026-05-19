@@ -1,0 +1,20 @@
+{
+  "headline": "Cada toque vira pista — o feed se monta a partir do seu interesse.",
+  "mechanism_steps": [
+    "Você clica num vídeo de gatos; o sistema registra seu interesse e arranca uma busca por padrões: 'quem viu isso também viu aquilo'.",
+    "O algoritmo monta um perfil seu com centenas de 'pesos' — cada curtida aumenta o peso de um tema, cada pulo rápido diminui.",
+    "O feed rearranja os próximos conteúdos puxando os de maior peso, mas respeita limites de horário e faixa etária pra não mostrar o que não deve."
+  ],
+  "illustration_hint": "Ilustração de uma tela de celular com dedo tocando um vídeo de gato; do lado, uma engrenagem com pesos numerados (gato +5, skate +2, notícia -1) e um filtro 'horário' e 'idade' na saída.",
+  "micro_check": {
+    "question": "{{learner_name}} passa 3 minutos vendo vídeos de skate, mas pula rápido os de culinária. O que o algoritmo faz com isso?",
+    "options": [
+      "Aumenta o peso de skate e diminui o de culinária no perfil.",
+      "Apaga todos os vídeos de culinária do mundo.",
+      "Mostra mais vídeos de culinária pra ver se você muda de ideia.",
+      "Guarda os dois pesos iguais, porque um clique é um clique."
+    ],
+    "correct_index": 0,
+    "rationale": "O algoritmo não apaga nem força o contrário — ele só ajusta os pesos: o que você vê por mais tempo ganha força, o que você pula perde. O feed reflete seu comportamento real, não o que você 'deveria' gostar."
+  }
+}

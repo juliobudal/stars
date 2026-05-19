@@ -1,0 +1,33 @@
+{
+  "ending": "No dia seguinte, na volta do mercado, {{learner_name}} acha a hélice de plástico no mesmo canto. Ela está suja de terra, uma das pás quebrada. Ele enfia no bolso da bermuda e, no caminho de casa, vai girando a peça nos dedos, em silêncio.",
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sexta à noite, o ventilador de chão do quarto do Theo pifa. A mãe tira o plugue e deixa o aparelho encostado na parede do corredor. 'Amanhã a gente vê.' Theo fica sentado no chão do quarto, olhando o nada. A gaiola do calopsita chia. O celular tá carregando na sala. Ele tem 12 anos e não tem nada pra fazer."
+    },
+    {
+      "id": "s2",
+      "text": "Sábado de manhã, a mãe foi no mercado. Theo está deitado no sofá, olhando o teto. O ventilador quebrado ainda está no corredor. Ele levanta, pega o alicate de unha do banheiro, tira a tampa de trás do ventilador. O motor está preto, parado. Mas a hélice de plástico solta fácil. Três pás de plástico transparente, leve, encaixadas num eixo."
+    },
+    {
+      "id": "s3",
+      "text": "Meio-dia. A mãe volta e encontra o ventilador desmontado no chão da sala. A hélice não está mais lá. Theo está no quintal, com a hélice enfiada num cabo de vassoura, girando no ar. O calopsita, solto, voa em círculos em volta dele, atraído pelo vento. 'O que é isso?' 'É um ventilador portátil.' 'Funciona?' 'Não, mas gira.'"
+    }
+  ],
+  "character": {
+    "age": 12,
+    "name": "Theo",
+    "trait": "odiava ficar parado, mas detestava ainda mais que mandassem ele fazer alguma coisa"
+  },
+  "micro_check": {
+    "question": "{{learner_name}}, o que Theo fez com a hélice do ventilador quebrado?",
+    "options": [
+      "Jogou fora porque não servia pra mais nada",
+      "Virou um brinquedo de vento no quintal",
+      "Guardou no armário esperando o conserto",
+      "Tentou vender na rua"
+    ],
+    "correct_index": 1,
+    "rationale": "Theo não tinha nada pra fazer, mexeu no ventilador por tédio, e a hélice virou outra coisa — uma ideia que só apareceu porque ele ficou tempo ocioso com as mãos ocupadas."
+  }
+}

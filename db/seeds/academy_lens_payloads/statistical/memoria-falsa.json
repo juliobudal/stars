@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, quantas vezes você já contou uma história e, sem querer, mudou um detalhe? Chuta: quantas lembranças de ontem você acha que seu cérebro 'reescreveu' um pouquinho? (em %)",
+  "predict_unit": "%",
+  "predict_min": 0,
+  "predict_max": 100,
+  "reveal_value": 30,
+  "reveal_source": "Estimativa baseada em estudos de psicologia cognitiva: ao lembrar um evento, o cérebro frequentemente preenche lacunas com detalhes plausíveis, alterando parte da memória original.",
+  "interpretation": "30% das suas lembranças de ontem podem ter sido 'editadas' sem você perceber. O cérebro não é um arquivo — é um artista que recria a cena cada vez que você puxa a lembrança. E ele inventa pedaços pra história fazer sentido."
+}

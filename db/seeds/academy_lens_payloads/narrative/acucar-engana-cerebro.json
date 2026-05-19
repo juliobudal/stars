@@ -1,0 +1,37 @@
+{
+  "character": {
+    "name": "Lucas",
+    "age": 11,
+    "trait": "mora a três quadras da escola e sempre divide o lanche com o amigo"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Terça, 10h15. Recreio. Lucas abre a marmanta da mãe: pão de queijo, cenourinhas baby e uma caixinha de suco de uva integral. 'O suco é seu, o resto a gente divide', ele diz pro amigo, que já pega o pão de queijo."
+    },
+    {
+      "id": "s2",
+      "text": "Lucas bebe o suco em três goles, docinho na língua. Cinco minutos depois ele sente a barriga esfriar, uma energia boa. Mas quando o sinal bate — 10h35 — a barriga ronca e o estômago aperta. Orelha começa a zumbir baixinho. Ele olha pro lanche do amigo: 'Cara, troca a cenoura por mais um pão de queijo?'"
+    },
+    {
+      "id": "s3",
+      "text": "Na sala, a professora escreve no quadro, mas Lucas não consegue concentrar. A fome aperta de novo, a cabeça meio leve. Ele pensa na cantina: só falta uma hora e meia. O amigo cochicha: 'Você acabou de comer, véi.' Lucas não sabe explicar. A barriga dele parece que não ouviu."
+    },
+    {
+      "id": "s4",
+      "text": "No terceiro horário, a fome passou. Mas na hora de ir embora, o pai passa comprando salgado na padaria — aquela calabresa assada que Lucas ama. Ele come dois. Chega em casa e a mãe oferece jantar: 'To cheio, mãe.' Duas horas depois, ele acorda com fome, abre a geladeira, pega iogurte e três biscoitos."
+    }
+  ],
+  "ending": "De noite, o pai ri na cozinha: 'Cê comeu o dia inteiro, mas parece que não comeu nada.' Lucas dá de ombros, abre outro iogurte. A barriga dele tocou campainha a manhã inteira, mas ninguém atendeu.",
+  "micro_check": {
+    "question": "{{learner_name}}, por que a barriga de Lucas roncou tão cedo depois de ele ter lanchado?",
+    "options": [
+      "Porque o pão de queijo era pequeno e não sustentou",
+      "Porque o suco de uva subiu o açúcar no sangue rápido e depois caiu, fazendo a fome voltar mais cedo",
+      "Porque ele dividiu a cenoura com o amigo e ficou sem fome",
+      "Porque ele bebeu o suco muito rápido e o estômago rejeitou"
+    ],
+    "correct_index": 1,
+    "rationale": "O suco de uva tem açúcar que entra na corrente sanguínea muito rápido. O açúcar sobe, depois cai. Quando cai, o cérebro entende que precisa de mais energia e manda fome de novo — mesmo que o estômago ainda tenha comida."
+  }
+}

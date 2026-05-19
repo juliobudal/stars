@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, pensa aqui: você joga uma moeda 5 vezes seguidas. Qual a chance de sair CARA em TODAS elas? Chuta antes de ver.",
+  "predict_unit": "%",
+  "predict_min": 1,
+  "predict_max": 100,
+  "reveal_value": 3,
+  "reveal_source": "Cálculo de probabilidade composta: (1/2)^5 = 1/32 ≈ 3,125%. Ilustração didática com moeda honesta.",
+  "interpretation": "3%. Só 3 de cada 100 tentativas de 5 lançamentos dão cara-cara-cara-cara-cara. A intuição acha que 'sair cara toda vez não é tão difícil' — mas multiplicar frações mostra que acertar a sequência inteira é raro. Cada lançamento corta a chance pela metade."
+}

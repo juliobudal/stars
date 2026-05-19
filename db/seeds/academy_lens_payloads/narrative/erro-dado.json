@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Diego",
+    "age": 11,
+    "trait": "está tentando aprender a tocar 'Parabéns pra Você' no teclado da prima, mas trava no mesmo acorde toda vez"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sexta à noite, Diego senta no banco do teclado. A partitura está aberta no celular. Ele coloca os dedos no Dó, Dó sustenido, Ré — e trava. O acorde F7 não sai. O dedo mindinho recusa a posição. Ele tenta de novo. Trava. 'Que ódio', ele murmura, e bate com a palma na coxa."
+    },
+    {
+      "id": "s2",
+      "text": "A prima passa no corredor. 'Tá difícil?' Diego aponta pra tela: 'Esse acorde. Não sai. Já tentei vinte vezes.' A prima não diz nada. Só puxa o banco, põe os dedos no F7, erra de propósito — um barulho feio. 'Viu? Também erro. Mas repara: quando erro, meu cérebro tá ali, no erro, tentando de novo. É tipo um treino escondido.' Ela levanta e sai."
+    },
+    {
+      "id": "s3",
+      "text": "Diego fica sozinho. Olha pro teclado. Erra o F7 de novo. Mas agora ele repara: o mindinho dele, no meio do erro, se mexeu sozinho — tentou achar a posição certa. Ele repete. Erra. Repete. Na décima tentativa, o acorde sai. Não limpo. Mas sai. Diego sorri sozinho."
+    }
+  ],
+  "ending": "Ele guarda o teclado. Antes de apagar a luz, olha pra mão. O mindinho ainda formiga — como se estivesse, sozinho, tentando de novo.",
+  "micro_check": {
+    "question": "{{learner_name}}, o que realmente aconteceu no cérebro de Diego quando ele errou o acorde pela vigésima vez?",
+    "options": [
+      "Ele desistiu e foi dormir frustrado",
+      "O cérebro dele começou a criar conexões novas justamente na hora do erro",
+      "A prima explicou a teoria musical e ele entendeu",
+      "O teclado estava quebrado e o acorde não saía"
+    ],
+    "correct_index": 1,
+    "rationale": "O erro não é fracasso — é o momento exato em que o cérebro forma novas conexões. Diego não aprendeu apesar do erro; aprendeu DURANTE ele. A prima mostrou isso sem explicar."
+  }
+}

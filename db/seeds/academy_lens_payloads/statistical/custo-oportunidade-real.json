@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, chuta: quantos minutos por dia o pré-adolescente médio (10 anos) gasta LENDO por prazer? Sem contar leitura obrigatória. Palpite rápido.",
+  "predict_unit": "minutos",
+  "predict_min": 0,
+  "predict_max": 300,
+  "reveal_value": 22,
+  "reveal_source": "Pesquisa Common Sense Media 2021 com 1.600 crianças americanas — leitura por prazer: 22 min/dia; tela (lazer): 333 min/dia.",
+  "interpretation": "22 minutos. Só isso. Enquanto isso, a mesma criança passa 5 horas e meia em telas. Cada vídeo a mais é um pedaço de leitura, desenho ou brincadeira que você escolheu deixar de lado. Toda escolha é um 'não'."
+}

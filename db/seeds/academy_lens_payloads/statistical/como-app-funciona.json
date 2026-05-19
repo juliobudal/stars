@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, chuta antes: quantas notificações o celular de um adulto comum recebe por DIA? Palpita o número — depois a gente descobre.",
+  "predict_unit": "vezes/dia",
+  "predict_min": 5,
+  "predict_max": 500,
+  "reveal_value": 200,
+  "reveal_source": "Estimativa de pesquisas de uso de telefone (faixa 100–200 notificações/dia em adultos; método: rastreamento de tela e log do SO). Fonte: análise da Nielsen/Meta e estudos de interrupção digital, 2023.",
+  "interpretation": "200 notificações/dia. Isso é entrada pura no seu sistema pessoal: cada toque é um 'ENTRADA → DECISÃO → SAÍDA'. Notificação entra → vira processo (abrir ou ignorar) → desvia sua atenção. Você não é cascata passiva — é sistema com feedback: quanto mais distraído fica, MAIS notificações acumulam."
+}

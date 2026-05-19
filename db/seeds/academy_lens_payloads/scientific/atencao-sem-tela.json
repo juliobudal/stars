@@ -1,0 +1,20 @@
+{
+  "headline": "Tédio + tempo parado monta ideia nova no porão do cérebro",
+  "mechanism_steps": [
+    "Horas sem estímulo externo: o cérebro desliga o foco e liga o 'modo porão' — varre memórias velhas e liga peças que nunca viram juntas antes.",
+    "Essa varredura acende contatos entre uma lembrança de gato, outra de roda, outra de vento e solda elas numa ideia que não existia — gato com rodas que sopra.",
+    "Cada vez que você se entedia e não corre pro celular, o cérebro pratica essa solda mais rápido — a criatividade vira um músculo que o tédio treina."
+  ],
+  "illustration_hint": "Ilustração tipo corte transversal da cabeça: porão escuro com estantes de memórias (gato, roda, vento); um feixe fino de luz (devaneio) puxa as três pecinhas e as encaixa formando um gato sobre rodinhas, com um ventilador no rabo.",
+  "micro_check": {
+    "question": "{{learner_name}} está entediado no banco do carro, sem celular. O cérebro dele começa a imaginar como prender um copo d'água no teto pra beber sem mão. O que ACONTECEU ali?",
+    "options": [
+      "O cérebro ficou com raiva do tédio e inventou qualquer coisa pra parar de pensar.",
+      "O cérebro ligou memórias de copo, teto e mão ocupada — soldou uma ideia nova enquanto varria o porão.",
+      "O cérebro copiou uma invenção que ele já tinha visto em algum lugar.",
+      "O cérebro desligou completamente e a ideia veio do nada, sem relação com o que ele sabe."
+    ],
+    "correct_index": 1,
+    "rationale": "Criatividade não é mágica nem raiva — é o cérebro soldando pedaços de memória existentes (copo, teto, mão) num arranjo novo. O tédio liberou o 'modo porão' que permite essa solda."
+  }
+}

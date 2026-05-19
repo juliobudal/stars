@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, quantas vezes você acha que uma pessoa checa o celular num dia — mesmo sem tocar? Palpita antes de ler.",
+  "predict_unit": "vezes/dia",
+  "predict_min": 1,
+  "predict_max": 200,
+  "reveal_value": 96,
+  "reveal_source": "Estimativa comum varia bastante; por exemplo, algumas pesquisas sugerem dezenas a centenas de checagens por dia em diferentes grupos, com referência a estudos de uso de smartphone com intervalo de variação apresentado.",
+  "interpretation": "96 vezes por dia. O cérebro abre o celular pra ver se tem algo que CONFIRMA o que ele já espera — uma mensagem, uma curtida, uma resposta. As notificações que NÃO vieram? Ele ignora. Não é preguiça: é o viés de confirmação filtrando o que entra."
+}

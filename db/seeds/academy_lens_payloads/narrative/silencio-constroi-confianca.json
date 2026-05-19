@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Bia",
+    "age": 11,
+    "trait": "tem a língua mais rápida da turma e responde antes de pensar"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sexta-feira, depois da aula. Bia e {{sibling_or_friend}} estão no refeitório. Bia conta que a amiga Luísa copiou na prova. O irmão franze a testa: 'Você viu?' Bia: 'Ela tava olhando pro lado, óbvio.' O irmão: 'Ela pode ter perdido o foco. Você falou com ela?' Bia mastiga o sanduíche e já vai responder — mas o irmão levanta a mão. 'Espera. Pensa.'"
+    },
+    {
+      "id": "s2",
+      "text": "Bia fica com a boca aberta, sem ar. Não é um silêncio vazio — é o irmão segurando o olhar, o dedo ainda no ar. Ela engole o sanduíche. Um garfo tilinta no prato do lado. Ela ouve o tilintar. Depois de uns segundos, o irmão baixa a mão. 'Tá. Agora fala.' Bia: 'Eu não sei se vi direito.'"
+    },
+    {
+      "id": "s3",
+      "text": "Segunda-feira, Bia senta do lado de Luísa no intervalo. Não fala da prova. Pergunta: 'Cê tava bem na sexta?' Luísa baixa a cabeça: 'Minha avó tava no hospital.' Bia não responde na hora. Conta até dois em silêncio. Depois pergunta: 'Ela melhorou?'"
+    }
+  ],
+  "ending": "À noite, {{sibling_or_friend}} pergunta como foi o dia. Bia diz: 'Ela tava preocupada. Eu quase falei besteira.' Não diz que aprendeu nada. Mas, na hora de responder, ela pausou de novo.",
+  "micro_check": {
+    "question": "{{learner_name}}, o que o irmão fez que mudou a resposta de Bia?",
+    "options": [
+      "Disse que ela estava errada sobre a Luísa",
+      "Levantou a mão e esperou antes de deixar ela falar",
+      "Mudou de assunto e foi embora",
+      "Chamou a Luísa pra conversar junto"
+    ],
+    "correct_index": 1,
+    "rationale": "O irmão não deu a resposta — só segurou o espaço. O silêncio forçou Bia a ouvir o próprio pensamento antes de soltar a língua."
+  }
+}

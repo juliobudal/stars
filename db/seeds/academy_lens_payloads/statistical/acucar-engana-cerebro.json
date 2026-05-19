@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, quantos minutos depois de tomar um copo de suco de laranja (200 ml) seu açúcar no sangue atinge o PICO — o valor mais alto? Chuta antes de ler.",
+  "predict_unit": "minutos",
+  "predict_min": 5,
+  "predict_max": 120,
+  "reveal_value": 35,
+  "reveal_source": "Baseado em estimativas comuns de índice glicêmico para sucos de laranja, com pico típico entre 25–45 minutos, conforme guias de nutrição infantil. (200 ml é estimativa típica de um copo.)",
+  "interpretation": "35 minutos. Parece pouco, mas é tempo de um episódio do seu desenho favorito. Nesse meio tempo, seu corpo já jogou toda a açúcar do suco na corrente sanguínea e começou a liberar insulina — que meio depois derruba tudo de novo. A queda repentina é que dá aquela fome de novo, mais forte que antes."
+}

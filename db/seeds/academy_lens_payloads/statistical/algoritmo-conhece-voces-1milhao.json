@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "Quantas vezes por dia o feed do seu celular mostra um vídeo que você NÃO pediu — mas que combina exatamente com o que você tava pensando? Chuta antes de ler.",
+  "predict_unit": "vezes/dia",
+  "predict_min": 0,
+  "predict_max": 60,
+  "reveal_value": 30,
+  "reveal_source": "Estimativa educativa baseada no uso médio de recomendações no YouTube/TikTok (2023): cerca de 30 vídeos/dia surgem de sugestões algorítmicas, mesmo sem busca ativa.",
+  "interpretation": "Você toca, vira voto. Cada curtida, cada pausa, cada vídeo pulado ensina o algoritmo. Depois de meses treinando, ele chuta o que você nem sabia que queria — e acerta 30 vezes por dia. O feed não é aleatório: é um mapa vivo dos seus dedos."
+}

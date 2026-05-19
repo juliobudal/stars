@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Lia",
+    "age": 11,
+    "trait": "coleciona canetinhas, mas a mais bonita é sempre a que a amiga tem"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Intervalo na quadra. Lia vê a amiga Gabi colorindo o caderno com uma canetinha metalizada holográfica. A luz bate e o traço brilha azul-prata. 'Nossa, onde você arrumou ESSA?' Gabi levanta os ombros: 'Na papelaria perto de casa. Tem no fundo da gaveta, quase ninguém compra.' Na mesma hora, Lia sente que PRECISA de uma igual."
+    },
+    {
+      "id": "s2",
+      "text": "Tarde seguinte. Lia e Gabi vão juntas na papelaria. O dono puxa uma caixa empoeirada: 'Essa linha saiu de linha, só tem essas.' Lia compra a única metalizada azul-prata. Na fila, Gabi tira da mochila a dela, quase idêntica. 'Paguei 3 reais mês passado.' Lia pagou 12. 'Mas a minha é a última do Brasil', ela fala, e guarda a caneta no estojo como se fosse um troféu."
+    },
+    {
+      "id": "s3",
+      "text": "Sexta-feira. Sala de artes. Lia abre o estojo e a canetinha está lá, inteira, bonita. A menina do lado, Bia, tira da mochila UMA IGUAL. 'Ganhei da minha tia, ela tinha duas.' Lia olha pra caneta de Bia. A dela, de repente, não brilha mais tanto. Ela guarda a caneta no fundo do estojo e puxa a preta comum."
+    }
+  ],
+  "ending": "A canetinha metalizada azul-prata volta pra gaveta de Lia. Ela não usa mais. Mas não joga fora.",
+  "micro_check": {
+    "question": "{{learner_name}}, por que Lia parou de usar a canetinha que ela pagou tão cara?",
+    "options": [
+      "Porque a caneta estragou",
+      "Porque a Bia mostrou que tinha uma igual — e aí a caneta deixou de ser rara",
+      "Porque a Gabi ficou com ciúme",
+      "Porque a tinta acabou"
+    ],
+    "correct_index": 1,
+    "rationale": "O valor que Lia sentia na canetinha veio de ela achar que era a única. Quando viu que outra pessoa tinha uma igual, a 'raridade' sumiu — e com ela, o brilho. A caneta não mudou; o que mudou foi a percepção de escassez."
+  }
+}

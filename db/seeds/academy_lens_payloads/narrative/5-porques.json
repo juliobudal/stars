@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Diego",
+    "age": 11,
+    "trait": "montou uma maquete de vulcão com argila e bicarbonato pra feira de ciências e testou 14 vezes até a erupção funcionar"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sábado de manhã, véspera da feira. Diego liga a maquete na tomada — o motorzinho da bomba de ar faz 'prrrr' e morre. Tenta de novo. Morre de novo. 'A irmã mais nova mexeu no fio ontem', ele rosna pra mãe. 'Ela desligou tudo.'"
+    },
+    {
+      "id": "s2",
+      "text": "Em vez de gritar, Diego puxa o caderno e escreve: 'Por que o motor parou?' Resposta: 'Fio solto.' 'Por que o fio soltou?' 'Vibração da mesa.' 'Por que vibra?' 'Pé da mesa torto.' 'Por que torto?' 'Parafuso frouxo.' 'Por que frouxo?' Ele levanta a mesa — o parafuso do canto direito tá quase saindo. Aperta com a chave."
+    },
+    {
+      "id": "s3",
+      "text": "Religa. O motor zumbe limpo. A bomba empurra ar, o bicarbonato espuma pela cratera de argila. A mãe aparece: 'E a culpada?' Diego aponta pro parafuso: 'Ela não foi. Foi a mesa.'"
+    }
+  ],
+  "ending": "Na feira, o vulcão entra em erupção sem falha. No meio da espuma laranja, Diego conta pro amigo: 'O motor não parou porque alguém mexeu. Parou porque o parafuso afrouxou. A mesa vibrava. O fio soltou. Uma pergunta atrás da outra até achar o parafuso.'",
+  "micro_check": {
+    "question": "{{learner_name}}, o que Diego descobriu quando foi fazendo 'por que' em vez de culpar a irmã?",
+    "options": [
+      "Que a irmã tinha desligado o motor de propósito",
+      "Que o fio estava solto porque o parafuso da mesa estava frouxo",
+      "Que a tomada não funcionava direito",
+      "Que o motor queimou por causa do bicarbonato"
+    ],
+    "correct_index": 1,
+    "rationale": "Cada 'por que' cavou um nível abaixo do sintoma — do motor parado ao fio solto, à vibração, ao pé torto, ao parafuso frouxo. Culpar a irmã teria parado no primeiro nível. A causa real estava no quinto."
+  }
+}

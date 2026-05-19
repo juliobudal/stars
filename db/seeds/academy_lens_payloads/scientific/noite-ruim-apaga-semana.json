@@ -1,0 +1,20 @@
+{
+  "headline": "Dormir é quando o cérebro salva o arquivo do dia — sem sono, o aprendizado se perde.",
+  "mechanism_steps": [
+    "Enquanto você estuda, o cérebro espalha as informações novas em várias áreas — como peças de um quebra-cabeça soltas na mesa.",
+    "Quando você dorme, ondas lentas varrem o cérebro e puxam essas peças para o hipocampo, que monta o arquivo definitivo.",
+    "Se você não dorme, as peças ficam espalhadas e o cérebro apaga o rascunho — o que você estudou simplesmente não vira memória."
+  ],
+  "illustration_hint": "Cena noturna: dentro da cabeça de uma criança dormindo, peças de quebra-cabeça voam de várias áreas do cérebro (córtex) para uma caixa central brilhante (hipocampo), onde se encaixam formando uma imagem nítida. Ao lado, um relógio mostra 6h da manhã.",
+  "micro_check": {
+    "question": "{{learner_name}} tem prova de matemática amanhã e decide virar a noite estudando. O que realmente vai acontecer com o que ele estudou?",
+    "options": [
+      "O cérebro não consegue montar o arquivo, e a maior parte do estudo se perde.",
+      "Estudar até tarde rende mais, porque o cérebro grava tudo na hora.",
+      "O estudo fica guardado, mas o cansaço atrapalha na hora da prova.",
+      "O cérebro guarda o estudo, mas apaga as outras memórias do dia."
+    ],
+    "correct_index": 0,
+    "rationale": "Sem sono, o hipocampo não monta o arquivo. O estudo vira rascunho perdido — não é cansaço, é que a informação nunca foi salva."
+  }
+}

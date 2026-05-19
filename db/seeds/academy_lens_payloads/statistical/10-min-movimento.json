@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "{{learner_name}}, quantos minutos de atividade física por semana um adulto precisa fazer pra ter ganhos reais de saúde? Chuta antes de ver.",
+  "predict_unit": "minutos",
+  "predict_min": 10,
+  "predict_max": 600,
+  "reveal_value": 150,
+  "reveal_source": "Organização Mundial da Saúde (OMS) recomenda 150–300 minutos/semana de atividade aeróbica moderada para adultos. Para crianças e adolescentes, a meta é pelo menos 60 minutos/dia de atividade moderada a vigorosa.",
+  "interpretation": "150 minutos por semana — isso dá 21 minutos por dia. O segredo não é treinar como atleta um dia e parar no outro. É fazer um pouco todo dia, sem pular. Regularidade vence intensidade."
+}

@@ -1,0 +1,20 @@
+{
+  "headline": "Açúcar sobe rápido, cai rápido — a queda cobra com mais fome.",
+  "mechanism_steps": [
+    "O doce ou suco chega no intestino, arranca a glicose para o sangue em minutos e o nível dispara.",
+    "O pâncreas sente o susto e despeja insulina para empurrar glicose para dentro das células — e o nível despenca rápido.",
+    "A queda brusca aciona alarme de falta de energia no cérebro, que responde com fome — mesmo você tendo acabado de comer."
+  ],
+  "illustration_hint": "Um boneco come um pedaço de bolo; dentro do corpo, um gráfico sobe em foguete (glicose no sangue), logo depois uma onda de insulina (caminhão escrito 'insulina') varre a glicose para dentro das células, e o gráfico despenca; no cérebro um despertador toca e o boneco sente fome de novo.",
+  "micro_check": {
+    "question": "{{learner_name}} comeu um brigadeiro no lanche. Depois de 40 minutos sente mais fome do que antes. Qual explicação descreve melhor o que aconteceu?",
+    "options": [
+      "O açúcar subiu, a insulina puxou ele pra dentro das células, e a queda brusca acionou alarme de fome no cérebro.",
+      "O brigadeiro não foi suficiente e o estômago ficou vazio de novo.",
+      "O cérebro sentiu o gosto doce e resolveu que quer mais.",
+      "A insulina transformou todo o açúcar em gordura e sobrou nenhuma energia."
+    ],
+    "correct_index": 0,
+    "rationale": "Não é fome por estômago vazio — é a queda brusca de glicose no sangue que dispara o alarme de energia no cérebro. A insulina varreu o açúcar tão rápido que o corpo entrou em 'falta de combustível'."
+  }
+}

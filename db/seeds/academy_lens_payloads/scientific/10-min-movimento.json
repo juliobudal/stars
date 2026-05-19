@@ -1,0 +1,20 @@
+{
+  "headline": "Regularidade vence intensidade em quase tudo do corpo",
+  "mechanism_steps": [
+    "Você repete um movimento (ex: chutar a bola) e o cérebro começa a montar um atalho — os neurônios disparam juntos e criam uma rota mais rápida pra próxima vez.",
+    "A cada repetição, a rota fica mais lisa — o corpo gasta menos energia e o movimento sai sem você pensar, como escovar os dentes no escuro.",
+    "O músculo também aprende: as fibras se alinham, o sangue chega melhor, e o movimento que era difícil vira automático — não por força, mas por treino contínuo."
+  ],
+  "illustration_hint": "Trilha na floresta: primeira passagem é mato fechado e galhos; depois de muitas passadas, vira um caminho de terra batida. Uma criança correndo no caminho batido com sorriso, sem tropeçar.",
+  "micro_check": {
+    "question": "{{learner_name}} quer aprender a tocar um solo de guitarra. O que funciona melhor?",
+    "options": [
+      "Praticar 10 minutos todo dia durante um mês.",
+      "Tocar o solo inteiro sem parar até acertar, uma vez por semana.",
+      "Só assistir vídeos de guitarristas profissionais.",
+      "Praticar só no dia que estiver com vontade."
+    ],
+    "correct_index": 0,
+    "rationale": "10 minutos todo dia faz o cérebro montar o atalho neural e o músculo memorizar o movimento — regularidade vence intensidade. Uma vez por semana não dá tempo do corpo aprender."
+  }
+}
