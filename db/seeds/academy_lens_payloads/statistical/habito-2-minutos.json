@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "Se você lê 1 página por dia, sem perder UM dia, quantas páginas terá lido em 1 ano?",
+  "predict_unit": "vezes/dia",
+  "predict_min": 100,
+  "predict_max": 1000,
+  "reveal_value": 365,
+  "reveal_source": "Aritmética simples: 1 página × 365 dias. James Clear, 'Atomic Habits' (2018) — exemplo recorrente sobre efeito composto comportamental.",
+  "interpretation": "365 páginas = 1 livro médio. Mas a comparação que dói é com 'vou ler 1h/dia': em geral dura 4 dias, totaliza ~120 páginas, depois para. O que parece pequeno demais ganha — o que parece sério demais quebra. Constância vence intensidade num ano."
+}

@@ -3,6 +3,7 @@
 # Table name: redemptions
 #
 #  id         :bigint           not null, primary key
+#  collective :boolean          default(FALSE), not null
 #  points     :integer
 #  status     :integer
 #  created_at :datetime         not null
@@ -12,8 +13,9 @@
 #
 # Indexes
 #
-#  index_redemptions_on_profile_id  (profile_id)
-#  index_redemptions_on_reward_id   (reward_id)
+#  index_redemptions_on_profile_id             (profile_id)
+#  index_redemptions_on_profile_id_and_status  (profile_id,status)
+#  index_redemptions_on_reward_id              (reward_id)
 #
 # Foreign Keys
 #

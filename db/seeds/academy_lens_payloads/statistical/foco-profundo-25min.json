@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "Quantos minutos o cérebro de uma pessoa adulta média leva, depois de sentar pra trabalhar, pra entrar em estado de foco profundo (concentração imersiva)?",
+  "predict_unit": "minutos",
+  "predict_min": 1,
+  "predict_max": 90,
+  "reveal_value": 20,
+  "reveal_source": "Faixa documentada por Cal Newport em 'Deep Work' (2016) — 15 a 25 minutos pra atingir foco profundo após começar uma tarefa cognitiva exigente, dependendo da pessoa e do contexto.",
+  "interpretation": "Por isso 25 minutos é o sweet spot: dá pro cérebro PASSAR do umbral e ainda render uns 5 minutos em estado profundo. Quem fica 10 min e checa o celular nunca atravessa esse umbral — vive a vida inteira no 'modo superficial' e nem sabe que tem uma marcha acima."
+}

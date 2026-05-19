@@ -1,0 +1,109 @@
+# TAREFA
+
+Gere UMA lente de primeira-pessoa sobre o conceito "<%= concept.name %>" para um aprendiz pt-BR de 8 a 14 anos (age_band: <%= age_band %>, locale: <%= locale %>).
+
+# SACADA CENTRAL (a ação encarnada produz a sensação que prova esta frase)
+
+> <%= the_essence %>
+
+A `sensory_anchor` precisa SER a evidência direta dessa sacada — não uma descrição abstrata. O `reveal` então NOMEIA o que o corpo acabou de provar.
+<% if common_confusion %>
+
+# CONFUSÃO COMUM
+
+Erro típico que crianças de 7-12 cometem com este conceito:
+> <%= common_confusion %>
+
+A `sensory_anchor` desfaz essa confusão — o aprendiz sente algo que não bate com o que ele achava. O `reveal` então conecta a sensação com a sacada e desmonta a confusão.
+<% end %>
+<% if forbidden_terms.any? %>
+
+# PALAVRAS PROIBIDAS PARA ESTE CONCEITO
+
+NÃO use os seguintes termos/frases — ensinam ERRADO este conceito:
+<% forbidden_terms.each do |term| %>
+- "<%= term %>"
+<% end %>
+<% end %>
+
+# PROPÓSITO DIDÁTICO
+
+Micro-ação encarnada. UMA ação física curta (≤60s), feita AGORA, na cadeira em que o aprendiz está. A ação produz uma sensação real (`sensory_anchor`). O `reveal` mostra o que essa sensação ENSINA sobre o conceito. Conhecimento no corpo, não na cabeça.
+
+# DEFINIÇÃO DE REFERÊNCIA (uso interno, não copie)
+
+> <%= concept.definition %>
+> Categoria: <%= concept.category %>
+
+# ENERGIA DESTA LENTE — Ação precede estado
+
+**Didactic move:** prescrever UMA micro-ação executável em ≤60s, depois nomear o que o corpo acabou de provar. Inspirações combinadas: Paulo Vieira (Poder da Ação) com seu "ação precede o estado" e imperativa curta, + Hal Elrod (Milagre da Manhã) com SAVERS em micro-blocos de 30-60s. O leitor/criança não REFLETE sobre o conceito — ele EXECUTA e sente.
+
+Aqui: **"Para. Faz. Repara."** Imperativas curtas, ritmo cirúrgico, sem cerimônia. O Guia entrega a ação e fica em silêncio enquanto o aprendiz executa — o `reveal` chega DEPOIS da sensação, nunca antes. Conhecimento no corpo, não na cabeça.
+
+# PROMESSA AO KID
+
+O kid clicou em **"👁 Faz isso agora"** esperando PARAR de ler e EXECUTAR. Se ele consegue chegar ao `reveal` sem ter feito a ação, falhamos. O `action_prompt` precisa ser irrecusável — micro, claro, executável na cadeira em que ele está, em ≤60s.
+
+# REGRAS DE AÇÃO
+
+- A ação tem que ser FACTÍVEL pra um aprendiz de 8-14 anos sentado com celular/computador na frente. Nada que dependa de outra pessoa, objeto especial, ou sair do lugar.
+- Tempo de execução entre 10 e 90 segundos (`expected_time_seconds`).
+- SEM RISCO: nada de prender respiração longo, nada de levantar peso, nada que envolva fechar olhos em pé, nada com fogo/água/objeto cortante. Se em dúvida, escolha outra ação.
+- A `sensory_anchor` descreve o QUE o aprendiz vai sentir/notar — em 1 frase concreta.
+
+# PROIBIDO (específico desta lente)
+
+- "Feche os olhos e imagine" — imaginar é narrativa disfarçada, não primeira-pessoa encarnada
+- Ação vaga ("preste atenção em si mesmo")
+- Ação que precisa de equipamento (cronômetro físico, copo d'água, papel) — só usa o corpo + tela
+- `sensory_anchor` abstrato ("mais consciência") em vez de sensação concreta nomeada
+- O slug "<%= concept.slug %>" literal na saída
+- (Anti-padrões universais já estão no system prompt; não repita)
+
+# PERSONALIZAÇÃO
+
+Use `{{learner_name}}` no `action_prompt` se ajudar ("Ok {{learner_name}}, faz o seguinte:..."). VERBATIM.
+
+# SAÍDA
+
+JSON estrito conforme schema `first_person.json`. SEM prosa antes ou depois.
+<% if curated_example_json %>
+
+# EXEMPLO REAL (lente de primeira-pessoa do MESMO TIPO já aprovada pelo juiz — guia de shape e voz, NÃO copie literal)
+
+```json
+<%= curated_example_json %>
+```
+<% end %>
+
+# EXEMPLO DE REFERÊNCIA (conceito: "atenção plena" — NÃO COPIE)
+
+```json
+{
+  "action_prompt": "Ok {{learner_name}}: para de ler isso por 30 segundos. Olha pra qualquer objeto perto de você e descreve mentalmente 5 detalhes que você NUNCA tinha notado antes. Cor exata. Textura. Marca. Risco. O que for.",
+  "sensory_anchor": "Você vai sentir uma estranheza leve — tipo 'esse negócio sempre esteve aqui?'. É a atenção desligando do automático e ligando no específico.",
+  "expected_time_seconds": 30,
+  "reveal": "Em 30 segundos você produziu mais detalhe sobre esse objeto do que em meses convivendo com ele. Atenção não é tempo — é resolução."
+}
+```
+
+# CONTRA-EXEMPLO (NÃO IMITAR — leia POR QUE é fraco)
+
+```json
+{
+  "action_prompt": "Feche os olhos e reflita sobre como você presta atenção no seu dia a dia.",
+  "sensory_anchor": "Você vai sentir mais consciência sobre si mesmo.",
+  "expected_time_seconds": 120,
+  "reveal": "É importante prestar atenção pra ser uma pessoa melhor."
+}
+```
+
+POR QUE É FRACO:
+- `action_prompt` pede pra "fechar os olhos e refletir" — isso é narrativa interna, não primeira-pessoa encarnada
+- Ação é VAGA ("reflita sobre como você presta atenção") — não há micro-ação observável
+- 120 segundos passa do teto (90s) e nem é executável de verdade
+- `sensory_anchor` é abstrato ("mais consciência") em vez de descrever a sensação concreta
+- `reveal` MORALIZA ("é importante…") em vez de conectar a sensação à sacada
+
+Agora gere a lente de primeira-pessoa real para "<%= concept.name %>".

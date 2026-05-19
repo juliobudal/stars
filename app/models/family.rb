@@ -7,8 +7,10 @@
 #  id                     :bigint           not null, primary key
 #  allow_negative         :boolean          default(FALSE)
 #  auto_approve_threshold :integer
+#  day_start_hour         :integer          default(0), not null
 #  decay_enabled          :boolean          default(FALSE)
 #  email                  :citext
+#  last_reset_on          :date
 #  locale                 :string           default("pt-BR")
 #  max_debt               :integer          default(100), not null
 #  name                   :string

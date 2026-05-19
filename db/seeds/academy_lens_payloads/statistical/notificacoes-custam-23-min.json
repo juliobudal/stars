@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "Se você recebe 5 notificações enquanto faz a lição, quanto tempo seu cérebro gasta SÓ reconstruindo o contexto entre uma e outra?",
+  "predict_unit": "minutos",
+  "predict_min": 5,
+  "predict_max": 240,
+  "reveal_value": 115,
+  "reveal_source": "Gloria Mark, UC Irvine. 'Multitasking & Interruption' (estudo seminal de 2008, replicado em 2016 e 2022): cada interrupção = 23min 15s de tempo de recuperação médio.",
+  "interpretation": "5 × 23 = 115 minutos. Quase 2 horas perdidas só em RECUPERAR contexto — não em fazer a lição, não em responder os beeps. Em recuperar. Por isso a lição de 1h vira lição de 3h: a maior parte do tempo extra é cérebro tentando voltar pra onde estava."
+}

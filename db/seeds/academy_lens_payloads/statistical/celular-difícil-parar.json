@@ -1,0 +1,9 @@
+{
+  "predict_prompt": "Common Sense Media monitorou os celulares de adolescentes (11-17 anos) por uma semana inteira em 2023. Quantas notificações por dia, em média, os celulares dispararam?",
+  "predict_unit": "vezes/dia",
+  "predict_min": 30,
+  "predict_max": 500,
+  "reveal_value": 237,
+  "reveal_source": "Common Sense Media, 'Constant Companion: A Week in the Life of a Young Person's Smartphone Use' (2023). Amostra: ~200 adolescentes americanos 11-17, Android, monitorados via app por uma semana.",
+  "interpretation": "237 notificações/dia é a MEDIANA — metade dos adolescentes recebeu MAIS que isso. Acordado em média 15-16h, dá uma notificação a cada 4 minutos. O número não fala sobre o usuário — fala sobre quantos times de design competem pela mesma atenção, sem combinar entre si."
+}

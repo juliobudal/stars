@@ -3,6 +3,7 @@
 # Table name: rewards
 #
 #  id          :bigint           not null, primary key
+#  collective  :boolean          default(FALSE), not null
 #  cost        :integer
 #  icon        :string
 #  title       :string
@@ -14,6 +15,7 @@
 # Indexes
 #
 #  index_rewards_on_category_id  (category_id)
+#  index_rewards_on_collective   (collective)
 #  index_rewards_on_family_id    (family_id)
 #
 # Foreign Keys

@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "academy/lens/engineering.json",
+  "title": "Engineering Lens Payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["challenge", "constraints", "must_pick", "outcomes"],
+  "properties": {
+    "challenge": { "type": "string", "minLength": 40, "maxLength": 220 },
+    "constraints": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "cost"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1, "maxLength": 12 },
+          "label": { "type": "string", "minLength": 15, "maxLength": 120 },
+          "cost": { "type": "string", "minLength": 15, "maxLength": 120 }
+        }
+      }
+    },
+    "must_pick": { "type": "integer", "minimum": 2, "maximum": 4 },
+    "outcomes": {
+      "type": "object",
+      "minProperties": 3,
+      "patternProperties": {
+        "^[a-z0-9]+(\\+[a-z0-9]+){1,3}$": {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 280
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

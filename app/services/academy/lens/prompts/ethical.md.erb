@@ -1,0 +1,125 @@
+# TAREFA
+
+Gere UMA lente ética sobre o conceito "<%= concept.name %>" para um aprendiz pt-BR de 8 a 14 anos (age_band: <%= age_band %>, locale: <%= locale %>).
+
+# SACADA CENTRAL (a tensão que esta lente expõe)
+
+> <%= the_essence %>
+
+O dilema, os dois casos e o `reveal` devem TODOS apontar pra essa sacada. O `reveal` ILUMINA essa frase — nunca decide pelo aprendiz.
+<% if common_confusion %>
+
+# CONFUSÃO COMUM
+
+Erro típico que crianças de 7-12 cometem com este conceito:
+> <%= common_confusion %>
+
+Use isto pra construir o `case_b` (ou o lado mais sedutor): a confusão precisa parecer DEFENSÁVEL à primeira vista, ou o dilema vira pregação.
+<% end %>
+<% if forbidden_terms.any? %>
+
+# PALAVRAS PROIBIDAS PARA ESTE CONCEITO
+
+NÃO use os seguintes termos/frases — ensinam ERRADO este conceito:
+<% forbidden_terms.each do |term| %>
+- "<%= term %>"
+<% end %>
+<% end %>
+
+# PROPÓSITO DIDÁTICO
+
+Tensão de valor. Forçar julgamento. Dois casos concretos, AMBOS DEFENSÁVEIS, onde o conceito empurra para um julgamento desconfortável. O aprendiz tem que sentir o atrito — não recebe a resposta pronta. O `reveal` ao final mostra o que a sacada do conceito ILUMINA sobre o julgamento, nunca DECIDE pelo aprendiz.
+
+# DEFINIÇÃO DE REFERÊNCIA (uso interno, não copie)
+
+> <%= concept.definition %>
+> Categoria: <%= concept.category %>
+
+# ENERGIA DESTA LENTE — Dois lados defendidos por dentro
+
+**Didactic move:** contrastar dois mindsets/escolhas com convicção interna em cada um, sem strawman. Inspiração: T. Harv Eker (Segredos da Mente Milionária) com seus 17 "wealth files" — rich-file vs poor-file, cada lado articulado como faria sentido pra quem o defende. Eker nunca ironiza o lado "errado"; ele faz você QUERER aquele lado um pouco, antes de revelar o custo.
+
+Aqui: **sem solenidade, sem voz de juiz, sem ABNT da virtude.** "Olha isso. Dois caminhos. Cada um defensável. Decide." `case_b` mantém convicção INTERNA — nunca moraliza contra si. Humor seco pra desinflar peso quando precisar; nunca pra julgar uma das escolhas. Sempre cena concreta brasileira de pré-adolescente. `reveal` ILUMINA a tensão, nunca decide pelo aprendiz.
+
+# PROMESSA AO KID
+
+O kid clicou em **"⚖️ Você decide"** esperando AGÊNCIA real. O dilema acontece com ELE, no presente, numa situação plausível da semana dele — não com hipotético "imagine que…". A `anchor_question` põe ele no banco, não no júri.
+
+# PROIBIDO (específico desta lente)
+
+- Um caso obviamente certo e outro obviamente errado — se óbvio, não é dilema, é pregação disfarçada
+- Caso abstrato ("imagine uma sociedade onde…") — sempre cena concreta brasileira
+- `case_b` que já moraliza contra si mesmo ("mentir nunca é a melhor opção")
+- `anchor_question` em forma terapêutica ("qual seria sua escolha?") — força posicionamento concreto
+- `reveal` que decide pelo aprendiz; ele apenas ILUMINA a tensão
+- O slug "<%= concept.slug %>" literal na saída
+- (Anti-padrões universais já estão no system prompt; não repita)
+
+# PERSONALIZAÇÃO
+
+Use `{{learner_name}}` e `{{sibling_or_friend}}` VERBATIM se servirem como sujeitos do dilema ou da `anchor_question`. NÃO substitua por nomes reais.
+
+# ESTRUTURA
+
+- `dilemma`: situação base, contexto compartilhado (≤200c)
+- `case_a` e `case_b`: dois cursos de ação possíveis, cada um com `title` curto (≤60c) e `body` (≤220c) que defende o caso de DENTRO daquela escolha — sem ironia
+- `anchor_question`: pergunta concreta que força posicionamento (≤140c)
+- `reveal`: o que o conceito ILUMINA sobre a tensão (≤220c) — observação, não veredito
+
+# SAÍDA
+
+JSON estrito conforme schema `ethical.json`. SEM prosa antes ou depois. SEM markdown.
+<% if curated_example_json %>
+
+# EXEMPLO REAL (lente ética do MESMO TIPO já aprovada pelo juiz — guia de shape e voz, NÃO copie literal)
+
+```json
+<%= curated_example_json %>
+```
+<% end %>
+
+# EXEMPLO DE REFERÊNCIA (conceito: "honestidade radical" — NÃO COPIE)
+
+```json
+{
+  "dilemma": "{{sibling_or_friend}} pintou o cabelo de roxo e perguntou se ficou bom. {{learner_name}} acha que ficou estranho.",
+  "case_a": {
+    "title": "Falar a verdade direto",
+    "body": "Dizer 'achei estranho, prefiro seu cabelo natural'. {{sibling_or_friend}} fica mal por 10 minutos, mas sabe que pode confiar na opinião de {{learner_name}} pro resto da vida."
+  },
+  "case_b": {
+    "title": "Elogiar e seguir",
+    "body": "Dizer 'ficou maneiro!'. {{sibling_or_friend}} fica feliz agora. Mês que vem pinta de verde achando que combina, baseado nessa avaliação."
+  },
+  "anchor_question": "Você é {{learner_name}}. {{sibling_or_friend}} está olhando pra você esperando. Qual frase sai da sua boca?",
+  "reveal": "Repara no que cada escolha CUSTA. Cada uma cobra um preço — só em momentos diferentes. Quem escolhe a frase 'ficou maneiro' paga depois, quando o amigo pintar de verde. Quem escolhe 'achei estranho' paga agora, nos próximos 10 minutos. Não tem opção sem custo. Tem opção de QUANDO o custo chega."
+}
+```
+
+# CONTRA-EXEMPLO (NÃO IMITAR — leia POR QUE é fraco)
+
+```json
+{
+  "dilemma": "Imagine uma sociedade onde todos sempre falam a verdade. Reflita sobre isso.",
+  "case_a": {
+    "title": "Ser honesto",
+    "body": "É importante ser honesto sempre. Quem é honesto faz amigos verdadeiros e cresce na vida com integridade."
+  },
+  "case_b": {
+    "title": "Mentir",
+    "body": "Mentir nunca é a melhor opção. Quem mente acaba se complicando e perdendo a confiança das pessoas."
+  },
+  "anchor_question": "Como você se sente sobre essa situação?",
+  "reveal": "No fim, o certo é sempre falar a verdade."
+}
+```
+
+POR QUE É FRACO:
+- Dilema abstrato ("imagine uma sociedade") — não é cena brasileira concreta
+- `case_a` é OBVIAMENTE certo, `case_b` é OBVIAMENTE errado — sem dilema real, vira pregação
+- `case_b` na verdade já moraliza contra si mesmo — não defende a escolha
+- `anchor_question` é linguagem de terapia ("como você se sente")
+- `reveal` é veredito ("o certo é...") em vez de iluminar a tensão
+- Lente inteira tem cara de cartilha de virtude — anti-padrão duro
+
+Agora gere a lente ética real para "<%= concept.name %>".

@@ -55,5 +55,41 @@ Rails.application.routes.draw do
     end
     resources :wallet, only: [ :index ]
     resource :wishlist, only: %i[create destroy], controller: "wishlist"
+
+    # Academy module — see app/models/academy.rb for isolation rules.
+    namespace :academy do
+      root to: "subjects#index"
+      resources :subjects, only: %i[index show], param: :id do
+        resources :trails, only: %i[show], param: :id
+        resources :missions, only: %i[show], param: :id do
+          member { post :advance }
+          get "visits/:visit_id", to: "missions#review_visit", as: :review_visit
+        end
+      end
+      get "atlas", to: "atlas#index", as: :atlas
+      resources :practice_wagers, only: %i[update], path: "apostas"
+    end
+  end
+
+  namespace :parent do
+    namespace :academy do
+      get "/", to: "dashboard#index", as: :dashboard
+      get "compare", to: "dashboard#compare", as: :compare
+      get "library", to: "library#index", as: :library
+      resources :practice_wagers, only: %i[update], path: "apostas"
+      resources :journeys, only: %i[index]
+    end
+  end
+
+  namespace :admin do
+    namespace :academy do
+      resources :missions, only: %i[index show edit update]
+      resources :lenses, only: %i[index edit update] do
+        member do
+          post  :regenerate
+          patch :flag
+        end
+      end
+    end
   end
 end

@@ -1,0 +1,56 @@
+<%# locals: concept, level, learner_concept %>
+<%
+  state = case level
+          when 3 then "mastered"
+          when 2 then "recognized"
+          when 1 then "spotted"
+          else        "silhouette"
+          end
+
+  display_name = level.zero? ? "???" : concept.name
+
+  evolving_now = defined?(@just_evolved_concept_ids) && @just_evolved_concept_ids.include?(concept.id)
+%>
+<div class="pokedex-chip pokedex-chip--<%= state %><%= ' pokedex-chip--evolving-now' if evolving_now %> rounded-2xl px-3 py-3"
+     data-concept-slug="<%= concept.slug %>"
+     data-level="<%= level %>"
+     style="background: var(--surface); border: 2px solid var(--hairline); position: relative;">
+
+  <div class="flex items-center gap-2 mb-1">
+    <%= render Kid::Academy::Atlas::ConceptOrbComponent.new(concept: concept, level: level, size: 36) %>
+    <% if level >= 3 %>
+      <div class="ml-auto font-display text-[9px] font-extrabold tracking-[1.5px] uppercase"
+           style="color: var(--c-star);">
+        ✦ TRANSFERIDO
+      </div>
+    <% elsif level == 2 %>
+      <div class="ml-auto font-display text-[9px] font-extrabold tracking-[1.5px] uppercase"
+           style="color: var(--c-primary-dark);">
+        MISSÃO COMPLETA
+      </div>
+    <% elsif level == 1 %>
+      <div class="ml-auto font-display text-[9px] font-extrabold tracking-[1.5px] uppercase"
+           style="color: var(--text-muted);">
+        LIÇÃO VISITADA
+      </div>
+    <% end %>
+  </div>
+
+  <div class="font-display text-[12px] font-extrabold leading-tight pokedex-chip__name"
+       style="color: <%= level.zero? ? 'var(--text-muted)' : 'var(--text)' %>;">
+    <%= display_name %>
+  </div>
+
+  <% if level >= 1 && learner_concept %>
+    <div class="font-display text-[9px] font-extrabold tracking-wide mt-1"
+         style="color: var(--text-muted);">
+      <% if level >= 3 && learner_concept.seen_in_subjects_count > 1 %>
+        em <%= learner_concept.seen_in_subjects_count %> áreas
+      <% elsif level >= 2 %>
+        jornada completa
+      <% else %>
+        visto <%= time_ago_in_words(learner_concept.first_seen_at || Time.current) %> atrás
+      <% end %>
+    </div>
+  <% end %>
+</div>

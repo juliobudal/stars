@@ -73,7 +73,31 @@ class Ui::Icon::Component < ApplicationComponent
     bell: "notification-01",
     lock: "square-lock-01",
     "user-circle": "user-circle",
-    wallet: "wallet-01"
+    wallet: "wallet-01",
+
+    # academy subjects (book-inspired tracks)
+    repeat: "repeat",
+    brain: "brain",
+    coin: "coins-01",
+    coins: "coins-01",
+    compass: "compass-01",
+    globe: "global",
+    medal: "medal-01",
+    trophy: "champion",
+    mountain: "mountain",
+    handshake: "handshake-01",
+
+    # academy v2 illustration glyphs (mission cards + skills + ranks)
+    phone: "smart-phone-01",
+    search: "search-01",
+    drop: "drop-01",
+    walk: "walking-01",
+    bolt: "energy",
+    puzzle: "puzzle",
+    apple: "apple",
+    spark: "sparkles",
+    tools: "tools",
+    magic: "magic-wand-01"
   }.freeze
 
   STYLE_MAP = {

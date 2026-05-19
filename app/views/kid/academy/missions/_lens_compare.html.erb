@@ -1,0 +1,65 @@
+<%# locals: concept, payload, color_var, review_mode: false, signal_payload: {} (ethical lens) %>
+<%
+  case_a = payload["case_a"].is_a?(Hash) ? payload["case_a"] : {}
+  case_b = payload["case_b"].is_a?(Hash) ? payload["case_b"] : {}
+  review_mode = local_assigns.fetch(:review_mode, false)
+%>
+<div class="lens-card p-5">
+  <% if payload["dilemma"].present? %>
+    <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-2"
+         style="color: <%= color_var %>;">
+      Dilema
+    </div>
+    <p class="font-display text-[15px] font-extrabold leading-snug m-0 mb-4" style="color: var(--text);">
+      <%= payload["dilemma"] %>
+    </p>
+  <% end %>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" data-lens-stage-target="compareGrid">
+    <% [["a", case_a], ["b", case_b]].each do |key, kase| %>
+      <button type="button"
+              class="lens-compare-card text-left"
+              <% unless review_mode %>
+              data-action="click->lens-stage#recordCompareChoice"
+              data-lens-stage-choice-param="<%= key %>"
+              data-lens-stage-target="compareCard"
+              <% end %>
+              <%= 'disabled' if review_mode %>>
+        <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
+             style="color: var(--text-muted);">
+          Caso <%= key.upcase %>
+        </div>
+        <div class="font-display text-[15px] font-extrabold leading-tight mb-2" style="color: var(--text);">
+          <%= kase["title"] %>
+        </div>
+        <p class="font-display text-[13px] leading-snug m-0" style="color: var(--text);">
+          <%= kase["body"] %>
+        </p>
+      </button>
+    <% end %>
+  </div>
+
+  <% if payload["anchor_question"].present? %>
+    <div class="rounded-2xl p-4 mt-4"
+         style="background: color-mix(in oklab, <%= color_var %> 10%, var(--surface)); border: 2px solid <%= color_var %>;">
+      <p class="font-display text-[14px] font-extrabold leading-snug m-0" style="color: var(--text);">
+        <%= payload["anchor_question"] %>
+      </p>
+    </div>
+  <% end %>
+
+  <% if payload["reveal"].present? %>
+    <div class="lens-reveal mt-3" <% unless review_mode %>data-lens-stage-target="compareReveal" hidden<% end %>>
+      <div class="rounded-2xl p-4"
+           style="background: var(--surface-2); border: 2px dashed <%= color_var %>;">
+        <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
+             style="color: <%= color_var %>;">
+          Reflexão
+        </div>
+        <p class="font-display text-[13px] leading-snug m-0" style="color: var(--text);">
+          <%= payload["reveal"] %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>

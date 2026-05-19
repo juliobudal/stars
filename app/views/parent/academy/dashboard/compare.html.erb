@@ -1,0 +1,73 @@
+<% content_for(:title) { "Comparar filhos" } %>
+
+<div class="px-4 sm:px-6 py-6">
+  <div class="mb-6 flex items-start gap-3 flex-wrap">
+    <div class="flex-1 min-w-0">
+      <h1 class="font-display text-[24px] font-extrabold leading-tight m-0" style="color: var(--text);">
+        Comparação cross-filhos
+      </h1>
+      <p class="text-[14px] font-bold mt-1" style="color: var(--text-muted);">
+        Quem está forte em quê. Sem ranking competitivo — só leitura honesta da formação.
+      </p>
+    </div>
+    <%= link_to parent_academy_dashboard_path,
+                class: "inline-flex items-center gap-1.5 px-3 py-2 rounded-lg font-extrabold text-[13px] anim-press",
+                style: "background: var(--surface); border: 2px solid var(--hairline); color: var(--text); box-shadow: 0 3px 0 rgba(0,0,0,0.05);" do %>
+      ← Voltar
+    <% end %>
+  </div>
+
+  <% if @rows.empty? %>
+    <%= render Ui::Empty::Component.new(icon: "user",
+                                        title: "Nenhuma criança cadastrada",
+                                        subtitle: "Cadastre perfis em /parent/profiles para liberar a comparação.") %>
+  <% else %>
+    <%# ── Header row ──────────────────────────────────── %>
+    <div class="overflow-x-auto">
+      <div class="grid gap-3 mb-4"
+           style="grid-template-columns: 140px repeat(<%= @rows.size %>, minmax(140px, 1fr));">
+        <div></div>
+        <% @rows.each do |row| %>
+          <div class="ls-card-3d text-center"
+               style="background: var(--c-mint-soft); border: 2px solid var(--c-mint-dark); border-radius: 14px; padding: 10px 12px; box-shadow: 0 3px 0 var(--c-mint-dark);">
+            <div class="font-display text-[15px] font-extrabold" style="color: var(--c-mint-dark);">
+              <%= row[:child].name %>
+            </div>
+            <div class="text-[11px] font-bold mt-0.5" style="color: var(--c-mint-dark);">
+              <%= row[:rank]&.label || "Aprendiz" %>
+            </div>
+            <div class="text-[11px] font-bold mt-1.5" style="color: var(--text-muted);">
+              <%= row[:completed] %> aula<%= 's' unless row[:completed] == 1 %> · <%= row[:cards] %> carta<%= 's' unless row[:cards] == 1 %>
+            </div>
+          </div>
+        <% end %>
+
+        <%# ── Skill rows ───────────────────────────────── %>
+        <% @skills.each_with_index do |skill, i| %>
+          <div class="flex items-center gap-2 py-1">
+            <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style="background: var(--primary-soft);">
+              <%= render Ui::Icon::Component.new(skill.icon.to_sym, size: 13, color: "var(--c-mint-dark)") %>
+            </div>
+            <span class="font-display text-[12px] font-extrabold truncate" style="color: var(--text);">
+              <%= skill.name %>
+            </span>
+          </div>
+          <% @rows.each do |row| %>
+            <% score = row[:scores][i] %>
+            <% pct = @skill_max.zero? ? 0 : ((score.to_f / @skill_max) * 100).round %>
+            <div class="flex items-center gap-2 py-1">
+              <div class="flex-1 h-2 rounded-full overflow-hidden" style="background: var(--hairline);">
+                <div class="h-full rounded-full"
+                     style="width: <%= pct %>%; background: linear-gradient(90deg, var(--primary), var(--c-star));"></div>
+              </div>
+              <span class="text-[11px] font-extrabold tabular-nums shrink-0 w-7 text-right"
+                    style="color: <%= score.positive? ? 'var(--c-mint-dark)' : 'var(--text-muted)' %>;">
+                <%= score %>
+              </span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

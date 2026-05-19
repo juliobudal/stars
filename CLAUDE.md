@@ -8,13 +8,17 @@ LittleStars — gamified family task manager with "star economy" for kids. Rails
 
 - `PRD_LittleStars.md` — product spec
 - `TECHSPEC.md` — authoritative architecture reference (models, services, routes, UI mapping)
-- `.planning/` — GSD workflow artifacts (ROADMAP, REQUIREMENTS, codebase/)
+- `docs/academy-v2.md` — Academy module **v2** (Formação Humana, 26 tabelas, 7 áreas, currículo invisível) — read before touching anything under `Academy::`
+- `docs/academy-lesson-structure.md` — camadas (catálogo + schema + prompt + DB) que determinam o que o LLM pode gerar em cada aula
+- `.planning/designs/` — specs ativas: `academy-v4-spec.md`, `academy-v4-tasks.md`, `casa-magica/`
+- `.planning/audits/` — auditorias correntes (brutal-review v2, lens v3 follow-ups)
+- `.planning/archive/` — docs concluídos/superseded (ver `2026-05-18-cleanup/README.md` para histórico)
 - Current milestone: UI/UX Duolingo rebranding (MVP core done)
 - Visual language: **Duolingo style** (green primary `#58CC02`, Nunito 700/800, 3D `0 4px 0` shadows, 10–16px radii). See `DESIGN.md` for the full system. Old Berry Pop / lilac / Fraunces tokens retired.
 
 ## Stack
 
-Rails 8.1 · Ruby 3.3+ · PostgreSQL 16 · Vite + Propshaft · Tailwind 4 · Stimulus · Turbo · ViewComponent 4.7 · RSpec + FactoryBot + Capybara · Solid Queue/Cache/Cable · Kamal.
+Rails 8.1 · Ruby 3.3+ · PostgreSQL 16 · Vite + Propshaft · Tailwind 4 · Stimulus · Turbo · ViewComponent 4.7 · RSpec + FactoryBot + Capybara · Solid Queue/Cache/Cable · Kamal · `langchainrb` + `ruby-openai` (Academy module, OpenRouter transport).
 
 Dev environment is Devcontainer/Docker Compose. Run commands inside `web` container.
 
@@ -32,6 +36,7 @@ Dev workflow is Docker Compose. Use `make` targets — they exec inside the `web
 - `make migrate` · `make seed` · `make db-reseed` · `make reset` — db ops
 - `make shell` — bash into web container · `make c` — rails console · `make shell-db` — psql
 - `make routes` · `make assets-build`
+- `make dokploy-deploy` / `dokploy-migrate` / `dokploy-logs` / `dokploy-status` / `dokploy-restart` / `dokploy-console` / `dokploy-db-reset` — production (Dokploy) wrappers
 
 ## Architecture
 
@@ -47,6 +52,14 @@ Namespaced dual-interface app: `parent/` vs `kid/` routes, controllers, views, a
 
 **Stimulus controllers** in `app/assets/controllers/` (Vite-served, auto-registered via `stimulus-vite-helpers` in `app/assets/controllers/index.js`). Add new `*_controller.js` files there — no manual registration needed.
 
+## Modules (isolated subsystems)
+
+Sub-features that justify their own boundary live under a top-level namespace with prefixed tables and zero FK into host tables. They communicate with the host only through controllers and a `Module::Learner`-style value adapter. **Never reference host models (`Profile`, `Family`, ...) from inside a module.**
+
+- **`Academy::`** — LLM-guided pedagogical missions. **v2 shipped 2026-05-16**: 26 tabelas, 7 áreas de formação humana, currículo invisível via 45 conceitos + 9 skills, spaced repetition (recall), segredos desbloqueáveis, adaptação por sinal. Persona: "O Guia" (authoritative + mysterious + fascinated). LLM = DeepSeek via OpenRouter (env `OPENROUTER_API_KEY`). All under `app/{models,services,controllers,views}/academy/` and `/kid/academy/*`, `/parent/academy/*`. Tables prefixed `academy_*`. **See `docs/academy-v2.md` before editing.** Module is inert without the env key — controllers redirect gracefully. `AdvanceTurn#finalize_mission!` (v4) orquestra 4 hooks em ordem fixa: `Cards::MintAfterMission` → `Wagers::Create` → `Signals::Record` → `Secrets::EvaluateForLearner` (ordem importa: `Secrets::EvaluateForLearner` lê o estado deixado pelos anteriores). `Skills::Award` e `Medals::AwardForMission` são v2 legacy (parent dashboard read-only) — não chame do kid path.
+
+To add a new module, mirror the Academy contract: top-level namespace, prefixed tables, zero FK into host, communicate via controllers + a `Module::Learner` value adapter only.
+
 ## Conventions
 
 - Enums use Rails 8 hash form: `enum :role, { child: 0, parent: 1 }`
@@ -54,6 +67,8 @@ Namespaced dual-interface app: `parent/` vs `kid/` routes, controllers, views, a
 - Never allow negative `Profile.points` — `RedeemService` rolls back transaction if balance goes negative after decrement
 - Race conditions on points matter (concurrent approve/redeem): keep mutations inside transactions with `reload` checks
 - Commits/PRs/code in English; conversational responses in Brazilian Portuguese per user workspace CLAUDE.md
+- `make db-reset` stops `web` during the drop and brings it back up — Puma + Solid Queue hold persistent Postgres connections that reconnect within ms, so `pg_terminate_backend` is not enough. Keep this behavior when editing the Makefile target.
+- `Academy::ApplicationRecord` opts out of `strict_loading_by_default` on purpose (services own access patterns inside the module). Don't mirror that pattern blindly in host models.
 
 ## UI work
 

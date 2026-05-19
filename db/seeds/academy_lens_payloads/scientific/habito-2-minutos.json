@@ -1,0 +1,20 @@
+{
+  "headline": "O cérebro guarda a IDENTIDADE da repetição, não o tamanho.",
+  "mechanism_steps": [
+    "Cada ação dispara um circuito de neurônios em sequência. Repetição cria associação: 'depois de X, faço Y'. O cérebro grava o PADRÃO, não a duração.",
+    "Quando você decide 'lerei 1 hora por dia', em dia ruim você desiste. O cérebro grava 'ler = sofrimento longo'. Voto registrado: 'sou alguém que NÃO lê'.",
+    "Quando decide '1 página por dia', em dia ruim você lê em 90 segundos. Cérebro grava 'ler = coisa que cabe'. Voto registrado: 'sou alguém que LÊ' — todo dia. Em meses, o cérebro acredita."
+  ],
+  "illustration_hint": "Duas urnas. Esquerda: pessoa começa com 'lerei 1h/dia', deposita 3 votos 'EU LEIO', depois nada. Direita: '1 página/dia', deposita 1 voto por dia sem parar. Em 30 dias, a direita transborda. Embaixo: 'cérebro conta votos, não horas.'",
+  "micro_check": {
+    "question": "Por que prometer 1h/dia falha mais que prometer 1 página/dia?",
+    "options": [
+      "Porque em dia ruim 1h é impossível e o cérebro grava 'sou alguém que NÃO faz isso'.",
+      "Porque 1h é cansativo e o corpo recusa.",
+      "Porque o cérebro acha 1 página mais interessante que 1 hora.",
+      "Porque ninguém consegue ler 1h sem perder o foco."
+    ],
+    "correct_index": 0,
+    "rationale": "O motor do hábito é a IDENTIDADE construída por votos repetidos. Promessa grande quebra em dia ruim. Promessa pequena cabe — o voto 'eu faço' continua entrando."
+  }
+}

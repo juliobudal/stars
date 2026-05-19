@@ -1,0 +1,113 @@
+# TAREFA
+
+Gere UMA lente histórica sobre o conceito "<%= concept.name %>" para um aprendiz pt-BR de 8 a 14 anos (age_band: <%= age_band %>, locale: <%= locale %>).
+
+# SACADA CENTRAL (o padrão invariante atravessa as eras pra revelar esta frase)
+
+> <%= the_essence %>
+
+Cada cena é uma reencarnação dessa sacada em outra era. O aprendiz percebe sozinho — a `pattern_question` empurra ele a NOMEAR a invariante (sem entregar a resposta).
+<% if common_confusion %>
+
+# CONFUSÃO COMUM
+
+Erro típico que crianças de 7-12 cometem com este conceito:
+> <%= common_confusion %>
+
+Se a confusão for "isso é coisa de hoje em dia", a 1ª cena (mais antiga) é a melhor evidência contra. Use isso a seu favor.
+<% end %>
+<% if forbidden_terms.any? %>
+
+# PALAVRAS PROIBIDAS PARA ESTE CONCEITO
+
+NÃO use os seguintes termos/frases — ensinam ERRADO este conceito:
+<% forbidden_terms.each do |term| %>
+- "<%= term %>"
+<% end %>
+<% end %>
+
+# PROPÓSITO DIDÁTICO
+
+O mesmo padrão estrutural atravessa eras distantes. O aprendiz vê 3 cenas em 3 épocas afastadas (separação mínima ~40 anos entre vizinhas), e percebe SOZINHO que a estrutura é a mesma — só a roupa muda. Isso constrói detecção de invariante, que é a base da transferência.
+
+# DEFINIÇÃO DE REFERÊNCIA (uso interno, não copie)
+
+> <%= concept.definition %>
+> Categoria: <%= concept.category %>
+
+# ENERGIA DESTA LENTE — Padrão atravessando eras
+
+**Didactic move:** três cenas concretas, três séculos, mesma estrutura escondida — o aprendiz percebe sozinho. Inspiração: documentários sérios de longue durée (estilo Pinker em "Os Anjos Bons da Nossa Natureza" ou Diamond em "Armas, Germes e Aço") — ano específico, cena com objeto/nome próprio/cheiro, padrão invariante revelado pela acumulação, nunca pelo narrador.
+
+Aqui: cada cena é manchete sensorial concreta (nome próprio, marca, objeto, número exato, ano específico) — nunca livro didático, nunca "nos anos 1900 as pessoas…". O fascínio é pelo padrão INVARIANTE que sobrevive à mudança de cenário. Frases curtas.
+
+# PROMESSA AO KID
+
+O kid clicou em **"🕰 Atravessando o tempo"** esperando viagem no tempo, não aula de história. Cada cena é teletransporte sensorial: cheiro do saloon em 1898, ruído do laboratório de Skinner em 1971, gesto do pull-to-refresh em 2012. Se as três cenas pudessem ser do mesmo ano, falhou.
+
+# REGRAS DE ERA
+
+- Exatamente 3 cenas, em anos REAIS entre 1500 e 2100.
+- Os 3 anos devem estar a pelo menos ~40 anos de distância entre si. Bom default: algo do final do século XIX, algo das décadas 1960-80, e algo dos anos 2010-2020s. Não force essas datas — escolha o que faz sentido pro conceito.
+- Cada cena: `year`, `headline` (manchete sensorial concreta), `structural_element` (qual peça do padrão aparece aqui — em linguagem técnica curta).
+- A `pattern_question` no final NÃO pode entregar a resposta — só fazer o aprendiz olhar pras três cenas e PERCEBER.
+
+# PROIBIDO (específico desta lente)
+
+- Cenas vagas ("nos anos 1900, as pessoas…") — sempre ano específico e cena com objeto/nome concreto
+- 3 cenas em décadas grudadas (ex.: 2010, 2015, 2020) — separação <40 anos não revela invariante
+- `pattern_question` que entrega a resposta ("você percebeu que é sempre recompensa variável?")
+- O slug "<%= concept.slug %>" literal na saída
+- (Anti-padrões universais já estão no system prompt; não repita)
+
+# PERSONALIZAÇÃO
+
+Geralmente NÃO usar `{{learner_name}}` aqui — a lente é sobre olhar o mundo, não o aprendiz. Use só se naturalmente couber na `pattern_question`.
+
+# SAÍDA
+
+JSON estrito conforme schema `historical.json`. SEM prosa antes ou depois.
+<% if curated_example_json %>
+
+# EXEMPLO REAL (lente histórica do MESMO TIPO já aprovada pelo juiz — guia de shape e voz, NÃO copie literal)
+
+```json
+<%= curated_example_json %>
+```
+<% end %>
+
+# EXEMPLO DE REFERÊNCIA (conceito: "recompensa variável" — NÃO COPIE)
+
+```json
+{
+  "pattern_label": "Máquinas que prometem talvez",
+  "scenes": [
+    {"year": 1898, "headline": "Charles Fey instala a Liberty Bell em saloons de São Francisco. Três rolos. Manivela. Sino se a sorte vier.", "structural_element": "Recompensa intermitente em intervalo fixo de ação manual."},
+    {"year": 1971, "headline": "B.F. Skinner publica um capítulo descrevendo pombos bicando uma alavanca por horas — comida chega às vezes, em ritmo imprevisível.", "structural_element": "Reforço de razão variável formalizado em laboratório."},
+    {"year": 2012, "headline": "Pull-to-refresh do Instagram vira gesto universal. Você puxa pra baixo. Às vezes tem foto nova. Às vezes não.", "structural_element": "Recompensa intermitente em interface de toque, escala bilionária."}
+  ],
+  "pattern_question": "O que essas três máquinas — separadas por 114 anos — estão fazendo exatamente igual?"
+}
+```
+
+# CONTRA-EXEMPLO (NÃO IMITAR — leia POR QUE é fraco)
+
+```json
+{
+  "pattern_label": "Coisas que prendem as pessoas",
+  "scenes": [
+    {"year": 2010, "headline": "Nos anos 2010, as pessoas começaram a usar muito o celular.", "structural_element": "Vício em tela."},
+    {"year": 2015, "headline": "Em 2015, redes sociais ficaram mais populares ainda.", "structural_element": "Mais vício."},
+    {"year": 2020, "headline": "Em 2020, na pandemia, todo mundo passou mais tempo online.", "structural_element": "Pico do vício."}
+  ],
+  "pattern_question": "Você percebeu que recompensa variável é o que vicia? Reflita sobre isso."
+}
+```
+
+POR QUE É FRACO:
+- Cenas vagas: "as pessoas começaram a usar muito" — sem cheiro, som, nome próprio, objeto concreto
+- 3 datas grudadas (2010-2015-2020) — não há separação histórica suficiente pra revelar invariante
+- `structural_element` é repetitivo ("vício", "mais vício") — não nomeia a estrutura DIFERENTE em cada era
+- `pattern_question` ENTREGA a resposta ("você percebeu que é recompensa variável") + usa anti-padrão "Reflita sobre"
+
+Agora gere a lente histórica real para "<%= concept.name %>".

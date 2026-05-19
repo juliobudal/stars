@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "academy/lens/narrative.json",
+  "title": "Narrative Lens Payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["character", "scenes", "ending", "micro_check"],
+  "properties": {
+    "character": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "age", "trait"],
+      "properties": {
+        "name": { "type": "string", "minLength": 2, "maxLength": 60 },
+        "age": { "type": "integer", "minimum": 6, "maximum": 18 },
+        "trait": { "type": "string", "minLength": 15, "maxLength": 120 }
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "text"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1, "maxLength": 24 },
+          "text": { "type": "string", "minLength": 40, "maxLength": 440 },
+          "choices": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["label", "next"],
+              "properties": {
+                "label": { "type": "string", "minLength": 8, "maxLength": 120 },
+                "next": { "type": "string", "minLength": 1, "maxLength": 16 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ending": { "type": "string", "minLength": 80, "maxLength": 320 },
+    "micro_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question", "options", "correct_index", "rationale"],
+      "properties": {
+        "question": { "type": "string", "minLength": 25, "maxLength": 220 },
+        "options": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 4,
+          "items": { "type": "string", "minLength": 5, "maxLength": 120 }
+        },
+        "correct_index": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "rationale": { "type": "string", "minLength": 40, "maxLength": 220 }
+      }
+    }
+  }
+}

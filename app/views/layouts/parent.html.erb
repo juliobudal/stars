@@ -6,7 +6,7 @@
     <%= yield :head %>
   </head>
 
-  <body class="min-h-screen bg-bg-deep overflow-x-hidden lg:pl-[220px]">
+  <body class="min-h-screen bg-bg-deep overflow-x-hidden lg:pl-[220px]" data-controller="loading">
     <% if current_profile %>
       <%= turbo_stream_from current_profile.family, "approvals" %>
       <%= render "shared/parent_nav" %>

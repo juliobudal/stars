@@ -1,0 +1,86 @@
+<%# locals: concept, payload, color_var, review_mode: false (first_person) %>
+<%
+  duration = payload["expected_time_seconds"].to_i
+  duration = 30 if duration.zero?
+  review_mode = local_assigns.fetch(:review_mode, false)
+%>
+<div class="lens-card p-5 text-center">
+  <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-3"
+       style="color: <%= color_var %>;">
+    Faça isto agora
+  </div>
+
+  <% if payload["action_prompt"].present? %>
+    <p class="font-display text-[18px] font-extrabold leading-snug m-0 mb-5" style="color: var(--text);">
+      <%= payload["action_prompt"] %>
+    </p>
+  <% end %>
+
+  <div class="mx-auto mb-5 rounded-full flex items-center justify-center"
+       style="width: 140px; height: 140px;
+              background: color-mix(in oklab, <%= color_var %> 14%, var(--surface));
+              border: 4px solid <%= color_var %>;
+              box-shadow: 0 4px 0 color-mix(in oklab, <%= color_var %> 60%, black);">
+    <div class="font-display font-extrabold tabular-nums"
+         style="font-size: 44px; color: <%= color_var %>;"
+         data-lens-stage-target="timerDisplay"
+         data-lens-stage-duration-value="<%= duration %>">
+      <%= duration %>s
+    </div>
+  </div>
+
+  <% unless review_mode %>
+    <div class="flex gap-2">
+      <button type="button"
+              class="flex-1 px-4 py-3 rounded-2xl font-display font-extrabold text-[14px] tracking-wide uppercase anim-press ls-btn-3d border-0"
+              style="background: <%= color_var %>; color: white; box-shadow: 0 4px 0 color-mix(in oklab, <%= color_var %> 60%, black);"
+              data-action="click->lens-stage#startTimer"
+              data-lens-stage-target="startTimerBtn">
+        Comecei
+      </button>
+      <button type="button"
+              class="flex-1 px-4 py-3 rounded-2xl font-display font-extrabold text-[14px] tracking-wide uppercase anim-press ls-btn-3d"
+              style="background: var(--surface); color: var(--text); border: 2px solid var(--hairline); box-shadow: 0 4px 0 var(--hairline);"
+              data-action="click->lens-stage#stopTimer"
+              data-lens-stage-target="stopTimerBtn"
+              disabled>
+        Pronto
+      </button>
+    </div>
+  <% else %>
+    <div class="rounded-2xl px-3 py-2 inline-flex items-center gap-2"
+         style="background: color-mix(in oklab, var(--c-leaf) 18%, var(--surface)); border: 1.5px solid var(--c-leaf);">
+      <span aria-hidden="true">✓</span>
+      <span class="font-display text-[12px] font-extrabold tracking-[0.5px]" style="color: var(--text);">
+        Você completou esta prática
+      </span>
+    </div>
+  <% end %>
+
+  <div class="lens-reveal mt-4 text-left" <% unless review_mode %>data-lens-stage-target="embodiedReveal" hidden<% end %>>
+    <% if payload["sensory_anchor"].present? %>
+      <div class="rounded-2xl p-3 mb-2"
+           style="background: var(--surface-2); border: 2px dashed <%= color_var %>;">
+        <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
+             style="color: <%= color_var %>;">
+          Sinta
+        </div>
+        <p class="font-display text-[13px] leading-snug m-0" style="color: var(--text);">
+          <%= payload["sensory_anchor"] %>
+        </p>
+      </div>
+    <% end %>
+    <% if payload["reveal"].present? %>
+      <div class="rounded-2xl p-3"
+           style="background: color-mix(in oklab, <%= color_var %> 12%, var(--surface)); border: 2px solid <%= color_var %>;">
+        <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
+             style="color: <%= color_var %>;">
+          O que aconteceu
+        </div>
+        <p class="font-display text-[13px] leading-snug m-0" style="color: var(--text);">
+          <%= payload["reveal"] %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

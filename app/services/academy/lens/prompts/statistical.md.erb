@@ -1,0 +1,116 @@
+# TAREFA
+
+Gere UMA lente estatística sobre o conceito "<%= concept.name %>" para um aprendiz pt-BR de 8 a 14 anos (age_band: <%= age_band %>, locale: <%= locale %>).
+
+# SACADA CENTRAL (o número EXISTE pra fazer essa frase clicar)
+
+> <%= the_essence %>
+
+O `reveal_value` é o golpe — ele precisa fazer o aprendiz parar e re-ler a sacada acima. Se o número for plausível pela intuição, errou: o número precisa SURPREENDER em direção à sacada.
+<% if common_confusion %>
+
+# CONFUSÃO COMUM
+
+Erro típico que crianças de 7-12 cometem com este conceito:
+> <%= common_confusion %>
+
+O `predict_min` ou `predict_max` deve englobar a estimativa que essa confusão geraria. A `interpretation` desmonta a confusão usando o `reveal_value` como evidência.
+<% end %>
+<% if forbidden_terms.any? %>
+
+# PALAVRAS PROIBIDAS PARA ESTE CONCEITO
+
+NÃO use os seguintes termos/frases — ensinam ERRADO este conceito:
+<% forbidden_terms.each do |term| %>
+- "<%= term %>"
+<% end %>
+<% end %>
+
+# PROPÓSITO DIDÁTICO
+
+Predizer → revelar. Calibrar intuição com dado. O aprendiz vai chutar um número ANTES de ver o real. Esse chute treina o "termômetro interno" dele sobre o conceito. O `reveal_value` precisa SOAR plausível e ter base citável (mesmo que arredondada).
+
+# DEFINIÇÃO DE REFERÊNCIA (uso interno, não copie)
+
+> <%= concept.definition %>
+> Categoria: <%= concept.category %>
+
+# ENERGIA DESTA LENTE — Predict, depois reveal
+
+**Didactic move:** forçar o palpite antes de mostrar o número. Inspiração: Freakonomics-style (Levitt/Dubner) — o capítulo abre com "quanto você acha que…?" e a tensão da resposta errada faz o número real grudar. O ato de chutar calibra a intuição mais do que ler o número direto.
+
+Aqui: **"Chuta. Agora olha."** Guia provocador-leve, fascinado pelo número que vai surpreender. O `reveal_value` é o golpe — precisa fazer o aprendiz parar e re-ler a sacada acima. Plausível mas surpreendente em direção à sacada. Quando souber, número específico com fonte honesta; quando não souber, estimativa declarada como tal.
+
+# PROMESSA AO KID
+
+O kid clicou em **"📈 Adivinha"** esperando palpitar antes de ver o número. O `predict_prompt` precisa fazer ele QUERER chutar — pergunta específica, com unidade clara, sobre algo da vida dele (celular, sono, mensagens, mesada, tempo de aula). Se ele puder ler sem chutar mentalmente, falhamos o contrato.
+
+# PROIBIDO (específico desta lente)
+
+- Números inventados sem verossimilhança — quando não souber, aproxime e cite fonte plausível ("estimativa baseada em Common Sense Media 2023", "média de uso medida por SOs"). Nunca inventar URL ou estudo específico.
+- Unidades fora do enum (`%`, `vezes/dia`, `vezes/semana`, `minutos`, `horas`)
+- `predict_min`/`predict_max` que não fazem sentido pra unidade (ex.: -10 vezes/dia)
+- `predict_prompt` em forma retórica solene — use "chuta antes", "palpita", "quanto você acha"
+- O slug "<%= concept.slug %>" literal na saída
+- (Anti-padrões universais — TED talk, "reflita sobre", "estudos mostram" — já estão no system prompt)
+
+# REGRAS DE COERÊNCIA
+
+- `predict_min <= reveal_value <= predict_max`, MAS o intervalo deve ser amplo o bastante pra ter chute errado interessante.
+- `predict_unit` deve ser uma das 5 do enum.
+- `reveal_source` é uma frase de origem observável — pode ser estimativa honesta ("estimativa baseada em dados de uso de smartphone, Common Sense Media 2023"). Sem inventar URL ou estudo específico.
+- `interpretation` ≤200c, mostra o que o número SIGNIFICA, não só repete.
+
+# PERSONALIZAÇÃO
+
+Use `{{learner_name}}` VERBATIM no `predict_prompt` se ajudar ("Quantas vezes {{learner_name}} pega o celular sem motivo num dia?"). NÃO substitua por nome real.
+
+# SAÍDA
+
+JSON estrito conforme schema `statistical.json`. SEM prosa antes ou depois. SEM markdown.
+<% if curated_example_json %>
+
+# EXEMPLO REAL (lente estatística do MESMO TIPO já aprovada pelo juiz — guia de shape e voz, NÃO copie literal)
+
+```json
+<%= curated_example_json %>
+```
+<% end %>
+
+# EXEMPLO DE REFERÊNCIA (conceito: "dopamina" — NÃO COPIE)
+
+```json
+{
+  "predict_prompt": "Quantas vezes por dia um adolescente médio desbloqueia o celular SEM ter recebido notificação? Chuta antes de ler.",
+  "predict_unit": "vezes/dia",
+  "predict_min": 0,
+  "predict_max": 200,
+  "reveal_value": 96,
+  "reveal_source": "Estimativa derivada de estudos de uso de smartphone em adolescentes (Common Sense Media e medições internas de SO, faixa 2020-2023).",
+  "interpretation": "96 vezes. A cada 10 minutos acordado. Nenhuma notificação. É o cérebro indo atrás da POSSIBILIDADE de recompensa — esse é o trabalho da dopamina."
+}
+```
+
+# CONTRA-EXEMPLO (NÃO IMITAR — leia POR QUE é fraco)
+
+```json
+{
+  "predict_prompt": "Reflita sobre quantas vezes você usa o celular.",
+  "predict_unit": "horas",
+  "predict_min": 0,
+  "predict_max": 24,
+  "reveal_value": 5,
+  "reveal_source": "Estudos mostram que adolescentes usam muito o celular.",
+  "interpretation": "É importante usar menos o celular pra ser mais feliz."
+}
+```
+
+POR QUE É FRACO:
+- `predict_prompt` usa "Reflita sobre" — anti-padrão duro
+- Faixa `0..24h` é trivial (todo mundo dorme) — não gera chute interessante
+- `reveal_value=5` é a média esperada — não surpreende, não bate na sacada
+- `reveal_source` é vago ("estudos mostram") sem fonte específica
+- `interpretation` MORALIZA ("é importante") em vez de iluminar o número
+- A interpretação não conecta o número à sacada central do conceito
+
+Agora gere a lente estatística real para "<%= concept.name %>".

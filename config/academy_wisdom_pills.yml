@@ -1,0 +1,104 @@
+# Pílulas de sabedoria d'O Guia
+#
+# Exibidas no overlay de loading do Academy enquanto a próxima lente é
+# gerada. Cada pílula é uma linha curta (até ~14 palavras), legível em
+# 4-5 segundos por uma criança de 7-12 anos.
+#
+# Mix editorial: Provérbios/Eclesiastes/Tiago (NTLH/NVT — linguagem
+# acessível), filósofos e educadores universais, e ensinamentos originais
+# d'O Guia. Sempre com fonte explícita.
+#
+# Curadoria: temas de formação humana — sabedoria, escuta, perseverança,
+# humildade, curiosidade, escolha, esforço. Evitar julgamento, medo, fim
+# dos tempos. Vocabulário acessível, sem termos abstratos.
+
+pills:
+  # ── Provérbios / Eclesiastes / Tiago (NTLH-style) ─────────
+  - text: "O começo da sabedoria é querer aprender."
+    source: "Provérbios 4:7"
+  - text: "Quem ouve com atenção fica mais sábio."
+    source: "Provérbios 1:5"
+  - text: "Uma resposta calma desfaz a briga."
+    source: "Provérbios 15:1"
+  - text: "Assim como o ferro afia o ferro, um amigo ajuda o outro a crescer."
+    source: "Provérbios 27:17"
+  - text: "Antes de responder, pense no que vai dizer."
+    source: "Provérbios 15:28"
+  - text: "Quem fala demais erra muito; quem segura a língua é sábio."
+    source: "Provérbios 10:19"
+  - text: "Para cada coisa há um tempo certo."
+    source: "Eclesiastes 3:1"
+  - text: "Dois juntos conseguem mais do que um sozinho."
+    source: "Eclesiastes 4:9"
+  - text: "Seja rápido para ouvir e devagar para falar."
+    source: "Tiago 1:19"
+  - text: "Quem pede sabedoria com fé recebe."
+    source: "Tiago 1:5"
+  - text: "O caminho do justo é como a luz da manhã que vai clareando."
+    source: "Provérbios 4:18"
+  - text: "O orgulho vem antes da queda; a humildade vem antes da honra."
+    source: "Provérbios 18:12"
+
+  # ── Filósofos e pensadores ────────────────────────────────
+  - text: "Só sei que nada sei — e por isso pergunto."
+    source: "Sócrates"
+  - text: "Não é porque é difícil que não tentamos; é porque não tentamos que parece difícil."
+    source: "Sêneca"
+  - text: "Aprender sem pensar é tempo perdido."
+    source: "Confúcio"
+  - text: "Quem se move, mesmo devagar, chega mais longe que quem está parado."
+    source: "Confúcio"
+  - text: "Conhece a ti mesmo."
+    source: "Sócrates"
+  - text: "A coragem é resistir ao medo, não a ausência dele."
+    source: "Mark Twain"
+
+  # ── Educadores brasileiros ────────────────────────────────
+  - text: "Ensinar não é transferir conhecimento — é abrir espaço para descobri-lo."
+    source: "Paulo Freire"
+  - text: "Conhecer é tarefa de sujeitos curiosos."
+    source: "Paulo Freire"
+  - text: "A escola é o lugar onde se faz amigos."
+    source: "Rubem Alves"
+  - text: "Toda criança é um cientista nato — só precisa de boas perguntas."
+    source: "Rubem Alves"
+  - text: "Aprender é descobrir que algo que você já sabia ganhou um nome."
+    source: "Rubem Alves"
+  - text: "A pressa é inimiga da reflexão."
+    source: "Mario Sergio Cortella"
+  - text: "Não basta estar atento ao que se aprende — é preciso estar atento ao como se aprende."
+    source: "Mario Sergio Cortella"
+
+  # ── Outras vozes ──────────────────────────────────────────
+  - text: "A persistência é o caminho do êxito."
+    source: "Charles Chaplin"
+  - text: "Você é do tamanho dos seus sonhos."
+    source: "Clarice Lispector"
+  - text: "Educação é o que sobra depois que esquecemos tudo que aprendemos na escola."
+    source: "Albert Einstein"
+  - text: "Quem nunca cometeu um erro nunca tentou nada novo."
+    source: "Albert Einstein"
+  - text: "O importante é não parar de questionar."
+    source: "Albert Einstein"
+
+  # ── Ensinamentos d'O Guia (originais) ─────────────────────
+  - text: "Quem pergunta duas vezes nunca se perde."
+    source: "O Guia"
+  - text: "A descoberta gosta de quem espera olhando."
+    source: "O Guia"
+  - text: "Cada erro é uma pista que o universo te entrega."
+    source: "O Guia"
+  - text: "O que parece pequeno hoje vira ponte amanhã."
+    source: "O Guia"
+  - text: "Olhar de novo é metade da resposta."
+    source: "O Guia"
+  - text: "Toda lente revela um pedaço diferente do mesmo mundo."
+    source: "O Guia"
+  - text: "Pensar devagar é uma forma de respeitar o mistério."
+    source: "O Guia"
+  - text: "A curiosidade tem mais força que a pressa."
+    source: "O Guia"
+  - text: "Quem escuta antes de julgar enxerga duas vezes."
+    source: "O Guia"
+  - text: "As estrelas que você junta hoje iluminam caminhos amanhã."
+    source: "O Guia"

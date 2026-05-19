@@ -1,0 +1,43 @@
+{
+  "challenge": "Redesenha sua tela inicial pra reduzir pickups reflexos pela metade. Escolha 2 a 4 medidas — cada uma corta um gatilho diferente, e cada uma cobra um preço.",
+  "constraints": [
+    {
+      "id": "g",
+      "label": "Tira todas as redes sociais da primeira tela (pasta na segunda)",
+      "cost": "Demora 2 segundos a mais quando você quer abrir de verdade"
+    },
+    {
+      "id": "n",
+      "label": "Desliga TODAS as notificações exceto chamadas e mensagens diretas",
+      "cost": "Pode perder novidade que era importante no momento"
+    },
+    {
+      "id": "p",
+      "label": "Põe o celular em preto e branco (escala de cinza)",
+      "cost": "Fotos e vídeos ficam sem graça, jogos perdem apelo"
+    },
+    {
+      "id": "f",
+      "label": "Some o feed: usa só DM direta dentro dos apps de rede",
+      "cost": "Você decide o que ver, mas perde o 'achar coisa nova por acaso'"
+    },
+    {
+      "id": "t",
+      "label": "Bloqueio de tempo: 30 min/dia em redes sociais, app trava o resto",
+      "cost": "Cria atrito até em uso que era legítimo"
+    },
+    {
+      "id": "l",
+      "label": "Celular fica em outra sala depois das 21h",
+      "cost": "Acordar é mais difícil sem ele de despertador"
+    }
+  ],
+  "must_pick": 3,
+  "outcomes": {
+    "g+n+p": "Combo clássico: tira o gatilho visual (cor + posição) e o gatilho sonoro (notificação). Funciona forte se o seu problema é pegar o celular 'sem pensar' — pickups reflexos caem rápido. Não resolve se o problema é entrar em buraco DENTRO do app.",
+    "g+n+t": "Aposta no atrito controlado: cobre pickup reflexo (g, n) e ainda limita quanto tempo lá dentro (t). Bom pra quem quer manter os apps mas não os hábitos. Cuidado: quando o bloqueio vence, pode haver compulsão de compensar.",
+    "n+f+l": "Mira no horário de fragilidade (noite) e nos gatilhos sociais. Bom pra quem dorme pouco por causa do celular. Sacrifica o uso de despertador e o efeito 'descobrir por acaso' — você troca esse roleta por sono.",
+    "g+p+f": "Tira a recompensa visual (cor + feed surpresa + posição). Funciona pra quem é fisgado por estética — feeds de fotos, vídeos curtos. Menos efeito pra quem é fisgado por mensagens.",
+    "n+t+l": "Estratégia 'envelope': horário, duração, presença física. Pesado em atrito; bom pra fase de detox (semanas), não como regime permanente."
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "academy/lens/historical.json",
+  "title": "Historical Lens Payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["pattern_label", "scenes", "pattern_question"],
+  "properties": {
+    "pattern_label": { "type": "string", "minLength": 20, "maxLength": 120 },
+    "scenes": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["year", "headline", "structural_element"],
+        "properties": {
+          "year": { "type": "integer", "minimum": 1500, "maximum": 2100 },
+          "headline": { "type": "string", "minLength": 30, "maxLength": 160 },
+          "structural_element": { "type": "string", "minLength": 30, "maxLength": 160 }
+        }
+      }
+    },
+    "pattern_question": { "type": "string", "minLength": 30, "maxLength": 220 }
+  }
+}

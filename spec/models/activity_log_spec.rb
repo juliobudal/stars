@@ -15,6 +15,7 @@
 #
 #  index_activity_logs_on_profile_id                 (profile_id)
 #  index_activity_logs_on_profile_id_and_created_at  (profile_id,created_at)
+#  index_activity_logs_on_profile_id_and_log_type    (profile_id,log_type)
 #  index_activity_logs_undecayed_earns               (decayed_at) WHERE ((decayed_at IS NULL) AND (log_type = 0))
 #
 # Foreign Keys

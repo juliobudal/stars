@@ -1,0 +1,128 @@
+# TAREFA
+
+Gere UMA lente científica sobre o conceito "<%= concept.name %>" para um aprendiz pt-BR de 8 a 14 anos (age_band: <%= age_band %>, locale: <%= locale %>).
+
+# SACADA CENTRAL (pivote tudo em torno desta frase)
+
+> <%= the_essence %>
+
+Cada passo do mecanismo, o headline, o micro_check — tudo aponta pra essa sacada. Se ao fim a lente NÃO leva o aprendiz a essa frase, falhou.
+<% if common_confusion %>
+
+# CONFUSÃO COMUM (use pra desenhar distratores do micro_check)
+
+Erro típico que crianças de 7-12 cometem com este conceito:
+> <%= common_confusion %>
+
+Pelo menos UMA das opções erradas do `micro_check` DEVE materializar exatamente essa confusão (em palavras de criança, sem citar a palavra "confusão").
+<% end %>
+<% if forbidden_terms.any? %>
+
+# PALAVRAS PROIBIDAS PARA ESTE CONCEITO
+
+NÃO use os seguintes termos/frases — ensinam ERRADO este conceito:
+<% forbidden_terms.each do |term| %>
+- "<%= term %>"
+<% end %>
+<% end %>
+
+# PROPÓSITO DIDÁTICO
+
+Mecanismo puro. Causa → efeito explícito, em 3 passos curtos. O aprendiz deve sair sabendo COMO a coisa funciona, não apenas QUE a coisa existe. Nada de história, nada de moral, nada de "reflexão". Se você está com vontade de usar metáfora dentro dos passos do mecanismo, NÃO USE — descreva o processo real. Metáfora vai no campo `illustration_hint` separado.
+
+# DEFINIÇÃO DE REFERÊNCIA (uso interno, não copie)
+
+> <%= concept.definition %>
+> Categoria: <%= concept.category %>
+
+# ENERGIA DESTA LENTE — Mecanismo nomeado
+
+**Didactic move:** sistema causal com peças nomeadas. Inspiração: James Clear (Hábitos Atômicos) nomeando as 4 leis do hábito como engrenagem — cue → craving → response → reward. Cada peça tem nome, cada seta tem verbo causal explícito.
+
+Aqui o mecanismo É o personagem. Você está fascinado por COMO a coisa funciona, não pelo fato de existir. Verbo causal a cada passo ("arranca", "dispara", "monta", "puxa"), nunca verbo de estado ("é", "envolve", "existe"). Energia Manual do Mundo: "olha isso", concreto, mãos na peça.
+
+# PROMESSA AO KID
+
+O kid clicou em **"🔬 Como funciona"** esperando ver O MECANISMO desmontado em peças. Se você entregar fato/definição em vez de causa→efeito, ele se sente enganado. Entregue mecanismo, peça por peça, com a seta causal visível entre elas.
+
+# PROIBIDO (específico desta lente)
+
+- Definição genérica em vez de causa→efeito (passo 1 NUNCA é "X é um processo que…")
+- Metáfora dentro de `mechanism_steps` — vai em `illustration_hint` separado
+- O slug interno "<%= concept.slug %>" literal na saída
+- (Anti-padrões universais — TED talk, moralização, hedging, hiperatividade fake — já estão no system prompt; não repita)
+
+# PERSONALIZAÇÃO
+
+Onde um gancho personalizado funcionar, use os marcadores VERBATIM: `{{learner_name}}` e `{{sibling_or_friend}}`. NÃO substitua por nomes reais — são placeholders trocados em runtime. Use no máximo 1x cada, e só se naturalmente couber.
+
+# SAÍDA
+
+JSON estrito conforme schema `scientific.json`. SEM prosa antes ou depois. SEM bloco de código markdown. Apenas o objeto JSON.
+
+Campos:
+- `headline` — manchete curta do mecanismo (≤80 caracteres)
+- `mechanism_steps` — exatamente 3 passos causais, cada um ≤120 caracteres, com verbo causal explícito
+- `illustration_hint` — uma metáfora visual para o ilustrador (não para o aprendiz)
+- `micro_check` — 1 pergunta de APLICAÇÃO em situação nova (não recitação), 3-4 opções, índice correto, racional curto
+<% if curated_example_json %>
+
+# EXEMPLO REAL (lente científica do MESMO TIPO já aprovada pelo juiz — guia de shape e voz, NÃO copie literal)
+
+```json
+<%= curated_example_json %>
+```
+<% end %>
+
+# EXEMPLO DE REFERÊNCIA (conceito: "açúcar e fome de rebote" — NÃO COPIE, use como guia de shape e voz)
+
+```json
+{
+  "headline": "Doce mata fome agora e fabrica fome maior daqui a uma hora",
+  "mechanism_steps": [
+    "Você come o doce; o açúcar entra no sangue de uma vez e o pâncreas dispara insulina pra varrer.",
+    "A insulina varre tanto que a glicose despenca abaixo de onde estava antes — corpo entra em alerta.",
+    "O cérebro lê 'baixo combustível' e manda você procurar comida — agora com fome MAIOR que antes do doce."
+  ],
+  "illustration_hint": "Gráfico de açúcar no sangue: linha sobe rápido tipo foguete quando o doce entra, despenca abaixo da linha inicial em 40 minutos, e nesse vale o cérebro acende uma luz vermelha de FOME.",
+  "micro_check": {
+    "question": "{{learner_name}} tem prova daqui a 2 horas e quer ficar acordado. Qual escolha mantém ele MAIS estável até a prova?",
+    "options": ["Bala de goma agora e suco de caixinha 1h depois", "Pão com manteiga e ovo agora, água nas 2 horas", "Refrigerante grande agora pra 'dar energia rápido'", "Pular comida — fome ajuda concentrar"],
+    "correct_index": 1,
+    "rationale": "Carboidrato lento + proteína sobe o açúcar devagar e sem despencar depois. O refrigerante é o efeito-foguete-depois-vale que a lente acabou de mostrar."
+  }
+}
+```
+
+# CONTRA-EXEMPLO (NÃO IMITAR — mesmo conceito, leia POR QUE é fraco)
+
+```json
+{
+  "headline": "É importante ter uma alimentação balanceada",
+  "mechanism_steps": [
+    "O açúcar é um carboidrato que dá energia para o corpo.",
+    "Comer doce em excesso pode fazer mal à saúde.",
+    "Por isso, devemos ter cuidado com o que comemos."
+  ],
+  "illustration_hint": "Uma criança comendo uma fruta com cara feliz.",
+  "micro_check": {
+    "question": "Para que serve o açúcar?",
+    "options": ["Pra adoçar comidas", "Pra dar fome", "Pra fazer mal", "Pra engordar"],
+    "correct_index": 0,
+    "rationale": "O açúcar adoça as comidas."
+  }
+}
+```
+
+POR QUE É FRACO:
+- Headline abre com moralização ("é importante") e não cria curiosity gap
+- Passo 1 é DEFINIÇÃO em vez de CAUSA→EFEITO observável
+- Passo 3 é norma de comportamento ("devemos cuidar"), não mecanismo
+- Zero imagem mental (cena vaga, sem números, sem ação concreta)
+- `micro_check` testa MEMÓRIA ("para que serve") em vez de APLICAÇÃO em situação nova
+- Resposta correta repete a manchete em vez de revelar a sacada
+- Distratores não são erros típicos de criança — são alternativas óbvias
+- Rationale só repete a resposta, não ensina
+- Falha o TESTE DE ÚTIL: kid não consegue apontar pra cena do dia e dizer "olha, é isso"
+
+Agora gere a lente científica real para "<%= concept.name %>".

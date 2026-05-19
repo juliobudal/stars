@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "academy/lens/scientific.json",
+  "title": "Scientific Lens Payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["headline", "mechanism_steps", "illustration_hint", "micro_check"],
+  "properties": {
+    "headline": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 120
+    },
+    "mechanism_steps": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "string",
+        "minLength": 30,
+        "maxLength": 200
+      }
+    },
+    "illustration_hint": {
+      "type": "string",
+      "minLength": 50,
+      "maxLength": 320
+    },
+    "micro_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question", "options", "correct_index", "rationale"],
+      "properties": {
+        "question": { "type": "string", "minLength": 25, "maxLength": 220 },
+        "options": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 4,
+          "items": { "type": "string", "minLength": 5, "maxLength": 120 }
+        },
+        "correct_index": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "rationale": { "type": "string", "minLength": 40, "maxLength": 220 }
+      }
+    }
+  }
+}

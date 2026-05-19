@@ -1,0 +1,232 @@
+<% content_for(:title) { "Academia" } %>
+
+<% category_colors = {
+  "cognitivo"   => { fg: "var(--c-sky-dark)",   bg: "var(--c-sky-soft)" },
+  "cientifico"  => { fg: "var(--c-mint-dark)",  bg: "var(--c-mint-soft)" },
+  "social"      => { fg: "var(--c-peach-dark)", bg: "var(--c-peach-soft)" },
+  "financeiro"  => { fg: "var(--c-amber-dark)", bg: "var(--c-amber-soft)" },
+  "saude"       => { fg: "var(--c-coral-dark)", bg: "var(--c-coral-soft)" },
+  "virtude"     => { fg: "var(--c-lilac-dark)", bg: "var(--c-lilac-soft)" },
+  "tecnologia"  => { fg: "var(--c-mint-dark)",  bg: "var(--primary-soft)" }
+} %>
+
+<div class="px-4 sm:px-6 py-6">
+  <div class="mb-6 flex items-start gap-3 flex-wrap">
+    <div class="flex-1 min-w-0">
+      <h1 class="font-display text-[24px] font-extrabold leading-tight m-0" style="color: var(--text);">
+        Academia
+      </h1>
+      <p class="text-[14px] font-bold mt-1" style="color: var(--text-muted);">
+        Currículo invisível, comportamentos visíveis. O que cada filho está formando de verdade.
+      </p>
+    </div>
+    <div class="flex items-center gap-2 flex-wrap">
+      <% if @children.size > 1 %>
+        <%= link_to parent_academy_compare_path,
+                    class: "inline-flex items-center gap-1.5 px-3 py-2 rounded-lg font-extrabold text-[13px] anim-press",
+                    style: "background: var(--surface); border: 2px solid var(--hairline); color: var(--text); box-shadow: 0 3px 0 rgba(0,0,0,0.05);" do %>
+          Comparar filhos →
+        <% end %>
+      <% end %>
+      <%= link_to parent_academy_library_path,
+                  class: "inline-flex items-center gap-1.5 px-3 py-2 rounded-lg font-extrabold text-[13px] anim-press",
+                  style: "background: var(--surface); border: 2px solid var(--hairline); color: var(--text); box-shadow: 0 3px 0 rgba(0,0,0,0.05);" do %>
+        Biblioteca de pílulas →
+      <% end %>
+    </div>
+  </div>
+
+  <% if @children.empty? %>
+    <%= render Ui::Empty::Component.new(icon: "user",
+                                        title: "Nenhuma criança cadastrada ainda",
+                                        subtitle: "Cadastre perfis em /parent/profiles para liberar a Academia.") %>
+  <% else %>
+    <%# ── Kid tabs ──────────────────────────────────────── %>
+    <div class="flex flex-wrap gap-2 mb-5">
+      <% @children.each do |child| %>
+        <% selected = child.id == @selected_kid.id %>
+        <%= link_to parent_academy_dashboard_path(kid_id: child.id),
+                    class: "inline-flex items-center gap-2 px-3 py-2 rounded-full font-display font-extrabold text-[13px] anim-press",
+                    style: selected ?
+                      "background: var(--primary); color: white; box-shadow: 0 3px 0 var(--c-mint-dark);" :
+                      "background: var(--surface); border: 2px solid var(--hairline); color: var(--text); box-shadow: 0 2px 0 rgba(0,0,0,0.04);" do %>
+          <%= child.name %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <%# ── Rank card ────────────────────────────────────── %>
+    <% if @rank_record %>
+      <div class="ls-card-3d flex items-center gap-3 mb-4"
+           style="background: var(--c-star-soft); border: 2px solid var(--c-amber-dark); border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 0 var(--c-amber-dark);">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
+             style="background: var(--c-star); box-shadow: 0 3px 0 rgba(0,0,0,0.1);">
+          <%= render Ui::Icon::Component.new(@rank_record.icon.to_sym, size: 22, color: "white") %>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="font-display text-[11px] font-extrabold uppercase tracking-[1px]" style="color: var(--c-amber-dark);">
+            Rank atual
+          </div>
+          <div class="font-display text-[20px] font-extrabold leading-tight" style="color: var(--text);">
+            <%= @rank_record.label %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="mb-4 p-4 rounded-2xl text-[13px] font-bold"
+           style="background: var(--surface); border: 2px dashed var(--hairline); color: var(--text-muted);">
+        Sem rank ainda — <%= @selected_kid.name %> precisa concluir aulas pra subir.
+      </div>
+    <% end %>
+
+    <%# ── Skill radar (9 skills) ───────────────────────── %>
+    <section class="ls-card-3d mb-4"
+             style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);">
+      <div class="flex items-baseline justify-between mb-3">
+        <h2 class="font-display text-[16px] font-extrabold m-0" style="color: var(--text);">Radar de habilidades</h2>
+        <span class="text-[11px] font-extrabold uppercase tracking-[1px]" style="color: var(--text-muted);">9 skills</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <% @skills.each_with_index do |skill, i| %>
+          <% score = @skill_scores[i] %>
+          <% pct = @skill_max.zero? ? 0 : ((score.to_f / @skill_max) * 100).round %>
+          <div class="flex items-center gap-2 min-w-0">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                 style="background: <%= score.positive? ? 'var(--primary)' : 'var(--hairline)' %>;">
+              <%= render Ui::Icon::Component.new(skill.icon.to_sym, size: 14, color: "white") %>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-baseline justify-between gap-2">
+                <span class="font-display text-[12px] font-extrabold truncate" style="color: var(--text);">
+                  <%= skill.name %>
+                </span>
+                <span class="text-[10px] font-extrabold tabular-nums shrink-0"
+                      style="color: <%= score.positive? ? 'var(--c-mint-dark)' : 'var(--text-muted)' %>;">
+                  <%= score %>
+                </span>
+              </div>
+              <div class="h-1.5 mt-1 rounded-full overflow-hidden" style="background: var(--hairline);">
+                <div class="h-full rounded-full" style="width: <%= pct %>%; background: linear-gradient(90deg, var(--primary), var(--c-star));"></div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
+
+    <%# ── Concepts crossed ─────────────────────────────── %>
+    <section class="ls-card-3d mb-4"
+             style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);">
+      <div class="flex items-baseline justify-between mb-3">
+        <h2 class="font-display text-[16px] font-extrabold m-0" style="color: var(--text);">Conceitos atravessados</h2>
+        <span class="text-[11px] font-extrabold uppercase tracking-[1px]" style="color: var(--text-muted);">
+          <%= @concepts_by_category.values.flatten.size %> distintos
+        </span>
+      </div>
+      <% if @concepts_by_category.empty? %>
+        <p class="text-[13px] font-bold m-0" style="color: var(--text-muted);">
+          Currículo invisível ainda zerado. Conceitos aparecem aqui à medida que aulas são concluídas.
+        </p>
+      <% else %>
+        <% @concepts_by_category.each do |category, concepts| %>
+          <% colors = category_colors[category] || { fg: "var(--text)", bg: "var(--bg-soft)" } %>
+          <div class="mb-3 last:mb-0">
+            <div class="text-[11px] font-extrabold uppercase tracking-[1px] mb-1.5" style="color: <%= colors[:fg] %>;">
+              <%= category %>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <% concepts.each do |c| %>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full font-display font-extrabold text-[11px]"
+                      style="background: <%= colors[:bg] %>; color: <%= colors[:fg] %>;">
+                  <%= c[:name] %>
+                </span>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </section>
+
+    <%# ── Recent discovery cards ───────────────────────── %>
+    <section class="ls-card-3d mb-4"
+             style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);">
+      <h2 class="font-display text-[16px] font-extrabold mb-3 m-0" style="color: var(--text);">Cartas recentes</h2>
+      <% if @recent_cards.empty? %>
+        <p class="text-[13px] font-bold m-0" style="color: var(--text-muted);">
+          Sem cartas cunhadas ainda — uma carta nasce a cada aula completa.
+        </p>
+      <% else %>
+        <div class="space-y-2">
+          <% @recent_cards.each do |card| %>
+            <article class="flex items-start gap-3 p-3 rounded-xl"
+                     style="background: var(--bg-soft); border: 2px solid var(--hairline);">
+              <div class="w-9 h-9 rounded-lg shrink-0 flex items-center justify-center"
+                   style="background: <%= card.mission.subject.color.presence || 'var(--primary)' %>;">
+                <%= render Ui::Icon::Component.new((card.illustration_key.presence || card.mission.subject.icon).to_sym, size: 16, color: "white") %>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-display text-[13px] font-extrabold leading-tight" style="color: var(--text);">
+                  <%= card.headline %>
+                </div>
+                <div class="text-[11px] font-bold mt-0.5" style="color: var(--text-muted);">
+                  <%= card.mission.subject.name %> · <%= card.minted_at.strftime("%d/%m") %>
+                </div>
+              </div>
+            </article>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+
+    <%# ── Weekly token cost ────────────────────────────── %>
+    <div class="ls-card-3d mb-4 flex items-center gap-3"
+         style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 14px; padding: 12px 14px; box-shadow: 0 3px 0 rgba(0,0,0,0.05);">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+           style="background: var(--c-sky-soft);">
+        <%= render Ui::Icon::Component.new(:sparkle, size: 16, color: "var(--c-sky-dark)") %>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="font-display text-[11px] font-extrabold uppercase tracking-[1px]" style="color: var(--c-sky-dark);">
+          Esta semana
+        </div>
+        <div class="text-[13px] font-bold leading-tight" style="color: var(--text);">
+          <%= number_with_delimiter(@weekly_tokens.to_i) %> tokens consumidos
+          <% if @weekly_tokens.to_i.zero? %>
+            <span class="text-[11px] font-bold" style="color: var(--text-muted);">(sem aulas nos últimos 7 dias)</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <%# ── Secrets unlocked ─────────────────────────────── %>
+    <section class="ls-card-3d mb-4"
+             style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);">
+      <h2 class="font-display text-[16px] font-extrabold mb-3 m-0" style="color: var(--text);">Segredos desbloqueados</h2>
+      <% if @secret_unlocks.empty? %>
+        <p class="text-[13px] font-bold m-0" style="color: var(--text-muted);">
+          Nenhum segredo aberto — eles surgem quando regras de progresso são satisfeitas.
+        </p>
+      <% else %>
+        <div class="space-y-2">
+          <% @secret_unlocks.each do |unlock| %>
+            <div class="flex items-center gap-3 p-3 rounded-xl"
+                 style="background: var(--c-lilac-soft); border: 2px solid var(--c-lilac-dark);">
+              <div class="w-9 h-9 rounded-full shrink-0 flex items-center justify-center"
+                   style="background: var(--c-lilac-dark);">
+                <%= render Ui::Icon::Component.new(:magic, size: 16, color: "white") %>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-display text-[13px] font-extrabold leading-tight" style="color: var(--c-lilac-dark);">
+                  <%= unlock.secret.title %>
+                </div>
+                <div class="text-[11px] font-bold mt-0.5" style="color: var(--c-lilac-dark);">
+                  <%= unlock.unlocked_at.strftime("%d/%m %H:%M") %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
+</div>

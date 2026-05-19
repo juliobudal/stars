@@ -1,0 +1,66 @@
+<% content_for(:title) { "Lentes — Admin" } %>
+
+<div class="screen no-nav">
+  <div class="flex items-baseline gap-3 mb-4">
+    <h1 class="font-display text-[22px] font-extrabold leading-tight m-0" style="color: var(--text);">
+      Cache de lentes
+    </h1>
+    <span class="font-display text-[11px]" style="color: var(--text-muted);">
+      <%= @rows.size %> linhas
+    </span>
+  </div>
+
+  <%= form_with url: admin_academy_lenses_path, method: :get, local: true, class: "flex flex-wrap gap-2 mb-4" do |f| %>
+    <%= f.select :lens_type, [ [ "Todos os tipos", "" ] ] + @lens_types.map { |t| [ t.to_s, t.to_s ] }, {}, class: "px-3 py-1.5 rounded-full border-2", style: "border-color: var(--hairline);" %>
+    <%= f.select :concept_id, [ [ "Todos os conceitos", "" ] ] + @concepts.map { |c| [ "#{c.name} (#{c.slug})", c.id ] }, {}, class: "px-3 py-1.5 rounded-full border-2", style: "border-color: var(--hairline);" %>
+    <%= f.select :flagged, [ [ "Tudo", "" ], [ "Só sinalizadas", "1" ] ], {}, class: "px-3 py-1.5 rounded-full border-2", style: "border-color: var(--hairline);" %>
+    <%= f.submit "Filtrar", class: "px-3 py-1.5 rounded-full font-display font-extrabold", style: "background: var(--c-primary); color: white;" %>
+  <% end %>
+
+  <% if @rows.empty? %>
+    <p class="font-display text-[14px]" style="color: var(--text-muted);">
+      Nenhuma lente gerada ainda. Lentes são criadas sob demanda quando o aprendiz abre uma missão (ou em batch pelo WarmCacheJob).
+    </p>
+  <% else %>
+    <div class="flex flex-col gap-2">
+      <% @rows.each do |row| %>
+        <article class="rounded-2xl p-3 flex items-center gap-3"
+                 style="background: var(--surface); border: 2px solid <%= row.quality_flagged ? 'var(--c-danger)' : 'var(--hairline)' %>;
+                        box-shadow: 0 3px 0 rgba(0,0,0,0.05);">
+          <div class="flex-1 min-w-0">
+            <div class="flex items-baseline gap-2">
+              <span class="font-display text-[12px] font-extrabold uppercase tracking-[1px]"
+                    style="color: var(--c-primary-dark);">
+                <%= row.lens_type.tr("_", " ") %>
+              </span>
+              <span class="font-display text-[14px] font-extrabold" style="color: var(--text);">
+                <%= row.concept.name %>
+              </span>
+              <% if row.quality_flagged %>
+                <span class="font-display text-[10px] font-extrabold uppercase" style="color: var(--c-danger);">FLAGGED</span>
+              <% end %>
+            </div>
+            <div class="font-display text-[11px]" style="color: var(--text-muted);">
+              <%= row.template_version %> · <%= row.locale %> · <%= row.age_band %> · gerada <%= time_ago_in_words(row.generated_at) %> atrás
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <%= link_to "Editar", edit_admin_academy_lens_path(row),
+                        class: "px-2.5 py-1 rounded-full font-display text-[11px] font-extrabold",
+                        style: "background: var(--surface); border: 1.5px solid var(--hairline); color: var(--text);" %>
+            <%= button_to "Regenerar", regenerate_admin_academy_lens_path(row), method: :post,
+                          class: "px-2.5 py-1 rounded-full font-display text-[11px] font-extrabold",
+                          style: "background: var(--c-sky-soft); border: 1.5px solid var(--c-sky); color: var(--c-sky-dark); border-width: 1.5px; padding: 4px 10px;",
+                          data: { turbo_confirm: "Regenerar via LLM?" } %>
+            <%= button_to (row.quality_flagged ? "Reabilitar" : "Sinalizar"),
+                          flag_admin_academy_lens_path(row), method: :patch,
+                          class: "px-2.5 py-1 rounded-full font-display text-[11px] font-extrabold",
+                          style: "background: #{row.quality_flagged ? 'var(--primary-soft)' : 'var(--surface)'}; " +
+                                 "border: 1.5px solid #{row.quality_flagged ? 'var(--c-primary)' : 'var(--c-danger)'}; " +
+                                 "color: #{row.quality_flagged ? 'var(--c-primary-dark)' : 'var(--c-danger)'};" %>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  <% end %>
+</div>

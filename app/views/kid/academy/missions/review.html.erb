@@ -1,0 +1,75 @@
+<% content_for(:title) { "Revisão — #{@mission.title}" } %>
+<%
+  mission = @review_stage.mission
+  visits  = @review_stage.visits
+  color_var = "var(--academy-pokedex-#{mission.concept.pokedex_color_key.presence || 'cognitivo'})"
+%>
+
+<div class="screen screen-enter">
+  <%# ── Header ────────────────────────────────────────────────── %>
+  <header class="-mx-4 px-4 pt-3 pb-3 mb-4">
+    <div class="flex items-center gap-3">
+      <%= link_to kid_academy_subject_path(@subject),
+                  "aria-label": "Voltar para #{@subject.name}",
+                  class: "w-10 h-10 rounded-full flex items-center justify-center anim-press shrink-0",
+                  style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06);" do %>
+        <%= render Ui::Icon::Component.new(:chevron_left, size: 18, color: "var(--text)") %>
+      <% end %>
+
+      <div class="flex-1 min-w-0">
+        <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase truncate"
+             style="color: <%= color_var %>;">
+          <%= @subject.name.upcase %> · REVISÃO
+        </div>
+        <h1 class="font-display text-[17px] font-extrabold leading-tight m-0 truncate" style="color: var(--text);">
+          <%= mission.title %>
+        </h1>
+      </div>
+    </div>
+  </header>
+
+  <%# ── Completion banner ─────────────────────────────────────── %>
+  <div class="lens-card p-5 mb-4 text-center"
+       style="background: color-mix(in oklab, <%= color_var %> 14%, var(--surface)); border-color: <%= color_var %>;">
+    <div class="mx-auto mb-2 inline-flex items-center justify-center w-12 h-12 rounded-full"
+         style="background: <%= color_var %>; color: white; box-shadow: 0 3px 0 color-mix(in oklab, <%= color_var %> 60%, black);">
+      <span class="font-display text-[22px] font-extrabold">✓</span>
+    </div>
+    <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
+         style="color: <%= color_var %>;">
+      Missão completa
+    </div>
+    <p class="font-display text-[14px] leading-snug m-0" style="color: var(--text);">
+      <strong><%= @review_stage.total_visits %></strong>
+      <%= @review_stage.total_visits == 1 ? "lição percorrida" : "lições percorridas" %>
+      sobre <strong><%= mission.concept.name %></strong>.
+    </p>
+  </div>
+
+  <%# ── Visit cards ───────────────────────────────────────────── %>
+  <div class="flex flex-col gap-3">
+    <% visits.each_with_index do |entry, idx| %>
+      <% label = ::Academy::Lens::Catalog.kid_action_label(entry.lens_type.to_sym) %>
+      <%= link_to kid_academy_subject_mission_review_visit_path(@subject, mission, entry.visit.id),
+                  class: "lens-compare-card flex items-center gap-3",
+                  style: "text-decoration: none; color: inherit;" do %>
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-[22px] shrink-0"
+             style="background: color-mix(in oklab, <%= color_var %> 18%, var(--surface)); border: 2px solid <%= color_var %>;">
+          <%= label[:emoji] %>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase"
+               style="color: var(--text-muted);">
+            Lição <%= idx + 1 %>
+          </div>
+          <div class="font-display text-[15px] font-extrabold leading-tight m-0 truncate" style="color: var(--text);">
+            <%= label[:action] %>
+          </div>
+        </div>
+        <div class="shrink-0" aria-hidden="true">
+          <%= render Ui::Icon::Component.new(:chevron_right, size: 18, color: "var(--text-muted)") %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

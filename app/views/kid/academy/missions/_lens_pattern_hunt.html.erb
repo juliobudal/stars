@@ -1,0 +1,102 @@
+<%# locals: concept, payload, color_var
+     Handles analogy_bridge + historical. %>
+<% if payload["scenes"].present? %>
+  <%# Historical: timeline of 3 scenes %>
+  <div class="lens-card p-5">
+    <% if payload["pattern_label"].present? %>
+      <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-3"
+           style="color: <%= color_var %>;">
+        Padrão: <%= payload["pattern_label"] %>
+      </div>
+    <% end %>
+
+    <ol class="flex flex-col gap-0 m-0 p-0 list-none relative">
+      <% Array(payload["scenes"]).each_with_index do |scene, idx| %>
+        <li class="flex gap-3 relative pb-4 <%= 'lens-timeline-line' unless idx == payload['scenes'].length - 1 %>">
+          <div class="shrink-0 flex flex-col items-center" style="width: 56px;">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center font-display text-[13px] font-extrabold tabular-nums"
+                 style="background: <%= color_var %>; color: white; box-shadow: 0 3px 0 color-mix(in oklab, <%= color_var %> 60%, black);">
+              <%= scene["year"] %>
+            </div>
+          </div>
+          <div class="flex-1 min-w-0 pt-1">
+            <div class="font-display text-[14px] font-extrabold leading-tight mb-1" style="color: var(--text);">
+              <%= scene["headline"] %>
+            </div>
+            <div class="font-display text-[12px] leading-snug" style="color: var(--text-muted);">
+              <%= scene["structural_element"] %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ol>
+
+    <% if payload["pattern_question"].present? %>
+      <div class="rounded-2xl p-4 mt-2"
+           style="background: color-mix(in oklab, <%= color_var %> 10%, var(--surface)); border: 2px solid <%= color_var %>;">
+        <p class="font-display text-[14px] font-extrabold leading-snug m-0" style="color: var(--text);">
+          <%= payload["pattern_question"] %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <%# Analogy bridge: source ↔ target with mapping %>
+  <%
+    src = payload["source_domain"].is_a?(Hash) ? payload["source_domain"] : {}
+    tgt = payload["target_domain"].is_a?(Hash) ? payload["target_domain"] : {}
+    mapping = Array(payload["mapping"])
+  %>
+  <div class="lens-card p-5">
+    <div class="grid grid-cols-2 gap-3 mb-4">
+      <% [[src, "Origem"], [tgt, "Destino"]].each_with_index do |(dom, label), i| %>
+        <div class="rounded-2xl p-3"
+             style="background: <%= i.zero? ? 'var(--surface-2)' : "color-mix(in oklab, #{color_var} 12%, var(--surface))" %>;
+                    border: 2px solid <%= i.zero? ? 'var(--hairline)' : color_var %>;">
+          <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
+               style="color: <%= i.zero? ? 'var(--text-muted)' : color_var %>;">
+            <%= label %>
+          </div>
+          <div class="font-display text-[14px] font-extrabold leading-tight mb-2" style="color: var(--text);">
+            <%= dom["name"] %>
+          </div>
+          <ul class="flex flex-col gap-1 m-0 p-0 list-none">
+            <% Array(dom["elements"]).each do |el| %>
+              <li class="font-display text-[12px] leading-snug" style="color: var(--text);">• <%= el %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+
+    <% if mapping.any? %>
+      <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-2"
+           style="color: var(--text-muted);">
+        Pontes
+      </div>
+      <div class="flex flex-col gap-1.5 mb-4">
+        <% mapping.each do |m| %>
+          <div class="flex items-center gap-2 rounded-xl px-3 py-2"
+               style="background: var(--surface-2); border: 1.5px solid var(--hairline);">
+            <span class="font-display text-[12px] font-bold flex-1 min-w-0 truncate" style="color: var(--text);">
+              <%= m["from"] %>
+            </span>
+            <span class="font-display text-[12px] font-extrabold shrink-0" style="color: <%= color_var %>;">→</span>
+            <span class="font-display text-[12px] font-bold flex-1 min-w-0 truncate text-right" style="color: var(--text);">
+              <%= m["to"] %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if payload["transfer_question"].present? %>
+      <div class="rounded-2xl p-4"
+           style="background: color-mix(in oklab, <%= color_var %> 10%, var(--surface)); border: 2px solid <%= color_var %>;">
+        <p class="font-display text-[14px] font-extrabold leading-snug m-0" style="color: var(--text);">
+          <%= payload["transfer_question"] %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+<% end %>

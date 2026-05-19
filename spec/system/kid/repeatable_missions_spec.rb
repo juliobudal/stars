@@ -23,9 +23,15 @@ RSpec.describe "Kid completes a repeatable mission", type: :system, js: true do
                               .order(:created_at).last
       expect(pt_pending).to be_present, "Expected a pending ProfileTask for iteration #{i}"
 
+      # Wait for the modal element to be present in the DOM (Turbo broadcast may
+      # still be flushing on iterations 2/3 right after approval). Modal starts
+      # hidden, so visible: false.
+      modal_id = "modal_profile_task_#{pt_pending.id}"
+      expect(page).to have_css("##{modal_id}", visible: false, wait: 5)
+
       # Open the inline modal via JS (it starts display:none) and click "Terminei!".
       # This mirrors the approach used in kid_flow_spec and full_mission_flow_spec.
-      open_modal_and_click("modal_profile_task_#{pt_pending.id}", "Terminei!")
+      open_modal_and_click(modal_id, "Terminei!")
 
       expect(page).to have_content("Missão enviada para aprovação", wait: 5)
 

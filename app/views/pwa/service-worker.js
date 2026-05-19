@@ -6,7 +6,7 @@
 //   Cross-origin / POST → pass-through (no respondWith)
 // Bump CACHE on cache-shape changes (Vite hashes auto-bust their entries).
 
-const CACHE = "littlestars-v1";
+const CACHE = "littlestars-v5";
 const SHELL = ["/offline.html", "/icon-192.png", "/icon-512.png"];
 
 self.addEventListener("install", (event) => {

@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "academy/lens/statistical.json",
+  "title": "Statistical Lens Payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "predict_prompt",
+    "predict_unit",
+    "predict_min",
+    "predict_max",
+    "reveal_value",
+    "reveal_source",
+    "interpretation"
+  ],
+  "properties": {
+    "predict_prompt": { "type": "string", "minLength": 30, "maxLength": 220 },
+    "predict_unit": {
+      "type": "string",
+      "enum": ["%", "vezes/dia", "vezes/semana", "minutos", "horas"]
+    },
+    "predict_min": { "type": "integer" },
+    "predict_max": { "type": "integer" },
+    "reveal_value": { "type": "number" },
+    "reveal_source": { "type": "string", "minLength": 30, "maxLength": 220 },
+    "interpretation": { "type": "string", "minLength": 60, "maxLength": 320 }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "challenge": "Pega 1 hábito que você QUER ter (estudar, ler, treinar, escrever) e desenha a versão de 2 minutos que cabe até em dia ruim. Escolhe 2 a 4 ingredientes — cada um reduz o atrito do início.",
+  "constraints": [
+    {
+      "id": "p",
+      "label": "Define a versão minúscula: ex. 'ler 1 página', '1 flexão', 'escrever 1 frase'",
+      "cost": "Parece ridículo no início; ego pode resistir 'isso não é nada'"
+    },
+    {
+      "id": "g",
+      "label": "Gatilho ancorado em hábito que já existe: 'depois do café da manhã, faço X'",
+      "cost": "Se o hábito-âncora falha, o novo também falha; precisa âncora estável"
+    },
+    {
+      "id": "a",
+      "label": "Ambiente pré-armado: livro na mesa de cabeceira, tênis perto da porta",
+      "cost": "Ocupa espaço físico; cônjuge/irmão pode reclamar"
+    },
+    {
+      "id": "r",
+      "label": "Registro visível: marca o dia num calendário ou app simples (não X)",
+      "cost": "Mais 30s por dia; fácil esquecer no começo"
+    },
+    {
+      "id": "n",
+      "label": "Regra do 'nunca dois dias seguidos': se falhar hoje, AMANHÃ é não-negociável",
+      "cost": "Exige autoconsciência; em dias muito ruins é difícil retomar"
+    },
+    {
+      "id": "i",
+      "label": "Identidade explícita: 'sou alguém que lê', escrito num post-it visível",
+      "cost": "Pode soar piegas; precisa atualizar quando hábito muda"
+    }
+  ],
+  "must_pick": 3,
+  "outcomes": {
+    "p+g+a": "Pacote clássico: pequeno o bastante pra caber (p), encaixado num gatilho que existe (g), com ambiente pronto (a). Funciona em 70% dos hábitos novos. O cérebro liga 'já tô fazendo' antes de processar 'estou começando algo difícil'.",
+    "p+g+r": "Foco no registro: pequeno, ancorado, e VISÍVEL. Bom pra quem se motiva por progressão visível. O calendário com 30 dias riscados é o reforço — você não quer quebrar a sequência.",
+    "p+a+n": "Aposta no ambiente + regra de recuperação. Bom pra hábito de exercício — tênis perto, regra 'amanhã sem desculpa'. Funciona melhor quando você consegue se policiar quando falha.",
+    "p+i+r": "Combo de identidade: pequeno, com post-it visível, e registro diário. Bom pra hábitos onde o problema é mais psicológico que prático — 'eu nunca fui de estudar' vira 'eu sou alguém que estuda'.",
+    "p+g+a+r": "Pacote completo de 4. Atrito mínimo no início (p+g+a) + reforço de progresso (r). Em 2 meses, geralmente passa de '2 min de versão pequena' pra '15 min naturais', sem ter sido forçado."
+  }
+}

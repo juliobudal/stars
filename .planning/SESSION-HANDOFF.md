@@ -1,83 +1,136 @@
-# Session Handoff — Parent UI Polish + Pendency Audit
+# Session Handoff — Academy Curated-Static Pivot
 
-Date: 2026-04-25
-Branch: `main`
-Last commits:
-```
-3af6f33 chore: rubocop autocorrect (case indent + array literal spacing)
-ef070f9 fix(ui): parent shell polish — full-bleed layout, tighter sidebar, FamilySelector + KidPlaceholderCard
-2258fb7 fix(auth): clear stale family cookie when family record is gone
-```
+> Data: 2026-05-18
+> Sessão anterior: implementação do pivot + pilot Trilha Atenção + 3 gates + fixes de specs
+> Próxima sessão: ler este doc primeiro, depois `.planning/designs/academy-curated-static-pivot.md` e `.planning/designs/atencao-pilot-scope.md`
 
----
+## Estado em 1 parágrafo
 
-## What This Session Shipped
+O pivot arquitetural para conteúdo curado-estático está **completo e funcional na trilha de Atenção** (4 missões, 26 payloads). Migration + seeder + runtime curated-first + ChooseNext curated-aware + Begin fallback curated-aware + PrewarmNextJob curated-aware. UI tem modo de revisão que mostra a resposta dada + reveal aberto em vez de travar. Suite: **890/0 passando**. Pronto pra escalar pra próximas trilhas ou pra editorial humano nos 26 payloads existentes.
 
-### Parent shell polish (commit `ef070f9`)
-- **Layout** (`app/views/layouts/parent.html.erb`): dropped `lg:max-w-6xl mx-auto`. Full-bleed by default with `lg:px-8` gutter. New `:container_class` yield slot for narrow opt-in.
-- **Sidebar** (`app/views/shared/_parent_nav.html.erb`): nav items reduced `px-4 py-3 text-[15px]` → `px-3 py-2 text-[14px]`, icons 20 → 18.
-- **FamilySelector** (NEW `app/components/ui/family_selector/`): circular initial badge + truncated name + chevron on `bg-bg-soft` tile. Dropdown menu deferred.
-- **KidPlaceholderCard** (NEW `app/components/ui/kid_placeholder_card/`): replaces broken `ghost-add-card` (CSS class deleted in `129d153` Tailwind v4 refactor). Dashed-border card matching kid-card height with hover lift.
-- **Form opt-ins**: `content_for :container_class, "lg:max-w-3xl lg:mx-auto"` added to profiles/global_tasks/rewards/invitations new+edit; `lg:max-w-4xl` on settings/show.
+## O que está em produção (mergeável)
 
-### Auth fix (commit `2258fb7`)
-- `FamilySessionsController#new` now clears stale `family_id` cookie when the Family record was deleted. Prevents `ERR_TOO_MANY_REDIRECTS`. 2 request specs added.
+### Pipeline curated-static
+- **Migration `20260518000002_add_source_to_academy_lens_cache`** — coluna `source: 'curated'|'llm'`, default `llm`
+- **`Academy::LensCache`** — scopes `.curated` / `.llm`, validação `inclusion`
+- **`Academy::Lens::Generate#call`** — curated-first lookup antes do path LLM; transparente pra controllers
+- **`db/seeds/academy_lens_payloads.rb`** — seeder idempotente que lê `db/seeds/academy_lens_payloads/{lens_type}/{slug}.json`, valida schema + tom + forbidden_terms, upserta com `source=curated`, `judge_verdict=approved_human`
+- **`lib/tasks/academy_lens.rake`** — 3 tasks: `draft[mission,lens]`, `draft_trail[trail]`, `coverage`
 
-Verification: 11/11 system specs green; rubocop clean on new components; visual screenshot confirms all 4 user complaints resolved.
+### Gates de qualidade
+- **A (Tom)** — Seeder portou `FORBIDDEN_TONE_PATTERNS` do `Generators::Base` + `forbidden_terms_list` por concept. Aborta no seed se violar.
+- **B (Fato)** — Cross-check via WebSearch dos 7 claims mais arriscados. 5 erros corrigidos (Tristan 2015 ✓, Gloria 47s era 2016 ✗, James Clear dedos invenção ✗, Franklin autobiografia 1791 ✗, Brain Drain 26% inventado ✗, pickups/dia n=200 não 1300 ✗).
+- **C (UI smoke)** — `ApplicationController.renderer` headless renderiza os 6 partials × 8 lens types × 2 modos (live + review) sem erro.
 
----
+### ChooseNext, Begin, PrewarmNextJob curated-aware
+Antes do fix, mesmo com 26 payloads, ChooseNext escolhia tipos não-curados → Generate fallback LLM. Agora todos respeitam o `curated_set` da missão. Dentro da trilha Atenção, **zero rotas possíveis pro LLM**.
 
-## Pendency Audit (3 parallel Explore agents, 2026-04-25)
+### Review mode UI
+- **`review_lens.html.erb`** passa `review_mode: true, signal_payload: visit.signal_payload`
+- 6 partials atualizados pra aceitar e renderizar: predict (slider pré-preenchido), micro_check (correta destacada + "Você acertou/errou"), compare (reveal aberto), embodied (badge "completou"), engineering (consequência calculada + outras combos em `<details>`), narrative (cenas todas desbloqueadas)
+- Strings kid-facing renomeadas: `lente` → `lição` em atlas chip, review banner, review overview
 
-### Audit results — most "pendencies" already shipped
+### Bugs pré-existentes corrigidos
+- `Digests::Compose` brittle em segunda — `travel_to(Wednesday)`
+- `RecallReminderJob` test DB sujo — `before(:each)` truncate Academy tables global em `rails_helper.rb`
+- Motion a11y `.ls-loading-dot` ignorava reduced-motion — CSS reordenado + `!important`
+- PWA spec hardcoded `v1` vs real `v5` — regex
+- Repeatable missions race Turbo/modal DOM — `have_css(..., visible: false, wait: 5)`
 
-| Group | Total items | HANDLE | SKIP | ALREADY-DONE |
-|-------|------------:|-------:|-----:|-------------:|
-| Parent UI residuals | 5 | 1 | 4 | 0 |
-| Icon picker plan (T1–T9 + repo hygiene) | 12 | 0 | 0 | 12 |
-| Goofy lake / 9-wave UI / design gaps | 7 | 0 | 1 | 6 |
-
-### Real pendencies for next session
-
-**All Tier 1 + Tier 2 closed in this session** (commits `f33fe1e`, `c2f87d6`, `b0be282`):
-
-1. ✅ Settings PINs heading → `Ui::Heading::Component` (`f33fe1e`).
-2. ✅ Hardcoded color migration — verified already done in earlier commits `98e69a7`, `1a44d8f`. Audit-flagged files (`kid/dashboard`, `_bg_shapes`, `parent/dashboard`, `_star_mascot`) all reference tokens or use intentional opacity literals.
-3. ✅ Font scale — canonical `--text-xs..3xl` (11/13/15/18/22/26/36) added to `theme.css:214-222`. `stat_metric` and `approval_row` migrated. Out-of-scope inline `font-size:` left in: `invitation_mailer/invite.html.erb`, `pin_modal/component.css`, dynamic `size:`-driven components (`Ui::Icon`, `Ui::StarBadge`, `Ui::Avatar`, `Ui::KidInitialChip`).
-4. ✅ Destructive confirmations standardized: `kid_management_card`, `profiles/_form`, `global_tasks/_form`, `mission_list_row`, `reward_catalog_card`, `approvals/index` (`c2f87d6`).
-
-### Remaining (lower priority, deferred)
-
-- **Out-of-scope hex codes** still present in: `app/components/ui/bg_shapes/component.rb`, `smiley_avatar/component.rb`, `pin_modal/component.css`, `confetti/confetti_controller.js`, `app/views/invitation_mailer/invite.html.erb`. These were not in the original audit's flagged list. Run `/gsd-audit-fix` if a sweep is desired.
-- **Inline `font-size:` TODOs** in: `parent/global_tasks/index.html.erb:62`, `invitation_mailer/invite.html.erb:10`, `pin_modal/component.css:2-11`. Defer until next refactor pass.
-- **Family-switch dropdown menu** — `Ui::FamilySelector` button has cosmetic chevron only; wire real menu when multi-family ships.
-- **Vite HMR WS dev errors** — port mapping artifact (10302). Dev ergonomics.
-
-### Confirmed not actionable (skipped with rationale)
-
-- **Duplicate empty-state in kid index** — `Ui::KidPlaceholderCard` (always) and `Ui::Empty` (only when empty) are visually separated by grid layout; not actually overlapping.
-- **`border-border` token** — defined in `theme.css:115` as `--border: var(--hairline)`. Not orphan.
-- **Mobile bottom nav density** — 22px icons + `text-[10px]` are intentional thumb targets in 72px nav. Different design context than sidebar.
-- **`KidManagementCard` not using `Ui::Card` primitive** — only 2 cards (KidManagement + RewardCatalog) bypass primitive; both need custom data-palette + overflow behavior. Refactor cost > benefit.
-- **Vite HMR WS errors in browser console** — dev-only, port mapping artifact (10302).
-
-### Confirmed already done (closed in earlier sessions)
-
-- All 9 icon-picker plan tasks (commits `57bbb69` → `54617ce`).
-- Tag-split fix (`5d352b3`), manifest gitignore, `bin/setup` icons:sync hook.
-- 9-wave UI plan W1–W8 (Opus-approved 5/8 first pass; W4/W5/W6 re-fixed in `c817e75`/`6f08b99`/`c522e65`).
-- Today's commits (`cd50cb2`, `fdf9ebb`, `ef070f9`) collectively close Spacing, Visuals, and Experience pillars from the 6-pillar pixel-perfect audit.
-
----
-
-## Recommended next-session entry point
+## Arquivos criados/alterados nesta sessão
 
 ```
-1. Quick win: settings/show.html.erb — Ui::Heading swap (10 min, single commit).
-2. Decide on Tier 2 scope: pick one of {color migration, font scale, confirmations}
-   based on roadmap priority. Each warrants its own phase.
-3. Re-run pendency audit if more than a week passes between sessions —
-   memory drifts, codebase moves.
+NOVOS:
+  .planning/designs/academy-curated-static-pivot.md  (doc do pivot — pré-sessão, gerado antes)
+  .planning/designs/atencao-pilot-scope.md           (mapping mission × lens)
+  db/migrate/20260518000002_add_source_to_academy_lens_cache.rb
+  db/seeds/academy_lens_payloads.rb                  (seeder + tone enforcement)
+  db/seeds/academy_lens_payloads/{lens_type}/*.json  (26 payloads)
+  lib/tasks/academy_lens.rake                        (draft/coverage rake tasks)
+
+ALTERADOS:
+  app/models/academy/lens_cache.rb                   (SOURCES + scopes)
+  app/services/academy/lens/generate.rb              (curated-first lookup)
+  app/services/academy/lens/choose_next.rb           (curated-aware rotation + force_close)
+  app/services/academy/missions/begin.rb             (fallback walka só curated)
+  app/jobs/academy/lens/prewarm_next_job.rb          (skip non-curated)
+  app/views/kid/academy/missions/review_lens.html.erb (passa review_mode)
+  app/views/kid/academy/missions/_lens_*.html.erb    (6 partials: review_mode support)
+  app/views/kid/academy/missions/review.html.erb     (lente → lição)
+  app/views/kid/academy/atlas/_concept_chip.html.erb (lente → lição)
+  db/seeds/academy.rb                                (carrega o novo seeder)
+  spec/rails_helper.rb                               (TimeHelpers + Academy table cleanup)
+  app/assets/stylesheets/tailwind/base.css           (reduced-motion order fix)
+  spec/system/pwa_install_spec.rb                    (regex cache version)
+  spec/services/academy/digests/compose_spec.rb      (travel_to Wednesday)
+  spec/system/kid/repeatable_missions_spec.rb        (wait for modal DOM)
 ```
 
-Audit source: 3 Explore agents dispatched 2026-04-25. Full per-item evidence available in conversation transcript.
+## Cobertura atual
+
+```
+Trilha 'atencao' (Mente Forte):
+  celular-difícil-parar      7/8 lentes curadas (sem historical)
+  notificacoes-custam-23-min 6/8 (sem historical, ethical)
+  foco-profundo-25min        6/8 (sem historical, ethical)
+  habito-2-minutos           7/8 (sem ethical) — única com historical
+  Total: 26 payloads
+```
+
+Outras 46 missões (50 - 4): **não cobertas** ainda. ChooseNext fallback pro path legacy (LLM) para essas.
+
+## Débitos conhecidos — priorizar por valor/esforço
+
+### Alto valor, médio esforço
+1. **Editorial humano nos 26 payloads** — eu escrevi tudo em ~1h. Voz Duolingo+Guia, exemplos brasileiros, ritmo merecem passagem de quem tem o tom na ponta. Mecanicamente passou (schema, tom, forbidden, fact-check parcial); estética é olho humano.
+2. **Smoke visual real em browser** — só fiz headless. Abrir `/kid/academy` no Chrome em modo retrato (kid layout), navegar uma missão completa, revisitar via `/visits/:visit_id`, confirmar layout/animação/spacing.
+3. **`forbidden_terms_list` vazio em 3/4 concepts** — só `dopamina` tem termos. `switch-cost`, `deep-work`, `regra-dos-2-min` têm `[]`. Tone check fica fraco até popular.
+
+### Alto valor, alto esforço
+4. **Judge LLM real** — sem `OPENROUTER_API_KEY` no dev. Cross-check verifica 7 claims; outros (William James 1890, "1000+ engenheiros Google", "600k palavras Clear") não passaram pelo Judge factual. Setar a key e rodar `Academy::Llm::Judge` contra todos os 26 payloads.
+5. **Escalar pra outras 46 missões** — Sprint 5 do pivot doc. Próxima trilha lógica: `vies-cerebro` (Mente Forte, trilha 2) → 3 missões × ~6 lentes = ~18 payloads. Depois Corpo & Saúde.
+
+### Médio valor, baixo esforço
+6. **2-3 variantes por (mission × lens)** — hoje 1:1. Spaced-repetition repete o mesmo payload. Pivot doc prevê variantes (`ChooseNext.choose_variant`).
+7. **Truncar `academy_lens_cache` rows antigas** — qualquer row `source=llm` gerada antes do pivot tem voz pré-Lens v5. Quando essas missões forem curadas, deletar as órfãs LLM.
+
+### Baixo valor
+8. **i18n** — pt-BR only por enquanto. Curated-static facilita tradução (sem regeneração por locale).
+9. **System specs flaky** — 55 specs `type: :system` passam isolados mas têm timing issues Chrome+Turbo em suite. Não causados pelas minhas mudanças. Investigar quando crescer impacto.
+
+## Como continuar em próxima sessão
+
+### Caminho A — Editorial polish
+1. Curador humano lê `db/seeds/academy_lens_payloads/*/celular-difícil-parar.json` (7 arquivos, todas as lentes da missão mais carregada)
+2. Edita prosa, fixa drift, adapta exemplos brasileiros
+3. `make seed` revalida schema + tom
+4. Browser real: completa a missão, abre review_lens, valida visual
+
+### Caminho B — Escalar para `vies-cerebro` (próxima trilha)
+1. Cria `.planning/designs/vies-cerebro-pilot-scope.md` no mesmo formato de `atencao-pilot-scope.md`
+2. Para cada missão da trilha, mapeia mission × lens
+3. Escreve payloads em `db/seeds/academy_lens_payloads/{lens_type}/{slug}.json`
+4. `make seed`
+5. `rake academy:lens:coverage` confirma
+
+### Caminho C — Ativar Judge factual real
+1. Setar `OPENROUTER_API_KEY` no `.env`
+2. Criar rake task `academy:lens:judge_curated` que itera `LensCache.curated`, roda `Llm::Judge`, persiste `judge_verdict`
+3. Reportar verdicts `needs_revision` para curador humano
+
+## Comandos úteis de partida
+
+```bash
+make dev-detached                              # sobe stack
+make seed                                       # carrega curados (idempotente)
+make rspec ARGS="spec/services/academy/lens/"   # tests do lens layer
+docker compose exec web bin/rails academy:lens:coverage  # status atual
+docker compose exec web bin/rails runner '
+  m = Academy::Mission.find_by(slug: "celular-difícil-parar")
+  Academy::LensCache.curated.where(concept_id: m.concept_id).pluck(:lens_type)
+'                                               # smoke individual
+```
+
+## Risco principal a vigiar
+
+A pipeline funciona end-to-end **dentro da trilha Atenção**. Quando o kid abrir uma missão fora dela (qualquer das outras 46), o caminho legacy LLM é acionado. Sem `OPENROUTER_API_KEY`, isso falha silenciosamente — o controller renderiza `v5_placeholder` com status 503. Comportamento esperado pré-curadoria, mas pode confundir kid testando. Considerar gate de produto: missões não-curadas aparecem desabilitadas no índice ("em breve") até serem curadas.

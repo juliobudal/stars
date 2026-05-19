@@ -18,6 +18,7 @@
 # Indexes
 #
 #  index_profiles_on_family_id           (family_id)
+#  index_profiles_on_family_id_and_role  (family_id,role)
 #  index_profiles_on_wishlist_reward_id  (wishlist_reward_id)
 #
 # Foreign Keys

@@ -107,7 +107,12 @@ db-rollback:
 	$(EXEC) bin/rails db:rollback
 
 db-reset:
-	$(EXEC) bin/rails db:drop db:create db:migrate db:seed
+	@# Puma/SolidQueue/SolidCable in the web container hold open Postgres
+	@# connections and auto-reconnect, blocking db:drop. Stop web for the
+	@# drop window, then bring it back up.
+	-$(COMPOSE) stop web
+	$(COMPOSE) run --rm web bin/rails db:drop db:create db:migrate db:seed
+	$(COMPOSE) up -d web
 
 # Short aliases
 migrate: db-migrate
@@ -123,6 +128,19 @@ test:
 	$(EXEC) env RAILS_ENV=test bundle exec rspec $(ARGS)
 
 rspec: test
+
+# Academy v5 — structural eval for lens generators. Validates that every
+# LLM-output payload conforms to its per-type JSON schema. Does NOT call
+# OpenRouter — uses stubbed LLM responses for fast feedback in CI.
+# Live LLM eval is opt-in: ACADEMY_LIVE_EVAL=1 make eval-v5.
+eval-v5:
+	$(EXEC) env RAILS_ENV=test bundle exec rspec \
+	  spec/services/academy/lens/ \
+	  spec/services/academy/missions/lifecycle_spec.rb \
+	  spec/services/academy/pokedex/
+
+eval-v4-legacy:
+	@echo "eval-v4-legacy: no-op (v4 persona eval deleted; v5 eval is `make eval-v5`)"
 
 lint:
 	$(EXEC) bin/rubocop

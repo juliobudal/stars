@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "James Clear",
+    "age": 16,
+    "trait": "Jogador de beisebol dos EUA que tomou um taco no rosto em pleno jogo — nariz e órbitas oculares quebradas."
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Segundo ano do colégio. James leva um taco de beisebol no rosto durante a aula — taco escapou da mão de um colega. Nariz quebrado, múltiplas fraturas no crânio, as duas órbitas oculares destruídas. Coma induzido. Por semanas, visão dupla. Por 9 meses, não pode dirigir."
+    },
+    {
+      "id": "s2",
+      "text": "James se recupera e volta a jogar — entra na Denison University, vira top atleta acadêmico. Mas o que vira o jogo dele é outra coisa: começa um experimento de CONSISTÊNCIA radical. Levantar mesma hora. Ler 20 páginas todo dia. Treinar musculação em microblocos. Tudo PEQUENO o bastante pra dar certo até em dia ruim. Escreve cada dia num caderno."
+    },
+    {
+      "id": "s3",
+      "text": "Em 2018, publica 'Atomic Habits'. Tese: hábito não nasce de força de vontade — nasce de tornar a primeira repetição tão pequena que você não tem desculpa. 1 página. 1 flexão. 1 minuto. A IDENTIDADE de 'sou alguém que faz isso' é o que cresce — não o tamanho da tarefa."
+    }
+  ],
+  "ending": "James escreveu 600 mil palavras no caderno dele em uma década. Não em sessões de 4 horas — em micro-sessões de 30 minutos quase todo dia. O livro virou bestseller mundial em 2018. A piada interna: 'Atomic Habits' literalmente foi escrito por hábito atômico.",
+  "micro_check": {
+    "question": "Qual a tese central de James Clear sobre como hábitos nascem?",
+    "options": [
+      "Tornar a primeira repetição pequena o bastante pra caber até em dia ruim.",
+      "Usar muita força de vontade nos primeiros 21 dias até virar automático.",
+      "Encontrar um amigo pra cobrar você todo dia até virar rotina.",
+      "Marcar metas grandes na agenda e disciplinar-se a cumprir."
+    ],
+    "correct_index": 0,
+    "rationale": "Clear pivota o problema do hábito do 'tamanho' pra 'cabência'. A primeira repetição pequena entra todo dia — inclusive nos dias ruins — e é a constância que constrói a identidade, não a intensidade."
+  }
+}

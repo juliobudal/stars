@@ -1,6 +1,8 @@
 # Idempotent: skip wipe + seed if any Family already exists, unless SEED_FORCE=1.
 if Family.exists? && ENV["SEED_FORCE"] != "1"
   puts "↪ Seed skipped: #{Family.count} family/families already present. Use SEED_FORCE=1 to re-seed."
+  # Even when host data exists, refresh the Academy curriculum (idempotent).
+  load Rails.root.join("db/seeds/academy.rb")
   exit
 end
 
@@ -181,3 +183,5 @@ puts "  Família Budal — login: familia@budal.dev / supersecret1234"
 puts "  Kids: Theo (sky), Lis (rose), Laura (lilac) — 0⭐ each — PINs: 1111/2222/3333"
 puts "  Missions per kid: Lis=#{lis_missions.size}, Theo=#{theo_missions.size}, Laura=#{laura_missions.size} (+#{shared_missions.size} compartilhadas)"
 puts "  Total: #{family.global_tasks.count} missions, #{family.rewards.count} rewards, #{family.categories.count} categories"
+
+load Rails.root.join("db/seeds/academy.rb")

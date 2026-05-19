@@ -1,0 +1,45 @@
+<% content_for(:title) { "CMS — Missões" } %>
+
+<div class="px-4 sm:px-6 py-6 max-w-5xl mx-auto">
+  <h1 class="font-display text-[22px] font-extrabold leading-tight m-0 mb-3" style="color: var(--text);">
+    Academy CMS — Missões
+  </h1>
+
+  <%= form_with url: admin_academy_missions_path, method: :get, local: true,
+                class: "flex flex-wrap items-center gap-2 mb-4" do %>
+    <%= select_tag :subject_id,
+                   options_from_collection_for_select(@subjects, :id, :name, params[:subject_id]),
+                   include_blank: "(todas as áreas)",
+                   class: "px-3 py-2 rounded-lg border border-[var(--hairline)] bg-[var(--surface)] font-bold" %>
+    <%= submit_tag "Filtrar",
+                   class: "px-4 py-2 rounded-lg font-extrabold text-[13px]",
+                   style: "background: var(--primary); color: white; box-shadow: 0 3px 0 var(--primary-2);" %>
+  <% end %>
+
+  <table class="w-full text-[13px]" style="border-collapse: separate; border-spacing: 0 6px;">
+    <thead>
+      <tr class="text-left font-display font-extrabold" style="color: var(--text-muted);">
+        <th class="px-3 py-2 text-[10px] tracking-[1.5px] uppercase">Área</th>
+        <th class="px-3 py-2 text-[10px] tracking-[1.5px] uppercase">Título</th>
+        <th class="px-3 py-2 text-[10px] tracking-[1.5px] uppercase">Conceito</th>
+        <th class="px-3 py-2 text-[10px] tracking-[1.5px] uppercase">Ativa</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @missions.each do |mission| %>
+        <tr style="background: var(--surface); border: 2px solid var(--hairline);">
+          <td class="px-3 py-2 font-bold"><%= mission.subject.name %></td>
+          <td class="px-3 py-2 font-bold"><%= mission.title %></td>
+          <td class="px-3 py-2"><code class="text-[11px]"><%= mission.concept&.name %></code></td>
+          <td class="px-3 py-2 font-bold"><%= mission.active? ? "sim" : "—" %></td>
+          <td class="px-3 py-2 text-right">
+            <%= link_to "editar", edit_admin_academy_mission_path(mission),
+                        class: "font-extrabold text-[12px]",
+                        style: "color: var(--c-primary-dark);" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

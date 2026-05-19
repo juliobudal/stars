@@ -749,8 +749,101 @@ end
 
 ---
 
+## 13. Academy Module (LLM-Guided Learning Missions)
+
+> **Status:** shipped 2026-05-15 · **Reference:** [docs/academy.md](./docs/academy.md)
+
+Academy is an isolated learning subsystem layered on top of the core LittleStars app. It introduces an "O Guia" persona — an LLM (DeepSeek via OpenRouter) — that conducts a kid through micro-sessions of curated subjects (Christian virtues, financial literacy, household mastery, philosophy, discipline & habits, civics), each capped by a multiple-choice checkpoint that scores absorption and unlocks medals.
+
+### 13.1 Isolation contract
+
+Academy is **not** a Rails engine — it's a strictly namespaced module that mirrors the host service contract while owning its own tables, persona, and HTTP surface.
+
+- All tables prefixed `academy_*`. **Zero FK** into host tables (no `family_id`, no `profile_id`).
+- All ActiveRecord models under `Academy::`, inheriting from `Academy::ApplicationRecord` (which sets `strict_loading_by_default = false`).
+- Host → Academy bridge: `Academy::Learner.from_profile(current_profile)` (a `Data.define(:id, :display_name, :age_band)`). Reverse direction (Academy → host models) is forbidden.
+- All services under `Academy::*` inherit `Academy::ApplicationService < ::ApplicationService` and return the same `Result` Data class as the host.
+
+### 13.2 Stack additions
+
+| Layer | Tech | Why |
+|---|---|---|
+| LLM gateway | OpenRouter (OpenAI-compatible REST) | One key, many models. Default: `deepseek/deepseek-chat-v3.1`. |
+| Transport | `Academy::Llm::Client` (Net::HTTP) + `langchainrb` 0.19 on Gemfile | Thin custom transport for now; langchainrb is parked as a drop-in replacement when we need chains/tools. |
+| Persona | `Academy::Llm::GuidePersona` system prompt | Authoritative · mysterious · fascinated · objective. |
+| Output parsing | `Academy::Llm::Parser` | Strict JSON envelope (`narrative`, `checkpoint`, `session_complete`, `mission_complete`, `next_hook`). |
+
+### 13.3 Data model
+
+```
+academy_subjects (6 rows seeded)
+  └─ academy_missions (10 per subject)
+       └─ academy_mission_progresses (one per learner × mission)
+            └─ academy_sessions (sessions_count per mission, default 4)
+                 └─ academy_messages (system / guide / learner)
+
+academy_medals (catalog)        academy_medal_awards (learner_id × medal_id unique)
+```
+
+Key columns: `mission_progresses.status` enum (not_started/in_progress/completed/mastered), `correct_checkpoints` + `total_checkpoints` for accuracy, `messages.metadata` jsonb for checkpoint payload + completion flags.
+
+### 13.4 Service objects
+
+| Service | Responsibility |
+|---|---|
+| `Academy::StartMission` | Idempotent: returns the in-progress `MissionProgress` (creates progress + session 0 on first call). Does not call the LLM — keeps request fast; chat view triggers `AdvanceTurn` on first render. |
+| `Academy::AdvanceTurn` | Drives one turn: records the kid's input/option, calls the LLM via `Llm::GuideAgent`, persists the guide message, advances `current_session_index`, finalizes mission, and triggers medals. |
+| `Academy::Llm::GuideAgent` | LangChain-style: builds prompt → calls client → parses envelope. Stateless. |
+| `Academy::Medals::AwardForMission` | Awards per-mission + per-subject tier medals (apprentice ≥30%, adept ≥60%, master =100%). Idempotent. |
+
+### 13.5 HTTP surface
+
+```
+GET  /kid/academy/subjects                            subject gallery
+GET  /kid/academy/subjects/:slug                      mission list (sequentially locked)
+GET  /kid/academy/subjects/:slug/missions/:slug       chat screen
+POST /kid/academy/subjects/:slug/missions/:slug/turn  drive one turn (Turbo Stream)
+GET  /kid/academy/medals                              medal grid
+
+GET  /parent/academy                                  per-child × per-subject progress matrix
+```
+
+Kid surface lives under `app/views/kid/academy/` and follows the global Duolingo system (DESIGN.md). The chat screen renders the checkpoint **inside** the last guide bubble (no sticky/fixed overlays — caused overlap bugs and was retired). State transitions: composer → checkpoint → "Próxima sessão →" CTA → celebration card.
+
+### 13.6 UI rules specific to Academy
+
+- Bottom-nav entry "Academia" (sparkle icon) sits between Jornada and Lojinha, with `active_prefix: "/kid/academy"` so it stays highlighted across nested pages.
+- Screen wrapper uses `padding-bottom: 140px` to clear the floating kid nav — no `sticky`/`fixed` on composer or checkpoint.
+- Guide bubble: green gradient avatar + sparkle. Learner bubble: right-aligned, color reflects correctness (green correct / red wrong / sky neutral).
+- Celebration is gold-gradient when `mastered` (every checkpoint correct), green when merely `completed`.
+- Composer disables itself on submit (Stimulus `academy-composer`) to prevent double-fire while the LLM is thinking.
+
+### 13.7 Environment
+
+```
+OPENROUTER_API_KEY=sk-or-v1-...
+ACADEMY_LLM_MODEL=deepseek/deepseek-chat-v3.1
+ACADEMY_LLM_TEMPERATURE=0.7
+ACADEMY_LLM_MAX_TOKENS=900
+```
+
+Module is inert without `OPENROUTER_API_KEY` — `Kid::Academy::BaseController` redirects to `kid_root` instead of attempting to call the LLM. Initializer at `config/initializers/academy.rb` reads ENV → `Academy.configure`; the module never reads ENV directly.
+
+### 13.8 Seeds & ops
+
+- `db/seeds/academy.rb` — idempotent on `slug`. Seeds 6 subjects, 60 missions, 138 medals (10 per mission × 2 kinds + 3 tier medals per subject).
+- Chained from `db/seeds.rb` so `make seed` always refreshes the curriculum, even when host data already exists.
+- `make db-reset` stops the `web` container during the drop and brings it back up — required because Puma + Solid Queue hold persistent connections that reconnect within ms.
+
+### 13.9 Extending into new modules
+
+To add another isolated subsystem (Journal, Reading, Music, …) follow the Academy template — see `docs/academy.md` §11. The contract: top-level namespace + `Config` + adapter, table prefix, no host FKs, host bridge only at controller layer, dedicated initializer reading ENV.
+
+---
+
 ## Changelog
 
 | Versão | Data | Mudanças |
 |---|---|---|
+| 1.1 | 2026-05-15 | §13 — Academy module (LLM-guided learning) shipped. Isolated `Academy::` namespace, `academy_*` tables, OpenRouter+DeepSeek transport, 6 subjects × 10 missions × 138 medals seeded. Bottom-nav entry added. |
 | 1.0 | 2026-04-19 | Documento inicial — stack Rails 8 + PostgreSQL + JetRockets UI + Docker Compose. |

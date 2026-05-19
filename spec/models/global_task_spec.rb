@@ -8,6 +8,7 @@
 #  day_of_month               :integer
 #  days_of_week               :string           default([]), is an Array
 #  description                :text
+#  featured                   :boolean          default(FALSE), not null
 #  frequency                  :integer
 #  icon                       :string
 #  max_completions_per_period :integer          default(1), not null
@@ -19,7 +20,8 @@
 #
 # Indexes
 #
-#  index_global_tasks_on_family_id  (family_id)
+#  index_global_tasks_on_family_id               (family_id)
+#  index_global_tasks_on_family_id_and_featured  (family_id,featured) WHERE (featured = true)
 #
 # Foreign Keys
 #

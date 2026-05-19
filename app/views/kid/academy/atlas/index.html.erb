@@ -1,0 +1,86 @@
+<% content_for(:title) { "Atlas — Pokédex de padrões" } %>
+
+<div class="screen screen-enter with-nav"
+     data-controller="pokedex-evolution"
+     data-action="academy:concept-evolved@window->pokedex-evolution#flash">
+
+  <div class="flex items-center gap-3 mb-3 px-1">
+    <%= link_to kid_academy_subjects_path, class: "w-10 h-10 rounded-full flex items-center justify-center anim-press",
+                style: "background: var(--surface); border: 2px solid var(--hairline);" do %>
+      <%= render Ui::Icon::Component.new(:chevron_left, size: 18, color: "var(--text)") %>
+    <% end %>
+    <div class="flex-1 min-w-0">
+      <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase" style="color: var(--c-star);">
+        ATLAS · PADRÕES CAÇADOS
+      </div>
+      <h1 class="font-display text-[22px] font-extrabold leading-tight m-0 truncate" style="color: var(--text);">
+        Pokédex de ideias
+      </h1>
+    </div>
+  </div>
+
+  <%# ── Stats strip ────────────────────────────────────────── %>
+  <div class="grid grid-cols-3 gap-2 mb-4 px-1">
+    <% [
+      [ [ "Visto", "Vistos" ],             @counts[:sighted], "var(--c-primary)" ],
+      [ [ "Completo", "Completos" ],       @counts[:evolving], "var(--c-sky)" ],
+      [ [ "Transferido", "Transferidos" ], @counts[:mastered], "var(--c-star)" ]
+    ].each do |(singular, plural), count, color| %>
+      <% label = count == 1 ? singular : plural %>
+      <div class="rounded-2xl px-3 py-2 text-center"
+           style="background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06);">
+        <div class="font-display text-[18px] font-extrabold tabular-nums" style="color: <%= color %>;"><%= count %></div>
+        <div class="font-display text-[9px] font-extrabold tracking-[1.5px] uppercase" style="color: var(--text-muted);">
+          <%= label %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%# ── Categorias ─────────────────────────────────────────── %>
+  <% Kid::Academy::AtlasController::CATEGORY_ORDER.each do |category| %>
+    <% concepts = @concepts_by_category[category] || [] %>
+    <% next if concepts.empty? %>
+    <% label = Kid::Academy::AtlasController::CATEGORY_LABELS[category] %>
+
+    <section class="mb-5" data-category="<%= category %>">
+      <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-2 px-1" style="color: var(--text-muted);">
+        <%= label %>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+        <% concepts.each do |concept| %>
+          <% lc = @learner_concepts[concept.id] %>
+          <% level = lc&.level.to_i %>
+          <%= render "kid/academy/atlas/concept_chip", concept: concept, level: level, learner_concept: lc %>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+
+  <%# ── Últimas cartas ─────────────────────────────────────── %>
+  <% if @recent_cards.any? %>
+    <section class="mb-5">
+      <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-2 px-1" style="color: var(--c-star);">
+        ÚLTIMAS CARTAS
+      </div>
+      <div class="flex gap-3 overflow-x-auto pb-2 px-1 -mx-1 snap-x">
+        <% @recent_cards.each do |card| %>
+          <article class="shrink-0 snap-start ls-card-3d"
+                   style="background: var(--surface); border: 2px solid var(--c-star); border-radius: 14px; padding: 12px; box-shadow: 0 4px 0 #a37100; width: 220px;">
+            <div class="w-10 h-10 rounded-2xl flex items-center justify-center mb-2"
+                 style="background: <%= card.mission.subject.color %>;">
+              <%= render Ui::Icon::Component.new(card.illustration_key.to_s.presence&.to_sym || :sparkle, size: 20, color: "white") %>
+            </div>
+            <div class="font-display text-[9px] font-extrabold tracking-[1px] uppercase mb-1" style="color: var(--text-muted);">
+              <%= card.mission.subject.name %>
+            </div>
+            <p class="font-display text-[12px] font-extrabold leading-snug m-0" style="color: var(--text);">
+              <%= card.headline %>
+            </p>
+          </article>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+</div>

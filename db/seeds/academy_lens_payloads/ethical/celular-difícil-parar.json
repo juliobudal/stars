@@ -1,0 +1,13 @@
+{
+  "dilemma": "Uma engenheira recebe a tarefa de aumentar em 8% o tempo que adolescentes passam no app. Ela já tem o protótipo: notificação às 22h47 que diz 'seus amigos estão online agora'. Funciona — testes mostram +12%. Ela manda pra produção, ou trava?",
+  "case_a": {
+    "title": "Mandar pra produção",
+    "body": "Ana manda. Argumento: o usuário escolheu instalar o app. Se não quer, desliga a notificação no painel — está lá, basta procurar. A empresa precisa bater meta de engajamento ou o time todo perde bônus. E adolescentes também precisam de conexão social — talvez a notificação ajude alguém que estava sozinho."
+    },
+  "case_b": {
+    "title": "Travar a feature",
+    "body": "Ana trava. Argumento: ela conhece o painel, mas sabe que 80% dos usuários nunca abrem. A notificação às 22h47 mira no momento de cansaço, quando a parte racional do cérebro está fraca. Isso não é 'oferecer conexão' — é tirar proveito de uma vulnerabilidade conhecida pra mover uma métrica. Ela escreve um doc explicando e leva pra liderança."
+  },
+  "anchor_question": "Quando 'usuário pode desligar' deixa de ser uma defesa válida pro design persuasivo?",
+  "reveal": "Tristan Harris chama isso de 'assimetria de poder': do lado da empresa, mil engenheiros desenhando o gatilho. Do lado do usuário, um adolescente cansado às 22h47. A defesa 'tá no painel' funciona quando os dois lados são iguais — não funciona quando um lado conhece o cérebro do outro melhor que o próprio."
+}

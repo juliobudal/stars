@@ -1,0 +1,94 @@
+<%# locals: concept, payload, color_var, review_mode: false, signal_payload: {} %>
+<%
+  character = payload["character"].is_a?(Hash) ? payload["character"] : {}
+  scenes = Array(payload["scenes"])
+  ending = payload["ending"]
+  review_mode = local_assigns.fetch(:review_mode, false)
+  signal_payload = local_assigns.fetch(:signal_payload, {}) || {}
+%>
+<div class="lens-card p-5">
+  <% if character["name"].present? %>
+    <div class="flex items-center gap-3 mb-4 pb-3"
+         style="border-bottom: 2px dashed var(--hairline);">
+      <div class="w-12 h-12 rounded-2xl flex items-center justify-center font-display text-[18px] font-extrabold"
+           style="background: color-mix(in oklab, <%= color_var %> 18%, var(--surface));
+                  border: 2px solid <%= color_var %>; color: <%= color_var %>;">
+        <%= character["name"].to_s.first %>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="font-display text-[15px] font-extrabold leading-tight" style="color: var(--text);">
+          <%= character["name"] %><% if character["age"].present? %>, <%= character["age"] %><% end %>
+        </div>
+        <% if character["trait"].present? %>
+          <div class="font-display text-[12px] leading-snug" style="color: var(--text-muted);">
+            <%= character["trait"] %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="flex flex-col gap-3" data-lens-stage-target="narrativeScenes">
+    <% scenes.each_with_index do |scene, idx| %>
+      <div class="rounded-2xl p-4 lens-narrative-scene <%= 'lens-narrative-scene--locked' if idx > 0 && !review_mode %>"
+           data-scene-index="<%= idx %>"
+           style="background: <%= idx.zero? ? "color-mix(in oklab, #{color_var} 8%, var(--surface))" : 'var(--surface-2)' %>;
+                  border: 2px solid <%= idx.zero? ? color_var : 'var(--hairline)' %>;">
+        <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-2"
+             style="color: <%= color_var %>;">
+          Cena <%= idx + 1 %>
+        </div>
+        <p class="font-display text-[14px] leading-snug m-0" style="color: var(--text);">
+          <%= scene["text"] %>
+        </p>
+
+        <% if Array(scene["choices"]).any? %>
+          <div class="flex flex-col gap-2 mt-3">
+            <% Array(scene["choices"]).each do |choice| %>
+              <button type="button"
+                      class="lens-option-btn lens-option-btn--compact"
+                      <% unless review_mode %>
+                      data-action="click->lens-stage#recordNarrativeChoice"
+                      data-lens-stage-label-param="<%= choice["label"] %>"
+                      data-lens-stage-scene-param="<%= idx %>"
+                      <% end %>
+                      <%= 'disabled' if review_mode %>>
+                <%= choice["label"] %>
+              </button>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if ending.present? %>
+      <div class="rounded-2xl p-4 lens-narrative-scene <%= 'lens-narrative-scene--locked' unless review_mode %>"
+           data-scene-index="ending"
+           style="background: var(--surface-2); border: 2px dashed var(--hairline);">
+        <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-2"
+             style="color: var(--text-muted);">
+          Final
+        </div>
+        <p class="font-display text-[14px] font-bold leading-snug m-0" style="color: var(--text);">
+          <%= ending %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+
+  <% unless review_mode %>
+    <button type="button"
+            class="w-full mt-4 px-4 py-3 rounded-2xl font-display font-extrabold text-[13px] tracking-wide uppercase anim-press ls-btn-3d"
+            style="background: var(--surface); color: var(--text); border: 2px solid var(--hairline); box-shadow: 0 3px 0 var(--hairline);"
+            data-action="click->lens-stage#advanceScene"
+            data-lens-stage-target="advanceSceneBtn">
+      Próxima cena →
+    </button>
+  <% end %>
+</div>
+
+<% if payload["micro_check"].is_a?(Hash) %>
+  <%= render "kid/academy/missions/lens_micro_check",
+             micro_check: payload["micro_check"], color_var: color_var,
+             review_mode: review_mode, signal_payload: signal_payload %>
+<% end %>

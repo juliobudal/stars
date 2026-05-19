@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <rect x="10" y="10" width="20" height="20" rx="3" transform="rotate(-12 20 20)"/>
+  <circle cx="17" cy="17" r="1.6" fill="currentColor"/>
+  <circle cx="24" cy="24" r="1.6" fill="currentColor"/>
+  <rect x="34" y="32" width="22" height="22" rx="3" transform="rotate(10 45 43)"/>
+  <circle cx="40" cy="38" r="1.6" fill="currentColor"/>
+  <circle cx="49" cy="43" r="1.6" fill="currentColor"/>
+  <circle cx="44" cy="49" r="1.6" fill="currentColor"/>
+</svg>

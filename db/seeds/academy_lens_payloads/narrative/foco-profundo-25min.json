@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Cal Newport",
+    "age": 14,
+    "trait": "Garoto teimoso obcecado em entender por que algumas pessoas produzem 10x mais que outras."
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Cal entra na faculdade observando: por que alguns colegas saem da biblioteca de noite com TUDO feito, e outros passam o dia inteiro lá e não terminam nada? Ele começa a cronometrar. Os 'TUDO feito' não estudam mais — estudam DIFERENTE. Sentam, fecham tudo, e ficam imóveis no problema por blocos longos."
+    },
+    {
+      "id": "s2",
+      "text": "Vira professor de ciência da computação em Georgetown sem ter redes sociais. Nunca teve. Publica 'Deep Work' em 2016, livro com uma tese desconfortável: o trabalho de profundidade está virando o novo superpoder do século — e justamente porque ninguém mais consegue fazer."
+    },
+    {
+      "id": "s3",
+      "text": "Em entrevistas, repete a mesma coisa: o cérebro precisa de 15 a 25 minutos pra entrar em foco profundo. Quem nunca passa desse umbral nunca CONHECE como o próprio cérebro funciona em alta. É como um jogador que nunca passou a fase 1 — nem sabe o que o personagem faz."
+    }
+  ],
+  "ending": "Cal não diz que 'celular é o mal'. Ele diz: o foco profundo é uma habilidade rara que se TREINA. Cada bloco de 25 minutos sem interrupção é um treino. Quem faz isso 3x por dia, em 6 meses, está em outra liga — não porque é melhor, mas porque conheceu uma marcha do próprio cérebro que os outros não acessam.",
+  "micro_check": {
+    "question": "Por que pessoas em foco profundo produzem tanto mais?",
+    "options": [
+      "Porque depois de 15-25 min sem interrupção o cérebro entra numa marcha que a maioria nunca alcança.",
+      "Porque elas têm QI mais alto do que a média da população.",
+      "Porque trabalham mais horas por dia que os outros.",
+      "Porque usam técnicas secretas de produtividade que ninguém conhece."
+    ],
+    "correct_index": 0,
+    "rationale": "A diferença não é capacidade, é regime. O foco profundo é um modo cerebral que só liga depois de minutos de imersão contínua — e a maioria fragmenta a atenção tanto que nunca liga essa marcha."
+  }
+}

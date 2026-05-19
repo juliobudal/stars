@@ -66,7 +66,7 @@ end
 
 gem "vite_rails", "~> 3.10"
 
-gem "view_component", "~> 4.7"
+gem "view_component", "~> 4.9"
 
 gem "rspec-rails", "~> 8.0", groups: [ :development, :test ]
 gem "factory_bot_rails", "~> 6.5", groups: [ :development, :test ]
@@ -80,3 +80,8 @@ gem "pagy", "~> 43.5"
 gem "database_cleaner-active_record", "~> 2.2", group: :test
 
 gem "rails-i18n", "~> 8.0"
+
+# Academy module — LLM-guided pedagogical missions
+gem "langchainrb", "~> 0.19"
+gem "ruby-openai", "~> 7.4"
+gem "dotenv-rails", groups: [ :development, :test ]

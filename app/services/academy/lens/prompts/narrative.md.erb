@@ -1,0 +1,118 @@
+# TAREFA
+
+Gere UMA lente narrativa sobre o conceito "<%= concept.name %>" para um aprendiz pt-BR de 8 a 14 anos (age_band: <%= age_band %>, locale: <%= locale %>).
+
+# SACADA CENTRAL (a história ENCARNA esta frase, sem citá-la)
+
+> <%= the_essence %>
+
+A consequência observável na cena final é a evidência direta dessa sacada. Se você precisar EXPLICAR a sacada no `ending`, a história falhou — ela tinha que mostrar.
+<% if common_confusion %>
+
+# CONFUSÃO COMUM
+
+Erro típico que crianças de 7-12 cometem com este conceito:
+> <%= common_confusion %>
+
+Use essa confusão pra escrever o `micro_check`: pelo menos UMA das opções erradas deve materializar EXATAMENTE essa confusão em palavras de criança.
+<% end %>
+<% if forbidden_terms.any? %>
+
+# PALAVRAS PROIBIDAS PARA ESTE CONCEITO
+
+NÃO use os seguintes termos/frases — ensinam ERRADO este conceito:
+<% forbidden_terms.each do |term| %>
+- "<%= term %>"
+<% end %>
+<% end %>
+
+# PROPÓSITO DIDÁTICO
+
+Pixar pitch. 1 personagem + 1 dilema concreto + 1 escolha + 1 consequência observável. O conceito aparece como a MECÂNICA da consequência, nunca como rótulo nem como moral. Se ao fim da história alguém perguntar "qual a lição?", você falhou — a história tem que ENCARNAR o conceito sem explicá-lo.
+
+# DEFINIÇÃO DE REFERÊNCIA (uso interno, não copie)
+
+> <%= concept.definition %>
+> Categoria: <%= concept.category %>
+
+# ENERGIA DESTA LENTE — Anedota com nome próprio
+
+**Didactic move:** abrir com gente real antes de qualquer princípio. Inspiração: Dale Carnegie — nunca diz "ouvir é importante", sempre conta "Lincoln, num dia frio de fevereiro, encarou o General Meade…". O nome próprio + o detalhe específico fazem o leitor cair na cena ANTES de cair no princípio.
+
+Aqui: Pixar pitch brasileiro. Personagem real (10-13 anos, nome de gente — sem epíteto tipo "Sofia, a curiosa"), cenário cotidiano reconhecível (escola, ônibus, mercado, quintal, Discord, Roblox onde fizer sentido). O Guia narra com humor seco quando cabe, **nunca pisa nas conclusões**. A consequência final **mostra** o conceito — nunca nomeia. Diálogo direto quando cortar prosa.
+
+# PROMESSA AO KID
+
+O kid clicou em **"📖 Conta a história"** esperando cair numa cena com gente real. Caia LOGO — a primeira frase já joga ele dentro da cena (não "Era uma vez…", não "Vou te contar…", não "Theo era um menino que…"). Narrador onisciente comentando é quebra de contrato.
+
+# PROIBIDO (específico desta lente)
+
+- Nomear o conceito explicitamente na história (o aprendiz infere; o Guia confia nele)
+- Final "feliz pra sempre" sem consequência observável e específica
+- Narrador onisciente que comenta a ação ("e ele percebeu que…")
+- O slug "<%= concept.slug %>" literal na saída
+- (Anti-padrões universais — moral explícita "e foi assim que aprendeu", "Sofia a confiável", TED talk — já estão no system prompt; não repita)
+
+# PERSONALIZAÇÃO
+
+Use os marcadores VERBATIM `{{learner_name}}` e `{{sibling_or_friend}}` se naturalmente couberem (ex.: dentro do `micro_check` ou como nome secundário em uma cena). NÃO substitua por nomes reais.
+
+# ESTRUTURA
+
+3 a 5 cenas, IDs `s1`, `s2`... A cena final tem que mostrar a consequência observável. `choices` é opcional — use no máximo em UMA cena se houver bifurcação real (raro). Termine com `ending` curto que NÃO moraliza — apenas fecha a cena.
+
+# SAÍDA
+
+JSON estrito conforme schema `narrative.json`. SEM prosa antes ou depois. SEM bloco markdown.
+<% if curated_example_json %>
+
+# EXEMPLO REAL (lente narrativa do MESMO TIPO já aprovada pelo juiz — guia de shape e voz, NÃO copie literal)
+
+```json
+<%= curated_example_json %>
+```
+<% end %>
+
+# EXEMPLO DE REFERÊNCIA (conceito: "palavra dada" — NÃO COPIE)
+
+```json
+{
+  "character": {"name": "Theo", "age": 12, "trait": "marcou de jogar bola com o irmão mais novo no sábado às 10h"},
+  "scenes": [
+    {"id": "s1", "text": "Sexta-feira à noite, o melhor amigo do Theo manda áudio gritando: 'Cara, lan-house aberta a noite toda, vai TODO MUNDO. É evento.' Theo já vê o sábado morrer no fundo do áudio."},
+    {"id": "s2", "text": "Theo lembra do irmão. Sete anos. Dormiu cedo, animado, deixou a chuteira aos pés da cama, com a meia já dentro. O telefone vibra de novo: 'Tá indo ou não?'"},
+    {"id": "s3", "text": "Theo desliga, deita, dorme. Sábado, 10h da manhã, com sono ferrado, Theo tá no quintal com a bola entre os pés e dois cones torto fazendo de gol. O irmão chega correndo pelo corredor, descalço."}
+  ],
+  "ending": "Theo nem joga bem naquele dia — passa duas vezes na canela. Mas no almoço o irmão conta vinte vezes pra todo mundo: 'Hoje meu irmão jogou bola comigo.' E olha pro Theo como quem olha pra um farol.",
+  "micro_check": {
+    "question": "Em qual destes momentos {{learner_name}} viu o Theo realmente honrar o combinado?",
+    "options": ["Quando Theo acorda às 10h da manhã, com sono", "Quando o irmão dorme com a chuteira no pé da cama", "Quando Theo desliga o telefone na sexta, mesmo querendo ir", "Quando Theo erra dois passes na canela"],
+    "correct_index": 2,
+    "rationale": "Honrar a palavra não é o gesto fácil do sábado de manhã. É o gesto difícil da sexta à noite, quando ninguém viu, quando ainda dava pra escolher diferente."
+  }
+}
+```
+
+# CONTRA-EXEMPLO (NÃO IMITAR — leia POR QUE é fraco)
+
+```json
+{
+  "character": {"name": "Sofia, a confiável", "age": 10, "trait": "uma menina muito responsável"},
+  "scenes": [
+    {"id": "s1", "text": "Sofia tinha prometido brincar com o irmão no sábado."},
+    {"id": "s2", "text": "Ela percebeu que precisava cumprir o que disse."},
+    {"id": "s3", "text": "Ela aprendeu a lição e ficou mais feliz."}
+  ],
+  "ending": "E foi assim que Sofia aprendeu que é importante cumprir a palavra dada."
+}
+```
+
+POR QUE É FRACO:
+- Nome do personagem é "Sofia, a confiável" — etiqueta de cartilha, não gente real
+- Trait é qualidade vaga ("muito responsável") em vez de comportamento observável
+- Cenas são ABSTRATAS: "tinha prometido brincar" — onde, fazendo o quê, com qual tensão concreta?
+- Conceito é NOMEADO explicitamente ("palavra dada" aparece literal) — a história tinha que encarnar
+- `ending` MORALIZA descaradamente ("e foi assim que aprendeu que é importante…")
+- Falta o `micro_check`, que é obrigatório
+
+Agora gere a lente narrativa real para "<%= concept.name %>".

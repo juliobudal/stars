@@ -1,0 +1,63 @@
+<%# locals: micro_check, color_var, review_mode: false, signal_payload: {} %>
+<%
+  question = micro_check["question"]
+  options = Array(micro_check["options"])
+  correct_index = micro_check["correct_index"].to_i
+  rationale = micro_check["rationale"]
+  review_mode = local_assigns.fetch(:review_mode, false)
+  signal_payload = local_assigns.fetch(:signal_payload, {}) || {}
+  kid_correct = signal_payload["micro_check_correct"]
+  kid_correct = nil if kid_correct.nil? || kid_correct == ""
+%>
+<% if question.present? && options.any? %>
+  <div class="lens-card p-5 mt-3" data-lens-stage-target="microCheckBlock">
+    <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-2"
+         style="color: <%= color_var %>;">
+      Pergunta rápida
+    </div>
+    <p class="font-display text-[15px] font-extrabold leading-snug m-0 mb-4" style="color: var(--text);">
+      <%= question %>
+    </p>
+
+    <% if review_mode && !kid_correct.nil? %>
+      <div class="rounded-2xl px-3 py-2 mb-3 inline-flex items-center gap-2"
+           style="background: <%= kid_correct.to_s == 'true' ? 'color-mix(in oklab, var(--c-leaf) 22%, var(--surface))' : 'color-mix(in oklab, var(--c-melon) 22%, var(--surface))' %>;
+                  border: 1.5px solid <%= kid_correct.to_s == 'true' ? 'var(--c-leaf)' : 'var(--c-melon)' %>;">
+        <span aria-hidden="true"><%= kid_correct.to_s == 'true' ? '✓' : '✗' %></span>
+        <span class="font-display text-[12px] font-extrabold tracking-[0.5px]" style="color: var(--text);">
+          <%= kid_correct.to_s == 'true' ? 'Você acertou' : 'Você errou — a resposta era a destacada abaixo' %>
+        </span>
+      </div>
+    <% end %>
+
+    <div class="flex flex-col gap-2">
+      <% options.each_with_index do |opt, idx| %>
+        <% is_correct = (idx == correct_index) %>
+        <button type="button"
+                class="lens-option-btn <%= 'lens-option-btn--correct' if review_mode && is_correct %>"
+                <% unless review_mode %>
+                data-action="click->lens-stage#recordMicroCheck"
+                data-lens-stage-correct-param="<%= is_correct %>"
+                data-lens-stage-index-param="<%= idx %>"
+                <% end %>
+                <%= 'disabled' if review_mode %>
+                style="<%= 'background: color-mix(in oklab, var(--c-leaf) 18%, var(--surface)); border-color: var(--c-leaf);' if review_mode && is_correct %>">
+          <span class="lens-option-btn__bullet"><%= ("A".ord + idx).chr %></span>
+          <span class="lens-option-btn__label"><%= opt %></span>
+        </button>
+      <% end %>
+    </div>
+
+    <% if rationale.present? %>
+      <div class="lens-reveal mt-3" <% unless review_mode %>data-lens-stage-target="microCheckRationale" hidden<% end %>>
+        <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
+             style="color: var(--text-muted);">
+          Por quê
+        </div>
+        <p class="font-display text-[13px] leading-snug m-0" style="color: var(--text);">
+          <%= rationale %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+<% end %>

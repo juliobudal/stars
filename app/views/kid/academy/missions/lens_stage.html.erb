@@ -1,0 +1,115 @@
+<% content_for(:title) { @mission.title } %>
+<%
+  visit = @stage.visit
+  cache = @stage.lens_cache
+  lens_type = visit.lens_type
+  action_label = Academy::Lens::Catalog.kid_action_label(lens_type)
+
+  color_var = "var(--academy-pokedex-#{@mission.concept.pokedex_color_key.presence || 'cognitivo'})"
+
+  total_steps = Academy::Lens::ChooseNext::HARD_CAP
+  current_step = visit.ordering_position
+
+  primitive = case lens_type.to_sym
+              when :scientific, :statistical    then "predict"
+              when :narrative                   then "narrative"
+              when :ethical                     then "compare"
+              when :analogy_bridge, :historical then "pattern_hunt"
+              when :first_person                then "embodied"
+              when :engineering                 then "engineering"
+              end
+%>
+
+<div class="screen screen-enter">
+  <%# Loading overlay is provided by layouts/kid.html.erb (body-level). %>
+
+  <%# ── Header: subject + mission title + progress dots ────── %>
+  <header class="sticky top-0 z-30 -mx-4 px-4 pt-3 pb-3 mb-4"
+          style="background: linear-gradient(to bottom, var(--surface) 70%, rgba(255,255,255,0));">
+    <div class="flex items-center gap-3">
+      <%= link_to kid_academy_subject_path(@subject),
+                  "aria-label": "Voltar para #{@subject.name}",
+                  class: "w-10 h-10 rounded-full flex items-center justify-center anim-press shrink-0",
+                  style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06);" do %>
+        <%= render Ui::Icon::Component.new(:chevron_left, size: 18, color: "var(--text)") %>
+      <% end %>
+
+      <div class="flex-1 min-w-0">
+        <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase truncate"
+             style="color: <%= color_var %>;">
+          <%= @subject.name.upcase %>
+        </div>
+        <h1 class="font-display text-[17px] font-extrabold leading-tight m-0 truncate" style="color: var(--text);">
+          <%= @mission.title %>
+        </h1>
+      </div>
+    </div>
+
+    <%# Progress dots (no labels — just visual journey) %>
+    <div class="flex items-center gap-1.5 mt-3" aria-label="Progresso da missão">
+      <% total_steps.times do |i| %>
+        <% pos = i + 1
+           state = if pos < current_step then :done
+                  elsif pos == current_step then :current
+                  else :pending end %>
+        <div class="flex-1 h-1.5 rounded-full transition-all"
+             style="background: <%= state == :done ? color_var : state == :current ? 'var(--c-sky)' : 'var(--hairline)' %>;
+                    box-shadow: <%= state == :done ? "0 1.5px 0 color-mix(in oklab, #{color_var} 60%, black)" : 'none' %>;"></div>
+      <% end %>
+    </div>
+  </header>
+
+  <%# ── Body header: the ACTION the kid is doing ─────────────── %>
+  <div class="flex items-center gap-3 mb-4">
+    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-[22px]"
+         style="background: color-mix(in oklab, <%= color_var %> 18%, var(--surface)); border: 2px solid <%= color_var %>;">
+      <%= action_label[:emoji] %>
+    </div>
+    <div class="flex-1 min-w-0">
+      <h2 class="font-display text-[16px] font-extrabold leading-tight m-0" style="color: var(--text);">
+        <%= action_label[:action] %>
+      </h2>
+      <div class="font-display text-[11px] font-extrabold tracking-[0.5px]" style="color: var(--text-muted);">
+        sobre <%= @mission.concept.name %>
+      </div>
+    </div>
+  </div>
+
+  <%# ── Body — delegated to the action primitive ────────────── %>
+  <div class="lens-stage" data-controller="lens-stage" data-lens-stage-lens-type-value="<%= lens_type %>">
+    <% if cache&.payload.present? && primitive %>
+      <% interpolated_payload = ::Academy::Lens::InterpolatePayload.render(payload: cache.payload, learner: current_learner) %>
+      <%= render "kid/academy/missions/lens_#{primitive}",
+                 concept: @mission.concept, payload: interpolated_payload, color_var: color_var %>
+    <% else %>
+      <div class="lens-card p-5">
+        <p class="font-display text-[14px] leading-snug m-0" style="color: var(--text-muted);">
+          Carregando — recarregue em alguns segundos.
+        </p>
+      </div>
+    <% end %>
+
+    <%= form_with url: advance_kid_academy_subject_mission_path(@subject, @mission),
+                  method: :post, local: true,
+                  data: {
+                    lens_stage_target: "form",
+                    loading: "off",
+                    action: "turbo:submit-start->academy-loading#show turbo:submit-end->academy-loading#hide"
+                  }, class: "mt-4" do |f| %>
+      <%= f.hidden_field "signal_payload[micro_check_correct]",
+                         value: "", data: { lens_stage_target: "microCheck" } %>
+      <%= f.hidden_field "signal_payload[affective_tap]",
+                         value: "", data: { lens_stage_target: "affectiveTap" } %>
+      <%= f.hidden_field "signal_payload[predict_value]",
+                         value: "", data: { lens_stage_target: "predictValue" } %>
+      <%= f.hidden_field "signal_payload[choices]",
+                         value: "", data: { lens_stage_target: "choices" } %>
+      <%= f.hidden_field "signal_payload[elapsed_seconds]",
+                         value: "", data: { lens_stage_target: "elapsed" } %>
+
+      <%= f.submit "Continuar →",
+                   class: "w-full px-5 py-3.5 rounded-2xl font-display font-extrabold text-[16px] anim-press ls-btn-3d border-0",
+                   style: "background: var(--primary); color: white; box-shadow: 0 4px 0 var(--primary-2);" %>
+    <% end %>
+  </div>
+</div>

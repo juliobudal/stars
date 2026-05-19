@@ -208,6 +208,17 @@
   --c-streak: #FF9600;
   --c-streak-2: #CC7700;
   --surface-muted: #F7F7F7;
+
+  /* ─── Academy Pokédex category tokens (v4) ─── */
+  /* One token per concept category. Used by Atlas concept orbs to tint
+     silhouette (level ≥1), fill (level ≥2) and glow (level 3). */
+  --academy-pokedex-cognitivo:  #A855E0; /* purple — mind/cognition */
+  --academy-pokedex-saude:      #58CC02; /* green — vitality */
+  --academy-pokedex-social:     #FF9600; /* coral — warmth/connection */
+  --academy-pokedex-virtude:    #FFC800; /* gold — character/honor */
+  --academy-pokedex-financeiro: #1899D6; /* deep blue — clarity/value */
+  --academy-pokedex-tecnologia: #1CB0F6; /* electric blue — systems */
+  --academy-pokedex-cientifico: #CE82FF; /* lilac — discovery/mystery */
 }
 
 /* ─── Per-kid palettes (driven by Profile.color) ─── */

@@ -17,3 +17,15 @@ production:
     class: DailyResetJob
     schedule: "5 * * * *"
     queue: default
+  academy_recall_reminder:
+    class: Academy::RecallReminderJob
+    schedule: "30 8 * * *"
+    queue: default
+  academy_parent_digest_weekly:
+    class: Academy::Digests::WeeklyJob
+    schedule: "0 19 * * 0"   # Sundays 19:00 (parent's evening)
+    queue: default
+  academy_lens_warm_cache:
+    class: Academy::Lens::WarmCacheJob
+    schedule: "0 3 * * *"    # Nightly 03:00 (off-peak warmup)
+    queue: default

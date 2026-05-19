@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Treino de musculação",
+    "elements": [
+      "Você levanta um peso difícil, em séries — cada série precisa ser CONTÍNUA pra valer",
+      "Durante a série, fibras musculares se rasgam um pouquinho — é o estímulo pra crescer",
+      "Soltar o peso no meio e voltar depois quebra o estímulo — vira duas séries curtas, não uma",
+      "Em meses, fibra muscular fica fisicamente mais grossa nos músculos usados",
+      "Quem treina sério não passa o dia inteiro na academia — passa 45 minutos focado, 3x por semana"
+    ]
+  },
+  "target_domain": {
+    "name": "Bloco de foco profundo de 25 min",
+    "elements": [
+      "Você foca em um problema por minutos — o bloco precisa ser CONTÍNUO pra valer",
+      "Durante o bloco, neurônios disparam juntos repetidamente — é o estímulo pra mielinizar",
+      "Se você sai do bloco e volta depois, perde o estímulo — não é um bloco, são dois curtinhos",
+      "Em meses, axônio fica fisicamente mais gordo nos circuitos usados",
+      "Quem foca sério não passa o dia inteiro estudando — faz 3 blocos de 25min, em horários separados"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Série de musculação ininterrupta",
+      "to": "Bloco de foco sem interrupção"
+    },
+    {
+      "from": "Soltar o peso no meio = perder o estímulo",
+      "to": "Checar celular no meio = perder o estímulo"
+    },
+    {
+      "from": "Fibra muscular fica fisicamente mais grossa",
+      "to": "Axônio fica fisicamente mais mielinizado"
+    },
+    {
+      "from": "45 min focados rendem mais que 4h preguiçosas",
+      "to": "25 min focados rendem mais que 2h fragmentadas"
+    }
+  ],
+  "transfer_question": "Se você não faria 1 repetição de cada exercício e trocaria toda hora, por que tenta estudar dessa forma?"
+}

@@ -1,0 +1,127 @@
+# TAREFA
+
+Gere UMA lente de engenharia sobre o conceito "<%= concept.name %>" para um aprendiz pt-BR de 8 a 14 anos (age_band: <%= age_band %>, locale: <%= locale %>).
+
+# SACADA CENTRAL (o tradeoff revela esta frase)
+
+> <%= the_essence %>
+
+Cada `outcome` precisa fazer o aprendiz colidir com essa sacada — tipicamente o `outcome` da "boa escolha" é onde a sacada fica óbvia.
+<% if common_confusion %>
+
+# CONFUSÃO COMUM
+
+Erro típico que crianças de 7-12 cometem com este conceito:
+> <%= common_confusion %>
+
+Use isto pra escrever a combinação "trade ruim óbvio": ela parece atraente até o aprendiz ler o `outcome`. O outcome desmonta a confusão.
+<% end %>
+<% if forbidden_terms.any? %>
+
+# PALAVRAS PROIBIDAS PARA ESTE CONCEITO
+
+NÃO use os seguintes termos/frases — ensinam ERRADO este conceito:
+<% forbidden_terms.each do |term| %>
+- "<%= term %>"
+<% end %>
+<% end %>
+
+# PROPÓSITO DIDÁTICO
+
+Tradeoff de design. "E se VOCÊ tivesse que construir isso?" O aprendiz vira engenheiro: recebe um desafio, uma lista de restrições, e precisa escolher um subset (`must_pick`, tipicamente 3). Cada combinação tem consequência. Não existe escolha sem custo — esse é o ensinamento embutido.
+
+# DEFINIÇÃO DE REFERÊNCIA (uso interno, não copie)
+
+> <%= concept.definition %>
+> Categoria: <%= concept.category %>
+
+# ENERGIA DESTA LENTE — Design do ambiente como variável
+
+**Didactic move:** mostrar que o sistema responde quando você muda uma peça. Inspiração: James Clear (Hábitos Atômicos), capítulo "Design your environment" — Clear não pede pra você "ter força de vontade", ele entrega as alavancas (geladeira, mesa, celular fora do quarto) e mostra que a saída segue a entrada. Engenharia, não moral.
+
+Aqui: **"Agora é com você."** Guia entrega as peças, recua, mostra o que acontece com cada combinação. Sem julgamento moral nas opções — todas defensáveis, todas custam algo. Custo concreto e específico ("app fica 3x mais lento", "engajamento despenca 60%"), nunca abstrato ("perde qualidade"). Outcomes mostram CONSEQUÊNCIA observável, nunca veredito.
+
+# PROMESSA AO KID
+
+O kid clicou em **"🛠 Você que constrói"** esperando ser engenheiro/designer. As peças são DELE; ele decide; a consequência aparece como sistema respondendo, não como nota da prova. Se o `challenge` soa como exercício escolar ("calcule…"), quebrou o contrato.
+
+# PROIBIDO (específico desta lente)
+
+- Opção obviamente certa vs errada — sem tradeoff real não há aula
+- Custo abstrato em vez de número/cena concreta
+- `outcomes` com texto vago ou julgamento ("você fez certo")
+- O slug "<%= concept.slug %>" literal na saída
+- (Anti-padrões universais — "reflita sobre", moralização, jargão acadêmico — já estão no system prompt)
+
+# REGRAS DE COERÊNCIA
+
+- `constraints`: 4 a 6 itens, `id` é um token curto e estável (`c1`, `c2`, ou semântico tipo `velocidade`, `custo`). Use ids curtos minúsculos sem espaço.
+- `must_pick`: tipicamente 3.
+- `outcomes`: chaves no formato `"id1+id2+id3"` (ordem alfabética dos ids escolhidos, separados por `+`). MÍNIMO 3 combinações cobertas — você não precisa cobrir todas (`C(6,3)=20`), mas cubra as combinações MAIS prováveis e mais didáticas. Inclua pelo menos: 1 "boa", 1 "trade ruim óbvio", 1 "surpresa".
+
+# PERSONALIZAÇÃO
+
+Use `{{learner_name}}` no `challenge` se servir ("Imagine que {{learner_name}} é dono do app..."). VERBATIM.
+
+# SAÍDA
+
+JSON estrito conforme schema `engineering.json`. SEM prosa antes ou depois.
+<% if curated_example_json %>
+
+# EXEMPLO REAL (lente de engenharia do MESMO TIPO já aprovada pelo juiz — guia de shape e voz, NÃO copie literal)
+
+```json
+<%= curated_example_json %>
+```
+<% end %>
+
+# EXEMPLO DE REFERÊNCIA (conceito: "dopamina" — NÃO COPIE)
+
+```json
+{
+  "challenge": "{{learner_name}} virou designer de um app de vídeos. Escolha 3 mecânicas pra MAXIMIZAR engajamento.",
+  "constraints": [
+    {"id": "autoplay",   "label": "Autoplay do próximo vídeo",          "cost": "Usuário perde noção do tempo, sai cansado."},
+    {"id": "scroll",     "label": "Scroll infinito",                    "cost": "Não há ponto natural de parada."},
+    {"id": "variavel",   "label": "Algoritmo de recompensa variável",   "cost": "Vira loteria — o cérebro fica preso na próxima."},
+    {"id": "likes",      "label": "Mostrar curtidas em tempo real",     "cost": "Ansiedade social, conferência compulsiva."},
+    {"id": "limites",    "label": "Pausa obrigatória a cada 20min",     "cost": "Engajamento diário cai 18%. Reclamações sobem."},
+    {"id": "cronologico","label": "Feed em ordem cronológica",          "cost": "Acaba o conteúdo novo cedo. Tempo no app despenca."}
+  ],
+  "must_pick": 3,
+  "outcomes": {
+    "autoplay+scroll+variavel": "Engajamento explode. Usuários ficam 4h/dia. Dopamina puxando antecipação infinita — exatamente o desenho do TikTok.",
+    "autoplay+likes+scroll": "Funciona, mas o usuário fica ansioso, não viciado. Engajamento bom, churn alto.",
+    "cronologico+limites+likes": "Engajamento despenca 60%. App vira saudável. Você é demitido na próxima reunião.",
+    "variavel+likes+limites": "Tensão estranha: o algoritmo puxa, a pausa empurra. Usuário fica irritado e desinstala."
+  }
+}
+```
+
+# CONTRA-EXEMPLO (NÃO IMITAR — leia POR QUE é fraco)
+
+```json
+{
+  "challenge": "Reflita sobre como construir um app de vídeos saudável.",
+  "constraints": [
+    {"id": "bom",   "label": "Mecânica boa",  "cost": "É a melhor."},
+    {"id": "ruim",  "label": "Mecânica ruim", "cost": "É a pior."},
+    {"id": "ok",    "label": "Mecânica ok",   "cost": "É mediana."},
+    {"id": "ruim2", "label": "Outra ruim",    "cost": "Também é ruim."}
+  ],
+  "must_pick": 3,
+  "outcomes": {
+    "bom+ok+ruim": "Você fez a coisa certa.",
+    "ruim+ruim2+ok": "Você fez errado."
+  }
+}
+```
+
+POR QUE É FRACO:
+- `challenge` usa "Reflita sobre" e não dá agência ("VOCÊ é o engenheiro")
+- Labels são abstratos ("Mecânica boa", "Mecânica ruim") — sem nome concreto, sem trade real
+- Custos são tautológicos ("é a melhor") — não descrevem consequência observável
+- `outcomes` carregam JULGAMENTO moral ("fez a coisa certa") em vez de mostrar o que ACONTECE
+- Faltam combinações que mostrem SURPRESA (escolha aparentemente boa que vira problema)
+
+Agora gere a lente de engenharia real para "<%= concept.name %>".

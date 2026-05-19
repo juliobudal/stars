@@ -1,0 +1,20 @@
+{
+  "headline": "Uma notificação custa 23 minutos. Você acreditou pelo motivo errado.",
+  "mechanism_steps": [
+    "Você está fazendo algo que exige atenção — lição, leitura, jogo difícil. O cérebro construiu um contexto: variáveis na memória de trabalho, foco apontado pra um lugar específico.",
+    "Beep. Olhar vai pra notificação. Em 1 segundo, o contexto inteiro se dissolve — memória de trabalho descarrega pra abrir espaço pro novo estímulo.",
+    "Pra voltar, o cérebro precisa RECONSTRUIR o contexto do zero — buscar onde parou, reativar variáveis, reorientar foco. Esse trabalho leva, em média, 23 minutos. Não é distração — é reconstrução."
+  ],
+  "illustration_hint": "Painel de fluxo: à esquerda, um cérebro com várias caixinhas etiquetadas ('número que eu tava calculando', 'argumento que eu ia escrever') flutuando. No meio, beep e ⚡ — todas as caixinhas caem no chão. À direita, o cérebro recolhe peça por peça do chão, com cronômetro mostrando 23:00.",
+  "micro_check": {
+    "question": "Por que ler a notificação rapidinho 'pra não perder' acaba saindo mais caro?",
+    "options": [
+      "Porque depois do beep o cérebro precisa de cerca de 23 min pra reconstruir o contexto que perdeu.",
+      "Porque ler a notificação demora mais que ignorá-la.",
+      "Porque o celular fica quente e atrapalha a concentração.",
+      "Porque você acaba respondendo a notificação e gasta tempo escrevendo."
+    ],
+    "correct_index": 0,
+    "rationale": "O custo não está em ler a notificação — está em reconstruir o que você estava fazendo. 1 segundo de olhar derruba um contexto que levou minutos pra montar."
+  }
+}

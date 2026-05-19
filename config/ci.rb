@@ -11,6 +11,8 @@ CI.run do
   step "Assets: Vite build", "bin/vite build"
   step "Tests: Rails", "bin/rails test"
   step "Tests: Seeds", "env RAILS_ENV=test bin/rails db:seed:replant"
+  # v4 Guide persona eval removed during academy-v5-lens-missions refoundation.
+  # A fresh v5 persona eval will be reintroduced in Phase 8 (T-V5-089b).
 
   # Optional: Run system tests
   # step "Tests: System", "bin/rails test:system"

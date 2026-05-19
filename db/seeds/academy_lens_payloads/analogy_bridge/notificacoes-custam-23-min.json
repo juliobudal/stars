@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Rodovia com cabines de pedágio",
+    "elements": [
+      "Você está em viagem longa, em velocidade constante — atenção focada na estrada",
+      "Cada pedágio força você a desacelerar, parar, pagar, e acelerar de novo",
+      "Atravessar o pedágio em si demora 30 segundos — mas voltar à velocidade leva minutos",
+      "Cinco pedágios em sequência transformam uma viagem de 1h em uma viagem de 2h",
+      "O cansaço extra não vem da estrada — vem da repetição de desacelerar/acelerar"
+    ]
+  },
+  "target_domain": {
+    "name": "Sessão de estudo com notificações",
+    "elements": [
+      "Você está com cabeça focada em um problema, em ritmo estável",
+      "Cada beep força sair do problema, ler, decidir, voltar",
+      "O beep em si dura 1 segundo — mas reconstruir o contexto leva 23 minutos",
+      "Cinco beeps em sequência transformam 1h de estudo em mais de 2h",
+      "O cansaço extra não vem do conteúdo — vem da repetição de sair/voltar"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Cabine de pedágio na rodovia",
+      "to": "Notificação durante o estudo"
+    },
+    {
+      "from": "Tempo de retomar velocidade após o pedágio",
+      "to": "23 minutos de reconstrução do contexto mental"
+    },
+    {
+      "from": "Pedágio dobra o tempo da viagem",
+      "to": "5 notificações dobram o tempo da lição"
+    },
+    {
+      "from": "Estrada sem pedágio = chegar descansado",
+      "to": "Sessão sem beep = terminar com energia"
+    }
+  ],
+  "transfer_question": "Se você escolhe rotas com menos pedágio numa viagem, por que aceita rotas com mais beep no estudo?"
+}

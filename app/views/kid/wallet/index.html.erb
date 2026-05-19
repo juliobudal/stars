@@ -21,11 +21,12 @@
   <div data-controller="tabs" class="z-2 relative">
     <%= render Ui::CategoryTabs::Component.new(
       items: [
-        { id: "all",       label: "Tudo" },
-        { id: "earned",    label: "Conquistadas" },
-        { id: "purchases", label: "Compras" },
-        { id: "pending",   label: "Aguardando" },
-        { id: "rejected",  label: "Rejeitadas" }
+        { id: "all",         label: "Tudo" },
+        { id: "earned",      label: "Conquistadas" },
+        { id: "purchases",   label: "Compras" },
+        { id: "discoveries", label: "Descobertas" },
+        { id: "pending",     label: "Aguardando" },
+        { id: "rejected",    label: "Rejeitadas" }
       ],
       active: "all"
     ) %>
@@ -68,6 +69,39 @@
           title: "Nenhuma compra ainda",
           subtitle: "Resgate recompensas na loja",
           color: "lilac"
+        ) %>
+      <% end %>
+    </div>
+
+    <%# Panel: Descobertas — feed narrativo Academy v4 (cartas) %>
+    <div id="panel-discoveries" class="flex flex-col gap-3 hidden">
+      <% if @recent_cards.any? %>
+        <h3 class="font-display text-[12px] font-extrabold tracking-[1.5px] uppercase mt-1 mb-1 px-1"
+            style="color: var(--c-mint-dark);">CARTAS RECENTES</h3>
+        <% @recent_cards.each do |card| %>
+          <article class="ls-card-3d flex items-start gap-3"
+                   style="background: var(--surface); border: 2px solid var(--hairline);
+                          border-radius: 14px; padding: 12px 14px; box-shadow: 0 3px 0 rgba(0,0,0,0.06);">
+            <div class="w-9 h-9 rounded-lg shrink-0 flex items-center justify-center"
+                 style="background: <%= card.mission.subject.color.presence || 'var(--primary)' %>;">
+              <%= render Ui::Icon::Component.new((card.illustration_key.presence || card.mission.subject.icon).to_sym, size: 16, color: "white") %>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-display text-[13px] font-extrabold leading-tight" style="color: var(--text);">
+                <%= card.headline %>
+              </div>
+              <div class="text-[11px] font-bold mt-0.5" style="color: var(--text-muted);">
+                <%= card.mission.subject.name %> · <%= card.minted_at.strftime("%d/%m") %>
+              </div>
+            </div>
+          </article>
+        <% end %>
+      <% else %>
+        <%= render Ui::Empty::Component.new(
+          icon: "sparkle",
+          title: "Sem descobertas ainda",
+          subtitle: "Termine uma aula da Academia pra colecionar uma carta.",
+          color: "primary"
         ) %>
       <% end %>
     </div>

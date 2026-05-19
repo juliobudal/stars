@@ -34,7 +34,7 @@ RSpec.describe "PWA install integration", type: :request do
       # Rails picks the service-worker.js template.
       get "/service-worker", headers: { "Accept" => "text/javascript,application/javascript" }
       expect(response).to have_http_status(:ok)
-      expect(response.body).to include("littlestars-v1")
+      expect(response.body).to match(/littlestars-v\d+/)
       expect(response.body).to include("addEventListener")
       expect(response.body).to include("offline.html")
     end

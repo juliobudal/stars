@@ -1,0 +1,60 @@
+<% content_for(:title) { "CMS — Editar missão" } %>
+
+<div class="px-4 sm:px-6 py-6 max-w-3xl mx-auto">
+  <%= link_to "← voltar à lista", admin_academy_missions_path,
+              class: "inline-block mb-3 font-extrabold text-[12px]", style: "color: var(--c-primary-dark);" %>
+  <h1 class="font-display text-[20px] font-extrabold m-0 mb-4" style="color: var(--text);">
+    <%= @mission.title %>
+  </h1>
+
+  <% if @mission.errors.any? %>
+    <div class="mb-4 px-3 py-2 rounded-lg" style="background: var(--c-coral-soft); color: var(--c-coral-dark); border: 2px solid var(--c-coral-dark);">
+      <ul class="list-disc pl-5">
+        <% @mission.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with model: @mission, url: admin_academy_mission_path(@mission), method: :patch, local: true, class: "flex flex-col gap-3" do |f| %>
+    <% [
+      [ :title, "Título" ],
+      [ :hook, "Gancho" ],
+      [ :learning_objective, "Objetivo de aprendizagem" ],
+      [ :central_insight, "Insight central (Se X, então Y)" ],
+      [ :challenge_prompt, "Mini-desafio" ],
+      [ :challenge_when, "Quando" ],
+      [ :challenge_observable, "O que observar" ],
+      [ :source, "Fonte / autor" ],
+      [ :framework, "Framework" ]
+    ].each do |field, label| %>
+      <div>
+        <label class="block font-display font-extrabold text-[11px] mb-1 tracking-wide uppercase" style="color: var(--text-muted);"><%= label %></label>
+        <%= f.text_field field, class: "w-full px-3 py-2 rounded-lg font-bold",
+                         style: "background: var(--surface); border: 2px solid var(--hairline); color: var(--text);" %>
+      </div>
+    <% end %>
+
+    <div>
+      <label class="block font-display font-extrabold text-[11px] mb-1 tracking-wide uppercase" style="color: var(--text-muted);">Curiosidades (uma por linha)</label>
+      <%= f.text_area :curiosity_facts, value: Array(@mission.curiosity_facts).join("\n"), rows: 4,
+                      class: "w-full px-3 py-2 rounded-lg font-bold",
+                      style: "background: var(--surface); border: 2px solid var(--hairline); color: var(--text);" %>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <%= f.check_box :active %>
+      <label class="font-bold">Ativa</label>
+    </div>
+
+    <div class="flex gap-2">
+      <%= f.submit "Salvar",
+                   class: "px-4 py-2 rounded-lg font-extrabold text-[13px] anim-press",
+                   style: "background: var(--primary); color: white; box-shadow: 0 3px 0 var(--primary-2);" %>
+      <%= link_to "Cancelar", admin_academy_missions_path,
+                  class: "px-4 py-2 rounded-lg font-extrabold text-[13px] anim-press",
+                  style: "background: var(--surface); border: 2px solid var(--hairline);" %>
+    </div>
+  <% end %>
+</div>

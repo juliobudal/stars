@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Gloria Mark",
+    "age": 18,
+    "trait": "Pesquisadora de computação que cronometrava o trabalho dos outros sem ninguém perceber."
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Anos 2000. Gloria Mark, professora da Universidade da Califórnia em Irvine, fica três dias seguidos atrás de cada funcionário de uma empresa, cronômetro na mão. Mede tudo: cada email aberto, cada chat respondido, cada vez que o olhar saía da tarefa principal."
+    },
+    {
+      "id": "s2",
+      "text": "Resultado: a pessoa média trocava de tarefa a cada 3 minutos. Cada interrupção custava em média 23 minutos e 15 segundos pra ela voltar ao que estava antes. Pior — quase nunca voltava de fato. A maioria das 'volta-pra-tarefa' acabava em outra tarefa diferente."
+    },
+    {
+      "id": "s3",
+      "text": "Em 2023, Gloria publica 'Attention Span'. A descoberta mais dolorosa do livro: em 2004 ela media tempo médio em uma tela em 2 minutos e meio. Em 2016, a mesma medição deu 47 segundos. Não é que as pessoas ficaram piores — é que as telas ficaram melhores em interromper."
+    }
+  ],
+  "ending": "Gloria não diz 'desligue tudo'. Ela diz: você não precisa ser perfeito, só precisa SABER. Cada beep que você deixa entrar é uma escolha — agora consciente. O 'gratis' do beep é mentira: você paga em 23 minutos, na próxima hora.",
+  "micro_check": {
+    "question": "O que Gloria Mark mediu entre 2004 e 2016 sobre tempo de atenção em telas?",
+    "options": [
+      "Caiu de 2 minutos e meio pra 47 segundos.",
+      "Caiu de 5 minutos pra 2 minutos.",
+      "Subiu, porque as pessoas se acostumaram com várias telas.",
+      "Ficou igual — o que mudou foi só a quantidade de telas."
+    ],
+    "correct_index": 0,
+    "rationale": "Gloria Mark mediu uma queda de 2,5 minutos pra 47 segundos em ~12 anos. A queda mostra design persuasivo melhorando, não cérebro humano piorando — o hardware do cérebro não muda em uma década."
+  }
+}
