@@ -921,23 +921,6 @@ ActiveRecord::Base.transaction do
           active: true
         )
         mission.save!
-
-        ::Academy::Medal.find_or_create_by!(slug: "mission-#{subject.slug}-#{mission.slug}-completed") do |md|
-          md.kind = :mission_completed
-          md.mission_id = mission.id
-          md.subject_id = subject.id
-          md.name = "Pílula tomada: #{mission.title}"
-          md.description = "Você terminou a aula."
-          md.icon = "check"
-        end
-        ::Academy::Medal.find_or_create_by!(slug: "mission-#{subject.slug}-#{mission.slug}-perfect") do |md|
-          md.kind = :mission_perfect
-          md.mission_id = mission.id
-          md.subject_id = subject.id
-          md.name = "Impecável: #{mission.title}"
-          md.description = "Todos os checkpoints corretos."
-          md.icon = "star"
-        end
       end
     end
 
@@ -949,20 +932,6 @@ ActiveRecord::Base.transaction do
     # Deactivate trails that aren't part of v2 anymore.
     subject.trails.where.not(slug: new_trail_slugs).update_all(active: false)
 
-    tiers = [
-      [ :subject_apprentice, "Aprendiz de #{subject.name}", "30% das aulas da área.", "medal" ],
-      [ :subject_adept,      "Adepto de #{subject.name}",   "60% das aulas da área.", "medal" ],
-      [ :subject_master,     "Mestre de #{subject.name}",   "Todas as aulas dominadas.",  "trophy" ]
-    ]
-    tiers.each do |kind, name, desc, icon|
-      ::Academy::Medal.find_or_create_by!(slug: "subject-#{subject.slug}-#{kind}") do |md|
-        md.kind = kind
-        md.subject_id = subject.id
-        md.name = name
-        md.description = desc
-        md.icon = icon
-      end
-    end
   end
 
   # Soft-deactivate v1 subjects (those NOT in V2) and their missions.
@@ -977,16 +946,13 @@ end
 puts "✓ Academy v2 seeded: " \
      "#{::Academy::Subject.active.count} áreas ativas · " \
      "#{::Academy::Trail.active.count} trilhas · " \
-     "#{::Academy::Mission.active.count} aulas ativas · " \
-     "#{::Academy::Medal.count} medalhas " \
+     "#{::Academy::Mission.active.count} aulas ativas " \
      "(total áreas no DB: #{::Academy::Subject.count}, inativas preservadas)."
 
 # Phase 2 — concept graph: already loaded BEFORE the curriculum loop above
 # so missions could be saved with concept_id. We DON'T reload here.
 # v4 — Pokédex visual keys (color + silhouette per concept). Must run after concepts.
 load Rails.root.join("db/seeds/academy_pokedex_keys.rb")
-# Phase 7/8 — skills catalog + tagging + secrets
-load Rails.root.join("db/seeds/academy_skills.rb")
 # v4 — story_choice missions, typed concept_edges, Pokédex backfill
 load Rails.root.join("db/seeds/academy_v4.rb")
 # Curated-static pivot — human-authored lens payloads (academy-curated-static-pivot.md)

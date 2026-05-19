@@ -34,8 +34,6 @@ module Academy
              foreign_key: :subject_id,
              dependent: :restrict_with_error,
              inverse_of: :subject
-    has_many :medals, class_name: "Academy::Medal", foreign_key: :subject_id, dependent: :restrict_with_error
-
     validates :slug, :name, presence: true
     validates :slug, uniqueness: true, format: { with: /\A[a-z0-9-]+\z/ }
 

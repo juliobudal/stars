@@ -46,13 +46,6 @@ FactoryBot.define do
     metadata { {} }
   end
 
-  factory :academy_medal, class: "Academy::Medal" do
-    sequence(:slug) { |n| "medal-#{n}" }
-    kind { :mission_completed }
-    sequence(:name) { |n| "Medal #{n}" }
-    icon { "medal" }
-  end
-
   factory :academy_concept, class: "Academy::Concept" do
     sequence(:slug) { |n| "concept-#{n}" }
     sequence(:name) { |n| "Concept #{n}" }
@@ -76,14 +69,6 @@ FactoryBot.define do
     minted_at { Time.current }
   end
 
-  factory :academy_recall_review, class: "Academy::RecallReview" do
-    association :card, factory: :academy_discovery_card
-    sequence(:learner_id) { |n| n }
-    streak { 0 }
-    interval_days { 1 }
-    due_at { 1.day.from_now }
-  end
-
   factory :academy_trail, class: "Academy::Trail" do
     association :subject, factory: :academy_subject
     sequence(:slug) { |n| "trail-#{n}" }
@@ -91,19 +76,6 @@ FactoryBot.define do
     arc_hook { "arc" }
     position { 1 }
     active { true }
-  end
-
-  factory :academy_skill, class: "Academy::Skill" do
-    sequence(:slug) { |n| "skill-#{n}" }
-    sequence(:name) { |n| "Skill #{n}" }
-    icon { "sparkle" }
-    position { 1 }
-  end
-
-  factory :academy_aula_skill, class: "Academy::AulaSkill" do
-    association :mission, factory: :academy_mission
-    association :skill, factory: :academy_skill
-    weight { 2 }
   end
 
   factory :academy_secret, class: "Academy::Secret" do
@@ -149,14 +121,6 @@ FactoryBot.define do
     scene_sequence { [] }
   end
 
-  factory :academy_virtue_sighting, class: "Academy::VirtueSighting" do
-    sequence(:learner_id) { |n| n }
-    virtue_slug { "honra-palavra" }
-    context { "Devolveu o lápis emprestado sem ser cobrado." }
-    source { "self_reported" }
-    spotted_at { Time.current }
-  end
-
   factory :academy_transfer_detection, class: "Academy::TransferDetection" do
     association :from_concept, factory: :academy_concept
     association :to_concept,   factory: :academy_concept
@@ -183,18 +147,4 @@ FactoryBot.define do
     content { "Por que 23 minutos?" }
   end
 
-  factory :academy_parent_digest, class: "Academy::ParentDigest" do
-    sequence(:learner_id) { |n| n }
-    sequence(:parent_id)  { |n| 1_000 + n }
-    week_starting { Date.current.beginning_of_week(:monday) }
-    payload do
-      {
-        "patterns_discovered" => [],
-        "biggest_reveal" => "",
-        "conversation_starter" => "",
-        "kid_sent_you" => ""
-      }
-    end
-    composed_at { Time.current }
-  end
 end

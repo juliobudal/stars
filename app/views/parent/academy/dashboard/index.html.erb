@@ -55,65 +55,6 @@
       <% end %>
     </div>
 
-    <%# ── Rank card ────────────────────────────────────── %>
-    <% if @rank_record %>
-      <div class="ls-card-3d flex items-center gap-3 mb-4"
-           style="background: var(--c-star-soft); border: 2px solid var(--c-amber-dark); border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 0 var(--c-amber-dark);">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
-             style="background: var(--c-star); box-shadow: 0 3px 0 rgba(0,0,0,0.1);">
-          <%= render Ui::Icon::Component.new(@rank_record.icon.to_sym, size: 22, color: "white") %>
-        </div>
-        <div class="flex-1 min-w-0">
-          <div class="font-display text-[11px] font-extrabold uppercase tracking-[1px]" style="color: var(--c-amber-dark);">
-            Rank atual
-          </div>
-          <div class="font-display text-[20px] font-extrabold leading-tight" style="color: var(--text);">
-            <%= @rank_record.label %>
-          </div>
-        </div>
-      </div>
-    <% else %>
-      <div class="mb-4 p-4 rounded-2xl text-[13px] font-bold"
-           style="background: var(--surface); border: 2px dashed var(--hairline); color: var(--text-muted);">
-        Sem rank ainda — <%= @selected_kid.name %> precisa concluir aulas pra subir.
-      </div>
-    <% end %>
-
-    <%# ── Skill radar (9 skills) ───────────────────────── %>
-    <section class="ls-card-3d mb-4"
-             style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);">
-      <div class="flex items-baseline justify-between mb-3">
-        <h2 class="font-display text-[16px] font-extrabold m-0" style="color: var(--text);">Radar de habilidades</h2>
-        <span class="text-[11px] font-extrabold uppercase tracking-[1px]" style="color: var(--text-muted);">9 skills</span>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <% @skills.each_with_index do |skill, i| %>
-          <% score = @skill_scores[i] %>
-          <% pct = @skill_max.zero? ? 0 : ((score.to_f / @skill_max) * 100).round %>
-          <div class="flex items-center gap-2 min-w-0">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                 style="background: <%= score.positive? ? 'var(--primary)' : 'var(--hairline)' %>;">
-              <%= render Ui::Icon::Component.new(skill.icon.to_sym, size: 14, color: "white") %>
-            </div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-baseline justify-between gap-2">
-                <span class="font-display text-[12px] font-extrabold truncate" style="color: var(--text);">
-                  <%= skill.name %>
-                </span>
-                <span class="text-[10px] font-extrabold tabular-nums shrink-0"
-                      style="color: <%= score.positive? ? 'var(--c-mint-dark)' : 'var(--text-muted)' %>;">
-                  <%= score %>
-                </span>
-              </div>
-              <div class="h-1.5 mt-1 rounded-full overflow-hidden" style="background: var(--hairline);">
-                <div class="h-full rounded-full" style="width: <%= pct %>%; background: linear-gradient(90deg, var(--primary), var(--c-star));"></div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </section>
-
     <%# ── Concepts crossed ─────────────────────────────── %>
     <section class="ls-card-3d mb-4"
              style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);">

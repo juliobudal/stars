@@ -12,8 +12,6 @@ class Kid::Academy::SubjectsController < Kid::Academy::BaseController
                       .includes(mission: :subject)
                       .limit(6)
 
-    @rank_record = ::Academy::LearnerRank.find_by(learner_id: learner_id)
-
     @pending_wagers = ::Academy::PracticeWager
                         .for_learner(learner_id)
                         .pending

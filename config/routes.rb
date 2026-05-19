@@ -86,7 +86,6 @@ Rails.application.routes.draw do
       resources :missions, only: %i[index show edit update]
       resources :lenses, only: %i[index edit update] do
         member do
-          post  :regenerate
           patch :flag
         end
       end

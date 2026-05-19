@@ -39,8 +39,6 @@ module Academy
     self.table_name = "academy_discovery_cards"
 
     belongs_to :mission, class_name: "Academy::Mission"
-    has_many :recall_reviews, class_name: "Academy::RecallReview",
-             foreign_key: :card_id, dependent: :destroy
 
     validates :learner_id, presence: true
     validates :learner_id, uniqueness: { scope: :mission_id }

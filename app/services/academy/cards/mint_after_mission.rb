@@ -30,10 +30,6 @@ module Academy
         payload = build_payload
         card.assign_attributes(payload.merge(minted_at: Time.current))
         card.save!
-
-        # Phase 5 — schedule a recall review for the freshly minted card.
-        Recall::Schedule.call(card: card)
-
         ok(card)
       rescue ActiveRecord::RecordInvalid => e
         fail_with("Não foi possível cunhar a carta: #{e.message}")

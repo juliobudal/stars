@@ -57,9 +57,6 @@ module Academy
              foreign_key: :mission_id, dependent: :destroy
     has_many :discovery_cards, class_name: "Academy::DiscoveryCard",
              foreign_key: :mission_id, dependent: :destroy
-    has_many :aula_skills, class_name: "Academy::AulaSkill",
-             foreign_key: :mission_id, dependent: :destroy
-    has_many :skills, through: :aula_skills, class_name: "Academy::Skill"
 
     validates :slug, :title, :learning_objective, presence: true
     validates :slug, uniqueness: { scope: :subject_id }

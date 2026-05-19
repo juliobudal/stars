@@ -15,29 +15,17 @@ class Parent::Academy::DashboardController < ApplicationController
     load_kid_dashboard(@selected_kid)
   end
 
-  # Side-by-side cross-child comparison. Same dataset as #index but
-  # collapsed to a comparable shape (radar scores + completion counts).
+  # Side-by-side cross-child comparison.
   def compare
     @children = current_family.profiles.where(role: :child).order(:name)
-    @skills = ::Academy::Skill.ordered.to_a
-
-    learner_ids = @children.map(&:id)
-    skills_by_learner = ::Academy::LearnerSkill
-                          .where(learner_id: learner_ids)
-                          .group_by(&:learner_id)
 
     @rows = @children.map do |child|
-      indexed = (skills_by_learner[child.id] || []).index_by(&:skill_id)
       {
         child: child,
-        rank: ::Academy::LearnerRank.find_by(learner_id: child.id),
-        scores: @skills.map { |s| indexed[s.id]&.score.to_i },
         completed: ::Academy::MissionProgress.where(learner_id: child.id, status: [ :completed, :mastered ]).count,
         cards: ::Academy::DiscoveryCard.where(learner_id: child.id).count
       }
     end
-
-    @skill_max = (@rows.flat_map { |r| r[:scores] }.max || 0).clamp(20, Float::INFINITY).to_i
   end
 
   private
@@ -49,13 +37,6 @@ class Parent::Academy::DashboardController < ApplicationController
   end
 
   def load_kid_dashboard(kid)
-    @rank_record = ::Academy::LearnerRank.find_by(learner_id: kid.id)
-
-    @skills = ::Academy::Skill.ordered.to_a
-    learner_skills = ::Academy::LearnerSkill.where(learner_id: kid.id).index_by(&:skill_id)
-    @skill_scores = @skills.map { |s| learner_skills[s.id]&.score.to_i }
-    @skill_max = (@skill_scores.max || 0).clamp(20, Float::INFINITY).to_i
-
     # v5: 1:1 mission↔concept — go through the mission FK directly.
     @concepts_by_category = ::Academy::Concept
                               .joins(missions: :discovery_cards)
