@@ -6,18 +6,51 @@
 # Edit CURATED_EDGES to upgrade more pairs.
 namespace :academy do
   namespace :concept_edges do
+    # Curated against the actual edges seeded in db/seeds/academy.rb
+    # (verified via Academy::ConceptEdge enumeration 2026-05-19).
+    # Pairs absent here remain as `relates_to` (the default).
     CURATED_EDGES = {
       # %w[from_slug to_slug] => "edge_type"
-      %w[dopamina recompensa-variavel]   => "generalizes",
-      %w[recompensa-variavel habito-loop] => "composes_with",
-      %w[dopamina ultraprocessados]      => "manifests_in",
-      %w[dopamina algoritmo-recomendacao] => "manifests_in",
-      %w[sistema-1-vs-2 vies-confirmacao] => "predicts",
-      %w[habito-loop regra-dos-2-min]    => "composes_with",
-      %w[gratificacao-tardia juros-compostos] => "predicts",
-      %w[escassez-percebida prova-social] => "composes_with",
-      %w[melatonina sono-consolidacao]   => "composes_with",
-      %w[glicose-pico ultraprocessados]  => "manifests_in"
+
+      # mechanisms manifesting in concrete phenomena
+      %w[dopamina recompensa-imediata]         => "manifests_in",
+      %w[glicose-pico dopamina]                => "manifests_in",
+      %w[ultraprocessados recompensa-imediata] => "manifests_in",
+      %w[sinal-corporal homeostase]            => "manifests_in",
+
+      # category-level relationships
+      %w[dopamina recompensa-variavel]         => "generalizes",
+      %w[atencao foco]                         => "generalizes",
+
+      # systems built from sub-components
+      %w[habito-loop regra-dos-2-min]          => "composes_with",
+      %w[habito-loop neuroplasticidade]        => "composes_with",
+      %w[foco deep-work]                       => "composes_with",
+      %w[deep-work consistencia]               => "composes_with",
+      %w[sono-consolidacao melatonina]         => "composes_with",
+      %w[sono-consolidacao memoria-reconstrutiva] => "composes_with",
+      %w[recompensa-variavel atencao]          => "composes_with",
+      %w[prova-social escassez-percebida]      => "composes_with",
+      %w[pensamento-computacional decomposicao] => "composes_with",
+      %w[pensamento-computacional sistemas]    => "composes_with",
+      %w[feedback-loop sistemas]               => "composes_with",
+      %w[empatia escuta-ativa]                 => "composes_with",
+      %w[escuta-ativa comunicacao]             => "composes_with",
+
+      # knowing A predicts behavior/risk in B
+      %w[sistema-1-vs-2 ceticismo]             => "predicts",
+      %w[vies-confirmacao ceticismo]           => "predicts",
+      %w[memoria-reconstrutiva ceticismo]      => "predicts",
+      %w[atencao switch-cost]                  => "predicts",
+      %w[probabilidade ceticismo]              => "predicts",
+      %w[consistencia habito-loop]             => "predicts",
+      %w[habito-loop identidade]               => "predicts",
+      %w[virtude-habito identidade]            => "predicts",
+      %w[juros-compostos gratificacao-tardia]  => "predicts",
+
+      # one is a refined/specialized form of the other
+      %w[escassez-percebida escassez]          => "specializes",
+      %w[recompensa-imediata gratificacao-tardia] => "contrasts_with"
     }.freeze
 
     desc "Backfill edge_type on academy_concept_edges using a curated mapping"
