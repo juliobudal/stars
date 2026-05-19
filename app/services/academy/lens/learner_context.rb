@@ -6,26 +6,17 @@ module Academy
     # prompt builder. Stays inside the Academy boundary — the host
     # (Profile/Family) is never reached. Built from `learner_id` + `concept`.
     #
-    # `mastery_tier` is bucketed (2 tiers + the learner-agnostic "any"):
-    #
-    #   level 0..1  → "introductory"  (silhouette / spotted)
-    #   level 2..3  → "advanced"      (recognized / mastered)
-    #   no learner  → "any"           (no mastery signal yet)
-    #
-    # Historical: this used to drive the lens-generation cache key
-    # (mastery-tier-segmented LLM output). With the curated-static pivot
-    # mastery_tier is informational only — surfaced into BuildPrompt's
-    # ESTADO DO APRENDIZ block to nudge the Guide voice.
-    class LearnerContext < Data.define(:learner_id, :mastery_tier, :wrong_streak, :related_concept_names)
-      MASTERY_TIERS = %w[any introductory advanced].freeze
-
+    # `level` is the raw `Academy::LearnerConcept#level` (0..3):
+    #   0 silhouette · 1 spotted · 2 recognized · 3 mastered
+    # `wrong_streak` is the count of `micro_check_wrong` signals in the
+    # last 24 hours — the BuildPrompt voice softens when ≥ 2.
+    class LearnerContext < Data.define(:learner_id, :level, :wrong_streak, :related_concept_names)
       def self.build(learner_id:, concept:)
         return any_for(concept) if learner_id.nil?
 
         level = ::Academy::LearnerConcept
                   .where(learner_id: learner_id, concept_id: concept.id)
                   .pick(:level) || 0
-        tier  = level >= 2 ? "advanced" : "introductory"
 
         streak = ::Academy::LensSignal
                    .where(learner_id: learner_id, concept_id: concept.id,
@@ -33,12 +24,12 @@ module Academy
                    .where(recorded_at: 24.hours.ago..)
                    .count
 
-        new(learner_id: learner_id, mastery_tier: tier, wrong_streak: streak,
+        new(learner_id: learner_id, level: level, wrong_streak: streak,
             related_concept_names: related_concept_names(concept))
       end
 
       def self.any_for(concept)
-        new(learner_id: nil, mastery_tier: "any", wrong_streak: 0,
+        new(learner_id: nil, level: 0, wrong_streak: 0,
             related_concept_names: related_concept_names(concept))
       end
 
@@ -48,26 +39,8 @@ module Academy
         (outgoing + incoming).compact.uniq.first(5)
       end
 
-      # Plain-text hint emitted into the prompt. Empty when learner is absent
-      # so prewarm generations stay generic and cache-shareable.
-      def difficulty_hint
-        case mastery_tier
-        when "introductory"
-          "Aprendiz NOVATO neste conceito — ancore em exemplos concretos do dia-a-dia, evite jargão."
-        when "advanced"
-          "Aprendiz já familiarizado — pode trazer nuance, edge case, ou aplicação não-óbvia."
-        else
-          ""
-        end
-      end
-
-      def adaptive_hint
-        if wrong_streak >= 2
-          "ATENÇÃO: aprendiz errou últimas 2 micro-checks deste conceito. Reduza dificuldade desta lente; reancore."
-        else
-          ""
-        end
-      end
+      def advanced? = level >= 2
+      def novice?   = !advanced?
     end
   end
 end

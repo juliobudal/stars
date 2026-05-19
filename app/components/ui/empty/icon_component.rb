@@ -1,7 +1,7 @@
 class Ui::Empty::IconComponent < Ui::Icon::Component
   def call
     content_tag :div, class: classes, **@options do
-      helpers.ui.icon(@name || content, size: 6)
+      render Ui::Icon::Component.new(@name || content, size: 6)
     end
   end
 

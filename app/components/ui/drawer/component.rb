@@ -12,7 +12,7 @@ class Ui::Drawer::Component < ApplicationComponent
 
   erb_template <<~ERB
     <%= container_tag do %>
-      <%= helpers.ui.drawer_header(title: @title, subtitle: @subtitle, closable: closable?, id: @id) %>
+      <%= render Ui::Drawer::HeaderComponent.new(title: @title, subtitle: @subtitle, closable: closable?, id: @id) %>
       <%= content %>
     <% end %>
   ERB

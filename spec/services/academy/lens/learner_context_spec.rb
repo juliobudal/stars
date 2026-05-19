@@ -13,29 +13,29 @@ RSpec.describe Academy::Lens::LearnerContext do
   end
 
   describe ".build" do
-    it "returns the any-tier context when learner_id is nil" do
+    it "returns the level-0 context when learner_id is nil" do
       ctx = described_class.build(learner_id: nil, concept: concept)
-      expect(ctx.mastery_tier).to eq("any")
+      expect(ctx.level).to eq(0)
       expect(ctx.wrong_streak).to eq(0)
-      expect(ctx.difficulty_hint).to eq("")
+      expect(ctx).to be_novice
     end
 
-    it "computes introductory tier for level 0 (no record)" do
+    it "stays at level 0 when no LearnerConcept row exists" do
       ctx = described_class.build(learner_id: 99, concept: concept)
-      expect(ctx.mastery_tier).to eq("introductory")
-      expect(ctx.difficulty_hint).to include("NOVATO")
+      expect(ctx.level).to eq(0)
+      expect(ctx).to be_novice
     end
 
-    it "computes introductory tier for level 1 (spotted)" do
+    it "reports level 1 for spotted concept" do
       Academy::LearnerConcept.create!(learner_id: 99, concept: concept, level: 1)
-      expect(described_class.build(learner_id: 99, concept: concept).mastery_tier).to eq("introductory")
+      expect(described_class.build(learner_id: 99, concept: concept).level).to eq(1)
     end
 
-    it "computes advanced tier for level 2 (recognized)" do
+    it "flips to advanced from level 2 onwards" do
       Academy::LearnerConcept.create!(learner_id: 99, concept: concept, level: 2)
       ctx = described_class.build(learner_id: 99, concept: concept)
-      expect(ctx.mastery_tier).to eq("advanced")
-      expect(ctx.difficulty_hint).to include("familiarizado")
+      expect(ctx.level).to eq(2)
+      expect(ctx).to be_advanced
     end
 
     it "counts recent wrong signals into wrong_streak" do
@@ -48,7 +48,6 @@ RSpec.describe Academy::Lens::LearnerContext do
       end
       ctx = described_class.build(learner_id: 99, concept: concept)
       expect(ctx.wrong_streak).to eq(3)
-      expect(ctx.adaptive_hint).to include("ATENÇÃO")
     end
 
     it "ignores wrong signals older than 24h" do

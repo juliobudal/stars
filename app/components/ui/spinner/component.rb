@@ -5,7 +5,7 @@ class Ui::Spinner::Component < ApplicationComponent
   end
 
   def call
-    helpers.ui.icon("spinner", size: @size, class: classes, **@options)
+    render Ui::Icon::Component.new("spinner", size: @size, class: classes, **@options)
   end
 
   private

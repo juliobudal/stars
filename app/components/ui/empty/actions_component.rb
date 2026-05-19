@@ -4,7 +4,7 @@ class Ui::Empty::ActionsComponent < ApplicationComponent
   end
 
   def call
-    helpers.ui.group(content, class: classes, sticky: false, **@options)
+    render(Ui::Group::Component.new(class: classes, sticky: false, **@options)) { content }
   end
 
   private

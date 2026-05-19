@@ -25,7 +25,7 @@ class Ui::Avatar::Component < ApplicationComponent
       return content_tag(:span, initials)
     end
 
-    helpers.ui.icon("user", class: "w-8/12")
+    render Ui::Icon::Component.new("user", class: "w-8/12")
   end
 
   def image_url

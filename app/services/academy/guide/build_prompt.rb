@@ -239,10 +239,10 @@ module Academy
         return nil if learner.id.nil?
 
         ctx = ::Academy::Lens::LearnerContext.build(learner_id: learner.id, concept: concept)
-        tier_line = case ctx.mastery_tier
-                    when "advanced"     then "Aprendiz: avançado neste conceito — pode trazer nuance, edge case, aplicação não-óbvia."
-                    when "introductory" then "Aprendiz: novato neste conceito — ancore em exemplos simples do dia-a-dia."
-                    else nil
+        tier_line = if ctx.advanced?
+                      "Aprendiz: avançado neste conceito (nível #{ctx.level}) — pode trazer nuance, edge case, aplicação não-óbvia."
+                    else
+                      "Aprendiz: novato neste conceito (nível #{ctx.level}) — ancore em exemplos simples do dia-a-dia."
                     end
 
         adaptive = ctx.wrong_streak >= 2 ? "Sinal: errou as últimas #{ctx.wrong_streak} micro-checks. Recapture com paciência, sem julgar." : nil
