@@ -22,10 +22,6 @@ module Academy
     :max_tokens,
     :referer,
     :app_title,
-    :judge_model,
-    :judge_temperature,
-    :judge_max_tokens,
-    :judge_reasoning_effort,
     keyword_init: true
   )
 
@@ -38,11 +34,7 @@ module Academy
         temperature: 0.7,
         max_tokens: 10000,
         referer: "https://littlestars.app",
-        app_title: "LittleStars Academy",
-        judge_model: "openai/gpt-5-nano",
-        judge_temperature: 0.0,
-        judge_max_tokens: 4000,
-        judge_reasoning_effort: "minimal"
+        app_title: "LittleStars Academy"
       )
     end
 

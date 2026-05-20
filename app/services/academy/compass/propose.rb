@@ -2,15 +2,13 @@
 
 module Academy
   module Compass
-    # v4 substitute for Adapt::NextMissionFor. Instead of one suggested
-    # mission, returns three candidates with a `reason` legible to the kid:
+    # Returns up to three mission candidates with a `reason` legible to the kid:
     #
     #   - :hot_trail        — next mission on the trail with highest affinity
     #   - :new_territory    — opener mission of the least-explored subject
     #   - :revisit          — mission revisiting a partially-known concept
     #
-    # If any slot can't be filled (sparse data, new account), it falls back
-    # to the legacy Adapt::NextMissionFor pick as a single candidate.
+    # Empty plan is a valid result; the UI renders a generic prompt.
     class Propose < ApplicationService
       Card = Data.define(:slot, :mission, :reason)
       Plan = Data.define(:cards) do
@@ -29,8 +27,6 @@ module Academy
           new_territory_card,
           revisit_card
         ].compact
-
-        cards = fallback_cards if cards.empty?
 
         ok(Plan.new(cards: cards))
       end
@@ -99,14 +95,6 @@ module Academy
           mission: mission,
           reason: %(Aquele padrão que vc viu antes voltou — em outro lugar.)
         )
-      end
-
-      # ── Fallback ──────────────────────────────────────────────────────
-      def fallback_cards
-        legacy = Adapt::NextMissionFor.call(learner_id: @learner_id).data
-        return [] unless legacy
-
-        [ Card.new(slot: :hot_trail, mission: legacy, reason: "Próxima descoberta sugerida.") ]
       end
 
       # ── Helpers ───────────────────────────────────────────────────────

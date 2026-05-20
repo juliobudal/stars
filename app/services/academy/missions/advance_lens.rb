@@ -117,9 +117,8 @@ module Academy
         candidates = [ preferred_type ] +
                      (::Academy::Lens::Catalog.types - [ preferred_type ] - visited_types.to_a)
         candidates.compact.uniq.each do |lens_type|
-          result = ::Academy::Lens::Generate.call(
-            concept: @progress.mission.concept, lens_type: lens_type,
-            learner_id: @progress.learner_id, learner: @learner
+          result = ::Academy::Lens::ResolveCuratedPayload.call(
+            concept: @progress.mission.concept, lens_type: lens_type, learner: @learner
           )
           return result.data if result.success?
 

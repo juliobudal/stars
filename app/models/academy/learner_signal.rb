@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Academy
-  # Per-(learner, subject) affinity counter consumed by Adapt::NextMissionFor.
+  # Per-(learner, subject) affinity counter consumed by Compass::Propose.
 # == Schema Information
 #
 # Table name: academy_learner_signals

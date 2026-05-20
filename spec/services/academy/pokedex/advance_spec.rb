@@ -63,21 +63,7 @@ RSpec.describe Academy::Pokedex::Advance do
     end
   end
 
-  describe "L2 → L3 (cross-subject transfer)" do
-    it "promotes to L3 on transfer_detected" do
-      mission = mission_with_concept
-      complete_mission!(mission)
-      record = create(:academy_learner_concept, concept: concept, learner_id: learner_id, level: 2)
-
-      result = described_class.call(
-        learner_id: learner_id, concept: concept, mission: mission, trigger: :transfer_detected
-      )
-      expect(result.data.id).to eq(record.id)
-      expect(result.data).to be_mastered
-      expect(result.data.transfer_count).to eq(1)
-      expect(result.data.evolved_to_3_at).to be_present
-    end
-
+  describe "L2 → L3 (cross-subject completion)" do
     it "promotes to L3 on the second completion in a different subject" do
       subj_a = create(:academy_subject)
       subj_b = create(:academy_subject)

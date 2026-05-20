@@ -13,7 +13,6 @@ module Academy
 #  last_seen_at                                                              :datetime
 #  level(0..3 (silhouette → mastered))                                      :integer          default(0), not null
 #  seen_in_subjects_count                                                    :integer          default(0), not null
-#  transfer_count                                                            :integer          default(0), not null
 #  created_at                                                                :datetime         not null
 #  updated_at                                                                :datetime         not null
 #  concept_id                                                                :bigint           not null

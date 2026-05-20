@@ -43,6 +43,15 @@
           <%= @mission.title %>
         </h1>
       </div>
+
+      <% if ::Academy::Guide::Available.available? %>
+        <%= link_to kid_academy_subject_mission_guide_path(@subject, @mission),
+                    "aria-label": "Falar com O Guia",
+                    class: "w-10 h-10 rounded-full flex items-center justify-center anim-press shrink-0 font-display text-[16px]",
+                    style: "background: color-mix(in oklab, #{color_var} 18%, var(--surface)); border: 2px solid #{color_var}; color: #{color_var}; box-shadow: 0 3px 0 color-mix(in oklab, #{color_var} 50%, black);" do %>
+          🦉
+        <% end %>
+      <% end %>
     </div>
 
     <%# Progress dots (no labels — just visual journey) %>

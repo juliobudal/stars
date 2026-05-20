@@ -238,44 +238,16 @@ cobre toda essa janela com mensagens progressivas + citação fixa pra criança 
 
 ---
 
-## O LLM-as-judge (v3, wirado em 2026-05-17)
+## Geração: pivot pra curated estático (2026-05-20)
 
-**Arquivos:**
-- `app/services/academy/llm/judge.rb` — chamada à gpt-5-nano, parse, Verdict
-- `app/services/academy/llm/judge_persona.rb` — rubrica completa
+A pipeline LLM de geração + judge foi **retirada**. Conteúdo de lente é
+hoje **100% curado** e seedado em `db/seeds/academy_lens_payloads/` —
+ver `Academy::Lens::ResolveCuratedPayload`.
 
-**Rubrica (6 pilares + âncora moral):**
-1. **Gancho** — abertura prende, não define
-2. **Fidelidade ao conceito** — ensina o conceito declarado, não deriva
-3. **Encaixe 7-12 anos** — vocab + cenário cabem na faixa
-4. **Concretude / imagem mental** — cria cena, não claim abstrata
-5. **Voz d'O Guia** — autoritativo + misterioso + fascinado, não professor
-6. **Micro-check** — aplicação em situação nova, não memória
-+ **Âncora moral** (gate independente) — valores cristãos respeitados,
-   citações bíblicas contextuais
-
-**Regras de verdict:**
-- PASS = overall_score ≥ 8 E nenhum pilar com 0 E moral_anchor_ok
-- REVISE = 5-7, OU 1 pilar com 0
-- FAIL = ≤4, OU 2+ pilares com 0, OU moral_anchor_ok=false
-
-**Ciclo:** gerar → julgar → se REVISE/FAIL com ciclo restante, regerar
-com `rewrite_hint` → ship. Default: **1 ciclo de revisão máximo**
-(config `Academy.config.judge_max_revision_cycles`).
-
-**Failure-leniente:** juiz indisponível (timeout/erro) → lente é
-**enviada com `judge_verdict="skipped"`**. Nunca bloqueia o kid.
-
-**Onde tunar:**
-- Calibração mais/menos exigente → mudar regras de verdict em
-  `judge_persona.rb` (PASS ≥ N)
-- Mais ciclos = mais qualidade, mais lento → subir
-  `judge_max_revision_cycles` (cuidado com UX)
-- Desligar globalmente → `ACADEMY_JUDGE_ENABLED=false`
-- Mudar modelo do juiz → `ACADEMY_JUDGE_MODEL=…` (qualquer modelo
-  OpenRouter aceito; tem que suportar `reasoning.effort`)
-- Adicionar pilar novo → editar `JudgePersona::VOICE` (rubrica) +
-  `Judge::PILLAR_KEYS` (parsing) + spec
+LLM em runtime sobrou em **um único lugar**: o chatbot "O Guia"
+(`Academy::Guide::Ask`) acessível em
+`/kid/academy/subjects/:id/missions/:id/guide` — 5 perguntas/dia por
+(kid × missão), prompt frio em `Academy::Guide::Persona`.
 
 ---
 

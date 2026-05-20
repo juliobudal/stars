@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_20_000006) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_20_170000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -101,7 +101,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_20_000006) do
     t.bigint "learner_id", null: false, comment: "Learner value-object id (no FK by design — module isolation)"
     t.integer "level", default: 0, null: false, comment: "0..3 (silhouette → mastered)"
     t.integer "seen_in_subjects_count", default: 0, null: false
-    t.integer "transfer_count", default: 0, null: false
     t.datetime "updated_at", null: false
     t.index ["concept_id"], name: "index_academy_learner_concepts_on_concept_id"
     t.index ["learner_id", "concept_id"], name: "idx_academy_learner_concepts_unique", unique: true
@@ -358,22 +357,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_20_000006) do
     t.index ["subject_id", "position"], name: "idx_academy_trails_subject_position"
     t.index ["subject_id", "slug"], name: "idx_academy_trails_subject_slug", unique: true
     t.index ["subject_id"], name: "index_academy_trails_on_subject_id"
-  end
-
-  create_table "academy_transfer_detections", force: :cascade do |t|
-    t.decimal "confidence", precision: 3, scale: 2, null: false, comment: "LLM-judge confidence 0..1; only records ≥0.75 are persisted"
-    t.datetime "created_at", null: false
-    t.datetime "detected_at", null: false
-    t.text "evidence_excerpt", comment: "Snippet of the kid's message that triggered detection"
-    t.bigint "from_concept_id", null: false
-    t.bigint "learner_id", null: false, comment: "Learner value-object id (no FK)"
-    t.bigint "message_id", null: false
-    t.bigint "to_concept_id", null: false
-    t.datetime "updated_at", null: false
-    t.index ["from_concept_id"], name: "idx_academy_transfer_detections_from_concept"
-    t.index ["learner_id", "detected_at"], name: "idx_academy_transfer_detections_learner_time"
-    t.index ["message_id"], name: "index_academy_transfer_detections_on_message_id"
-    t.index ["to_concept_id"], name: "idx_academy_transfer_detections_to_concept"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -716,9 +699,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_20_000006) do
   add_foreign_key "academy_secrets", "academy_missions", column: "mission_id"
   add_foreign_key "academy_sessions", "academy_mission_progresses", column: "mission_progress_id"
   add_foreign_key "academy_trails", "academy_subjects", column: "subject_id"
-  add_foreign_key "academy_transfer_detections", "academy_concepts", column: "from_concept_id"
-  add_foreign_key "academy_transfer_detections", "academy_concepts", column: "to_concept_id"
-  add_foreign_key "academy_transfer_detections", "academy_messages", column: "message_id"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activity_logs", "profiles"

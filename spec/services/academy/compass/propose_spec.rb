@@ -45,14 +45,12 @@ RSpec.describe Academy::Compass::Propose do
     expect(plan.revisit.mission).to eq(revisit_mission)
   end
 
-  it "falls back to a single legacy pick when slots stay empty" do
+  it "returns an empty plan when no slot can be filled" do
     Academy::LearnerSignal.where(learner_id: learner_id).delete_all
+    Academy::LearnerConcept.where(learner_id: learner_id).delete_all
     Academy::Subject.update_all(active: false)
-    subject_hot.update!(active: true)
-    # mission_hot stays as the only candidate for the legacy fallback
-    Academy::Mission.where.not(subject_id: subject_hot.id).update_all(active: false)
 
     plan = described_class.call(learner_id: learner_id).data
-    expect(plan.cards.size).to be >= 1
+    expect(plan.cards).to be_empty
   end
 end

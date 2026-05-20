@@ -14,13 +14,11 @@ module Academy
     #   :lens_opened       — fired by Missions::Begin/AdvanceLens when a new
     #                        LearnerLensVisit is created (pulls L0 → L1).
     #   :mission_completed — fired by Missions::Finalize (L1/L2 → L2/L3).
-    #   :transfer_detected — legacy Transfer::Detect path; bumps to L3
-    #                        directly on a cross-area transfer event.
     #
     # On any successful level increase, emits a `concept_evolved` signal
     # so affinity tracking and Turbo Stream broadcasts pick it up.
     class Advance < ApplicationService
-      VALID_TRIGGERS = %i[lens_opened mission_completed transfer_detected].freeze
+      VALID_TRIGGERS = %i[lens_opened mission_completed].freeze
 
       def initialize(learner_id:, concept:, mission: nil, trigger:)
         @learner_id = learner_id
@@ -45,11 +43,6 @@ module Academy
           new_level = compute_level
           @record.seen_in_subjects_count = subject_count
           @record.last_seen_at = Time.current
-
-          if @trigger == :transfer_detected
-            @record.transfer_count = @record.transfer_count.to_i + 1
-            new_level = [ new_level, 3 ].max
-          end
 
           apply_monotonic_transition!(@record, new_level)
           @record.save!

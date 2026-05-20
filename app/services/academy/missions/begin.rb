@@ -96,9 +96,8 @@ module Academy
         candidates.unshift(preferred_type).uniq! unless visited.include?(preferred_type)
 
         candidates.each do |lens_type|
-          result = ::Academy::Lens::Generate.call(
-            concept: @mission.concept, lens_type: lens_type,
-            learner_id: @learner.id, learner: @learner
+          result = ::Academy::Lens::ResolveCuratedPayload.call(
+            concept: @mission.concept, lens_type: lens_type, learner: @learner
           )
           return result.data if result.success?
 

@@ -19,9 +19,8 @@ class Kid::Academy::SubjectsController < Kid::Academy::BaseController
                         .order(created_at: :desc)
                         .limit(3)
 
-    # v4 — Compass replaces Adapt::NextMissionFor. The hot_trail card
-    # becomes the dominant "Pílula do dia"; the other two cards surface in
-    # T-043's home redesign as a "Bússola do explorador" section.
+    # hot_trail card is the dominant "Pílula do dia"; the other two
+    # surface as "Bússola do explorador".
     @compass_plan      = ::Academy::Compass::Propose.call(learner_id: learner_id).data
     @suggested_mission = @compass_plan&.hot_trail&.mission
 

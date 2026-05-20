@@ -3,7 +3,7 @@
 require "rails_helper"
 
 # Integration spec for Mission::{Begin, AdvanceLens, Finalize}. Drives a
-# synthetic learner through a complete journey with stubbed Lens::Generate
+# synthetic learner through a complete journey with stubbed ResolveCuratedPayload
 # so the test doesn't depend on actual curated seed data.
 RSpec.describe "Mission lifecycle (v5)" do
   let(:concept) { create(:academy_concept, slug: "mlc-c", name: "MLCC") }
@@ -26,8 +26,8 @@ RSpec.describe "Mission lifecycle (v5)" do
       end
     end
 
-    # Lens::Generate now resolves to the pre-seeded curated row.
-    allow(Academy::Lens::Generate).to receive(:call) do |kwargs|
+    # ResolveCuratedPayload reads the pre-seeded curated row.
+    allow(Academy::Lens::ResolveCuratedPayload).to receive(:call) do |kwargs|
       lens_type = kwargs[:lens_type].to_s
       row = Academy::LensCache.curated.find_by!(
         concept_id: concept.id, lens_type: lens_type, age_band: "kid", locale: "pt-BR"

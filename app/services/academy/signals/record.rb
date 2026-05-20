@@ -13,13 +13,12 @@ module Academy
     #   :checkpoint_correct  → affinity +1, correct_checkpoints +1
     #   :checkpoint_wrong    → wrong_checkpoints +1 (no affinity bump)
     #   :concept_evolved     → affinity +2 (Pokedex level up — fired by Pokedex::Advance)
-    #   :transfer_detected   → affinity +5 (cross-area transfer — fired by Transfer::Detect)
     #   :wager_settled       → affinity +3 (kid reported a PracticeWager — fired by Settle)
     #   :session_started     → last_session_at touch only
     class Record < ApplicationService
       VALID_EVENTS = %i[
         mission_completed checkpoint_correct checkpoint_wrong
-        concept_evolved transfer_detected wager_settled
+        concept_evolved wager_settled
         session_started
       ].freeze
 
@@ -65,8 +64,6 @@ module Academy
           record.wrong_checkpoints += 1
         when :concept_evolved
           record.affinity_score += 2
-        when :transfer_detected
-          record.affinity_score += 5
         when :wager_settled
           record.affinity_score += 3
         when :session_started

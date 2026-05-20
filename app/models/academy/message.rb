@@ -35,25 +35,11 @@ module Academy
 
     validates :content, presence: true
 
-    # v4 — fire cross-area transfer detection on learner free-text turns
-    # that are long enough to plausibly carry a concept reference.
-    after_commit :enqueue_transfer_detection, on: :create
-
     # Convenience accessors over the jsonb metadata blob.
     def options         = metadata.fetch("options", [])
     def kind            = metadata["kind"]
     def checkpoint?     = kind == "checkpoint"
     def checkpoint_kind = metadata["checkpoint_kind"] || "multiple_choice"
     def session_done?   = !!metadata["session_complete"]
-
-    private
-
-    def enqueue_transfer_detection
-      return unless learner?
-      return if kind == "answer" # checkpoint pick, not free-text reasoning
-      return if content.to_s.strip.length < ::Academy::Transfer::Detect::MIN_CONTENT_LENGTH
-
-      ::Academy::Transfer::DetectJob.perform_later(id)
-    end
   end
 end

@@ -6,8 +6,7 @@ RSpec.describe Academy::Llm::Client do
   let(:config) do
     Academy::Config.new(
       openrouter_api_key: "x" * 20, openrouter_base_url: "https://example.test/v1",
-      model: "fake/m", temperature: 0.5, max_tokens: 100, referer: nil, app_title: nil,
-      judge_model: nil, judge_temperature: 0.0, judge_max_tokens: 100, judge_reasoning_effort: "minimal"
+      model: "fake/m", temperature: 0.5, max_tokens: 100, referer: nil, app_title: nil
     )
   end
   let(:client) { described_class.new(config: config) }

@@ -9,7 +9,7 @@ LittleStars — gamified family task manager with "star economy" for kids. Rails
 - `PRD_LittleStars.md` — product spec
 - `TECHSPEC.md` — authoritative architecture reference (models, services, routes, UI mapping)
 - `docs/academy-v2.md` — Academy module **v2** (Formação Humana, 26 tabelas, 7 áreas, currículo invisível) — read before touching anything under `Academy::`
-- `docs/academy-lesson-structure.md` — camadas (catálogo + schema + prompt + DB) que determinam o que o LLM pode gerar em cada aula
+- `docs/academy-lesson-structure.md` — camadas (catálogo + schema + DB) que estruturam o conteúdo curado de cada aula
 - `.planning/designs/` — specs ativas: `academy-v4-spec.md`, `academy-v4-tasks.md`, `casa-magica/`
 - `.planning/audits/` — auditorias correntes (brutal-review v2, lens v3 follow-ups)
 - `.planning/archive/` — docs concluídos/superseded (ver `2026-05-18-cleanup/README.md` para histórico)
@@ -56,7 +56,9 @@ Namespaced dual-interface app: `parent/` vs `kid/` routes, controllers, views, a
 
 Sub-features that justify their own boundary live under a top-level namespace with prefixed tables and zero FK into host tables. They communicate with the host only through controllers and a `Module::Learner`-style value adapter. **Never reference host models (`Profile`, `Family`, ...) from inside a module.**
 
-- **`Academy::`** — LLM-guided pedagogical missions. **v2 shipped 2026-05-16**: 26 tabelas, 7 áreas de formação humana, currículo invisível via 45 conceitos + 9 skills, spaced repetition (recall), segredos desbloqueáveis, adaptação por sinal. Persona: "O Guia" (authoritative + mysterious + fascinated). LLM = DeepSeek via OpenRouter (env `OPENROUTER_API_KEY`). All under `app/{models,services,controllers,views}/academy/` and `/kid/academy/*`, `/parent/academy/*`. Tables prefixed `academy_*`. **See `docs/academy-v2.md` before editing.** Module is inert without the env key — controllers redirect gracefully. `AdvanceTurn#finalize_mission!` (v4) orquestra 4 hooks em ordem fixa: `Cards::MintAfterMission` → `Wagers::Create` → `Signals::Record` → `Secrets::EvaluateForLearner` (ordem importa: `Secrets::EvaluateForLearner` lê o estado deixado pelos anteriores). `Skills::Award` e `Medals::AwardForMission` são v2 legacy (parent dashboard read-only) — não chame do kid path.
+- **`Academy::`** — pedagogical missions. **v2 shipped 2026-05-16**: 26 tabelas, 7 áreas de formação humana, currículo invisível via 45 conceitos + 9 skills, spaced repetition (recall), segredos desbloqueáveis, adaptação por sinal. All under `app/{models,services,controllers,views}/academy/` and `/kid/academy/*`, `/parent/academy/*`. Tables prefixed `academy_*`. **See `docs/academy-v2.md` before editing.** `AdvanceTurn#finalize_mission!` (v4) orquestra 4 hooks em ordem fixa: `Cards::MintAfterMission` → `Wagers::Create` → `Signals::Record` → `Secrets::EvaluateForLearner` (ordem importa: `Secrets::EvaluateForLearner` lê o estado deixado pelos anteriores). `Skills::Award` e `Medals::AwardForMission` são v2 legacy (parent dashboard read-only) — não chame do kid path.
+
+  **Conteúdo das aulas é 100% curado** (seedado em `db/seeds/academy_lens_payloads/`, lido por `Lens::ResolveCuratedPayload`). O único LLM em runtime é o chatbot "O Guia" (`Academy::Guide::Ask`, persona "authoritative + mysterious + fascinated") exposto em `/kid/academy/subjects/:id/missions/:id/guide` — 5 perguntas/dia por (kid × missão), via DeepSeek/OpenRouter (env `OPENROUTER_API_KEY`). Sem a env, o botão 🦉 fica escondido e a missão funciona normal.
 
 To add a new module, mirror the Academy contract: top-level namespace, prefixed tables, zero FK into host, communicate via controllers + a `Module::Learner` value adapter only.
 

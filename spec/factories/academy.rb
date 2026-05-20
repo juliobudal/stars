@@ -132,7 +132,6 @@ FactoryBot.define do
     sequence(:learner_id) { |n| n }
     level { 0 }
     seen_in_subjects_count { 0 }
-    transfer_count { 0 }
     first_seen_at { Time.current }
     last_seen_at  { Time.current }
   end
@@ -147,16 +146,6 @@ FactoryBot.define do
     association :mission, factory: :academy_mission
     sequence(:learner_id) { |n| n }
     scene_sequence { [] }
-  end
-
-  factory :academy_transfer_detection, class: "Academy::TransferDetection" do
-    association :from_concept, factory: :academy_concept
-    association :to_concept,   factory: :academy_concept
-    association :message,      factory: :academy_message
-    sequence(:learner_id) { |n| n }
-    confidence { 0.8 }
-    evidence_excerpt { "açúcar funciona igual ao TikTok" }
-    detected_at { Time.current }
   end
 
   factory :academy_guide_conversation, class: "Academy::GuideConversation" do

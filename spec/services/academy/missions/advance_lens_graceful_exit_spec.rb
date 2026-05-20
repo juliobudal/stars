@@ -44,7 +44,7 @@ RSpec.describe Academy::Missions::AdvanceLens, "graceful exit when generation fa
     allow(Academy::Lens::ChooseNext).to receive(:call).and_return(
       Academy::ApplicationService::Result.new(success: true, error: nil, data: decision)
     )
-    allow(Academy::Lens::Generate).to receive(:call).and_return(
+    allow(Academy::Lens::ResolveCuratedPayload).to receive(:call).and_return(
       Academy::ApplicationService::Result.new(success: false, error: :no_curated_payload, data: nil)
     )
   end

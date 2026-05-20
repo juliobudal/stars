@@ -66,6 +66,7 @@ Rails.application.routes.draw do
         resources :missions, only: %i[show], param: :id do
           member { post :advance }
           get "visits/:visit_id", to: "missions#review_visit", as: :review_visit
+          resource :guide, only: %i[show create], controller: "guides"
         end
       end
       get "atlas", to: "atlas#index", as: :atlas

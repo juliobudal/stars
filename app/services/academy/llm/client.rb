@@ -7,8 +7,7 @@ module Academy
   module Llm
     # Minimal OpenRouter client (OpenAI-compatible chat completions).
     # Thin, testable surface — OpenRouter speaks the OpenAI schema
-    # directly. Used by Academy::Guide::Ask (kid chat) and
-    # Academy::Transfer::Detect (Pokédex transfer judge).
+    # directly. Used by Academy::Guide::Ask (kid chat).
     class Client
       class Error < StandardError; end
 
