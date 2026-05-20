@@ -16,9 +16,11 @@ RSpec.describe "Kid academy cast gallery", type: :request do
   end
 
   def add_visit(lens_type)
+    @visit_position ||= 0
+    @visit_position += 1
     Academy::LearnerLensVisit.create!(
       mission_progress: progress, learner_id: child.id, concept_id: concept.id,
-      lens_type: lens_type.to_s, ordering_position: rand(1..99),
+      lens_type: lens_type.to_s, ordering_position: @visit_position,
       opened_at: 5.minutes.ago, closed_at: 1.minute.ago, outcome: "completed"
     )
   end
