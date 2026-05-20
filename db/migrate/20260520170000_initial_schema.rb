@@ -20,10 +20,10 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.integer "kind", default: 0, null: false, comment: "0=echoes (symmetric), 1=depends_on, 2=leads_to"
     t.bigint "to_concept_id", null: false
     t.datetime "updated_at", null: false
-    t.index ["edge_type"], name: "idx_academy_concept_edges_edge_type"
-    t.index ["from_concept_id", "to_concept_id", "kind"], name: "idx_academy_concept_edges_unique", unique: true
-    t.index ["from_concept_id"], name: "index_academy_concept_edges_on_from_concept_id"
-    t.index ["to_concept_id"], name: "index_academy_concept_edges_on_to_concept_id"
+    t.index [ "edge_type" ], name: "idx_academy_concept_edges_edge_type"
+    t.index [ "from_concept_id", "to_concept_id", "kind" ], name: "idx_academy_concept_edges_unique", unique: true
+    t.index [ "from_concept_id" ], name: "index_academy_concept_edges_on_from_concept_id"
+    t.index [ "to_concept_id" ], name: "index_academy_concept_edges_on_to_concept_id"
   end
 
   create_table "academy_concepts", force: :cascade do |t|
@@ -40,8 +40,8 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "slug", null: false
     t.text "the_essence", comment: "Curator's one-sentence north star — what every lens must point to"
     t.datetime "updated_at", null: false
-    t.index ["category"], name: "index_academy_concepts_on_category"
-    t.index ["slug"], name: "index_academy_concepts_on_slug", unique: true
+    t.index [ "category" ], name: "index_academy_concepts_on_category"
+    t.index [ "slug" ], name: "index_academy_concepts_on_slug", unique: true
   end
 
   create_table "academy_discovery_cards", force: :cascade do |t|
@@ -56,10 +56,10 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.bigint "mission_id", null: false
     t.string "source", comment: "Author/tradition (optional, when applicable)"
     t.datetime "updated_at", null: false
-    t.index ["learner_id", "kind"], name: "idx_academy_discovery_cards_learner_kind"
-    t.index ["learner_id", "minted_at"], name: "idx_academy_cards_learner_time"
-    t.index ["learner_id", "mission_id"], name: "idx_academy_cards_unique", unique: true
-    t.index ["mission_id"], name: "index_academy_discovery_cards_on_mission_id"
+    t.index [ "learner_id", "kind" ], name: "idx_academy_discovery_cards_learner_kind"
+    t.index [ "learner_id", "minted_at" ], name: "idx_academy_cards_learner_time"
+    t.index [ "learner_id", "mission_id" ], name: "idx_academy_cards_unique", unique: true
+    t.index [ "mission_id" ], name: "index_academy_discovery_cards_on_mission_id"
   end
 
   create_table "academy_guide_conversations", force: :cascade do |t|
@@ -73,9 +73,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "prompt_version", default: "guide-persona@v1", null: false, comment: "Frozen at conversation start so future persona iterations don't reinterpret history"
     t.datetime "started_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["flagged", "started_at"], name: "idx_academy_guide_conv_flagged", order: { started_at: :desc }, where: "(flagged = true)"
-    t.index ["learner_id", "mission_id", "started_at"], name: "idx_academy_guide_conv_learner_mission_started", order: { started_at: :desc }
-    t.index ["mission_id"], name: "index_academy_guide_conversations_on_mission_id"
+    t.index [ "flagged", "started_at" ], name: "idx_academy_guide_conv_flagged", order: { started_at: :desc }, where: "(flagged = true)"
+    t.index [ "learner_id", "mission_id", "started_at" ], name: "idx_academy_guide_conv_learner_mission_started", order: { started_at: :desc }
+    t.index [ "mission_id" ], name: "index_academy_guide_conversations_on_mission_id"
   end
 
   create_table "academy_guide_messages", force: :cascade do |t|
@@ -86,7 +86,7 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.integer "role", null: false, comment: "0 user · 1 guide · 2 system_note"
     t.integer "tokens_in"
     t.integer "tokens_out"
-    t.index ["conversation_id", "created_at"], name: "idx_academy_guide_msg_conv_created"
+    t.index [ "conversation_id", "created_at" ], name: "idx_academy_guide_msg_conv_created"
   end
 
   create_table "academy_learner_concepts", force: :cascade do |t|
@@ -100,9 +100,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.integer "level", default: 0, null: false, comment: "0..3 (silhouette → mastered)"
     t.integer "seen_in_subjects_count", default: 0, null: false
     t.datetime "updated_at", null: false
-    t.index ["concept_id"], name: "index_academy_learner_concepts_on_concept_id"
-    t.index ["learner_id", "concept_id"], name: "idx_academy_learner_concepts_unique", unique: true
-    t.index ["learner_id", "level"], name: "idx_academy_learner_concepts_level"
+    t.index [ "concept_id" ], name: "index_academy_learner_concepts_on_concept_id"
+    t.index [ "learner_id", "concept_id" ], name: "idx_academy_learner_concepts_unique", unique: true
+    t.index [ "learner_id", "level" ], name: "idx_academy_learner_concepts_level"
   end
 
   create_table "academy_learner_lens_visits", force: :cascade do |t|
@@ -120,9 +120,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "outcome", comment: "completed | abandoned | skipped_by_system"
     t.jsonb "signal_payload", default: {}, null: false
     t.datetime "updated_at", null: false
-    t.index ["learner_id", "concept_id", "lens_type"], name: "idx_academy_lens_visits_learner_concept_lens"
-    t.index ["learner_id", "opened_at"], name: "idx_academy_lens_visits_learner_opened"
-    t.index ["mission_progress_id", "ordering_position"], name: "idx_academy_lens_visits_position", unique: true
+    t.index [ "learner_id", "concept_id", "lens_type" ], name: "idx_academy_lens_visits_learner_concept_lens"
+    t.index [ "learner_id", "opened_at" ], name: "idx_academy_lens_visits_learner_opened"
+    t.index [ "mission_progress_id", "ordering_position" ], name: "idx_academy_lens_visits_position", unique: true
   end
 
   create_table "academy_learner_signals", force: :cascade do |t|
@@ -135,8 +135,8 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.bigint "subject_id", null: false
     t.datetime "updated_at", null: false
     t.integer "wrong_checkpoints", default: 0, null: false
-    t.index ["learner_id", "subject_id"], name: "idx_academy_signals_learner_subject", unique: true
-    t.index ["subject_id"], name: "index_academy_learner_signals_on_subject_id"
+    t.index [ "learner_id", "subject_id" ], name: "idx_academy_signals_learner_subject", unique: true
+    t.index [ "subject_id" ], name: "index_academy_learner_signals_on_subject_id"
   end
 
   create_table "academy_learner_story_paths", force: :cascade do |t|
@@ -147,9 +147,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.jsonb "scene_sequence", default: [], null: false, comment: "Ordered: [{scene_id, choice_label, at}]"
     t.string "terminal_scene_id", comment: "Final scene reached, when mission ends"
     t.datetime "updated_at", null: false
-    t.index ["learner_id", "mission_id"], name: "idx_academy_learner_story_paths_learner_mission"
-    t.index ["mission_id"], name: "index_academy_learner_story_paths_on_mission_id"
-    t.index ["terminal_scene_id"], name: "idx_academy_learner_story_paths_terminal"
+    t.index [ "learner_id", "mission_id" ], name: "idx_academy_learner_story_paths_learner_mission"
+    t.index [ "mission_id" ], name: "index_academy_learner_story_paths_on_mission_id"
+    t.index [ "terminal_scene_id" ], name: "idx_academy_learner_story_paths_terminal"
   end
 
   create_table "academy_lens_cache", force: :cascade do |t|
@@ -165,10 +165,10 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "source", default: "curated", null: false
     t.datetime "updated_at", null: false
     t.index "concept_id, lens_type, age_band, locale, COALESCE(interest_key, ''::character varying)", name: "idx_academy_lens_cache_unique", unique: true
-    t.index ["concept_id", "lens_type", "source"], name: "idx_academy_lens_cache_source_lookup"
-    t.index ["interest_key"], name: "idx_academy_lens_cache_interest_key", where: "(interest_key IS NOT NULL)"
-    t.index ["lens_type"], name: "index_academy_lens_cache_on_lens_type"
-    t.index ["quality_flagged"], name: "idx_academy_lens_cache_quality_flagged", where: "(quality_flagged = true)"
+    t.index [ "concept_id", "lens_type", "source" ], name: "idx_academy_lens_cache_source_lookup"
+    t.index [ "interest_key" ], name: "idx_academy_lens_cache_interest_key", where: "(interest_key IS NOT NULL)"
+    t.index [ "lens_type" ], name: "index_academy_lens_cache_on_lens_type"
+    t.index [ "quality_flagged" ], name: "idx_academy_lens_cache_quality_flagged", where: "(quality_flagged = true)"
   end
 
   create_table "academy_lens_signals", force: :cascade do |t|
@@ -182,9 +182,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.datetime "recorded_at", null: false
     t.string "signal_type", null: false, comment: "time_on_lens | micro_check_correct | micro_check_wrong | abandoned | self_report_easy | self_report_hard | transfer_hint"
     t.datetime "updated_at", null: false
-    t.index ["learner_id", "concept_id", "lens_type", "recorded_at"], name: "idx_academy_lens_signals_learner_concept_lens_time"
-    t.index ["learner_id", "signal_type", "recorded_at"], name: "idx_academy_lens_signals_learner_type_time"
-    t.index ["mission_progress_id", "recorded_at"], name: "idx_academy_lens_signals_progress_time"
+    t.index [ "learner_id", "concept_id", "lens_type", "recorded_at" ], name: "idx_academy_lens_signals_learner_concept_lens_time"
+    t.index [ "learner_id", "signal_type", "recorded_at" ], name: "idx_academy_lens_signals_learner_type_time"
+    t.index [ "mission_progress_id", "recorded_at" ], name: "idx_academy_lens_signals_progress_time"
   end
 
   create_table "academy_lightning_round_runs", force: :cascade do |t|
@@ -196,7 +196,7 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "tier", null: false
     t.integer "total_questions", null: false
     t.datetime "updated_at", null: false
-    t.index ["learner_id", "created_at"], name: "idx_academy_lightning_runs_by_learner_recency"
+    t.index [ "learner_id", "created_at" ], name: "idx_academy_lightning_runs_by_learner_recency"
   end
 
   create_table "academy_messages", force: :cascade do |t|
@@ -207,8 +207,8 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.bigint "session_id", null: false
     t.integer "tokens"
     t.datetime "updated_at", null: false
-    t.index ["session_id", "created_at"], name: "idx_academy_messages_session_time"
-    t.index ["session_id"], name: "idx_academy_messages_session"
+    t.index [ "session_id", "created_at" ], name: "idx_academy_messages_session_time"
+    t.index [ "session_id" ], name: "idx_academy_messages_session"
   end
 
   create_table "academy_mission_progresses", force: :cascade do |t|
@@ -223,9 +223,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.integer "status", default: 0, null: false
     t.integer "total_checkpoints", default: 0, null: false
     t.datetime "updated_at", null: false
-    t.index ["learner_id", "mission_id"], name: "idx_academy_progress_learner_mission", unique: true
-    t.index ["learner_id", "status"], name: "idx_academy_progress_learner_status"
-    t.index ["mission_id"], name: "index_academy_mission_progresses_on_mission_id"
+    t.index [ "learner_id", "mission_id" ], name: "idx_academy_progress_learner_mission", unique: true
+    t.index [ "learner_id", "status" ], name: "idx_academy_progress_learner_status"
+    t.index [ "mission_id" ], name: "index_academy_mission_progresses_on_mission_id"
   end
 
   create_table "academy_missions", force: :cascade do |t|
@@ -252,13 +252,13 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "title", null: false
     t.bigint "trail_id"
     t.datetime "updated_at", null: false
-    t.index ["concept_id"], name: "index_academy_missions_on_concept_id"
-    t.index ["framework"], name: "index_academy_missions_on_framework"
-    t.index ["source"], name: "index_academy_missions_on_source"
-    t.index ["subject_id", "order_in_subject"], name: "index_academy_missions_on_subject_id_and_order_in_subject"
-    t.index ["subject_id", "slug"], name: "index_academy_missions_on_subject_id_and_slug", unique: true
-    t.index ["subject_id"], name: "index_academy_missions_on_subject_id"
-    t.index ["trail_id"], name: "index_academy_missions_on_trail_id"
+    t.index [ "concept_id" ], name: "index_academy_missions_on_concept_id"
+    t.index [ "framework" ], name: "index_academy_missions_on_framework"
+    t.index [ "source" ], name: "index_academy_missions_on_source"
+    t.index [ "subject_id", "order_in_subject" ], name: "index_academy_missions_on_subject_id_and_order_in_subject"
+    t.index [ "subject_id", "slug" ], name: "index_academy_missions_on_subject_id_and_slug", unique: true
+    t.index [ "subject_id" ], name: "index_academy_missions_on_subject_id"
+    t.index [ "trail_id" ], name: "index_academy_missions_on_trail_id"
   end
 
   create_table "academy_pill_views", force: :cascade do |t|
@@ -271,8 +271,8 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "status", default: "served", null: false
     t.datetime "updated_at", null: false
     t.datetime "viewed_at"
-    t.index ["learner_id", "created_at"], name: "idx_academy_pill_views_by_learner_recency"
-    t.index ["learner_id", "lens_cache_id"], name: "idx_academy_pill_views_unique_per_learner", unique: true
+    t.index [ "learner_id", "created_at" ], name: "idx_academy_pill_views_by_learner_recency"
+    t.index [ "learner_id", "lens_cache_id" ], name: "idx_academy_pill_views_unique_per_learner", unique: true
   end
 
   create_table "academy_practice_wagers", force: :cascade do |t|
@@ -286,9 +286,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "parent_observation", comment: "seen_match | seen_higher | seen_lower | skip"
     t.datetime "reported_at"
     t.datetime "updated_at", null: false
-    t.index ["learner_id", "mission_id"], name: "idx_academy_practice_wagers_unique", unique: true
-    t.index ["learner_id", "reported_at"], name: "idx_academy_practice_wagers_learner_reported"
-    t.index ["mission_id"], name: "index_academy_practice_wagers_on_mission_id"
+    t.index [ "learner_id", "mission_id" ], name: "idx_academy_practice_wagers_unique", unique: true
+    t.index [ "learner_id", "reported_at" ], name: "idx_academy_practice_wagers_learner_reported"
+    t.index [ "mission_id" ], name: "index_academy_practice_wagers_on_mission_id"
   end
 
   create_table "academy_secret_unlocks", force: :cascade do |t|
@@ -298,8 +298,8 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.boolean "seen", default: false, null: false
     t.datetime "unlocked_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["learner_id", "secret_id"], name: "idx_academy_secret_unlocks_unique", unique: true
-    t.index ["secret_id"], name: "index_academy_secret_unlocks_on_secret_id"
+    t.index [ "learner_id", "secret_id" ], name: "idx_academy_secret_unlocks_unique", unique: true
+    t.index [ "secret_id" ], name: "index_academy_secret_unlocks_on_secret_id"
   end
 
   create_table "academy_secrets", force: :cascade do |t|
@@ -313,8 +313,8 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.text "teaser", comment: "Mysterious hint shown when locked"
     t.string "title", null: false
     t.datetime "updated_at", null: false
-    t.index ["mission_id"], name: "index_academy_secrets_on_mission_id"
-    t.index ["slug"], name: "index_academy_secrets_on_slug", unique: true
+    t.index [ "mission_id" ], name: "index_academy_secrets_on_mission_id"
+    t.index [ "slug" ], name: "index_academy_secrets_on_slug", unique: true
   end
 
   create_table "academy_sessions", force: :cascade do |t|
@@ -325,8 +325,8 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.integer "session_index", null: false
     t.datetime "started_at"
     t.datetime "updated_at", null: false
-    t.index ["mission_progress_id", "session_index"], name: "idx_academy_sessions_unique_idx", unique: true
-    t.index ["mission_progress_id"], name: "idx_academy_sessions_progress"
+    t.index [ "mission_progress_id", "session_index" ], name: "idx_academy_sessions_unique_idx", unique: true
+    t.index [ "mission_progress_id" ], name: "idx_academy_sessions_progress"
   end
 
   create_table "academy_subjects", force: :cascade do |t|
@@ -340,7 +340,7 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "slug", null: false
     t.string "tagline"
     t.datetime "updated_at", null: false
-    t.index ["slug"], name: "index_academy_subjects_on_slug", unique: true
+    t.index [ "slug" ], name: "index_academy_subjects_on_slug", unique: true
   end
 
   create_table "academy_trails", force: :cascade do |t|
@@ -352,9 +352,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.bigint "subject_id", null: false
     t.string "title", null: false
     t.datetime "updated_at", null: false
-    t.index ["subject_id", "position"], name: "idx_academy_trails_subject_position"
-    t.index ["subject_id", "slug"], name: "idx_academy_trails_subject_slug", unique: true
-    t.index ["subject_id"], name: "index_academy_trails_on_subject_id"
+    t.index [ "subject_id", "position" ], name: "idx_academy_trails_subject_position"
+    t.index [ "subject_id", "slug" ], name: "idx_academy_trails_subject_slug", unique: true
+    t.index [ "subject_id" ], name: "index_academy_trails_on_subject_id"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -363,8 +363,8 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "name", null: false
     t.bigint "record_id", null: false
     t.string "record_type", null: false
-    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+    t.index [ "blob_id" ], name: "index_active_storage_attachments_on_blob_id"
+    t.index [ "record_type", "record_id", "name", "blob_id" ], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "active_storage_blobs", force: :cascade do |t|
@@ -376,13 +376,13 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "key", null: false
     t.text "metadata"
     t.string "service_name", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+    t.index [ "key" ], name: "index_active_storage_blobs_on_key", unique: true
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
-    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+    t.index [ "blob_id", "variation_digest" ], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "activity_logs", force: :cascade do |t|
@@ -393,10 +393,10 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.bigint "profile_id", null: false
     t.string "title"
     t.datetime "updated_at", null: false
-    t.index ["decayed_at"], name: "index_activity_logs_undecayed_earns", where: "((decayed_at IS NULL) AND (log_type = 0))"
-    t.index ["profile_id", "created_at"], name: "index_activity_logs_on_profile_id_and_created_at"
-    t.index ["profile_id", "log_type"], name: "index_activity_logs_on_profile_id_and_log_type"
-    t.index ["profile_id"], name: "index_activity_logs_on_profile_id"
+    t.index [ "decayed_at" ], name: "index_activity_logs_undecayed_earns", where: "((decayed_at IS NULL) AND (log_type = 0))"
+    t.index [ "profile_id", "created_at" ], name: "index_activity_logs_on_profile_id_and_created_at"
+    t.index [ "profile_id", "log_type" ], name: "index_activity_logs_on_profile_id_and_log_type"
+    t.index [ "profile_id" ], name: "index_activity_logs_on_profile_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -407,9 +407,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "name", null: false
     t.integer "position", default: 0, null: false
     t.datetime "updated_at", null: false
-    t.index ["family_id", "name"], name: "index_categories_on_family_id_and_name", unique: true
-    t.index ["family_id", "position"], name: "index_categories_on_family_id_and_position"
-    t.index ["family_id"], name: "index_categories_on_family_id"
+    t.index [ "family_id", "name" ], name: "index_categories_on_family_id_and_name", unique: true
+    t.index [ "family_id", "position" ], name: "index_categories_on_family_id_and_position"
+    t.index [ "family_id" ], name: "index_categories_on_family_id"
   end
 
   create_table "families", force: :cascade do |t|
@@ -428,7 +428,7 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "timezone", default: "America/Sao_Paulo"
     t.datetime "updated_at", null: false
     t.integer "week_start", default: 1
-    t.index ["email"], name: "index_families_on_email", unique: true
+    t.index [ "email" ], name: "index_families_on_email", unique: true
   end
 
   create_table "global_task_assignments", force: :cascade do |t|
@@ -436,9 +436,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.bigint "global_task_id", null: false
     t.bigint "profile_id", null: false
     t.datetime "updated_at", null: false
-    t.index ["global_task_id", "profile_id"], name: "idx_global_task_assignments_unique", unique: true
-    t.index ["global_task_id"], name: "index_global_task_assignments_on_global_task_id"
-    t.index ["profile_id"], name: "index_global_task_assignments_on_profile_id"
+    t.index [ "global_task_id", "profile_id" ], name: "idx_global_task_assignments_unique", unique: true
+    t.index [ "global_task_id" ], name: "index_global_task_assignments_on_global_task_id"
+    t.index [ "profile_id" ], name: "index_global_task_assignments_on_profile_id"
   end
 
   create_table "global_tasks", force: :cascade do |t|
@@ -456,8 +456,8 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.integer "points"
     t.string "title"
     t.datetime "updated_at", null: false
-    t.index ["family_id", "featured"], name: "index_global_tasks_on_family_id_and_featured", where: "(featured = true)"
-    t.index ["family_id"], name: "index_global_tasks_on_family_id"
+    t.index [ "family_id", "featured" ], name: "index_global_tasks_on_family_id_and_featured", where: "(featured = true)"
+    t.index [ "family_id" ], name: "index_global_tasks_on_family_id"
     t.check_constraint "max_completions_per_period >= 1", name: "max_completions_positive"
   end
 
@@ -467,9 +467,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.bigint "profile_id", null: false
     t.integer "rank", default: 0, null: false
     t.datetime "updated_at", null: false
-    t.index ["profile_id", "interest_key"], name: "idx_profile_interests_unique_per_profile", unique: true
-    t.index ["profile_id", "rank"], name: "index_profile_interests_on_profile_id_and_rank"
-    t.index ["profile_id"], name: "index_profile_interests_on_profile_id"
+    t.index [ "profile_id", "interest_key" ], name: "idx_profile_interests_unique_per_profile", unique: true
+    t.index [ "profile_id", "rank" ], name: "index_profile_interests_on_profile_id_and_rank"
+    t.index [ "profile_id" ], name: "index_profile_interests_on_profile_id"
   end
 
   create_table "profile_invitations", force: :cascade do |t|
@@ -481,8 +481,8 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.bigint "invited_by_id"
     t.string "token", null: false
     t.datetime "updated_at", null: false
-    t.index ["family_id"], name: "index_profile_invitations_on_family_id"
-    t.index ["token"], name: "index_profile_invitations_on_token", unique: true
+    t.index [ "family_id" ], name: "index_profile_invitations_on_family_id"
+    t.index [ "token" ], name: "index_profile_invitations_on_token", unique: true
   end
 
   create_table "profile_tasks", force: :cascade do |t|
@@ -499,12 +499,12 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.integer "status", default: 0
     t.text "submission_comment"
     t.datetime "updated_at", null: false
-    t.index ["custom_category_id"], name: "index_profile_tasks_on_custom_category_id"
-    t.index ["global_task_id"], name: "index_profile_tasks_on_global_task_id"
-    t.index ["profile_id", "assigned_date"], name: "index_profile_tasks_on_profile_id_and_assigned_date"
-    t.index ["profile_id", "status"], name: "index_profile_tasks_on_profile_id_and_status"
-    t.index ["profile_id"], name: "index_profile_tasks_on_profile_id"
-    t.index ["source"], name: "index_profile_tasks_on_source"
+    t.index [ "custom_category_id" ], name: "index_profile_tasks_on_custom_category_id"
+    t.index [ "global_task_id" ], name: "index_profile_tasks_on_global_task_id"
+    t.index [ "profile_id", "assigned_date" ], name: "index_profile_tasks_on_profile_id_and_assigned_date"
+    t.index [ "profile_id", "status" ], name: "index_profile_tasks_on_profile_id_and_status"
+    t.index [ "profile_id" ], name: "index_profile_tasks_on_profile_id"
+    t.index [ "source" ], name: "index_profile_tasks_on_source"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -519,9 +519,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.integer "role"
     t.datetime "updated_at", null: false
     t.bigint "wishlist_reward_id"
-    t.index ["family_id", "role"], name: "index_profiles_on_family_id_and_role"
-    t.index ["family_id"], name: "index_profiles_on_family_id"
-    t.index ["wishlist_reward_id"], name: "index_profiles_on_wishlist_reward_id"
+    t.index [ "family_id", "role" ], name: "index_profiles_on_family_id_and_role"
+    t.index [ "family_id" ], name: "index_profiles_on_family_id"
+    t.index [ "wishlist_reward_id" ], name: "index_profiles_on_wishlist_reward_id"
   end
 
   create_table "redemptions", force: :cascade do |t|
@@ -532,9 +532,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.bigint "reward_id", null: false
     t.integer "status"
     t.datetime "updated_at", null: false
-    t.index ["profile_id", "status"], name: "index_redemptions_on_profile_id_and_status"
-    t.index ["profile_id"], name: "index_redemptions_on_profile_id"
-    t.index ["reward_id"], name: "index_redemptions_on_reward_id"
+    t.index [ "profile_id", "status" ], name: "index_redemptions_on_profile_id_and_status"
+    t.index [ "profile_id" ], name: "index_redemptions_on_profile_id"
+    t.index [ "reward_id" ], name: "index_redemptions_on_reward_id"
   end
 
   create_table "rewards", force: :cascade do |t|
@@ -546,9 +546,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "icon"
     t.string "title"
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_rewards_on_category_id"
-    t.index ["collective"], name: "index_rewards_on_collective"
-    t.index ["family_id"], name: "index_rewards_on_family_id"
+    t.index [ "category_id" ], name: "index_rewards_on_category_id"
+    t.index [ "collective" ], name: "index_rewards_on_collective"
+    t.index [ "family_id" ], name: "index_rewards_on_family_id"
   end
 
   create_table "solid_queue_blocked_executions", force: :cascade do |t|
@@ -558,24 +558,24 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.bigint "job_id", null: false
     t.integer "priority", default: 0, null: false
     t.string "queue_name", null: false
-    t.index ["concurrency_key", "priority", "job_id"], name: "index_solid_queue_blocked_executions_for_release"
-    t.index ["expires_at", "concurrency_key"], name: "index_solid_queue_blocked_executions_for_maintenance"
-    t.index ["job_id"], name: "index_solid_queue_blocked_executions_on_job_id", unique: true
+    t.index [ "concurrency_key", "priority", "job_id" ], name: "index_solid_queue_blocked_executions_for_release"
+    t.index [ "expires_at", "concurrency_key" ], name: "index_solid_queue_blocked_executions_for_maintenance"
+    t.index [ "job_id" ], name: "index_solid_queue_blocked_executions_on_job_id", unique: true
   end
 
   create_table "solid_queue_claimed_executions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.bigint "job_id", null: false
     t.bigint "process_id"
-    t.index ["job_id"], name: "index_solid_queue_claimed_executions_on_job_id", unique: true
-    t.index ["process_id", "job_id"], name: "index_solid_queue_claimed_executions_on_process_id_and_job_id"
+    t.index [ "job_id" ], name: "index_solid_queue_claimed_executions_on_job_id", unique: true
+    t.index [ "process_id", "job_id" ], name: "index_solid_queue_claimed_executions_on_process_id_and_job_id"
   end
 
   create_table "solid_queue_failed_executions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "error"
     t.bigint "job_id", null: false
-    t.index ["job_id"], name: "index_solid_queue_failed_executions_on_job_id", unique: true
+    t.index [ "job_id" ], name: "index_solid_queue_failed_executions_on_job_id", unique: true
   end
 
   create_table "solid_queue_jobs", force: :cascade do |t|
@@ -589,17 +589,17 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "queue_name", null: false
     t.datetime "scheduled_at"
     t.datetime "updated_at", null: false
-    t.index ["active_job_id"], name: "index_solid_queue_jobs_on_active_job_id"
-    t.index ["class_name"], name: "index_solid_queue_jobs_on_class_name"
-    t.index ["finished_at"], name: "index_solid_queue_jobs_on_finished_at"
-    t.index ["queue_name", "finished_at"], name: "index_solid_queue_jobs_for_filtering"
-    t.index ["scheduled_at", "finished_at"], name: "index_solid_queue_jobs_for_alerting"
+    t.index [ "active_job_id" ], name: "index_solid_queue_jobs_on_active_job_id"
+    t.index [ "class_name" ], name: "index_solid_queue_jobs_on_class_name"
+    t.index [ "finished_at" ], name: "index_solid_queue_jobs_on_finished_at"
+    t.index [ "queue_name", "finished_at" ], name: "index_solid_queue_jobs_for_filtering"
+    t.index [ "scheduled_at", "finished_at" ], name: "index_solid_queue_jobs_for_alerting"
   end
 
   create_table "solid_queue_pauses", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "queue_name", null: false
-    t.index ["queue_name"], name: "index_solid_queue_pauses_on_queue_name", unique: true
+    t.index [ "queue_name" ], name: "index_solid_queue_pauses_on_queue_name", unique: true
   end
 
   create_table "solid_queue_processes", force: :cascade do |t|
@@ -611,9 +611,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "name", null: false
     t.integer "pid", null: false
     t.bigint "supervisor_id"
-    t.index ["last_heartbeat_at"], name: "index_solid_queue_processes_on_last_heartbeat_at"
-    t.index ["name", "supervisor_id"], name: "index_solid_queue_processes_on_name_and_supervisor_id", unique: true
-    t.index ["supervisor_id"], name: "index_solid_queue_processes_on_supervisor_id"
+    t.index [ "last_heartbeat_at" ], name: "index_solid_queue_processes_on_last_heartbeat_at"
+    t.index [ "name", "supervisor_id" ], name: "index_solid_queue_processes_on_name_and_supervisor_id", unique: true
+    t.index [ "supervisor_id" ], name: "index_solid_queue_processes_on_supervisor_id"
   end
 
   create_table "solid_queue_ready_executions", force: :cascade do |t|
@@ -621,9 +621,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.bigint "job_id", null: false
     t.integer "priority", default: 0, null: false
     t.string "queue_name", null: false
-    t.index ["job_id"], name: "index_solid_queue_ready_executions_on_job_id", unique: true
-    t.index ["priority", "job_id"], name: "index_solid_queue_poll_all"
-    t.index ["queue_name", "priority", "job_id"], name: "index_solid_queue_poll_by_queue"
+    t.index [ "job_id" ], name: "index_solid_queue_ready_executions_on_job_id", unique: true
+    t.index [ "priority", "job_id" ], name: "index_solid_queue_poll_all"
+    t.index [ "queue_name", "priority", "job_id" ], name: "index_solid_queue_poll_by_queue"
   end
 
   create_table "solid_queue_recurring_executions", force: :cascade do |t|
@@ -631,8 +631,8 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.bigint "job_id", null: false
     t.datetime "run_at", null: false
     t.string "task_key", null: false
-    t.index ["job_id"], name: "index_solid_queue_recurring_executions_on_job_id", unique: true
-    t.index ["task_key", "run_at"], name: "index_solid_queue_recurring_executions_on_task_key_and_run_at", unique: true
+    t.index [ "job_id" ], name: "index_solid_queue_recurring_executions_on_job_id", unique: true
+    t.index [ "task_key", "run_at" ], name: "index_solid_queue_recurring_executions_on_task_key_and_run_at", unique: true
   end
 
   create_table "solid_queue_recurring_tasks", force: :cascade do |t|
@@ -647,8 +647,8 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "schedule", null: false
     t.boolean "static", default: true, null: false
     t.datetime "updated_at", null: false
-    t.index ["key"], name: "index_solid_queue_recurring_tasks_on_key", unique: true
-    t.index ["static"], name: "index_solid_queue_recurring_tasks_on_static"
+    t.index [ "key" ], name: "index_solid_queue_recurring_tasks_on_key", unique: true
+    t.index [ "static" ], name: "index_solid_queue_recurring_tasks_on_static"
   end
 
   create_table "solid_queue_scheduled_executions", force: :cascade do |t|
@@ -657,8 +657,8 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.integer "priority", default: 0, null: false
     t.string "queue_name", null: false
     t.datetime "scheduled_at", null: false
-    t.index ["job_id"], name: "index_solid_queue_scheduled_executions_on_job_id", unique: true
-    t.index ["scheduled_at", "priority", "job_id"], name: "index_solid_queue_dispatch_all"
+    t.index [ "job_id" ], name: "index_solid_queue_scheduled_executions_on_job_id", unique: true
+    t.index [ "scheduled_at", "priority", "job_id" ], name: "index_solid_queue_dispatch_all"
   end
 
   create_table "solid_queue_semaphores", force: :cascade do |t|
@@ -667,9 +667,9 @@ class InitialSchema < ActiveRecord::Migration[8.1]
     t.string "key", null: false
     t.datetime "updated_at", null: false
     t.integer "value", default: 1, null: false
-    t.index ["expires_at"], name: "index_solid_queue_semaphores_on_expires_at"
-    t.index ["key", "value"], name: "index_solid_queue_semaphores_on_key_and_value"
-    t.index ["key"], name: "index_solid_queue_semaphores_on_key", unique: true
+    t.index [ "expires_at" ], name: "index_solid_queue_semaphores_on_expires_at"
+    t.index [ "key", "value" ], name: "index_solid_queue_semaphores_on_key_and_value"
+    t.index [ "key" ], name: "index_solid_queue_semaphores_on_key", unique: true
   end
 
   add_foreign_key "academy_concept_edges", "academy_concepts", column: "from_concept_id"
