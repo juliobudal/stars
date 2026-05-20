@@ -46,7 +46,9 @@ module Academy
 
         # `curated` falls back to the full ROTATION when the test/seed
         # context didn't populate LensCache — production always has rows.
-        candidates = curated.empty? ? ROTATION.to_set : curated
+        curated_path       = curated.any?
+        candidates         = curated_path ? curated : ROTATION.to_set
+        closures_available = CLOSURE_LENSES.any? { |t| candidates.include?(t) }
 
         # Opener.
         if types.empty?
@@ -54,16 +56,30 @@ module Academy
           return ok(open(:opener, opener))
         end
 
+        # Curated path with no closure lens available: close once every
+        # curated type has been visited. Without this, ChooseNext would loop
+        # the same N lenses up to HARD_CAP and then ask AdvanceLens to render
+        # a closure lens that doesn't exist as curated content — 503.
+        if curated_path && !closures_available && unique.size >= candidates.size
+          return ok(close(:curated_coverage_complete))
+        end
+
         # Clean close — coverage met, last was a closure lens.
-        if unique.size >= COVERAGE_FLOOR && CLOSURE_LENSES.include?(types.last)
+        if closures_available && unique.size >= COVERAGE_FLOOR && CLOSURE_LENSES.include?(types.last)
           return ok(close(:closed_with_transfer))
         end
 
-        # Hard cap.
-        if types.size >= HARD_CAP
-          return ok(close(:cap_reached_with_transfer)) if CLOSURE_LENSES.intersect?(unique)
-          forced = (CLOSURE_LENSES & candidates.to_a).first || CLOSURE_LENSES.first
-          return ok(force_close(forced))
+        # Hard cap. When closures aren't available we cap at the curated set
+        # size — otherwise we'd schedule repeats just to hit HARD_CAP.
+        effective_cap = curated_path && !closures_available ? candidates.size : HARD_CAP
+        if types.size >= effective_cap
+          if closures_available
+            return ok(close(:cap_reached_with_transfer)) if CLOSURE_LENSES.intersect?(unique)
+            forced = (CLOSURE_LENSES & candidates.to_a).first || CLOSURE_LENSES.first
+            return ok(force_close(forced))
+          else
+            return ok(close(:cap_reached_curated_exhausted))
+          end
         end
 
         ok(open(:adaptive, pick_next(types, unique, candidates)))

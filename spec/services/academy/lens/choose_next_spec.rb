@@ -91,6 +91,38 @@ RSpec.describe Academy::Lens::ChooseNext do
     end
   end
 
+  describe "curated set without closure lens" do
+    # Concept ships only narrative/scientific/statistical curated payloads
+    # (no analogy_bridge/ethical). The chooser must close cleanly once all
+    # three are visited instead of looping to HARD_CAP and 503ing.
+    let(:curated_types) { %i[narrative scientific statistical] }
+
+    before do
+      curated_types.each do |t|
+        Academy::LensCache.create!(
+          concept: concept, lens_type: t, age_band: "kid", locale: "pt-BR",
+          source: "curated", payload: { stub: true }, quality_flagged: false,
+          generated_at: Time.current
+        )
+      end
+    end
+
+    it "closes with curated_coverage_complete after every curated type is visited" do
+      curated_types.each_with_index { |t, i| add_visit(t, i + 1) }
+      result = described_class.call(mission_progress: progress)
+      expect(result.data.done).to be true
+      expect(result.data.reason).to eq(:curated_coverage_complete)
+    end
+
+    it "keeps cycling within the curated set until coverage is complete" do
+      add_visit(:narrative, 1)
+      result = described_class.call(mission_progress: progress)
+      expect(curated_types).to include(result.data.next_lens)
+      expect(result.data.next_lens).not_to eq(:narrative)
+      expect(result.data.done).to be false
+    end
+  end
+
   describe "adaptive: wrong-streak biases towards re-anchor" do
     it "prefers a concrete lens after 2 wrong micro_checks" do
       add_visit(:scientific, 1)

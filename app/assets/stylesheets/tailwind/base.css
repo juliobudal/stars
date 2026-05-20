@@ -496,12 +496,11 @@
 .lens-predict-slider:active::-moz-range-thumb { cursor: grabbing; transform: scale(1.18); }
 .lens-predict-slider:disabled { opacity: 0.6; cursor: default; }
 
-/* Narrative locked scenes */
+/* Narrative locked scenes — fully hidden until "Próxima cena →" reveals
+ * them. Earlier versions blurred-and-dimmed instead, but the text stayed
+ * readable through the blur and spoiled the scene before the kid clicked. */
 .lens-narrative-scene--locked {
-  filter: blur(3px);
-  opacity: 0.45;
-  pointer-events: none;
-  user-select: none;
+  display: none;
 }
 
 /* Timeline connector for pattern_hunt historical */
@@ -556,5 +555,5 @@
   .lens-predict-slider:hover::-moz-range-thumb,
   .lens-predict-slider:active::-moz-range-thumb { transform: none; }
   .lens-reveal { animation: none; }
-  .lens-narrative-scene--locked { filter: none; }
+  .lens-narrative-scene--locked { display: none; }
 }
