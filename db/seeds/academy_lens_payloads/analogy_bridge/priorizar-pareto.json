@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Hortelão regando plantas com tempo curto",
+    "elements": [
+      "20 plantas no quintal, água pra regar só 4 hoje",
+      "4 plantas dão 80% das frutas que a família come — pé de manga, limão, abacate, tomate",
+      "As outras 16 são decorativas, ou dão fruta pequena, ou não estão na temporada",
+      "Hortelão experiente rega os 4 fortes e ignora os 16 sem culpa",
+      "Quem tenta dar 'um pouquinho' pra cada um deixa todos meio secos"
+    ]
+  },
+  "target_domain": {
+    "name": "Estudante com 20 tarefas e 2 horas disponíveis",
+    "elements": [
+      "20 tarefas pendentes, tempo pra fazer 4 hoje",
+      "4 tarefas dão 80% da nota do semestre — provas, trabalho final, leituras-chave",
+      "As outras 16 são exercícios opcionais, leituras complementares, pesquisa lateral",
+      "Estudante experiente faz as 4 críticas e ignora as 16 sem culpa",
+      "Quem tenta 'um pouquinho' de cada uma entrega tudo pela metade"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "20 plantas, 4 frutíferas centrais",
+      "to": "20 tarefas, 4 críticas centrais"
+    },
+    {
+      "from": "Água é o recurso escasso",
+      "to": "Tempo é o recurso escasso"
+    },
+    {
+      "from": "Regar os 4 = 80% da colheita",
+      "to": "Fazer os 4 = 80% da nota"
+    },
+    {
+      "from": "Querer regar tudo = secura geral",
+      "to": "Querer fazer tudo = entrega rasa geral"
+    }
+  ],
+  "transfer_question": "Se nenhum hortelão tenta regar 'igualzinho' todas as 20 plantas, por que tantos estudantes tentam dar atenção igual a todas as tarefas?"
+}

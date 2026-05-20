@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Pendrive salvando o trabalho da escola",
+    "elements": [
+      "Você passa horas digitando o trabalho durante o dia",
+      "À noite, conecta o pendrive e salva — é quando o arquivo de fato vira permanente",
+      "Se tirar o pendrive antes de salvar, o trabalho do dia some",
+      "Salvamento incompleto deixa pedaços corrompidos no arquivo",
+      "Sem salvar, no dia seguinte você começa do zero — mesmo tendo trabalhado"
+    ]
+  },
+  "target_domain": {
+    "name": "Sono consolidando o que você aprendeu hoje",
+    "elements": [
+      "Você passa o dia inteiro vendo, ouvindo, treinando coisas novas",
+      "À noite, no sono profundo, o cérebro transfere isso pra memória permanente",
+      "Se cortar o sono, o que você aprendeu no dia some em grande parte",
+      "Sono picado deixa lembranças vagas, fragmentadas",
+      "Sem sono, no dia seguinte você 'sabia' a matéria — agora não sabe mais"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Pendrive conectado salvando o arquivo",
+      "to": "Sono profundo consolidando memórias"
+    },
+    {
+      "from": "Tirar o pendrive antes do fim",
+      "to": "Acordar antes do ciclo completar"
+    },
+    {
+      "from": "Arquivo corrompido depois de salvamento ruim",
+      "to": "Lembrança vaga depois de sono ruim"
+    },
+    {
+      "from": "Começar o dia seguinte do zero",
+      "to": "Acordar sem fixar o que treinou"
+    }
+  ],
+  "transfer_question": "Se você nunca tiraria o pendrive antes do trabalho salvar, por que vira a noite na véspera da prova esperando que o cérebro salve sozinho?"
+}

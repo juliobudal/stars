@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Arqueólogo montando um dinossauro com 12 ossos",
+    "elements": [
+      "Acha alguns ossos verdadeiros num sítio — fêmur, costela, crânio parcial",
+      "Faltam 80% das peças pra fazer o esqueleto completo",
+      "Preenche com gesso, palpite, comparação com outras espécies parecidas",
+      "Cada vez que monta de novo, pode trocar uma peça de gesso por outra",
+      "O museu apresenta o resultado final como 'o dinossauro real'"
+    ]
+  },
+  "target_domain": {
+    "name": "Você lembrando de algo que aconteceu na sua festa de 8 anos",
+    "elements": [
+      "Tem fragmentos verdadeiros — o cheiro do bolo, uma briga, o vestido",
+      "Faltam 80% dos detalhes — diálogos, ordem das coisas, quem estava onde",
+      "Preenche com palpite, fotos que viu depois, histórias que contaram",
+      "Cada vez que lembra, pode trocar um detalhe por outro mais 'coerente'",
+      "Você conta como 'o que aconteceu' — e acredita"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Ossos verdadeiros encontrados no sítio",
+      "to": "Fragmentos sensoriais que ficaram gravados"
+    },
+    {
+      "from": "Gesso preenchendo o que falta",
+      "to": "Palpite que o cérebro inventa pra preencher"
+    },
+    {
+      "from": "A cada remontagem pode trocar peças",
+      "to": "A cada lembrança pode trocar detalhes"
+    },
+    {
+      "from": "Museu apresenta como esqueleto real",
+      "to": "Você conta como evento real"
+    }
+  ],
+  "transfer_question": "Se você não acreditaria 100% num esqueleto que é 20% osso e 80% gesso, por que acredita na sua memória que tem proporção parecida?"
+}

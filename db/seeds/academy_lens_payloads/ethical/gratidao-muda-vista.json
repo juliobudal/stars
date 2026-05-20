@@ -1,0 +1,13 @@
+{
+  "dilemma": "Helena, 11, ganhou notebook usado da tia pra estudar. Funciona, mas é lento e a tela tem um arranhão. A colega Vivi mostra o dela novo, dourado, ultraleve. Helena posta uma foto do dela com legenda 'pelo menos tô tentando' — a tia vê, fica triste, manda mensagem perguntando se ofendeu. Mãe pergunta: 'apaga o post?'.",
+  "case_a": {
+    "title": "Mantém o post, explica pra tia que era brincadeira",
+    "body": "Helena fala pra tia: 'tia, era piada, jura'. Mantém a foto no feed. Argumento: ela tem direito de brincar com a própria situação. A tia entendeu errado. Se cada coisa que posta tem que ser pesada como se fosse afetar alguém, ela não pode mais postar nada — vira refém."
+  },
+  "case_b": {
+    "title": "Apaga, manda mensagem pra tia falando do que esquecera de ver",
+    "body": "Helena apaga e manda pra tia: 'reli e vi como soou. O notebook salvou minhas notas — eu não tava enxergando isso'. Argumento: gratidão é vista treinada, não sensação espontânea. Comparar com o da Vivi escondeu o que a tia fez. Apagar custa o ego de admitir; manter custa a tia chorando de novo amanhã."
+  },
+  "anchor_question": "Por que gratidão precisa ser exercitada se receber algo bom deveria ser suficiente pra senti-la?",
+  "reveal": "O cérebro se acostuma com qualquer coisa em 3 dias — fenômeno chamado adaptação hedônica. Por isso, gratidão não é sentir-se grato (isso passa); é praticar olhar de novo, propositalmente, pro que já virou paisagem. Quem para de praticar, para de ver. Quem para de ver, age sem perceber que machucou."
+}

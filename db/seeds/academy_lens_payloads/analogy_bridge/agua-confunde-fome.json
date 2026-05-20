@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Alarme de fumaça que toca pra vapor do chuveiro",
+    "elements": [
+      "O alarme só sabe detectar 'partículas no ar' — não diferencia tipo",
+      "Você toma banho quente, vapor sobe, alarme dispara 'fogo!'",
+      "Você corre apavorado procurando o que não existe",
+      "Custou 3 segundos pra perceber que era só vapor",
+      "Quem mora ali aprende: antes de correr, olha de onde vem"
+    ]
+  },
+  "target_domain": {
+    "name": "Sinal de fome que toca pra sede leve",
+    "elements": [
+      "O hipotálamo só sabe detectar 'algo está faltando' — não diferencia o quê",
+      "Você fica desidratado, sinal dispara 'fome!'",
+      "Você corre na geladeira procurando o que não vai resolver",
+      "Custou 5 minutos com um copo d'água pra perceber que era sede",
+      "Quem se conhece aprende: antes de comer, bebe água e espera"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Alarme não distingue fogo de vapor",
+      "to": "Cérebro não distingue fome de sede"
+    },
+    {
+      "from": "Correr atrás do que não existe",
+      "to": "Comer atrás do que não vai matar a sensação"
+    },
+    {
+      "from": "Olhar a fonte antes de reagir",
+      "to": "Beber água e esperar antes de comer"
+    },
+    {
+      "from": "Casa do banho com alarme calibrado",
+      "to": "Pessoa que conhece o próprio sinal"
+    }
+  ],
+  "transfer_question": "Se um alarme que toca pra vapor exige um teste antes de evacuar a casa, por que você obedece o 'tô com fome' sem testar com água primeiro?"
+}

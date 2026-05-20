@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Pescaria de criança no parque com peixinhos magnéticos",
+    "elements": [
+      "Você joga a varinha — quase sempre vem peixinho de plástico, às vezes brinde",
+      "Não dá pra prever quando vem o brinde, mas você sabe que pode vir",
+      "Cada lance é barato (1 ficha) e rápido (3 segundos)",
+      "A esperança do próximo brinde te segura mais que o brinde em si",
+      "Você sai com 30 fichas gastas e uma chave de plástico"
+    ]
+  },
+  "target_domain": {
+    "name": "Scroll infinito do feed",
+    "elements": [
+      "Você desliza — quase sempre vem post comum, às vezes vídeo viciante",
+      "Não dá pra prever quando vem o bom, mas você sabe que pode vir",
+      "Cada deslize é barato (sem dinheiro) e rápido (1 segundo)",
+      "A esperança do próximo bom te segura mais que o bom em si",
+      "Você sai com 1h queimada e nada lembrado"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Varinha jogada na lagoa",
+      "to": "Dedo deslizando na tela"
+    },
+    {
+      "from": "Brinde imprevisível segurando o jogador",
+      "to": "Vídeo bom imprevisível segurando você"
+    },
+    {
+      "from": "Cada lance gasta 1 ficha quase invisível",
+      "to": "Cada deslize gasta 1 segundo quase invisível"
+    },
+    {
+      "from": "Você sai com chave inútil",
+      "to": "Você sai sem lembrar de nada"
+    }
+  ],
+  "transfer_question": "Se ninguém ficaria 1 hora numa pescaria de criança esperando o brinde, por que o feed te segura no mesmo padrão?"
+}

@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Previsão do tempo no telejornal da noite",
+    "elements": [
+      "Não diz '100% vai chover' — diz '80% de chance'",
+      "Olha milhões de dias passados com clima parecido com hoje",
+      "Calcula: em quantos desses dias passados choveu de fato?",
+      "Acerta na maioria, erra de vez em quando — não é mágica, é estatística",
+      "Quem entende o número não fica bravo quando os 20% acontecem"
+    ]
+  },
+  "target_domain": {
+    "name": "Resposta do ChatGPT ou IA generativa",
+    "elements": [
+      "Não 'sabe' a resposta — calcula a próxima palavra mais provável",
+      "Olha milhões de textos passados com perguntas parecidas",
+      "Calcula: que sequência de palavras costuma vir depois de palavras como essas?",
+      "Acerta na maioria, inventa coisa errada de vez em quando — não é mágica, é estatística",
+      "Quem entende isso não fica chocado quando ela inventa um livro que não existe"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "80% de chance de chover",
+      "to": "Resposta mais provável dado o que aprendeu"
+    },
+    {
+      "from": "Histórico de dias passados",
+      "to": "Treino em bilhões de textos passados"
+    },
+    {
+      "from": "20% das vezes não chove e tudo bem",
+      "to": "Parte das vezes inventa errado — 'alucinação'"
+    },
+    {
+      "from": "Confiar em previsão sem checar é problema",
+      "to": "Confiar em resposta de IA sem checar é problema"
+    }
+  ],
+  "transfer_question": "Se você não saía de casa sem guarda-chuva assumindo 100% pelos 80% da previsão, por que confia 100% numa resposta de IA que funciona pelo mesmo cálculo de probabilidade?"
+}

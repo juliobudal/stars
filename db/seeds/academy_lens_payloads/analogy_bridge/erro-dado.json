@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Bebê aprendendo a andar",
+    "elements": [
+      "Cada queda é informação: 'esse lado, esse pé, esse ângulo — não'",
+      "O cérebro ajusta o equilíbrio na próxima tentativa",
+      "Cair 100 vezes em 6 meses é o que faz andar com 1 ano",
+      "Bebê que tivesse vergonha de cair nunca aprenderia",
+      "Quem olha de fora vê tropeço; o corpo do bebê está coletando dado"
+    ]
+  },
+  "target_domain": {
+    "name": "Aluno errando exercício de matemática",
+    "elements": [
+      "Cada erro é informação: 'esse passo, essa fórmula, essa conta — não'",
+      "O cérebro ajusta o caminho na próxima tentativa",
+      "Errar 100 contas em 6 meses é o que faz acertar a prova",
+      "Aluno que tem vergonha de errar nunca aprende a matéria de verdade",
+      "Quem olha de fora vê fracasso; o cérebro do aluno está coletando dado"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Queda é input pro próximo passo",
+      "to": "Erro é input pro próximo exercício"
+    },
+    {
+      "from": "Cérebro do bebê reescreve conexões",
+      "to": "Cérebro do aluno reescreve conexões"
+    },
+    {
+      "from": "Vergonha de cair = não anda",
+      "to": "Vergonha de errar = não aprende"
+    },
+    {
+      "from": "100 quedas viram caminhada estável",
+      "to": "100 erros viram domínio"
+    }
+  ],
+  "transfer_question": "Se ninguém olharia pra um bebê tropeçando e diria 'esse aí é burro', por que tanta gente olha pro próprio erro de matemática assim?"
+}

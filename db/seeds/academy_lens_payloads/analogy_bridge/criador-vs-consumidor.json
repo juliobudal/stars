@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Aluno de violão num show ao vivo",
+    "elements": [
+      "Quem só assiste: ouve a música, sente, aplaude, vai embora",
+      "No dia seguinte, lembra das emoções, mas não toca nada novo",
+      "Quem leva o violão: anota acordes durante o show, tenta no quarto",
+      "No dia seguinte, soa errado, ajeita, tenta de novo, melhora",
+      "Em 1 ano: o assistente viu 20 shows; o aluno toca 3 músicas inteiras"
+    ]
+  },
+  "target_domain": {
+    "name": "Adolescente vendo tutorial de programação no YouTube",
+    "elements": [
+      "Quem só assiste: vê o código aparecer, entende o vídeo, fecha",
+      "No dia seguinte, lembra que era 'sobre Python', mas não programa nada",
+      "Quem abre o editor: pausa, copia uma linha, roda, dá erro, conserta",
+      "No dia seguinte, modifica o exemplo, quebra, conserta, aprende",
+      "Em 1 ano: o assistente viu 50 tutoriais; o ativo fez 3 projetos pequenos"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Assistir show sem instrumento",
+      "to": "Ver tutorial sem abrir o editor"
+    },
+    {
+      "from": "Tentar tocar errado e ajustar",
+      "to": "Rodar código, dar erro, consertar"
+    },
+    {
+      "from": "Aplauso e ir embora",
+      "to": "Like, salvar, fechar"
+    },
+    {
+      "from": "Quem leva o violão sai músico",
+      "to": "Quem abre o editor sai programador"
+    }
+  ],
+  "transfer_question": "Se 20 shows assistidos não viram 1 música tocada, por que 50 tutoriais salvos viraram nada além de um histórico longo no YouTube?"
+}

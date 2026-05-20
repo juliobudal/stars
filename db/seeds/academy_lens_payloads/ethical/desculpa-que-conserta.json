@@ -1,0 +1,13 @@
+{
+  "dilemma": "Rafa, 12, combinou de levar o caderno de matemática pro Felipe, que faltou ontem. Esqueceu. Felipe ligou na hora do intervalo, voz cortada: 'eu confiei em você, agora vou ter que copiar tudo amanhã antes da prova'. Rafa pode mandar 'foi mal, juro que esqueci' e seguir o dia, ou pode parar tudo agora.",
+  "case_a": {
+    "title": "Manda o 'foi mal' e segue",
+    "body": "Rafa manda áudio rápido: 'parça, esqueci, foi mal mesmo, amanhã sem falta'. Argumento: ele tá no recreio, comendo, com a turma — quebrar isso pra ir resolver é exagero. O Felipe vai entender. Amigos esquecem coisas o tempo todo. Insistir muito é dramático."
+  },
+  "case_b": {
+    "title": "Sai do recreio, busca o caderno em casa, leva ainda hoje",
+    "body": "Rafa fala com a inspetora, pede pra sair na próxima hora vaga, vai em casa de bike, pega o caderno, leva pro Felipe antes do fim do dia. Argumento: 'foi mal' sem fazer nada é um som — não é uma desculpa. Desculpa real é quando você desfaz o estrago que sua palavra causou."
+  },
+  "anchor_question": "Quando 'foi mal, esqueci' deixa de ser uma desculpa e vira um jeito civilizado de não pagar o preço de ter falhado?",
+  "reveal": "Desculpa que conserta gasta seu tempo, seu conforto, seu plano — esse gasto é o que faz a outra pessoa sentir que sua palavra ainda vale alguma coisa. Dizer 'foi mal' sem custo nenhum é grátis pra você, mas barato pro outro — e o que é barato pro outro a próxima vez deixa de ser palavra dada, vira ruído de fundo."
+}

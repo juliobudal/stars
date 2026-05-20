@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Escovar dente todo dia versus uma vez por semana",
+    "elements": [
+      "Escovar 2 minutos todo dia mantém o dente saudável a vida inteira",
+      "Uma escovação heroica de 30 minutos por semana não substitui",
+      "O cárie não espera o domingo — trabalha 24h por dia, devagar",
+      "Você não 'compensa' uma semana sem escovar com uma escovação longa",
+      "É a constância, não a intensidade, que faz o dente durar"
+    ]
+  },
+  "target_domain": {
+    "name": "10 minutos de movimento todo dia versus 1h no fim de semana",
+    "elements": [
+      "10 minutos diários mantém o corpo destravado a vida inteira",
+      "Uma hora heroica no sábado não compensa 6 dias sentado",
+      "Sedentarismo não espera o sábado — endurece tudo, devagar",
+      "Não dá pra 'estocar' movimento — o corpo não acumula",
+      "É a constância, não a intensidade, que mantém disposição"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Escovação curta, todos os dias",
+      "to": "Movimento curto, todos os dias"
+    },
+    {
+      "from": "Cárie trabalhando 24h",
+      "to": "Sedentarismo endurecendo o corpo 24h"
+    },
+    {
+      "from": "Sábado não compensa a semana",
+      "to": "Hora no fim de semana não compensa a semana"
+    },
+    {
+      "from": "Constância > intensidade no dente",
+      "to": "Constância > intensidade no corpo"
+    }
+  ],
+  "transfer_question": "Se ninguém escova dente uma vez por semana 'compensando', por que tantos adultos tratam movimento como evento esportivo do sábado?"
+}

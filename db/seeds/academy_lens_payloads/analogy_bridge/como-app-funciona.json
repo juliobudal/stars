@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Pizzaria do bairro funcionando numa noite de sábado",
+    "elements": [
+      "Telefone toca — atendente anota o pedido",
+      "Pedido vai pra cozinha — quem prepara nunca falou com você",
+      "Outro funcionário monta a caixa, separa o motoboy",
+      "Motoboy entrega — não sabe o que tem dentro nem por quê",
+      "Você vê a pizza chegar; sem ver as 4 pessoas que tornaram aquilo possível"
+    ]
+  },
+  "target_domain": {
+    "name": "App de delivery no celular",
+    "elements": [
+      "Botão 'pedir' — frontend manda a ordem",
+      "Ordem vai pro servidor — backend processa, nunca 'viu' a tela",
+      "Banco de dados grava, sistema de pagamento cobra",
+      "Notificação volta pro celular — interface mostra 'a caminho'",
+      "Você vê o ícone do motoboy; sem ver os 4 sistemas trabalhando por baixo"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Atendente do telefone",
+      "to": "Interface (tela) do app"
+    },
+    {
+      "from": "Cozinha que prepara",
+      "to": "Servidor (backend) que processa"
+    },
+    {
+      "from": "Caderno de pedidos da pizzaria",
+      "to": "Banco de dados"
+    },
+    {
+      "from": "Motoboy levando o produto final",
+      "to": "Notificação devolvendo o resultado"
+    }
+  ],
+  "transfer_question": "Se entender a pizzaria por dentro te faz menos refém da espera, o que entender o app por dentro muda no seu uso?"
+}

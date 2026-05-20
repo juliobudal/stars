@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Detetive seguindo alguém pela cidade um dia inteiro",
+    "elements": [
+      "Anota cada lugar onde a pessoa para mais de 30 segundos",
+      "Marca a hora exata, quanto tempo ficou, o que pegou na mão",
+      "Cruza com o que ela vestiu, com quem encontrou, o que comprou",
+      "No fim do dia, sabe mais sobre os hábitos dela que os pais dela",
+      "Ela não sabe que foi seguida — achou que foi um dia normal"
+    ]
+  },
+  "target_domain": {
+    "name": "Sites e apps registrando seu dia inteiro",
+    "elements": [
+      "Anotam cada vídeo onde você para mais de 3 segundos",
+      "Marcam horário, duração do scroll, em que palavra você pausou",
+      "Cruzam com sua localização, com quem você mensaja, o que pesquisa",
+      "No fim do dia, têm um perfil seu mais preciso que sua memória",
+      "Você não sabe que foi rastreado — achou que foi um dia normal de feed"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Detetive anotando paradas",
+      "to": "Plataforma anotando cliques"
+    },
+    {
+      "from": "Cruzar lugares e horários",
+      "to": "Cruzar histórico de busca e localização"
+    },
+    {
+      "from": "Detetive monta perfil completo",
+      "to": "Algoritmo monta perfil preditivo"
+    },
+    {
+      "from": "Pessoa seguida não percebe",
+      "to": "Usuário não percebe que tá sendo medido"
+    }
+  ],
+  "transfer_question": "Se você notaria um detetive te seguindo um dia inteiro, por que não nota o equivalente acontecendo todo dia pelos apps que você abre 100 vezes?"
+}
