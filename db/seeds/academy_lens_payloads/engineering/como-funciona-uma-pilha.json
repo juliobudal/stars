@@ -1,0 +1,38 @@
+{
+  "challenge": "Você compra a pilha pro controle de videogame que come 2 pilhas AA. Mercado tem 4 tipos disponíveis. Escolhe 2 a 3 critérios pra justificar a pilha — sabendo que ninguém tem o tipo perfeito em todas as frentes.",
+  "constraints": [
+    {
+      "id": "z",
+      "label": "Zinco-carbono (R$ 4 o par) — química básica, descartável, leve",
+      "cost": "Aguenta 6-8 horas de uso intenso; vaza em 6 meses parada; vai pro lixo comum"
+    },
+    {
+      "id": "a",
+      "label": "Alcalina (R$ 12 o par) — química melhorada, mais densidade de energia",
+      "cost": "Aguenta 25-30 horas de uso; mais cara; ainda é descartável e polui igual"
+    },
+    {
+      "id": "r",
+      "label": "Recarregável NiMH (R$ 45 o par + carregador R$ 60)",
+      "cost": "Investimento inicial R$ 105; cada par aguenta 500 ciclos de recarga; pesa 20% a mais"
+    },
+    {
+      "id": "l",
+      "label": "Lítio AA (R$ 35 o par) — química nobre, leve, dura mais que alcalina",
+      "cost": "Custo alto por par; aguenta 40-50 horas; ainda descartável; não recarrega"
+    },
+    {
+      "id": "e",
+      "label": "Pilha 'eco' alcalina com reciclagem inclusa (R$ 15 o par + descarte gratuito)",
+      "cost": "R$ 3 a mais que alcalina comum; precisa juntar pilhas usadas pra entregar; logística"
+    }
+  ],
+  "must_pick": 2,
+  "outcomes": {
+    "r+l": "Combo de longo prazo: recarregável (r) como pilha 'mãe' + lítio (l) como backup pra viagem. Você gasta R$ 140 hoje pra economizar R$ 600 nos próximos 5 anos. Tradeoff: peso e custo inicial. Em troca: praticamente zero lixo eletrônico.",
+    "a+e": "Aposta descartável consciente: alcalina padrão (a) + versão eco (e) — alterna pra reciclar. Custa R$ 27 por mês de uso médio. Tradeoff: gasta dinheiro recorrente, mas a logística de descarte fica resolvida. Bom pra quem usa pouca pilha.",
+    "z+a": "Combo barato sem pensar muito: zinco (z) pra controles ocasionais + alcalina (a) pra coisas que ligam todo dia. Investe pouco hoje. Tradeoff: troca pilha a cada 2-3 semanas; em 1 ano, gastou R$ 80 e mandou 30 pilhas pra aterro.",
+    "r+a": "Recarregável (r) + alcalina (a) como reserva. Tradeoff balanceado: investimento médio (R$ 105 setup, R$ 12 backup). O 90% do uso vai pro recarregável; alcalina cobre quando descarga prolongada. Pacote racional pra quem não viaja muito.",
+    "l+e": "Lítio (l) + eco-alcalina (e). Combo PESADO em custo (R$ 50/par) e LEVE em peso físico. Bom pra controle remoto sensível ao peso. Tradeoff: paga 3-4x mais que zinco pra ganhar autonomia. Em controle de TV, vira economia. Em controle de videogame infantil, exagero."
+  }
+}

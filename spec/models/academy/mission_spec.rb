@@ -4,22 +4,31 @@ require "rails_helper"
 
 RSpec.describe Academy::Mission do
   describe "validations" do
-    describe "concept_must_have_curated_kid_payload" do
+    describe "concept_must_have_curated_kid_payload (on: :publish)" do
       let(:concept) { create(:academy_concept, slug: "no-content") }
 
-      it "blocks publishing when the concept has no curated kid payload" do
+      it "blocks the :publish context when the concept has no curated kid payload" do
         mission = build(:academy_mission, concept: concept,
                         with_curated_kid_payload: false, active: true)
-        expect(mission).not_to be_valid
+        expect(mission.valid?(:publish)).to be(false)
         expect(mission.errors[:concept]).to include(
           a_string_matching(/ainda não tem aula curada/)
         )
       end
 
-      it "allows inactive missions even without curated coverage" do
+      it "passes default save context even without curated coverage (seed-time path)" do
+        # The seed loads missions BEFORE payloads; default save can't be
+        # the enforcement point. The Academy audit at the end of db/seeds/
+        # academy.rb runs :publish for every active mission.
+        mission = build(:academy_mission, concept: concept,
+                        with_curated_kid_payload: false, active: true)
+        expect(mission).to be_valid
+      end
+
+      it "skips the check for inactive missions" do
         mission = build(:academy_mission, concept: concept,
                         with_curated_kid_payload: false, active: false)
-        expect(mission).to be_valid
+        expect(mission.valid?(:publish)).to be(true)
       end
 
       it "passes once a curated kid payload exists for the concept" do
@@ -30,7 +39,7 @@ RSpec.describe Academy::Mission do
         )
         mission = build(:academy_mission, concept: concept,
                         with_curated_kid_payload: false, active: true)
-        expect(mission).to be_valid
+        expect(mission.valid?(:publish)).to be(true)
       end
 
       it "ignores parent-locale payloads when evaluating kid coverage" do
@@ -41,7 +50,7 @@ RSpec.describe Academy::Mission do
         )
         mission = build(:academy_mission, concept: concept,
                         with_curated_kid_payload: false, active: true)
-        expect(mission).not_to be_valid
+        expect(mission.valid?(:publish)).to be(false)
       end
 
       it "ignores quality_flagged payloads" do
@@ -52,7 +61,7 @@ RSpec.describe Academy::Mission do
         )
         mission = build(:academy_mission, concept: concept,
                         with_curated_kid_payload: false, active: true)
-        expect(mission).not_to be_valid
+        expect(mission.valid?(:publish)).to be(false)
       end
     end
   end

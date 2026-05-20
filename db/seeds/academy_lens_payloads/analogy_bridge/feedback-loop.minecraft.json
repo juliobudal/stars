@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Comparador de redstone travando a porta automática",
+    "elements": [
+      "Sensor (placa de pressão) lê se tem mob em cima a cada tick",
+      "Compara com a regra (só passa mob neutro) — se for hostil, manda fechar",
+      "Quando o mob sai, o pistão abre; quando outro entra, fecha de novo",
+      "O circuito nunca para — ler, comparar, ajustar, ler, comparar",
+      "Quem desconecta o comparador: ou a porta vive aberta, ou trava com um vilager dentro"
+    ]
+  },
+  "target_domain": {
+    "name": "Você ajustando seu jeito de farmar/construir",
+    "elements": [
+      "Você mede o resultado (taxa de drop por hora, blocos colocados, tempo no projeto)",
+      "Compara com a meta — está abaixo, ajusta o design",
+      "Quando bate a meta, mantém; quando cai abaixo, ajusta de novo",
+      "O loop não para — medir, comparar, ajustar, medir, comparar",
+      "Quem só constrói sem medir: ou farma demais coisa errada, ou desiste sem perceber que tava perto"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Sensor lendo se tem mob em cima",
+      "to": "Você lendo o resultado real"
+    },
+    {
+      "from": "Regra no comparador (só neutro passa)",
+      "to": "Sua meta concreta (drops/hora, blocos, tempo)"
+    },
+    {
+      "from": "Pistão abrindo/fechando ajustando",
+      "to": "Decisão de mudar/manter design"
+    },
+    {
+      "from": "Sem o circuito, a base vira inhabitável",
+      "to": "Sem o loop, o esforço vira farm sem rumo"
+    }
+  ],
+  "transfer_question": "Se ninguém deixaria uma farm de mob funcionando sem comparador medindo o que cai, por que tanta gente 'farma mais' sem medir se o esforço tá indo pro lado certo?"
+}

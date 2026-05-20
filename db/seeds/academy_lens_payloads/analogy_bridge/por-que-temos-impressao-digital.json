@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Massinha de modelar apertada na mão",
+    "elements": [
+      "Você aperta uma bolinha de massinha entre o polegar e o indicador",
+      "A força não é igualzinha nos dois lados — sempre tem um lado mais forte",
+      "A massinha enruga onde sua mão apertou mais",
+      "Aperta de novo: nunca dá a MESMA dobrinha que da primeira vez",
+      "Cada criança aperta num ângulo um pouco diferente da outra"
+    ]
+  },
+  "target_domain": {
+    "name": "Dedinho do bebê na barriga da mãe",
+    "elements": [
+      "Dentro da barriga da mãe a pele do dedo é como uma massinha bem fininha",
+      "Ela é apertada contra a camada de baixo enquanto ainda está crescendo",
+      "A força do aperto vem do líquido, do tamanho do dedo e do seu movimento",
+      "Cada bebê está num espaço diferente, mexe diferente, aperta diferente",
+      "As dobrinhas que se formam viram a impressão digital pra vida toda"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Massinha enruga onde foi apertada",
+      "to": "Pele enruga onde foi apertada na barriga"
+    },
+    {
+      "from": "Mesma criança aperta diferente cada vez",
+      "to": "Mesmo bebê forma cada dedo diferente"
+    },
+    {
+      "from": "Ângulo do aperto muda o desenho",
+      "to": "Posição na barriga muda o desenho"
+    },
+    {
+      "from": "Não há jeito de repetir igualzinho",
+      "to": "Não há jeito de duas digitais saírem iguais"
+    }
+  ],
+  "transfer_question": "Se gêmeos idênticos têm digitais diferentes apesar de compartilharem DNA igual, qual outra coisa além da genética decide pequenos traços de cada um?"
+}

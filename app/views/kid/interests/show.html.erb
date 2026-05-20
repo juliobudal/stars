@@ -1,0 +1,73 @@
+<%# Kid interests picker — chips grid, multi-select 3-5. %>
+<div class="screen screen-enter with-nav">
+  <%= render Ui::KidTopBar::Component.new(profile: current_profile, streak: current_profile.streak_days) %>
+
+  <header class="px-1 mb-5">
+    <h1 class="font-display text-[24px] leading-tight font-extrabold tracking-[-0.01em] m-0" style="color: var(--text);">
+      O que você curte?
+    </h1>
+    <p class="text-[14px] font-bold mt-1.5 m-0" style="color: var(--text-muted);">
+      Escolhe de <%= @min %> a <%= @max %> coisas. A gente usa pra deixar as missões com tema do que você gosta.
+    </p>
+  </header>
+
+  <%= form_with url: kid_interests_path, method: :patch,
+                data: { controller: "interest-picker",
+                        "interest-picker-min-value": @min,
+                        "interest-picker-max-value": @max },
+                class: "space-y-5 px-1" do |f| %>
+
+    <% if flash.now[:alert].present? %>
+      <%= render Ui::Flash::Component.new(kind: :alert, message: flash.now[:alert]) rescue nil %>
+      <% unless defined?(Ui::Flash::Component) %>
+        <div class="rounded-2xl bg-rose-soft text-rose-depth font-bold text-sm px-4 py-3">
+          <%= flash.now[:alert] %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+      <% @catalog.each do |entry| %>
+        <% checked = @selected.include?(entry.key) %>
+        <label class="interest-chip"
+               data-interest-picker-target="chip"
+               data-checked="<%= checked %>"
+               style="
+                 display:flex; align-items:center; gap:8px;
+                 padding: 12px 14px;
+                 border-radius: 14px;
+                 background: <%= checked ? 'var(--primary-soft)' : 'var(--surface-2, #F7F7F7)' %>;
+                 border: 2px solid <%= checked ? 'var(--primary)' : 'transparent' %>;
+                 box-shadow: <%= checked ? '0 4px 0 var(--primary-glow, rgba(0,0,0,0.08))' : 'none' %>;
+                 cursor: pointer;
+                 font-family: var(--font-display, Nunito), sans-serif;
+                 font-weight: 800;
+                 font-size: 14px;
+                 color: <%= checked ? 'var(--primary)' : 'var(--text)' %>;
+                 user-select:none;">
+          <input type="checkbox"
+                 name="interest_keys[]"
+                 value="<%= entry.key %>"
+                 <%= "checked" if checked %>
+                 data-interest-picker-target="checkbox"
+                 style="position:absolute; opacity:0; pointer-events:none;">
+          <span aria-hidden="true" style="font-size:20px; line-height:1;"><%= entry.emoji %></span>
+          <span><%= entry.label %></span>
+        </label>
+      <% end %>
+    </div>
+
+    <div class="flex items-center justify-between gap-3 pt-2"
+         data-interest-picker-target="footer">
+      <span class="text-[13px] font-bold" style="color: var(--text-muted);"
+            data-interest-picker-target="count">
+        <%= @selected.size %> escolhidas — mínimo <%= @min %>, máximo <%= @max %>
+      </span>
+      <%= f.button type: :submit,
+                   class: "ls-btn ls-btn-primary",
+                   style: "padding: 10px 20px; border-radius: 12px; font-weight:800;" do %>
+        Salvar
+      <% end %>
+    </div>
+  <% end %>
+</div>

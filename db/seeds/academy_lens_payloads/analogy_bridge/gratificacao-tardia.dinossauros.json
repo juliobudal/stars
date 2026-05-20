@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Comprar miniatura pronta ou escavar um molde de fóssil",
+    "elements": [
+      "Miniatura pronta: prazer em 10 minutos, R$ 80, vira poeira na estante em 3 meses",
+      "Escavar molde de gesso com martelinho: precisa de tempo e repetição — sai réplica em semanas",
+      "Quem só compra nunca conhece o gosto de tirar o próprio fóssil do bloco",
+      "Quem escava não vê resultado na primeira hora, nem no primeiro dia",
+      "No fim do ano: o do comprado tem 6 miniaturas iguais, o do molde tem 6 réplicas com história própria"
+    ]
+  },
+  "target_domain": {
+    "name": "Aprender paleontologia vs assistir vídeo pronto",
+    "elements": [
+      "Vídeo pronto: prazer em 10 min, te entretém, esquece em 3 dias",
+      "Aprender a identificar fóssil: precisa de leitura, erro, repetição — sai habilidade em meses",
+      "Quem só consome nunca conhece o gosto de reconhecer uma vértebra olhando",
+      "Quem aprende não vê resultado na primeira semana, nem no primeiro mês",
+      "No ano 1: o consumidor viu 500 vídeos, o aprendiz identifica o gênero de saurópode pela costela"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Miniatura comprada, prazer rápido",
+      "to": "Vídeo consumido, prazer rápido"
+    },
+    {
+      "from": "Escavar molde, demora semanas",
+      "to": "Aprender, demora meses"
+    },
+    {
+      "from": "Réplica feita por você, vira história",
+      "to": "Habilidade que rende a vida toda depois"
+    },
+    {
+      "from": "Quem só compra gasta sem acumular conhecimento",
+      "to": "Quem só consome gasta tempo sem acumular"
+    }
+  ],
+  "transfer_question": "Se em um ano o molde te dá uma réplica com história enquanto R$ 80 da miniatura pronta viraram poeira, por que sua semana de estudo de dinossauro gira no que dá prazer agora?"
+}

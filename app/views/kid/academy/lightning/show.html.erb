@@ -1,0 +1,62 @@
+<% content_for(:title) { "Lightning Round" } %>
+
+<div class="screen screen-enter">
+  <header class="sticky top-0 z-30 -mx-4 px-4 pt-3 pb-3 mb-4"
+          style="background: linear-gradient(to bottom, var(--surface) 70%, rgba(255,255,255,0));">
+    <div class="flex items-center gap-3">
+      <%= link_to kid_root_path,
+                  "aria-label": "Sair do Lightning",
+                  class: "w-10 h-10 rounded-full flex items-center justify-center anim-press shrink-0",
+                  style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06);" do %>
+        <%= render Ui::Icon::Component.new(:chevron_left, size: 18, color: "var(--text)") %>
+      <% end %>
+      <div class="flex-1 min-w-0">
+        <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase truncate"
+             style="color: var(--c-amber-dark);">⚡ Lightning Round</div>
+        <h1 class="font-display text-[17px] font-extrabold leading-tight m-0 truncate" style="color: var(--text);">
+          5 perguntas pra testar memória
+        </h1>
+      </div>
+      <div class="font-display text-[14px] font-extrabold"
+           data-controller="lightning-timer"
+           data-lightning-timer-start-value="90"
+           style="color: var(--c-amber-dark); background: var(--c-amber-soft); padding: 6px 12px; border-radius: 12px;">
+        ⏱ <span data-lightning-timer-target="display">90</span>s
+      </div>
+    </div>
+  </header>
+
+  <%= form_with url: kid_academy_lightning_answer_path, method: :post,
+                local: true, class: "space-y-5 px-1" do |f| %>
+    <% @rounds.each_with_index do |round, i| %>
+      <fieldset class="ls-card-3d"
+                style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px 18px; box-shadow: 0 4px 0 rgba(0,0,0,0.08);">
+        <legend class="font-display text-[10px] font-extrabold tracking-[0.5px] uppercase mb-1 px-2"
+                style="color: var(--text-muted); background: var(--surface);">
+          <%= i + 1 %>/<%= @rounds.size %> · <%= round[:concept_name] %>
+        </legend>
+        <p class="font-display text-[15px] font-extrabold mt-1 mb-3" style="color: var(--text);">
+          <%= round[:question] %>
+        </p>
+        <div class="grid grid-cols-1 gap-2">
+          <% round[:options].each_with_index do |opt, oi| %>
+            <label class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl cursor-pointer"
+                   style="background: var(--surface-2, #F7F7F7); border: 2px solid transparent;">
+              <input type="radio"
+                     name="answer[q<%= i %>]"
+                     value="<%= oi %>"
+                     style="accent-color: var(--primary); width: 18px; height: 18px;">
+              <span class="font-display text-[14px] font-extrabold" style="color: var(--text);"><%= opt %></span>
+            </label>
+          <% end %>
+        </div>
+      </fieldset>
+    <% end %>
+
+    <%= f.button type: :submit,
+                 class: "ls-btn-3d w-full",
+                 style: "background: var(--primary); color: white; padding: 14px 18px; border-radius: 14px; box-shadow: 0 4px 0 var(--primary-2); font-weight: 800; font-family: var(--font-display, Nunito), sans-serif;" do %>
+      ⚡ Conferir respostas
+    <% end %>
+  <% end %>
+</div>

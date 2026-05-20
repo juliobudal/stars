@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Apelido que pegou e os nomes oficiais que sumiram",
+    "elements": [
+      "No prédio, todo mundo chama o porteiro de 'Seu Zé' — apelido antigo",
+      "A maioria dos vizinhos esqueceu o nome 'oficial' dele",
+      "Os outros funcionários novos viraram 'porteiro da manhã', 'da tarde'",
+      "Só o Seu Zé manteve o apelido — ele tem história e respeito",
+      "O nome com história permanece; os outros são só descrição prática"
+    ]
+  },
+  "target_domain": {
+    "name": "Nomes dos dias da semana em português",
+    "elements": [
+      "Em latim antigo domingo se chamava 'Dies Dominica' — dia do Senhor",
+      "Os outros dias também tinham nomes (Lua, Marte, Mercúrio...)",
+      "A Igreja primitiva renomeou os outros: dia da feira primeira, segunda, terça...",
+      "Só o domingo manteve o nome antigo, por importância religiosa",
+      "Hoje os outros dias são números, só o domingo guarda a palavra original"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Apelido com história resiste",
+      "to": "'Dominica' carregava significado e resistiu"
+    },
+    {
+      "from": "Outros viram descrição prática",
+      "to": "Outros viram 'segunda, terça, quarta…' (ordem da feira)"
+    },
+    {
+      "from": "Esquece-se o nome oficial dos novos",
+      "to": "Esquece-se Lunae, Martis, Mercurii dos dias"
+    },
+    {
+      "from": "Nome carregado de importância sobrevive a troca",
+      "to": "Domingo sobrevive ao apagamento dos nomes pagãos"
+    }
+  ],
+  "transfer_question": "Se a Igreja conseguiu renomear seis dias mas não o domingo, qual lição isso traz sobre quais nomes uma cultura consegue trocar e quais não?"
+}

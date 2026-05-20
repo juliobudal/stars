@@ -106,7 +106,7 @@ schema no `retry_message`. Se a 2ª também falha → `fail_with(:llm_schema_inv
 Cada `.md.erb` segue um esqueleto canônico de 6 blocos:
 
 1. **TAREFA** — "Gere UMA lente X sobre o conceito Y para aprendiz pt-BR
-   de 8-14 anos"
+   de 7-12 anos" (unificado com Readability target em `Academy::Llm::Readability`)
 2. **PROPÓSITO DIDÁTICO** — pedagogia específica do tipo
    - scientific: mecanismo puro, causa→efeito em 3 passos, sem metáfora dentro
    - narrative: personagem com idade + dilema + ação + resultado

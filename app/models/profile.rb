@@ -41,6 +41,12 @@ class Profile < ApplicationRecord
   has_many :activity_logs, dependent: :destroy
   has_many :global_task_assignments, dependent: :destroy
   has_many :sent_invitations, class_name: "ProfileInvitation", foreign_key: :invited_by_id, dependent: :nullify
+  has_many :profile_interests, -> { order(:rank, :id) }, dependent: :destroy, inverse_of: :profile
+
+  # Top-N interest keys ordered by rank (1=top). Used by Academy::Learner.
+  def interest_keys(limit = 5)
+    profile_interests.order(:rank, :id).limit(limit).pluck(:interest_key)
+  end
 
   attr_accessor :pin
 

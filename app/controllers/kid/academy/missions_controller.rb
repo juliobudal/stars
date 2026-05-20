@@ -56,7 +56,8 @@ class Kid::Academy::MissionsController < Kid::Academy::BaseController
     outcome = params[:outcome].presence || "completed"
 
     result = ::Academy::Missions::AdvanceLens.call(
-      progress: @progress, signal_payload: payload, outcome: outcome
+      progress: @progress, signal_payload: payload, outcome: outcome,
+      learner: current_learner
     )
     return render_unavailable(result.error) unless result.success?
 

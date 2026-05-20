@@ -1,0 +1,33 @@
+{
+  "ending": "No dia seguinte, antes do treino, {{learner_name}} acha a bola de meia no mesmo canto do quintal. Suja de terra, costura aberta de um lado. Ele enfia no saco da mochila e, no caminho do campinho, vai chutando a bola na guia, em silêncio.",
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sexta à noite, o irmão mais velho leva a bola oficial pra um torneio fora. A mãe avisa: 'Volta domingo.' Theo fica sentado no chão do quarto, olhando o nada. A gaiola do calopsita chia. O celular tá carregando na sala. Ele tem 12 anos, sem bola, sem treino marcado e com a tarde toda pela frente."
+    },
+    {
+      "id": "s2",
+      "text": "Sábado de manhã, a mãe foi no mercado. Theo está deitado no sofá, encarando o teto. Lembra de um saco velho de meias furadas no armário. Levanta, vai até a área de serviço, enrola três meias uma na outra, aperta com elástico de cabelo. Pesa pouco, mas quica. Não é bola, mas rola no piso."
+    },
+    {
+      "id": "s3",
+      "text": "Meio-dia. A mãe volta e encontra dois gols feitos com chinelo no quintal. Theo está descalço, treinando finalização com a bola de meia. O calopsita, solto, voa em círculos atraído pelo movimento. 'O que é isso?' 'Bola de treino.' 'Funciona?' 'Não pra jogo de verdade, mas pra chute de longe serve.'"
+    }
+  ],
+  "character": {
+    "age": 12,
+    "name": "Theo",
+    "trait": "odiava ficar parado, mas detestava ainda mais que mandassem ele fazer alguma coisa"
+  },
+  "micro_check": {
+    "question": "{{learner_name}}, o que Theo fez sem a bola oficial?",
+    "options": [
+      "Esperou o irmão voltar pra poder jogar",
+      "Inventou uma bola de meia e montou um treino no quintal",
+      "Pediu pra mãe comprar uma bola nova no mercado",
+      "Foi jogar videogame de futebol na sala"
+    ],
+    "correct_index": 1,
+    "rationale": "Theo não tinha bola e ninguém mandando ele treinar. Ficou tempo ocioso com as mãos livres, e a meia velha virou outra coisa — uma ideia que só apareceu porque ele ficou parado por tempo o bastante."
+  }
+}

@@ -8,7 +8,7 @@ end
 
 if ENV["SEED_FORCE"] == "1"
   puts "⚠ SEED_FORCE=1 — wiping all data..."
-  [ ActivityLog, Redemption, ProfileTask, GlobalTaskAssignment, Reward, Category, GlobalTask, Profile, ProfileInvitation, Family ].each(&:delete_all)
+  [ ActivityLog, Redemption, ProfileTask, GlobalTaskAssignment, Reward, Category, GlobalTask, ProfileInterest, Profile, ProfileInvitation, Family ].each(&:delete_all)
 end
 
 ActiveRecord::Base.strict_loading_by_default = false

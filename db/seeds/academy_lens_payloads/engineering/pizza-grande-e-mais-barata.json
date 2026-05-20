@@ -1,0 +1,38 @@
+{
+  "challenge": "Você vai pedir pizza pro grupo de 4 amigos. A pizzaria tem 3 tamanhos. O bolso é R$ 100 no máximo. Quem decide tem que escolher 2 a 3 opções de pedido — sabendo que a maior NÃO é sempre a melhor escolha.",
+  "constraints": [
+    {
+      "id": "p",
+      "label": "Pizza pequena 25 cm (R$ 30) — diâmetro pequeno, fácil de variar sabor",
+      "cost": "490 cm² de área; 4 amigos comem 2 fatias cada e sobra fome; 6,1 cm² por real"
+    },
+    {
+      "id": "m",
+      "label": "Pizza média 35 cm (R$ 45) — clássica de pedido familiar",
+      "cost": "962 cm² de área; bom pra 3 amigos, justo pra 4; 21,4 cm² por real — melhor proporção"
+    },
+    {
+      "id": "g",
+      "label": "Pizza grande 45 cm (R$ 65) — diâmetro 80% maior que a pequena",
+      "cost": "1590 cm² de área; sobra fácil; 24,5 cm² por real — campeã de eficiência"
+    },
+    {
+      "id": "f",
+      "label": "2 pizzas pequenas com sabores diferentes (R$ 60)",
+      "cost": "980 cm² total — quase IGUAL a 1 média sozinha, e custa R$ 15 a mais; variedade compra menos comida"
+    },
+    {
+      "id": "r",
+      "label": "Refrigerante 2 litros (R$ 12) — pra acompanhar",
+      "cost": "Some todo num pedido; come 12% do orçamento; sem ele, o grupo reclama"
+    }
+  ],
+  "must_pick": 2,
+  "outcomes": {
+    "g+r": "Combo ótimo: pizza grande (R$ 65) + refrigerante (R$ 12). Total R$ 77 — sobra R$ 23 do orçamento. 1590 cm² pra 4 amigos = 397 cm² cada, equivale a 4 fatias generosas. Vence em CM² por real e em saciedade. Decisão clássica de economista.",
+    "m+r": "Combo justo: média (R$ 45) + refrigerante (R$ 12). Total R$ 57. Sobra R$ 43 do orçamento, mas a área é 962 cm² — 240 cm² por amigo. Vai dar fome. Você economizou no pedido errado; o dinheiro guardado pesa menos que a fome lembrada.",
+    "f+r": "Aposta na variedade: 2 pequenas (R$ 60) + refri (R$ 12). Total R$ 72. Você tem 2 sabores diferentes, MAS só 980 cm² — quase a mesma área da média, custando R$ 15 a mais. Pagou por variedade, perdeu em quantidade. Armadilha do 'mais pedaços = mais comida'.",
+    "p+m": "Combo experimental: pequena (R$ 30) + média (R$ 45). Total R$ 75. 1452 cm² — perto da grande, com 2 sabores. Sem refri. Em rendimento por real, está logo atrás de 'g+r'. Bom se a pizzaria não tiver grande no estoque.",
+    "g+f": "Combo excessivo: grande (R$ 65) + 2 pequenas (R$ 60). Total R$ 125 — passou do orçamento. 2570 cm² pra 4 pessoas — sobra metade. Você impressionou o grupo, mas explodiu o bolso e jogará pizza fora. Tradeoff perdido."
+  }
+}

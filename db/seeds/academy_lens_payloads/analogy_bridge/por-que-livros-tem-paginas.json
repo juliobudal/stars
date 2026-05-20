@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Procurar vídeo num rolinho de fita VHS antigo",
+    "elements": [
+      "Antes do YouTube, vídeo vinha em fita longa enrolada em um carretel",
+      "Pra achar a cena do filme, tinha que rebobinar metros de fita esperando",
+      "Não dava pra 'pular pro minuto 40' direto — só passando tudo",
+      "O streaming acabou com isso: clique direto na cena que quer",
+      "Pular direto pro pedaço certo economiza muito mais tempo do que parece"
+    ]
+  },
+  "target_domain": {
+    "name": "Página de livro substituindo o rolo antigo",
+    "elements": [
+      "Antes do livro, textos vinham em rolos de papiro enrolados",
+      "Pra achar um trecho, desenrolava metros de papiro até bater na frase",
+      "Não dava pra 'abrir no capítulo 7' — só percorrendo tudo",
+      "Alguém empilhou folhas, costurou de um lado e inventou a página",
+      "Abrir o livro direto numa página foi o 'streaming' de 2 mil anos atrás"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Rolo de VHS = leitura linear forçada",
+      "to": "Rolo de papiro = leitura linear forçada"
+    },
+    {
+      "from": "Streaming permite saltar pra cena",
+      "to": "Página permite saltar pro capítulo"
+    },
+    {
+      "from": "Mudou como assistimos vídeo",
+      "to": "Mudou como lemos texto"
+    },
+    {
+      "from": "Invenção simples, efeito gigante",
+      "to": "Invenção da página, efeito milenar"
+    }
+  ],
+  "transfer_question": "Se a página foi pra leitura o que o streaming foi pra vídeo, qual é a próxima 'invenção da página' esperando ser feita no jeito da gente estudar hoje?"
+}

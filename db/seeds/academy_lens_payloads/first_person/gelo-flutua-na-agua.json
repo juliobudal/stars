@@ -1,0 +1,6 @@
+{
+  "action_prompt": "Pega um copo, enche com água até a metade, joga 1 cubo de gelo dentro. Marca com o dedo (ou caneta na parte de fora) o nível da água AGORA. Espera o gelo derreter por completo — pode acelerar segurando o copo.",
+  "sensory_anchor": "O nível subiu, desceu, ou ficou igual depois de derreter? Compara com a marca. A maioria das pessoas aposta errado nas três opções.",
+  "expected_time_seconds": 90,
+  "reveal": "O nível fica IGUAL. O gelo flutuante já desloca o peso de água que ele vira ao derreter. Por isso o degelo do Ártico (gelo já no mar) não muda o nível do oceano. Quem muda é o gelo da Groenlândia e Antártida — esse está em CIMA da terra, não na água."
+}

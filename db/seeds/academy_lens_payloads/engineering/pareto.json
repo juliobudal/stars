@@ -1,0 +1,38 @@
+{
+  "challenge": "Você tem 1 hora livre e 5 tarefas na lista. Escolhe 2 a 3 — sabendo que o tempo NÃO cabe pra todas. O critério é: cada escolha resolve mais do problema do que custa de tempo?",
+  "constraints": [
+    {
+      "id": "p",
+      "label": "Estudar pra prova de matemática que tem amanhã (resolve 80% da nota da semana)",
+      "cost": "Toma 45 min cheios; cansa cabeça; ninguém vê o esforço hoje"
+    },
+    {
+      "id": "q",
+      "label": "Arrumar o quarto que tá um caos (resolve 30% da reclamação dos pais)",
+      "cost": "Toma 25 min; visível na hora; impacto se desfaz em 3 dias"
+    },
+    {
+      "id": "m",
+      "label": "Responder 8 mensagens pendentes no celular (resolve 10% das relações)",
+      "cost": "Toma 15 min; fácil; gera mais 8 mensagens de resposta"
+    },
+    {
+      "id": "j",
+      "label": "Jogar 20 min de videogame pra descansar antes de estudar",
+      "cost": "Quase sempre vira 60 min; come o tempo de estudar"
+    },
+    {
+      "id": "l",
+      "label": "Ler 1 capítulo do livro de português (resolve 15% da próxima redação)",
+      "cost": "Toma 20 min; não tem prazo curto; fácil empurrar pra depois"
+    }
+  ],
+  "must_pick": 2,
+  "outcomes": {
+    "p+q": "Combo Pareto bem feito: a prova (p, 80%) + quarto (q, 30%). 70 min — passa um pouco do tempo, mas resolve mais de 100% da semana. Pais felizes, nota salva. Custo: nada de descanso. Maioria dos adultos faria essa.",
+    "p+l": "Aposta acadêmica pura: prova de amanhã + leitura pra redação futura. Estudo concentrado, 65 min. Quarto fica caos — vai render bronca. Mas em rendimento escolar de longo prazo, é a melhor das três 'sérias'.",
+    "p+m": "Aposta arriscada: prova + mensagens. Mensagens parecem 'rápidas' mas se multiplicam. Você pensa que economiza tempo respondendo agora, e elas comem 40 min em vez de 15. Estudar fica pela metade. Armadilha clássica do urgente vs importante.",
+    "q+m+j": "Combo de procrastinação organizada: tudo que NÃO é a prova. Você termina cansado, com sensação de produtividade falsa. No dia seguinte, prova vai mal — e nem o descanso foi de verdade, porque sobrou ansiedade do estudo não feito.",
+    "p+j": "Aposta inteligente em descanso ANTES: 20 min de jogo só pra desligar + 40 min de estudo focado. SE você consegue fechar o jogo no minuto 20 (90% das pessoas não consegue), rende mais que estudar 60 min direto cansado. Risco alto, retorno alto."
+  }
+}

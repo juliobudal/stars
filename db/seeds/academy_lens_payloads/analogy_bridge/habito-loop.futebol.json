@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Apito do treinador antes do aquecimento todo dia às 17h",
+    "elements": [
+      "Gatilho: apito do treinador às 17h00 na beira do campo",
+      "Resposta automática: time inteiro corre pro círculo central",
+      "Recompensa: aquecimento feito, corpo aquecido, treino começa bem",
+      "Em 3 semanas, ninguém olha mais pro relógio — o corpo dispara perto das 17h",
+      "Tira o apito: o corpo continua chamando às 17h sozinho — virou ciclo"
+    ]
+  },
+  "target_domain": {
+    "name": "Pegar o celular sempre que a fila do chute fica longa",
+    "elements": [
+      "Gatilho: tédio na fila de finalização",
+      "Resposta automática: mão no calção, celular escondido na mão",
+      "Recompensa: estímulo rápido, fuga do tédio da fila",
+      "Em 3 semanas, ninguém escolhe mais — o gatilho dispara a mão sozinha",
+      "Tira a fila chata: o gatilho 'qualquer espera' continua disparando — virou ciclo"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Apito às 17h é o gatilho",
+      "to": "Tédio na fila é o gatilho"
+    },
+    {
+      "from": "Correr pro círculo é a resposta",
+      "to": "Mão no calção é a resposta"
+    },
+    {
+      "from": "Aquecimento feito é a recompensa",
+      "to": "Estímulo é a recompensa"
+    },
+    {
+      "from": "3 semanas e o corpo aquece sozinho às 17h",
+      "to": "3 semanas e a mão pega celular sem você decidir"
+    }
+  ],
+  "transfer_question": "Se o treinador parar de apitar você ainda quer correr pro círculo às 17h — então por que esperar que 'apenas decidir parar de pegar o celular na fila' funcione, se o gatilho continua firme?"
+}

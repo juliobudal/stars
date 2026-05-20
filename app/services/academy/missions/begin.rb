@@ -97,7 +97,8 @@ module Academy
 
         candidates.each do |lens_type|
           result = ::Academy::Lens::Generate.call(
-            concept: @mission.concept, lens_type: lens_type, learner_id: @learner.id
+            concept: @mission.concept, lens_type: lens_type,
+            learner_id: @learner.id, learner: @learner
           )
           return result.data if result.success?
 

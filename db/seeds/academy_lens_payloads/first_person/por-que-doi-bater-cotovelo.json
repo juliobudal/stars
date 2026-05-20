@@ -1,0 +1,6 @@
+{
+  "action_prompt": "Apoia o cotovelo na mesa e roda o braço pra dentro até achar o ponto duro, no osso bem na dobra. Bate de LEVE com a unha do indicador, três batidinhas. Não bate forte — só o suficiente pra sentir.",
+  "sensory_anchor": "A dor não fica no cotovelo: corre pelo antebraço até o dedo mindinho e o anelar. Formigamento, choque, calor. Em quanto tempo (segundos) a sensação some?",
+  "expected_time_seconds": 30,
+  "reveal": "Aquilo não é osso — é o nervo ulnar passando colado na pele, sem músculo nem gordura pra proteger. Toda dor que você sentiu correu pelo CAMINHO do nervo, não do osso. É um mapa visível: onde o nervo vai, a dor vai junto. O corpo deixou esse fio exposto pra economizar espaço na dobra."
+}

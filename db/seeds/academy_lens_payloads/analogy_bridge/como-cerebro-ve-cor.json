@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Caixinha de aquarela com só três cores",
+    "elements": [
+      "A caixa só tem vermelho, amarelo e azul",
+      "Misturando vermelho com amarelo, sai laranja — cor 'nova' inventada",
+      "Misturando azul com amarelo, sai verde — outra 'invenção'",
+      "Quem olha o desenho jura que tinha laranja na caixa, mas não tinha",
+      "Com três tintas, dá pra criar a sensação de centenas de cores"
+    ]
+  },
+  "target_domain": {
+    "name": "Olho e cérebro montando as cores",
+    "elements": [
+      "O olho só tem três tipos de sensor: vermelho, verde e azul",
+      "Quando bate luz amarela acendem juntos o sensor de vermelho e o de verde",
+      "O cérebro recebe os dois acendendo e DECIDE 'isto é amarelo'",
+      "Você jura que enxergou amarelo, mas o olho nunca 'viu' essa cor",
+      "Com apenas três sensores diferentes o cérebro inventa milhões de cores"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Três tintas misturadas",
+      "to": "Três sensores ativados ao mesmo tempo"
+    },
+    {
+      "from": "Laranja é tinta inventada pela mistura",
+      "to": "Amarelo é cor inventada pelo cérebro"
+    },
+    {
+      "from": "Olho do desenhista vê a mistura como cor",
+      "to": "Cérebro recebe o sinal e cria a sensação de cor"
+    },
+    {
+      "from": "Três cores bastam pra criar a impressão de muitas",
+      "to": "Três sensores bastam pra criar a impressão de muitas"
+    }
+  ],
+  "transfer_question": "Se o seu cérebro INVENTA o amarelo a partir de dois sensores, dá pra ter certeza de que o vermelho que você vê é o mesmo vermelho que seu amigo vê?"
+}

@@ -1,0 +1,6 @@
+{
+  "action_prompt": "Manda mensagem agora para 5 amigos ou primos perguntando o DIA e MÊS de aniversário (sem o ano). Anota numa lista. Se já souber 3-4 de cabeça, completa pra chegar em 5. Olhe a lista e procure repetições de mês.",
+  "sensory_anchor": "Quantos pares caíram no mesmo MÊS, mesmo que dias diferentes? Em grupos de 5, isso acontece em mais ou menos metade das vezes — e quase ninguém aposta nisso.",
+  "expected_time_seconds": 90,
+  "reveal": "Com 23 pessoas, a chance de duas terem o MESMO dia e mês passa de 50%. O cérebro pensa 'qual a chance de bater com a MINHA data' — pergunta errada. A certa é 'bater entre QUALQUER par'. 23 pessoas geram 253 pares. Intuição falha quando algo escala multiplicando."
+}

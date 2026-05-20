@@ -12,10 +12,11 @@ module Academy
         def mission_complete? = mission_complete
       end
 
-      def initialize(progress:, signal_payload: {}, outcome: "completed")
+      def initialize(progress:, signal_payload: {}, outcome: "completed", learner: nil)
         @progress = progress
         @signal_payload = signal_payload || {}
         @outcome = outcome.to_s
+        @learner = learner
       end
 
       def call
@@ -118,7 +119,7 @@ module Academy
         candidates.compact.uniq.each do |lens_type|
           result = ::Academy::Lens::Generate.call(
             concept: @progress.mission.concept, lens_type: lens_type,
-            learner_id: @progress.learner_id
+            learner_id: @progress.learner_id, learner: @learner
           )
           return result.data if result.success?
 

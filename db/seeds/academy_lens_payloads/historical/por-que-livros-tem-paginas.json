@@ -1,0 +1,21 @@
+{
+  "pattern_label": "Da página de papel à página de pixel — o formato 'folha' resiste 500 anos.",
+  "scenes": [
+    {
+      "year": 1517,
+      "headline": "Lutero prega as 95 teses em Wittenberg — em formato folha solta, não pergaminho enrolado.",
+      "structural_element": "95 teses (1517): folhas impressas alfinetadas na porta. Em 2 meses circulam pela Europa. FOLHA permite cópia em paralelo; o rolo nunca permitiu."
+    },
+    {
+      "year": 1935,
+      "headline": "A Penguin Books lança em Londres o livro de bolso por 6 pence — mesmo preço de um maço de cigarros.",
+      "structural_element": "Penguin paperback (1935): página dimensionada pra caber no bolso do casaco. Tamanho do PAPEL passa a ser tamanho do CORPO. Paginação vira pausa."
+    },
+    {
+      "year": 2007,
+      "headline": "Amazon lança o Kindle: tela e-ink imita papel, mas vira 'página' ao toque do dedo.",
+      "structural_element": "Kindle (2007): bit mimetiza papel. O cérebro localiza informação melhor em página fixa do que em scroll contínuo. Skeumorfismo por cognição."
+    }
+  ],
+  "pattern_question": "Pergamino enrolado virou códice em folha, e a folha sobreviveu na tela. O que a página resolve que o rolo contínuo não resolve?"
+}

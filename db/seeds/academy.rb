@@ -849,7 +849,12 @@ CURRICULUM_V2 = [
 
 # ---------- Apply ----------
 
-V2_SUBJECT_SLUGS = CURRICULUM_V2.map { |s| s[:slug] }.freeze
+V2_SUBJECT_SLUGS = (
+  CURRICULUM_V2.map { |s| s[:slug] } +
+  # v3 — Currículo de curiosidade-do-mundo (seeded in academy_curiosidade_concepts.rb).
+  # Listed here so the "deactivate stale subjects" sweep at the end keeps them active.
+  %w[como-o-mundo-funciona curiosidades-do-corpo palavras-origens]
+).freeze
 V1_LEGACY_SUBJECT_SLUGS = %w[inteligencia carater_v1 relacionamentos dinheiro saude fe-sentido].freeze
 
 # v5: load concept catalog FIRST so each mission can be saved with its 1:1
@@ -955,5 +960,32 @@ puts "✓ Academy v2 seeded: " \
 load Rails.root.join("db/seeds/academy_pokedex_keys.rb")
 # v4 — story_choice missions, typed concept_edges, Pokédex backfill
 load Rails.root.join("db/seeds/academy_v4.rb")
+# v3 — Currículo de curiosidade-do-mundo (3 novas Subjects + ~30 concepts).
+# Must load BEFORE academy_lens_payloads.rb so payloads referencing the new
+# concept slugs find them.
+load Rails.root.join("db/seeds/academy_curiosidade_concepts.rb")
 # Curated-static pivot — human-authored lens payloads (academy-curated-static-pivot.md)
 load Rails.root.join("db/seeds/academy_lens_payloads.rb")
+
+# v3 — Missions for the curiosidade-do-mundo curriculum. Must load AFTER
+# lens payloads so the audit below sees curated content for the 30 new
+# concepts.
+load Rails.root.join("db/seeds/academy_curiosidade_missions.rb")
+
+# Post-seed audit: enforce the "every active mission's concept has ≥1
+# curated kid payload" invariant. The Mission model declares the check
+# under `on: :publish` so individual saves during the seed don't fail
+# before payloads exist. Running it here turns the seed into the
+# enforcement boundary instead of an ENV bypass.
+missing_payload = []
+::Academy::Mission.where(active: true).includes(:concept).find_each do |mission|
+  next if mission.valid?(:publish)
+
+  missing_payload << "#{mission.slug} (concept=#{mission.concept&.slug || '?'})"
+end
+
+if missing_payload.any?
+  raise "Academy seed audit FAILED: missions without curated kid payload — " \
+        "#{missing_payload.join(', ')}"
+end
+puts "✓ Academy audit: #{::Academy::Mission.where(active: true).count} missões ativas · 100% com payload curado."

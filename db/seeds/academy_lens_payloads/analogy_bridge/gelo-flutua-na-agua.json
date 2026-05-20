@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Mochila de escola arrumada vs jogada",
+    "elements": [
+      "Caderno, estojo, lanche encaixados certinho ocupam pouco espaço",
+      "Os mesmos itens jogados de qualquer jeito estufam a mochila",
+      "Mochila estufada parece ter mais coisa, mas tem a mesma",
+      "Mochila estufada pesa o mesmo e só ocupa mais lugar",
+      "Mochila bem arrumada cabe debaixo da carteira; a estufada não"
+    ]
+  },
+  "target_domain": {
+    "name": "Água virando gelo",
+    "elements": [
+      "Moléculas de água líquida ficam soltas e perto umas das outras",
+      "Quando congela, elas se travam num formato hexagonal com vão no meio",
+      "O gelo parece ter mais 'coisa', mas tem as mesmas moléculas",
+      "O gelo pesa o mesmo que a água original e só ocupa mais espaço",
+      "Como o gelo ocupa mais espaço pesando igual, ele boia em vez de afundar"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Mochila arrumada ocupa pouco espaço",
+      "to": "Água líquida ocupa pouco espaço"
+    },
+    {
+      "from": "Mochila estufada ocupa mais sem ter mais coisa",
+      "to": "Gelo ocupa mais sem ter mais moléculas"
+    },
+    {
+      "from": "Peso é o mesmo, volume é diferente",
+      "to": "Massa é a mesma, densidade é diferente"
+    },
+    {
+      "from": "Quem ocupa mais espaço pesando igual fica por cima",
+      "to": "Gelo fica por cima da água por isso"
+    }
+  ],
+  "transfer_question": "Quase todo líquido encolhe quando vira sólido — se a água fizesse igual ao resto, como ficariam os peixes do lago no inverno?"
+}

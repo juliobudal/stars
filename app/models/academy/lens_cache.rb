@@ -11,7 +11,7 @@ module Academy
     belongs_to :concept, class_name: "Academy::Concept"
 
     validates :lens_type, :age_band, :locale, :generated_at, presence: true
-    validates :concept_id, uniqueness: { scope: %i[lens_type age_band locale] }
+    validates :concept_id, uniqueness: { scope: %i[lens_type age_band locale interest_key] }
 
     SOURCES = %w[curated].freeze
     validates :source, inclusion: { in: SOURCES }

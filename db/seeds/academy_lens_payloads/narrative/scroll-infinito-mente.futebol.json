@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Rafa",
+    "age": 11,
+    "trait": "economiza a mesada há três semanas pra comprar uma chuteira nova pro torneio do bairro"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sexta à noite, Rafa abre o álbum de figurinhas da Copa no quarto. A avó mandou um envelope surpresa de presente. Ele rasga o papel prateado devagar, puxa as cinco cartas. Nada de jogador titular. Só reservas que ele já tinha. Mas a mão já coça pra comprar mais um envelope."
+    },
+    {
+      "id": "s2",
+      "text": "Sábado de manhã, Rafa encara a banca perto do campinho. Uma pilha de envelopes brilha no balcão. O dono diz: 'Esse lote novo dizem que vem com legend do escudo do time campeão.' Rafa conta as moedas no bolso — dá pra quatro envelopes. Só que ele tinha jurado economizar pra chuteira nova. Compra os quatro."
+    },
+    {
+      "id": "s3",
+      "text": "Em casa, abre um por um. No terceiro envelope, a borda dourada de legend aparece. Ele puxa a carta — um jogador que ele já tem. Mas a sensação de rasgar o papel e ver a borda foi mais forte que a decepção. Abre o quarto. Nada. Fica com a mão no bolso vazio, encarando as repetidas e a chuteira gasta no canto.."
+    }
+  ],
+  "ending": "Na semana seguinte, Rafa cria uma regra: '1 envelope por dia, só depois do treino.' No segundo dia, a borda dourada aparece de novo. Ele fecha o envelope devagar e guarda o pote pra chuteira. O torneio do bairro tá em duas semanas e ele decide que a chuteira vence o álbum.",
+  "micro_check": {
+    "question": "{{learner_name}}, por que Rafa comprou os quatro envelopes mesmo tendo guardado pra chuteira?",
+    "options": [
+      "Porque o jogador legend valia muito mais que a chuteira",
+      "Porque cada envelope podia ter a carta dourada — e a chance fez ele esquecer o objetivo",
+      "Porque o dono garantiu que o lote novo vinha com legend",
+      "Porque ele queria mostrar as cartas pros amigos no recreio"
+    ],
+    "correct_index": 1,
+    "rationale": "A incerteza do prêmio é mais viciante que o prêmio em si. Rafa não comprou pelo valor da chuteira — comprou pela CHANCE de cada envelope, mesmo sabendo que a chance era pequena."
+  }
+}

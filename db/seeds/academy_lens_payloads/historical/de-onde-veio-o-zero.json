@@ -1,0 +1,21 @@
+{
+  "pattern_label": "O zero conquista a Europa em três batalhas separadas por séculos.",
+  "scenes": [
+    {
+      "year": 1543,
+      "headline": "Em Nuremberg, Copérnico publica 'Das Revoluções' usando o zero como um número de verdade.",
+      "structural_element": "Copérnico (1543): o cálculo da órbita precisa do zero como número, não como vazio. Os hindus usavam há mil anos; só agora ele entra na ciência ocidental."
+    },
+    {
+      "year": 1683,
+      "headline": "Florença ainda proíbe lojistas de usar números arábicos — incluindo o zero — em livros oficiais.",
+      "structural_element": "Resistência dos comerciantes (1683): o zero é visto como fácil de fraudar (vira 6 ou 9). Algumas guildas exigem romanos no recibo por mais um século."
+    },
+    {
+      "year": 1937,
+      "headline": "Alan Turing usa o zero binário pra definir o que uma máquina pode calcular — nasce a teoria da computação.",
+      "structural_element": "Máquina de Turing (1937): zero e um, fita infinita. Toda computação moderna roda nessa dupla. O símbolo do nada virou o do desligado."
+    }
+  ],
+  "pattern_question": "Três séculos, três usos diferentes — astronomia, comércio, máquina. O que o zero faz que nenhum outro número faz?"
+}

@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Redstone que dispara a fazenda de trigo ao amanhecer",
+    "elements": [
+      "Gatilho: sensor de luz solar lê 'dia' às 1000 ticks",
+      "Resposta automática: pistão empurra a água, colheita do trigo cai no funil",
+      "Recompensa: comida no baú, fome resolvida, mais tempo livre pra construir",
+      "Em 3 sessões, o jogador nem checa mais — o sensor dispara o ciclo sozinho",
+      "Tira o sensor: o circuito quebra, mas algo que lembra 'dia' ainda faz a mão puxar a alavanca"
+    ]
+  },
+  "target_domain": {
+    "name": "Pegar o celular sempre que o Minecraft carrega lento",
+    "elements": [
+      "Gatilho: barra de loading do Minecraft enchendo devagar",
+      "Resposta automática: mão na mesa, celular na mão",
+      "Recompensa: estímulo rápido enquanto o mundo carrega",
+      "Em 3 semanas, ninguém escolhe mais — o gatilho dispara a mão sozinha",
+      "Tira o jogo lento: o gatilho 'qualquer espera curta' continua disparando — virou ciclo"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Sensor de luz solar é o gatilho",
+      "to": "Espera no loading é o gatilho"
+    },
+    {
+      "from": "Pistão empurrando água é a resposta",
+      "to": "Mão na mesa é a resposta"
+    },
+    {
+      "from": "Comida no baú é a recompensa",
+      "to": "Estímulo do feed é a recompensa"
+    },
+    {
+      "from": "3 sessões e o circuito dispara sozinho",
+      "to": "3 semanas e a mão pega celular sem você decidir"
+    }
+  ],
+  "transfer_question": "Se você nem precisa apertar nada pra fazenda do Minecraft colher sozinha quando o gatilho aparece, por que esperar que 'apenas decidir parar de pegar o celular' funcione, se o gatilho continua firme?"
+}

@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Limpeza da mochila no fim do dia",
+    "elements": [
+      "À noite você abre a mochila pra organizar o que veio da escola",
+      "Coloca no caderno o que precisa pra amanhã, no lixo o que não serve",
+      "Vai relendo bilhetes, lembrando da prova, decidindo o que importa",
+      "Algumas folhas ficam misturadas e formam combinações esquisitas",
+      "Pela manhã a mochila está limpa e o que importava ficou guardado"
+    ]
+  },
+  "target_domain": {
+    "name": "Cérebro arrumando memórias enquanto dorme",
+    "elements": [
+      "Enquanto você dorme o cérebro abre a 'mochila' do dia que passou",
+      "Manda pra memória de longo prazo o que vale, descarta o resto",
+      "Vai 'relendo' o que sentiu, viu, aprendeu e ensaiando outra vez",
+      "Pedaços de memória se misturam e formam cenas estranhas — os sonhos",
+      "Você acorda com a cabeça mais limpa e o aprendizado consolidado"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Abrir a mochila pra arrumar",
+      "to": "Cérebro abrir as memórias do dia"
+    },
+    {
+      "from": "Decidir o que guardar e o que jogar",
+      "to": "Decidir o que vira memória e o que apaga"
+    },
+    {
+      "from": "Folhas misturadas formam combinações esquisitas",
+      "to": "Memórias misturadas formam cenas dos sonhos"
+    },
+    {
+      "from": "Mochila limpa de manhã",
+      "to": "Cabeça mais leve e mais aprendida ao acordar"
+    }
+  ],
+  "transfer_question": "Se sonho é resto da arrumação noturna do cérebro, por que dormir pouco antes da prova faz a gente lembrar menos da matéria estudada de dia?"
+}

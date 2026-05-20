@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Fogos de artifício na festa junina",
+    "elements": [
+      "Você vê o clarão estourando no céu primeiro",
+      "Só uns segundos depois chega o BUM nos seus ouvidos",
+      "Quanto mais longe o fogo, maior o atraso entre clarão e barulho",
+      "Se o fogo estoura bem em cima, clarão e bum vêm quase juntos",
+      "Contando os segundos entre os dois, dá pra estimar a distância"
+    ]
+  },
+  "target_domain": {
+    "name": "Raio e trovão na tempestade",
+    "elements": [
+      "A luz do raio chega no seu olho quase no instante em que acontece",
+      "O som do trovão demora muito mais pra chegar no seu ouvido",
+      "Quanto mais longe a tempestade, maior o atraso entre raio e trovão",
+      "Quando o raio cai bem perto de você o trovão vem quase grudado",
+      "Cada 3 segundos de atraso = mais ou menos 1 quilômetro de distância"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Clarão chega antes do BUM",
+      "to": "Raio chega antes do trovão"
+    },
+    {
+      "from": "Atraso aumenta com a distância",
+      "to": "Atraso aumenta com a distância da tempestade"
+    },
+    {
+      "from": "Luz viaja muito mais rápido que som",
+      "to": "Luz viaja quase 1 milhão de vezes mais rápido que som"
+    },
+    {
+      "from": "Contagem dá a distância do fogo",
+      "to": "Contagem dá a distância do raio"
+    }
+  ],
+  "transfer_question": "Se você contou 12 segundos entre clarão e estrondo, dá pra estimar a distância — e qual decisão isso recomenda: entrar em casa ou ficar olhando?"
+}

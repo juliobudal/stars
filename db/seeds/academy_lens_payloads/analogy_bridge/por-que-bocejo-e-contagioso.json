@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Risada explodindo na sala de aula",
+    "elements": [
+      "Um colega começa a rir baixinho de alguma coisa boba",
+      "Outro colega ouve, e sem entender do que se trata, começa a rir junto",
+      "Em segundos a sala inteira está rindo, ninguém sabe direito por quê",
+      "Quem entra atrasado na sala também começa a rir só de ver",
+      "A risada se espalha mais rápido do que qualquer um pensar 'devo rir?'"
+    ]
+  },
+  "target_domain": {
+    "name": "Bocejo passando de uma pessoa pra outra",
+    "elements": [
+      "Alguém perto de você abre a boca e dá um bocejo grande",
+      "Neurônios-espelho no seu cérebro 'copiam' o gesto antes do pensamento",
+      "Em segundos seu rosto está pegando o bocejo, sem você decidir",
+      "Até gato e cachorro fazem isso: vê o dono bocejar e boceja junto",
+      "A 'cópia' acontece mais rápido do que conseguir segurar"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Risada começa numa pessoa só",
+      "to": "Bocejo começa numa pessoa só"
+    },
+    {
+      "from": "Outro cérebro copia sem entender",
+      "to": "Neurônios-espelho copiam sem o pensamento entrar"
+    },
+    {
+      "from": "Espalha na sala em segundos",
+      "to": "Espalha no grupo em segundos"
+    },
+    {
+      "from": "Quem mais 'pega' é quem é mais próximo",
+      "to": "Quem mais 'pega' é quem tem mais empatia com a pessoa"
+    }
+  ],
+  "transfer_question": "Se bocejo se espalha mais por empatia do que por cansaço real, qual diferença faria estar perto de alguém que NUNCA pega bocejo dos outros?"
+}

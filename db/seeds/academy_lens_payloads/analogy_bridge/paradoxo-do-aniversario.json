@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Aperto de mão na chegada da festa",
+    "elements": [
+      "Você imagina cumprimentar uma pessoa só: chance pequena de coincidência",
+      "Cada pessoa nova que entra cumprimenta TODAS as que já estavam",
+      "Com 23 pessoas, são 253 apertos de mão diferentes acontecendo",
+      "A conta de 'todo mundo com todo mundo' explode rápido",
+      "A gente costuma pensar 'eu contra todos', e esquece 'cada um contra cada um'"
+    ]
+  },
+  "target_domain": {
+    "name": "Aniversário coincidente numa sala",
+    "elements": [
+      "Você pensa 'qual a chance de alguém fazer aniversário no MEU dia?'",
+      "A pergunta certa é: chance de QUALQUER par bater na sala",
+      "Com 23 pessoas, são 253 pares possíveis de aniversário",
+      "Esses 253 pares fazem a probabilidade passar de 50%",
+      "A intuição erra porque pensa em 'eu', não em 'todos os pares'"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Aperto de mão = par de duas pessoas",
+      "to": "Par de aniversários = duas pessoas comparadas"
+    },
+    {
+      "from": "23 pessoas = 253 apertos",
+      "to": "23 pessoas = 253 pares de aniversário"
+    },
+    {
+      "from": "Você pensa 'eu contra os outros'",
+      "to": "Você pensa 'meu dia contra o de todos'"
+    },
+    {
+      "from": "Resposta certa conta cada par possível",
+      "to": "Probabilidade real conta cada par possível"
+    }
+  ],
+  "transfer_question": "Se 23 pessoas geram 253 pares de aniversário possíveis, qual é a sua intuição: numa sala com 50 alunos, qual a chance de pelo menos dois fazerem aniversário no mesmo dia?"
+}

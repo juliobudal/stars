@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Mão pra fora da janela do carro andando",
+    "elements": [
+      "Mão reta com a palma pra baixo deixa o vento passar sem fazer força",
+      "Inclina a palma um pouquinho pra cima e a mão é empurrada pra cima",
+      "Quanto mais rápido o carro, mais forte o empurrão na mão",
+      "Inclina demais e a mão começa a tremer, perde a sustentação",
+      "Quem manda no movimento é a inclinação combinada com a velocidade"
+    ]
+  },
+  "target_domain": {
+    "name": "Asa de avião cortando o ar",
+    "elements": [
+      "A asa é desenhada inclinada de propósito, com a frente um pouco pra cima",
+      "Cortando o ar a 800 km/h, a asa empurra ar pra baixo",
+      "O ar reage empurrando a asa pra cima — é a sustentação",
+      "Quanto mais rápido o avião, mais forte o empurrão pra cima",
+      "Inclinação demais e a asa 'estola' — perde sustentação"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Mão inclinada é empurrada pra cima pelo vento",
+      "to": "Asa inclinada é empurrada pra cima pelo ar"
+    },
+    {
+      "from": "Carro mais rápido = empurrão maior",
+      "to": "Avião mais rápido = sustentação maior"
+    },
+    {
+      "from": "Inclinação demais faz a mão tremer",
+      "to": "Inclinação demais faz a asa estolar"
+    },
+    {
+      "from": "Movimento depende de velocidade × ângulo",
+      "to": "Voo depende de velocidade × ângulo de ataque"
+    }
+  ],
+  "transfer_question": "Se voar é jogar ar pra baixo pra ser empurrado pra cima, por que um avião parado no chão não voa nem com os motores no máximo?"
+}

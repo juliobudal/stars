@@ -20,8 +20,9 @@ RSpec.describe "Kid Flow", type: :system do
 
     expect(page).to have_content("Missão enviada para aprovação! 🚀")
 
-    # Verify it appears as waiting
-    expect(page).to have_content(/Aguardando/i)
+    # Verify it appears as waiting (status badge copy lives in
+    # app/components/ui/mission_card/component.html.erb).
+    expect(page).to have_content(/Esperando/i)
   end
 
   it "kid bottom nav exposes only journey/shop/diary, never logout" do

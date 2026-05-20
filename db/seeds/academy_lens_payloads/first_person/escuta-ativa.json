@@ -1,0 +1,6 @@
+{
+  "action_prompt": "Fica 60 segundos parado, sem falar, com os olhos fechados se quiser. Não procura nada — só deixa o som do lugar entrar. Quando o timer bater, abre os olhos antes de continuar a aula.",
+  "sensory_anchor": "Quantos sons distintos você conseguiu separar? Conte os que não tinha percebido antes: zumbido, motor distante, respiração, passos noutro cômodo, geladeira.",
+  "expected_time_seconds": 75,
+  "reveal": "O cérebro filtra som o tempo todo — joga 90% no fundo pra você não enlouquecer. Parar e ouvir desliga esse filtro por 60s. Quando você escuta uma pessoa assim, sem ensaiar resposta, ela sente. Escuta de verdade é desligar o filtro do outro lado, não do som."
+}

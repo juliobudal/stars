@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Tainá",
+    "age": 12,
+    "trait": "torceu o tornozelo no último jogo do torneio do colégio e agora assiste os treinos do banco"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Terça, 17h30, campinho da escola. Tainá senta no banco com a bota ortopédica e assiste o técnico explicar a nova jogada de bola parada. Ela anota tudo no celular — posições de barreira, marcação da zaga, quem corta pra dentro. 'Já peguei', ela fala pra si mesma. Em casa, revê o vídeo que gravou. Sente que entendeu."
+    },
+    {
+      "id": "s2",
+      "text": "Quinta, o técnico chama: 'Tainá, explica a jogada pras meninas do sub-11. Tô atendendo a diretoria.' Ela congela. Abre a boca e sai: 'Então… a Davi vai pra dentro… e a Sara cruza…' As meninas do sub-11 olham. Uma pergunta: 'Cruza com efeito de fora ou de dentro? Pra primeira ou segunda trave?' Tainá descobre que saber de cor não é saber explicar."
+    },
+    {
+      "id": "s3",
+      "text": "Sábado, ela pede pra treinar com o sub-11. Coloca uma menina no lugar dela, pega a bola, faz a corrida devagar. 'Primeiro você finge que vai pra trave de cá. Aí corta pra dentro no segundo passo.' A menina repete. Erra o tempo. Tainá corrige o passo. A menina acerta. Tainá ri: 'Agora eu entendi de verdade.'"
+    }
+  ],
+  "ending": "Segunda, o técnico pergunta quem vai explicar a jogada no aquecimento. Tainá levanta a mão antes de pensar. Dessa vez, ela não anotou nada no celular.",
+  "micro_check": {
+    "question": "{{learner_name}}, o que fez Tainá realmente entender a jogada?",
+    "options": [
+      "Assistir o técnico explicar e anotar no celular",
+      "Ensinar outra menina e ver o movimento no corpo dela",
+      "Gravar vídeos do treino e rever em casa",
+      "Pedir ajuda pras meninas do sub-11"
+    ],
+    "correct_index": 1,
+    "rationale": "Tainá só entendeu de verdade quando precisou ENSINAR — porque ensinar obriga o cérebro a reorganizar o conhecimento, encontrar lacunas e preenchê-las. Assistir e anotar é consumir; ensinar é criar."
+  }
+}

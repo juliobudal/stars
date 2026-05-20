@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Pneu de bicicleta furado sendo remendado",
+    "elements": [
+      "O furo no pneu deixa o ar escapar — precisa ser tampado rápido",
+      "Primeiro vem a colinha tampando o buraco pra parar o vazamento",
+      "Depois um remendo de borracha é colado por cima reforçando",
+      "A borracha do remendo é diferente do pneu original — fica visível",
+      "O reparo fica mais grosso ali do que o resto do pneu"
+    ]
+  },
+  "target_domain": {
+    "name": "Pele se reconstruindo depois de um corte",
+    "elements": [
+      "O corte deixa sangue escapar — o corpo precisa fechar rápido",
+      "Plaquetas grudam no buraco e tampam o vazamento (formam o crosta)",
+      "Depois células trazem colágeno e costuram a pele por baixo da crosta",
+      "O tecido novo tem fibras um pouco diferentes do original — fica visível",
+      "A cicatriz fica levemente mais grossa que a pele ao redor"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Colinha tampa o furo do pneu",
+      "to": "Plaquetas tampam o corte na pele"
+    },
+    {
+      "from": "Remendo de borracha cobre por cima",
+      "to": "Colágeno costura a pele por baixo"
+    },
+    {
+      "from": "Material do remendo é diferente do original",
+      "to": "Fibras da cicatriz são diferentes da pele original"
+    },
+    {
+      "from": "Remendo fica visível e mais grosso",
+      "to": "Cicatriz fica visível e mais grossa"
+    }
+  ],
+  "transfer_question": "Se o corpo sabe se remendar sozinho com material 'diferente', por que cicatriz não desaparece e fica marcada na pele por anos?"
+}

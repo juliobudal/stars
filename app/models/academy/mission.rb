@@ -61,7 +61,12 @@ module Academy
     validates :slug, :title, :learning_objective, presence: true
     validates :slug, uniqueness: { scope: :subject_id }
     validates :central_insight, length: { maximum: 240 }, allow_blank: true
-    validate :concept_must_have_curated_kid_payload, if: :active?
+    # Coverage check only runs in :publish context — it would otherwise
+    # break ordered seeding (missions are saved BEFORE the lens payload
+    # seeder loads). Run `Academy::Mission.where(active: true).find_each
+    # { |m| m.valid?(:publish) || raise(...) }` from the seed (see
+    # db/seeds/academy.rb post-seed audit) or from CI to catch drift.
+    validate :concept_must_have_curated_kid_payload, on: :publish
 
     scope :active, -> { where(active: true).order(:order_in_subject) }
     scope :in_trail_order, -> { order(Arel.sql("position_in_trail NULLS LAST"), :order_in_subject) }
@@ -97,6 +102,8 @@ module Academy
     # would hit a redirect loop on first open.
     def concept_must_have_curated_kid_payload
       return if concept_id.blank?
+      # Inactive missions can ship without coverage — they're hidden.
+      return unless active?
 
       has_payload = Academy::LensCache.curated.servable
                       .where(concept_id: concept_id, age_band: "kid", locale: "pt-BR")

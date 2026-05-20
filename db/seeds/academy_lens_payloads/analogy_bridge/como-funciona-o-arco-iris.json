@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Mangueira do quintal pingando no sol",
+    "elements": [
+      "Você fica de costas pro sol e aponta a mangueira na frente",
+      "Cada gotinha em suspensão funciona como um espelhinho redondo",
+      "Você vê as cores aparecerem só num ângulo específico, não em todos",
+      "Quando o sol fica alto demais o arco some, precisa do ângulo certo",
+      "Cada gotinha devolve uma cor diferente dependendo de onde está no céu"
+    ]
+  },
+  "target_domain": {
+    "name": "Gota de chuva criando arco-íris",
+    "elements": [
+      "A luz branca do sol entra na gota de chuva pela frente",
+      "Dentro da gota, ela se separa em vermelho, laranja, amarelo, verde, azul, violeta",
+      "Cada cor sai num ângulo um pouquinho diferente, sempre perto de 42°",
+      "Cada gota manda só UMA cor pro seu olho — a do ângulo que ela está",
+      "Milhões de gotas em ângulos diferentes formam o arco inteiro pra você"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Você de costas pro sol, mangueira na frente",
+      "to": "Você de costas pro sol, chuva na frente"
+    },
+    {
+      "from": "Cada gotinha devolve uma cor",
+      "to": "Cada gota de chuva devolve uma cor"
+    },
+    {
+      "from": "Cor aparece num ângulo certo",
+      "to": "Arco-íris aparece no ângulo de 42° do sol"
+    },
+    {
+      "from": "Conjunto de gotinhas forma a faixa colorida",
+      "to": "Conjunto de gotas forma o arco no céu"
+    }
+  ],
+  "transfer_question": "Se cada gota manda só uma cor pro seu olho, por que duas pessoas lado a lado veem 'o mesmo' arco-íris se cada uma recebe luz de gotas diferentes?"
+}

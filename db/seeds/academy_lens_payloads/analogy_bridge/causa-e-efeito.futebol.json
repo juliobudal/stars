@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Cadeia de passes que termina em gol numa jogada ensaiada",
+    "elements": [
+      "O goleiro joga a bola no lateral — é a causa",
+      "Cada toque vira passe porque o anterior abriu o espaço — efeito de um é causa do próximo",
+      "Quem chega só no gol vê o cruzamento e acha que foi 'do nada'",
+      "Pra entender o gol, precisa voltar a jogada inteira até o tiro de meta",
+      "Cortar um toque no meio interrompe tudo dali pra frente"
+    ]
+  },
+  "target_domain": {
+    "name": "Briga grande no vestiário depois da derrota",
+    "elements": [
+      "A briga estourou no último grito — parece a causa, mas é a última peça",
+      "Cada coisa dita aconteceu porque algo antes esquentou no jogo",
+      "Quem chega só no vestiário vê 'do nada', acha exagero",
+      "Pra entender, precisa voltar: pênalti perdido, falta dura, brincadeira no banco",
+      "Tivesse alguém intervindo numa peça do meio, a fileira parava ali"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Tiro de meta começando a jogada",
+      "to": "Brincadeira pequena que iniciou tudo"
+    },
+    {
+      "from": "Cada passe é causa e efeito ao mesmo tempo",
+      "to": "Cada reação no vestiário é causa e efeito ao mesmo tempo"
+    },
+    {
+      "from": "O gol no fim parece o evento",
+      "to": "O último grito parece a briga toda"
+    },
+    {
+      "from": "Cortar um passe para a jogada",
+      "to": "Pausar a conversa no vestiário interrompe o estresse"
+    }
+  ],
+  "transfer_question": "Se ninguém culpa o 14º toque por 'ter feito o gol' numa jogada ensaiada, por que tanta briga no vestiário é contada como se o último grito fosse a causa real?"
+}

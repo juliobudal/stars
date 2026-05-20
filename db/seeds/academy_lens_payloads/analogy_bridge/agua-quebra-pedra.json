@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Saco de pipoca no micro-ondas",
+    "elements": [
+      "O saco entra dobradinho, fininho, ocupando pouco espaço",
+      "Cada grão tem uma gotinha de água escondida dentro",
+      "A água esquenta e quer ocupar muito mais espaço do que cabe no grão",
+      "O grão estoura porque a casca não aguenta a pressão de dentro",
+      "Repete-se isso vezes e vezes até o saco inteiro estourar e estufar"
+    ]
+  },
+  "target_domain": {
+    "name": "Gelo rachando pedra na montanha",
+    "elements": [
+      "A pedra tem uma frestinha minúscula, quase invisível",
+      "Chove e entra um pouco de água naquela fresta",
+      "À noite a água congela e quer ocupar mais espaço do que cabia",
+      "O gelo empurra a fresta um pouquinho pra cada lado",
+      "Repete-se isso noite após noite por décadas até a pedra rachar inteira"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Água presa dentro do grão",
+      "to": "Água presa dentro da fresta da pedra"
+    },
+    {
+      "from": "Esquentar faz a água empurrar a casca",
+      "to": "Congelar faz a água empurrar a pedra"
+    },
+    {
+      "from": "Um grão é um estouro pequeno",
+      "to": "Uma noite é uma rachadura pequena"
+    },
+    {
+      "from": "Muitos estouros enchem o saco",
+      "to": "Muitas noites racham a montanha"
+    }
+  ],
+  "transfer_question": "Se uma noite só de gelo mexe quase nada na pedra, como uma força tão fraquinha consegue mudar a forma de uma montanha inteira?"
+}

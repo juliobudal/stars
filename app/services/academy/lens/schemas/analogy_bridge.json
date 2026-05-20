@@ -43,11 +43,11 @@
         "additionalProperties": false,
         "required": ["from", "to"],
         "properties": {
-          "from": { "type": "string", "minLength": 10, "maxLength": 100 },
-          "to": { "type": "string", "minLength": 10, "maxLength": 100 }
+          "from": { "type": "string", "minLength": 10, "maxLength": 80 },
+          "to": { "type": "string", "minLength": 10, "maxLength": 80 }
         }
       }
     },
-    "transfer_question": { "type": "string", "minLength": 30, "maxLength": 280 }
+    "transfer_question": { "type": "string", "minLength": 30, "maxLength": 240 }
   }
 }

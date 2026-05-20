@@ -1,41 +1,41 @@
 {
   "source_domain": {
-    "name": "Bebida energética versus suco de laranja espremido",
+    "name": "Energético versus suco de laranja espremido",
     "elements": [
-      "Energético: cor brilhante, sabor 'turbinado', dura 1 ano na prateleira",
-      "Tem cafeína, açúcar, corante, conservante, aroma idêntico — desenhado pra entregar 'energia'",
-      "Suco espremido: cor mais opaca, sabor mais leve, estraga em 2 dias",
-      "Tem vitamina C, fibra, água, açúcar natural — o que a laranja tem",
-      "Engenheiro do energético sabia o que você ia querer; engenheiro do suco foi a laranja"
+      "Energético: cor forte, sabor 'turbo', dura 1 ano na prateleira",
+      "Tem cafeína, açúcar, corante, conservante. Foi feito pra parecer cheio de energia",
+      "Suco espremido: cor mais opaca, sabor leve, estraga em 2 dias",
+      "Tem vitamina C, fibra, água. É o que a laranja tem",
+      "O engenheiro do energético já sabia o que você ia querer. O do suco foi a laranja"
     ]
   },
   "target_domain": {
-    "name": "Snack ultraprocessado versus comida cozinhada em casa",
+    "name": "Snack ultraprocessado versus comida feita em casa",
     "elements": [
-      "Ultraprocessado: sabor desenhado pra acertar todos os botões do cérebro",
-      "Tem açúcar + sal + gordura + glutamato + corante + conservante — calculados juntos",
-      "Comida em casa: sabor mais variável, depende do dia, da mão",
-      "Tem proteína, fibra, carboidrato, sabor do ingrediente — o que a comida tem",
-      "Engenheiro do snack sabia o que você ia querer; engenheiro da comida foi a comida"
+      "Ultraprocessado: sabor feito pra acertar os botões do cérebro",
+      "Tem açúcar, sal, gordura, corante, conservante. Tudo medido junto",
+      "Comida em casa: sabor muda do dia, da panela, da mão",
+      "Tem proteína, fibra, carboidrato. É o que o ingrediente tem",
+      "O engenheiro do snack já sabia o que você ia querer. O da comida foi a comida"
     ]
   },
   "mapping": [
     {
-      "from": "Energético acerta sabor 'turbo'",
-      "to": "Ultraprocessado acerta botões do cérebro"
+      "from": "Energético acerta o sabor 'turbo'",
+      "to": "Ultraprocessado acerta os botões do cérebro"
     },
     {
-      "from": "Desenhado por engenharia",
-      "to": "Desenhado por engenharia de alimento"
+      "from": "Foi desenhado por engenharia",
+      "to": "Foi desenhado por engenharia de comida"
     },
     {
       "from": "Suco entrega o que a fruta tem",
-      "to": "Comida real entrega o que o ingrediente tem"
+      "to": "Comida de verdade entrega o que o ingrediente tem"
     },
     {
-      "from": "Energético você 'quer mais'",
-      "to": "Ultraprocessado você 'quer mais'"
+      "from": "Com energético você 'quer mais'",
+      "to": "Com ultraprocessado você 'quer mais'"
     }
   ],
-  "transfer_question": "Se você confia mais numa laranja que num energético colorido, por que confia num biscoito recheado que foi desenhado pra você não conseguir parar?"
+  "transfer_question": "Se você confia mais numa laranja do que num energético colorido, por que confia num biscoito recheado que foi feito pra você não conseguir parar?"
 }

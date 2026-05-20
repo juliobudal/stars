@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Davi",
+    "age": 11,
+    "trait": "queria construir um castelo gigante no survival, mas todo dia abria o mundo, olhava a planta e fechava em 5 min"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Davi tinha um projeto: um castelo de pedra polida com fosso e quatro torres. Cada vez que abria o mundo, calculava 8 horas de farm de pedra e fechava o jogo. Três meses depois, o terreno escolhido continuava com a marca de TNT do dia que ele animado começou e desistiu na primeira escavação."
+    },
+    {
+      "id": "s2",
+      "text": "O primo mais velho dá uma dica: 'Esquece o castelo. Hoje você abre o mundo só pra picar UM BLOCO de pedra. Amanhã, mais um. Não pode picar dois.' Davi acha que é piada. Mas faz. Dia 1: um bloco. Dia 2: um bloco — mas continua e pica trinta. Dia 7: já tem uma pilha de pedra polida no baú, sem ter prometido isso."
+    },
+    {
+      "id": "s3",
+      "text": "Dois meses depois, a primeira torre do castelo está em pé. Davi não tinha 'forçado' construir torre — só prometia um bloco por dia. A regra dele virou: a primeira ação tem que ser pequena o bastante pra caber até no dia que ele chega cansado da escola. O cara que constrói castelo virou identidade — não meta."
+    }
+  ],
+  "ending": "Davi terminou as quatro torres em seis meses, jogando em micro-sessões quase todo dia. Não em maratonas — em mordidas. O castelo ficou em pé porque a regra dele cabia até nos dias ruins. A piada com os amigos do servidor: 'Davi construiu o castelo bloco por bloco — literalmente.'",
+  "micro_check": {
+    "question": "Qual a regra que destravou o castelo do Davi?",
+    "options": [
+      "A primeira ação do dia precisa ser pequena o bastante pra caber até em dia ruim.",
+      "Marcar 8 horas de farm no fim de semana e disciplinar-se a cumprir.",
+      "Chamar um amigo pra ajudar a farmar pedra no servidor todo dia.",
+      "Trocar o mundo survival por um creative pra construir mais rápido."
+    ],
+    "correct_index": 0,
+    "rationale": "Davi pivota o problema do 'tamanho do castelo' pra 'cabência do bloco do dia'. A primeira ação entra todo dia, inclusive nos ruins — é a constância que constrói a identidade, não a intensidade."
+  }
+}

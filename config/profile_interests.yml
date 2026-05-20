@@ -1,0 +1,54 @@
+# Canonical catalog of kid-declarable interests.
+#
+# Used by:
+#   - Kid::InterestsController to validate keys on save.
+#   - ProfileInterest::Catalog (Ruby wrapper) for label/emoji lookups.
+#   - Academy::Lens prompts (top key threaded into LearnerContext.interests).
+#
+# `key`  — short kebab-case identifier. Stable. Stored in profile_interests.interest_key.
+# `label` — human-readable PT-BR label shown in the kid UI.
+# `emoji` — single emoji shown on the chip; kept inline so reorders are visible.
+#
+# Adding a new interest: append a line; never reorder/rename keys (would
+# orphan persisted data). Removing one: prefer marking `retired: true` and
+# filtering in the catalog wrapper.
+
+interests:
+  # — Natureza & animais —
+  - { key: dinossauros,    label: "Dinossauros",       emoji: "🦖" }
+  - { key: gatos,          label: "Gatos",             emoji: "🐱" }
+  - { key: cachorros,      label: "Cachorros",         emoji: "🐶" }
+  - { key: oceano,         label: "Oceano e peixes",   emoji: "🐠" }
+  - { key: insetos,        label: "Insetos",           emoji: "🐛" }
+  - { key: passaros,       label: "Pássaros",          emoji: "🦜" }
+  - { key: natureza,       label: "Acampar/natureza",  emoji: "🏕️" }
+  # — Esportes —
+  - { key: futebol,        label: "Futebol",           emoji: "⚽" }
+  - { key: skate,          label: "Skate",             emoji: "🛹" }
+  - { key: danca,          label: "Dança",             emoji: "💃" }
+  - { key: artes_marciais, label: "Artes marciais",    emoji: "🥋" }
+  # — Espaço & ciência —
+  - { key: espaco,         label: "Espaço e planetas", emoji: "🪐" }
+  - { key: dragoes,        label: "Dragões e mitos",   emoji: "🐉" }
+  - { key: robos,          label: "Robôs e IA",        emoji: "🤖" }
+  - { key: experimentos,   label: "Experimentos",      emoji: "🧪" }
+  # — Arte & criação —
+  - { key: desenho,        label: "Desenho",           emoji: "🎨" }
+  - { key: musica,         label: "Música",            emoji: "🎵" }
+  - { key: leitura,        label: "Ler livros",        emoji: "📚" }
+  - { key: lego,           label: "Lego/construir",    emoji: "🧱" }
+  # — Jogos —
+  - { key: minecraft,      label: "Minecraft",         emoji: "⛏️" }
+  - { key: roblox,         label: "Roblox",            emoji: "🎮" }
+  - { key: rpg,            label: "RPG de mesa",       emoji: "🎲" }
+  - { key: tabuleiro,      label: "Jogos de tabuleiro", emoji: "🎯" }
+  # — Comida —
+  - { key: cozinhar,       label: "Cozinhar e doces",  emoji: "🍰" }
+  - { key: pizza,          label: "Pizza",             emoji: "🍕" }
+  # — Família —
+  - { key: irmaos,         label: "Brincar com irmãos", emoji: "👯" }
+  - { key: avos,           label: "Hora com avós",     emoji: "👴" }
+  # — Outros —
+  - { key: carros,         label: "Carros",            emoji: "🚗" }
+  - { key: avioes,         label: "Aviões",            emoji: "✈️" }
+  - { key: viagens,        label: "Viajar",            emoji: "🗺️" }

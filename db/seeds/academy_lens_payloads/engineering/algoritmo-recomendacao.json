@@ -1,0 +1,43 @@
+{
+  "challenge": "Você vai PROJETAR o feed de um amigo num app de vídeos — 5 itens, hoje. Você tem 6 sinais possíveis sobre ele, mas só pode usar 3. Escolhe 3 sinais e veja o feed que sai. Cada sinal puxa em uma direção e cega outra.",
+  "constraints": [
+    {
+      "id": "h",
+      "label": "HISTÓRICO recente: o que ele viu nos últimos 7 dias",
+      "cost": "Reforça o que ele JÁ gosta; nunca mostra coisa nova; vira bolha em 2 semanas"
+    },
+    {
+      "id": "a",
+      "label": "AMIGOS curtem: o que o círculo dele tá assistindo agora",
+      "cost": "Faz ele ver o mesmo que todo mundo; perde a diferenciação; tribo virtual fechada"
+    },
+    {
+      "id": "t",
+      "label": "TEMPO de retenção: o tipo de vídeo que ele assiste do início ao fim",
+      "cost": "Confunde 'gostou' com 'não conseguiu fechar' — vídeo viciante e vídeo bom retêm igual"
+    },
+    {
+      "id": "c",
+      "label": "CURTIDAS e salvos: o que ele marcou ativamente como bom",
+      "cost": "Sinal raro (1% das visualizações vira like); demora mais pra adaptar; mais honesto"
+    },
+    {
+      "id": "n",
+      "label": "NOVIDADE controlada: 1 em cada 5 vídeos é de tema NUNCA visto",
+      "cost": "Risco de errar — 80% das chances o vídeo não engaja; em troca, escapa da bolha"
+    },
+    {
+      "id": "x",
+      "label": "EXCLUSÕES: o que ele bloqueou ou marcou 'não recomendar'",
+      "cost": "Pouca gente usa essa função; sinal forte mas raro; pode poluir feed se confundido"
+    }
+  ],
+  "must_pick": 3,
+  "outcomes": {
+    "h+a+t": "Combo de plataforma agressiva: histórico + amigos + retenção. 5 vídeos saem ULTRA parecidos com tudo que ele já viu. Engajamento alto (ele assiste tudo) mas em 1 mês ele só vê 1 tipo de coisa. Tradeoff: ganha tempo de tela, perde diversidade total.",
+    "c+n+x": "Combo HONESTO: só sinais ativos (like, exclusão) + 20% de novidade. 5 vídeos saem mais variados, alguns 'estranhos'. Engajamento médio (ele assiste 60%) MAS em 1 mês ele descobriu 5 temas novos. Tradeoff: usuário paga em incerteza, ganha em descoberta.",
+    "h+c+n": "Combo BALANCEADO: histórico (continuidade) + likes (qualidade) + novidade (escape). 5 vídeos: 3 do que ele gosta, 1 do que ele AMA, 1 que ele pode amar. Tradeoff melhor calibrado entre algoritmo de vício e algoritmo de descoberta.",
+    "a+t+c": "Combo SOCIAL: amigos + retenção + likes. Sai feed que parece 'consenso da turma'. Ele pertence mais, descobre menos. Tradeoff: ganha em sensação de pertencimento, perde em desenvolvimento individual.",
+    "h+t+n": "Combo VICIANTE COM ESCAPE: histórico + retenção + 1-em-5 de novidade. Maximiza tempo de tela MAS reserva 1 slot pra fora da bolha. Engenharia ética típica de plataforma que tenta equilibrar — sem o like (c) como filtro, novidade às vezes mete cilada."
+  }
+}

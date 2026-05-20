@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Bilhete dobrado passando na sala de aula",
+    "elements": [
+      "Um pedacinho de papel pequeno é tudo o que cabe na mão fechada",
+      "Pra mandar uma mensagem rápida, você desenha um carinha em vez de escrever",
+      "O carinha sorrindo diz mais do que três linhas de texto explicando",
+      "Cabe em qualquer lugar, atravessa a sala, e qualquer um entende na hora",
+      "Um desenhinho economiza tempo, papel e o risco de ser pego escrevendo"
+    ]
+  },
+  "target_domain": {
+    "name": "Emoji nascendo no celular japonês de 1999",
+    "elements": [
+      "Em 1999, mensagens de celular eram limitadas a poucos caracteres",
+      "Shigetaka Kurita era engenheiro da operadora japonesa DoCoMo",
+      "Ele desenhou 176 figurinhas de 12 × 12 pixels pra expressar emoção",
+      "Cabia em um pedacinho de tela, mas dizia o que palavras não diziam",
+      "O nome 'emoji' veio de 'e' (imagem) + 'moji' (caractere) em japonês"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Bilhete pequeno = tela apertada",
+      "to": "176 figuras de 12×12 pixels = tela apertada do celular"
+    },
+    {
+      "from": "Desenhinho substitui linhas de texto",
+      "to": "Emoji substitui linhas de texto"
+    },
+    {
+      "from": "Carinha sorrindo expressa emoção rápida",
+      "to": "Emoji de sorriso expressa emoção rápida"
+    },
+    {
+      "from": "Qualquer um entende sem precisar ler",
+      "to": "Emoji é entendido em qualquer língua do mundo"
+    }
+  ],
+  "transfer_question": "Se 176 desenhinhos feitos por um engenheiro japonês em 1999 hoje viraram linguagem do planeta inteiro, quanto alcance uma ideia simples pode ter?"
+}

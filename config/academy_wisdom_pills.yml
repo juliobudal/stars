@@ -5,100 +5,396 @@
 # 4-5 segundos por uma criança de 7-12 anos.
 #
 # Mix editorial: Provérbios/Eclesiastes/Tiago (NTLH/NVT — linguagem
-# acessível), filósofos e educadores universais, e ensinamentos originais
-# d'O Guia. Sempre com fonte explícita.
+# acessível), filósofos e educadores universais, cientistas, escritores e
+# poetas, pensadores cristãos, e ensinamentos originais d'O Guia.
+# Sempre com fonte explícita.
 #
 # Curadoria: temas de formação humana — sabedoria, escuta, perseverança,
-# humildade, curiosidade, escolha, esforço. Evitar julgamento, medo, fim
-# dos tempos. Vocabulário acessível, sem termos abstratos.
+# humildade, curiosidade, escolha, esforço, coragem. Evitar julgamento,
+# medo, fim dos tempos, melancolia adulta. Vocabulário acessível.
+#
+# Campo opcional `theme`: curiosidade | escuta | perseveranca | humor |
+# coragem | sabedoria. Ausente quando a frase não se encaixa claramente.
 
 pills:
-  # ── Provérbios / Eclesiastes / Tiago (NTLH-style) ─────────
+  # ── Bíblia: Provérbios / Eclesiastes / Tiago (NTLH-style) ─────────
   - text: "O começo da sabedoria é querer aprender."
     source: "Provérbios 4:7"
+    theme: sabedoria
   - text: "Quem ouve com atenção fica mais sábio."
     source: "Provérbios 1:5"
+    theme: escuta
   - text: "Uma resposta calma desfaz a briga."
     source: "Provérbios 15:1"
+    theme: escuta
   - text: "Assim como o ferro afia o ferro, um amigo ajuda o outro a crescer."
     source: "Provérbios 27:17"
+    theme: sabedoria
   - text: "Antes de responder, pense no que vai dizer."
     source: "Provérbios 15:28"
+    theme: escuta
   - text: "Quem fala demais erra muito; quem segura a língua é sábio."
     source: "Provérbios 10:19"
+    theme: escuta
   - text: "Para cada coisa há um tempo certo."
     source: "Eclesiastes 3:1"
+    theme: sabedoria
   - text: "Dois juntos conseguem mais do que um sozinho."
     source: "Eclesiastes 4:9"
+    theme: perseveranca
   - text: "Seja rápido para ouvir e devagar para falar."
     source: "Tiago 1:19"
+    theme: escuta
   - text: "Quem pede sabedoria com fé recebe."
     source: "Tiago 1:5"
+    theme: sabedoria
   - text: "O caminho do justo é como a luz da manhã que vai clareando."
     source: "Provérbios 4:18"
+    theme: perseveranca
   - text: "O orgulho vem antes da queda; a humildade vem antes da honra."
     source: "Provérbios 18:12"
+    theme: sabedoria
+  - text: "Confie em Deus de todo o coração e Ele endireita os seus caminhos."
+    source: "Provérbios 3:5-6"
+    theme: coragem
+  - text: "Quem caminha com os sábios se torna sábio."
+    source: "Provérbios 13:20"
+    theme: sabedoria
+  - text: "O sábio escuta e aumenta o seu saber."
+    source: "Provérbios 1:5"
+    theme: escuta
+  - text: "Aquilo que os seus olhos veem vale mais do que o que se imagina."
+    source: "Eclesiastes 6:9"
+    theme: curiosidade
+  - text: "Ensine a criança no caminho em que deve andar."
+    source: "Provérbios 22:6"
+    theme: sabedoria
+  - text: "O coração alegre é bom remédio."
+    source: "Provérbios 17:22"
+    theme: humor
+  - text: "A esperança que tarda faz adoecer o coração."
+    source: "Provérbios 13:12"
+    theme: perseveranca
+  - text: "Quem cuida da árvore come do seu fruto."
+    source: "Provérbios 27:18"
+    theme: perseveranca
+  - text: "Não fique sábio aos seus próprios olhos."
+    source: "Provérbios 3:7"
+    theme: sabedoria
+  - text: "Melhor a paciência do que a força."
+    source: "Eclesiastes 7:8"
+    theme: perseveranca
+  - text: "Lance o seu pão sobre as águas: depois de muitos dias você o achará."
+    source: "Eclesiastes 11:1"
+    theme: perseveranca
+  - text: "Sejam praticantes da palavra, e não apenas ouvintes."
+    source: "Tiago 1:22"
+    theme: coragem
+  - text: "Toda boa dádiva vem do alto."
+    source: "Tiago 1:17"
+    theme: sabedoria
 
-  # ── Filósofos e pensadores ────────────────────────────────
+  # ── Filósofos clássicos ───────────────────────────────────────────
   - text: "Só sei que nada sei — e por isso pergunto."
     source: "Sócrates"
-  - text: "Não é porque é difícil que não tentamos; é porque não tentamos que parece difícil."
-    source: "Sêneca"
-  - text: "Aprender sem pensar é tempo perdido."
-    source: "Confúcio"
-  - text: "Quem se move, mesmo devagar, chega mais longe que quem está parado."
-    source: "Confúcio"
+    theme: curiosidade
   - text: "Conhece a ti mesmo."
-    source: "Sócrates"
+    source: "Sócrates (Apologia)"
+    theme: sabedoria
+  - text: "Uma vida não examinada não vale a pena ser vivida."
+    source: "Sócrates (Apologia)"
+    theme: sabedoria
+  - text: "Não é porque é difícil que não tentamos; é porque não tentamos que parece difícil."
+    source: "Sêneca (Cartas a Lucílio)"
+    theme: coragem
+  - text: "Enquanto ensinamos, aprendemos."
+    source: "Sêneca (Cartas a Lucílio)"
+    theme: sabedoria
+  - text: "Não temos pouco tempo: perdemos muito."
+    source: "Sêneca (Da Brevidade da Vida)"
+    theme: perseveranca
+  - text: "Aprender sem pensar é tempo perdido."
+    source: "Confúcio (Analectos)"
+    theme: sabedoria
+  - text: "Quem se move, mesmo devagar, chega mais longe que quem está parado."
+    source: "Confúcio (Analectos)"
+    theme: perseveranca
+  - text: "Quando você sabe uma coisa, diga que sabe; quando não sabe, diga que não sabe."
+    source: "Confúcio (Analectos)"
+    theme: sabedoria
+  - text: "Somos o que repetidamente fazemos; a excelência é um hábito."
+    source: "Aristóteles (Ética a Nicômaco)"
+    theme: perseveranca
+  - text: "Conhecer-se a si mesmo é o começo de toda sabedoria."
+    source: "Aristóteles (Ética a Nicômaco)"
+    theme: sabedoria
+  - text: "O que está em nosso poder é começar; o resto pertence ao caminho."
+    source: "Aristóteles (Ética a Nicômaco)"
+    theme: coragem
+  - text: "Não são as coisas que perturbam as pessoas, mas o que pensam delas."
+    source: "Epicteto (Manual)"
+    theme: sabedoria
+  - text: "Diga pouco; faça muito."
+    source: "Epicteto (Manual)"
+    theme: perseveranca
+  - text: "O que impede o caminho vira o caminho."
+    source: "Marco Aurélio (Meditações)"
+    theme: coragem
+  - text: "Comece — e o caminho aparece."
+    source: "Marco Aurélio (Meditações)"
+    theme: coragem
   - text: "A coragem é resistir ao medo, não a ausência dele."
     source: "Mark Twain"
+    theme: coragem
+  - text: "Vinte anos depois você vai se arrepender mais do que não fez."
+    source: "Mark Twain"
+    theme: coragem
 
-  # ── Educadores brasileiros ────────────────────────────────
+  # ── Educadores brasileiros ────────────────────────────────────────
   - text: "Ensinar não é transferir conhecimento — é abrir espaço para descobri-lo."
-    source: "Paulo Freire"
+    source: "Paulo Freire (Pedagogia da Autonomia)"
+    theme: curiosidade
   - text: "Conhecer é tarefa de sujeitos curiosos."
-    source: "Paulo Freire"
+    source: "Paulo Freire (Pedagogia da Autonomia)"
+    theme: curiosidade
+  - text: "Ninguém educa ninguém, ninguém educa a si mesmo; educamo-nos em comunhão."
+    source: "Paulo Freire (Pedagogia do Oprimido)"
+    theme: escuta
   - text: "A escola é o lugar onde se faz amigos."
-    source: "Rubem Alves"
+    source: "Rubem Alves (A Escola com que Sempre Sonhei)"
+    theme: humor
   - text: "Toda criança é um cientista nato — só precisa de boas perguntas."
-    source: "Rubem Alves"
+    source: "Rubem Alves (A Alegria de Ensinar)"
+    theme: curiosidade
   - text: "Aprender é descobrir que algo que você já sabia ganhou um nome."
-    source: "Rubem Alves"
+    source: "Rubem Alves (A Alegria de Ensinar)"
+    theme: curiosidade
+  - text: "Ensinar é um exercício de imortalidade."
+    source: "Rubem Alves (Conversas com quem gosta de ensinar)"
+    theme: sabedoria
   - text: "A pressa é inimiga da reflexão."
-    source: "Mario Sergio Cortella"
+    source: "Mario Sergio Cortella (Por que fazemos o que fazemos?)"
+    theme: sabedoria
   - text: "Não basta estar atento ao que se aprende — é preciso estar atento ao como se aprende."
-    source: "Mario Sergio Cortella"
+    source: "Mario Sergio Cortella (Educação, Escola e Docência)"
+    theme: sabedoria
+  - text: "A felicidade vem da convivência, não do consumo."
+    source: "Mario Sergio Cortella (Qual é a tua obra?)"
+    theme: sabedoria
+  - text: "Saber é a coisa que mais nos torna humanos."
+    source: "Leandro Karnal (Conversas com um jovem professor)"
+    theme: curiosidade
+  - text: "A criança que é elogiada por se esforçar aprende a tentar de novo."
+    source: "Içami Tiba (Disciplina, limite na medida certa)"
+    theme: perseveranca
+  - text: "O conhecimento liberta o ser humano da ignorância."
+    source: "Augusto Cury (Pais brilhantes, professores fascinantes)"
+    theme: sabedoria
+  - text: "A criança aprende fazendo, não ouvindo."
+    source: "Maria Montessori (A Criança)"
+    theme: curiosidade
 
-  # ── Outras vozes ──────────────────────────────────────────
-  - text: "A persistência é o caminho do êxito."
-    source: "Charles Chaplin"
-  - text: "Você é do tamanho dos seus sonhos."
-    source: "Clarice Lispector"
+  # ── Cientistas ─────────────────────────────────────────────────────
+  - text: "Somos todos feitos de poeira de estrelas."
+    source: "Carl Sagan (Cosmos)"
+    theme: curiosidade
+  - text: "Em algum lugar, algo incrível está esperando para ser conhecido."
+    source: "Carl Sagan (Cosmos)"
+    theme: curiosidade
+  - text: "Para fazer uma torta de maçã do zero, primeiro invente o universo."
+    source: "Carl Sagan (Cosmos)"
+    theme: humor
+  - text: "Ciência é uma forma de pensar muito mais do que um corpo de conhecimentos."
+    source: "Carl Sagan (O Mundo Assombrado pelos Demônios)"
+    theme: curiosidade
+  - text: "Tenho o direito de não saber a resposta — é mais interessante assim."
+    source: "Richard Feynman (The Pleasure of Finding Things Out)"
+    theme: curiosidade
+  - text: "Estudar é descobrir que o mundo é muito mais bonito do que parecia."
+    source: "Richard Feynman (O Senhor Está Brincando, Sr. Feynman!)"
+    theme: curiosidade
+  - text: "O primeiro princípio é não enganar a si mesmo — e você é o mais fácil de enganar."
+    source: "Richard Feynman (Cargo Cult Science)"
+    theme: sabedoria
+  - text: "Nada na vida deve ser temido — só precisa ser compreendido."
+    source: "Marie Curie (Pierre Curie)"
+    theme: coragem
+  - text: "Seja menos curiosa sobre as pessoas e mais curiosa sobre as ideias."
+    source: "Marie Curie (Pierre Curie)"
+    theme: curiosidade
+  - text: "Não se progride empurrando o mundo: trabalha-se sobre si mesmo."
+    source: "Marie Curie (carta a Bronisława, 1894)"
+    theme: perseveranca
+  - text: "Simplicidade é a sofisticação suprema."
+    source: "Leonardo da Vinci (Cadernos)"
+    theme: sabedoria
+  - text: "Estudar sem desejo estraga a memória."
+    source: "Leonardo da Vinci (Cadernos)"
+    theme: curiosidade
+  - text: "Quem pouco pensa, muito erra."
+    source: "Leonardo da Vinci (Cadernos)"
+    theme: sabedoria
+  - text: "A imaginação é mais importante que o conhecimento."
+    source: "Albert Einstein (entrevista ao Saturday Evening Post, 1929)"
+    theme: curiosidade
   - text: "Educação é o que sobra depois que esquecemos tudo que aprendemos na escola."
-    source: "Albert Einstein"
+    source: "Albert Einstein (Out of My Later Years)"
+    theme: sabedoria
   - text: "Quem nunca cometeu um erro nunca tentou nada novo."
-    source: "Albert Einstein"
+    source: "Albert Einstein (atribuído em Out of My Later Years)"
+    theme: coragem
   - text: "O importante é não parar de questionar."
-    source: "Albert Einstein"
+    source: "Albert Einstein (entrevista à LIFE, 1955)"
+    theme: curiosidade
+  - text: "Eu nunca aprendi com um homem que concordasse comigo."
+    source: "Galileu Galilei (cartas)"
+    theme: escuta
 
-  # ── Ensinamentos d'O Guia (originais) ─────────────────────
+  # ── Escritores e poetas ────────────────────────────────────────────
+  - text: "Você é do tamanho dos seus sonhos."
+    source: "Clarice Lispector (Um Sopro de Vida)"
+    theme: coragem
+  - text: "Liberdade é pouco; o que eu desejo ainda não tem nome."
+    source: "Clarice Lispector (Perto do Coração Selvagem)"
+    theme: curiosidade
+  - text: "Quem não arrisca, não experimenta a vida."
+    source: "Clarice Lispector (A Hora da Estrela)"
+    theme: coragem
+  - text: "No meio do caminho tinha uma pedra; o jeito é olhar de novo."
+    source: "Carlos Drummond de Andrade (Alguma Poesia)"
+    theme: perseveranca
+  - text: "A gente quer ter voz ativa, no nosso destino mandar."
+    source: "Carlos Drummond de Andrade (entrevista, 1984)"
+    theme: coragem
+  - text: "E agora, José? A festa começa, a vida continua."
+    source: "Carlos Drummond de Andrade (José)"
+    theme: perseveranca
+  - text: "Liberdade é uma palavra que o sonho humano alimenta."
+    source: "Cecília Meireles (Romanceiro da Inconfidência)"
+    theme: coragem
+  - text: "Eu canto porque o instante existe e a minha vida está completa."
+    source: "Cecília Meireles (Viagem)"
+    theme: humor
+  - text: "Sou um homem que vai e que não chega; mas que caminha."
+    source: "Cecília Meireles (Mar Absoluto)"
+    theme: perseveranca
+  - text: "O mundo não foi feito em alfabeto; foi feito com tudo o que existe."
+    source: "Manoel de Barros (Memórias Inventadas)"
+    theme: curiosidade
+  - text: "Tudo que não invento é falso."
+    source: "Manoel de Barros (Livro sobre Nada)"
+    theme: curiosidade
+  - text: "Repetir, repetir até ficar diferente — repetir é um dom do estilo."
+    source: "Manoel de Barros (Matéria de Poesia)"
+    theme: perseveranca
+  - text: "Um país se faz com homens e livros."
+    source: "Monteiro Lobato (América)"
+    theme: sabedoria
+  - text: "Imaginação é a vida da gente."
+    source: "Monteiro Lobato (Reinações de Narizinho)"
+    theme: curiosidade
+  - text: "É só com o coração que se vê bem; o essencial é invisível aos olhos."
+    source: "Antoine de Saint-Exupéry (O Pequeno Príncipe)"
+    theme: sabedoria
+  - text: "Tu te tornas eternamente responsável por aquilo que cativas."
+    source: "Antoine de Saint-Exupéry (O Pequeno Príncipe)"
+    theme: escuta
+  - text: "Cada um deve cuidar bem do seu planeta."
+    source: "Antoine de Saint-Exupéry (O Pequeno Príncipe)"
+    theme: sabedoria
+  - text: "A persistência é o caminho do êxito."
+    source: "Charles Chaplin (My Autobiography)"
+    theme: perseveranca
+
+  # ── Pensadores cristãos ────────────────────────────────────────────
+  - text: "Você nunca é velho demais para ter outro sonho ou novo objetivo."
+    source: "C.S. Lewis (carta, 1959)"
+    theme: coragem
+  - text: "Não temos que ser bons antes de começar — começamos para nos tornar bons."
+    source: "C.S. Lewis (Mero Cristianismo)"
+    theme: coragem
+  - text: "Amigos olham na mesma direção juntos."
+    source: "C.S. Lewis (Os Quatro Amores)"
+    theme: escuta
+  - text: "Nem todos os que vagueiam estão perdidos."
+    source: "J.R.R. Tolkien (O Senhor dos Anéis)"
+    theme: curiosidade
+  - text: "Pequenas mãos mudam o rumo do mundo, porque é o que elas têm para fazer."
+    source: "J.R.R. Tolkien (O Senhor dos Anéis)"
+    theme: coragem
+  - text: "Não somos chamados a fazer grandes coisas, mas pequenas coisas com grande amor."
+    source: "Madre Teresa de Calcutá (Um Caminho Simples)"
+    theme: sabedoria
+  - text: "A paz começa com um sorriso."
+    source: "Madre Teresa de Calcutá (Um Caminho Simples)"
+    theme: humor
+  - text: "Inquieto está o nosso coração até que descanse em Ti."
+    source: "Santo Agostinho (Confissões)"
+    theme: sabedoria
+  - text: "Ama, e faze o que quiseres."
+    source: "Santo Agostinho (Comentário à Primeira Carta de João)"
+    theme: coragem
+
+  # ── Outras culturas / tradições ────────────────────────────────────
+  - text: "A ferida é o lugar por onde a luz entra em você."
+    source: "Rumi (Masnavi)"
+    theme: coragem
+  - text: "Ontem fui inteligente e quis mudar o mundo; hoje sou sábio e me mudo."
+    source: "Rumi (Masnavi)"
+    theme: sabedoria
+  - text: "Uma viagem de mil quilômetros começa com um passo."
+    source: "Lao Tse (Tao Te Ching, cap. 64)"
+    theme: perseveranca
+  - text: "Quem conhece os outros é sábio; quem conhece a si mesmo é iluminado."
+    source: "Lao Tse (Tao Te Ching, cap. 33)"
+    theme: sabedoria
+  - text: "A água é mole, a pedra é dura; tanto bate até que fura."
+    source: "Lao Tse (Tao Te Ching, cap. 78)"
+    theme: perseveranca
+  - text: "Seja a mudança que você quer ver no mundo."
+    source: "Mahatma Gandhi (atribuído; cf. Young India, 1925)"
+    theme: coragem
+  - text: "Viva como se fosse morrer amanhã; aprenda como se fosse viver para sempre."
+    source: "Mahatma Gandhi (Harijan, 1947)"
+    theme: curiosidade
+  - text: "Educação é a arma mais poderosa para mudar o mundo."
+    source: "Nelson Mandela (discurso, Universidade de Witwatersrand, 2003)"
+    theme: sabedoria
+  - text: "Sempre parece impossível, até que seja feito."
+    source: "Nelson Mandela (Long Walk to Freedom)"
+    theme: coragem
+  - text: "Nunca, nunca, nunca desista."
+    source: "Winston Churchill (discurso, Harrow School, 1941)"
+    theme: perseveranca
+
+  # ── Ensinamentos d'O Guia (originais) ─────────────────────────────
   - text: "Quem pergunta duas vezes nunca se perde."
     source: "O Guia"
+    theme: curiosidade
   - text: "A descoberta gosta de quem espera olhando."
     source: "O Guia"
+    theme: escuta
   - text: "Cada erro é uma pista que o universo te entrega."
     source: "O Guia"
+    theme: coragem
   - text: "O que parece pequeno hoje vira ponte amanhã."
     source: "O Guia"
+    theme: perseveranca
   - text: "Olhar de novo é metade da resposta."
     source: "O Guia"
+    theme: curiosidade
   - text: "Toda lente revela um pedaço diferente do mesmo mundo."
     source: "O Guia"
+    theme: sabedoria
   - text: "Pensar devagar é uma forma de respeitar o mistério."
     source: "O Guia"
+    theme: sabedoria
   - text: "A curiosidade tem mais força que a pressa."
     source: "O Guia"
+    theme: curiosidade
   - text: "Quem escuta antes de julgar enxerga duas vezes."
     source: "O Guia"
+    theme: escuta
   - text: "As estrelas que você junta hoje iluminam caminhos amanhã."
     source: "O Guia"
+    theme: perseveranca

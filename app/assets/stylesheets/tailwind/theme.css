@@ -219,6 +219,15 @@
   --academy-pokedex-financeiro: #1899D6; /* deep blue — clarity/value */
   --academy-pokedex-tecnologia: #1CB0F6; /* electric blue — systems */
   --academy-pokedex-cientifico: #CE82FF; /* lilac — discovery/mystery */
+  --academy-pokedex-mundo_natural: #3B82F6; /* blue — investigator/world */
+  --academy-pokedex-linguagem:     #A855F7; /* violet — words/origins */
+  --academy-pokedex-historia:      #B45309; /* amber-dark — historical depth */
+  --academy-pokedex-matematica:    #0EA5E9; /* cyan — abstract beauty */
+
+  /* Academy Subject color tokens (v3 — curiosity subjects) */
+  --c-academy-mundo:    #3B82F6; /* azul investigador */
+  --c-academy-corpo:    #F97316; /* laranja vital */
+  --c-academy-palavras: #A855F7; /* roxo histórico */
 }
 
 /* ─── Per-kid palettes (driven by Profile.color) ─── */

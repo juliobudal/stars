@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Lista do mercado anotada na geladeira",
+    "elements": [
+      "Mãe anota 'leite, pão, ovo' num papel preso na geladeira",
+      "A lista nasce só pra não esquecer das compras do dia",
+      "Com o tempo, anotar tudo vira um costume: contas, recados, telefones",
+      "Os papéis acumulados na geladeira contam quase um diário da família",
+      "O que nasceu pra controle vira registro da vida toda"
+    ]
+  },
+  "target_domain": {
+    "name": "Sumérios inventando a escrita na Mesopotâmia",
+    "elements": [
+      "Em 3200 a.C., os sumérios precisavam controlar gado e sacos de grão",
+      "Riscavam contagem em tabuletas de barro com marca em forma de cunha",
+      "Esse jeito de riscar evoluiu pro cuneiforme — primeira escrita do planeta",
+      "Depois passou a registrar leis, histórias, religião, poesia",
+      "O que nasceu pra contar cabra virou base de toda escrita humana"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Lista de mercado = controle prático",
+      "to": "Tabuleta suméria = controle de cabra e grão"
+    },
+    {
+      "from": "Anotação vira costume",
+      "to": "Riscar barro vira costume na Mesopotâmia"
+    },
+    {
+      "from": "Papel vira diário sem querer",
+      "to": "Cuneiforme vira registro de tudo: lei, mito, poesia"
+    },
+    {
+      "from": "Invenção utilitária ganha vida própria",
+      "to": "Escrita prática virou herança da humanidade"
+    }
+  ],
+  "transfer_question": "Se a escrita nasceu só pra contar cabras e virou tudo que a gente lê hoje, qual outra invenção começou pra resolver um problema bobo e acabou mudando o mundo?"
+}

@@ -60,6 +60,7 @@
   </header>
 
   <%# ── Body header: the ACTION the kid is doing ─────────────── %>
+  <% voice = ::Academy::Lens::Voices.for_lens(lens_type) %>
   <div class="flex items-center gap-3 mb-4">
     <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-[22px]"
          style="background: color-mix(in oklab, <%= color_var %> 18%, var(--surface)); border: 2px solid <%= color_var %>;">
@@ -73,6 +74,15 @@
         sobre <%= @mission.concept.name %>
       </div>
     </div>
+    <% if voice %>
+      <div class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full"
+           title="<%= voice.tagline %>"
+           aria-label="Narrado por <%= voice.name %>"
+           style="background: var(--surface-2, #F7F7F7); border: 2px solid var(--hairline);">
+        <span aria-hidden="true" style="font-size: 14px; line-height: 1;"><%= voice.emoji %></span>
+        <span class="font-display text-[10px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--text-muted);"><%= voice.name %></span>
+      </div>
+    <% end %>
   </div>
 
   <%# ── Body — delegated to the action primitive ────────────── %>

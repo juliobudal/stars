@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_20_000002) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_20_000006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -160,14 +160,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_20_000002) do
     t.bigint "concept_id", null: false
     t.datetime "created_at", null: false
     t.datetime "generated_at", null: false
+    t.string "interest_key"
     t.string "lens_type", null: false
     t.string "locale", default: "pt-BR", null: false
     t.jsonb "payload", default: {}, null: false
     t.boolean "quality_flagged", default: false, null: false
     t.string "source", default: "curated", null: false
     t.datetime "updated_at", null: false
-    t.index ["concept_id", "lens_type", "age_band", "locale"], name: "idx_academy_lens_cache_unique", unique: true
+    t.index "concept_id, lens_type, age_band, locale, COALESCE(interest_key, ''::character varying)", name: "idx_academy_lens_cache_unique", unique: true
     t.index ["concept_id", "lens_type", "source"], name: "idx_academy_lens_cache_source_lookup"
+    t.index ["interest_key"], name: "idx_academy_lens_cache_interest_key", where: "(interest_key IS NOT NULL)"
     t.index ["lens_type"], name: "index_academy_lens_cache_on_lens_type"
     t.index ["quality_flagged"], name: "idx_academy_lens_cache_quality_flagged", where: "(quality_flagged = true)"
   end
@@ -186,6 +188,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_20_000002) do
     t.index ["learner_id", "concept_id", "lens_type", "recorded_at"], name: "idx_academy_lens_signals_learner_concept_lens_time"
     t.index ["learner_id", "signal_type", "recorded_at"], name: "idx_academy_lens_signals_learner_type_time"
     t.index ["mission_progress_id", "recorded_at"], name: "idx_academy_lens_signals_progress_time"
+  end
+
+  create_table "academy_lightning_round_runs", force: :cascade do |t|
+    t.jsonb "concept_ids", default: [], null: false
+    t.integer "correct_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.integer "elapsed_seconds"
+    t.bigint "learner_id", null: false
+    t.string "tier", null: false
+    t.integer "total_questions", null: false
+    t.datetime "updated_at", null: false
+    t.index ["learner_id", "created_at"], name: "idx_academy_lightning_runs_by_learner_recency"
   end
 
   create_table "academy_messages", force: :cascade do |t|
@@ -248,6 +262,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_20_000002) do
     t.index ["subject_id", "slug"], name: "index_academy_missions_on_subject_id_and_slug", unique: true
     t.index ["subject_id"], name: "index_academy_missions_on_subject_id"
     t.index ["trail_id"], name: "index_academy_missions_on_trail_id"
+  end
+
+  create_table "academy_pill_views", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "learner_id", null: false
+    t.bigint "lens_cache_id", null: false
+    t.integer "micro_check_choice"
+    t.boolean "micro_check_correct"
+    t.boolean "shared_with_parent", default: false, null: false
+    t.string "status", default: "served", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "viewed_at"
+    t.index ["learner_id", "created_at"], name: "idx_academy_pill_views_by_learner_recency"
+    t.index ["learner_id", "lens_cache_id"], name: "idx_academy_pill_views_unique_per_learner", unique: true
   end
 
   create_table "academy_practice_wagers", force: :cascade do |t|
@@ -450,6 +478,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_20_000002) do
     t.index ["family_id", "featured"], name: "index_global_tasks_on_family_id_and_featured", where: "(featured = true)"
     t.index ["family_id"], name: "index_global_tasks_on_family_id"
     t.check_constraint "max_completions_per_period >= 1", name: "max_completions_positive"
+  end
+
+  create_table "profile_interests", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "interest_key", null: false
+    t.bigint "profile_id", null: false
+    t.integer "rank", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id", "interest_key"], name: "idx_profile_interests_unique_per_profile", unique: true
+    t.index ["profile_id", "rank"], name: "index_profile_interests_on_profile_id_and_rank"
+    t.index ["profile_id"], name: "index_profile_interests_on_profile_id"
   end
 
   create_table "profile_invitations", force: :cascade do |t|
@@ -671,6 +710,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_20_000002) do
   add_foreign_key "academy_missions", "academy_concepts", column: "concept_id"
   add_foreign_key "academy_missions", "academy_subjects", column: "subject_id"
   add_foreign_key "academy_missions", "academy_trails", column: "trail_id"
+  add_foreign_key "academy_pill_views", "academy_lens_cache", column: "lens_cache_id"
   add_foreign_key "academy_practice_wagers", "academy_missions", column: "mission_id"
   add_foreign_key "academy_secret_unlocks", "academy_secrets", column: "secret_id"
   add_foreign_key "academy_secrets", "academy_missions", column: "mission_id"
@@ -686,6 +726,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_20_000002) do
   add_foreign_key "global_task_assignments", "global_tasks", on_delete: :cascade
   add_foreign_key "global_task_assignments", "profiles", on_delete: :cascade
   add_foreign_key "global_tasks", "families"
+  add_foreign_key "profile_interests", "profiles"
   add_foreign_key "profile_invitations", "families", on_delete: :cascade
   add_foreign_key "profile_invitations", "profiles", column: "invited_by_id", on_delete: :nullify
   add_foreign_key "profile_tasks", "categories", column: "custom_category_id", on_delete: :nullify

@@ -44,6 +44,77 @@
     </div>
   </div>
 
+  <%# ── Pílula do Dia ── %>
+  <%= link_to kid_academy_pill_path,
+        class: "ls-card-3d mb-4 z-2 shrink-0 block",
+        style: "background: linear-gradient(135deg, var(--primary-soft) 0%, var(--surface) 70%); border: 2px solid var(--primary); border-radius: 16px; padding: 14px 18px; box-shadow: 0 4px 0 var(--primary-2); text-decoration: none; color: inherit;",
+        "data-testid": "kid-pill-card" do %>
+    <div class="flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-[22px] shrink-0"
+             style="background: var(--surface); border: 2px solid var(--primary);">
+          💊
+        </div>
+        <div class="min-w-0">
+          <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--primary);">Pílula do Dia</div>
+          <div class="font-display text-[14px] font-extrabold leading-tight" style="color: var(--text);">
+            60 segundos pra ficar mais esperto
+          </div>
+        </div>
+      </div>
+      <%= render Ui::Icon::Component.new("chevron-right", size: 20, color: "var(--primary)") %>
+    </div>
+  <% end %>
+
+  <%# ── Lightning Round shortcut (only visible after some practice) ── %>
+  <% has_fading = ::Academy::LearnerConcept.for_learner(current_profile.id)
+                    .where(level: 1..2).where("last_seen_at < ?", 7.days.ago).exists? %>
+  <% if has_fading %>
+    <%= link_to kid_academy_lightning_path,
+          class: "ls-card-3d mb-4 z-2 shrink-0 block",
+          style: "background: var(--c-amber-soft); border: 2px solid var(--c-amber); border-radius: 16px; padding: 12px 16px; box-shadow: 0 4px 0 var(--c-amber-dark); text-decoration: none; color: inherit;",
+          "data-testid": "kid-lightning-card" do %>
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <span aria-hidden="true" style="font-size: 22px;">⚡</span>
+          <div class="min-w-0">
+            <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--c-amber-dark);">Lightning Round</div>
+            <div class="font-display text-[14px] font-extrabold leading-tight" style="color: var(--text);">
+              90 segundos · 5 perguntas
+            </div>
+          </div>
+        </div>
+        <%= render Ui::Icon::Component.new("chevron-right", size: 20, color: "var(--c-amber-dark)") %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# ── "Eu curto" nudge / shortcut ── %>
+  <% kid_interests = current_profile.interest_keys(5) %>
+  <%= link_to kid_interests_path,
+        class: "ls-card-3d mb-4 z-2 shrink-0 block",
+        style: "background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 12px 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); text-decoration: none; color: inherit;",
+        "data-testid": "kid-interests-card" do %>
+    <div class="flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <span aria-hidden="true" style="font-size: 22px;">💡</span>
+        <div class="min-w-0">
+          <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--text-muted);">Eu curto</div>
+          <% if kid_interests.any? %>
+            <div class="font-display text-[13px] font-extrabold truncate" style="color: var(--text);">
+              <%= kid_interests.first(3).map { |k| ProfileInterest::Catalog.emoji_for(k) + " " + ProfileInterest::Catalog.label_for(k) }.join("  ·  ") %>
+            </div>
+          <% else %>
+            <div class="font-display text-[13px] font-extrabold" style="color: var(--primary-2);">
+              Conta pra gente o que você curte!
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <%= render Ui::Icon::Component.new("chevron-right", size: 18, color: "var(--text-muted)") %>
+    </div>
+  <% end %>
+
   <%# ── Level progress card ── %>
   <div class="ls-card-3d mb-5 z-2 shrink-0"
        style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px 18px; box-shadow: 0 4px 0 rgba(0,0,0,0.08);">

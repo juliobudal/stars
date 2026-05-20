@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Sara",
+    "age": 13,
+    "trait": "Aprendiz no clube de paleontologia, obcecada em entender por que uns identificam fóssil em minutos e outros não."
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sara entra no clube observando: por que alguns colegas saem da bancada com a vértebra identificada, e outros passam a sessão inteira com a mesma rocha na mão? Ela começa a cronometrar. Os 'vértebra identificada' não trabalham mais — trabalham DIFERENTE. Sentam, deixam o celular no escaninho, e ficam imóveis no fóssil por blocos longos sem conversa paralela."
+    },
+    {
+      "id": "s2",
+      "text": "Vira monitora do clube sem nunca ter feito story sobre os fósseis. Nunca quis. Numa palestra pra escola, solta uma tese desconfortável: o trabalho de profundidade na bancada está virando raro — e justamente porque ninguém mais consegue ficar 25 minutos com a lupa sem checar o relógio ou abrir uma aba de pesquisa nova."
+    },
+    {
+      "id": "s3",
+      "text": "Numa visita ao museu, repete a mesma coisa pros calouros: o cérebro precisa de 15 a 25 minutos olhando o mesmo osso pra entrar em foco profundo. Quem nunca passa desse umbral nunca CONHECE como o próprio olho aprende a distinguir um úmero de raptor de um de aves modernas. É como um aprendiz que sai antes da primeira hora — nem sabe o que a vista dele faz quando se acostuma."
+    }
+  ],
+  "ending": "Sara não diz que 'celular é o mal'. Ela diz: o foco profundo no fóssil é uma habilidade rara que se TREINA. Cada bloco de 25 min sem trocar de tarefa é treino. Em 6 meses, identifica em outra liga — pela marcha da própria vista que os outros não acessam.",
+  "micro_check": {
+    "question": "Por que pessoas em foco profundo identificam fósseis tão mais rápido?",
+    "options": [
+      "Porque depois de 15-25 min sem trocar de tarefa o cérebro entra numa marcha que a maioria nunca alcança.",
+      "Porque elas têm uma lupa mais potente do que a média do clube.",
+      "Porque trabalham mais horas por semana que os outros.",
+      "Porque usam técnicas secretas de paleontologia que ninguém conhece."
+    ],
+    "correct_index": 0,
+    "rationale": "A diferença não é talento, é regime. O foco profundo na bancada é um modo cerebral que só liga depois de minutos de observação contínua — e a maioria troca de tarefa tanto que nunca liga essa marcha."
+  }
+}

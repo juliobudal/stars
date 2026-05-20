@@ -20,31 +20,21 @@ module Academy
     # as no-ops so existing callsites don't have to change.
     class Generate < ApplicationService
       def initialize(concept:, lens_type:, age_band: "kid", locale: "pt-BR",
-                     generator: nil, force_refresh: false, learner_id: nil)
+                     generator: nil, force_refresh: false, learner_id: nil, learner: nil)
         @concept = concept
         @lens_type = lens_type.to_sym
         @age_band = age_band
         @locale = locale
+        @learner = learner
         # generator/force_refresh/learner_id intentionally ignored — kept
         # for caller-compatibility with the retired LLM pipeline.
       end
 
       def call
-        curated = lookup_curated
-        return ok(curated) if curated
-
-        fail_with(:no_curated_payload, data: {
-          concept_id: @concept.id, lens_type: @lens_type, locale: @locale
-        })
-      end
-
-      private
-
-      def lookup_curated
-        LensCache.servable.curated
-          .where(concept_id: @concept.id, lens_type: @lens_type.to_s,
-                 age_band: @age_band, locale: @locale)
-          .order(updated_at: :desc).first
+        ResolveCuratedPayload.call(
+          concept: @concept, lens_type: @lens_type,
+          age_band: @age_band, locale: @locale, learner: @learner
+        )
       end
     end
   end

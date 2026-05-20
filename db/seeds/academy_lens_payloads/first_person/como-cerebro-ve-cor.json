@@ -1,0 +1,6 @@
+{
+  "action_prompt": "Olhe fixamente para um quadrado vermelho na tela ou parede (capa de livro, ícone, qualquer coisa vermelha bem saturada) por 30 segundos sem desviar. Depois olhe para uma parede branca ou folha em branco. Não pisque rápido.",
+  "sensory_anchor": "Aparece um quadrado verde-azulado flutuando na parede branca, com a mesma forma do vermelho original. Quantos segundos ele dura antes de desaparecer?",
+  "expected_time_seconds": 45,
+  "reveal": "Os fotorreceptores que captam vermelho cansaram e pararam de responder por alguns segundos. Sem eles, a parede branca parece desbotada do lado oposto — verde-azulado. O cérebro não 'vê' cor: ele calcula a diferença entre canais. Quando um canal apaga, o cálculo gera uma cor que não existe no mundo."
+}

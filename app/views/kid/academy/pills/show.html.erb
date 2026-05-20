@@ -1,0 +1,93 @@
+<% content_for(:title) { "Pílula do Dia · #{@concept.name}" } %>
+<%
+  color_var = "var(--academy-pokedex-#{@concept.pokedex_color_key.presence || 'cognitivo'})"
+%>
+
+<div class="screen screen-enter">
+  <header class="sticky top-0 z-30 -mx-4 px-4 pt-3 pb-3 mb-4"
+          style="background: linear-gradient(to bottom, var(--surface) 70%, rgba(255,255,255,0));">
+    <div class="flex items-center gap-3">
+      <%= link_to kid_root_path,
+                  "aria-label": "Voltar pro Home",
+                  class: "w-10 h-10 rounded-full flex items-center justify-center anim-press shrink-0",
+                  style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06);" do %>
+        <%= render Ui::Icon::Component.new(:chevron_left, size: 18, color: "var(--text)") %>
+      <% end %>
+
+      <div class="flex-1 min-w-0">
+        <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase truncate"
+             style="color: <%= color_var %>;">
+          Pílula do Dia
+        </div>
+        <h1 class="font-display text-[17px] font-extrabold leading-tight m-0 truncate" style="color: var(--text);">
+          <%= @concept.name %>
+        </h1>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex items-center gap-3 mb-4">
+    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-[22px]"
+         style="background: color-mix(in oklab, <%= color_var %> 18%, var(--surface)); border: 2px solid <%= color_var %>;">
+      <%= @action_label[:emoji] %>
+    </div>
+    <div class="flex-1 min-w-0">
+      <h2 class="font-display text-[16px] font-extrabold leading-tight m-0" style="color: var(--text);">
+        <%= @action_label[:action] %>
+      </h2>
+      <div class="font-display text-[11px] font-extrabold tracking-[0.5px]" style="color: var(--text-muted);">
+        60-90 segundos · sem missão
+      </div>
+    </div>
+    <% if @voice %>
+      <div class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full"
+           title="<%= @voice.tagline %>"
+           aria-label="Narrado por <%= @voice.name %>"
+           style="background: var(--surface-2, #F7F7F7); border: 2px solid var(--hairline);">
+        <span aria-hidden="true" style="font-size: 14px; line-height: 1;"><%= @voice.emoji %></span>
+        <span class="font-display text-[10px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--text-muted);"><%= @voice.name %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <%# Reuse the primitive partials from the mission flow. Pill is a single
+      lens with no advance/next — we render and stop. %>
+  <% if @primitive && @payload.present? %>
+    <%= render "kid/academy/missions/lens_#{@primitive}",
+               concept: @concept, payload: @payload, color_var: color_var %>
+  <% else %>
+    <div class="lens-card p-5">
+      <p class="font-display text-[14px] leading-snug m-0" style="color: var(--text-muted);">
+        Pílula carregando — recarregue em alguns segundos.
+      </p>
+    </div>
+  <% end %>
+
+  <div class="mt-5 flex flex-col gap-3">
+    <% unless @pill_view.shared_with_parent? %>
+      <%= button_to kid_academy_share_pill_path(@pill_view),
+                    method: :post,
+                    class: "ls-btn-3d",
+                    style: "background: var(--primary); color: white; padding: 14px 18px; border-radius: 14px; box-shadow: 0 4px 0 var(--primary-2); font-weight: 800; font-family: var(--font-display, Nunito), sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px;" do %>
+        💬 Conta pro pai/mãe
+      <% end %>
+    <% else %>
+      <div class="rounded-2xl px-4 py-3 text-center font-display font-extrabold"
+           style="background: var(--c-mint-soft); color: var(--c-mint-dark); border: 2px solid var(--c-mint);">
+        ✓ Já compartilhei com o pai/mãe!
+      </div>
+    <% end %>
+
+    <%= link_to kid_academy_pills_path,
+                class: "ls-btn-3d text-center",
+                style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06); padding: 12px 18px; border-radius: 12px; color: var(--text); font-weight: 700; font-family: var(--font-display, Nunito), sans-serif;" do %>
+      📔 Ver caderno de pílulas
+    <% end %>
+
+    <%= link_to kid_root_path,
+                class: "ls-btn-3d text-center",
+                style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06); padding: 12px 18px; border-radius: 12px; color: var(--text); font-weight: 700; font-family: var(--font-display, Nunito), sans-serif;" do %>
+      Voltar pra Jornada
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+{
+  "character": {
+    "name": "Lia",
+    "age": 12,
+    "trait": "passa o recreio falando da própria base de Minecraft, mas nunca deixa os outros terminarem sobre as bases deles"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Quarta, 10h15. Recreio. Lia mal senta na mesa do pátio e já dispara: — Gente, eu farmei a netherite ontem! O Steve da minha base agora tem armadura completa e… Ela fala sem pausa enquanto tira o lanche da mochila, sem reparar que Pedro está com a mão erguida há três segundos."
+    },
+    {
+      "id": "s2",
+      "text": "Pedro abaixa a mão. Começa a falar mesmo assim: — Então, eu tava pensando em montar uma farm de creeper pra… — e Lia corta: — Ah, mas deixa eu contar o resto, é muito doido! Eu achei uma fortaleza do Nether e o vilager-clérigo aceitou trocar… Pedro pega o celular, mexe distraído. A amiga ao lado, a Carol, que ia contar do mod novo que instalou, só morde o lanche em silêncio."
+    },
+    {
+      "id": "s3",
+      "text": "No sábado, o servidor abre uma sessão. Todo mundo entra no Discord. Lia chega animada, mas Pedro mutou ela no voice. Carol não responde no privado. O dono começa, e quando Lia vai contar da netherite, Pedro fala primeiro: — Gente, hoje queria mostrar a farm de creeper que terminei. Ninguém interrompe. Pedro fala até o fim. Lia fica quieta, com o personagem parado na base."
+    },
+    {
+      "id": "s4",
+      "text": "Depois da sessão, Lia chama Carol no privado. Carol responde: — É que você nunca deixa ninguém terminar. Aí a gente meio que desiste de contar das bases. Lia para. Engole seco. Na segunda, no recreio, Pedro começa: — Sobre a farm de creeper, eu calculei a TNT e… Lia morde a língua. Espera. Pedro termina. Então ela pergunta: — E aí, quantos creepers por hora?"
+    }
+  ],
+  "ending": "Pedro abre o caderno e desenha o esquema da farm na mesa. Lia escuta os próximos dez minutos sem cortar uma sílaba. O recreio acaba e ela nem tocou no sanduíche.",
+  "micro_check": {
+    "question": "{{learner_name}}, o que mudou no recreio de Lia na segunda-feira?",
+    "options": [
+      "Ela contou primeiro a parte da netherite que tinha farmado",
+      "Ela deixou Pedro terminar de falar antes de responder",
+      "Ela sentou com outra turma do pátio",
+      "Ela pediu desculpas em voz alta pra todo mundo do servidor"
+    ],
+    "correct_index": 1,
+    "rationale": "Lia não pediu desculpas nem mudou de assunto. Ela simplesmente parou de cortar. Deixou Pedro terminar. Aí perguntou algo sobre o que ele disse — o que mostra que ela ouviu de verdade."
+  }
+}

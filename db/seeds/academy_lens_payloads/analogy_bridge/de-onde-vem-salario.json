@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Figurinhas raras na escola servindo de moeda",
+    "elements": [
+      "Na escola tem aquela figurinha brilhante que quase ninguém consegue",
+      "A galera troca lanche, caneta, até cola por uma figurinha rara",
+      "Quem tem várias figurinhas é considerado 'rico' do recreio",
+      "Combina-se 'te dou 3 figurinhas por semana' por algum favor",
+      "A figurinha vira a unidade de pagamento daquele lugar"
+    ]
+  },
+  "target_domain": {
+    "name": "Soldado romano pago em sal",
+    "elements": [
+      "Em Roma antiga, sal era rarissimo e caríssimo (conserva carne, vida)",
+      "Os soldados recebiam ração de sal todo mês como pagamento",
+      "Quem tinha muito sal era considerado rico do exército",
+      "A palavra latina 'salarium' queria dizer 'a quantidade de sal'",
+      "'Salarium' virou 'salário' — o pagamento que se recebe pelo trabalho"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Figurinha rara = moeda do recreio",
+      "to": "Sal = moeda do soldado romano"
+    },
+    {
+      "from": "Recebe figurinhas pelo combinado",
+      "to": "Recebe sal pelo trabalho do mês"
+    },
+    {
+      "from": "'Te pago em figurinhas' descreve o tipo de moeda",
+      "to": "'Salarium' descreve o tipo de moeda — sal"
+    },
+    {
+      "from": "Quando a moeda some do uso a palavra ainda continua no jeito de falar",
+      "to": "Mesmo sem sal nos pagamentos atuais 'salário' continua sendo a palavra"
+    }
+  ],
+  "transfer_question": "Se 'salário' literalmente veio de 'sal' por ser raro e valioso, qual seria o nome do pagamento se a moeda preferida em Roma fosse pimenta-do-reino?"
+}

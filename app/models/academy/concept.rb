@@ -30,7 +30,10 @@ module Academy
   class Concept < ApplicationRecord
     self.table_name = "academy_concepts"
 
-    CATEGORIES = %w[cognitivo cientifico social financeiro saude virtude tecnologia].freeze
+    CATEGORIES = %w[
+      cognitivo cientifico social financeiro saude virtude tecnologia
+      mundo_natural linguagem historia matematica
+    ].freeze
 
     # v5: 1:1 missão↔conceito. Legacy M:N via aula_concepts retired.
     has_many :missions, class_name: "Academy::Mission",

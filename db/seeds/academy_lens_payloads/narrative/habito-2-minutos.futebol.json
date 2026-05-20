@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Vini",
+    "age": 12,
+    "trait": "queria entrar no time de futsal da escola, mas todo treino livre planejava 90 minutos de bola e desistia no aquecimento"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Vini fez a inscrição pra peneira do time de futsal. Faltavam três meses. Planejou: 90 minutos de chute, drible e condicionamento todo dia depois da escola. Dia 1, fez 40 minutos e voltou destruído. Dia 2, achou desculpa. Dia 3, nem trocou de tênis. Duas semanas depois, a chuteira tava no mesmo canto da entrada."
+    },
+    {
+      "id": "s2",
+      "text": "O tio que jogou no juvenil do time da cidade dá uma dica: 'Esquece os 90 minutos. Hoje você sai de casa, vai até o muro do quintal e dá DEZ embaixadas. Só. Pode parar.' Vini ri. Mas faz. Dia 1: dez embaixadas. Dia 2: dez embaixadas, mas continua e faz vinte chutes no muro. Dia 8: já está fazendo trinta minutos sem ter prometido."
+    },
+    {
+      "id": "s3",
+      "text": "Um mês depois, Vini não vê melhora no espelho — mas o tio percebe na finalização. O segredo: a regra dele virou 'sair de casa e tocar na bola dez vezes', tão pequena que cabia até nos dias de prova. O jogador que treina virou identidade, não meta. A peneira ainda nem chegou, mas o pé dele já é outro."
+    }
+  ],
+  "ending": "Na peneira, Vini passa no primeiro corte. Não tinha treinado 90 minutos uma vez sequer — tinha tocado na bola quase todo dia. A regra de dez embaixadas virou trinta minutos sem ele perceber. O técnico anota o nome dele. Pra ele, a piada com o tio: 'Entrei no time com dez embaixadas por vez.'",
+  "micro_check": {
+    "question": "Qual a regra que fez Vini passar na peneira?",
+    "options": [
+      "A primeira ação do dia precisa ser pequena o bastante pra caber até em dia de prova.",
+      "Marcar 90 minutos de treino e disciplinar-se a cumprir todo dia.",
+      "Pedir pro tio cobrar todo dia até virar rotina automática.",
+      "Treinar 4 horas no sábado e descansar a semana inteira."
+    ],
+    "correct_index": 0,
+    "rationale": "Vini pivota o problema do 'volume do treino' pra 'cabência do primeiro toque'. As dez embaixadas entram em qualquer dia, e a regularidade vai construindo a identidade de jogador — não a maratona do sábado."
+  }
+}

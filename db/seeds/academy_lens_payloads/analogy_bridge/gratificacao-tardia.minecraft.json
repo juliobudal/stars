@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Comprar comida do vilager ou plantar trigo na base",
+    "elements": [
+      "Comida do vilager: prazer em 10 segundos, 3 esmeraldas, acaba em uma sessão",
+      "Plantar trigo: precisa de semente, água, hora real do jogo — sai colheita em 1 ciclo de dia",
+      "Quem só compra nunca conhece o gosto de pão feito do trigo da própria base",
+      "Quem planta não vê resultado no primeiro minuto, nem no segundo dia",
+      "No fim da semana: o do vilager gastou 300 esmeraldas, o da farm colhe 80 trigos por ciclo"
+    ]
+  },
+  "target_domain": {
+    "name": "Aprender redstone vs assistir tutorial pronto",
+    "elements": [
+      "Vídeo pronto: prazer em 10 min, te entretém, esquece em 3 dias",
+      "Aprender redstone: precisa de teste, erro, repetição — sai circuito que funciona em semanas",
+      "Quem só assiste nunca conhece a habilidade de inventar um circuito do zero",
+      "Quem aprende não vê resultado na primeira tentativa, nem na primeira semana",
+      "No mês 1: o consumidor viu 100 tutoriais, o aprendiz monta um relógio T-flip-flop sozinho"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Comida do vilager, prazer rápido",
+      "to": "Tutorial assistido, prazer rápido"
+    },
+    {
+      "from": "Plantar trigo, demora um ciclo",
+      "to": "Aprender redstone, demora semanas"
+    },
+    {
+      "from": "Colheita constante depois da espera",
+      "to": "Habilidade que rende o jogo todo depois"
+    },
+    {
+      "from": "Quem só compra gasta esmeralda sem acumular",
+      "to": "Quem só assiste gasta tempo sem acumular"
+    }
+  ],
+  "transfer_question": "Se em uma semana a farm dá trigo de graça enquanto as 300 esmeraldas viraram pão antigo, por que sua sessão de Minecraft gira no que dá prazer agora?"
+}

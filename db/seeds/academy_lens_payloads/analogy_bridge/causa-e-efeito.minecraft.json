@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Reação em cadeia de TNT detonando uma mineração inteira",
+    "elements": [
+      "Você acende o primeiro bloco — é a causa",
+      "Cada TNT explode porque a anterior tocou — efeito de uma é causa da próxima",
+      "Você vê só o último buraco gigantesco, parece 'do nada'",
+      "Pra entender, precisa voltar a cadeia inteira até o primeiro bloco aceso",
+      "Tirar uma TNT no meio interrompe tudo dali pra frente"
+    ]
+  },
+  "target_domain": {
+    "name": "Briga grande no servidor de Minecraft no fim da noite",
+    "elements": [
+      "A briga estourou na última mensagem — parece a causa, mas é a última peça",
+      "Cada coisa dita no chat aconteceu porque algo antes esquentou",
+      "Quem chega no servidor só na briga vê 'do nada', acha exagero",
+      "Pra entender, precisa voltar: bloco quebrado por engano, item levado sem pedir, fofoca",
+      "Tivesse alguém intervindo numa mensagem do meio, a fileira parava ali"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Primeiro bloco de TNT aceso",
+      "to": "Mensagem pequena que iniciou tudo"
+    },
+    {
+      "from": "Cada TNT é causa e efeito ao mesmo tempo",
+      "to": "Cada reação no chat é causa e efeito ao mesmo tempo"
+    },
+    {
+      "from": "A última explosão parece o evento",
+      "to": "A última mensagem parece a briga toda"
+    },
+    {
+      "from": "Tirar TNT no meio para a cadeia",
+      "to": "Pausar a conversa no chat interrompe o estresse"
+    }
+  ],
+  "transfer_question": "Se ninguém culpa a 87ª TNT por 'ter começado a explosão' na mineração, por que tantas brigas no servidor são contadas como se a última mensagem fosse a causa real?"
+}

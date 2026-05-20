@@ -229,4 +229,25 @@
     </section>
   <% end %>
 
+  <%# ── Elenco shortcut ─────────────────────────────────── %>
+  <section class="mb-5">
+    <%= link_to kid_academy_cast_path,
+                class: "ls-card-3d block",
+                style: "background: var(--surface); border: 2px solid var(--hairline); border-radius: 14px; padding: 12px 14px; box-shadow: 0 4px 0 rgba(0,0,0,0.06); text-decoration: none; color: inherit;",
+                "data-testid": "kid-cast-shortcut" do %>
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3 min-w-0">
+          <span aria-hidden="true" style="font-size: 22px;">🎭</span>
+          <div class="min-w-0">
+            <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase" style="color: var(--text-muted);">Elenco</div>
+            <div class="font-display text-[13px] font-extrabold leading-tight" style="color: var(--text);">
+              Quem conta cada aula
+            </div>
+          </div>
+        </div>
+        <%= render Ui::Icon::Component.new("chevron-right", size: 18, color: "var(--text-muted)") %>
+      </div>
+    <% end %>
+  </section>
+
 </div>

@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Extinção em massa que apagou os dinossauros não-avianos",
+    "elements": [
+      "Um asteroide cai no que hoje é o México — é a primeira peça",
+      "Poeira sobe e bloqueia o sol — efeito vira causa: plantas morrem",
+      "Quem só lê o último capítulo do livro vê 'os dinossauros sumiram do nada'",
+      "Pra entender, precisa voltar a cadeia: impacto, poeira, frio, plantas, herbívoros, carnívoros",
+      "Tirar uma peça do meio (poeira) e tudo dali pra frente muda"
+    ]
+  },
+  "target_domain": {
+    "name": "Briga grande no clube de paleontologia no fim do dia",
+    "elements": [
+      "A briga estourou na última fala — parece a causa, mas é a última peça",
+      "Cada coisa dita aconteceu porque algo antes esquentou na visita",
+      "Quem chega só na briga vê 'do nada', acha exagero",
+      "Pra entender, precisa voltar: réplica caída, comentário sobre o outro, fila no microscópio",
+      "Tivesse alguém intervindo numa peça do meio, a cadeia parava ali"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Asteroide caindo no México",
+      "to": "Comentário pequeno que iniciou tudo"
+    },
+    {
+      "from": "Cada elo é causa e efeito ao mesmo tempo",
+      "to": "Cada reação é causa e efeito ao mesmo tempo"
+    },
+    {
+      "from": "A extinção dos T-Rex parece o evento",
+      "to": "A última frase parece a briga toda"
+    },
+    {
+      "from": "Tirar a poeira muda a cadeia",
+      "to": "Pausar a conversa interrompe o estresse"
+    }
+  ],
+  "transfer_question": "Se nenhum paleontólogo diz que o T-Rex 'simplesmente sumiu' sem voltar a cadeia até o asteroide, por que tantas brigas são contadas como se a última frase fosse a causa real?"
+}

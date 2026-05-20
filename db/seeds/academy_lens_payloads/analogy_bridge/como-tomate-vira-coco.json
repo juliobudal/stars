@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Linha de montagem de fábrica de carro",
+    "elements": [
+      "A esteira leva a peça avançando, sempre na mesma direção",
+      "Em cada estação, máquinas e ferramentas quebram a peça em partes úteis",
+      "Operários separam o que serve do que vai pro lixo",
+      "Tudo o que vale entra no carro, sendo aproveitado",
+      "No fim da linha tudo que sobra sai como entulho descartado"
+    ]
+  },
+  "target_domain": {
+    "name": "Comida atravessando o intestino",
+    "elements": [
+      "Os músculos do intestino apertam a comida em ondas pra frente (peristalse)",
+      "Enzimas e ácidos quebram o tomate em moléculas minúsculas no caminho",
+      "Vilosidades 'separam' o que serve: vitamina, açúcar, proteína",
+      "O que serve entra no sangue e alimenta o corpo inteiro",
+      "O que não serve junta no fim do intestino e sai como cocô"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Esteira empurra a peça sempre pra frente",
+      "to": "Peristalse empurra a comida sempre pra frente"
+    },
+    {
+      "from": "Estações com ferramentas que quebram a peça",
+      "to": "Enzimas que quebram a comida em pedacinhos"
+    },
+    {
+      "from": "Operário separa o útil do descarte",
+      "to": "Vilosidade separa nutriente do que sai"
+    },
+    {
+      "from": "Entulho sai no fim da linha",
+      "to": "Cocô sai no fim do intestino"
+    }
+  ],
+  "transfer_question": "Se a linha de montagem do intestino aproveita o que serve e descarta o resto, por que pessoas que comem só besteira ainda 'pesam' apesar de estar mal nutridas?"
+}

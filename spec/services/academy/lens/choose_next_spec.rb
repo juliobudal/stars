@@ -126,6 +126,34 @@ RSpec.describe Academy::Lens::ChooseNext do
     end
   end
 
+  describe "curated set with rare lenses (first_person/historical/engineering)" do
+    # Plan C — once these lens types have curated payloads for a concept,
+    # ChooseNext must actually pick them (not stay stuck on the popular four).
+    let(:curated_types) { %i[narrative first_person historical engineering analogy_bridge] }
+
+    before do
+      curated_types.each do |t|
+        Academy::LensCache.create!(
+          concept: concept, lens_type: t, age_band: "kid", locale: "pt-BR",
+          source: "curated", payload: { stub: true }, quality_flagged: false,
+          generated_at: Time.current
+        )
+      end
+    end
+
+    it "picks first_person as opener when it's in the curated set" do
+      result = described_class.call(mission_progress: progress)
+      expect(%i[narrative first_person historical]).to include(result.data.next_lens)
+    end
+
+    it "eventually picks first_person/historical/engineering when only popular types have been visited" do
+      add_visit(:narrative, 1)
+      result = described_class.call(mission_progress: progress)
+      # Unseen types win the variety rule, so a rare lens must be next.
+      expect(%i[first_person historical engineering]).to include(result.data.next_lens)
+    end
+  end
+
   describe "adaptive: wrong-streak biases towards re-anchor" do
     it "prefers a concrete lens after 2 wrong micro_checks" do
       add_visit(:scientific, 1)

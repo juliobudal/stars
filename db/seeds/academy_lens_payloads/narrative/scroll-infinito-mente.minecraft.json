@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Rafa",
+    "age": 11,
+    "trait": "economiza diamantes no Minecraft há três sessões pra trocar por uma armadura encantada com o vilager-clérigo"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Sexta à noite, Rafa abre o baú principal da base. A irmã trouxe um livro encantado de presente — achou no saque. Ele coloca no slot do clérigo devagar, troca por um peitoral, e abre a inspeção. Nada de bom. Só Proteção I, que ele já tinha. Mas a mão já coça pra trocar de novo."
+    },
+    {
+      "id": "s2",
+      "text": "Sábado de manhã, Rafa volta ao vilager-clérigo. Cada troca custa esmeralda. Ele tinha jurado economizar pras esmeraldas comprarem o livro de Mending pro outro vilager. Mas o clérigo anuncia o item do slot: Proteção IV. Rafa conta as esmeraldas no inventário — dá pra quatro trocas. Faz as quatro."
+    },
+    {
+      "id": "s3",
+      "text": "Em casa, examina item por item. Na terceira troca, o ícone dourado de Proteção IV aparece. Ele clica — mas é pra capacete, e ele queria pra peitoral. Mesmo assim, a sensação de ouvir o som de troca completa foi mais forte que a decepção. Aceita a quarta troca. Nada. Fica com o inventário vazio de esmeralda, encarando peitorais comuns."
+    }
+  ],
+  "ending": "Na semana seguinte, Rafa cria uma regra: '1 troca por dia, só depois de farmar 10 esmeraldas.' No segundo dia, o ícone dourado aparece de novo. Ele fecha o menu devagar e poupa o resto pro livro de Mending. Aprende a fechar o jogo quando a mão coça por mais uma troca.",
+  "micro_check": {
+    "question": "{{learner_name}}, por que Rafa fez as quatro trocas mesmo tendo guardado esmeralda pra outra coisa?",
+    "options": [
+      "Porque o livro encantado raro valia muito mais que o Mending",
+      "Porque cada troca podia trazer Proteção IV — e a chance fez ele esquecer o objetivo",
+      "Porque o clérigo prometeu que o próximo slot vinha encantado bom",
+      "Porque ele queria mostrar a armadura pros amigos do servidor"
+    ],
+    "correct_index": 1,
+    "rationale": "A incerteza do encantamento é mais viciante que o encantamento em si. Rafa não trocou pelo valor do Mending — trocou pela CHANCE de cada slot novo, mesmo sabendo que a chance era pequena."
+  }
+}

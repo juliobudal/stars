@@ -1,0 +1,43 @@
+{
+  "challenge": "Desenha o gancho de UM hábito novo que cabe em 2 minutos: gatilho (quando), rotina (o que), recompensa (o que vem depois), local (onde). Escolhe 2 a 4 ingredientes — cada um reforça uma parte do gancho.",
+  "constraints": [
+    {
+      "id": "g",
+      "label": "GATILHO concreto: 'depois de escovar os dentes, eu...' — encaixa em hábito que já existe",
+      "cost": "Se o hábito-âncora falha (acordar tarde, viagem), o novo também falha junto"
+    },
+    {
+      "id": "v",
+      "label": "Versão MÍNIMA da rotina: 'leio 1 página', '1 flexão', 'escrevo 1 frase'",
+      "cost": "Parece ridiculamente pequeno; o ego resiste 'isso não conta'"
+    },
+    {
+      "id": "l",
+      "label": "LOCAL fixo: sempre na mesma mesa, mesma cadeira, mesma posição",
+      "cost": "Inflexível em viagem; precisa de plano B em casa de outro alguém"
+    },
+    {
+      "id": "r",
+      "label": "RECOMPENSA imediata: marca um X no calendário, fala 'feito' em voz alta",
+      "cost": "Parece bobo no início; depende do cérebro responder a reforço simbólico"
+    },
+    {
+      "id": "p",
+      "label": "PISTA visível: livro na mesa de cabeceira, tênis perto da porta, garrafa cheia",
+      "cost": "Ocupa espaço; alguém da casa pode reclamar; precisa repor a pista a cada dia"
+    },
+    {
+      "id": "d",
+      "label": "Duração CRESCENTE devagar: semana 1 = 2 min, semana 3 = 5 min, semana 8 = 15 min",
+      "cost": "Exige paciência; tentação de 'pular' direto pra 15 min e quebrar em 3 dias"
+    }
+  ],
+  "must_pick": 3,
+  "outcomes": {
+    "g+v+l": "Pacote clássico: gatilho ancorado + versão mínima + local fixo. O gancho vira automático em 14-21 dias. Tradeoff: rígido em mudança de rotina. Se você muda de casa, escola, ou o hábito-âncora muda, o novo desaba junto. Funciona melhor em rotina estável.",
+    "g+v+p": "Gatilho + versão mínima + pista visível. Bom pra hábito FÍSICO (exercício, leitura, instrumento) onde você esquece de começar. A pista resolve o 'eu não lembrei'. Tradeoff: depende do ambiente — se alguém arruma a casa, a pista some.",
+    "v+l+r": "Versão mínima + local + recompensa visível. Bom pra hábitos onde a motivação é frágil (escrever, estudar). O X no calendário substitui a recompensa que ainda não veio. Tradeoff: depende do cérebro valorizar progresso simbólico — algumas pessoas não respondem.",
+    "g+v+d": "Gatilho + versão mínima + crescimento gradual. Pacote AMBICIOSO: o hábito vai virar substancial em 2 meses. Tradeoff: paciência alta no começo. 'Só 2 min?' frustra o ego. Quem aguenta 8 semanas chega em 15 min naturais — quem não aguenta abandona na semana 2.",
+    "g+v+l+r": "Pacote completo de 4: âncora + mínimo + local + reforço. 70% dos hábitos novos pegam com essa combinação. Tradeoff: setup mais caro de manter — quatro coisas precisam estar no lugar todo dia. Quando funciona, vira invisível em 1 mês."
+  }
+}

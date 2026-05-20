@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     end
     resources :wallet, only: [ :index ]
     resource :wishlist, only: %i[create destroy], controller: "wishlist"
+    resource :interests, only: %i[show update], controller: "interests"
 
     # Academy module — see app/models/academy.rb for isolation rules.
     namespace :academy do
@@ -69,6 +70,19 @@ Rails.application.routes.draw do
       end
       get "atlas", to: "atlas#index", as: :atlas
       resources :practice_wagers, only: %i[update], path: "apostas"
+      # Pílula do Dia — daily 60-90s lens surface.
+      # `pill` (singular) shows today's pick; `pills` (plural) lists history;
+      # per-id share endpoint records the parent share for that PillView row.
+      get  "pill", to: "pills#show", as: :pill
+      get  "pills", to: "pills#index", as: :pills
+      post "pills/:id/share", to: "pills#share", as: :share_pill
+
+      # Lightning Round — 5 retrieval questions in ≤90s.
+      get  "lightning", to: "lightning#show",   as: :lightning
+      post "lightning", to: "lightning#answer", as: :lightning_answer
+
+      # Cast gallery — the 5 sub-voices the kid meets across lens types.
+      get "cast", to: "cast#index", as: :cast
     end
   end
 
