@@ -22,7 +22,8 @@ class Kid::Academy::LightningController < Kid::Academy::BaseController
   def answer
     rounds = Array(session[:lightning_rounds]).map(&:symbolize_keys)
     started = session[:lightning_started_at].to_i
-    submissions = params.permit!.to_h["answer"].to_h
+    allowed_keys = rounds.each_index.map { |i| "q#{i}" }
+    submissions = params.fetch(:answer, {}).permit(*allowed_keys).to_h
     correct = 0
 
     rounds.each_with_index do |r, i|
