@@ -6,7 +6,10 @@ RSpec.describe Academy::Missions::ReviewMode do
   let(:learner) { Academy::Learner.new(id: 4242, display_name: "Aluno", age_band: "kid") }
   let(:subject_) { create(:academy_subject) }
   let(:concept) { create(:academy_concept, slug: "review-concept", category: "cognitivo") }
-  let(:mission) { create(:academy_mission, subject: subject_, concept: concept, slug: "review-mission") }
+  let(:mission) do
+    create(:academy_mission, subject: subject_, concept: concept,
+           slug: "review-mission", with_curated_kid_payload: false)
+  end
 
   def make_progress(status:)
     Academy::MissionProgress.create!(
@@ -58,6 +61,71 @@ RSpec.describe Academy::Missions::ReviewMode do
       expect(stage.visits.map(&:lens_type)).to eq(%w[scientific narrative ethical])
       expect(stage.visits.first.lens_cache).to be_present
       expect(stage.lens_types).to contain_exactly("scientific", "narrative", "ethical")
+    end
+
+    it "exposes the closure-lens headline as `closure_headline` (analogy_bridge counts)" do
+      progress = make_progress(status: :completed)
+      make_closed_visit(progress, :narrative, 1)
+      # The make_closed_visit helper writes payload {h:x}; overwrite the
+      # closure cache so it carries a headline the view can render.
+      bridge_cache = Academy::LensCache.create!(
+        concept_id: concept.id, lens_type: "analogy_bridge", age_band: "kid", locale: "pt-BR",
+        payload: { "headline" => "Café da manhã é abastecer um foguete" },
+        generated_at: Time.current
+      )
+      Academy::LearnerLensVisit.create!(
+        mission_progress: progress, learner_id: learner.id, concept_id: concept.id,
+        lens_type: "analogy_bridge", lens_cache: bridge_cache, ordering_position: 2,
+        opened_at: 30.minutes.ago, closed_at: 10.minutes.ago, outcome: "completed"
+      )
+
+      stage = described_class.call(learner: learner, mission: mission).data
+      expect(stage.closure_headline).to eq("Café da manhã é abastecer um foguete")
+    end
+
+    it "returns nil closure_headline when no closure lens was visited" do
+      progress = make_progress(status: :completed)
+      make_closed_visit(progress, :narrative, 1)
+      make_closed_visit(progress, :scientific, 2)
+
+      stage = described_class.call(learner: learner, mission: mission).data
+      expect(stage.closure_headline).to be_nil
+    end
+
+    it "loads the minted DiscoveryCard and exposes next_mission within the trail" do
+      trail = create(:academy_trail, subject: subject_, slug: "rv-trail")
+      # The `mission` let opts out of the factory's curated-payload seeding
+      # (existing tests below create caches by hand). That flips active=false
+      # — which is fine for chooser tests, but here we need the mission to
+      # be active so trail.missions.where(active: true) picks it up.
+      Academy::LensCache.find_or_create_by!(
+        concept: concept, lens_type: "narrative", age_band: "kid", locale: "pt-BR"
+      ) do |r|
+        r.source = "curated"
+        r.payload = { stub: true }
+        r.generated_at = Time.current
+      end
+      mission.update!(trail: trail, position_in_trail: 1, active: true)
+      next_concept = create(:academy_concept, slug: "rv-next-concept")
+      next_mission = create(:academy_mission, subject: subject_, trail: trail,
+                            concept: next_concept, slug: "rv-next", position_in_trail: 2)
+
+      progress = make_progress(status: :completed)
+      make_closed_visit(progress, :scientific, 1)
+      card = Academy::DiscoveryCard.create!(
+        learner_id: learner.id, mission: mission,
+        headline: "uma sacada", application: "aplica", central_insight: "se X, então Y",
+        minted_at: Time.current
+      )
+
+      fresh_mission = Academy::Mission.find(mission.id)
+      stage = described_class.call(learner: learner, mission: fresh_mission).data
+      expect(fresh_mission.trail).to eq(trail)
+      expect(trail.missions.where(active: true).pluck(:id)).to contain_exactly(mission.id, next_mission.id)
+      expect(stage.card).to eq(card)
+      expect(stage.next_mission).to eq(next_mission)
+      expect(stage.trail_total).to eq(2)
+      expect(stage.trail_position).to eq(1)
     end
 
     it "excludes still-open visits from the ledger" do

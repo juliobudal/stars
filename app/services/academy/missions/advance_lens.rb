@@ -42,11 +42,36 @@ module Academy
           end
 
           cache = try_generate_with_fallbacks!(decision.next_lens)
-          return fail_with(:lens_generation_failed) unless cache
+          unless cache
+            # Every candidate failed (e.g. all curated rows flagged, LLM
+            # transport broken). Don't 503 the kid — record a signal so the
+            # gap is visible to ops/parents, finalize, and let the
+            # controller route to the completion screen.
+            record_curated_gap_signal!(decision.next_lens)
+            finalize!
+            return ok(Stage.new(
+              progress: @progress.reload, visit: open_visit, lens_cache: nil,
+              mission_complete: true
+            ))
+          end
 
           visit = create_visit!(decision, cache)
           ok(Stage.new(progress: @progress, visit: visit, lens_cache: cache, mission_complete: false))
         end
+      end
+
+      def record_curated_gap_signal!(preferred_type)
+        ::Academy::LensSignal.create!(
+          mission_progress_id: @progress.id,
+          learner_id: @progress.learner_id,
+          concept_id: @progress.mission.concept_id,
+          lens_type: preferred_type.to_s,
+          signal_type: "curated_gap_hit",
+          numeric_value: 1,
+          recorded_at: Time.current
+        )
+      rescue ActiveRecord::RecordInvalid
+        # Signal is observability-only; never block the kid for a logging failure.
       end
 
       private

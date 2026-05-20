@@ -61,6 +61,7 @@ module Academy
     validates :slug, :title, :learning_objective, presence: true
     validates :slug, uniqueness: { scope: :subject_id }
     validates :central_insight, length: { maximum: 240 }, allow_blank: true
+    validate :concept_must_have_curated_kid_payload, if: :active?
 
     scope :active, -> { where(active: true).order(:order_in_subject) }
     scope :in_trail_order, -> { order(Arel.sql("position_in_trail NULLS LAST"), :order_in_subject) }
@@ -87,6 +88,22 @@ module Academy
       return nil if source.blank?
 
       source.split(/[+(]/).first.to_s.strip.presence
+    end
+
+    private
+
+    # Block publishing a mission whose concept has no curated kid payload —
+    # otherwise ChooseNext would return :no_curated_content and the kid
+    # would hit a redirect loop on first open.
+    def concept_must_have_curated_kid_payload
+      return if concept_id.blank?
+
+      has_payload = Academy::LensCache.curated.servable
+                      .where(concept_id: concept_id, age_band: "kid", locale: "pt-BR")
+                      .exists?
+      return if has_payload
+
+      errors.add(:concept, "ainda não tem aula curada — não pode publicar")
     end
   end
 end

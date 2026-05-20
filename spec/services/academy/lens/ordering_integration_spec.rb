@@ -11,7 +11,7 @@ require "benchmark"
 #   * Coverage floor (≥4 distinct types) reached before close.
 RSpec.describe "Lens ordering — full mission journey" do
   let(:concept) { create(:academy_concept, slug: "ord-int") }
-  let(:mission) { create(:academy_mission, concept: concept) }
+  let(:mission) { create(:academy_mission, concept: concept, with_curated_kid_payload: false) }
   let(:learner_id) { 42 }
   let(:progress) do
     Academy::MissionProgress.create!(

@@ -13,6 +13,14 @@ FactoryBot.define do
   end
 
   factory :academy_mission, class: "Academy::Mission" do
+    transient do
+      # Auto-seed a curated LensCache row so the active-mission validation
+      # (Academy::Mission#concept_must_have_curated_kid_payload) passes
+      # without every test having to set one up by hand. Override to false
+      # for tests that exercise the validation itself.
+      with_curated_kid_payload { true }
+    end
+
     association :subject, factory: :academy_subject
     association :concept, factory: :academy_concept
     sequence(:slug) { |n| "mission-#{n}" }
@@ -23,6 +31,26 @@ FactoryBot.define do
     order_in_subject { 0 }
     points_reward { 25 }
     active { true }
+
+    before(:create) do |mission, evaluator|
+      if evaluator.with_curated_kid_payload && mission.concept_id
+        unless Academy::LensCache.curated.where(
+          concept_id: mission.concept_id, age_band: "kid", locale: "pt-BR"
+        ).exists?
+          Academy::LensCache.create!(
+            concept_id: mission.concept_id,
+            lens_type: "narrative", age_band: "kid", locale: "pt-BR",
+            source: "curated", payload: { stub: true },
+            quality_flagged: false, generated_at: Time.current
+          )
+        end
+      else
+        # Validation requires curated coverage when active. Tests that opt
+        # out are exercising chooser-fallback / scoring paths that don't
+        # need an active mission — flip active so the record saves.
+        mission.active = false
+      end
+    end
   end
 
   factory :academy_mission_progress, class: "Academy::MissionProgress" do

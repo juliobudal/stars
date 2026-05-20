@@ -45,6 +45,7 @@ module Academy
       self_report_easy
       self_report_hard
       transfer_hint
+      curated_gap_hit
     ].freeze
 
     validates :learner_id, :concept_id, :lens_type, :signal_type, :recorded_at, presence: true

@@ -38,6 +38,9 @@
     <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
          style="color: <%= color_var %>;">
       Missão completa
+      <% if @review_stage.trail_total > 1 %>
+        · <%= @review_stage.trail_position %>/<%= @review_stage.trail_total %>
+      <% end %>
     </div>
     <p class="font-display text-[14px] leading-snug m-0" style="color: var(--text);">
       <strong><%= @review_stage.total_visits %></strong>
@@ -45,6 +48,61 @@
       sobre <strong><%= mission.concept.name %></strong>.
     </p>
   </div>
+
+  <%# ── A sacada (closure-lens headline) ──────────────────────── %>
+  <% if @review_stage.closure_headline.present? %>
+    <div class="lens-card p-5 mb-4"
+         style="background: var(--surface); border-color: <%= color_var %>;">
+      <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-2"
+           style="color: <%= color_var %>;">
+        ✨ A sacada
+      </div>
+      <p class="font-display text-[16px] font-extrabold leading-snug m-0" style="color: var(--text);">
+        <%= @review_stage.closure_headline %>
+      </p>
+    </div>
+  <% end %>
+
+  <%# ── Pra sua coleção (minted DiscoveryCard) ────────────────── %>
+  <% if @review_stage.card.present? %>
+    <%= link_to kid_academy_atlas_path,
+                class: "block lens-card p-4 mb-4 anim-press",
+                style: "background: var(--surface-2); border-color: var(--hairline); text-decoration: none; color: inherit;" do %>
+      <div class="flex items-start gap-3">
+        <div class="w-11 h-11 rounded-2xl shrink-0 flex items-center justify-center font-display text-[20px] font-extrabold"
+             style="background: <%= color_var %>; color: white;">
+          🃏
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
+               style="color: var(--text-muted);">
+            Pra sua coleção
+          </div>
+          <div class="font-display text-[14px] font-extrabold leading-snug" style="color: var(--text);">
+            <%= @review_stage.card.headline %>
+          </div>
+          <div class="font-display text-[11px] mt-1" style="color: var(--text-muted);">
+            Toque pra ver no Atlas →
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# ── CTA pra próxima missão / voltar pra trilha ────────────── %>
+  <% if @review_stage.next_mission.present? %>
+    <%= link_to kid_academy_subject_mission_path(@subject, @review_stage.next_mission),
+                class: "block w-full mb-4 px-5 py-4 rounded-2xl font-display font-extrabold text-[15px] anim-press text-center",
+                style: "background: var(--c-primary); color: white; box-shadow: 0 4px 0 color-mix(in oklab, var(--c-primary) 60%, black); text-decoration: none;" do %>
+      Próxima missão →
+    <% end %>
+  <% elsif mission.trail.present? %>
+    <%= link_to kid_academy_subject_trail_path(@subject, mission.trail),
+                class: "block w-full mb-4 px-5 py-4 rounded-2xl font-display font-extrabold text-[15px] anim-press text-center",
+                style: "background: var(--surface); color: var(--text); border: 2px solid var(--hairline); box-shadow: 0 4px 0 var(--hairline); text-decoration: none;" do %>
+      Voltar pra trilha
+    <% end %>
+  <% end %>
 
   <%# ── Visit cards ───────────────────────────────────────────── %>
   <div class="flex flex-col gap-3">

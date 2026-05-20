@@ -4,7 +4,10 @@ require "rails_helper"
 
 RSpec.describe Academy::Lens::ChooseNext do
   let(:concept) { create(:academy_concept, slug: "dop-cn") }
-  let(:mission) { create(:academy_mission, concept: concept) }
+  # Most ChooseNext tests probe the ROTATION-fallback path used when a
+  # concept has no curated payloads. The "curated set without closure lens"
+  # describe below opts back in by seeding payloads explicitly.
+  let(:mission) { create(:academy_mission, concept: concept, with_curated_kid_payload: false) }
   let(:progress) do
     Academy::MissionProgress.create!(
       learner_id: 33, mission: mission, status: :in_progress, started_at: Time.current
