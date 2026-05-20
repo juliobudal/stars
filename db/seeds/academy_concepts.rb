@@ -198,57 +198,57 @@ CONCEPT_BRIEFS = {
   "dopamina" => {
     the_essence: "Dopamina não é prazer — é o sinal de 'vai atrás disso'.",
     common_confusion: "Crianças acham que dopamina É o prazer; na verdade é a antecipação dele.",
-    forbidden_terms: ["dopamina é o prazer", "molécula do prazer", "hormônio do prazer"]
+    forbidden_terms: [ "dopamina é o prazer", "molécula do prazer", "hormônio do prazer" ]
   },
   "recompensa-variavel" => {
     the_essence: "Prêmio incerto vicia mais que prêmio garantido — o cérebro paga atenção pela CHANCE.",
     common_confusion: "Achar que vicia porque o prêmio é grande; vicia porque é INCERTO.",
-    forbidden_terms: ["sorte", "azar puro"]
+    forbidden_terms: [ "sorte", "azar puro" ]
   },
   "habito-loop" => {
     the_essence: "Hábito não nasce de força de vontade — nasce do ciclo gatilho → rotina → recompensa, repetido.",
     common_confusion: "Pensar que basta 'querer muito' pra criar hábito; o que cria é repetir o ciclo.",
-    forbidden_terms: ["força de vontade resolve", "basta querer"]
+    forbidden_terms: [ "força de vontade resolve", "basta querer" ]
   },
   "atencao" => {
     the_essence: "Atenção é recurso finito — onde você manda, você vira.",
     common_confusion: "Confundir atenção com tempo; ficar 1h olhando algo distraído não é prestar atenção.",
-    forbidden_terms: ["multitarefa funciona"]
+    forbidden_terms: [ "multitarefa funciona" ]
   },
   "vies-confirmacao" => {
     the_essence: "O cérebro caça provas do que já acredita — e finge não ver as que contrariam.",
     common_confusion: "Confundir com preconceito; viés de confirmação age mesmo em ideias neutras.",
-    forbidden_terms: ["preconceito", "racismo", "burrice"]
+    forbidden_terms: [ "preconceito", "racismo", "burrice" ]
   },
   "gratificacao-tardia" => {
     the_essence: "Esperar pra ganhar mais é músculo — treina ou atrofia.",
     common_confusion: "Pensar que é dom inato; é hábito que cresce com cada espera bem-sucedida.",
-    forbidden_terms: ["nasceu paciente", "personalidade calma"]
+    forbidden_terms: [ "nasceu paciente", "personalidade calma" ]
   },
   "juros-compostos" => {
     the_essence: "Ganho que ganha ganho — o tempo é o ingrediente raro, não o valor inicial.",
     common_confusion: "Achar que precisa de muito dinheiro pra começar; o multiplicador é o TEMPO.",
-    forbidden_terms: ["só pra rico", "precisa muito dinheiro"]
+    forbidden_terms: [ "só pra rico", "precisa muito dinheiro" ]
   },
   "sono-consolidacao" => {
     the_essence: "Dormir é quando o cérebro salva o arquivo do dia — sem sono, o aprendizado se perde.",
     common_confusion: "Pensar que estudar até tarde rende mais; dormir é parte do estudo.",
-    forbidden_terms: ["preguiça dormir", "dormir é perder tempo"]
+    forbidden_terms: [ "preguiça dormir", "dormir é perder tempo" ]
   },
   "prova-social" => {
     the_essence: "Fazer o que outros fazem — gatilho universal que decide quase tudo sem você notar.",
     common_confusion: "Achar que não cai nessa; cai exatamente quando acha que não cai.",
-    forbidden_terms: ["pessoas espertas não caem"]
+    forbidden_terms: [ "pessoas espertas não caem" ]
   },
   "honestidade" => {
     the_essence: "Honestidade é primeiro contrato consigo mesmo — antes de qualquer pacto com outros.",
     common_confusion: "Achar que mentira pequena 'não conta'; o custo é a confiabilidade do próprio juízo.",
-    forbidden_terms: ["mentirinha branca não faz mal"]
+    forbidden_terms: [ "mentirinha branca não faz mal" ]
   },
   "neuroplasticidade" => {
     the_essence: "Cérebro forma conexões novas DURANTE o erro — errar é a oficina do aprendizado.",
     common_confusion: "Achar que errar é fracasso; é o único momento em que o cérebro reconecta.",
-    forbidden_terms: ["errar é fracasso"]
+    forbidden_terms: [ "errar é fracasso" ]
   }
 }.freeze
 

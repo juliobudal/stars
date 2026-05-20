@@ -17,7 +17,7 @@ class CreateAcademyLightningRoundRuns < ActiveRecord::Migration[8.1]
       t.timestamps
     end
 
-    add_index :academy_lightning_round_runs, [:learner_id, :created_at],
+    add_index :academy_lightning_round_runs, [ :learner_id, :created_at ],
               name: :idx_academy_lightning_runs_by_learner_recency
   end
 end

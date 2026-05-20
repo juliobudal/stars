@@ -108,7 +108,7 @@ else
       if file_slug.count(".").positive?
         file_slug.split(".", 2)
       else
-        [file_slug, nil]
+        [ file_slug, nil ]
       end
     mission      = mission_by_slug[base_slug]
     concept      = mission&.concept || concept_by_slug[base_slug]
@@ -130,13 +130,13 @@ else
 
     errors = JSON::Validator.fully_validate(schemas[lens_type], payload, version: :draft4)
     if errors.any?
-      failed << [file, errors]
+      failed << [ file, errors ]
       next
     end
 
     tone = tone_violations(payload, forbidden)
     if tone.any?
-      tone_failed << [file, tone]
+      tone_failed << [ file, tone ]
       next
     end
 
@@ -149,10 +149,10 @@ else
                               .reject(&:empty?).join(". ")
     )
     if readability.block?
-      readability_failed << [file, readability.score]
+      readability_failed << [ file, readability.score ]
       next if READABILITY_STRICT
     elsif readability.warn?
-      readability_warned << [file, readability.score]
+      readability_warned << [ file, readability.score ]
     end
 
     key = {

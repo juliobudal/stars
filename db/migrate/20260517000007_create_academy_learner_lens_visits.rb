@@ -21,14 +21,14 @@ class CreateAcademyLearnerLensVisits < ActiveRecord::Migration[8.0]
     end
 
     add_index :academy_learner_lens_visits,
-              [:mission_progress_id, :ordering_position],
+              [ :mission_progress_id, :ordering_position ],
               unique: true,
               name: "idx_academy_lens_visits_position"
     add_index :academy_learner_lens_visits,
-              [:learner_id, :concept_id, :lens_type],
+              [ :learner_id, :concept_id, :lens_type ],
               name: "idx_academy_lens_visits_learner_concept_lens"
     add_index :academy_learner_lens_visits,
-              [:learner_id, :opened_at],
+              [ :learner_id, :opened_at ],
               name: "idx_academy_lens_visits_learner_opened"
 
     add_foreign_key :academy_learner_lens_visits, :academy_mission_progresses, column: :mission_progress_id

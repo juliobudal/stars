@@ -163,5 +163,4 @@ FactoryBot.define do
     role { :user }
     content { "Por que 23 minutos?" }
   end
-
 end

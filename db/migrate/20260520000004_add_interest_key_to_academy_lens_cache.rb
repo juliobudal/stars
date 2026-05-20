@@ -29,7 +29,7 @@ class AddInterestKeyToAcademyLensCache < ActiveRecord::Migration[8.1]
   def down
     remove_index :academy_lens_cache, name: :idx_academy_lens_cache_interest_key
     remove_index :academy_lens_cache, name: :idx_academy_lens_cache_unique
-    add_index :academy_lens_cache, [:concept_id, :lens_type, :age_band, :locale],
+    add_index :academy_lens_cache, [ :concept_id, :lens_type, :age_band, :locale ],
               unique: true, name: :idx_academy_lens_cache_unique
     remove_column :academy_lens_cache, :interest_key
   end

@@ -17,10 +17,10 @@ namespace :academy do
                .join(". ")
       result = Academy::Llm::Readability.analyze(text)
       counts[result.tier] += 1
-      rows << [result.tier, result.score, cache.lens_type, cache.concept.slug]
+      rows << [ result.tier, result.score, cache.lens_type, cache.concept.slug ]
     end
 
-    rows.sort_by { |t, s, *| [t == :block ? 0 : (t == :warn ? 1 : 2), s] }
+    rows.sort_by { |t, s, *| [ t == :block ? 0 : (t == :warn ? 1 : 2), s ] }
         .each { |t, s, lens, slug| puts "[#{t.to_s.ljust(5)}] #{s.to_s.rjust(5)}  #{lens.to_s.ljust(15)}  #{slug}" }
 
     total = counts.values.sum

@@ -19,7 +19,7 @@ class CreateAcademyLensCache < ActiveRecord::Migration[8.0]
     end
 
     add_index :academy_lens_cache,
-              [:concept_id, :lens_type, :age_band, :locale, :template_version],
+              [ :concept_id, :lens_type, :age_band, :locale, :template_version ],
               unique: true,
               name: "idx_academy_lens_cache_unique"
     add_index :academy_lens_cache, :lens_type

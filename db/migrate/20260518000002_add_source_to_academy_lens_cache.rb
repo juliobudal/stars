@@ -8,7 +8,7 @@ class AddSourceToAcademyLensCache < ActiveRecord::Migration[8.0]
     add_column :academy_lens_cache, :source, :string, default: "llm", null: false
 
     add_index :academy_lens_cache,
-              [:concept_id, :lens_type, :source],
+              [ :concept_id, :lens_type, :source ],
               name: "idx_academy_lens_cache_source_lookup"
   end
 end

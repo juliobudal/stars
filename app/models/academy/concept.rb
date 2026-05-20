@@ -5,27 +5,27 @@ module Academy
   # that real lessons hide behind a "powerful question" headline. Concepts
   # are the spine of the v2 knowledge graph — they connect missions across
   # áreas de formação, which is what makes the "isso conecta com…" UI
-# == Schema Information
-#
-# Table name: academy_concepts
-#
-#  id                                                                                    :bigint           not null, primary key
-#  active                                                                                :boolean          default(TRUE), not null
-#  category(cognitivo | cientifico | social | financeiro | saude | virtude | tecnologia) :string           not null
-#  definition(Plain-language 1-2 line description)                                       :text
-#  name                                                                                  :string           not null
-#  pokedex_color_key(Design token name (e.g. 'pokedex-mind', 'pokedex-body'))            :string
-#  pokedex_silhouette_key(Asset name in app/assets/images/academy/pokedex/ (svg))        :string
-#  position                                                                              :integer          default(0), not null
-#  slug                                                                                  :string           not null
-#  created_at                                                                            :datetime         not null
-#  updated_at                                                                            :datetime         not null
-#
-# Indexes
-#
-#  index_academy_concepts_on_category  (category)
-#  index_academy_concepts_on_slug      (slug) UNIQUE
-#
+  # == Schema Information
+  #
+  # Table name: academy_concepts
+  #
+  #  id                                                                                    :bigint           not null, primary key
+  #  active                                                                                :boolean          default(TRUE), not null
+  #  category(cognitivo | cientifico | social | financeiro | saude | virtude | tecnologia) :string           not null
+  #  definition(Plain-language 1-2 line description)                                       :text
+  #  name                                                                                  :string           not null
+  #  pokedex_color_key(Design token name (e.g. 'pokedex-mind', 'pokedex-body'))            :string
+  #  pokedex_silhouette_key(Asset name in app/assets/images/academy/pokedex/ (svg))        :string
+  #  position                                                                              :integer          default(0), not null
+  #  slug                                                                                  :string           not null
+  #  created_at                                                                            :datetime         not null
+  #  updated_at                                                                            :datetime         not null
+  #
+  # Indexes
+  #
+  #  index_academy_concepts_on_category  (category)
+  #  index_academy_concepts_on_slug      (slug) UNIQUE
+  #
   # surprising rather than obvious.
   class Concept < ApplicationRecord
     self.table_name = "academy_concepts"

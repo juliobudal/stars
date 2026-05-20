@@ -20,7 +20,7 @@ RSpec.describe Academy::Lens::ResolveCuratedPayload do
   let(:learner_with_minecraft) do
     Academy::Learner.new(
       id: 1, display_name: "K", age_band: "kid", timezone: "UTC",
-      interests: [Academy::Interest.new(key: "minecraft", label: "Minecraft")]
+      interests: [ Academy::Interest.new(key: "minecraft", label: "Minecraft") ]
     )
   end
 
@@ -55,7 +55,7 @@ RSpec.describe Academy::Lens::ResolveCuratedPayload do
     it "falls back to default when the learner's top interest differs" do
       other_learner = Academy::Learner.new(
         id: 2, display_name: "K2", age_band: "kid", timezone: "UTC",
-        interests: [Academy::Interest.new(key: "futebol", label: "Futebol")]
+        interests: [ Academy::Interest.new(key: "futebol", label: "Futebol") ]
       )
       result = described_class.call(
         concept: concept, lens_type: :narrative, learner: other_learner

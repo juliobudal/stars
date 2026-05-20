@@ -62,7 +62,7 @@ RSpec.describe Academy::Concept do
 
     it "forbidden_terms_list is always an array, empty by default" do
       c1 = create(:academy_concept)
-      c2 = create(:academy_concept, forbidden_terms: ["a", "b"])
+      c2 = create(:academy_concept, forbidden_terms: [ "a", "b" ])
       expect(c1.forbidden_terms_list).to eq([])
       expect(c2.forbidden_terms_list).to eq(%w[a b])
     end

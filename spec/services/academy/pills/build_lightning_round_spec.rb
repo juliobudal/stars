@@ -22,7 +22,7 @@ RSpec.describe Academy::Pills::BuildLightningRound do
         "headline" => "h",
         "micro_check" => {
           "question" => "Q sobre #{slug}",
-          "options" => ["a", "b", "c", "d"],
+          "options" => [ "a", "b", "c", "d" ],
           "correct_index" => 1,
           "rationale" => "Porque..."
         }

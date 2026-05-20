@@ -34,7 +34,7 @@ RSpec.describe Academy::Pokedex::Backfill do
   it "promotes the concept to L3 (mastered) after ≥3 cross-subject encounters" do
     3.times { complete_mission!(subject: create(:academy_subject)) }
 
-    result = described_class.call(learner_ids: [learner_id])
+    result = described_class.call(learner_ids: [ learner_id ])
 
     expect(result.success?).to be true
     expect(result.data[:failed]).to eq(0)
@@ -49,8 +49,8 @@ RSpec.describe Academy::Pokedex::Backfill do
   it "is idempotent — re-running the backfill does not over-level the concept" do
     3.times { complete_mission!(subject: create(:academy_subject)) }
 
-    described_class.call(learner_ids: [learner_id])
-    described_class.call(learner_ids: [learner_id])
+    described_class.call(learner_ids: [ learner_id ])
+    described_class.call(learner_ids: [ learner_id ])
 
     lc = Academy::LearnerConcept.find_by(learner_id: learner_id, concept_id: concept.id)
     expect(lc.level).to eq(3)
@@ -58,7 +58,7 @@ RSpec.describe Academy::Pokedex::Backfill do
 
   it "renders the mastered orb state for a backfilled learner on the Atlas chip" do
     3.times { complete_mission!(subject: create(:academy_subject)) }
-    described_class.call(learner_ids: [learner_id])
+    described_class.call(learner_ids: [ learner_id ])
 
     learner_concept = Academy::LearnerConcept.find_by(learner_id: learner_id, concept_id: concept.id)
     html = ApplicationController.render(

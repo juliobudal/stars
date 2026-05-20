@@ -18,13 +18,13 @@ class CreateAcademyLensSignals < ActiveRecord::Migration[8.0]
     end
 
     add_index :academy_lens_signals,
-              [:mission_progress_id, :recorded_at],
+              [ :mission_progress_id, :recorded_at ],
               name: "idx_academy_lens_signals_progress_time"
     add_index :academy_lens_signals,
-              [:learner_id, :signal_type, :recorded_at],
+              [ :learner_id, :signal_type, :recorded_at ],
               name: "idx_academy_lens_signals_learner_type_time"
     add_index :academy_lens_signals,
-              [:learner_id, :concept_id, :lens_type, :recorded_at],
+              [ :learner_id, :concept_id, :lens_type, :recorded_at ],
               name: "idx_academy_lens_signals_learner_concept_lens_time"
 
     add_foreign_key :academy_lens_signals, :academy_mission_progresses, column: :mission_progress_id

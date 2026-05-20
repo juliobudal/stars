@@ -2,32 +2,32 @@
 
 module Academy
   # Pokédex entry — one row per (learner, concept). Level (0..3) is driven
-# == Schema Information
-#
-# Table name: academy_learner_concepts
-#
-#  id                                                                        :bigint           not null, primary key
-#  evolved_to_2_at                                                           :datetime
-#  evolved_to_3_at                                                           :datetime
-#  first_seen_at                                                             :datetime
-#  last_seen_at                                                              :datetime
-#  level(0..3 (silhouette → mastered))                                      :integer          default(0), not null
-#  seen_in_subjects_count                                                    :integer          default(0), not null
-#  created_at                                                                :datetime         not null
-#  updated_at                                                                :datetime         not null
-#  concept_id                                                                :bigint           not null
-#  learner_id(Learner value-object id (no FK by design — module isolation)) :bigint           not null
-#
-# Indexes
-#
-#  idx_academy_learner_concepts_level            (learner_id,level)
-#  idx_academy_learner_concepts_unique           (learner_id,concept_id) UNIQUE
-#  index_academy_learner_concepts_on_concept_id  (concept_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (concept_id => academy_concepts.id)
-#
+  # == Schema Information
+  #
+  # Table name: academy_learner_concepts
+  #
+  #  id                                                                        :bigint           not null, primary key
+  #  evolved_to_2_at                                                           :datetime
+  #  evolved_to_3_at                                                           :datetime
+  #  first_seen_at                                                             :datetime
+  #  last_seen_at                                                              :datetime
+  #  level(0..3 (silhouette → mastered))                                      :integer          default(0), not null
+  #  seen_in_subjects_count                                                    :integer          default(0), not null
+  #  created_at                                                                :datetime         not null
+  #  updated_at                                                                :datetime         not null
+  #  concept_id                                                                :bigint           not null
+  #  learner_id(Learner value-object id (no FK by design — module isolation)) :bigint           not null
+  #
+  # Indexes
+  #
+  #  idx_academy_learner_concepts_level            (learner_id,level)
+  #  idx_academy_learner_concepts_unique           (learner_id,concept_id) UNIQUE
+  #  index_academy_learner_concepts_on_concept_id  (concept_id)
+  #
+  # Foreign Keys
+  #
+  #  fk_rails_...  (concept_id => academy_concepts.id)
+  #
   # by Academy::Pokedex::Advance and never regresses.
   class LearnerConcept < ApplicationRecord
     self.table_name = "academy_learner_concepts"

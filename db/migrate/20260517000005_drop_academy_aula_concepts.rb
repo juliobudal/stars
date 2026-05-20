@@ -16,7 +16,7 @@ class DropAcademyAulaConcepts < ActiveRecord::Migration[8.0]
     end
 
     add_index :academy_aula_concepts, :concept_id, name: "index_academy_aula_concepts_on_concept_id"
-    add_index :academy_aula_concepts, [:mission_id, :concept_id],
+    add_index :academy_aula_concepts, [ :mission_id, :concept_id ],
               name: "idx_academy_aula_concepts_unique", unique: true
     add_index :academy_aula_concepts, :mission_id, name: "index_academy_aula_concepts_on_mission_id"
 

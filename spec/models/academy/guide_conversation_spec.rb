@@ -35,7 +35,7 @@ RSpec.describe Academy::GuideConversation do
       old_flagged = create(:academy_guide_conversation, flagged: true, started_at: 3.days.ago)
       recent_flagged = create(:academy_guide_conversation, flagged: true, started_at: 1.hour.ago)
       recent_unflagged = create(:academy_guide_conversation, started_at: 30.minutes.ago)
-      expect(described_class.flagged_first.to_a).to eq([recent_flagged, old_flagged, recent_unflagged])
+      expect(described_class.flagged_first.to_a).to eq([ recent_flagged, old_flagged, recent_unflagged ])
     end
   end
 end

@@ -4,30 +4,30 @@ module Academy
   # A narrative arc inside a Subject — 4–8 missions ("aulas") with one
   # overarching "arc hook" the kid sees on the trail card. The trail is
   # the v2 layer between Subject and Mission introduced to replace the
-# == Schema Information
-#
-# Table name: academy_trails
-#
-#  id                                                :bigint           not null, primary key
-#  active                                            :boolean          default(TRUE), not null
-#  arc_hook(One-line gancho for the whole trail arc) :string
-#  position                                          :integer          default(0), not null
-#  slug                                              :string           not null
-#  title                                             :string           not null
-#  created_at                                        :datetime         not null
-#  updated_at                                        :datetime         not null
-#  subject_id                                        :bigint           not null
-#
-# Indexes
-#
-#  idx_academy_trails_subject_position  (subject_id,position)
-#  idx_academy_trails_subject_slug      (subject_id,slug) UNIQUE
-#  index_academy_trails_on_subject_id   (subject_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (subject_id => academy_subjects.id)
-#
+  # == Schema Information
+  #
+  # Table name: academy_trails
+  #
+  #  id                                                :bigint           not null, primary key
+  #  active                                            :boolean          default(TRUE), not null
+  #  arc_hook(One-line gancho for the whole trail arc) :string
+  #  position                                          :integer          default(0), not null
+  #  slug                                              :string           not null
+  #  title                                             :string           not null
+  #  created_at                                        :datetime         not null
+  #  updated_at                                        :datetime         not null
+  #  subject_id                                        :bigint           not null
+  #
+  # Indexes
+  #
+  #  idx_academy_trails_subject_position  (subject_id,position)
+  #  idx_academy_trails_subject_slug      (subject_id,slug) UNIQUE
+  #  index_academy_trails_on_subject_id   (subject_id)
+  #
+  # Foreign Keys
+  #
+  #  fk_rails_...  (subject_id => academy_subjects.id)
+  #
   # flat "list of 10 missions" UX from v1.
   class Trail < ApplicationRecord
     self.table_name = "academy_trails"

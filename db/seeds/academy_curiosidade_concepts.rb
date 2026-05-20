@@ -241,20 +241,20 @@ CURIOSIDADE_CONCEPTS = {
 # Matches concept.category for the new ones (1:1) but kept explicit so a
 # future palette decoupling is easy.
 CURIOSIDADE_POKEDEX_KEYS = CURIOSIDADE_CONCEPTS.values.flatten.to_h do |c|
-  [c[:slug], c[:category]]
+  [ c[:slug], c[:category] ]
 end.freeze
 
 # Subject-spanning edges for the obvious "ponte" cases. Keep small — these
 # are creative reading prompts for the Atlas, not exhaustive ontology.
 CURIOSIDADE_EDGES = [
-  ["pizza-grande-e-mais-barata", "tradeoff",          :echoes],
-  ["paradoxo-do-aniversario",    "ceticismo",         :echoes],
-  ["como-cerebro-ve-cor",        "memoria-reconstrutiva", :echoes],
-  ["por-que-bocejo-e-contagioso", "empatia",          :echoes],
-  ["agua-quebra-pedra",          "consistencia",      :echoes],
-  ["quem-inventou-a-escrita",    "aprendizado-ativo", :echoes],
-  ["numeros-arabes-nao-sao-arabes", "vies-confirmacao", :echoes],
-  ["de-onde-veio-o-zero",        "decomposicao",      :echoes]
+  [ "pizza-grande-e-mais-barata", "tradeoff",          :echoes ],
+  [ "paradoxo-do-aniversario",    "ceticismo",         :echoes ],
+  [ "como-cerebro-ve-cor",        "memoria-reconstrutiva", :echoes ],
+  [ "por-que-bocejo-e-contagioso", "empatia",          :echoes ],
+  [ "agua-quebra-pedra",          "consistencia",      :echoes ],
+  [ "quem-inventou-a-escrita",    "aprendizado-ativo", :echoes ],
+  [ "numeros-arabes-nao-sao-arabes", "vies-confirmacao", :echoes ],
+  [ "de-onde-veio-o-zero",        "decomposicao",      :echoes ]
 ].freeze
 
 ActiveRecord::Base.transaction do

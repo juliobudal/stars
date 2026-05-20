@@ -37,7 +37,7 @@ RSpec.describe Academy::WisdomPills do
     end
 
     it "accepts an optional `theme` (nil or one of the curated set)" do
-      allowed = [nil, "curiosidade", "escuta", "perseveranca", "humor", "coragem", "sabedoria"]
+      allowed = [ nil, "curiosidade", "escuta", "perseveranca", "humor", "coragem", "sabedoria" ]
       described_class.all.each do |pill|
         expect(allowed).to include(pill.theme), "Tema inesperado: #{pill.theme.inspect} em '#{pill.text}'"
       end

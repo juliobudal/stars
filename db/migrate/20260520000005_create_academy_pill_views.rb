@@ -20,9 +20,9 @@ class CreateAcademyPillViews < ActiveRecord::Migration[8.1]
     end
 
     add_foreign_key :academy_pill_views, :academy_lens_cache, column: :lens_cache_id
-    add_index :academy_pill_views, [:learner_id, :created_at],
+    add_index :academy_pill_views, [ :learner_id, :created_at ],
               name: :idx_academy_pill_views_by_learner_recency
-    add_index :academy_pill_views, [:learner_id, :lens_cache_id], unique: true,
+    add_index :academy_pill_views, [ :learner_id, :lens_cache_id ], unique: true,
               name: :idx_academy_pill_views_unique_per_learner
   end
 end

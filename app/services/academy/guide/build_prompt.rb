@@ -241,15 +241,15 @@ module Academy
         ctx = ::Academy::Lens::LearnerContext.build(learner_id: learner.id, concept: concept)
         tier_line = if ctx.advanced?
                       "Aprendiz: avançado neste conceito (nível #{ctx.level}) — pode trazer nuance, edge case, aplicação não-óbvia."
-                    else
+        else
                       "Aprendiz: novato neste conceito (nível #{ctx.level}) — ancore em exemplos simples do dia-a-dia."
-                    end
+        end
 
         adaptive = ctx.wrong_streak >= 2 ? "Sinal: errou as últimas #{ctx.wrong_streak} micro-checks. Recapture com paciência, sem julgar." : nil
         bridged = bridged_concepts(concept: concept, learner: learner)
         bridge_line = bridged.any? ? "Pontes possíveis (conceitos vizinhos JÁ vistos): #{bridged.join(', ')}." : nil
 
-        lines = [tier_line, adaptive, bridge_line].compact
+        lines = [ tier_line, adaptive, bridge_line ].compact
         return nil if lines.empty?
         lines.join("\n")
       end
@@ -304,7 +304,7 @@ module Academy
       end
 
       def build_text(floor:, lens_scenes:, state_block:, moment_block:)
-        sections = [floor]
+        sections = [ floor ]
 
         if lens_scenes.any?
           sections << <<~TXT.strip

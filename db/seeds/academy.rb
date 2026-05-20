@@ -936,7 +936,6 @@ ActiveRecord::Base.transaction do
 
     # Deactivate trails that aren't part of v2 anymore.
     subject.trails.where.not(slug: new_trail_slugs).update_all(active: false)
-
   end
 
   # Soft-deactivate v1 subjects (those NOT in V2) and their missions.

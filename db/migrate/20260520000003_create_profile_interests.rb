@@ -18,8 +18,8 @@ class CreateProfileInterests < ActiveRecord::Migration[8.1]
       t.timestamps
     end
 
-    add_index :profile_interests, [:profile_id, :interest_key], unique: true,
+    add_index :profile_interests, [ :profile_id, :interest_key ], unique: true,
               name: :idx_profile_interests_unique_per_profile
-    add_index :profile_interests, [:profile_id, :rank]
+    add_index :profile_interests, [ :profile_id, :rank ]
   end
 end
