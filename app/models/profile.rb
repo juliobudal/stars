@@ -28,6 +28,11 @@
 #
 class Profile < ApplicationRecord
   PIN_FORMAT = /\A\d{4}\z/
+  LEVEL_SIZE = 20
+
+  def level             = (points.to_i / LEVEL_SIZE) + 1
+  def level_progress    = points.to_i % LEVEL_SIZE
+  def stars_to_next     = LEVEL_SIZE - level_progress
 
   belongs_to :family
   belongs_to :wishlist_reward, class_name: "Reward", optional: true

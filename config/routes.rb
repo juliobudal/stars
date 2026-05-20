@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   namespace :parent do
     root "dashboard#index"
+    get "tasks", to: redirect("/parent/global_tasks")
     resources :invitations, only: [ :new, :create ]
     resources :profiles, only: [ :index, :new, :create, :edit, :update, :destroy ] do
       member do
@@ -78,6 +79,7 @@ Rails.application.routes.draw do
       get "library", to: "library#index", as: :library
       resources :practice_wagers, only: %i[update], path: "apostas"
       resources :journeys, only: %i[index]
+      resources :cards, only: %i[show], constraints: { format: "svg" }
     end
   end
 

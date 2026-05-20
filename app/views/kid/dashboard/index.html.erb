@@ -20,7 +20,6 @@
         <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 88) %>
       </div>
       <%= render Ui::Icon::Component.new(:star, size: 14, color: "var(--star)", class: "absolute -top-0.5 -right-1") %>
-      <%= render Ui::Icon::Component.new(:star, size: 10, color: "var(--star)", class: "absolute bottom-1 -left-1") %>
     </div>
 
     <div class="flex-1 min-w-0">
@@ -103,12 +102,8 @@
     <% end %>
   </div>
 
-  <%# ── Meta coletiva semanal ── %>
-  <div class="relative z-2 mb-4">
-    <%= render "shared/family_goal_widget", goal: @family_goal, viewer: current_profile %>
-  </div>
-
-  <%# ── Mission list ── %>
+  <%# ── Mission list (above-the-fold) ── %>
+  <% pending_visible, pending_extra = @profile_tasks.first(5), @profile_tasks.drop(5) %>
   <div class="flex flex-col gap-5 mb-6 relative z-2">
 
     <%# Completed (approved today) %>
@@ -127,8 +122,23 @@
 
     <%# Pending — flat row, click opens confirmation modal %>
     <div id="panel-pending" class="contents">
-      <% @profile_tasks.each_with_index do |profile_task, i| %>
+      <% pending_visible.each_with_index do |profile_task, i| %>
         <%= render "kid/dashboard/pending_card", profile_task: profile_task, index: i %>
+      <% end %>
+
+      <% if pending_extra.any? %>
+        <details class="contents" data-controller="">
+          <summary class="font-display flex items-center justify-center gap-2 cursor-pointer list-none"
+                   style="background: transparent; color: var(--text-muted); border: 2px dashed var(--hairline); border-radius: 14px; padding: 12px 16px; font-size: 13px; font-weight: 800;">
+            <%= render Ui::Icon::Component.new(:plus, size: 14, color: "currentColor") %>
+            Ver mais <%= pluralize(pending_extra.size, "missão", plural: "missões") %>
+          </summary>
+          <div class="flex flex-col gap-5 mt-5">
+            <% pending_extra.each_with_index do |profile_task, i| %>
+              <%= render "kid/dashboard/pending_card", profile_task: profile_task, index: i + pending_visible.size %>
+            <% end %>
+          </div>
+        </details>
       <% end %>
     </div>
 
@@ -141,6 +151,11 @@
             color: "mint"
           ) %>
     <% end %>
+  </div>
+
+  <%# ── Meta coletiva semanal (below missions to keep daily run focused) ── %>
+  <div class="relative z-2 mb-4">
+    <%= render "shared/family_goal_widget", goal: @family_goal, viewer: current_profile %>
   </div>
 
   <%# ── Upcoming weekly/monthly missions ── %>

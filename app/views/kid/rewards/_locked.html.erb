@@ -26,7 +26,11 @@
           </div>
 
           <div class="font-display text-[14px] font-extrabold leading-tight" style="color: var(--text);">
-            <%= reward.title %>
+            <% if reward.collective? %>
+              <span class="inline-block align-middle mr-1 px-1.5 py-0.5 rounded-md text-[9px] font-extrabold uppercase tracking-[0.5px]"
+                    style="background: var(--c-peach-soft); color: var(--c-peach-dark); border: 1px solid var(--c-peach-dark);">Família</span>
+            <% end %>
+            <%= reward.display_title %>
           </div>
 
           <div class="overflow-hidden" style="height: 6px; background: var(--hairline); border-radius: 4px;">

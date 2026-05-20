@@ -25,8 +25,8 @@
         { id: "earned",      label: "Conquistadas" },
         { id: "purchases",   label: "Compras" },
         { id: "discoveries", label: "Descobertas" },
-        { id: "pending",     label: "Aguardando" },
-        { id: "rejected",    label: "Rejeitadas" }
+        { id: "pending",     label: "Esperando" },
+        { id: "rejected",    label: "Refazer" }
       ],
       active: "all"
     ) %>
@@ -115,8 +115,8 @@
       <% else %>
         <%= render Ui::Empty::Component.new(
           icon: "clock",
-          title: "Aguardando aprovação",
-          subtitle: "Missões enviadas para aprovação aparecerão aqui em breve",
+          title: "Esperando pai/mãe",
+          subtitle: "Quando você terminar uma missão, ela espera aqui até um responsável confirmar",
           color: "primary"
         ) %>
       <% end %>
@@ -131,8 +131,8 @@
       <% else %>
         <%= render Ui::Empty::Component.new(
           icon: "scroll",
-          title: "Nenhuma missão rejeitada",
-          subtitle: "Ótimo trabalho! Missões rejeitadas aparecerão aqui",
+          title: "Nada pra refazer",
+          subtitle: "Quando um responsável pedir pra refazer uma missão, ela aparece aqui",
           color: "rose"
         ) %>
       <% end %>

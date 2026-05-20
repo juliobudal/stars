@@ -16,13 +16,19 @@
       <div class="flex items-start justify-between gap-2">
         <div class="min-w-0">
           <div class="font-display font-extrabold text-[15px] leading-[1.2] mb-0.5 line-clamp-2" style="color: var(--text);">
-            <%= reward.title %>
+            <%= reward.display_title %>
           </div>
           <div class="flex items-center gap-1.5 flex-wrap">
             <span class="text-[10px] font-extrabold uppercase tracking-[0.5px] px-2 py-0.5 rounded-[6px]"
                   style="background: var(--c-<%= tint %>-soft, var(--primary-soft)); color: var(--c-<%= tint %>-dark, var(--primary-2));">
               <%= cat[:label] %>
             </span>
+            <% if reward.collective? %>
+              <span class="text-[10px] font-extrabold uppercase tracking-[0.5px] px-2 py-0.5 rounded-[6px]"
+                    style="background: var(--c-peach-soft); color: var(--c-peach-dark); border: 1px solid var(--c-peach-dark);">
+                Família
+              </span>
+            <% end %>
           </div>
         </div>
         <%# Star pill %>

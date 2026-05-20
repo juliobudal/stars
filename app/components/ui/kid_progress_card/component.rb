@@ -26,15 +26,16 @@ module Ui
       end
 
       def level
-        [ (points / 100) + 1, 1 ].max
+        kid.respond_to?(:level) ? kid.level : [ (points / Profile::LEVEL_SIZE) + 1, 1 ].max
       end
 
       def xp_progress
-        points % 100
+        pct = points % Profile::LEVEL_SIZE
+        (pct.to_f / Profile::LEVEL_SIZE * 100).round
       end
 
       def stars_to_next
-        100 - xp_progress
+        kid.respond_to?(:stars_to_next) ? kid.stars_to_next : (Profile::LEVEL_SIZE - (points % Profile::LEVEL_SIZE))
       end
 
       def wishlist_reward

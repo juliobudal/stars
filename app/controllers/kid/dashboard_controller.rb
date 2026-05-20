@@ -3,8 +3,6 @@ class Kid::DashboardController < ApplicationController
   before_action :require_child!
   layout "kid"
 
-  LEVEL_SIZE = 20
-
   def index
     ensure_todays_tasks
     @profile_tasks    = ProfileTask.pending.where(profile: current_profile).includes(:global_task)
@@ -12,12 +10,11 @@ class Kid::DashboardController < ApplicationController
     @completed_today  = ProfileTask.approved.for_today.where(profile: current_profile).includes(:global_task)
     @next_reward      = current_profile.family.rewards.where("cost > ?", current_profile.points).order(:cost).first
 
-    points = current_profile.points.to_i
-    @level                  = (points / LEVEL_SIZE) + 1
-    @level_progress         = points % LEVEL_SIZE
-    @level_size             = LEVEL_SIZE
-    @level_remaining        = LEVEL_SIZE - @level_progress
-    @level_pct              = (@level_progress.to_f / LEVEL_SIZE * 100).round
+    @level                  = current_profile.level
+    @level_progress         = current_profile.level_progress
+    @level_size             = Profile::LEVEL_SIZE
+    @level_remaining        = current_profile.stars_to_next
+    @level_pct              = (@level_progress.to_f / Profile::LEVEL_SIZE * 100).round
     @streak_days            = current_profile.streak_days
     @family_goal            = Rewards::WeeklyFamilyGoalService.call(family: current_profile.family).data
     @upcoming_missions      = Tasks::UpcomingService.call(profile: current_profile).data

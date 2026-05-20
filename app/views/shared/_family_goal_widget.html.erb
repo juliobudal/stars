@@ -18,7 +18,7 @@
           </div>
           <div class="flex-1 min-w-0">
             <div class="text-xs font-extrabold uppercase tracking-[0.5px]" style="color: var(--text-muted);">Meta da família</div>
-            <div class="text-base font-extrabold truncate" style="color: var(--text);"><%= reward.title %></div>
+            <div class="text-base font-extrabold truncate" style="color: var(--text);"><%= reward.display_title %></div>
 
             <div class="mt-2 h-2.5 w-full rounded-full bg-hairline overflow-hidden">
               <div class="h-full bg-primary transition-all" style="width: <%= pct %>%"></div>
@@ -41,7 +41,7 @@
                       size: "sm",
                       url: redeem_collective_parent_reward_path(reward),
                       method: :post,
-                      data: { turbo_confirm: "Resgatar meta coletiva '#{reward.title}'?" }
+                      data: { turbo_confirm: "Resgatar meta coletiva '#{reward.display_title}'?" }
                     ) do %>
                   <%= render Ui::Icon::Component.new("gift", size: 14, color: "currentColor") %>
                   Resgatar meta

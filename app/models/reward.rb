@@ -35,6 +35,12 @@ class Reward < ApplicationRecord
   scope :collective, -> { where(collective: true) }
   scope :individual, -> { where(collective: false) }
 
+  FAMILY_PREFIX_RE = /\A\s*\[\s*fam[íi]lia\s*\]\s*/i
+
+  def display_title
+    title.to_s.sub(FAMILY_PREFIX_RE, "").strip
+  end
+
   private
 
   def category_belongs_to_same_family
