@@ -1,0 +1,13 @@
+{
+  "dilemma": "Bento, 12, ouviu o pai dizer ao telefone que ele 'tá indo mal e vai ter que mudar de colégio'. O pai não sabe. Bento pode atacar quando o pai chegar, ou esperar a noite e dizer 'pai, ouvi sem querer, podemos conversar?'.",
+  "case_a": {
+    "title": "Ataca quando o pai entra",
+    "body": "Bento espera a porta abrir, vai pra cima: 'ouvi você falando pra vovó que vou mudar de colégio. Por que falou pelas minhas costas?'. Argumento: ele tem direito de mostrar que se sente traído. Esperar pra falar 'no momento certo' é dar tempo do pai inventar versão melhor. A raiva é informação real."
+  },
+  "case_b": {
+    "title": "Espera a noite, traz com cuidado",
+    "body": "Bento espera o jantar acabar. Na sala: 'pai, ouvi um pedaço da sua conversa cedo, sem querer. Fiquei mal. Posso entender o que tá rolando?'. Argumento: a mensagem é a mesma; o que muda é a chance do pai escutar. Atacar trava o outro na defesa; perguntar com calma abre uma conversa que pode mudar a decisão dele e curar o que doeu."
+  },
+  "anchor_question": "Quando 'dizer a verdade' deixa de ser sobre o que você sente e vira sobre como o outro consegue receber?",
+  "reveal": "Comunicação difícil tem dois trabalhos: dizer o que precisa e fazer o outro entender. Atacar entrega o primeiro e sabota o segundo. Quem só faz o primeiro descarrega a raiva e fica do mesmo jeito; quem faz os dois muda algo. A diferença não é o conteúdo — é o que você escolhe carregar junto: raiva ou intenção de resolver."
+}

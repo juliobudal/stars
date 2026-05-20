@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Lupa concentrando luz do sol num ponto",
+    "elements": [
+      "A luz do sol espalhada não acende fogo num papel",
+      "Concentrada por uma lupa num único ponto, queima em segundos",
+      "Mover a lupa toda hora dispersa a luz — não acende nada",
+      "É a mesma luz; o que muda é a concentração",
+      "Quanto mais imóvel a lupa, mais rápido o efeito"
+    ]
+  },
+  "target_domain": {
+    "name": "Sua mente trabalhando numa tarefa",
+    "elements": [
+      "Atenção dispersa em 4 abas não 'acende' aprendizado nenhum",
+      "Concentrada num único problema por 25 minutos, resolve algo difícil",
+      "Trocar de aba toda hora dispersa a atenção — nada cozinha",
+      "É a mesma capacidade mental; o que muda é a concentração",
+      "Quanto mais sem interrupção, mais rápido o resultado"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Luz espalhada não acende",
+      "to": "Atenção dispersa não aprende"
+    },
+    {
+      "from": "Lupa parada queima o papel",
+      "to": "Foco parado resolve o problema"
+    },
+    {
+      "from": "Mover a lupa = nada acende",
+      "to": "Mudar de aba = nada cozinha"
+    },
+    {
+      "from": "Imobilidade é a coisa toda",
+      "to": "Permanência é a coisa toda"
+    }
+  ],
+  "transfer_question": "Se ninguém esperaria acender um papel balançando a lupa, por que tanta gente espera estudar bem alternando entre 6 abas abertas?"
+}

@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Trilha que aparece num campo aberto onde gente passa",
+    "elements": [
+      "Primeira pessoa pisa: nada acontece, capim levanta de novo",
+      "20 pessoas no mesmo caminho: começa a marcar, capim deita",
+      "200 pessoas: vira trilha visível, ninguém precisa pensar onde pisar",
+      "Quem chega depois passa pela trilha porque ela existe — antes não existia",
+      "A trilha é resultado das pisadas; não é uma coisa que existia esperando ser descoberta"
+    ]
+  },
+  "target_domain": {
+    "name": "A pessoa que você está sendo no dia a dia",
+    "elements": [
+      "Primeira escolha: passa em branco, parece descartável",
+      "20 escolhas iguais: começa a moldar reação, padrão deita",
+      "200 escolhas: virou jeito 'natural', ninguém precisa pensar pra reagir assim",
+      "Quem te conhece depois te trata pelo padrão — antes ele não existia",
+      "Identidade é resultado das escolhas; não é coisa fixa esperando ser descoberta"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Capim levanta na primeira pisada",
+      "to": "Comportamento isolado não vira identidade"
+    },
+    {
+      "from": "Trilha aparece com repetição",
+      "to": "Identidade aparece com repetição"
+    },
+    {
+      "from": "Trilha visível guia quem chega",
+      "to": "Identidade visível guia como te tratam"
+    },
+    {
+      "from": "Trilha pode ser refeita em outro lugar",
+      "to": "Identidade pode ser refeita em outra direção"
+    }
+  ],
+  "transfer_question": "Se ninguém diria 'a trilha estava lá esperando — só andei nela', por que tanta gente diz 'eu sou assim' como se fosse coisa que veio pronta?"
+}

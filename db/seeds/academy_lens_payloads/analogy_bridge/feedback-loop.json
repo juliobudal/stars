@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Termostato do ar-condicionado",
+    "elements": [
+      "Sensor mede a temperatura do quarto a cada segundo",
+      "Compara com o setado (ex: 22°C) — se está mais quente, manda gelar",
+      "Quando atinge 22, manda desligar; quando passa de 23, manda ligar de novo",
+      "O loop nunca para — medir, comparar, ajustar, medir, comparar",
+      "Quem desconecta o sensor: ou congela o quarto, ou cozinha quem está dentro"
+    ]
+  },
+  "target_domain": {
+    "name": "Você ajustando seu jeito de estudar/treinar",
+    "elements": [
+      "Você mede o resultado (nota, tempo de corrida, qualidade do projeto)",
+      "Compara com a meta — está abaixo, ajusta o método",
+      "Quando bate a meta, mantém; quando cai abaixo, ajusta de novo",
+      "O loop não para — medir, comparar, ajustar, medir, comparar",
+      "Quem só age sem medir: ou exagera, ou desiste sem perceber que tava perto"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Sensor lendo temperatura",
+      "to": "Você lendo o resultado real"
+    },
+    {
+      "from": "Meta de 22°C no termostato",
+      "to": "Sua meta concreta (nota, tempo, qualidade)"
+    },
+    {
+      "from": "Comando 'ligar/desligar' ajustando",
+      "to": "Decisão de mudar/manter método"
+    },
+    {
+      "from": "Sem o loop, o quarto vira inabitável",
+      "to": "Sem o loop, o esforço vira sofrimento sem rumo"
+    }
+  ],
+  "transfer_question": "Se ninguém deixaria o ar-condicionado funcionando sem termostato, por que tanta gente 'se esforça mais' sem medir se o esforço tá indo pro lado certo?"
+}

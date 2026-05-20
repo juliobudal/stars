@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Caldeirão de sopa no fogão sendo cuidado a tarde inteira",
+    "elements": [
+      "Cozinheiro mede o ponto: salgou demais, joga batata; secou, põe água",
+      "Fogo subiu, abaixa; sopa esfriou, acende mais",
+      "Cada ajuste é pequeno, constante, quase invisível pra quem só comerá",
+      "Sem os ajustes, a sopa queima ou fica intragável em uma hora",
+      "Quem prova no final pensa 'ficou boa sozinha' — não viu o cuidado constante"
+    ]
+  },
+  "target_domain": {
+    "name": "Seu corpo mantendo você vivo agora mesmo",
+    "elements": [
+      "Mede temperatura: tá frio? eriça pelos, treme. Tá quente? sua",
+      "pH do sangue subiu? rim ajusta. Açúcar caiu? fígado libera reserva",
+      "Cada ajuste é pequeno, constante, invisível pra quem só vive",
+      "Sem os ajustes, em uma hora você teria coma ou parada",
+      "Você acorda pensando 'tô vivo' — não viu o cuidado constante por baixo"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Cozinheiro provando o ponto",
+      "to": "Cérebro monitorando sinais do corpo"
+    },
+    {
+      "from": "Ajuste pequeno e constante",
+      "to": "Ajuste fisiológico em segundos"
+    },
+    {
+      "from": "Sem ajuste, a sopa estraga",
+      "to": "Sem homeostase, o corpo entra em pane"
+    },
+    {
+      "from": "Comer sem ver o trabalho",
+      "to": "Viver sem ver o trabalho"
+    }
+  ],
+  "transfer_question": "Se você sabe que uma sopa boa exige cuidado o tempo todo, o que isso muda na sua relação com 'sentir frio', 'sentir fome', 'sentir sono' — sinais que o cozinheiro do seu corpo está usando agora?"
+}

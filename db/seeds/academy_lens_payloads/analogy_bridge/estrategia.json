@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Partida de xadrez de quem está aprendendo",
+    "elements": [
+      "Iniciante reage à última peça que o adversário mexeu",
+      "Mestre olha 3 jogadas pra frente — onde quer chegar, não onde está",
+      "Iniciante perde porque é puxado pelo presente",
+      "Mestre sacrifica uma torre se isso prepara um xeque-mate dali a 4 jogadas",
+      "Toda jogada do mestre serve a um plano que o iniciante nem vê"
+    ]
+  },
+  "target_domain": {
+    "name": "Você decidindo o que estudar/fazer na semana",
+    "elements": [
+      "Sem estratégia, reage ao que apareceu — trabalho mais barulhento ganha",
+      "Com estratégia, escolhe pelo que quer no fim do mês",
+      "Sem ela, perde porque é puxado pela urgência aparente",
+      "Com ela, abre mão de coisas legais hoje pra ter as importantes na semana 4",
+      "Toda escolha serve a um plano que quem 'só reage' nem vê"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Iniciante reage à última peça",
+      "to": "Sem plano, você reage à última urgência"
+    },
+    {
+      "from": "Mestre vê 3 jogadas à frente",
+      "to": "Estratégia é ver 3 semanas à frente"
+    },
+    {
+      "from": "Sacrifício preparado serve ao plano",
+      "to": "Dizer 'não' hoje serve ao 'sim' de depois"
+    },
+    {
+      "from": "Quem só reage perde sem entender por quê",
+      "to": "Quem só reage chega no fim cansado e atrás"
+    }
+  ],
+  "transfer_question": "Se ninguém ganharia xadrez 'só reagindo à última peça', por que tanta gente toca a semana só reagindo à última mensagem?"
+}

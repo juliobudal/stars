@@ -67,20 +67,28 @@ else
   end
 
   mission_by_slug = ::Academy::Mission.includes(:concept).index_by(&:slug)
+  concept_by_slug = ::Academy::Concept.all.index_by(&:slug)
   schemas = {}
   upserted = 0
   skipped = 0
   failed  = []
   tone_failed = []
 
+  # Filename resolution: a file is keyed first by mission_slug (the v5
+  # convention — every mission ships its own narrative/scientific/etc).
+  # If no mission matches, fall back to concept_slug so dormant concepts
+  # (no published mission yet) can carry curated payloads ready to be
+  # referenced when a mission is eventually authored against them.
   Dir.glob(PAYLOAD_ROOT.join("*", "*.json")).each do |file|
     lens_type    = File.basename(File.dirname(file))
-    mission_slug = File.basename(file, ".json")
-    mission = mission_by_slug[mission_slug]
+    file_slug    = File.basename(file, ".json")
+    mission      = mission_by_slug[file_slug]
+    concept      = mission&.concept || concept_by_slug[file_slug]
+    forbidden    = (mission&.concept || concept)&.forbidden_terms_list || []
 
-    unless mission&.concept_id
+    unless concept
       skipped += 1
-      puts "  ⚠ skip #{lens_type}/#{mission_slug}.json — mission or concept missing"
+      puts "  ⚠ skip #{lens_type}/#{file_slug}.json — no mission or concept matches"
       next
     end
 
@@ -98,14 +106,14 @@ else
       next
     end
 
-    tone = tone_violations(payload, mission.concept.forbidden_terms_list)
+    tone = tone_violations(payload, forbidden)
     if tone.any?
       tone_failed << [file, tone]
       next
     end
 
     key = {
-      concept_id: mission.concept_id,
+      concept_id: concept.id,
       lens_type: lens_type,
       age_band: "kid",
       locale: "pt-BR"

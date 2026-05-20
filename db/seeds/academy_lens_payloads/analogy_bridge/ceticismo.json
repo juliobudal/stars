@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Detetive lendo um relato de testemunha",
+    "elements": [
+      "Testemunha conta uma história convincente, com detalhes vivos",
+      "Detetive não duvida da pessoa — duvida da história",
+      "Pergunta: 'como você sabe?', 'tem como confirmar?', 'mais alguém viu?'",
+      "Não é hostilidade — é o trabalho dele. Sem isso, o caso é só opinião",
+      "Quando confirma de 3 fontes diferentes, aí trata como informação"
+    ]
+  },
+  "target_domain": {
+    "name": "Você vendo um post viral no WhatsApp da família",
+    "elements": [
+      "Post traz uma manchete forte, números, foto, parece convincente",
+      "Você não duvida da tia — duvida da história",
+      "Pergunta: 'qual é a fonte?', 'tem o link original?', 'quem mais publicou?'",
+      "Não é briga — é higiene. Sem isso, o grupo vira eco de qualquer coisa",
+      "Quando confirma em 3 veículos diferentes, aí trata como informação"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Detetive duvida da história, não da pessoa",
+      "to": "Você duvida da história, não da tia"
+    },
+    {
+      "from": "Perguntar fonte não é hostilidade",
+      "to": "Pedir link não é briga"
+    },
+    {
+      "from": "3 testemunhas independentes confirmam",
+      "to": "3 veículos independentes confirmam"
+    },
+    {
+      "from": "Sem o trabalho, vira só opinião",
+      "to": "Sem ceticismo, o grupo vira fofoca"
+    }
+  ],
+  "transfer_question": "Se ninguém acharia ofensivo um detetive perguntar 'como você sabe?', por que tanta gente se ofende quando você pede o link da notícia?"
+}
