@@ -1,0 +1,13 @@
+{
+  "dilemma": "Vovô deixou pro Davi, 11, R$ 1.000 numa conta que rende um pouco todo mês. A mãe explicou: se ele deixar até os 18, vira mais ou menos R$ 1.800 só pelos juros. Se ele tirar agora, é R$ 1.000 limpo pro novo console. Davi olha o vídeo do unboxing pela quinta vez essa semana.",
+  "case_a": {
+    "title": "Saca os R$ 1.000 e compra o console",
+    "body": "Davi saca. Argumento: 'mais ou menos R$ 1.800' não é certeza, é projeção. Em 7 anos pode dar crise, banco quebrar, mil coisas. R$ 1.000 hoje é console na mão, festa com os amigos, alegria que ele lembra. R$ 1.800 daqui a 7 anos é número numa tela — o Davi-de-18-anos vai ter outras prioridades."
+  },
+  "case_b": {
+    "title": "Não toca, e pega outro caminho pro console",
+    "body": "Davi não saca. Argumento: o dinheiro virando dinheiro depende dele não interromper — é como uma planta crescendo, basta arrancar uma vez pra zerar. Pro console, ele propõe à mãe outro plano: 4 meses de tarefa extra, ele junta R$ 600 e a mãe completa R$ 400. Console em 4 meses; R$ 1.000 do vovô intacto, crescendo."
+  },
+  "anchor_question": "Quando o 'longo prazo é incerto' vira a desculpa pra desligar a única coisa que precisa de tempo pra funcionar?",
+  "reveal": "Albert Einstein supostamente chamou juros compostos de oitava maravilha do mundo. A graça não é que rende muito — é que rende sobre o que já rendeu. Tira uma vez, e o motor para. Os R$ 800 a mais entre 11 e 18 anos não são milagre: são o Davi de hoje deixando o Davi de amanhã fazer o trabalho dele."
+}

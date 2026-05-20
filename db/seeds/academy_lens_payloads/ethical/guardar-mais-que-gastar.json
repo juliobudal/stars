@@ -1,0 +1,13 @@
+{
+  "dilemma": "Tiago, 12, ganha R$ 50/semana de tarefas. Tem dois envelopes: 'gastar' e 'guardar'. Saiu o jogo novo — R$ 45. Esvaziar o 'gastar' deixa R$ 5 na semana. Pegar do 'guardar' quebra a regra que ele mesmo fez: separar R$ 15 antes de gastar qualquer coisa.",
+  "case_a": {
+    "title": "Esvazia o envelope 'gastar'",
+    "body": "Tiago usa os R$ 45 do envelope de gastar. Argumento: o 'guardar' tá intacto, ele cumpriu a regra dele. Que ele não tenha lanche essa semana é desconforto, não tragédia — semana que vem chega R$ 50 e volta ao normal. Esvaziar não é roubar do futuro; é só apertar o presente."
+  },
+  "case_b": {
+    "title": "Pega R$ 15 do 'guardar' pra completar o jogo",
+    "body": "Tiago tira do 'guardar'. Argumento: lançamento de jogo não acontece toda semana, e ele tá quase no final do mês — o 'guardar' já tá grande mesmo, R$ 15 não vai fazer diferença. A regra do 'pagar-se primeiro' foi criada por ele, então ele pode flexibilizar quando faz sentido."
+  },
+  "anchor_question": "Quando 'flexibilizar a regra' deixa de ser bom senso e vira o início de uma regra que não existe mais?",
+  "reveal": "Pagar-se primeiro funciona porque o futuro não tem voz na hora da compra. Tiago do envelope 'guardar' é o Tiago-de-dezembro: o que ele vai pegar pro presente de Natal, pra emergência do skate quebrado, pro curso que ele quer. Tirar R$ 15 hoje parece pouco — mas a regra que protegia ele dele mesmo virou 'a gente vê depois'."
+}

@@ -1,0 +1,13 @@
+{
+  "dilemma": "Bia, 11, ganha R$ 80 da tia. Passa pelo box de pelúcia com R$ 79,90. A pelúcia é fofa, ela já quase tinha esquecido do dinheiro até ver. Ela tem o aniversário da melhor amiga em duas semanas — combinou de dividir um presente de R$ 40 cada com outras três da turma. Tem 30 segundos antes do irmão chamar pra ir embora.",
+  "case_a": {
+    "title": "Compra a pelúcia",
+    "body": "Bia compra. Argumento: era o dinheiro dela, foi a tia que deu — pode usar como quiser. A pelúcia é especial, vai marcar o dia. Pro presente da amiga ela 'dá um jeito' depois — pede pra mãe adiantar, ou faz um cartão caprichado se não der. Daqui duas semanas é muita coisa, agora é agora."
+  },
+  "case_b": {
+    "title": "Não compra",
+    "body": "Bia não compra. Argumento: ela combinou com a turma faz três dias — promessa não é negociável quando você foi você que combinou. R$ 79,90 some agora e ela fica com a pelúcia mais o problema de buscar R$ 40 emprestado no domingo. Ela respira, lembra do combinado, separa R$ 40 no envelope 'aniversário Mari' e o resto vai pro cofrinho."
+  },
+  "anchor_question": "Quando 'foi o meu dinheiro, posso gastar como quiser' vira a desculpa que esconde a parte do cérebro que prometeu outra coisa?",
+  "reveal": "Walter Mischel chamou isso de 'gratificação adiada' — não no sentido de não comprar nunca, mas no sentido de ouvir o você-da-semana-que-vem antes de gastar. Bia comprando a pelúcia não é errado em si; o problema é que a Bia-de-daqui-a-14-dias já tinha combinado outra coisa, e a Bia-de-agora não escuta direito."
+}

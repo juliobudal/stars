@@ -1,0 +1,13 @@
+{
+  "dilemma": "Caio, 12, junta R$200 do aniversário. Dois caminhos no mesmo dia: o tênis novo da escola (R$180, todo mundo tem) ou o curso online de edição de vídeo (R$190, sempre quis aprender). O que ele escolher cancela o outro — não dá pra parcelar e os dois somem da prateleira até semana que vem.",
+  "case_a": {
+    "title": "Pega o tênis",
+    "body": "Caio vai pro tênis. Argumento: ele usa todo dia, todo mundo já tem, e o que ele sente quando entra na escola e ninguém olha conta. O curso fica pra outra hora — daqui a dois meses sai promoção, ou ele junta de novo. Curso não tem prazo. Tênis na primeira semana sem o modelo já passou."
+  },
+  "case_b": {
+    "title": "Compra o curso",
+    "body": "Caio vai pro curso. Argumento: tênis aguenta seis meses e vira lembrança. O curso ensina algo que ele pode usar pra vida, pra cobrar de alguém pra editar um vídeo de festa, pra produzir o canal que ele já pensa em abrir. O tênis some — a habilidade fica."
+  },
+  "anchor_question": "Quando 'eu mereço' deixa de ser argumento e vira anestesia pra não comparar custo de oportunidade?",
+  "reveal": "Trocar é fácil quando uma opção é boa e outra ruim. O nó do tradeoff aparece quando as duas são boas — aí escolher é matar a outra. Adultos chamam isso de 'custo de oportunidade': o preço real não é os R$190 do curso, é o tênis que ele não vai usar; ou os R$180 do tênis, é o curso que ele não vai fazer."
+}
