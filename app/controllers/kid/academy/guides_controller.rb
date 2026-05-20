@@ -2,9 +2,11 @@
 
 # "O Guia" chat surface — five-message daily Q&A for the active mission.
 # Talks to Academy::Guide::{QuotaCheck, FindOrStartConversation, Ask}.
-# Hidden entirely when OPENROUTER_API_KEY is missing (BaseController already
-# guards Academy availability).
+# Hidden entirely when OPENROUTER_API_KEY is missing — this controller is
+# the only Academy surface that requires the LLM at runtime, so the guard
+# lives here (not in BaseController) and the rest of Academy keeps working.
 class Kid::Academy::GuidesController < Kid::Academy::BaseController
+  before_action :require_academy_configured!
   before_action :load_subject_and_mission
 
   # GET /kid/academy/subjects/:subject_id/missions/:mission_id/guide
@@ -38,6 +40,12 @@ class Kid::Academy::GuidesController < Kid::Academy::BaseController
   end
 
   private
+
+  def require_academy_configured!
+    return if ::Academy.configured?
+
+    redirect_to kid_root_path, alert: "O Guia está indisponível agora."
+  end
 
   def load_subject_and_mission
     @subject = ::Academy::Subject.active.find_by!(slug: params[:subject_id])

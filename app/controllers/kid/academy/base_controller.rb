@@ -6,7 +6,6 @@
 class Kid::Academy::BaseController < ApplicationController
   include Authenticatable
   before_action :require_child!
-  before_action :require_academy_configured!
   layout "kid"
 
   helper_method :current_learner
@@ -15,11 +14,5 @@ class Kid::Academy::BaseController < ApplicationController
 
   def current_learner
     @current_learner ||= ::Academy::Learner.from_profile(current_profile)
-  end
-
-  def require_academy_configured!
-    return if ::Academy.configured?
-
-    redirect_to kid_root_path, alert: "Academia indisponível (configuração pendente)."
   end
 end
