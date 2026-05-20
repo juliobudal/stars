@@ -10,7 +10,7 @@ export default class extends Controller {
     "microCheckBlock", "microCheckRationale",
     "predictSlider", "predictDisplay", "predictReveal", "predictRevealBtn",
     "compareGrid", "compareCard", "compareReveal",
-    "narrativeScenes", "advanceSceneBtn",
+    "narrativeScenes", "advanceSceneBtn", "narrativeMicroCheck", "narrativeFinal",
     "timerDisplay", "startTimerBtn", "stopTimerBtn", "embodiedReveal",
     "engineeringList", "engineeringCount", "engineeringReveal", "engineeringRevealText"
   ]
@@ -119,9 +119,20 @@ export default class extends Controller {
       unlocked.classList.remove("lens-narrative-scene--locked")
       if (!this.reducedMotion) unlocked.classList.add("anim-fade-up")
       unlocked.scrollIntoView({ behavior: this.reducedMotion ? "auto" : "smooth", block: "center" })
-    } else if (this.hasAdvanceSceneBtnTarget) {
-      this.advanceSceneBtnTarget.disabled = true
-      this.advanceSceneBtnTarget.style.opacity = "0.5"
+    }
+
+    const stillLocked = Array.from(scenes).some(s => s.classList.contains("lens-narrative-scene--locked"))
+    if (!stillLocked) {
+      if (this.hasAdvanceSceneBtnTarget) {
+        this.advanceSceneBtnTarget.disabled = true
+        this.advanceSceneBtnTarget.style.opacity = "0.5"
+      }
+      if (this.hasNarrativeMicroCheckTarget) {
+        const mc = this.narrativeMicroCheckTarget
+        mc.classList.remove("lens-narrative-micro-check--locked")
+        mc.setAttribute("aria-hidden", "false")
+        if (!this.reducedMotion) mc.classList.add("anim-fade-up")
+      }
     }
   }
 

@@ -64,6 +64,7 @@
     <% if ending.present? %>
       <div class="rounded-2xl p-4 lens-narrative-scene <%= 'lens-narrative-scene--locked' unless review_mode %>"
            data-scene-index="ending"
+           data-lens-stage-target="narrativeFinal"
            style="background: var(--surface-2); border: 2px dashed var(--hairline);">
         <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-2"
              style="color: var(--text-muted);">
@@ -88,7 +89,11 @@
 </div>
 
 <% if payload["micro_check"].is_a?(Hash) %>
-  <%= render "kid/academy/missions/lens_micro_check",
-             micro_check: payload["micro_check"], color_var: color_var,
-             review_mode: review_mode, signal_payload: signal_payload %>
+  <div data-lens-stage-target="narrativeMicroCheck"
+       class="<%= 'lens-narrative-micro-check--locked' unless review_mode %>"
+       aria-hidden="<%= 'true' unless review_mode %>">
+    <%= render "kid/academy/missions/lens_micro_check",
+               micro_check: payload["micro_check"], color_var: color_var,
+               review_mode: review_mode, signal_payload: signal_payload %>
+  </div>
 <% end %>

@@ -503,6 +503,12 @@
   display: none;
 }
 
+/* Narrative micro-check stays hidden until all scenes are unlocked, so the
+ * question can safely reference late-narrative facts without spoiling them. */
+.lens-narrative-micro-check--locked {
+  display: none;
+}
+
 /* Timeline connector for pattern_hunt historical */
 .lens-timeline-line::before {
   content: "";
