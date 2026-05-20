@@ -65,9 +65,21 @@
         </span>
       </div>
       <% if @concepts_by_category.empty? %>
-        <p class="text-[13px] font-bold m-0" style="color: var(--text-muted);">
-          Currículo invisível ainda zerado. Conceitos aparecem aqui à medida que aulas são concluídas.
-        </p>
+        <div class="flex items-start gap-3 p-3 rounded-xl"
+             style="background: var(--c-sky-soft); border: 2px solid var(--c-sky);">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+               style="background: var(--c-sky-dark);">
+            <%= render Ui::Icon::Component.new(:sparkle, size: 14, color: "white") %>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="font-display text-[13px] font-extrabold leading-tight" style="color: var(--c-sky-dark);">
+              Currículo invisível ainda zerado
+            </div>
+            <p class="text-[12px] font-bold mt-1 mb-0" style="color: var(--text-muted);">
+              Os conceitos aparecem quando <strong style="color: var(--text);"><%= @selected_kid.name %></strong> termina 1 aula da Academia. Combine 10 minutos hoje à noite.
+            </p>
+          </div>
+        </div>
       <% else %>
         <% @concepts_by_category.each do |category, concepts| %>
           <% colors = category_colors[category] || { fg: "var(--text)", bg: "var(--bg-soft)" } %>
@@ -93,9 +105,21 @@
              style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);">
       <h2 class="font-display text-[16px] font-extrabold mb-3 m-0" style="color: var(--text);">Cartas recentes</h2>
       <% if @recent_cards.empty? %>
-        <p class="text-[13px] font-bold m-0" style="color: var(--text-muted);">
-          Sem cartas cunhadas ainda — uma carta nasce a cada aula completa.
-        </p>
+        <div class="flex items-start gap-3 p-3 rounded-xl"
+             style="background: var(--c-amber-soft); border: 2px solid var(--c-amber);">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+               style="background: var(--c-amber-dark);">
+            <%= render Ui::Icon::Component.new(:gift, size: 14, color: "white") %>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="font-display text-[13px] font-extrabold leading-tight" style="color: var(--c-amber-dark);">
+              Sem cartas cunhadas ainda
+            </div>
+            <p class="text-[12px] font-bold mt-1 mb-0" style="color: var(--text-muted);">
+              Cada aula completa vira uma carta colecionável pra <strong style="color: var(--text);"><%= @selected_kid.name %></strong>. Vale começar pela bússola da Academia hoje.
+            </p>
+          </div>
+        </div>
       <% else %>
         <div class="space-y-2">
           <% @recent_cards.each do |card| %>
@@ -113,7 +137,14 @@
                   <%= card.mission.subject.name %> · <%= card.minted_at.strftime("%d/%m") %>
                 </div>
               </div>
-            </article>
+              <%= link_to parent_academy_card_path(card, format: :svg),
+                          class: "shrink-0 inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg font-extrabold text-[11px] no-underline anim-press",
+                          style: "background: var(--surface); border: 2px solid var(--hairline); color: var(--text); box-shadow: 0 2px 0 rgba(0,0,0,0.05);",
+                          download: "littlestars-carta-#{card.id}.svg",
+                          title: "Baixar como imagem (SVG)" do %>
+                <%= render Ui::Icon::Component.new(:gift, size: 12, color: "currentColor") %>
+                Baixar
+              <% end %>
           <% end %>
         </div>
       <% end %>
@@ -144,9 +175,21 @@
              style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);">
       <h2 class="font-display text-[16px] font-extrabold mb-3 m-0" style="color: var(--text);">Segredos desbloqueados</h2>
       <% if @secret_unlocks.empty? %>
-        <p class="text-[13px] font-bold m-0" style="color: var(--text-muted);">
-          Nenhum segredo aberto — eles surgem quando regras de progresso são satisfeitas.
-        </p>
+        <div class="flex items-start gap-3 p-3 rounded-xl"
+             style="background: var(--c-lilac-soft); border: 2px solid var(--c-lilac);">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+               style="background: var(--c-lilac-dark);">
+            <%= render Ui::Icon::Component.new(:magic, size: 14, color: "white") %>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="font-display text-[13px] font-extrabold leading-tight" style="color: var(--c-lilac-dark);">
+              Nenhum segredo aberto
+            </div>
+            <p class="text-[12px] font-bold mt-1 mb-0" style="color: var(--text-muted);">
+              Segredos abrem quando <strong style="color: var(--text);"><%= @selected_kid.name %></strong> volta a um conceito 3+ vezes ou erra padrão. Constância destrava — não pressa.
+            </p>
+          </div>
+        </div>
       <% else %>
         <div class="space-y-2">
           <% @secret_unlocks.each do |unlock| %>

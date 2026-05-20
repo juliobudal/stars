@@ -39,6 +39,7 @@
       items = [
         { icon: "house", path: parent_root_path, label: "Início" },
         { icon: "users", path: parent_profiles_path, label: "Crianças" },
+        { icon: "sparkle", path: parent_academy_dashboard_path, label: "Academia" },
         { icon: "list-checks", path: parent_global_tasks_path, label: "Missões" },
         { icon: "bag", path: parent_rewards_path, label: "Prêmios" },
         { icon: "bookmark-01", path: parent_categories_path, label: "Categorias" },
@@ -97,10 +98,10 @@
      style="padding-bottom: env(safe-area-inset-bottom); min-height: calc(72px + env(safe-area-inset-bottom));">
   <%
     mobile_nav_items = [
-      { icon: "house",       path: parent_root_path,         label: "Início" },
-      { icon: "clock",       path: parent_approvals_path,    label: "Pendências", badge: pending_approvals_count.positive? ? pending_approvals_count : nil },
-      { icon: "list-checks", path: parent_global_tasks_path, label: "Missões" },
-      { icon: "bag",         path: parent_rewards_path,      label: "Prêmios" }
+      { icon: "house",       path: parent_root_path,             label: "Início" },
+      { icon: "sparkle",     path: parent_academy_dashboard_path, label: "Academia" },
+      { icon: "clock",       path: parent_approvals_path,        label: "Pendências", badge: pending_approvals_count.positive? ? pending_approvals_count : nil },
+      { icon: "list-checks", path: parent_global_tasks_path,     label: "Missões" }
     ]
   %>
   <% mobile_nav_items.each do |item| %>
