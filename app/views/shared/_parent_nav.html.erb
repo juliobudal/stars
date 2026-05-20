@@ -49,13 +49,16 @@
     %>
     <% items.each do |item| %>
       <% active = current_page?(item[:path]) %>
+      <% is_approvals = item[:path] == parent_approvals_path %>
       <%= link_to item[:path],
           class: "flex items-center gap-3 px-3 py-2.5 rounded-[14px] transition-colors font-extrabold text-[14px] border-2 #{active ? 'bg-accent text-accent-foreground border-primary' : 'text-muted-foreground border-transparent hover:bg-muted hover:text-foreground'}",
           title: item[:label],
           aria: { current: active ? "page" : nil } do %>
         <%= render Ui::Icon::Component.new(item[:icon], size: 18, color: "currentColor") %>
         <span><%= item[:label] %></span>
-        <% if item[:badge] %>
+        <% if is_approvals %>
+          <%= render "shared/parent_approvals_badge", count: pending_approvals_count, variant: :sidebar %>
+        <% elsif item[:badge] %>
           <span class="ml-auto bg-danger text-white text-[11px] font-extrabold px-2 py-0.5 rounded-[10px] min-w-[24px] text-center" style="box-shadow: 0 2px 0 var(--danger-2);"><%= item[:badge] %></span>
         <% end %>
       <% end %>
@@ -68,7 +71,7 @@
           class: "flex items-center gap-2.5 p-3 rounded-[14px] border-2 no-underline hover:scale-[1.01] transition-transform",
           style: "background: var(--surface-muted); border-color: var(--hairline);",
           aria: { label: "Editar meu perfil" } do %>
-      <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 34) %>
+      <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 34, decorative: true) %>
       <div class="flex-1 min-w-0">
         <div class="text-[13px] font-extrabold overflow-hidden text-ellipsis whitespace-nowrap" style="color: var(--text);"><%= current_profile.name %></div>
         <div class="text-[11px] font-bold" style="color: var(--text-soft);">Responsável · Editar</div>
@@ -106,6 +109,7 @@
   %>
   <% mobile_nav_items.each do |item| %>
     <% active = current_page?(item[:path]) %>
+    <% is_approvals = item[:path] == parent_approvals_path %>
     <%= link_to item[:path],
           class: "flex flex-col items-center justify-center gap-1 flex-1 py-2 relative min-h-[44px] no-underline",
           title: item[:label],
@@ -114,7 +118,9 @@
         <%= render Ui::Icon::Component.new(item[:icon], size: 22, color: "currentColor") %>
         <span class="text-[10px] font-extrabold tracking-[0.5px] uppercase whitespace-nowrap"><%= item[:label] %></span>
       </span>
-      <% if item[:badge] %>
+      <% if is_approvals %>
+        <%= render "shared/parent_approvals_badge", count: pending_approvals_count, variant: :mobile %>
+      <% elsif item[:badge] %>
         <span class="absolute top-1 right-1/4 -translate-x-1 bg-danger text-white text-[9px] font-extrabold px-1 rounded-full min-w-[16px] h-4 flex items-center justify-center border-2 border-white"><%= item[:badge] %></span>
       <% end %>
     <% end %>

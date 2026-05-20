@@ -12,7 +12,7 @@
     <% mascot_kid = @profiles&.first %>
     <% if mascot_kid %>
       <div class="ls-mascot-bounce mb-4">
-        <%= render Ui::SmileyAvatar::Component.new(kid: mascot_kid, size: 96) %>
+        <%= render Ui::SmileyAvatar::Component.new(kid: mascot_kid, size: 96, decorative: true) %>
       </div>
     <% end %>
 

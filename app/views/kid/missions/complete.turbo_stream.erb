@@ -5,6 +5,18 @@
   <%= render Ui::MissionCard::Component.new(mission: @profile_task, status: "waiting", variant: "bubble", id: dom_id(@profile_task)) %>
 <% end %>
 
+<%
+  remaining_count = current_profile.profile_tasks.pending.count
+  awaiting_count = current_profile.profile_tasks.awaiting_approval.count
+  completed_today_count = current_profile.profile_tasks.approved.for_today.count
+%>
+<%= turbo_stream.replace "kid_dashboard_greeting" do %>
+  <%= render "kid/dashboard/greeting",
+             remaining: remaining_count,
+             awaiting_count: awaiting_count,
+             completed_today_count: completed_today_count %>
+<% end %>
+
 <%= turbo_stream.update "flash" do %>
   <div
     data-controller="flash"

@@ -5,7 +5,7 @@ import { Controller } from "@hotwired/stimulus"
 // missions#advance controller consumes via params[:signal_payload].
 export default class extends Controller {
   static targets = [
-    "form",
+    "form", "advanceBtn",
     "microCheck", "affectiveTap", "predictValue", "choices", "elapsed",
     "microCheckBlock", "microCheckRationale",
     "predictSlider", "predictDisplay", "predictReveal", "predictRevealBtn",
@@ -87,6 +87,14 @@ export default class extends Controller {
       this.predictRevealBtnTarget.style.opacity = "0.55"
     }
     if (this.hasPredictSliderTarget) this.predictSliderTarget.disabled = true
+    this._unlockAdvance()
+  }
+
+  _unlockAdvance() {
+    if (!this.hasAdvanceBtnTarget) return
+    this.advanceBtnTarget.disabled = false
+    this.advanceBtnTarget.style.opacity = ""
+    this.advanceBtnTarget.style.cursor = ""
   }
 
   // ── Narrative (card stack) ──────────────────────────────────────

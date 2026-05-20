@@ -1,0 +1,19 @@
+<%# locals: count, variant (:sidebar | :mobile)
+     Wrapped in a span with a stable id so approve/reject turbo_streams can
+     swap it. Hidden (display:none) when count is zero so the layout stays
+     stable but the element exists for turbo to target. %>
+<% target_id = variant.to_sym == :mobile ? "parent_approvals_badge_mobile" : "parent_approvals_badge_sidebar" %>
+<% positive = count.to_i.positive? %>
+<% if variant.to_sym == :mobile %>
+  <span id="<%= target_id %>"
+        class="absolute top-1 right-1/4 -translate-x-1 bg-danger text-white text-[9px] font-extrabold px-1 rounded-full min-w-[16px] h-4 flex items-center justify-center border-2 border-white"
+        style="<%= "display: none;" unless positive %>">
+    <%= count if positive %>
+  </span>
+<% else %>
+  <span id="<%= target_id %>"
+        class="ml-auto bg-danger text-white text-[11px] font-extrabold px-2 py-0.5 rounded-[10px] min-w-[24px] text-center"
+        style="box-shadow: 0 2px 0 var(--danger-2);<%= " display: none;" unless positive %>">
+    <%= count if positive %>
+  </span>
+<% end %>

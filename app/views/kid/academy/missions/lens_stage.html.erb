@@ -95,6 +95,13 @@
   </div>
 
   <%# ── Body — delegated to the action primitive ────────────── %>
+  <%
+    # Primitives that pivot on a reveal step: keep the user from skipping the
+    # learning beat by disabling the Continuar button until the lens controller
+    # opens the reveal payload (revealPredict / compare reveal / engineering).
+    cache_payload = cache&.payload || {}
+    advance_gated = primitive == "predict" && cache_payload["predict_prompt"].present?
+  %>
   <div class="lens-stage" data-controller="lens-stage" data-lens-stage-lens-type-value="<%= lens_type %>">
     <% if cache&.payload.present? && primitive %>
       <% interpolated_payload = ::Academy::Lens::InterpolatePayload.render(payload: cache.payload, learner: current_learner) %>
@@ -128,7 +135,9 @@
 
       <%= f.submit "Continuar →",
                    class: "w-full px-5 py-3.5 rounded-2xl font-display font-extrabold text-[16px] anim-press ls-btn-3d border-0",
-                   style: "background: var(--primary); color: white; box-shadow: 0 4px 0 var(--primary-2);" %>
+                   style: "background: var(--primary); color: white; box-shadow: 0 4px 0 var(--primary-2);#{' opacity: 0.55; cursor: not-allowed;' if advance_gated}",
+                   disabled: advance_gated,
+                   data: { lens_stage_target: "advanceBtn" }.compact %>
     <% end %>
   </div>
 </div>

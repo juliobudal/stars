@@ -4,7 +4,7 @@
     <%= render Ui::Icon::Component.new("close", size: 16, color: "currentColor") %>
   </button>
   <div class="pin-avatar" style="background: var(--primary);">
-    <%= render Ui::SmileyAvatar::Component.new(kid: profile, size: 42) %>
+    <%= render Ui::SmileyAvatar::Component.new(kid: profile, size: 42, decorative: true) %>
   </div>
   <div class="pin-name">Olá, <%= profile.name %>!</div>
   <div class="pin-hint">Digite seu PIN secreto</div>

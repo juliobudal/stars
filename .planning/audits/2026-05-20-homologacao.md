@@ -143,3 +143,42 @@ Sessão adicional fechou os 10 itens diferidos. Validado via Playwright em 390×
 | `validates :frequency, presence: true` | **FIX** | `app/models/global_task.rb:40` — invariante futura. Specs (22) passando. |
 
 Specs focadas (`global_task`, requests `parent/approvals`, `parent/dashboard`, `kid/dashboard`) → 42 examples, 0 failures.
+
+---
+
+## 🔧 Sweep 2026-05-20 (noite) — bugs P1 reais + a11y wide
+
+Endereçou os 3 bugs reais e amplificou a fix de a11y para o resto das superfícies.
+
+### Header kid não atualiza após `complete!` (P1)
+- Greeting block extraído para `app/views/kid/dashboard/_greeting.html.erb` (renderiza com locais `remaining`, `awaiting_count`, `completed_today_count`) e envolvido em `<div id="kid_dashboard_greeting">`.
+- `app/views/kid/missions/complete.turbo_stream.erb` agora emite `turbo_stream.replace "kid_dashboard_greeting"` recomputando os contadores via `current_profile.profile_tasks.{pending,awaiting_approval,approved.for_today}.count`. Após o kid completar, o título passa de "Bora pegar mais hoje?" → "Esperando o carimbo!" sem reload.
+
+### Contadores de aprovação não atualizam após aprovar/rejeitar (P1)
+- `app/views/shared/_parent_approvals_badge.html.erb` (novo) — badge renderizada para ambas variantes (sidebar / mobile) com id estável (`parent_approvals_badge_sidebar` / `parent_approvals_badge_mobile`). Element sempre presente; `display: none` quando count == 0 para garantir target estável de turbo.
+- `app/views/parent/approvals/index.html.erb` — subtítulo do PageHeader passou a ser `<span id="parent_approvals_subtitle">...</span>` (`html_safe`).
+- `app/views/parent/approvals/_count_streams.html.erb` (novo) — fragmento partial que emite 4 turbo_streams: `pending_approvals_kpi`, `parent_approvals_subtitle`, `parent_approvals_badge_sidebar`, `parent_approvals_badge_mobile`. Reaproveitado por `approve.turbo_stream`, `reject.turbo_stream`, `approve_redemption.turbo_stream` e `reject_redemption.turbo_stream` (DRY).
+- Resultado: ao aprovar/rejeitar uma pendência, KPI no chip do header, subtítulo do header, badge da sidebar e badge da bottom nav atualizam num só round-trip.
+
+### Botão "Continuar →" disponível antes de "Ver resposta" no predict lens (P1)
+- `app/views/kid/academy/missions/lens_stage.html.erb` — calcula `advance_gated = primitive == "predict" && cache_payload["predict_prompt"].present?`. Quando true, submit recebe `disabled: true` + opacity/cursor inline para feedback visual; carrega `data-lens-stage-target="advanceBtn"`.
+- `app/assets/controllers/lens_stage_controller.js` — novo target `advanceBtn`; método interno `_unlockAdvance()` chamado no fim de `revealPredict()`, removendo `disabled`/opacity/cursor.
+- Outros primitivos não são afetados (gate é estritamente predict).
+
+### Decorative SmileyAvatar — sweep amplo (a11y consistency)
+Aplicação de `decorative: true` em todos os contextos onde o nome do perfil já é mostrado no DOM ao lado do avatar — elimina o screen-reader anunciar nome em duplicidade:
+- `app/views/shared/_parent_nav.html.erb` (footer perfil)
+- `app/views/kid/dashboard/_greeting.html.erb` (após extração)
+- `app/views/parent/settings/show.html.erb` (lista PINs)
+- `app/views/parent/settings/_responsibles_card.html.erb`
+- `app/components/ui/approval_row/component.html.erb` (2 ocorrências: compact + full)
+- `app/components/ui/kid_progress_card/component.html.erb`
+- `app/components/ui/pin_modal/component.html.erb`
+- `app/views/profile_sessions/new.html.erb` (mascote hero)
+- `app/views/kid/rewards/index.html.erb` (mascote modal de resgate)
+- (`ProfilePicker` já corrigido na sweep da tarde)
+
+### Verificação
+- Lint: 0 erros nos arquivos editados.
+- Specs focadas (`parent/approvals`, `kid/dashboard`, `kid/missions`) → 20 examples, 0 failures.
+- Playwright 390×844: empty state `/parent/approvals` mostra "Nenhuma pendência no momento" wrapped no span; nav sem badges quando count=0; greeting partial renderiza nos quatro estados conforme contadores.

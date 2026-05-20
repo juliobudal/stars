@@ -9,7 +9,7 @@
           <%= render Ui::Icon::Component.new(category_meta[:icon], size: 22, color: Ui::Tokens.tint_fg(tint_color)) %>
         </div>
       <% else %>
-        <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 42) %>
+        <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 42, decorative: true) %>
       <% end %>
       <div class="flex-1 min-w-0">
         <div class="text-[14px] leading-tight font-extrabold truncate" style="color: var(--text);"><%= title %></div>
@@ -52,7 +52,7 @@
                data-action="change->bulk-select#change"
                style="width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0;" />
       <% end %>
-      <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 40) %>
+      <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 40, decorative: true) %>
       <% if profile_task&.proof_photo&.attached? %>
         <%= image_tag url_for(profile_task.proof_photo.variant(resize_to_limit: [80, 80])),
               alt: "Comprovante",

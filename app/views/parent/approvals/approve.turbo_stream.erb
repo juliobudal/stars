@@ -32,6 +32,4 @@
   <% end %>
 <% end %>
 
-<%= turbo_stream.update "pending_approvals_kpi" do %>
-  <%= current_profile.family.profile_tasks.awaiting_approval.count + family_redemptions_pending %>
-<% end %>
+<%= render "parent/approvals/count_streams" %>

@@ -5,7 +5,7 @@
     <div class="relative shrink-0">
       <div class="w-16 h-16 rounded-full grid place-items-center"
            style="background: <%= palette[:fill] %>; box-shadow: 0 4px 0 <%= palette[:ring] %>;">
-        <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 36) %>
+        <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 36, decorative: true) %>
       </div>
       <div class="absolute -bottom-1 -right-1 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-[10px] border-[3px] border-white leading-none"
            style="background: var(--success); box-shadow: 0 2px 0 var(--success-2);">N<%= level %></div>
