@@ -41,7 +41,7 @@
         <div class="grid grid-cols-1 gap-2">
           <% round[:options].each_with_index do |opt, oi| %>
             <label class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl cursor-pointer"
-                   style="background: var(--surface-2, #F7F7F7); border: 2px solid transparent;">
+                   style="background: var(--surface-2); border: 2px solid transparent;">
               <input type="radio"
                      name="answer[q<%= i %>]"
                      value="<%= oi %>"

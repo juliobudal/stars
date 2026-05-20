@@ -36,7 +36,7 @@
                   title: task.title,
                   kid_chip_text: task.profile&.name,
                   category: task.category,
-                  category_label: task.category.to_s.humanize,
+                  category_label: Ui::Tokens.category_for(task.category)[:label],
                   meta: "há #{time_ago_in_words(task.updated_at)}",
                   points: task.points,
                   points_sign: "+",

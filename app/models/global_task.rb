@@ -37,6 +37,7 @@ class GlobalTask < ApplicationRecord
   enum :frequency, { daily: 0, weekly: 1, monthly: 2, once: 3 }
 
   validates :title, presence: true
+  validates :frequency, presence: true
   validates :points, numericality: { greater_than: 0 }
   validates :day_of_month, presence: true, if: :monthly?
   validates :day_of_month, numericality: { only_integer: true, in: 1..31 }, allow_nil: true, if: :monthly?

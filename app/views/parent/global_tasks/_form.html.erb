@@ -109,6 +109,7 @@
                  style="<%= selected ? selected_style : unselected_style %>">
             <%= f.radio_button :frequency, opt[:key],
                   class: "sr-only",
+                  checked: selected,
                   data: { action: "change->fields#enable", controls: "day_of_month_field" } %>
             <%= render Ui::Icon::Component.new(opt[:icon], size: 22, color: "currentColor") %>
             <div class="text-[13px] font-extrabold whitespace-nowrap"><%= opt[:label] %></div>

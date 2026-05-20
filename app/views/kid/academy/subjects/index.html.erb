@@ -8,7 +8,7 @@
       </div>
       <% if @rank_record %>
         <span class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full"
-              style="background: var(--c-star); color: white; box-shadow: 0 2px 0 #a37100;">
+              style="background: var(--c-star); color: white; box-shadow: 0 2px 0 var(--star-depth);">
           <%= render Ui::Icon::Component.new(@rank_record.icon.to_sym, size: 12, color: "white") %>
           <span class="font-display text-[10px] font-extrabold uppercase tracking-wide">
             <%= @rank_record.label %>
@@ -123,7 +123,7 @@
     <section class="mb-5">
       <% @fresh_unlocks.each do |unlock| %>
         <article class="ls-card-3d"
-                 style="background: linear-gradient(135deg, var(--star), var(--star-2)); border: 2px solid #a37100; border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 0 #a37100; color: white;">
+                 style="background: linear-gradient(135deg, var(--star), var(--star-2)); border: 2px solid var(--star-depth); border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 0 var(--star-depth); color: white;">
           <div class="flex items-center gap-2 mb-1">
             <%= render Ui::Icon::Component.new(:trophy, size: 16, color: "white") %>
             <span class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase">
@@ -206,7 +206,7 @@
       <div class="flex gap-3 overflow-x-auto pb-2 px-1 -mx-1 snap-x">
         <% @recent_cards.each do |card| %>
           <article class="shrink-0 snap-start ls-card-3d"
-                   style="background: var(--surface); border: 2px solid var(--c-star); border-radius: 14px; padding: 12px; box-shadow: 0 4px 0 #a37100; width: 220px;">
+                   style="background: var(--surface); border: 2px solid var(--c-star); border-radius: 14px; padding: 12px; box-shadow: 0 4px 0 var(--star-depth); width: 220px;">
             <div class="w-10 h-10 rounded-2xl flex items-center justify-center mb-2"
                  style="background: <%= card.mission.subject.color %>;">
               <%= render Ui::Icon::Component.new(card.illustration_key.to_s.presence&.to_sym || :sparkle, size: 20, color: "white") %>

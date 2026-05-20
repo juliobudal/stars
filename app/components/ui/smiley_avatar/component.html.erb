@@ -1,4 +1,4 @@
-<div role="img" aria-label="<%= @kid.respond_to?(:name) ? @kid.name : "" %>"
+<div <% if decorative? %>aria-hidden="true"<% else %>role="img" aria-label="<%= @kid.respond_to?(:name) ? @kid.name : "" %>"<% end %>
      class="ui-smiley-avatar"
      data-avatar-palette="<%= palette %>"
      style="width: <%= size %>px; height: <%= size %>px; border-width: <%= [ (size / 21.0).ceil, 2 ].max %>px; border-style: solid; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center;">

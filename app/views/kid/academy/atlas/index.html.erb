@@ -67,7 +67,7 @@
       <div class="flex gap-3 overflow-x-auto pb-2 px-1 -mx-1 snap-x">
         <% @recent_cards.each do |card| %>
           <article class="shrink-0 snap-start ls-card-3d"
-                   style="background: var(--surface); border: 2px solid var(--c-star); border-radius: 14px; padding: 12px; box-shadow: 0 4px 0 #a37100; width: 220px;">
+                   style="background: var(--surface); border: 2px solid var(--c-star); border-radius: 14px; padding: 12px; box-shadow: 0 4px 0 var(--star-depth); width: 220px;">
             <div class="w-10 h-10 rounded-2xl flex items-center justify-center mb-2"
                  style="background: <%= card.mission.subject.color %>;">
               <%= render Ui::Icon::Component.new(card.illustration_key.to_s.presence&.to_sym || :sparkle, size: 20, color: "white") %>

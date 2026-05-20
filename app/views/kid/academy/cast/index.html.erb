@@ -22,7 +22,7 @@
       </div>
 
       <div class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full"
-           style="background: var(--surface-2, #F7F7F7); border: 2px solid var(--hairline);">
+           style="background: var(--surface-2); border: 2px solid var(--hairline);">
         <span class="font-display text-[12px] font-extrabold" style="color: var(--text);">
           <%= @visited_voice_keys.size %>/<%= @voices.size %>
         </span>
@@ -44,7 +44,7 @@
                  data-voice-key="<%= voice.key %>">
           <div class="flex items-start gap-3">
             <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-[28px] shrink-0"
-                 style="background: <%= met ? "var(--primary-soft)" : "var(--surface-2, #F7F7F7)" %>; border: 2px solid <%= met ? "var(--primary)" : "var(--hairline)" %>;">
+                 style="background: <%= met ? "var(--primary-soft)" : "var(--surface-2)" %>; border: 2px solid <%= met ? "var(--primary)" : "var(--hairline)" %>;">
               <%= voice.emoji %>
             </div>
             <div class="flex-1 min-w-0">
@@ -59,7 +59,7 @@
                   </span>
                 <% else %>
                   <span class="font-display text-[10px] font-extrabold tracking-[1px] uppercase px-2 py-0.5 rounded-full"
-                        style="background: var(--surface-2, #F7F7F7); color: var(--text-muted); border: 1.5px solid var(--hairline);">
+                        style="background: var(--surface-2); color: var(--text-muted); border: 1.5px solid var(--hairline);">
                     ainda não
                   </span>
                 <% end %>

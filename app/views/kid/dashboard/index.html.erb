@@ -27,18 +27,34 @@
         <%= greeting %> <%= current_profile.name %>!
       </div>
       <h1 class="font-display text-[22px] leading-tight font-extrabold tracking-[-0.01em] m-0 inline-flex items-center gap-1.5 flex-wrap" style="color: var(--text);">
-        <span>Bora pegar mais</span>
-        <%= render Ui::Icon::Component.new(:star, size: 20, color: "var(--star)") %>
-        <span>hoje?</span>
+        <% if total.zero? %>
+          <span>Por aqui agora,</span>
+          <%= render Ui::Icon::Component.new(:star, size: 20, color: "var(--star)") %>
+          <span>nada pra fazer!</span>
+        <% elsif remaining.zero? && @awaiting_tasks.any? %>
+          <span>Esperando o</span>
+          <%= render Ui::Icon::Component.new(:check, size: 20, color: "var(--c-sky-dark)") %>
+          <span>carimbo!</span>
+        <% elsif remaining.zero? %>
+          <span>Tudo feito!</span>
+          <%= render Ui::Icon::Component.new(:party, size: 20, color: "var(--c-peach-dark)") %>
+        <% else %>
+          <span>Bora pegar mais</span>
+          <%= render Ui::Icon::Component.new(:star, size: 20, color: "var(--star)") %>
+          <span>hoje?</span>
+        <% end %>
       </h1>
       <p class="text-[13px] font-bold mt-1.5 m-0 inline-flex items-center gap-1.5 flex-wrap" style="color: var(--text-muted);">
         <% if remaining.positive? %>
           <span>Você tem <strong style="color: var(--c-sky-dark);"><%= pluralize(remaining, "missão", plural: "missões") %></strong> pra completar</span>
         <% elsif @awaiting_tasks.any? %>
           <span><strong style="color: var(--c-sky-dark);"><%= pluralize(@awaiting_tasks.count, "missão", plural: "missões") %></strong> esperando carimbo</span>
-        <% else %>
+        <% elsif @completed_today.any? %>
           <span>Tudo feito por hoje!</span>
           <%= render Ui::Icon::Component.new(:party, size: 16, color: "var(--c-peach-dark)") %>
+        <% else %>
+          <span>Espera os pais soltarem missões pra você</span>
+          <%= render Ui::Icon::Component.new(:eye, size: 16, color: "var(--text-muted)") %>
         <% end %>
       </p>
     </div>
@@ -151,7 +167,7 @@
     <div class="flex items-center gap-1.5 mt-2.5">
       <%= render Ui::Icon::Component.new(:star, size: 14, color: "var(--star)") %>
       <span class="text-[12px] font-bold" style="color: var(--text);">
-        Faltam <strong class="font-extrabold" style="color: var(--primary-2);"><%= pluralize(@level_remaining, "estrelinha") %></strong> pra subir!
+        Faltam <strong class="font-extrabold" style="color: var(--primary-2);"><%= pluralize(@level_remaining, "estrelinha", plural: "estrelinhas") %></strong> pra subir!
       </span>
     </div>
   </div>

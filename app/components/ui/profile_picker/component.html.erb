@@ -17,7 +17,7 @@
         <% end %>
         <div class="w-[88px] h-[88px] rounded-full mx-auto mb-3.5 grid place-items-center"
              style="background: <%= palette[:fill] %>; box-shadow: 0 5px 0 <%= palette[:ring] %>;">
-          <%= render Ui::SmileyAvatar::Component.new(kid: profile, size: 50) %>
+          <%= render Ui::SmileyAvatar::Component.new(kid: profile, size: 50, decorative: true) %>
         </div>
         <div class="text-[17px] font-extrabold mb-1" style="color: var(--text);"><%= profile.name %></div>
         <% if profile.parent? %>

@@ -31,14 +31,19 @@ module Ui
         }
       end
 
-      def initialize(kid: nil, face: nil, size: 84, **options)
+      def initialize(kid: nil, face: nil, size: 84, decorative: false, **options)
         @kid = kid
         @size = size
         @face = (face || derive_face(kid)).to_s
+        @decorative = decorative
         @options = options
       end
 
       attr_reader :size, :face
+
+      def decorative?
+        @decorative
+      end
 
       def palette
         key = @kid.respond_to?(:color) ? @kid.color.to_s.presence : nil
