@@ -1,11 +1,11 @@
 {
   "headline": "Seu cérebro acha que raro é melhor (mesmo quando não é)",
   "mechanism_steps": [
-    "Você vê algo que parece difícil de conseguir — um brinquedo que só tem um na loja — e seu cérebro dispara um sinal: 'isso pode ser importante, vamos comparar com outras opções antes de decidir'.",
+    "Você vê algo difícil de conseguir — um brinquedo único na loja — e seu cérebro dispara um alerta: 'pode ser importante, decide rápido antes que outro pegue'.",
     "Esse sinal faz você prestar mais atenção naquilo e ignorar outras opções iguais que estão por perto — o cérebro monta uma fila de prioridade só pra ele.",
     "A sensação de 'quase perdendo' acelera a decisão: você escolhe antes de pensar se aquilo é realmente melhor — e nem sempre o que parece rápido é o melhor."
   ],
-  "illustration_hint": "Ilustração de um cérebro com um 'sinal de alerta' amarelo piscando sobre uma prateleira com um único brinquedo; do lado, uma prateleira cheia do mesmo brinquedo, mas o cérebro ignora. O sinal tem um balão: 'Vamos comparar?'.",
+  "illustration_hint": "Cérebro estilizado com um pequeno triângulo amarelo de exclamação piscando ao lado, voltado pra uma prateleira que tem um único brinquedo iluminado; ao fundo, uma prateleira maior cheia do mesmo brinquedo apagada e desfocada, totalmente ignorada pelo olhar do cérebro.",
   "micro_check": {
     "question": "{{learner_name}} vê um anúncio: 'ÚLTIMA UNIDADE! Tênis voador edição limitada!'. O que o cérebro faz com essa informação?",
     "options": [

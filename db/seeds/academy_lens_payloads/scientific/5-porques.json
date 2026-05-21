@@ -3,9 +3,9 @@
   "mechanism_steps": [
     "O problema aparece (ex: o carro não liga); você pergunta 'por quê?' e arranca a primeira camada — 'a bateria está descarregada'.",
     "Em vez de parar, você pergunta 'por quê?' de novo — descobre que o alternador não carregou a bateria; repete mais três vezes, cada pergunta puxando uma camada mais funda.",
-    "Na quinta camada, a causa raiz aparece — não uma peça quebrada nem uma pessoa, mas um processo falho: 'o sistema de perguntas não estava completo, então ninguém verificou o alternador na revisão'."
+    "Na quinta camada aparece a causa raiz — quase sempre um processo falho, não uma peça nem alguém culpado: a revisão não previa verificar o alternador."
   ],
-  "illustration_hint": "Um boneco cavando um buraco em cinco degraus. No topo, um carro com capô aberto e fumaça. No primeiro degrau, uma bateria descarregada. No quinto degrau, uma engrenagem com uma peça faltando e um letreiro 'checklist incompleto'.",
+  "illustration_hint": "Boneco cavando um buraco em cinco degraus descendo, escada subterrânea visível em corte; no topo, carro com capô aberto soltando fumaça; no primeiro degrau, bateria descarregada com símbolo vazio; no quinto degrau, uma engrenagem grande com peça em formato faltante deixando silhueta vazia.",
   "micro_check": {
     "question": "{{learner_name}} tenta aplicar os 5 porquês num projeto de ciências que deu errado. Qual seria a causa raiz mais provável?",
     "options": [

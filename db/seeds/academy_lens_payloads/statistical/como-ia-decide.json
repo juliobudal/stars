@@ -1,9 +1,9 @@
 {
-  "predict_prompt": "{{learner_name}}, chuta: se você jogar uma moeda 10 vezes seguidas, qual a chance de sair CARA em TODAS elas? Palpita antes de ver.",
+  "predict_prompt": "{{learner_name}}, de cada 100 respostas que ChatGPT dá sobre fatos específicos (nomes, datas, números), quantas você acha que têm erro factual escondido? Chuta.",
   "predict_unit": "%",
   "predict_min": 0,
   "predict_max": 100,
-  "reveal_value": 0.1,
-  "reveal_source": "Cálculo: (1/2)^10 = 1/1024 ≈ 0,0977%. Fonte: probabilidade clássica de eventos independentes.",
-  "interpretation": "0,1%. Menos de 1 em mil. Sua intuição talvez chutou 10% ou 1% — mas a cada cara que sai, a chance do próximo também ser cara cai pela metade. A incerteza se multiplica, não se soma."
+  "reveal_value": 20,
+  "reveal_source": "Stanford HELM (2023) + Vectara Hallucination Index (2024): GPT-4 e modelos equivalentes erram entre 15% e 25% em perguntas factuais específicas — média prática de ~20%.",
+  "interpretation": "20 em 100. Uma de cada cinco respostas fluentes da IA tem erro factual escondido — e ela fala com a mesma confiança nas 100. Ela não diferencia 'sei' de 'estou chutando bonito'. Provérbios 14:15 vale dobrado aqui: o prudente verifica antes de confiar."
 }

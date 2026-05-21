@@ -12,7 +12,7 @@
       "A luz azul está cortando a produção de melatonina, então o cérebro não recebe o sinal de 'hora de dormir'.",
       "O jogo é muito emocionante e o cérebro esquece de fabricar sono.",
       "A tela aquece o olho e isso atrapalha o sono.",
-      "O cérebro entende que é dia e para de funcionar até amanhecer."
+      "A luz azul esquenta a retina e cansa o olho de um jeito diferente do cansaço normal de sono."
     ],
     "correct_index": 0,
     "rationale": "A luz azul não 'esquenta' nem 'para o cérebro' — ela engana a retina, que manda um sinal de 'dia' para a glândula pineal, que então reduz a produção de melatonina. Sem melatonina, o relógio interno não dispara o sono."

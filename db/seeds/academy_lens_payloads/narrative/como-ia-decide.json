@@ -1,37 +1,33 @@
 {
   "character": {
-    "name": "Isa",
-    "age": 12,
-    "trait": "adora inventar desafios impossíveis pra turma do 7º ano no recreio"
+    "name": "Helena",
+    "age": 11,
+    "trait": "tem trabalho de história sobre invenções brasileiras e está usando ChatGPT pra adiantar a pesquisa"
   },
   "scenes": [
     {
       "id": "s1",
-      "text": "Segunda-feira, 10h37. Isa encara o pote de vidro no refeitório — cento e quarenta e duas balas de goma, ela contou. 'Adivinha a cor da que eu tirar. Se errar, paga um salgado.' A fila do almoço inteira para. Alguém grita: 'Vermelha!' Outro: 'Azul!' A merendeira Dona Célia segura o pote e ri."
+      "text": "Sábado à tarde, Helena pergunta no ChatGPT: 'quem inventou o pão de queijo?'. A IA responde na hora: 'foi a chef Maria Tereza Wepler, em 1936, em Belo Horizonte'. Tem nome completo, data exata, cidade. Soa profissional. Helena cola tudo no trabalho sem checar."
     },
     {
       "id": "s2",
-      "text": "Isa enfia a mão, mexe, tira uma amarela. Perdeu o salgado? Não — ela apostou em 'qualquer cor que não seja verde', porque viu que só tinha três verdes no fundo. O pote não é mágico. Ele só tem um padrão que ninguém parou pra contar."
+      "text": "Na segunda, a professora lê o trabalho e franze a testa: 'Helena, esse nome não existe em lugar nenhum. Pão de queijo é tradição mineira antiga, séculos de história — não tem inventor único.' Helena fica vermelha. A IA tinha inventado nome, data e cidade com a mesma confiança que daria uma resposta certa."
     },
     {
       "id": "s3",
-      "text": "Na quarta, o pote volta. Dessa vez Isa não aposta. Ela pede um guardanapo, despeja as balas na mesa, separa por cor, conta, anota num papel. Trinta e oito vermelhas, quarenta e uma laranjas, vinte e duas amarelas, dezenove rosas, três verdes. Recolhe tudo. Olha pra fila."
-    },
-    {
-      "id": "s4",
-      "text": "Ela fecha os olhos, enfia a mão, tira. Abre. Amarela. 'Adivinha a cor', ela diz. O menino na frente chuta: 'Vermelha?' Isa abre a mão. 'Errou. Paga um salgado.' A fila aplaude. Ela não contou pra ninguém que tinha acabado de separar as amarelas pro lado de cima do pote."
+      "text": "Em casa, o pai mostra: 'a IA não te mentiu de propósito. Ela só chuta a próxima palavra baseada em padrão. Quando alguém pergunta quem inventou X, os textos que ela leu geralmente respondem com nome + data + lugar. Então ela montou um conjunto plausível e cuspiu — sem ter como saber se é verdade.'"
     }
   ],
-  "ending": "Na sexta, o pote some do refeitório. Dona Célia diz que 'alguém' levou pra casa. Isa não diz nada. No caderno de matemática, na última folha, tem um desenho: um círculo cortado em fatias coloridas, com números ao lado de cada fatia.",
+  "ending": "Helena entendeu: a IA não distingue 'estou acertando' de 'estou inventando algo plausível'. Provérbios 14:15 — 'o simples crê em tudo, mas o prudente atenta para os seus passos': checar fonte externa antes de copiar resposta da IA virou regra na casa.",
   "micro_check": {
-    "question": "{{learner_name}}, o que Isa FEZ de diferente na quarta-feira que mudou o resultado do jogo?",
+    "question": "{{learner_name}}, por que ChatGPT consegue 'inventar' nome de pessoa, data e cidade com tanta confiança, sem perceber que está errando?",
     "options": [
-      "Ela contou quantas balas de cada cor tinha no pote",
-      "Ela pediu pra Dona Célia escolher a bala no lugar dela",
-      "Ela chutou a cor que ninguém tinha chutado ainda",
-      "Ela colocou mais balas verdes no pote de propósito"
+      "Porque ele só sabe inventar e nunca acerta nada de verdade nas suas respostas.",
+      "Porque ele calcula a próxima palavra mais provável sem ter como saber se o fato é real.",
+      "Porque os programadores ensinaram ele a mentir de propósito pra parecer útil.",
+      "Porque ele só responde com confiança quando tem certeza absoluta da resposta."
     ],
-    "correct_index": 0,
-    "rationale": "Isa parou de chutar e usou a CONTAGEM pra saber que as amarelas eram muitas e as verdes, poucas. Com os números na mão, ela podia prever melhor — e até esconder que tinha arrumado as balas no pote."
+    "correct_index": 1,
+    "rationale": "A IA gera resposta palavra a palavra escolhendo a mais provável dado o padrão dos textos de treino. Ela não tem como diferenciar 'sei isso' de 'isso soa certo' — por isso fala com a mesma confiança nas duas situações."
   }
 }

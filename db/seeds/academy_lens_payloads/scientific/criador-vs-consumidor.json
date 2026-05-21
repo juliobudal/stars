@@ -1,11 +1,11 @@
 {
-  "headline": "Ensinar alguém fixa o dobro do que só estudar sozinho",
+  "headline": "Ensinar alguém fixa muito mais que estudar sozinho — o cérebro tem que reorganizar tudo.",
   "mechanism_steps": [
     "Quando você só lê ou escuta, seu cérebro arquiva a informação como 'já vi isso' — e para de trabalhar nela.",
     "Quando você precisa explicar pra alguém, o cérebro dispara um 'preciso montar isso em ordem' — puxa o que sabe, acha buracos e costura tudo de novo.",
     "Esse esforço de reorganizar e traduzir em palavras crava a informação em várias áreas do cérebro de uma vez — e ela não escapa mais."
   ],
-  "illustration_hint": "Ilustração de duas crianças lado a lado: uma lê um livro sozinha, com o cérebro mostrando uma única linha reta e um 'check' preguiçoso; a outra explica o mesmo assunto para um amigo, com o cérebro cheio de setas cruzadas, luzes acendendo e uma peça de quebra-cabeça se encaixando com estalo.",
+  "illustration_hint": "Duas crianças lado a lado: a da esquerda lendo um livro sozinha de cabeça baixa, com cérebro mostrando uma linha reta entediada e um carimbo apagado; a da direita explicando algo gestualmente pra outra criança que escuta atenta, com cérebro cheio de setas brilhantes cruzadas e uma peça de quebra-cabeça encaixando.",
   "micro_check": {
     "question": "{{learner_name}} está estudando para uma prova de ciências. Qual estratégia vai fazer o conteúdo grudar mais no cérebro?",
     "options": [

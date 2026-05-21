@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, quantas vezes você já perguntou 'por quê?' até achar a causa real de um problema? Chuta um número.",
-  "predict_unit": "vezes/dia",
-  "predict_min": 1,
-  "predict_max": 20,
-  "reveal_value": 5,
-  "reveal_source": "Método dos 5 Porquês, criado por Sakichi Toyoda (fundador da Toyota) nos anos 1930, usado em engenharia e gestão para cavar fundo em problemas.",
-  "interpretation": "5. Não é um número mágico — é o suficiente para furar a camada do sintoma e achar a raiz. A primeira resposta é sempre a desculpa; a quinta, a causa real. Você chutou mais baixo? É porque a gente para na primeira camada, no 'culpado' óbvio."
-}

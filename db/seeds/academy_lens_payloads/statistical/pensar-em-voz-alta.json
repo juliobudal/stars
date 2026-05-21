@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, quantas peças diferentes você acha que um aplicativo de celular tem? Chuta: tela de login, feed, botões, banco de dados… quantas partes no total?",
-  "predict_unit": "vezes/dia",
-  "predict_min": 1,
-  "predict_max": 100,
-  "reveal_value": 15,
-  "reveal_source": "Estimativa baseada na decomposição típica de apps simples: 3 telas, 5 componentes por tela, 2 serviços de fundo, 5 regras de negócio. Fonte: análise de projetos reais de desenvolvimento mobile (2023).",
-  "interpretation": "15 partes. Um app que você abre em segundos tem 15 peças funcionando juntas. Sozinho parece impossível — mas cada peça é pequena e resolvível. Problema gigante = soma de pequenos problemas."
-}

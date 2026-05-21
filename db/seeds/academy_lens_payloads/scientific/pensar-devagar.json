@@ -5,7 +5,7 @@
     "Quando o estímulo é fácil, o Sistema-1 resolve sozinho; o Sistema-2 entra quando a situação exige cuidado ou cálculo — como fazer 17 × 24 de cabeça.",
     "O Sistema-2 raramente acorda sozinho: precisa de um alarme — uma conta difícil, uma pergunta inesperada, ou o Sistema-1 gritar 'não sei'."
   ],
-  "illustration_hint": "Ilustração de um cockpit com dois pilotos: um robô (Sistema-1) no piloto automático, mãos soltas, olhando pro horizonte; ao lado, um humano (Sistema-2) dormindo na cadeira, com um alarme vermelho piscando 'PROBLEMA' no painel.",
+  "illustration_hint": "Cockpit com dois pilotos lado a lado: um robô à esquerda no piloto automático, mãos soltas e olhar tranquilo pro horizonte; ao lado, um humano dormindo encostado na cadeira, com um símbolo redondo vermelho de exclamação piscando grande no painel à sua frente, prestes a despertar a figura.",
   "micro_check": {
     "question": "{{learner_name}} está andando de bicicleta na rua plana e vazia. De repente, um carro freia na frente dele. Qual sistema acorda primeiro?",
     "options": [

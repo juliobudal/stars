@@ -89,7 +89,13 @@
         <%= payload["headline"] %>
       </h2>
     <% end %>
-    <% if payload["illustration_hint"].present? %>
+    <% if payload["illustration_url"].present? %>
+      <%= image_tag payload["illustration_url"],
+                    alt: payload["headline"].to_s,
+                    loading: "lazy",
+                    class: "w-full aspect-square object-cover rounded-2xl mb-4",
+                    style: "border: 2px solid var(--hairline); box-shadow: 0 4px 0 var(--hairline);" %>
+    <% elsif payload["illustration_hint"].present? %>
       <p class="font-display text-[13px] leading-snug italic m-0 mb-4" style="color: var(--text-muted);">
         <%= payload["illustration_hint"] %>
       </p>

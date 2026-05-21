@@ -1,41 +1,41 @@
 {
   "source_domain": {
-    "name": "Médico clinicando há 30 anos atendendo um paciente novo",
+    "name": "Papagaio brilhante que viveu numa biblioteca lendo voz alta",
     "elements": [
-      "Paciente entra: febre, dor de cabeça, manchas vermelhas",
-      "Médico não chuta — compara mentalmente com milhares de casos parecidos",
-      "Dos casos parecidos, qual diagnóstico apareceu com mais frequência?",
-      "Receita o que provavelmente é — não tem 100% de certeza, tem alta probabilidade",
-      "Pede exame de confirmação porque sabe que probabilidade alta não é certeza"
+      "Ouviu milhões de frases humanas dentro da biblioteca ao longo de anos",
+      "Aprende a continuar a frase com a palavra mais provável que já ouviu",
+      "Fala com entonação perfeita e parece entender o que está dizendo",
+      "Não consegue distinguir uma frase verdadeira de uma frase plausível",
+      "Quando não sabe, completa com som que combina, sem hesitar"
     ]
   },
   "target_domain": {
-    "name": "IA decidindo a próxima palavra de uma resposta",
+    "name": "ChatGPT respondendo perguntas factuais",
     "elements": [
-      "Você digita: 'me explique como funciona um vulcão'",
-      "IA não pensa — compara com milhões de textos parecidos do treino",
-      "Dos textos parecidos, quais palavras costumavam vir depois?",
-      "Escolhe a palavra mais provável — não tem 100% de certeza, tem alta probabilidade",
-      "Quem usa bem pede que ela 'mostre as fontes' porque alta probabilidade não é certeza"
+      "Foi treinado em trilhões de palavras humanas de livros e sites",
+      "Calcula a próxima palavra mais provável dado o padrão visto",
+      "Escreve com fluência perfeita e parece confiante sempre",
+      "Não distingue resposta verdadeira de resposta plausível",
+      "Quando não sabe, inventa fato que combina, sem avisar"
     ]
   },
   "mapping": [
     {
-      "from": "Médico comparando com casos passados",
-      "to": "IA comparando com textos passados"
+      "from": "Papagaio ouvindo milhões de frases",
+      "to": "IA treinada em trilhões de palavras"
     },
     {
-      "from": "Diagnóstico mais frequente vence",
-      "to": "Palavra mais frequente vence"
+      "from": "Completar com palavra mais provável",
+      "to": "Calcular próximo token de maior probabilidade"
     },
     {
-      "from": "Exame confirma probabilidade alta",
-      "to": "Fonte confirma resposta provável"
+      "from": "Entonação confiante mesmo errando",
+      "to": "Texto fluente mesmo alucinando"
     },
     {
-      "from": "Receitar sem exame é arriscado",
-      "to": "Acreditar sem checar fonte é arriscado"
+      "from": "Não distingue real de plausível",
+      "to": "Não diferencia fato de invenção plausível"
     }
   ],
-  "transfer_question": "Se você ficaria preocupado com um médico que dispensasse o exame de confirmação, por que aceita resposta de IA sem pedir a fonte?"
+  "transfer_question": "Se você não confiaria num papagaio falante pra decidir matéria de trabalho de escola, por que confiar 100% num ChatGPT que funciona pela mesma lógica — chutar a próxima palavra mais provável, sem checar se é verdade?"
 }

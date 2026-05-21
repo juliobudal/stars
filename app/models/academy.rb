@@ -22,6 +22,9 @@ module Academy
     :max_tokens,
     :referer,
     :app_title,
+    :image_model,
+    :image_size,
+    :image_aspect_ratio,
     keyword_init: true
   )
 
@@ -34,7 +37,10 @@ module Academy
         temperature: 0.7,
         max_tokens: 10000,
         referer: "https://littlestars.app",
-        app_title: "LittleStars Academy"
+        app_title: "LittleStars Academy",
+        image_model: "google/gemini-2.5-flash-image",
+        image_size: "1K",
+        image_aspect_ratio: "1:1"
       )
     end
 

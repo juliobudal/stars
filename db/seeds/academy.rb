@@ -388,25 +388,8 @@ CURRICULUM_V2 = [
             source: "Dave Ramsey",
             framework: "regra prática"
           },
-          {
-            slug: "querer-precisar",
-            title: "Quase tudo que você 'precisa' é desejo?",
-            hook: "Categoria errada = grana errada.",
-            angle: "Necessidade (sobrevivência básica) vs. desejo (querer). Marketing borra a linha de propósito.",
-            central_insight: "Quem aprende cedo a diferença entre N e D, em 30 anos junta 10× mais que quem não aprendeu.",
-            curiosity_facts: [
-              "Necessidades reais (comida básica, abrigo, saúde) são poucas. Quase tudo o resto é desejo.",
-              "Marcas falam 'você PRECISA disso' justamente porque sabem que é desejo.",
-              "Provérbio: 'rico não é quem tem mais — é quem precisa de menos'."
-            ],
-            challenge_prompt: "Liste seus últimos 10 gastos e marque cada um como N ou D. Sem se julgar.",
-            challenge_when: "esta-semana",
-            challenge_observable: "Quantos D você jurava que eram N.",
-            learning_objective: "Classificar 10 gastos recentes como necessidade ou desejo.",
-            illustration_key: "list",
-            source: "Provérbios + Dave Ramsey",
-            framework: "regra prática"
-          },
+          # (querer-precisar removido 2026-05-21 — duplicava custo-oportunidade-real
+          # na metáfora balança/gangorra. Custo-oportunidade tem distrator mais forte.)
           {
             slug: "guardar-mais-que-gastar",
             title: "Por que pessoas ricas guardam mais que gastam?",
@@ -568,61 +551,80 @@ CURRICULUM_V2 = [
         position: 1,
         missions: [
           {
-            slug: "como-app-funciona",
-            title: "Como um app realmente funciona?",
-            hook: "Cada toque é uma conversa entre você e milhões de linhas de código.",
-            angle: "Frontend × backend × banco — explicado com a metáfora do restaurante.",
-            central_insight: "Se você entende que app é 'pedido → cozinha → entrega', você nunca mais olha um botão como 'mágica'.",
+            slug: "loop-feedback",
+            title: "Como um app sabe o que mudar pra te prender mais?",
+            hook: "Todo app roda um loop: mostra → mede sua reação → ajusta → mostra de novo.",
+            angle: "Loop de feedback (controle): sistema lê o efeito da última ação no usuário e usa o sinal pra calibrar a próxima.",
+            central_insight: "Se você entende que app é 'mostra → mede você → corrige', você lê os truques antes deles te lerem.",
             curiosity_facts: [
-              "App = interface (cardápio) + servidor (cozinha) + banco de dados (estoque). Sempre.",
-              "Cada toque vira uma requisição de rede que viaja a milhões de km/segundo.",
-              "Quase todo app que você usa hoje foi escrito por alguém que aprendeu sozinho."
+              "Termostato, piloto automático e TikTok funcionam com a mesma lógica: medir, comparar com alvo, corrigir.",
+              "Engenheiros chamam de 'closed loop' — fechado porque a saída vira entrada da próxima rodada.",
+              "Quanto mais rápido o ciclo, mais o sistema se ajusta a você sem você perceber."
             ],
-            challenge_prompt: "Abra 1 app e tente identificar onde o 'pedido' vai (banco? servidor? local?).",
+            challenge_prompt: "Abra 1 app e tente identificar 3 'medições' que ele faz da sua reação (tempo de scroll, pausa em vídeo, palavra digitada).",
             challenge_when: "hoje",
-            challenge_observable: "Quanto da 'mágica' deixa de ser mágica.",
-            learning_objective: "Identificar componentes (UI/servidor/dados) em 1 app conhecido.",
+            challenge_observable: "Quantos sinais o app coleta que você nem imaginava.",
+            learning_objective: "Identificar 3 sinais que o app mede em você em tempo real.",
             illustration_key: "phone",
-            source: "Pensamento computacional",
+            source: "Pensamento computacional / teoria de controle",
             framework: "metáfora"
           },
           {
-            slug: "como-ia-decide",
-            title: "Como uma IA toma decisão?",
-            hook: "IA não pensa — ela conta.",
-            angle: "Modelos não 'entendem' — calculam probabilidade de próximo token.",
-            central_insight: "Se você acha que IA pensa, vai confiar demais. Se entende que IA estima probabilidade, sabe quando duvidar.",
+            slug: "probabilidade-do-dado",
+            title: "Por que '1 em 6' não é promessa do próximo lançamento?",
+            hook: "Dado tem 1 em 6 de cair no 5 — mas pode cair 4 vezes seguidas sem nenhum 5. Não é mágica.",
+            angle: "Probabilidade descreve frequência em N tentativas grandes, não previsão de uma só tentativa.",
+            central_insight: "Se você entende que '1 em 6' é promessa de longo prazo, não do próximo lance, você para de cair em armadilha de azarão.",
             curiosity_facts: [
-              "ChatGPT prevê literalmente 'qual palavra vem a seguir' com base em padrões de texto.",
-              "Uma IA não 'sabe' — ela acerta com alta probabilidade no que parece resposta certa.",
-              "Por isso IA 'alucina' — quando o padrão favorece resposta fluente, mesmo que errada."
+              "Pra '1 em 6' aparecer no esperado, precisa de centenas de lançamentos, não 6.",
+              "Cassinos lucram porque a galera confunde 'chance' com 'garantia da próxima vez'.",
+              "Mesma lógica vale pra IA que dá probabilidade: '92% de gato' não é certeza."
             ],
-            challenge_prompt: "Pergunte algo MUITO específico a uma IA. Cheque a resposta numa fonte real.",
+            challenge_prompt: "Lance um dado 12 vezes e anote. Aposto que o 5 NÃO sai exatamente 2 vezes — ou cai mais, ou cai menos.",
             challenge_when: "hoje",
-            challenge_observable: "Se a IA inventou ou acertou.",
-            learning_objective: "Detectar 1 caso de alucinação ou imprecisão de IA.",
+            challenge_observable: "Quantas vezes o 5 caiu em 12 lances.",
+            learning_objective: "Distinguir frequência esperada (longo prazo) de previsão do próximo evento.",
             illustration_key: "spark",
-            source: "Fundamentos de ML",
+            source: "Fundamentos de probabilidade",
             framework: "experimento"
           },
           {
-            slug: "como-internet-conhece-voce",
-            title: "Como a internet sabe o que você gosta?",
-            hook: "Você assistiu 2 vídeos de cachorro — e o feed virou cachorros.",
-            angle: "Algoritmos de recomendação: cada toque é um voto silencioso.",
-            central_insight: "Se você entende que cada toque vira voto pro algoritmo, você passa a escolher o que vê — em vez de ser escolhido por ele.",
+            slug: "como-ia-decide",
+            title: "Como ChatGPT realmente toma decisão?",
+            hook: "ChatGPT não pensa. Ele chuta a próxima palavra com base em padrão de trilhões de textos humanos.",
+            angle: "LLM (Large Language Model) como preditor estatístico de próximo token. Não há entendimento — há frequência de padrão.",
+            central_insight: "Se você entende que IA está chutando estatisticamente o que parece resposta certa, você sabe quando duvidar — Provérbios 14:15 diz: 'o prudente atenta para os seus passos'.",
             curiosity_facts: [
-              "Algoritmo de recomendação assiste VOCÊ assistindo: tempo, pausas, repetições, scroll.",
-              "TikTok identifica padrão em ~40 minutos — Netflix leva ~2 horas.",
-              "'Personalização' soa amigável — é o termo elegante pra 'previsão de comportamento'."
+              "ChatGPT foi treinado em ~10 trilhões de palavras humanas — a Wikipédia inteira é menos de 0,5% disso.",
+              "Pra cada palavra que ela escreve, calcula a probabilidade de milhares de próximas palavras e escolhe a mais provável.",
+              "Em perguntas sobre fatos específicos, erra entre 15% e 25% — e fala com a mesma confiança quando acerta e quando inventa."
             ],
-            challenge_prompt: "Abra seu feed favorito. Note os 5 primeiros itens. Eles confirmam o que você JÁ pensa?",
+            challenge_prompt: "Faça 3 perguntas factuais à IA hoje (datas, nomes, números) e cheque cada resposta numa fonte externa. Aposto que pelo menos 1 tem erro escondido.",
             challenge_when: "hoje",
-            challenge_observable: "Quantos abrem horizonte vs. fecham bolha.",
-            learning_objective: "Reconhecer bolha algorítmica em 1 feed real.",
+            challenge_observable: "Quantas respostas tinham erro factual quando você verificou em outra fonte.",
+            learning_objective: "Tratar IA como ferramenta estatística com erro — não como oráculo que 'sabe'.",
+            illustration_key: "spark",
+            source: "Emily Bender / 'stochastic parrots' + Provérbios 14:15",
+            framework: "desmistificação + discernimento cristão"
+          },
+          {
+            slug: "algoritmo-tem-limites",
+            title: "Por que o feed não te mostra tudo que existe?",
+            hook: "Antes do algoritmo escolher, regras de idade e tema cortam categorias inteiras — você nem vê.",
+            angle: "Camadas de filtro (safeguards): idade declarada, palavras proibidas, modo restrito e horário rodam antes do algoritmo de recomendação.",
+            central_insight: "Se você entende que existem freios antes do algoritmo, você para de achar que ele 'sabe tudo de você' — ele só escolhe dentro do que a regra deixou passar.",
+            curiosity_facts: [
+              "Mesma conta de família, idades diferentes: feeds diferentes — o filtro de idade roda ANTES da recomendação.",
+              "Palavras-chave proibidas (violência gráfica, automutilação, drogas) somem mesmo se você buscar direto.",
+              "Modo restrito do YouTube corta ~30 em cada 100 vídeos candidatos antes deles chegarem na tela."
+            ],
+            challenge_prompt: "Tente abrir 3 conteúdos pesados hoje (luta intensa, prank perigoso, etc.). Conte quantas telas de 'restrito' aparecem.",
+            challenge_when: "hoje",
+            challenge_observable: "Quantos vídeos foram bloqueados antes de carregar.",
+            learning_objective: "Reconhecer pelo menos 2 camadas de filtro (idade, tema, horário, modo restrito) operando antes do feed.",
             illustration_key: "search",
-            source: "Tristan Harris + Cathy O'Neil",
-            framework: "experimento + cena"
+            source: "Provérbios 22:6 + relatórios de transparência YouTube/TikTok",
+            framework: "desmistificação + safeguards"
           },
           {
             slug: "criador-vs-consumidor",

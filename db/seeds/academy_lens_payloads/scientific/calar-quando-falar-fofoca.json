@@ -1,20 +1,20 @@
 {
-  "headline": "Honestidade é um contrato que você assina primeiro com você mesmo.",
+  "headline": "Fofoca dá prazer rápido e custa confiança devagar — separa amigos sem ninguém perceber na hora.",
   "mechanism_steps": [
-    "Você decide o que é verdade (ex: 'peguei o brinquedo sem pedir') e seu cérebro registra esse julgamento como um compromisso interno.",
-    "Cada vez que você age contra esse julgamento, o cérebro dispara um alerta de 'inconsistência' — um desconforto que arranha sua confiança em si mesmo.",
-    "Repetir a verdade fortalece o contrato: seu cérebro aprende que pode confiar no próprio juízo, e a honestidade vira automática."
+    "Falar mal de quem não está libera dopamina no cérebro: prazer de 'estar do lado certo' parecido com salgadinho — gostoso, rápido, vicia.",
+    "Quem ouve registra inconscientemente: 'se essa pessoa fala dos outros comigo, vai falar de mim com os outros' — confiança cai uns 10% por episódio.",
+    "Provérbios 16:28 já avisava: 'o fofoqueiro separa amigos íntimos'. Tiago 3:5 compara a língua a fogo pequeno — chama mínima, floresta inteira."
   ],
-  "illustration_hint": "Ilustração de uma pessoa segurando um papel com um contrato escrito 'Eu, comigo mesmo', e uma caneta. À esquerda, o papel está rasgado e a pessoa franze a testa. À direita, o papel está inteiro e a pessoa sorri, com um selo de 'confiável'.",
+  "illustration_hint": "Duas crianças sussurrando próximas a uma terceira de costas; uma pequena chama saindo da boca de quem sussurra, com galhos secos espalhados pelo chão; ao fundo uma corrente forte (símbolo de confiança) com um elo trincado.",
   "micro_check": {
-    "question": "{{learner_name}} esbarrou sem querer no amigo e o amigo não viu. Ninguém vai saber. O que a honestidade exige aqui?",
+    "question": "{{learner_name}} está no recreio e a amiga começa a falar mal de outra colega que não está. O que a sabedoria (cristã + ciência) recomenda?",
     "options": [
-      "Nada, porque não foi de propósito e ninguém viu.",
-      "Contar o que aconteceu, porque você sabe a verdade e seu cérebro registra esse saber.",
-      "Fingir que foi outra pessoa, pra não ter que se desculpar.",
-      "Esperar o amigo descobrir sozinho."
+      "Concordar pra não fazer feio na roda, porque todo mundo fofoca um pouco.",
+      "Mudar de assunto sem moralizar a amiga — corta o fogo antes da floresta pegar.",
+      "Contar pra colega ausente o que falaram, pra ela poder se defender.",
+      "Ouvir calado pra ter informação caso precise depois."
     ],
     "correct_index": 1,
-    "rationale": "Honestidade não depende de plateia. O contrato é com seu próprio julgamento — você sabe o que aconteceu, e seu cérebro já registrou. Contar alinha ação com esse saber."
+    "rationale": "Cortar a fofoca sem virar pregador é o ponto: muda de assunto, não condena. Tiago 3:6 chama a língua de fogo — menos lenha, menos incêndio. E quem ouve nota e confia mais em você."
   }
 }

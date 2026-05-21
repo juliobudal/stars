@@ -5,7 +5,7 @@
     "Cada pedaço pequeno dispara uma ação concreta — seu cérebro não trava mais, porque 'guardar livros' é fácil de começar.",
     "Você resolve um por um, e a soma dos pequenos resolvidos monta o problema gigante resolvido — sem ter enfrentado ele de uma vez."
   ],
-  "illustration_hint": "Ilustração de um robô quebrando um bloco gigante de pedra em cubos menores com um martelo; cada cubo tem um ícone (livro, meia, vassoura) e o robô coloca cada um numa caixa rotulada 'feito'.",
+  "illustration_hint": "Robô em estilo cartoon quebrando um bloco gigante cinza em cubos menores coloridos com um martelo; cada cubo carrega um pictograma diferente (livro, meia, vassoura, copo, brinquedo); ao lado, uma caixa aberta com checkmark verde grande estampado por fora recebendo os cubos.",
   "micro_check": {
     "question": "{{learner_name}} precisa fazer um trabalho de ciências enorme: 'construir um vulcão que entra em erupção'. Qual é o primeiro passo da decomposição?",
     "options": [

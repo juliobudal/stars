@@ -5,13 +5,13 @@
     "Quando aparece uma prova contra (ela foi grossa), seu cérebro dispara um filtro: 'foi exceção, não conta' — e descarta.",
     "Cada pista que passa pelo filtro reforça a ideia original, que fica mais forte — e o filtro, mais apertado na próxima vez."
   ],
-  "illustration_hint": "Cena em duas metades: lado esquerdo, uma pessoa com óculos escuros olhando para um mural de fotos — só as fotos felizes estão iluminadas, as tristes estão apagadas. Lado direito, dentro da cabeça da pessoa, um detetive com uma lupa só procura pistas num lado da sala, ignorando o outro lado todo.",
+  "illustration_hint": "Criança sorridente usando óculos com lentes coloridas pastel (filtros) segurando uma lupa que ilumina uma foto pequena em primeiro plano; atrás, uma prateleira longa com várias outras fotos viradas pra parede de cabeça pra baixo. A coruja Duo do lado olhando confusa pras fotos viradas.",
   "micro_check": {
     "question": "{{learner_name}} acha que o videogame novo é o melhor do mundo. Um amigo mostra um vídeo com 5 bugs do jogo. O que o viés de confirmação faz com {{learner_name}}?",
     "options": [
       "Faz {{learner_name}} pensar que o amigo está certo e desistir do jogo",
       "Faz o cérebro de {{learner_name}} ignorar os bugs e lembrar só das fases que funcionaram bem",
-      "Faz {{learner_name}} odiar o amigo por mostrar o vídeo",
+      "Faz {{learner_name}} reconhecer que o jogo tem alguns bugs mas escolher continuar jogando do mesmo jeito",
       "Faz o cérebro de {{learner_name}} esquecer que gostava do jogo"
     ],
     "correct_index": 1,

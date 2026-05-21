@@ -18,5 +18,9 @@ Rails.application.config.to_prepare do
     c.max_tokens          = ENV.fetch("ACADEMY_LLM_MAX_TOKENS", "10000").to_i
     c.referer             = ENV.fetch("ACADEMY_LLM_REFERER", "https://littlestars.app")
     c.app_title           = ENV.fetch("ACADEMY_LLM_APP_TITLE", "LittleStars Academy")
+
+    c.image_model         = ENV.fetch("ACADEMY_IMAGE_MODEL", "google/gemini-2.5-flash-image")
+    c.image_size          = ENV.fetch("ACADEMY_IMAGE_SIZE", "1K")
+    c.image_aspect_ratio  = ENV.fetch("ACADEMY_IMAGE_ASPECT_RATIO", "1:1")
   end
 end

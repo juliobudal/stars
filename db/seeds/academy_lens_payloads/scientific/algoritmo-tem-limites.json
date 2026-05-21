@@ -1,0 +1,20 @@
+{
+  "headline": "Antes do feed te entregar um vídeo, filtros checam idade, horário e tema — nem tudo passa.",
+  "mechanism_steps": [
+    "Sua idade declarada na conta entra primeiro: o sistema bloqueia categorias marcadas '+13', '+16' ou '+18' antes mesmo do algoritmo de recomendação rodar.",
+    "Filtros de tema cortam o que é proibido (violência gráfica, automutilação, drogas) mesmo se você buscar — não depende de você ter clicado ou não, é regra fixa.",
+    "Camada extra de controle parental ou modo restrito ainda apaga sugestões e reduz scroll automático em certos horários, antes do feed final aparecer na sua tela."
+  ],
+  "illustration_hint": "Tela de celular com fila de vídeos descendo por três peneiras empilhadas — uma com símbolo de relógio, outra com escudo de idade, outra com cadeado de tema; alguns vídeos passam, outros caem fora antes de chegar ao feed.",
+  "micro_check": {
+    "question": "{{learner_name}} curte vídeos intensos de luta, mas o feed para de mostrar esse tipo depois de um tempo. Por quê, do ponto de vista técnico?",
+    "options": [
+      "Porque o algoritmo aprendeu sozinho que luta faz mal pra criança.",
+      "Porque o sistema tem filtros de idade e tema que cortam sugestões mesmo se o usuário curtir.",
+      "Porque o app trava quando alguém vê o mesmo tipo de vídeo demais seguido.",
+      "Porque outros usuários denunciam e o vídeo some pra todo mundo na hora."
+    ],
+    "correct_index": 1,
+    "rationale": "Antes do algoritmo escolher, regras fixas de idade e tema apagam categorias inteiras. Curtir não desbloqueia — '+16' fica fora se a conta é '+13', e tema proibido nunca aparece, mesmo buscado."
+  }
+}

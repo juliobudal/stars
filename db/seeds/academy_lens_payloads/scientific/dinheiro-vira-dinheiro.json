@@ -10,7 +10,7 @@
     "question": "{{learner_name}} e {{sibling_or_friend}} receberam R$100 cada. {{learner_name}} guarda numa conta que rende 10% ao ano. {{sibling_or_friend}} enterra o dinheiro no quintal. Quem terá mais daqui a 3 anos?",
     "options": [
       "{{learner_name}}, porque o dinheiro rende juros compostos e o do quintal não rende nada.",
-      "{{sibling_or_friend}}, porque enterrar é mais seguro e o dinheiro não some.",
+      "Os dois ficam parecidos, porque enterrar protege da inflação tão bem quanto a conta a 10% ao ano.",
       "Os dois terão o mesmo valor, porque R$100 é R$100.",
       "{{learner_name}}, mas só se a taxa for maior que 10% ao ano."
     ],

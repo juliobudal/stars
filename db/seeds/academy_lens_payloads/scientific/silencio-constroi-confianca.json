@@ -1,11 +1,11 @@
 {
-  "headline": "Ficar 3 segundos em silêncio depois que o outro fala — isso mostra que você ouviu de verdade.",
+  "headline": "Três segundos de silêncio EXTERNO depois do outro falar — gesto visível que constrói confiança.",
   "mechanism_steps": [
     "Quando você fica quieto por 3 segundos depois que alguém termina de falar, o outro percebe que você não está só esperando sua vez — está processando o que ouviu.",
     "Esse silêncio curto dá tempo pro outro completar o pensamento, sem ser cortado — e ele se sente respeitado, não apressado.",
     "Com o tempo, quem recebe esse silêncio começa a confiar mais em você — porque aprendeu que, quando você fica quieto, é sinal de que está prestando atenção."
   ],
-  "illustration_hint": "Ilustração de duas pessoas conversando: uma acaba de falar, a outra está com a boca fechada e olhos levemente arregalados, como se estivesse pensando. Um cronômetro ao lado marca 3 segundos. Ao fundo, uma bolha de pensamento da primeira pessoa diz 'ele tá me ouvindo de verdade'.",
+  "illustration_hint": "Duas figuras conversando uma na frente da outra; entre elas, uma pequena ampulheta com areia descendo no centro; a figura à esquerda, que acabou de falar, com expressão de alívio (sobrancelhas relaxadas, leve sorriso); a figura à direita escuta com olhar atento e boca fechada, mãos apoiadas no colo.",
   "micro_check": {
     "question": "{{learner_name}} acabou de contar algo pro {{sibling_or_friend}} e ele já vai responder na hora. O que você diria pra ele tentar?",
     "options": [

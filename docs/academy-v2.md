@@ -380,3 +380,61 @@ recall com `RecallAgent` → `/skills` com 9 barras. 717 specs passando.
 1. **`fe-sentido` vira trilha dentro de Caráter & Virtudes.** Provérbios/Lewis/Frankl entram como aulas dentro de trilhas de coragem, gratidão, perseverança. Áreas v1 ficam soft-retired.
 2. **MVP de v2 = Fases 0+1+3+4 com Mente Forte e Corpo & Saúde como showcases.** Resto das áreas tem schema, mas conteúdo plenamente desenvolvido fica para depois.
 3. **Conteúdo legado preservado.** Missões v1 continuam em DB; só param de aparecer no index do kid. Progresso histórico fica intacto.
+
+---
+
+## 15. Ilustrações de pílulas (lens scientific)
+
+Os 37 payloads em `db/seeds/academy_lens_payloads/scientific/` carregam um campo
+`illustration_hint` — descrição rica em pt-BR de uma ilustração. Em vez de renderizar
+o hint como texto italic (comportamento original do partial), pré-geramos uma imagem
+WebP única por conceito via OpenRouter e servimos o arquivo estaticamente em
+`public/academy/illustrations/<slug>.webp`.
+
+### Como rodar
+
+Dev (dentro do container web):
+
+```
+make academy-illustrations              # gera tudo que falta
+make academy-illustrations FORCE=1      # regenera tudo
+make academy-illustrations ONLY=agua-quebra-pedra,memoria-falsa
+make academy-illustrations DRY_RUN=1    # plano + custo estimado, sem chamar API
+make academy-illustrations MODEL=recraft/recraft-v4   # troca de modelo
+```
+
+### Componentes
+
+- `Academy::Illustrations::Client` — bate em `/api/v1/chat/completions` com
+  `modalities: ["image","text"]` + `image_config`. Retry em 5xx/timeout.
+- `Academy::Illustrations::PromptComposer` — prefixa cada hint com o contrato
+  visual Duolingo (verde #58CC02, flat vector, sem texto, 1:1). Versão atual:
+  `STYLE_VERSION = "duolingo@v2"`. Bumpar a versão força regeneração.
+
+  **v2 (2026-05-21)**: o PREFIX foi reescrito com framing **positivo** ("wordless
+  children's picture book" + "Communication is purely visual") em vez do antigo
+  "no text or letters anywhere" — research empírico mostrou que dizer "no text"
+  no prompt vaza tokens de texto no output (Gemini 2.5 Flash Image renderiza
+  strings entre aspas como tipografia). Junto, os 15 `illustration_hint` que
+  carregavam strings literais entre aspas viraram descrições puramente visuais
+  (símbolos, gestos, expressões). Bumping `v1 → v2` invalida o cache atual e
+  força re-rendering antes da Phase 6 do change `add-pill-illustrations`. Ver
+  `.planning/designs/pills-content-cleanup/plan.md` para o plano completo.
+- `Academy::Illustrations::Generate` (ApplicationService) — orquestra a chamada,
+  otimiza pra WebP (1024² @ 85%) via `ImageProcessing::Vips` e grava
+  `illustration_url` + `illustration_meta` no `academy_lens_cache.payload`.
+- Render: `_lens_predict.html.erb` prefere `illustration_url` quando presente;
+  fallback intacto pro hint italic.
+
+### Custo
+
+`google/gemini-2.5-flash-image` (default) ≈ $0.0004/imagem. Batch completo
+≈ $0.02. Re-rolls são triviais. Trocar pra `recraft/recraft-v4` (~$0.04/img,
+batch completo ≈ $1.68) se o estilo flat Duolingo não fechar com Gemini.
+
+### Produção
+
+`.env.production` **não precisa** de `OPENROUTER_API_KEY` pra este feature —
+os arquivos WebP já vão commitados ao repo. A chave é ferramenta de dev,
+não dependência de runtime.
+

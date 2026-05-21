@@ -159,7 +159,6 @@ MISSION_CONCEPTS = {
   "atencao-sem-tela"           => %w[criatividade foco atencao],
   # Dinheiro
   "impulso-perigoso"           => %w[recompensa-imediata gratificacao-tardia],
-  "querer-precisar"            => %w[tradeoff escassez-percebida],
   "guardar-mais-que-gastar"    => %w[pagar-se-primeiro tradeoff habito-loop],
   "dinheiro-vira-dinheiro"     => %w[juros-compostos gratificacao-tardia consistencia],
   # Caráter
@@ -168,9 +167,10 @@ MISSION_CONCEPTS = {
   "gratidao-muda-vista"        => %w[gratidao atencao virtude-habito],
   "coragem-nao-ausencia-medo"  => %w[coragem virtude-habito identidade],
   # Tecnologia & Criação
-  "como-app-funciona"          => %w[sistemas pensamento-computacional],
-  "como-ia-decide"             => %w[probabilidade ceticismo pensamento-computacional],
-  "como-internet-conhece-voce" => %w[algoritmo-recomendacao feedback-loop vies-confirmacao],
+  "loop-feedback"              => %w[sistemas pensamento-computacional],
+  "probabilidade-do-dado"      => %w[probabilidade ceticismo pensamento-computacional],
+  "como-ia-decide"             => %w[ceticismo probabilidade pensamento-computacional],
+  "algoritmo-tem-limites"      => %w[algoritmo-recomendacao feedback-loop vies-confirmacao],
   "criador-vs-consumidor"      => %w[aprendizado-ativo criatividade identidade],
   # Resolver Problemas
   "quebrar-problema"           => %w[decomposicao pensamento-computacional estrategia],

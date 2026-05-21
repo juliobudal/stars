@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, chuta: quantas horas por dia um adolescente brasileiro gasta em telas (celular, TV, computador) somando tudo? Palpita antes de ver o número real.",
-  "predict_unit": "horas",
-  "predict_min": 0,
-  "predict_max": 16,
-  "reveal_value": 9,
-  "reveal_source": "Estimativa baseada na pesquisa TIC Kids Online Brasil 2023 (Cetic.br/NIC.br): tempo médio diário em telas para 9-17 anos é de aproximadamente 9 horas, considerando múltiplos dispositivos simultâneos.",
-  "interpretation": "9 horas. É mais que um dia de aula mais o sono. Cada hora de tela é uma hora que você não usou pra jogar bola, desenhar, conversar com alguém, ou simplesmente não fazer nada. Tudo custa algo — escolher uma tela é renunciar a tudo que podia ter acontecido fora dela."
-}

@@ -83,10 +83,6 @@ upgrades = {
     challenge_prompt: "Aposto que 7 em 10 vontades de comprar passam em 24h. Liste 3 vontades hoje, decida amanhã.",
     challenge_observable: "Quantas vontades sobreviveram um dia."
   },
-  "querer-precisar" => {
-    challenge_prompt: "Aposto que 4 das suas próximas 5 'precisos' são 'queros'. Liste 5 hoje, marque cada um.",
-    challenge_observable: "Quantos eram 'querer' disfarçado de 'precisar'."
-  },
   "guardar-mais-que-gastar" => {
     challenge_prompt: "Aposto que você guarda R$10 esta semana se cortar 1 coisa pequena. Diga qual hoje.",
     challenge_observable: "Real guardado vs. apostado, ao fim da semana."
@@ -115,17 +111,17 @@ upgrades = {
   },
 
   # ── TECNOLOGIA & CRIAÇÃO ───────────────────────────────────────────────
-  "como-app-funciona" => {
+  "loop-feedback" => {
     challenge_prompt: "Aposto que você descobre 5 truques de fisgar no app que mais usa. Caça hoje.",
     challenge_observable: "Quantos truques você reconheceu (notif vermelha, scroll infinito, swipe pull, badge, …)."
   },
-  "como-ia-decide" => {
+  "probabilidade-do-dado" => {
     challenge_prompt: "Aposto que 8 de 10 sugestões no seu feed hoje são feitas pra você ficar mais tempo. Conte.",
     challenge_observable: "Quantas sugestões pareciam 'só pra te prender' vs. 'realmente úteis'."
   },
-  "como-internet-conhece-voce" => {
-    challenge_prompt: "Aposto que aparece 3 anúncios sobre algo que você só FALOU em voz alta hoje. Repare.",
-    challenge_observable: "Quantos anúncios bateram com conversas faladas (sem busca)."
+  "algoritmo-tem-limites" => {
+    challenge_prompt: "Aposto que 3 conteúdos que você tenta abrir hoje são bloqueados antes de carregar — por idade, tema ou modo restrito. Repare.",
+    challenge_observable: "Quantas vezes uma tela de 'restrito' apareceu antes do vídeo rodar."
   },
   "criador-vs-consumidor" => {
     challenge_prompt: "Aposto que você consome 90 min e cria 0 hoje. Cronometre — depois inverta 10 min.",
@@ -214,21 +210,21 @@ new_missions = [
     slug: "calar-quando-falar-fofoca",
     subject: "carater", trail: "palavra-dada",
     title: "Falar mal de quem não tá presente vicia. Por quê?",
-    hook: "Fofoca dá prazer parecido com salgadinho — e custa parecido com salgadinho.",
-    angle: "Cérebro libera dopamina ao 'estar do lado certo'. Custo: confiança aos poucos some sem ninguém perceber.",
-    central_insight: "Se a frase só faria sentido com a pessoa presente, é fofoca. Se faria sentido melhor sem ela, é tóxico.",
+    hook: "Fofoca dá prazer rápido como salgadinho — e custa amizades como Provérbios já avisava.",
+    angle: "Dopamina do 'estar do lado certo' bate de frente com Provérbios 16:28 ('o fofoqueiro separa amigos íntimos') e Tiago 3:5-6 (a língua é fogo: pequena chama, floresta inteira).",
+    central_insight: "Se a frase só faria sentido com a pessoa presente, é fofoca. Cortar antes do fogo pegar protege amizade — não é só moral, é mecânica social comprovada.",
     curiosity_facts: [
       "Robin Dunbar: ~65% das conversas humanas são sobre pessoas ausentes. Não somos imunes.",
       "Quem fofoca com você sobre os outros vai fofocar com os outros sobre você — em 8 de 10 casos.",
-      "O cérebro registra 'fofoqueiro' como 'pouco confiável' inconscientemente — mesmo ouvindo."
+      "Provérbios 16:28 (NTLH): 'o fofoqueiro separa amigos íntimos'. Tiago 3:6 chama a língua de fogo — chama mínima, dano enorme."
     ],
-    challenge_prompt: "Aposto que você ouve fofoca 5 vezes hoje na escola. Conte. Em 1 delas, mude de assunto.",
+    challenge_prompt: "Aposto que você ouve fofoca 5 vezes hoje na escola. Conte. Em 1 delas, mude de assunto sem moralizar.",
     challenge_when: "hoje",
     challenge_observable: "Quantas vezes ouviu, e o que aconteceu na vez que mudou de assunto.",
     learning_objective: "Reconhecer fofoca + cortar 1 vez sem moralizar a outra pessoa.",
     illustration_key: "users",
-    source: "Robin Dunbar / antropologia evolutiva",
-    framework: "fato + dado",
+    source: "Provérbios 16:28 + Tiago 3:5-6 + Robin Dunbar",
+    framework: "tradição cristã + dado científico",
     concept_slug: "honestidade"
   },
 
@@ -297,95 +293,17 @@ new_missions = [
     source: "Hannes Schulz / sistemas de recomendação",
     framework: "desmistificação",
     concept_slug: "algoritmo-recomendacao"
-  },
-  {
-    slug: "ia-nao-e-magica",
-    subject: "tecnologia-criacao", trail: "como-tecnologia-funciona",
-    title: "ChatGPT não pensa. Conta palavras.",
-    hook: "IA não 'sabe'. IA aposta a próxima palavra mais provável — e fala com confiança total mesmo errando.",
-    angle: "LLMs são preditores estatísticos. Não há entendimento; há frequência. Por isso 'alucinam'.",
-    central_insight: "Se você pergunta algo simples, IA acerta. Se você pergunta algo subjetivo, IA inventa com confiança.",
-    curiosity_facts: [
-      "ChatGPT erra ~15-25% de fatos simples e fala como se tivesse 100% de certeza.",
-      "Pesquisadores chamam de 'hallucination': IA inventa fontes que não existem.",
-      "Ela é um 'preditor de próxima palavra' treinado em ~10 trilhões de palavras humanas."
-    ],
-    challenge_prompt: "Aposto que você faz 3 perguntas hoje à IA e em 1 resposta tem erro factual escondido. Pesquise depois.",
-    challenge_when: "hoje",
-    challenge_observable: "Quantas respostas erraram quando você cruzou com 1 fonte externa.",
-    learning_objective: "Tratar IA como ferramenta com erro, não como oráculo.",
-    illustration_key: "lightbulb",
-    source: "Emily Bender / 'stochastic parrots'",
-    framework: "desmistificação",
-    concept_slug: "probabilidade"
-  },
-
-  # ── RESOLVER (+2) ──────────────────────────────────────────────────────
-  {
-    slug: "cinco-porques-resolve",
-    subject: "resolver-problemas", trail: "quando-trava",
-    title: "Pergunte 'por quê?' 5 vezes seguidas. Aí você acha o problema real.",
-    hook: "Toyota descobriu: se você pergunta 'por quê?' uma vez, conserta o sintoma. Se pergunta 5 vezes, conserta a causa.",
-    angle: "Os 5 Porquês (Sakichi Toyoda). Cada 'porque' descasca uma camada do problema até a raiz.",
-    central_insight: "Se você para no 1º 'por quê', resolve o sintoma. Se vai até o 5º, resolve o problema.",
-    curiosity_facts: [
-      "Toyota usa essa técnica em CHÃO DE FÁBRICA — economiza milhões/ano por erro encontrado.",
-      "Pesquisas em UX: 80% dos problemas relatados pelo usuário não são o problema real.",
-      "Funciona até pra brigas com irmão. Sério."
-    ],
-    challenge_prompt: "Aposto que 3 das suas 5 últimas 'discussões com a mãe' têm a mesma causa real. Pergunte 5 'por quê' na próxima briga.",
-    challenge_when: "esta-semana",
-    challenge_observable: "Em quantas brigas a 5ª pergunta mudou o que você ia dizer.",
-    learning_objective: "Aplicar os 5 porquês a 1 conflito real esta semana.",
-    illustration_key: "puzzle",
-    source: "Sakichi Toyoda / Toyota Production System",
-    framework: "ferramenta + caso",
-    concept_slug: "5-porques"
-  },
-  {
-    slug: "pensar-em-voz-alta",
-    subject: "resolver-problemas", trail: "quando-trava",
-    title: "Por que explicar o problema pra um pato resolve metade dos bugs?",
-    hook: "Programadores falam com um pato de borracha. Sério. E em 50% dos casos, o pato resolve o problema sozinho.",
-    angle: "Rubber duck debugging. Ato de explicar oraliza o que estava implícito — aí o erro aparece.",
-    central_insight: "Pensar em voz alta encontra erro que pensar em silêncio esconde.",
-    curiosity_facts: [
-      "Origem: livro 'The Pragmatic Programmer' (1999). Hoje cada dev tem 1 pato.",
-      "Funciona porque o cérebro força 'sequência' quando vc fala — silêncio permite atalhos.",
-      "Pesquisa em educação: alunos que 'falam o problema antes de tentar' acertam ~30% mais."
-    ],
-    challenge_prompt: "Aposto que você acha 2 erros nas suas tarefas hoje só explicando em voz alta. Tente em 1 prova/dever.",
-    challenge_when: "hoje",
-    challenge_observable: "Quantos erros apareceram só falando, antes mesmo de procurar.",
-    learning_objective: "Aplicar 'rubber duck' em pelo menos 1 problema travado.",
-    illustration_key: "lightbulb",
-    source: "Andy Hunt / The Pragmatic Programmer",
-    framework: "técnica + experimento",
-    concept_slug: "decomposicao"
-  },
-
-  # ── SOCIEDADE (+1) ─────────────────────────────────────────────────────
-  {
-    slug: "primeira-impressao-erra",
-    subject: "vida-sociedade", trail: "ler-pessoas",
-    title: "Você decide quem é a pessoa em 7 segundos. E erra 60% do tempo.",
-    hook: "Seu cérebro fecha um veredito sobre alguém em 7 segundos — antes mesmo de você ouvir o nome.",
-    angle: "Thin-slicing (Malcolm Gladwell + Nalini Ambady). Cérebro é rápido — também é tendencioso.",
-    central_insight: "Se você confia nos 7 primeiros segundos, perde gente boa. Espere 3 conversas antes de decidir.",
-    curiosity_facts: [
-      "Estudo de Ambady: alunos avaliavam professores corretamente em 6 segundos de vídeo MUDO. Mas erravam 40% das pessoas em geral.",
-      "Cérebro usa 'similaridade comigo' como atalho. Quem parece com você ganha pontos grátis.",
-      "Pessoas que esperam '3 conversas antes de julgar' têm amizades mais duradouras (estudo Dunbar)."
-    ],
-    challenge_prompt: "Aposto que sua impressão sobre 2 colegas muda totalmente se você conversar 5 min com cada. Teste hoje.",
-    challenge_when: "hoje",
-    challenge_observable: "Em quantos casos sua 1ª impressão mudou e em quais ficou igual.",
-    learning_objective: "Suspender julgamento de 1 colega que você tinha 'arquivado'.",
-    illustration_key: "users",
-    source: "Malcolm Gladwell, Blink / Nalini Ambady",
-    framework: "dado científico + ação",
-    concept_slug: "vies-confirmacao"
   }
+
+  # ── RESOLVER ────────────────────────────────────────────────────────────
+  # (cinco-porques-resolve removido 2026-05-21 — duplicava 5-porques; mantido o original)
+  # (pensar-em-voz-alta removido 2026-05-21 — duplicava quebrar-problema na decomposição)
+
+  # ── SOCIEDADE ──────────────────────────────────────────────────────────
+  # (primeira-impressao-erra removido 2026-05-21 — duplicava vies-confirmacao na lente "detetive com lupa")
+
+  # ── TECNOLOGIA ─────────────────────────────────────────────────────────
+  # (ia-nao-e-magica removido 2026-05-21 — duplicava probabilidade-do-dado; pílula "como-ia-decide v2" será reescrita pela curadoria humana)
 ]
 
 SUBJECT_FALLBACK_CONCEPT_V4 = {
@@ -439,9 +357,10 @@ new_missions.each do |attrs|
 end
 puts "✓ Academy v4 new discovery missions: #{new_count} added/refreshed"
 
-# Soft-deactivate v2 duplicates whose v4 replacement is now present.
-# Must run AFTER new_missions so the replacement actually exists.
-duplicates = { "5-porques" => "cinco-porques-resolve" }
+# Soft-deactivate any orphaned v2 missions whose v4 calibrated replacement is
+# now present. Empty after 2026-05-21 pills-content-cleanup (the v4 "cinco-
+# porques-resolve" was retired in favor of keeping the v2 "5-porques").
+duplicates = {}
 deactivated = 0
 duplicates.each do |old_slug, replacement_slug|
   old = ::Academy::Mission.find_by(slug: old_slug)

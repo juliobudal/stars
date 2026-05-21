@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, quantos vídeos você acha que o YouTube te mostrou HOJE que foram escolhidos por um algoritmo — sem você ter pesquisado? Chuta.",
-  "predict_unit": "vezes/dia",
-  "predict_min": 0,
-  "predict_max": 200,
-  "reveal_value": 40,
-  "reveal_source": "Estimativa baseada em relatórios de uso do YouTube (Google, 2023): um adolescente vê em média 40 vídeos recomendados por dia na página inicial e na barra lateral — sem contar os que ele mesmo procurou.",
-  "interpretation": "40 vídeos. O algoritmo não adivinha — ele lê seus toques, pausas e pulos como votos. Cada vez que você assiste até o fim, é um voto a favor daquele tema. Cada vez que você passa rápido, é um voto contra. O feed não é aleatório: é o resultado da sua própria urna."
-}

@@ -169,6 +169,14 @@ assets-build:
 assets-clobber:
 	$(EXEC) bin/rails assets:clobber
 
+# Academy --------------------------------------------------------------------
+# One-shot generation of pill illustrations via OpenRouter. See
+# openspec/changes/add-pill-illustrations/design.md for the pipeline contract.
+# Pass options via ENV, e.g.: `make academy-illustrations DRY_RUN=1`,
+# `make academy-illustrations FORCE=1 ONLY=agua-quebra-pedra`.
+academy-illustrations:
+	$(EXEC) bin/rails academy:illustrations:generate
+
 # Full bootstrap ---------------------------------------------------------------
 # Wipes volumes, rebuilds images from scratch, boots the stack, installs deps
 # inside the container (bind mount masks image-time node_modules), then prepares

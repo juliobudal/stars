@@ -1,0 +1,41 @@
+{
+  "source_domain": {
+    "name": "Entrada de cinema com cartaz de classificação indicativa",
+    "elements": [
+      "Filme '+16' tem cartaz na bilheteria avisando antes de você comprar",
+      "Bilheteira confere RG na hora se você parece novo demais",
+      "Tem horário em que algumas sessões nem rolam para menor de idade",
+      "Mesmo com ingresso, alguém pode te barrar na porta da sala",
+      "O filme existe — só não está disponível pra você agora"
+    ]
+  },
+  "target_domain": {
+    "name": "Filtros de idade, tema e horário antes do feed",
+    "elements": [
+      "Vídeo '+16' tem flag na própria plataforma ligada ao tema",
+      "Sua conta tem idade declarada que o sistema confere a cada sugestão",
+      "Modo restrito e horário noturno cortam categorias automaticamente",
+      "Mesmo se você clicar, a tela bloqueia antes do vídeo carregar",
+      "O conteúdo existe — só não está disponível pra essa conta agora"
+    ]
+  },
+  "mapping": [
+    {
+      "from": "Cartaz de classificação no cinema",
+      "to": "Flag de idade no vídeo"
+    },
+    {
+      "from": "Bilheteira conferindo RG",
+      "to": "Sistema conferindo idade da conta"
+    },
+    {
+      "from": "Horário de exibição restrito",
+      "to": "Filtro de horário/modo restrito"
+    },
+    {
+      "from": "Porteiro barrando na sala",
+      "to": "Tela cinza 'conteúdo restrito'"
+    }
+  ],
+  "transfer_question": "Se um porteiro de cinema te barra ANTES da sessão começar, mesmo com ingresso na mão, por que estranhar que o app te barre ANTES do vídeo carregar, mesmo com clique no botão?"
+}
