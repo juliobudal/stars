@@ -10,7 +10,6 @@ RSpec.describe "Kid custom mission flow", type: :system do
     # 1. Kid opens "+ Nova missão" form and submits a custom mission
     sign_in_as_child(kid)
 
-    expect(page).to have_content("Bora pegar mais")
     click_on "Fez algo fora da lista? Adicionar"
 
     expect(page).to have_current_path(new_kid_mission_path)

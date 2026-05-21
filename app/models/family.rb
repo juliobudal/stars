@@ -31,6 +31,7 @@ class Family < ApplicationRecord
   has_many :rewards, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :profile_tasks, through: :profiles
+  has_many :redemptions, through: :profiles
   has_many :profile_invitations, dependent: :destroy
 
   has_secure_password
