@@ -108,6 +108,15 @@ RSpec.configure do |config|
       ActiveRecord::Base.connection.execute("DELETE FROM #{t}")
     end
   end
+
+  # Examples tagged `:image_pipeline` shell out to ImageMagick's `convert` via
+  # ImageProcessing::MiniMagick. CI doesn't install ImageMagick because the
+  # pipeline is a content-authoring tool — it only runs locally when curators
+  # generate new pill illustrations. Skip gracefully where the binary is absent.
+  IMAGEMAGICK_AVAILABLE = system("which convert > /dev/null 2>&1")
+  config.before(:each, :image_pipeline) do
+    skip "needs ImageMagick `convert` (content-authoring tool — runs locally only)" unless IMAGEMAGICK_AVAILABLE
+  end
 end
 
 Shoulda::Matchers.configure do |config|

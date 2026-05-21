@@ -37,7 +37,7 @@ RSpec.describe Academy::Illustrations::Generate do
     FileUtils.rm_f(output_path)
   end
 
-  describe "success path" do
+  describe "success path", :image_pipeline do
     before { allow(client).to receive(:generate).and_return(client_response) }
 
     it "writes a webp file and updates the payload" do
@@ -67,7 +67,7 @@ RSpec.describe Academy::Illustrations::Generate do
     end
   end
 
-  describe "idempotence" do
+  describe "idempotence", :image_pipeline do
     it "skips when URL+file+style already match" do
       allow(client).to receive(:generate).and_return(client_response)
       described_class.call(lens_cache: lens_cache, client: client)
