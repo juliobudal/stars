@@ -82,6 +82,6 @@ gem "database_cleaner-active_record", "~> 2.2", group: :test
 gem "rails-i18n", "~> 8.0"
 
 # Schema validation used by the curated lens payload seeder.
-gem "json-schema", "~> 5.1"
+gem "json-schema", "~> 6.2"
 
 gem "dotenv-rails", groups: [ :development, :test ]
