@@ -140,7 +140,6 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
-    image_processing (2.0.0)
     io-console (0.8.2)
     irb (1.17.0)
       pp (>= 0.6.0)
@@ -428,7 +427,6 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails (~> 6.5)
   faker (~> 3.8)
-  image_processing (~> 2.0)
   json-schema (~> 6.2)
   kamal
   pagy (~> 43.5)
