@@ -37,6 +37,8 @@ module App
     # in config/environments, which are processed later.
     #
     config.time_zone = "America/Sao_Paulo"
+
+    config.active_storage.variant_processor = :disabled
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
