@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_25_175606) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_25_184150) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -246,7 +246,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_25_175606) do
     t.integer "order_in_subject", default: 0, null: false
     t.integer "points_reward", default: 25, null: false
     t.integer "position_in_trail"
-    t.text "sacada", comment: "The 1-line counter-intuitive insight (the 'pílula' itself)"
     t.string "slug", null: false
     t.string "source", comment: "Author(s)/tradition/study the pílula distills (e.g. 'Carnegie', 'Marco Aurélio', 'Provérbios')"
     t.bigint "subject_id", null: false

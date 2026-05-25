@@ -709,7 +709,6 @@ ActiveRecord::Base.transaction do
         angle: m[:angle].to_s.strip,
         source: m[:source],
         framework: m[:framework],
-        sacada: m[:central_insight], # back-compat with legacy `sacada`
         central_insight: m[:central_insight],
         challenge_prompt: m[:challenge_prompt],
         challenge_when: m[:challenge_when],

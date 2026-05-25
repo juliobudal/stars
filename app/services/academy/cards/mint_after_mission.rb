@@ -8,9 +8,9 @@ module Academy
     #   progress: Academy::MissionProgress (status must be :completed or :mastered)
     #
     # Sources for the card content (priority order):
-    #   1. The last guide message's metadata["card_summary"] (LLM-emitted v2)
-    #   2. mission.central_insight + mission.learning_objective (seeded v2)
-    #   3. mission.sacada / mission.hook / mission.title (legacy v1 fallback)
+    #   1. The last guide message's metadata["card_summary"] (LLM-emitted)
+    #   2. mission.central_insight + mission.learning_objective (seeded)
+    #   3. mission.hook / mission.title (fallback)
     #
     # Idempotent: unique on (learner_id, mission_id). Re-runs are no-ops.
     class MintAfterMission < ApplicationService
@@ -51,13 +51,11 @@ module Academy
                             mission.subject.icon,
           headline: (summary&.dig("headline").presence ||
                      mission.central_insight.presence ||
-                     mission.sacada.presence ||
                      mission.hook.presence ||
                      mission.title)[0, 180],
           application: summary&.dig("application").presence ||
                        mission.learning_objective.to_s.presence,
-          central_insight: mission.central_insight.presence ||
-                           mission.sacada.presence,
+          central_insight: mission.central_insight.presence,
           source: mission.source_label
         }
       end

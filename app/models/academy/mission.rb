@@ -19,7 +19,6 @@
 #  order_in_subject                                                                                                :integer          default(0), not null
 #  points_reward                                                                                                   :integer          default(25), not null
 #  position_in_trail                                                                                               :integer
-#  sacada(The 1-line counter-intuitive insight (the 'pílula' itself))                                              :text
 #  slug                                                                                                            :string           not null
 #  source(Author(s)/tradition/study the pílula distills (e.g. 'Carnegie', 'Marco Aurélio', 'Provérbios'))          :string
 #  title                                                                                                           :string           not null
