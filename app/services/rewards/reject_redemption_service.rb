@@ -8,11 +8,14 @@ module Rewards
     def call
       Rails.logger.info("[Rewards::RejectRedemptionService] start redemption_id=#{@redemption.id}")
 
-      unless @redemption.pending?
-        return fail_with("Resgate não está pendente")
-      end
-
       ActiveRecord::Base.transaction do
+        @redemption.lock!
+        @profile.lock!
+
+        unless @redemption.pending?
+          return fail_with("Resgate não está pendente")
+        end
+
         @redemption.update!(status: :rejected)
         @profile.increment!(:points, @redemption.points)
         ActivityLog.create!(

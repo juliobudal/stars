@@ -8,7 +8,7 @@ module Tasks
   #
   # Also sweeps stale pending slots (assigned_date < today_local, still pending)
   # into the :missed status so they stop polluting today's queue.
-  class DailyResetService
+  class DailyResetService < ApplicationService
     def initialize(family:, now: Time.current, date: nil)
       raise ArgumentError, "family is required" unless family
       @family = family
@@ -18,18 +18,32 @@ module Tasks
     def call
       if already_run_today?
         Rails.logger.debug("[Tasks::DailyResetService] skip family_id=#{@family.id} already_run_on=#{@family.last_reset_on}")
-        return 0
+        return ok(created: 0, missed: 0, skipped: true)
       end
 
       Rails.logger.info("[Tasks::DailyResetService] start family_id=#{@family.id} date=#{@today}")
 
-      missed_count = sweep_stale_pendings
-      created_count = materialize_today
+      created_count = 0
+      missed_count = 0
 
-      @family.update_column(:last_reset_on, @today)
+      ActiveRecord::Base.transaction do
+        @family.lock!
+
+        if already_run_today?
+          return ok(created: 0, missed: 0, skipped: true)
+        end
+
+        missed_count = sweep_stale_pendings
+        created_count = materialize_today
+
+        @family.update_column(:last_reset_on, @today)
+      end
 
       Rails.logger.info("[Tasks::DailyResetService] success family_id=#{@family.id} created=#{created_count} missed=#{missed_count}")
-      created_count
+      ok(created: created_count, missed: missed_count, skipped: false)
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
+      Rails.logger.error("[Tasks::DailyResetService] exception family_id=#{@family.id} error=#{e.message}")
+      fail_with(e.message)
     end
 
     private

@@ -60,10 +60,9 @@
         <% progress = @trail_progress[trail.id] %>
         <% pct = (progress[:ratio] * 100).round %>
         <%= link_to kid_academy_subject_trail_path(@subject, trail),
-                    class: "block ls-card-3d anim-press",
-                    style: "background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); text-decoration: none;" do %>
+                    class: "block ls-card-3d surface-card-3d anim-press no-underline" do %>
           <div class="flex items-start gap-3">
-            <div class="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0"
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
                  style="background: <%= @subject.color %>; opacity: 0.85; box-shadow: 0 3px 0 rgba(0,0,0,0.08);">
               <span class="font-display font-extrabold text-[15px]" style="color: white;">
                 <%= trail.position %>
@@ -103,7 +102,7 @@
     </div>
   <% end %>
 
-  <%# ── Orphan (legacy) missions — for v1 progress continuity ─ %>
+  <%# ── Orphan (legacy) missions · for v1 progress continuity ─ %>
   <% if @orphan_missions.any? %>
     <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mt-6 mb-2 px-1" style="color: var(--text-muted);">
       PÍLULAS AVULSAS

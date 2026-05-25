@@ -32,14 +32,14 @@
   <% unless review_mode %>
     <div class="flex gap-2">
       <button type="button"
-              class="flex-1 px-4 py-3 rounded-2xl font-display font-extrabold text-[14px] tracking-wide uppercase anim-press ls-btn-3d border-0"
+              class="flex-1 px-4 py-3 rounded-xl font-display font-extrabold text-[14px] tracking-wide uppercase anim-press ls-btn-3d border-0"
               style="background: <%= color_var %>; color: white; box-shadow: 0 4px 0 color-mix(in oklab, <%= color_var %> 60%, black);"
               data-action="click->lens-stage#startTimer"
               data-lens-stage-target="startTimerBtn">
         Comecei
       </button>
       <button type="button"
-              class="flex-1 px-4 py-3 rounded-2xl font-display font-extrabold text-[14px] tracking-wide uppercase anim-press ls-btn-3d"
+              class="flex-1 px-4 py-3 rounded-xl font-display font-extrabold text-[14px] tracking-wide uppercase anim-press ls-btn-3d"
               style="background: var(--surface); color: var(--text); border: 2px solid var(--hairline); box-shadow: 0 4px 0 var(--hairline);"
               data-action="click->lens-stage#stopTimer"
               data-lens-stage-target="stopTimerBtn"
@@ -48,8 +48,8 @@
       </button>
     </div>
   <% else %>
-    <div class="rounded-2xl px-3 py-2 inline-flex items-center gap-2"
-         style="background: color-mix(in oklab, var(--c-leaf) 18%, var(--surface)); border: 1.5px solid var(--c-leaf);">
+    <div class="rounded-xl px-3 py-2 inline-flex items-center gap-2"
+         style="background: color-mix(in oklab, var(--success) 18%, var(--surface)); border: 1.5px solid var(--success);">
       <span aria-hidden="true">✓</span>
       <span class="font-display text-[12px] font-extrabold tracking-[0.5px]" style="color: var(--text);">
         Você completou esta prática
@@ -59,7 +59,7 @@
 
   <div class="lens-reveal mt-4 text-left" <% unless review_mode %>data-lens-stage-target="embodiedReveal" hidden<% end %>>
     <% if payload["sensory_anchor"].present? %>
-      <div class="rounded-2xl p-3 mb-2"
+      <div class="rounded-xl p-3 mb-2"
            style="background: var(--surface-2); border: 2px dashed <%= color_var %>;">
         <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
              style="color: <%= color_var %>;">
@@ -71,7 +71,7 @@
       </div>
     <% end %>
     <% if payload["reveal"].present? %>
-      <div class="rounded-2xl p-3"
+      <div class="rounded-xl p-3"
            style="background: color-mix(in oklab, <%= color_var %> 12%, var(--surface)); border: 2px solid <%= color_var %>;">
         <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
              style="color: <%= color_var %>;">

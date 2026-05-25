@@ -18,7 +18,7 @@
     </p>
   <% end %>
 
-  <div class="rounded-2xl px-3 py-2 mb-3 inline-flex items-center gap-2"
+  <div class="rounded-xl px-3 py-2 mb-3 inline-flex items-center gap-2"
        style="background: var(--primary-soft); color: var(--primary-2);">
     <span class="font-display text-[12px] font-extrabold tracking-wide uppercase">
       Escolha
@@ -59,7 +59,7 @@
 
   <% unless review_mode %>
     <div class="lens-reveal mt-4" data-lens-stage-target="engineeringReveal" hidden>
-      <div class="rounded-2xl p-4"
+      <div class="rounded-xl p-4"
            style="background: color-mix(in oklab, <%= color_var %> 12%, var(--surface)); border: 2px solid <%= color_var %>;">
         <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
              style="color: <%= color_var %>;">
@@ -75,7 +75,7 @@
     <% kid_outcome = outcomes[kid_outcome_key] %>
     <% if kid_outcome.present? %>
       <div class="lens-reveal mt-4">
-        <div class="rounded-2xl p-4"
+        <div class="rounded-xl p-4"
              style="background: color-mix(in oklab, <%= color_var %> 12%, var(--surface)); border: 2px solid <%= color_var %>;">
           <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
                style="color: <%= color_var %>;">

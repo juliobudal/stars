@@ -1,0 +1,20 @@
+{
+  "headline": "Em meio segundo, sua mensagem dá meio planeta de volta — e ninguém te explica como.",
+  "mechanism_steps": [
+    "Você digita 'youtube.com', mas o computador não entende letra — entende número. Antes de qualquer coisa, ele pergunta a um DNS: 'qual o IP desse nome?' O DNS responde algo tipo 142.250.79.110.",
+    "Com o IP em mãos, seu pedido não viaja inteiro. É cortado em pacotinhos que pegam caminhos diferentes pela rede — um vai pela Espanha, outro pelos EUA — e cada um carrega o endereço do destino.",
+    "Os pacotinhos chegam fora de ordem no servidor, que remonta tudo na sequência certa e devolve o vídeo do mesmo jeito. Vint Cerf e Bob Kahn inventaram esse protocolo nos anos 70."
+  ],
+  "illustration_hint": "Criança digitando 'youtube.com'. Acima da tela, nuvem DNS responde com plaquinha de IP. Do computador saem 4 envelopes numerados voando por caminhos diferentes do mapa-mundi — um sobre o Atlântico, outro pelo Pacífico — convergindo num servidor do outro lado.",
+  "micro_check": {
+    "question": "{{learner_name}} digita 'globo.com' no navegador. Qual a PRIMEIRA coisa que o computador faz antes de carregar a página?",
+    "options": [
+      "Manda o pedido direto pro servidor do Globo.",
+      "Pergunta a um servidor DNS qual é o número IP desse nome.",
+      "Procura no Google onde fica o site.",
+      "Abre o cache do navegador e mostra a versão antiga."
+    ],
+    "correct_index": 1,
+    "rationale": "Computador só conversa por número (IP), não por letra. Toda vez que você digita um nome de site, antes de mais nada ele pergunta ao DNS qual o IP daquele nome — sem esse passo, o pedido não sai do lugar."
+  }
+}

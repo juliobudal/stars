@@ -8,7 +8,10 @@ Rails.application.config.to_prepare do
   next unless defined?(Academy)
 
   Academy.configure do |c|
-    c.openrouter_api_key  = ENV["OPENROUTER_API_KEY"].to_s
+    # Prefer encrypted credentials (`rails credentials:edit`); fall back to
+    # ENV so dev/Docker workflows keep working without a credentials key.
+    credentials_key = Rails.application.credentials.dig(:openrouter, :api_key)
+    c.openrouter_api_key  = (credentials_key.presence || ENV["OPENROUTER_API_KEY"]).to_s
     c.openrouter_base_url = ENV.fetch("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
     c.model               = ENV.fetch("ACADEMY_LLM_MODEL", "deepseek/deepseek-v4-flash")
     c.temperature         = ENV.fetch("ACADEMY_LLM_TEMPERATURE", "0.7").to_f

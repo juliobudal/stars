@@ -1,0 +1,88 @@
+<%= render Ui::ProgressSteps::Component.new(current: @step, total: 4) %>
+
+<header class="mb-5">
+  <h1 class="font-display text-[26px] leading-tight font-extrabold tracking-[-0.01em] m-0" style="color: var(--text);">
+    Aqui é assim:
+  </h1>
+  <p class="text-[14px] font-bold mt-1.5 m-0" style="color: var(--text-muted);">
+    Três coisas pra você guardar.
+  </p>
+</header>
+
+<div class="flex flex-col gap-3 flex-1">
+  <%# Card 1 · Missões %>
+  <div class="ls-card-3d p-4"
+       style="background: linear-gradient(135deg, var(--primary-soft) 0%, var(--surface) 75%); border: 2px solid var(--primary); border-radius: 16px; box-shadow: 0 4px 0 var(--primary-2);">
+    <div class="flex items-start gap-3">
+      <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 text-[24px]"
+           style="background: var(--surface); border: 2px solid var(--primary);">
+        🎯
+      </div>
+      <div class="min-w-0 flex-1">
+        <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--primary);">
+          Missões
+        </div>
+        <div class="font-display text-[17px] font-extrabold leading-tight mt-0.5" style="color: var(--text);">
+          Tarefas pra você fazer no dia
+        </div>
+        <p class="text-[13px] font-bold mt-1.5 m-0" style="color: var(--text-muted);">
+          Cada missão que você completa rende estrelinhas.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <%# Card 2 · Estrelinhas %>
+  <div class="ls-card-3d p-4"
+       style="background: linear-gradient(135deg, var(--star-soft) 0%, var(--surface) 75%); border: 2px solid var(--star); border-radius: 16px; box-shadow: 0 4px 0 var(--star-2);">
+    <div class="flex items-start gap-3">
+      <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
+           style="background: var(--surface); border: 2px solid var(--star);">
+        <%= render Ui::Icon::Component.new(:star, size: 26, color: "var(--star-2)") %>
+      </div>
+      <div class="min-w-0 flex-1">
+        <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--c-amber-dark);">
+          Estrelinhas
+        </div>
+        <div class="font-display text-[17px] font-extrabold leading-tight mt-0.5" style="color: var(--text);">
+          Sua moeda aqui dentro
+        </div>
+        <p class="text-[13px] font-bold mt-1.5 m-0" style="color: var(--text-muted);">
+          Quanto mais missões, mais estrelinhas no bolso.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <%# Card 3 · Recompensas %>
+  <div class="ls-card-3d p-4"
+       style="background: linear-gradient(135deg, var(--c-peach-soft) 0%, var(--surface) 75%); border: 2px solid var(--c-peach); border-radius: 16px; box-shadow: 0 4px 0 var(--c-peach-dark);">
+    <div class="flex items-start gap-3">
+      <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 text-[24px]"
+           style="background: var(--surface); border: 2px solid var(--c-peach);">
+        🎁
+      </div>
+      <div class="min-w-0 flex-1">
+        <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--c-peach-dark);">
+          Recompensas
+        </div>
+        <div class="font-display text-[17px] font-extrabold leading-tight mt-0.5" style="color: var(--text);">
+          Troca suas estrelinhas
+        </div>
+        <p class="text-[13px] font-bold mt-1.5 m-0" style="color: var(--text-muted);">
+          A família monta a lista de prêmios pra você escolher.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pt-6">
+  <%= link_to kid_welcome_ready_path,
+        class: "w-full text-center ls-btn-3d inline-flex items-center justify-center gap-2 font-display font-extrabold uppercase tracking-[0.5px] no-underline",
+        style: "padding: 14px 20px; border-radius: 14px; background: var(--primary); color: white; font-size: 16px; box-shadow: 0 4px 0 var(--primary-2);",
+        "data-testid": "how-next" do %>
+    Entendi
+    <%= render Ui::Icon::Component.new("arrow-right-01", size: 18, color: "white") %>
+  <% end %>
+</div>

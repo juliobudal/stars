@@ -16,80 +16,47 @@
              awaiting_count: @awaiting_tasks.count,
              completed_today_count: @completed_today.count %>
 
-  <%# ── Pílula do Dia ── %>
-  <%= link_to kid_academy_pill_path,
-        class: "ls-card-3d mb-4 z-2 shrink-0 block",
-        style: "background: linear-gradient(135deg, var(--primary-soft) 0%, var(--surface) 70%); border: 2px solid var(--primary); border-radius: 16px; padding: 14px 18px; box-shadow: 0 4px 0 var(--primary-2); text-decoration: none; color: inherit;",
-        "data-testid": "kid-pill-card" do %>
-    <div class="flex items-center justify-between gap-3">
-      <div class="flex items-center gap-3 min-w-0">
-        <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-[22px] shrink-0"
-             style="background: var(--surface); border: 2px solid var(--primary);">
-          💊
-        </div>
-        <div class="min-w-0">
-          <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--primary);">Pílula do Dia</div>
-          <div class="font-display text-[14px] font-extrabold leading-tight" style="color: var(--text);">
-            60 segundos pra ficar mais esperto
-          </div>
-        </div>
-      </div>
-      <%= render Ui::Icon::Component.new("chevron-right", size: 20, color: "var(--primary)") %>
-    </div>
-  <% end %>
-
-  <%# ── Lightning Round shortcut (only visible after some practice) ── %>
+  <%# ── Shortcut cards (Pílula, Lightning, Eu curto) ── %>
+  <% kid_interests = current_profile.interest_keys(5) %>
+  <% interests_title = kid_interests.any? ?
+       kid_interests.first(3).map { |k| ProfileInterest::Catalog.emoji_for(k) + " " + ProfileInterest::Catalog.label_for(k) }.join("  ·  ") :
+       "Conta pra gente o que você curte!" %>
   <% has_fading = ::Academy::LearnerConcept.for_learner(current_profile.id)
                     .where(level: 1..2).where("last_seen_at < ?", 7.days.ago).exists? %>
-  <% if has_fading %>
-    <%= link_to kid_academy_lightning_path,
-          class: "ls-card-3d mb-4 z-2 shrink-0 block",
-          style: "background: var(--c-amber-soft); border: 2px solid var(--c-amber); border-radius: 16px; padding: 12px 16px; box-shadow: 0 4px 0 var(--c-amber-dark); text-decoration: none; color: inherit;",
-          "data-testid": "kid-lightning-card" do %>
-      <div class="flex items-center justify-between gap-3">
-        <div class="flex items-center gap-2.5 min-w-0">
-          <span aria-hidden="true" style="font-size: 22px;">⚡</span>
-          <div class="min-w-0">
-            <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--c-amber-dark);">Lightning Round</div>
-            <div class="font-display text-[14px] font-extrabold leading-tight" style="color: var(--text);">
-              90 segundos · 5 perguntas
-            </div>
-          </div>
-        </div>
-        <%= render Ui::Icon::Component.new("chevron-right", size: 20, color: "var(--c-amber-dark)") %>
-      </div>
-    <% end %>
-  <% end %>
 
-  <%# ── "Eu curto" nudge / shortcut ── %>
-  <% kid_interests = current_profile.interest_keys(5) %>
-  <%= link_to kid_interests_path,
-        class: "ls-card-3d mb-4 z-2 shrink-0 block",
-        style: "background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 12px 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); text-decoration: none; color: inherit;",
-        "data-testid": "kid-interests-card" do %>
-    <div class="flex items-center justify-between gap-3">
-      <div class="flex items-center gap-2.5 min-w-0">
-        <span aria-hidden="true" style="font-size: 22px;">💡</span>
-        <div class="min-w-0">
-          <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--text-muted);">Eu curto</div>
-          <% if kid_interests.any? %>
-            <div class="font-display text-[13px] font-extrabold truncate" style="color: var(--text);">
-              <%= kid_interests.first(3).map { |k| ProfileInterest::Catalog.emoji_for(k) + " " + ProfileInterest::Catalog.label_for(k) }.join("  ·  ") %>
-            </div>
-          <% else %>
-            <div class="font-display text-[13px] font-extrabold" style="color: var(--primary-2);">
-              Conta pra gente o que você curte!
-            </div>
-          <% end %>
-        </div>
-      </div>
-      <%= render Ui::Icon::Component.new("chevron-right", size: 18, color: "var(--text-muted)") %>
-    </div>
-  <% end %>
+  <div class="flex flex-col gap-3 mb-5 z-2 relative shrink-0">
+    <%= render Ui::ShortcutCard::Component.new(
+          url: kid_academy_pill_path,
+          tint: :primary,
+          emoji: "💊",
+          eyebrow: "Pílula do Dia",
+          title: "60 segundos pra ficar mais esperto",
+          test_id: "kid-pill-card"
+        ) %>
+
+    <% if has_fading %>
+      <%= render Ui::ShortcutCard::Component.new(
+            url: kid_academy_lightning_path,
+            tint: :amber,
+            emoji: "⚡",
+            eyebrow: "Lightning Round",
+            title: "90 segundos · 5 perguntas",
+            test_id: "kid-lightning-card"
+          ) %>
+    <% end %>
+
+    <%= render Ui::ShortcutCard::Component.new(
+          url: kid_interests_path,
+          tint: :neutral,
+          emoji: "💡",
+          eyebrow: "Eu curto",
+          title: interests_title,
+          test_id: "kid-interests-card"
+        ) %>
+  </div>
 
   <%# ── Level progress card ── %>
-  <div class="ls-card-3d mb-5 z-2 shrink-0"
-       style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px 18px; box-shadow: 0 4px 0 rgba(0,0,0,0.08);">
+  <div class="ls-card-3d surface-card-3d mb-5 z-2 shrink-0">
     <div class="flex justify-between items-start mb-2.5 gap-3">
       <div>
         <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--text-muted);">Você está no</div>
@@ -111,7 +78,7 @@
 
     <div class="relative overflow-hidden" style="height: 18px; background: var(--hairline); border-radius: 10px;">
       <div class="anim-progress h-full relative"
-           style="width: <%= @level_pct %>%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-soft) 100%); border-radius: 10px;">
+           style="width: <%= @level_pct %>%; background: var(--primary); border-radius: 10px;">
         <% if @level_pct.positive? %>
           <div class="absolute right-1.5 top-1/2 -translate-y-1/2">
             <%= render Ui::Icon::Component.new(:star, size: 11, color: "white") %>
@@ -147,7 +114,7 @@
 
   <%# ── Mission list (above-the-fold) ── %>
   <% pending_visible, pending_extra = @profile_tasks.first(5), @profile_tasks.drop(5) %>
-  <div class="flex flex-col gap-5 mb-6 relative z-2">
+  <div class="flex flex-col gap-3 mb-5 relative z-2">
 
     <%# Completed (approved today) %>
     <div id="panel-completed" class="contents">
@@ -163,7 +130,7 @@
       <% end %>
     </div>
 
-    <%# Pending — flat row, click opens confirmation modal %>
+    <%# Pending · flat row, click opens confirmation modal %>
     <div id="panel-pending" class="contents">
       <% pending_visible.each_with_index do |profile_task, i| %>
         <%= render "kid/dashboard/pending_card", profile_task: profile_task, index: i %>
@@ -172,11 +139,11 @@
       <% if pending_extra.any? %>
         <details class="contents" data-controller="">
           <summary class="font-display flex items-center justify-center gap-2 cursor-pointer list-none"
-                   style="background: transparent; color: var(--text-muted); border: 2px dashed var(--hairline); border-radius: 14px; padding: 12px 16px; font-size: 13px; font-weight: 800;">
+                   style="background: transparent; color: var(--text-muted); border: 2px dashed var(--hairline); border-radius: 14px; padding: 12px 14px; font-size: 13px; font-weight: 800;">
             <%= render Ui::Icon::Component.new(:plus, size: 14, color: "currentColor") %>
             Ver mais <%= pluralize(pending_extra.size, "missão", plural: "missões") %>
           </summary>
-          <div class="flex flex-col gap-5 mt-5">
+          <div class="flex flex-col gap-3 mt-3">
             <% pending_extra.each_with_index do |profile_task, i| %>
               <%= render "kid/dashboard/pending_card", profile_task: profile_task, index: i + pending_visible.size %>
             <% end %>
@@ -197,22 +164,24 @@
   </div>
 
   <%# ── Meta coletiva semanal (below missions to keep daily run focused) ── %>
-  <div class="relative z-2 mb-4">
+  <div class="relative z-2 mb-5">
     <%= render "shared/family_goal_widget", goal: @family_goal, viewer: current_profile %>
   </div>
 
   <%# ── Upcoming weekly/monthly missions ── %>
   <% if @upcoming_missions.any? %>
-    <div class="relative z-2 mb-4">
+    <div class="relative z-2 mb-5">
       <%= render "kid/dashboard/upcoming_missions_widget", upcoming: @upcoming_missions %>
     </div>
   <% end %>
 
   <%# ── Ghost CTA: create custom mission ── %>
   <%= link_to new_kid_mission_path,
-        class: "font-display flex items-center justify-center gap-2 w-full text-center mb-4 z-2 shrink-0 no-underline",
-        style: "background: transparent; color: var(--text-muted); border: 2px dashed var(--hairline); border-radius: 14px; padding: 14px 16px; font-size: 13px; font-weight: 800;" do %>
-    <%= render Ui::Icon::Component.new(:plus, size: 16, color: "currentColor") %>
+        class: "ls-btn-3d font-display flex items-center justify-center gap-2.5 w-full text-center mb-5 z-2 shrink-0 no-underline",
+        style: "background: var(--primary-soft); color: var(--primary-2); border: 2px solid color-mix(in oklab, var(--primary) 35%, var(--hairline)); border-radius: 14px; padding: 13px 14px; font-size: 13px; font-weight: 800; box-shadow: 0 3px 0 color-mix(in oklab, var(--primary) 28%, var(--hairline));" do %>
+    <span class="grid place-items-center" style="width: 22px; height: 22px; background: var(--primary); color: white; border-radius: 7px; box-shadow: 0 2px 0 var(--primary-2);">
+      <%= render Ui::Icon::Component.new(:plus, size: 13, color: "white") %>
+    </span>
     Fez algo fora da lista? Adicionar
   <% end %>
 

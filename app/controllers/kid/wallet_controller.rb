@@ -1,8 +1,4 @@
-class Kid::WalletController < ApplicationController
-  include Authenticatable
-  before_action :require_child!
-  layout "kid"
-
+class Kid::WalletController < Kid::BaseController
   HISTORY_LIMIT = 200
 
   def index

@@ -63,21 +63,44 @@ module Academy
     end
 
     def skill_for(learner_id)
-      mission_ids = missions.active.pluck(:id)
-      total = mission_ids.size
-      return Skill.new(level: 0, total: 0, mastered: 0, ratio: 0.0, tier: :novato) if total.zero?
+      self.class.skills_for(learner_id, subjects: [ self ]).fetch(id)
+    end
 
-      progresses = MissionProgress.where(learner_id: learner_id, mission_id: mission_ids)
-      done     = progresses.where(status: %i[completed mastered]).count
-      mastered = progresses.where(status: :mastered).count
-      ratio    = done.to_f / total
-      tier =
-        if ratio >= 1.0    then :master
-        elsif ratio >= 0.6 then :adept
-        elsif ratio >= 0.3 then :apprentice
-        else :novato
+    # Batch variant: 3 queries total, regardless of how many subjects.
+    # Returns { subject_id => Skill }.
+    def self.skills_for(learner_id, subjects:)
+      subject_ids = subjects.map(&:id)
+      return {} if subject_ids.empty?
+
+      totals = Mission.active.where(subject_id: subject_ids).reorder(nil).group(:subject_id).count
+      done = MissionProgress
+               .joins(:mission)
+               .where(learner_id: learner_id, academy_missions: { subject_id: subject_ids, active: true })
+               .where(status: %i[completed mastered])
+               .group("academy_missions.subject_id").count
+      mastered = MissionProgress
+                   .joins(:mission)
+                   .where(learner_id: learner_id, academy_missions: { subject_id: subject_ids, active: true })
+                   .where(status: :mastered)
+                   .group("academy_missions.subject_id").count
+
+      subject_ids.index_with do |sid|
+        total = totals[sid] || 0
+        if total.zero?
+          Skill.new(level: 0, total: 0, mastered: 0, ratio: 0.0, tier: :novato)
+        else
+          d = done[sid] || 0
+          m = mastered[sid] || 0
+          ratio = d.to_f / total
+          tier =
+            if ratio >= 1.0    then :master
+            elsif ratio >= 0.6 then :adept
+            elsif ratio >= 0.3 then :apprentice
+            else :novato
+            end
+          Skill.new(level: d, total: total, mastered: m, ratio: ratio, tier: tier)
         end
-      Skill.new(level: done, total: total, mastered: mastered, ratio: ratio, tier: tier)
+      end
     end
   end
 end

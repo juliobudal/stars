@@ -1,0 +1,31 @@
+<%= content_tag(container_tag, container_attrs.merge(style: container_style)) do %>
+  <div class="flex items-center justify-between gap-3">
+    <div class="flex items-center gap-3 min-w-0">
+      <% if icon.present? || emoji.present? %>
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center text-[22px] shrink-0"
+             style="<%= icon_cell_style %>">
+          <% if icon.present? %>
+            <%= render Ui::Icon::Component.new(icon, size: 22, color: tint[:chevron]) %>
+          <% else %>
+            <span aria-hidden="true"><%= emoji %></span>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="min-w-0">
+        <% if eyebrow.present? %>
+          <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase"
+               style="color: <%= tint[:eyebrow] %>;">
+            <%= eyebrow %>
+          </div>
+        <% end %>
+        <div class="font-display text-[14px] font-extrabold leading-tight"
+             style="color: <%= tint[:title] %>;">
+          <%= title %>
+        </div>
+      </div>
+    </div>
+    <% if chevron %>
+      <%= render Ui::Icon::Component.new("chevron-right", size: 20, color: tint[:chevron]) %>
+    <% end %>
+  </div>
+<% end %>

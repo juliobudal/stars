@@ -7,7 +7,7 @@ class Parent::DashboardController < ApplicationController
   def index
     @family = Family.includes(:profiles).find(current_profile.family_id)
     Tasks::DailyResetService.new(family: @family).call
-    @children = @family.profiles.child.includes(:wishlist_reward)
+    @children = @family.profiles.child.includes(:wishlist_reward).to_a
 
     # Per-child awaiting-approval count { child_id => count }
     @child_awaiting = ProfileTask.joins(:profile)
@@ -24,9 +24,9 @@ class Parent::DashboardController < ApplicationController
                                  .count
 
     @stats = {
-      children:          @children.count,
-      pending_approvals: ProfileTask.joins(:profile).where(profiles: { family_id: @family.id }).awaiting_approval.count,
-      total_stars:       @children.sum(:points),
+      children:          @children.size,
+      pending_approvals: @child_awaiting.values.sum,
+      total_stars:       @children.sum(&:points),
       active_missions:   @child_missions.values.sum,
       rewards_count:     Reward.where(family_id: @family.id).count
     }

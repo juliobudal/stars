@@ -68,21 +68,30 @@ RSpec.describe Tasks::ApproveService do
       before { allow(Streaks::CheckService).to receive(:call).and_return(nil) }
 
       it 'broadcasts a celebration partial with data-fx-event and tier=big' do
-        expect {
-          described_class.new(profile_task).call
-        }.to have_broadcasted_to("kid_#{child.id}")
-          .from_channel(Turbo::StreamsChannel)
-          .with { |stream| expect(stream).to include('data-fx-event="celebrate"', 'data-fx-tier="big"') }
+        broadcasts = []
+        allow(Turbo::StreamsChannel).to receive(:broadcast_append_to) do |*streamables, **kwargs|
+          broadcasts << { streamables: streamables, locals: kwargs[:locals], partial: kwargs[:partial] }
+        end
+
+        described_class.new(profile_task).call
+
+        expect(broadcasts.size).to eq(1)
+        expect(broadcasts.first[:streamables]).to eq([ child, "fx_stage" ])
+        expect(broadcasts.first[:partial]).to eq("kid/shared/celebration")
+        expect(broadcasts.first[:locals][:tier].to_s).to include("big")
       end
 
       it 'upgrades tier to :streak when Streaks::CheckService returns one' do
         allow(Streaks::CheckService).to receive(:call).and_return({ tier: :streak, payload: { days: 3 } })
-        expect {
-          described_class.new(profile_task).call
-        }.to have_broadcasted_to("kid_#{child.id}")
-          # Payload is rendered into an HTML attribute (data-fx-payload) so the JSON's
-          # double-quotes are HTML-escaped to &quot;. Assert against the escaped form.
-          .with { |stream| expect(stream).to include('&quot;days&quot;:3', 'data-fx-tier="streak"') }
+        captured = nil
+        allow(Turbo::StreamsChannel).to receive(:broadcast_append_to) do |*streamables, **kwargs|
+          captured = kwargs[:locals]
+        end
+
+        described_class.new(profile_task).call
+
+        expect(captured[:tier].to_s).to include("streak")
+        expect(captured[:payload]).to include(days: 3)
       end
     end
   end

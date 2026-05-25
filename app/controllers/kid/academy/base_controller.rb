@@ -5,6 +5,7 @@
 # stack only talks to the Academy module through Academy::* services.
 class Kid::Academy::BaseController < ApplicationController
   include Authenticatable
+  include KidOnboardingGuard
   before_action :require_child!
   layout "kid"
 

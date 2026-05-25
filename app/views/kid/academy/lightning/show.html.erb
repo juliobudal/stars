@@ -30,7 +30,7 @@
                 local: true, class: "space-y-5 px-1" do |f| %>
     <% @rounds.each_with_index do |round, i| %>
       <fieldset class="ls-card-3d"
-                style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px 18px; box-shadow: 0 4px 0 rgba(0,0,0,0.08);">
+                style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.08);">
         <legend class="font-display text-[10px] font-extrabold tracking-[0.5px] uppercase mb-1 px-2"
                 style="color: var(--text-muted); background: var(--surface);">
           <%= i + 1 %>/<%= @rounds.size %> · <%= round[:concept_name] %>
@@ -40,7 +40,7 @@
         </p>
         <div class="grid grid-cols-1 gap-2">
           <% round[:options].each_with_index do |opt, oi| %>
-            <label class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl cursor-pointer"
+            <label class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl cursor-pointer"
                    style="background: var(--surface-2); border: 2px solid transparent;">
               <input type="radio"
                      name="answer[q<%= i %>]"
@@ -54,8 +54,8 @@
     <% end %>
 
     <%= f.button type: :submit,
-                 class: "ls-btn-3d w-full",
-                 style: "background: var(--primary); color: white; padding: 14px 18px; border-radius: 14px; box-shadow: 0 4px 0 var(--primary-2); font-weight: 800; font-family: var(--font-display, Nunito), sans-serif;" do %>
+                 class: "ls-btn-3d w-full font-display font-extrabold",
+                 style: "background: var(--primary); color: white; padding: 14px 16px; border-radius: 14px; box-shadow: 0 4px 0 var(--primary-2);" do %>
       ⚡ Conferir respostas
     <% end %>
   <% end %>

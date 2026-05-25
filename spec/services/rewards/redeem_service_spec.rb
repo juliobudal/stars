@@ -30,13 +30,18 @@ RSpec.describe Rewards::RedeemService do
 
       context 'celebration broadcast' do
         it 'broadcasts a celebration partial with tier=big and reward_title in payload' do
-          expect {
-            described_class.new(profile: child, reward: reward).call
-          }.to have_broadcasted_to("kid_#{child.id}")
-            .with { |stream|
-              expect(stream).to include('data-fx-event="celebrate"', 'data-fx-tier="big"')
-              expect(stream).to include(reward.title)
-            }
+          broadcasts = []
+          allow(Turbo::StreamsChannel).to receive(:broadcast_append_to) do |*streamables, **kwargs|
+            broadcasts << { streamables: streamables, locals: kwargs[:locals], partial: kwargs[:partial] }
+          end
+
+          described_class.new(profile: child, reward: reward).call
+
+          expect(broadcasts.size).to eq(1)
+          expect(broadcasts.first[:streamables]).to eq([ child, "fx_stage" ])
+          expect(broadcasts.first[:partial]).to eq("kid/shared/celebration")
+          expect(broadcasts.first[:locals][:tier].to_s).to include("big")
+          expect(broadcasts.first[:locals][:payload][:reward_title]).to eq(reward.title)
         end
       end
     end

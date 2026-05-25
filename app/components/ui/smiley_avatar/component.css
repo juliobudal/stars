@@ -1,6 +1,6 @@
 @reference "../../../assets/stylesheets/tailwind/engine.css";
 
-/* Ui::SmileyAvatar — palette tints resolved via CSS tokens.
+/* Ui::SmileyAvatar · palette tints resolved via CSS tokens.
    Component sets data-avatar-palette="<name>" and exposes
    --avatar-fill / --avatar-ring / --avatar-ink via these rules.
    Tokens live in app/assets/stylesheets/tailwind/theme.css. */

@@ -1,8 +1,4 @@
-class Kid::RewardsController < ApplicationController
-  include Authenticatable
-  before_action :require_child!
-  layout "kid"
-
+class Kid::RewardsController < Kid::BaseController
   def index
     family_id = current_profile.family_id
     balance = current_profile.points

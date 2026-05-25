@@ -101,16 +101,25 @@ Shells:
 ## 5. Shadows — 3D depth
 
 ```css
---shadow-btn:        0 4px 0 rgba(0, 0, 0, 0.12);   /* primary depth uses --primary-2 */
---shadow-btn-hover:  0 6px 0 rgba(0, 0, 0, 0.12);
---shadow-card:       0 4px 0 rgba(0, 0, 0, 0.08);
---shadow-lift:       0 6px 0 rgba(0, 0, 0, 0.08);
+--shadow-btn:           0 4px 0 rgba(0, 0, 0, 0.12);   /* primary depth uses --primary-2 */
+--shadow-btn-hover:     0 6px 0 rgba(0, 0, 0, 0.12);
+--shadow-card-light:    0 4px 0 rgba(0, 0, 0, 0.04);   /* faint depth — chips, mini-cards */
+--shadow-card-subtle:   0 4px 0 rgba(0, 0, 0, 0.06);   /* parent dashboard cards */
+--shadow-card:          0 4px 0 rgba(0, 0, 0, 0.08);   /* canonical kid card depth */
+--shadow-card-heavy:    0 4px 0 rgba(0, 0, 0, 0.12);   /* hero/featured cards */
+--shadow-lift:          0 6px 0 rgba(0, 0, 0, 0.08);
 ```
 
 **Per-color button depth utilities** (defined in `theme.css` `@utility` blocks):
 - `shadow-btn-primary` → `0 4px 0 var(--primary-2)`
 - `shadow-btn-success`, `shadow-btn-destructive`, `shadow-btn-warning`, `shadow-btn-secondary` — same pattern.
 - `-hover` variant adds 1px depth, `-active` collapses to `0 1px 0`.
+
+**Card surface utilities** (for the canonical "white card on hairline + depth" pattern):
+- `surface-card-3d` — `--shadow-card` (0.08). Kid hierarchy default.
+- `surface-card-3d-soft` — `--shadow-card-subtle` (0.06). Parent dashboard sections.
+- Both apply `border: var(--border-card)`, `border-radius: var(--r-xl)`, `padding: 16px`.
+- For non-canonical variants (different radius / padding / shadow offset), stay inline and use the shadow tokens directly.
 
 **3D motion contract** (mandatory for any element with a depth shadow):
 ```css

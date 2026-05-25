@@ -1,0 +1,20 @@
+{
+  "headline": "Comparar seu bastidor com a vitrine dos outros é jogo perdido por construção.",
+  "mechanism_steps": [
+    "O cérebro compara sempre — mecanismo automático pra avaliar posição social. Mas quando o que você vê dos outros é a versão polida (rede social, foto), a comparação é desigual desde o início.",
+    "Você sabe TODOS os seus problemas reais — cansaço, briga, ansiedade, dor. Dos outros, vê só o pedaço bem-iluminado. Soma desigual: seus problemas + a vitrine deles = você perdendo.",
+    "Por isso 30 minutos por dia de feed aumentam sintomas de tristeza em ~33% — não é o conteúdo, é o filtro mental ativado: somar bastidor próprio com vitrine alheia."
+  ],
+  "illustration_hint": "Uma criança olhando o celular. Na tela, 3 fotos brilhantes de colegas (sorrindo, viajando, na festa). Em volta da própria criança, balões transparentes mostrando o que ela CARREGA mas ninguém vê: 'briga com mãe ontem', 'prova ruim', 'dor de cabeça'. Setinha: 'comparando isso com aquilo? Jogo desigual.'",
+  "micro_check": {
+    "question": "{{learner_name}} abriu Instagram e ficou triste vendo amigos viajando. Qual leitura é mais honesta?",
+    "options": [
+      "'A vida dos outros é mesmo melhor que a minha.'",
+      "'Estou comparando o meu dia inteiro (com problemas) com o melhor segundo da vida deles — comparação injusta.'",
+      "'Preciso viajar pra ficar feliz também.'",
+      "'Vou postar uma foto mais legal pra eles me invejarem.'"
+    ],
+    "correct_index": 1,
+    "rationale": "O sentimento ruim não vem da vida dos amigos — vem do filtro mental que soma seus problemas reais com a versão polida deles. Reconhecer a comparação injusta já desinfla o efeito."
+  }
+}

@@ -1,0 +1,35 @@
+<%= render Ui::ProgressSteps::Component.new(current: @step, total: 4) %>
+
+<div class="flex-1 flex flex-col items-center text-center pt-2"
+     data-controller="onboarding-celebrate">
+  <%# Mascote bouncing · same SmileyAvatar as welcome, framed by sparkles. %>
+  <div class="relative mb-6">
+    <div class="ls-mascot-bounce">
+      <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 128, decorative: true) %>
+    </div>
+    <span class="absolute -top-2 -left-3" aria-hidden="true" style="font-size: 22px;">✨</span>
+    <span class="absolute -top-1 -right-3" aria-hidden="true" style="font-size: 22px;">🎉</span>
+    <span class="absolute -bottom-1 -right-1" aria-hidden="true">
+      <%= render Ui::Icon::Component.new(:star, size: 22, color: "var(--star)") %>
+    </span>
+  </div>
+
+  <h1 class="font-display text-[28px] leading-tight font-extrabold tracking-[-0.01em] m-0 mb-3" style="color: var(--text);">
+    Tudo pronto,<br><%= current_profile.name %>!
+  </h1>
+
+  <p class="text-[15px] font-bold leading-relaxed max-w-[320px]" style="color: var(--text-muted);">
+    Suas missões já estão te esperando.<br>
+    Bora ganhar a primeira <strong style="color: var(--star-2);">estrelinha</strong>?
+  </p>
+</div>
+
+<%= form_with url: kid_welcome_finish_path, method: :post, class: "pt-6" do |f| %>
+  <%= f.button type: :submit,
+               class: "w-full ls-btn-3d inline-flex items-center justify-center gap-2 font-display font-extrabold uppercase tracking-[0.5px] border-0 cursor-pointer",
+               style: "padding: 16px 20px; border-radius: 14px; background: var(--primary); color: white; font-size: 17px; box-shadow: 0 4px 0 var(--primary-2);",
+               "data-testid": "ready-finish" do %>
+    Começar
+    <%= render Ui::Icon::Component.new(:star, size: 18, color: "white") %>
+  <% end %>
+<% end %>

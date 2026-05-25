@@ -17,7 +17,7 @@
     > .form__field:last-child {
       @apply rounded-l-none;
     }
-    /* Middle elements — border handling for outline */
+    /* Middle elements · border handling for outline */
     > *:not(:last-child) .btn-outline,
     > .btn-outline:not(:last-child),
     > .form__field:not(:last-child) {

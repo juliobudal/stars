@@ -11,7 +11,7 @@
 
   evolving_now = defined?(@just_evolved_concept_ids) && @just_evolved_concept_ids.include?(concept.id)
 %>
-<div class="pokedex-chip pokedex-chip--<%= state %><%= ' pokedex-chip--evolving-now' if evolving_now %> rounded-2xl px-3 py-3"
+<div class="pokedex-chip pokedex-chip--<%= state %><%= ' pokedex-chip--evolving-now' if evolving_now %> rounded-xl px-3 py-3"
      data-concept-slug="<%= concept.slug %>"
      data-level="<%= level %>"
      style="background: var(--surface); border: 2px solid var(--hairline); position: relative;">

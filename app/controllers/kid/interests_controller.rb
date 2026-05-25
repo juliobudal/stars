@@ -5,12 +5,7 @@
 # as ProfileInterest rows ordered by click — the top pick drives interest
 # variants of curated Academy payloads.
 module Kid
-  class InterestsController < ApplicationController
-    include Authenticatable
-
-    before_action :require_child!
-    layout "kid"
-
+  class InterestsController < Kid::BaseController
     MIN_PICKS = 3
     MAX_PICKS = 5
 

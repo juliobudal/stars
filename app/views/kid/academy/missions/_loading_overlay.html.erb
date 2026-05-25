@@ -5,10 +5,10 @@
     2. Lens form submit (advance to next lens mid-mission).
 
   Mounted once at the kid layout level so a single instance covers every
-  Academy page. `color_var` is optional — falls back to the Duolingo
+  Academy page. `color_var` is optional · falls back to the Duolingo
   primary green when called outside a mission-coloured context.
 
-  Pílula d'O Guia (citação/versículo/ensinamento) é sorteada por render —
+  Pílula d'O Guia (citação/versículo/ensinamento) é sorteada por render ·
   ver `Academy::WisdomPills`. Fica fixa durante a espera (criança lê uma
   vez, sem rotação), enquanto a mensagem de progresso acima rotaciona.
 %>
@@ -40,7 +40,7 @@
       preparando sua aula
     </div>
 
-    <%# Pulsing dots — secondary motion cue, hidden under reduced motion %>
+    <%# Pulsing dots · secondary motion cue, hidden under reduced motion %>
     <div class="flex items-center justify-center gap-1.5 mt-5 motion-reduce:hidden" aria-hidden="true">
       <% 3.times do |i| %>
         <span class="block w-2 h-2 rounded-full ls-loading-dot"
@@ -58,7 +58,7 @@
       </p>
       <p class="font-display text-[10px] font-extrabold tracking-[1px] mt-2 uppercase m-0"
          style="color: var(--text-muted);">
-        — <%= pill.source %>
+        · <%= pill.source %>
       </p>
     </div>
   </div>

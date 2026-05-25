@@ -159,13 +159,11 @@ class ProfileTask < ApplicationRecord
   end
 
   def broadcast_pending_to_kid_dashboard
-    Turbo::StreamsChannel.broadcast_append_to(
-      "kid_#{profile_id}",
+    Ui::FxBroadcaster.append(
+      profile: profile,
       target: "panel-pending",
       partial: "kid/dashboard/pending_card",
       locals: { profile_task: self, index: 0 }
     )
-  rescue StandardError => e
-    Rails.logger.warn("[ProfileTask] broadcast pending failed id=#{id} error=#{e.message}")
   end
 end

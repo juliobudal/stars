@@ -101,6 +101,24 @@ RSpec.describe "Parent::Profiles", type: :request do
       end
     end
 
+    describe "PATCH /parent/profiles/:id/reset_pin" do
+      it "resets the child PIN" do
+        patch reset_pin_parent_profile_path(child_profile), params: { pin: "9876" }
+        expect(response).to redirect_to(parent_settings_path)
+      end
+
+      it "resets the current parent's own PIN" do
+        patch reset_pin_parent_profile_path(parent_profile), params: { pin: "9876" }
+        expect(response).to redirect_to(parent_settings_path)
+      end
+
+      it "returns 404 when trying to reset another parent's PIN" do
+        parent2 = create(:profile, :parent, family: family)
+        patch reset_pin_parent_profile_path(parent2), params: { pin: "9876" }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
     describe "DELETE /parent/profiles/:id" do
       it "destroys the child profile (cascade) and redirects" do
         child = create(:profile, :child, family: family)

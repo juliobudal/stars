@@ -1,0 +1,20 @@
+{
+  "headline": "Você e uma digital invisível: fonte instalada, tela, idioma, hora do clique — tudo te entrega.",
+  "mechanism_steps": [
+    "Quando você abre um site, o navegador conta detalhes técnicos pra ele funcionar: tela, sistema, idioma, fuso, fontes, plugins, até como a placa de vídeo desenha imagem.",
+    "Sozinho, cada detalhe parece banal. Combinados, viram únicos: a chance de outra pessoa no mundo ter o mesmo conjunto é muito baixa. Isso chama browser fingerprinting — sua 'digital' de navegador.",
+    "A EFF criou um teste (Panopticlick) que mostra: mesmo sem cookies e em modo anônimo, sites te reconhecem entre milhões. Cory Doctorow alerta: anônimo esconde o cookie, não a digital."
+  ],
+  "illustration_hint": "Criança em modo anônimo no navegador (capuz, óculos escuros). Sob a mesa, um detetive com lupa lê uma ficha com seu tamanho de tela, idioma, fontes, fuso — e diz 'reconheci você mesmo de capuz'. A digital sobrou.",
+  "micro_check": {
+    "question": "{{learner_name}} abriu o modo anonimo achando que assim os sites não conseguem identificar quem é. Por que isso só funciona em parte?",
+    "options": [
+      "Modo anônimo só esconde por 1 hora, depois volta a mostrar.",
+      "Modo anônimo apaga cookies, mas sites te identificam pela combinação tela+fontes+idioma+fuso (fingerprinting).",
+      "Modo anônimo só funciona se você desligar o WiFi também.",
+      "Modo anônimo dá um nome falso pro site mas mantém o resto."
+    ],
+    "correct_index": 1,
+    "rationale": "Modo anonimo apaga cookies e historico — mas a combinacao de detalhes técnicos do seu navegador (fontes, tela, fuso, plugins) viaja junto e e quase unica. Sites te reconhecem por essa impressao digital mesmo sem login."
+  }
+}

@@ -5,7 +5,7 @@ class Kid::Academy::SubjectsController < Kid::Academy::BaseController
     @subjects = ::Academy::Subject.active.includes(:trails).order(:position, :id)
     learner_id = current_learner.id
 
-    @skills = @subjects.to_h { |s| [ s.id, s.skill_for(learner_id) ] }
+    @skills = ::Academy::Subject.skills_for(learner_id, subjects: @subjects)
 
     @recent_cards = ::Academy::DiscoveryCard
                       .for_learner(learner_id)
@@ -45,8 +45,8 @@ class Kid::Academy::SubjectsController < Kid::Academy::BaseController
 
     learner_id = current_learner.id
 
-    @trail_progress = @trails.to_h { |t| [ t.id, t.progress_for(learner_id) ] }
-    @skill = @subject.skill_for(learner_id)
+    @trail_progress = ::Academy::Trail.progresses_for(learner_id, trails: @trails)
+    @skill = ::Academy::Subject.skills_for(learner_id, subjects: [ @subject ]).fetch(@subject.id)
 
     # Legacy fallback: missions on this subject without a trail (v1 leftovers
     # that the kid may still have progress on). Surfaces as a "Pílulas

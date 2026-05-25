@@ -1,0 +1,20 @@
+{
+  "headline": "Soltar o ar devagar acende o nervo vago — botão físico de calma sem app nem remédio.",
+  "mechanism_steps": [
+    "O nervo vago é o cabo que liga cérebro ao coração e tem 'modo acelera' (simpático) e 'modo desacelera' (parassimpático). A respiração lenta liga o modo desacelera direto.",
+    "Quando você solta o ar mais devagar que inspira (4 segundos pra inspirar, 6-8 pra soltar), o vago manda sinal pro coração diminuir batimento e pro corpo baixar cortisol.",
+    "Resultado em ~30 segundos: pulso cai, mandíbula solta, cabeça desinfla. O cérebro entende 'sem ameaça' e devolve o pensamento claro."
+  ],
+  "illustration_hint": "Cabeça e tronco vistos por dentro, com o nervo vago desenhado como cabo dourado conectando cérebro a coração. Um botão pulsando no diafragma escrito 'soltar devagar' e ondas verdes calmas subindo do coração pro cérebro, apagando faíscas vermelhas de ansiedade.",
+  "micro_check": {
+    "question": "{{learner_name}} está prestes a entrar numa prova e o coração dispara. Qual ação acalma mais rápido o corpo?",
+    "options": [
+      "Beber água gelada de uma vez só.",
+      "Respirar inspirando em 4s e soltando bem devagar em 6-8s, por 5 ciclos.",
+      "Pensar em algo divertido pra distrair.",
+      "Andar rápido pela sala pra gastar energia."
+    ],
+    "correct_index": 1,
+    "rationale": "Soltar o ar mais devagar que inspirar liga o nervo vago em modo desacelera — o coração baixa e a calma vem em segundos. Distrair ou andar não chegam direto no cabo do parassimpático."
+  }
+}

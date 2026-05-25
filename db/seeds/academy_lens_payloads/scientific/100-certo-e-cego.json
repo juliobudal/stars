@@ -1,0 +1,20 @@
+{
+  "headline": "Quem nunca achou que o outro também tem ponto, ainda não tem ponto bom.",
+  "mechanism_steps": [
+    "Daniel Dennett tem uma regra dura: antes de atacar a ideia do outro, reescreva tão bem que o outro diga 'isso! eu queria ter dito assim!'. Sem isso, você ataca um boneco — não a ideia real.",
+    "Esse boneco fácil de derrubar tem nome: espantalho. Você inventa uma versão fraca, derruba, e sai achando que ganhou. Só ganhou de você mesmo — a posição real ficou intacta do outro lado.",
+    "John Stuart Mill disse em 1859: quem só conhece o próprio lado conhece muito pouco do próprio lado também. Sem ter passado pelo melhor argumento contra, sua opinião é palpite vestido de certeza."
+  ],
+  "illustration_hint": "Uma criança numa quadra dando um soco potente num boneco de palha rotulado 'o que eu acho que o outro pensa'. Atrás do boneco, na sombra, o argumento de verdade — um cubo de ferro escrito 'argumento real' — segue intacto, intocado, esperando.",
+  "micro_check": {
+    "question": "{{learner_name}} acha que quem joga videogame demais é preguiçoso. Antes de defender essa ideia em voz alta, qual passo Dennett mandaria fazer primeiro?",
+    "options": [
+      "Procurar amigos que concordam pra ganhar confiança no argumento.",
+      "Listar 3 razões fortes de quem DEFENDE jogar bastante, tão bem que essas pessoas concordariam com o resumo.",
+      "Procurar o pior argumento do outro lado e atacar ele em público.",
+      "Decidir não ouvir o outro lado pra não confundir a própria cabeça."
+    ],
+    "correct_index": 1,
+    "rationale": "Dennett pede o oposto do espantalho: reescrever o argumento contrário no melhor formato possível. Só depois disso a crítica vale — antes, vira luta com boneco de palha que você mesmo armou."
+  }
+}

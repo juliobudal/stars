@@ -2,12 +2,12 @@
      data-controller="profile-picker"
      data-profile-picker-selected-id-value="<%= selected&.id %>">
 
-  <div class="flex flex-wrap justify-center gap-5 mb-8 max-w-[720px] mx-auto">
+  <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5 mb-8 max-w-[560px] mx-auto justify-items-stretch">
     <% profiles.each do |profile| %>
       <% palette = helpers.smiley_palette(profile.color) %>
       <% is_selected = selected&.id == profile.id %>
       <%= link_to new_profile_session_path(profile_id: profile.id),
-                  class: "ls-profile-card relative bg-surface rounded-[20px] p-6 w-[160px] text-center no-underline border-2 #{is_selected ? 'border-[3px]' : ''}",
+                  class: "ls-profile-card relative bg-surface rounded-[20px] p-5 sm:p-6 text-center no-underline border-2 #{is_selected ? 'border-[3px]' : ''}",
                   style: "border-color: #{is_selected ? 'var(--primary)' : 'var(--hairline)'}; box-shadow: 0 4px 0 #{is_selected ? 'var(--primary-2)' : 'rgba(0,0,0,0.08)'};",
                   data: { turbo_frame: "pin_modal", palette: profile.color } do %>
         <% if profile.parent? %>

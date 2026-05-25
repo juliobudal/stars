@@ -1,0 +1,20 @@
+{
+  "headline": "Dor é interpretação do cérebro — não medida direta de machucado.",
+  "mechanism_steps": [
+    "Quando algo bate no corpo, nervos mandam sinal pro cérebro. Mas o cérebro decide quanto vai doer com base no contexto: medo, memória, contagem de outras dores, o que está acontecendo em volta.",
+    "Por isso a mesma batida dói mais quando você está sozinho e com medo, e dói menos quando está distraído ou em situação boa — o sinal é o mesmo; a interpretação muda.",
+    "Resultado: nem toda dor é alarme de machucado. Algumas vezes é alarme treinado (apareceu, virou hábito do cérebro). Diferenciar é a habilidade."
+  ],
+  "illustration_hint": "Um corpo em corte, com um nervo enviando sinal de luz do joelho até uma central no cérebro. Na central, três tradutores diferentes interpretam o mesmo sinal: um grita 'EMERGÊNCIA!', outro diz 'meh, normal', outro diz 'só lembrete'. Cada um pinta o joelho com cor diferente de dor.",
+  "micro_check": {
+    "question": "{{learner_name}} sente dor de cabeça que aparece toda tarde antes da prova. No fim de semana, mesma hora, não dói. Qual é a melhor leitura?",
+    "options": [
+      "Tem alguma coisa séria — a dor sempre indica problema físico.",
+      "É alarme treinado pelo contexto de prova — o cérebro associou e dispara, mas o tecido está ok.",
+      "Está fingindo pra fugir da prova.",
+      "Precisa de remédio mais forte."
+    ],
+    "correct_index": 1,
+    "rationale": "Dor que aparece só em contexto específico e some em outro tem assinatura de alarme treinado — o cérebro aprendeu a disparar naquele gatilho. Reconhecer isso já reduz a intensidade da dor sem remédio."
+  }
+}

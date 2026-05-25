@@ -1,12 +1,12 @@
 <div class="pin-modal-overlay" data-controller="pin-pad" data-pin-pad-target="overlay" data-action="click->pin-pad#closeOnOverlay" data-palette="<%= helpers.palette_for(profile) %>">
-<div class="pin-card" data-pin-pad-target="card">
-  <button type="button" aria-label="Fechar" class="absolute top-3 right-3 w-9 h-9 grid place-items-center rounded-[12px] border-2 cursor-pointer" style="background: var(--surface); border-color: var(--hairline); box-shadow: 0 2px 0 var(--hairline); color: var(--text-muted);" data-action="click->pin-pad#close">
+<div class="pin-card" data-pin-pad-target="card" role="dialog" aria-modal="true" aria-labelledby="pin-modal-title-<%= profile.id %>">
+  <button type="button" aria-label="Fechar" class="absolute top-3 right-3 w-11 h-11 grid place-items-center rounded-[12px] border-2 cursor-pointer" style="background: var(--surface); border-color: var(--hairline); box-shadow: 0 2px 0 var(--hairline); color: var(--text-muted);" data-action="click->pin-pad#close">
     <%= render Ui::Icon::Component.new("close", size: 16, color: "currentColor") %>
   </button>
   <div class="pin-avatar" style="background: var(--primary);">
     <%= render Ui::SmileyAvatar::Component.new(kid: profile, size: 42, decorative: true) %>
   </div>
-  <div class="pin-name">Olá, <%= profile.name %>!</div>
+  <div class="pin-name" id="pin-modal-title-<%= profile.id %>">Olá, <%= profile.name %>!</div>
   <div class="pin-hint">Digite seu PIN secreto</div>
 
   <div class="pin-dots" data-pin-pad-target="dots">
@@ -33,8 +33,8 @@
     </div>
   <% end %>
 
-  <div class="text-center mt-2">
-    <a class="text-[12px] font-extrabold uppercase tracking-[0.5px] cursor-pointer no-underline" style="color: var(--c-info-600);">Esqueci meu PIN</a>
-  </div>
+  <p class="text-center text-[12px] font-bold mt-2 m-0" style="color: var(--text-muted);">
+    Esqueceu? Pede ajuda pros pais.
+  </p>
 </div>
 </div>

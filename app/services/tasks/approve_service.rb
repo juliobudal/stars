@@ -100,14 +100,7 @@ module Tasks
         payload = payload.merge(override[:payload])
       end
 
-      Turbo::StreamsChannel.broadcast_append_to(
-        "kid_#{@profile.id}",
-        target: "fx_stage",
-        partial: "kid/shared/celebration",
-        locals: { tier: tier, payload: payload }
-      )
-    rescue StandardError => e
-      Rails.logger.warn("[Tasks::ApproveService] broadcast failed id=#{@profile_task.id} error=#{e.message}")
+      Ui::FxBroadcaster.celebrate(profile: @profile, tier: tier, payload: payload)
     end
   end
 end

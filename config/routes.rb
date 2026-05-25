@@ -48,6 +48,15 @@ Rails.application.routes.draw do
 
   namespace :kid do
     root to: "dashboard#index"
+
+    # First-session onboarding tour (gated by KidOnboardingGuard).
+    get   "welcome",            to: "onboarding#welcome",         as: :welcome
+    get   "welcome/interests",  to: "onboarding#interests",       as: :welcome_interests
+    patch "welcome/interests",  to: "onboarding#update_interests"
+    get   "welcome/how",        to: "onboarding#how_it_works",    as: :welcome_how
+    get   "welcome/ready",      to: "onboarding#ready",           as: :welcome_ready
+    post  "welcome/finish",     to: "onboarding#finish",          as: :welcome_finish
+
     resources :missions, only: %i[new create] do
       member { patch :complete }
     end
@@ -64,7 +73,10 @@ Rails.application.routes.draw do
       resources :subjects, only: %i[index show], param: :id do
         resources :trails, only: %i[show], param: :id
         resources :missions, only: %i[show], param: :id do
-          member { post :advance }
+          member do
+            post :advance
+            post :commit_challenge
+          end
           get "visits/:visit_id", to: "missions#review_visit", as: :review_visit
           resource :guide, only: %i[show create], controller: "guides"
         end

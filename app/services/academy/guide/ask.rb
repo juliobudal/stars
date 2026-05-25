@@ -5,13 +5,12 @@ module Academy
     # End-to-end orchestrator for one Guide chat turn.
     #
     # Returns:
-    #   ok(conversation:, user_message:, guide_message:, remaining_messages:, closed:)
+    #   ok(conversation:, user_message:, guide_message:)
     #
     # Failure modes:
-    #   fail_with(:no_llm_key)         — feature disabled (no env)
-    #   fail_with(:quota_exhausted)    — session is closed
-    #   fail_with(:empty_content)      — kid submitted blank input
-    #   fail_with(:llm_error, data:)   — LLM client raised; user msg NOT persisted
+    #   fail_with(:no_llm_key)        — feature disabled (no env)
+    #   fail_with(:empty_content)     — kid submitted blank input
+    #   fail_with(:llm_error, data:)  — LLM client raised; user msg NOT persisted
     class Ask < ApplicationService
       SAFETY_FLAG_REGEX = /\A\[SAFETY_FLAG\]\[(?<reason>[^\]]+)\]\s*/i
 
@@ -26,26 +25,17 @@ module Academy
         return fail_with(:no_llm_key) unless Academy.configured?
         return fail_with(:empty_content) if @user_content.empty?
 
-        quota = QuotaCheck.call(learner: @learner, mission: @mission)
-        return fail_with(:quota_exhausted) unless quota.data[:can_send]
-
-        convo_result = FindOrStartConversation.call(learner: @learner, mission: @mission)
-        conversation = convo_result.data
-        return fail_with(:quota_exhausted) if conversation.closed?
+        conversation = FindOrStartConversation.call(learner: @learner, mission: @mission).data
 
         ActiveRecord::Base.transaction do
           user_msg = persist_user(conversation, @user_content)
           response = call_llm(conversation)
           guide_msg = persist_guide(conversation, response)
-          maybe_close(conversation)
 
-          remaining = remaining_after(conversation)
           @result = ok(
             conversation: conversation,
             user_message: user_msg,
-            guide_message: guide_msg,
-            remaining_messages: remaining,
-            closed: conversation.reload.closed?
+            guide_message: guide_msg
           )
         end
 
@@ -101,17 +91,6 @@ module Academy
         match = SAFETY_FLAG_REGEX.match(raw)
         return [ false, nil, raw.strip ] unless match
         [ true, match[:reason].to_s.strip.downcase, raw.sub(SAFETY_FLAG_REGEX, "").strip ]
-      end
-
-      def maybe_close(conversation)
-        count = conversation.messages.where(role: ::Academy::GuideMessage.roles[:user]).count
-        return unless count >= QuotaCheck::MAX_MESSAGES_PER_SESSION
-        conversation.update!(closed_at: Time.current)
-      end
-
-      def remaining_after(conversation)
-        used = conversation.messages.where(role: ::Academy::GuideMessage.roles[:user]).count
-        [ QuotaCheck::MAX_MESSAGES_PER_SESSION - used, 0 ].max
       end
     end
   end

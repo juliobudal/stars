@@ -81,7 +81,7 @@ RSpec.configure do |config|
   config.include ActiveSupport::Testing::TimeHelpers
 
   config.before(:each, type: :system) do
-    [ Redemption, ActivityLog, ProfileTask, GlobalTaskAssignment, Reward, Category, GlobalTask, ProfileInvitation, Profile, Family ].each(&:delete_all)
+    [ Redemption, ActivityLog, ProfileTask, GlobalTaskAssignment, Reward, Category, GlobalTask, ProfileInvitation, ProfileInterest, Profile, Family ].each(&:delete_all)
   end
 
   # Academy tables don't always rollback cleanly in transactional fixtures

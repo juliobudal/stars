@@ -50,16 +50,19 @@
 
     <% unless review_mode %>
       <button type="button"
-              class="w-full mt-5 px-4 py-3 rounded-2xl font-display font-extrabold text-[14px] anim-press ls-btn-3d border-0"
+              class="w-full mt-5 px-4 py-3 rounded-xl font-display font-extrabold text-[14px] anim-press ls-btn-3d border-0"
               style="background: <%= color_var %>; color: white; box-shadow: 0 4px 0 color-mix(in oklab, <%= color_var %> 60%, black);"
               data-action="click->lens-stage#revealPredict"
-              data-lens-stage-target="predictRevealBtn">
+              data-lens-stage-target="predictRevealBtn"
+              data-lens-stage-real-param="<%= reveal_value %>"
+              data-lens-stage-rmin-param="<%= pmin %>"
+              data-lens-stage-rmax-param="<%= pmax %>">
         Ver resposta
       </button>
     <% end %>
 
     <div class="lens-reveal mt-4" <% unless review_mode %>data-lens-stage-target="predictReveal" hidden<% end %>>
-      <div class="rounded-2xl p-4"
+      <div class="rounded-xl p-4"
            style="background: color-mix(in oklab, <%= color_var %> 14%, var(--surface)); border: 2px solid <%= color_var %>;">
         <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
              style="color: <%= color_var %>;">
@@ -79,6 +82,30 @@
           </p>
         <% end %>
       </div>
+
+      <%# Reaction tile · populated by JS on live reveal, by Ruby in review mode %>
+      <div data-lens-stage-target="predictReaction"
+           class="anim-pop-in"
+           <%= 'hidden' unless review_mode && kid_value.present? %>>
+        <% if review_mode && kid_value.present? && reveal_value.present? %>
+          <% reaction = ::Academy::Lens::PredictReaction.call(
+               guess: kid_value.to_f, real: reveal_value.to_f,
+               range_min: pmin, range_max: pmax
+             ) %>
+          <div class="rounded-xl px-3 py-3 mt-3 flex items-start gap-3"
+               style="background: var(--surface-2); border: 2px solid var(--hairline);">
+            <span style="font-size: 28px; line-height: 1;" aria-hidden="true"><%= reaction.emoji %></span>
+            <div class="flex-1 min-w-0">
+              <div class="font-display text-[14px] font-extrabold leading-tight" style="color: var(--text);">
+                <%= reaction.headline %>
+              </div>
+              <p class="font-display text-[12px] leading-snug mt-1 m-0" style="color: var(--text-muted);">
+                <%= reaction.detail %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 <% else %>
@@ -93,7 +120,7 @@
       <%= image_tag payload["illustration_url"],
                     alt: payload["headline"].to_s,
                     loading: "lazy",
-                    class: "w-full aspect-square object-cover rounded-2xl mb-4",
+                    class: "w-full aspect-square object-cover rounded-xl mb-4",
                     style: "border: 2px solid var(--hairline); box-shadow: 0 4px 0 var(--hairline);" %>
     <% elsif payload["illustration_hint"].present? %>
       <p class="font-display text-[13px] leading-snug italic m-0 mb-4" style="color: var(--text-muted);">
@@ -104,7 +131,7 @@
     <% if Array(payload["mechanism_steps"]).any? %>
       <ol class="flex flex-col gap-2 m-0 p-0 list-none">
         <% Array(payload["mechanism_steps"]).each_with_index do |step, idx| %>
-          <li class="flex items-start gap-3 rounded-2xl p-3"
+          <li class="flex items-start gap-3 rounded-xl p-3"
               style="background: var(--surface-2); border: 2px solid var(--hairline);">
             <span class="shrink-0 w-7 h-7 rounded-full flex items-center justify-center font-display text-[13px] font-extrabold"
                   style="background: <%= color_var %>; color: white;">
@@ -122,6 +149,7 @@
   <% if payload["micro_check"].is_a?(Hash) %>
     <%= render "kid/academy/missions/lens_micro_check",
                micro_check: payload["micro_check"], color_var: color_var,
-               review_mode: review_mode, signal_payload: signal_payload %>
+               review_mode: review_mode, signal_payload: signal_payload,
+               lens_type: local_assigns[:lens_type] %>
   <% end %>
 <% end %>

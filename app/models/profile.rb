@@ -7,6 +7,7 @@
 #  color              :string
 #  email              :citext
 #  name               :string
+#  onboarded_at       :datetime
 #  pin_digest         :string
 #  points             :integer          default(0)
 #  role               :integer
@@ -144,13 +145,11 @@ class Profile < ApplicationRecord
   end
 
   def broadcast_wishlist_card
-    Turbo::StreamsChannel.broadcast_replace_to(
-      "kid_#{id}",
+    Ui::FxBroadcaster.replace(
+      profile: self,
       target: ActionView::RecordIdentifier.dom_id(self, :wishlist),
       partial: "kid/wishlist/goal",
       locals: { profile: self }
     )
-  rescue StandardError => e
-    Rails.logger.warn("[Profile##{id}] wishlist broadcast failed: #{e.message}")
   end
 end

@@ -180,9 +180,12 @@ RSpec.describe Tasks::DailyResetService do
       expect(family.reload.last_reset_on).to eq(wednesday)
     end
 
-    it 'returns 0 from the second call within the same local day' do
+    it 'returns 0 created from the second call within the same local day' do
       described_class.new(date: wednesday, family: family).call
-      expect(described_class.new(date: wednesday, family: family).call).to eq(0)
+      result = described_class.new(date: wednesday, family: family).call
+      expect(result.success?).to be true
+      expect(result.data[:created]).to eq(0)
+      expect(result.data[:skipped]).to be true
     end
 
     it 'runs again when called for a newer local date' do

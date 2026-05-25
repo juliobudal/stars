@@ -1,0 +1,20 @@
+{
+  "headline": "Quando alguém te deixa de fora, dói no peito — porque o cérebro usa o circuito da dor física.",
+  "mechanism_steps": [
+    "Naomi Eisenberger colocou pessoas num ressonador num joguinho online em que paravam de passar a bola pra elas. O cérebro acendeu na mesma região da dor física: o córtex cingulado anterior.",
+    "Faz sentido evolutivo: por milhões de anos, ser expulso do grupo era sentença de morte (sem grupo, sem proteção, sem comida). O cérebro fundiu rejeição e ameaça num único alarme.",
+    "Por isso mandar engolir e esquecer não funciona — você não pede pra alguém com perna quebrada simplesmente caminhar. O remédio é diferente: nomear ('isso doeu porque…'), aceitar e seguir, não fingir."
+  ],
+  "illustration_hint": "Criança parada no canto da quadra, mão no peito. Em volta, três outras passando bola entre si, sem olhar pra ela. Acima da cabeça, uma radiografia transparente do peito mostra uma área brilhando idêntica à que brilharia se a perna estivesse machucada.",
+  "micro_check": {
+    "question": "{{learner_name}} foi deixado de fora do grupo de WhatsApp da turma. Por que dói tanto se 'não foi nada físico'?",
+    "options": [
+      "É só drama de adolescente, vai passar sozinho.",
+      "O cérebro processa rejeição na mesma região da dor física — a dor é real, não inventada.",
+      "Está com pouca atenção e por isso fica sensível.",
+      "É frescura por usar muito o celular."
+    ],
+    "correct_index": 1,
+    "rationale": "Estudos com ressonância (Eisenberger, UCLA) mostram: rejeição social acende o córtex cingulado anterior — mesma região que acende em queimadura ou pancada. Não é metáfora; é circuito. Reconhecer isso já alivia."
+  }
+}

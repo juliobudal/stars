@@ -12,7 +12,7 @@ module Academy
   #
   # Lifecycle:
   #   - `started_at` set on create.
-  #   - `closed_at` set when message_count hits cap OR session expires.
+  #   - `closed_at` is currently unused (kept for backfill / future expiry hooks).
   #   - `flagged` flips to true the first time the LLM emits [SAFETY_FLAG]; the
   #     bracketed reason is appended to `flag_reasons`.
   class GuideConversation < ApplicationRecord

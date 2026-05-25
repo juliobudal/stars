@@ -54,16 +54,29 @@
       <% end %>
     </div>
 
-    <%# Progress dots (no labels — just visual journey) %>
-    <div class="flex items-center gap-1.5 mt-3" aria-label="Progresso da missão">
-      <% total_steps.times do |i| %>
-        <% pos = i + 1
-           state = if pos < current_step then :done
-                  elsif pos == current_step then :current
-                  else :pending end %>
-        <div class="flex-1 h-1.5 rounded-full transition-all"
-             style="background: <%= state == :done ? color_var : state == :current ? 'var(--c-sky)' : 'var(--hairline)' %>;
-                    box-shadow: <%= state == :done ? "0 1.5px 0 color-mix(in oklab, #{color_var} 60%, black)" : 'none' %>;"></div>
+    <%# Progress dots + streak chip ─────────────────────────────── %>
+    <div class="flex items-center gap-2 mt-3">
+      <div class="flex items-center gap-1.5 flex-1" aria-label="Progresso da missão">
+        <% total_steps.times do |i| %>
+          <% pos = i + 1
+             state = if pos < current_step then :done
+                    elsif pos == current_step then :current
+                    else :pending end %>
+          <div class="flex-1 h-1.5 rounded-full transition-all"
+               style="background: <%= state == :done ? color_var : state == :current ? 'var(--c-sky)' : 'var(--hairline)' %>;
+                      box-shadow: <%= state == :done ? "0 1.5px 0 color-mix(in oklab, #{color_var} 60%, black)" : 'none' %>;"></div>
+        <% end %>
+      </div>
+
+      <% if @streak.to_i >= 2 %>
+        <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full anim-pop-in shrink-0"
+             aria-label="<%= @streak %> acertos seguidos"
+             style="background: color-mix(in oklab, var(--c-coral) 18%, var(--surface)); border: 2px solid var(--c-coral);">
+          <span class="anim-streak-flame" aria-hidden="true" style="font-size: 14px; line-height: 1;">🔥</span>
+          <span class="font-display text-[12px] font-extrabold tabular-nums" style="color: var(--c-coral-dark);">
+            <%= @streak %>
+          </span>
+        </div>
       <% end %>
     </div>
   </header>
@@ -71,7 +84,7 @@
   <%# ── Body header: the ACTION the kid is doing ─────────────── %>
   <% voice = ::Academy::Lens::Voices.for_lens(lens_type) %>
   <div class="flex items-center gap-3 mb-4">
-    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-[22px]"
+    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-[22px]"
          style="background: color-mix(in oklab, <%= color_var %> 18%, var(--surface)); border: 2px solid <%= color_var %>;">
       <%= action_label[:emoji] %>
     </div>
@@ -94,7 +107,7 @@
     <% end %>
   </div>
 
-  <%# ── Body — delegated to the action primitive ────────────── %>
+  <%# ── Body · delegated to the action primitive ────────────── %>
   <%
     # Primitives that pivot on a reveal step: keep the user from skipping the
     # learning beat by disabling the Continuar button until the lens controller
@@ -106,11 +119,12 @@
     <% if cache&.payload.present? && primitive %>
       <% interpolated_payload = ::Academy::Lens::InterpolatePayload.render(payload: cache.payload, learner: current_learner) %>
       <%= render "kid/academy/missions/lens_#{primitive}",
-                 concept: @mission.concept, payload: interpolated_payload, color_var: color_var %>
+                 concept: @mission.concept, payload: interpolated_payload, color_var: color_var,
+                 lens_type: lens_type %>
     <% else %>
       <div class="lens-card p-5">
         <p class="font-display text-[14px] leading-snug m-0" style="color: var(--text-muted);">
-          Carregando — recarregue em alguns segundos.
+          Carregando. Recarregue em alguns segundos.
         </p>
       </div>
     <% end %>
@@ -134,8 +148,8 @@
                          value: "", data: { lens_stage_target: "elapsed" } %>
 
       <%= f.submit "Continuar →",
-                   class: "w-full px-5 py-3.5 rounded-2xl font-display font-extrabold text-[16px] anim-press ls-btn-3d border-0",
-                   style: "background: var(--primary); color: white; box-shadow: 0 4px 0 var(--primary-2);#{' opacity: 0.55; cursor: not-allowed;' if advance_gated}",
+                   class: "w-full px-5 py-3.5 rounded-xl font-display font-extrabold text-[16px] anim-press ls-btn-3d border-0",
+                   style: "background: var(--primary); color: white; #{advance_gated ? 'box-shadow: none; opacity: 0.5; cursor: not-allowed;' : 'box-shadow: 0 4px 0 var(--primary-2);'}",
                    disabled: advance_gated,
                    data: { lens_stage_target: "advanceBtn" }.compact %>
     <% end %>

@@ -1,0 +1,20 @@
+{
+  "headline": "Ansiedade e empolgação têm o mesmo corpo — só muda o nome que você dá.",
+  "mechanism_steps": [
+    "Quando algo importa, o corpo libera adrenalina: coração acelera, mãos suam, estômago aperta. Esse pacote vem antes da cabeça decidir se nomeia 'ansiedade' ou 'empolgação'.",
+    "Lisa Feldman Barrett mostrou: a química idêntica é interpretada de jeitos diferentes. Quem diz 'estou empolgado' usa a energia pra agir; quem diz 'estou ansioso' luta contra o próprio corpo.",
+    "Por isso 'acalmar' é mais difícil que 'reinterpretar' — depois que a química saiu, o corpo não dá ré. Mas dá pra trocar o nome — e o nome muda o que você faz."
+  ],
+  "illustration_hint": "Uma criança no banheiro antes de uma prova. Coração desenhado pulando rápido, mãos suando. Em cima da cabeça, dois balões: à esquerda 'estou ansioso' com cara de luta; à direita 'estou empolgado' com cara curiosa. Setinha entre os dois: 'mesmo corpo, leituras opostas'.",
+  "micro_check": {
+    "question": "{{learner_name}} vai apresentar trabalho na escola e sente o coração disparado. Qual leitura ajuda mais a performance?",
+    "options": [
+      "'Estou ansioso, preciso me acalmar urgente.'",
+      "'Estou empolgado, meu corpo está se preparando.'",
+      "'Estou doente, melhor pedir pra adiar.'",
+      "'Não devia estar sentindo nada — algo está errado.'"
+    ],
+    "correct_index": 1,
+    "rationale": "A química é a mesma; nomear como empolgação aproveita a energia pra agir. Tentar acalmar luta contra o corpo. Pesquisa de Brooks (Harvard): 'estou empolgado' melhora performance em ~17% vs. 'estou calmo'."
+  }
+}

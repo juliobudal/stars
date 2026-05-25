@@ -1,5 +1,5 @@
 <% if affordable_rewards.any? %>
-  <div class="flex items-center gap-2 mb-4 px-1">
+  <div class="flex items-center gap-2 mb-3 px-1">
     <div class="grid place-items-center shrink-0"
          style="width: 24px; height: 24px; background: var(--primary); border-radius: 8px; box-shadow: 0 2px 0 var(--primary-2);">
       <%= render Ui::Icon::Component.new("check", size: 14, color: "white") %>
@@ -7,7 +7,7 @@
     <h2 class="font-display text-[15px] font-extrabold uppercase tracking-[0.5px] m-0" style="color: var(--primary-2);">Posso resgatar agora!</h2>
   </div>
 
-  <div class="grid grid-cols-2 gap-5 mb-7">
+  <div class="grid grid-cols-2 gap-3 mb-6">
     <% affordable_rewards.each_with_index do |reward, i| %>
       <% icon_name = (reward.respond_to?(:icon) && reward.icon.presence) || reward.category&.icon.presence || "gift" %>
       <% pal = Ui::Tokens.color_palette_entry(reward.category&.color || "lilac") %>
@@ -18,11 +18,6 @@
                 style="background: var(--surface); border: 3px solid var(--primary); border-radius: 16px; box-shadow: 0 4px 0 var(--primary-2); animation-delay: <%= [i, 5].min * 0.04 %>s;"
                 data-action="click->ui-modal#open"
                 data-ui-modal-id-param="modal_<%= dom_id(reward) %>">
-          <div class="absolute top-2 right-2 font-display font-extrabold uppercase tracking-[0.5px]"
-               style="background: var(--primary); color: white; font-size: 9px; padding: 3px 7px; border-radius: 6px; box-shadow: 0 2px 0 var(--primary-2);">
-            ✓ Pode
-          </div>
-
           <div class="grid place-items-center w-full"
                style="aspect-ratio: 1.4; background: <%= pal[:soft_var] %>; border: 2px solid <%= pal[:fg_var] %>; border-radius: 12px;">
             <%= render Ui::Icon::Component.new(icon_name, size: 48, color: pal[:fg_var]) %>

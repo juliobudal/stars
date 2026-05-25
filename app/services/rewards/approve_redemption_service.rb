@@ -7,11 +7,16 @@ module Rewards
     def call
       Rails.logger.info("[Rewards::ApproveRedemptionService] start redemption_id=#{@redemption.id}")
 
-      unless @redemption.pending?
-        return fail_with("Resgate não está pendente")
+      ActiveRecord::Base.transaction do
+        @redemption.lock!
+
+        unless @redemption.pending?
+          return fail_with("Resgate não está pendente")
+        end
+
+        @redemption.update!(status: :approved)
       end
 
-      @redemption.update!(status: :approved)
       Rails.logger.info("[Rewards::ApproveRedemptionService] success id=#{@redemption.id}")
       ok(@redemption)
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e

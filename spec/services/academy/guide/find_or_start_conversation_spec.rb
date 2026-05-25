@@ -11,18 +11,11 @@ RSpec.describe Academy::Guide::FindOrStartConversation do
       .to change(Academy::GuideConversation, :count).by(1)
   end
 
-  it "reuses an open conversation from today" do
+  it "reuses today's conversation across calls" do
     existing = create(:academy_guide_conversation, learner_id: learner.id, mission: mission, started_at: 1.hour.ago)
     expect { described_class.call(learner: learner, mission: mission) }
       .not_to change(Academy::GuideConversation, :count)
     expect(described_class.call(learner: learner, mission: mission).data).to eq(existing)
-  end
-
-  it "returns the closed conversation from today instead of creating a new one" do
-    closed = create(:academy_guide_conversation, learner_id: learner.id, mission: mission, started_at: 3.hours.ago, closed_at: 2.hours.ago)
-    result = described_class.call(learner: learner, mission: mission)
-    expect(result.data).to eq(closed)
-    expect(Academy::GuideConversation.count).to eq(1)
   end
 
   it "creates a new conversation when yesterday's session existed (TZ boundary)" do

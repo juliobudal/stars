@@ -1,0 +1,20 @@
+{
+  "headline": "Dinheiro grande nasce de resolver problema que muitos têm — não de tirar pedaço do que existe.",
+  "mechanism_steps": [
+    "Criar valor: você inventa/resolve algo útil pra muita gente. Cada pessoa atendida te paga um pouco — quanto mais gente, mais dinheiro, sem tirar de ninguém.",
+    "Extrair valor: você fica com pedaço do que outros já fizeram (revender, intermediar, cobrar pedágio). Margem fica apertada porque qualquer concorrente faz igual.",
+    "Por isso os maiores nomes do mundo (Apple, Tesla, Netflix) viraram grandes resolvendo problemas novos — e os 'esquemas de revenda' duram pouco até alguém fazer mais barato."
+  ],
+  "illustration_hint": "Duas pessoas com bancas. Esquerda: vende garrafas d'água iguais a todo mundo, fila pequena. Direita: inventou um filtro portátil que cabe na bolsa — fila enorme e gente sorrindo, cada uma saindo com algo que não existia antes. Setinha embaixo: 'mesma matéria-prima, ideia diferente'.",
+  "micro_check": {
+    "question": "{{learner_name}} quer começar a ganhar dinheiro. Qual ideia tem mais chance de crescer no longo prazo?",
+    "options": [
+      "Comprar guloseimas no mercado e revender pelo dobro na escola.",
+      "Notar uma dificuldade comum dos colegas (ex: organizar agenda) e criar uma solução simples pra isso.",
+      "Pegar dinheiro emprestado pra investir em criptomoeda 'promissora'.",
+      "Esperar até ter um diploma pra começar qualquer coisa."
+    ],
+    "correct_index": 1,
+    "rationale": "Criar valor (resolver problema real de muita gente) escala — mais pessoas, mais ganho. Revender ou apostar não cria nada novo: bate em concorrente ou sorte. Começar antes ajuda a praticar o olhar do criador."
+  }
+}

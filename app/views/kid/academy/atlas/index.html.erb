@@ -1,4 +1,4 @@
-<% content_for(:title) { "Atlas — Pokédex de padrões" } %>
+<% content_for(:title) { "Atlas · Pokédex de padrões" } %>
 
 <div class="screen screen-enter with-nav"
      data-controller="pokedex-evolution"
@@ -27,7 +27,7 @@
       [ [ "Transferido", "Transferidos" ], @counts[:mastered], "var(--c-star)" ]
     ].each do |(singular, plural), count, color| %>
       <% label = count == 1 ? singular : plural %>
-      <div class="rounded-2xl px-3 py-2 text-center"
+      <div class="rounded-xl px-3 py-2 text-center"
            style="background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06);">
         <div class="font-display text-[18px] font-extrabold tabular-nums" style="color: <%= color %>;"><%= count %></div>
         <div class="font-display text-[9px] font-extrabold tracking-[1.5px] uppercase" style="color: var(--text-muted);">
@@ -68,7 +68,7 @@
         <% @recent_cards.each do |card| %>
           <article class="shrink-0 snap-start ls-card-3d"
                    style="background: var(--surface); border: 2px solid var(--c-star); border-radius: 14px; padding: 12px; box-shadow: 0 4px 0 var(--star-depth); width: 220px;">
-            <div class="w-10 h-10 rounded-2xl flex items-center justify-center mb-2"
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-2"
                  style="background: <%= card.mission.subject.color %>;">
               <%= render Ui::Icon::Component.new(card.illustration_key.to_s.presence&.to_sym || :sparkle, size: 20, color: "white") %>
             </div>

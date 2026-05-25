@@ -1,4 +1,4 @@
-<% content_for :title, "Entrar — LittleStars" %>
+<% content_for :title, "Entrar · LittleStars" %>
 <div class="screen screen-enter relative">
   <%= render Ui::BgShapes::Component.new(variant: "cool") %>
 
@@ -17,7 +17,11 @@
     </p>
 
     <% if flash[:alert] %>
-      <p role="alert" class="text-destructive mb-4 font-bold"><%= flash[:alert] %></p>
+      <div role="alert" class="w-full max-w-[360px] mb-4 inline-flex items-center gap-2.5 px-3.5 py-3 rounded-[12px]"
+           style="background: color-mix(in oklab, var(--danger) 12%, var(--surface)); border: 1.5px solid var(--danger); box-shadow: 0 2px 0 color-mix(in oklab, var(--danger) 40%, var(--hairline));">
+        <span class="grid place-items-center shrink-0 font-display font-extrabold" style="width: 22px; height: 22px; background: var(--danger); color: white; border-radius: 7px; font-size: 14px; line-height: 1;" aria-hidden="true">!</span>
+        <p class="font-display text-[13px] font-extrabold leading-snug m-0" style="color: var(--danger-2);"><%= flash[:alert] %></p>
+      </div>
     <% end %>
 
     <%# Form anchored in card %>

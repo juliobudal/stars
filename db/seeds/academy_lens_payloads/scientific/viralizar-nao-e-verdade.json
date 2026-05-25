@@ -1,0 +1,20 @@
+{
+  "headline": "Algoritmo escolhe o que prende atenção — não o que é verdadeiro.",
+  "mechanism_steps": [
+    "Algoritmo mede uma coisa só: quanto tempo você fica olhando, curtindo, compartilhando. Ele não tem sensor de 'isso é verdade'. Se prende, sobe; se não prende, some — independente de ser real.",
+    "Soroush Vosoughi, no MIT em 2018, analisou 126 mil notícias no Twitter ao longo de 10 anos: a falsa espalhou cerca de 6× mais rápido que a verdadeira. Razão: raiva, surpresa e medo geram mais clique.",
+    "Por isso 'eu vi na internet' não é prova. Precisa virar 'vi onde, quem publicou, quem confirmou em outro lugar'. Sem essas 3 perguntas, viralizar é só sintoma de que prendeu — pode ser invenção."
+  ],
+  "illustration_hint": "Duas notícias subindo num feed. A da esquerda, escrita 'pesquisador confirma vacina segura', sobe devagar, em fila com poucos olhos. A da direita, 'CIENTISTA REVELA SEGREDO CHOCANTE', sobe num foguete cheio de chamas, multidão correndo atrás dela, mas com uma etiqueta pequena no fundo: 'fonte: nenhuma'.",
+  "micro_check": {
+    "question": "Um vídeo com 2 milhões de views diz que tomar limão cura gripe em 1 hora. {{learner_name}} ouve isso e quer testar. O que a viralização realmente prova?",
+    "options": [
+      "Prova que é verdade — 2 milhões de pessoas não erram juntas.",
+      "Prova só que o vídeo prendeu atenção; pra saber se é real, precisa de fonte, autor e confirmação em outro lugar.",
+      "Prova que o algoritmo do app gosta de saúde e só mostra coisa séria.",
+      "Prova que cientistas concordam com o vídeo."
+    ],
+    "correct_index": 1,
+    "rationale": "Vosoughi (MIT) mostrou que notícia falsa viraliza mais rápido porque surpreende mais. View é só sinal de atenção — verdade exige checar fonte, autor e confirmação independente, que o algoritmo não faz."
+  }
+}

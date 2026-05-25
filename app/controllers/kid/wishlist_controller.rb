@@ -1,8 +1,4 @@
-class Kid::WishlistController < ApplicationController
-  include Authenticatable
-  before_action :require_child!
-  layout "kid"
-
+class Kid::WishlistController < Kid::BaseController
   def create
     reward = Reward.where(family_id: current_profile.family_id).find(params[:reward_id])
     previous_reward = current_profile.wishlist_reward

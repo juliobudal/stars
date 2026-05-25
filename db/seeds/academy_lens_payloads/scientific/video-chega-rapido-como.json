@@ -1,0 +1,20 @@
+{
+  "headline": "Vídeo Não vem da China. Tem copia 30km de você — por isso carrega em 1 segundo.",
+  "mechanism_steps": [
+    "TikTok e Netflix não guardam todo vídeo num servidor central — seria lento. Fazem cópias em centenas de servidores espalhados pelo mundo. Isso chama CDN: Content Delivery Network.",
+    "Quando um vídeo vira viral, o sistema percebe e MULTIPLICA cópias dele nas regiões onde a galera assiste. Em horas, o mesmo vídeo tem réplicas em São Paulo, Recife, Manaus — pertinho de quem clica.",
+    "Por isso você aperta play e o vídeo começa em 1 segundo: não veio da Califórnia, veio de um galpão a 30km de você. Adrian Cockcroft desenhou esse modelo na Netflix por volta de 2010."
+  ],
+  "illustration_hint": "Mapa-mundi com servidor original do TikTok na China. Setas saindo dele pra dezenas de servidores espalhados (SP, NY, Berlim, Tóquio). Cada criança no mundo recebe o vídeo do servidor mais perto, com cronômetro mostrando 1 segundo.",
+  "micro_check": {
+    "question": "Um vídeo novo do canal favorito de {{learner_name}} viraliza e ganha 50 milhoes de views em 2 dias. Como o TikTok consegue entregar tao rápido pra tanta gente?",
+    "options": [
+      "Tem um servidor super-rápido na California que aguenta o mundo inteiro.",
+      "Faz copias do vídeo em centenas de servidores pelo mundo (CDN) — cada pessoa baixa do mais perto dela.",
+      "Compra mais internet na hora pra dar conta da demanda.",
+      "Espera todo mundo carregar e depois libera junto."
+    ],
+    "correct_index": 1,
+    "rationale": "Servico grande nunca serve vídeo do mesmo lugar pra todo mundo — seria lento e caro. Ele replica copias em CDN espalhada pelo planeta, e você baixa do servidor mais perto. Por isso vídeo viral chega em 1 segundo."
+  }
+}

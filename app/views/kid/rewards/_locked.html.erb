@@ -1,5 +1,5 @@
 <% if locked_rewards.any? %>
-  <div class="flex items-center gap-2 mb-4 px-1">
+  <div class="flex items-center gap-2 mb-3 px-1">
     <div class="grid place-items-center shrink-0"
          style="width: 24px; height: 24px; background: var(--text-soft); border-radius: 8px; box-shadow: 0 2px 0 var(--text-muted);">
       <%= render Ui::Icon::Component.new("lock", size: 13, color: "white") %>
@@ -7,7 +7,7 @@
     <h2 class="font-display text-[15px] font-extrabold uppercase tracking-[0.5px] m-0" style="color: var(--text-muted);">Continua juntando!</h2>
   </div>
 
-  <div class="grid grid-cols-2 gap-5 mb-7">
+  <div class="grid grid-cols-2 gap-3 mb-6">
     <% locked_rewards.each_with_index do |reward, i| %>
       <% icon_name = (reward.respond_to?(:icon) && reward.icon.presence) || reward.category&.icon.presence || "gift" %>
       <% pal = Ui::Tokens.color_palette_entry(reward.category&.color || "lilac") %>
@@ -34,7 +34,7 @@
           </div>
 
           <div class="overflow-hidden" style="height: 6px; background: var(--hairline); border-radius: 4px;">
-            <div class="h-full" style="width: <%= pct %>%; background: <%= pal[:fg_var] %>; border-radius: 4px;"></div>
+            <div class="h-full" style="width: <%= pct %>%; background: var(--primary); border-radius: 4px;"></div>
           </div>
 
           <div class="flex items-center justify-between">
@@ -44,7 +44,7 @@
                 <%= balance %><span style="color: var(--text-soft);">/<%= reward.cost %></span>
               </span>
             </div>
-            <span class="font-display text-[10px] font-extrabold uppercase tracking-[0.5px]" style="color: <%= pal[:fg_var] %>;">
+            <span class="font-display text-[10px] font-extrabold uppercase tracking-[0.5px]" style="color: var(--primary-2);">
               Falta <%= remaining %>
             </span>
           </div>

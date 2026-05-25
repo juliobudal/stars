@@ -21,11 +21,11 @@
       end
     %>
     <div data-controller="filter-tabs">
-      <div class="mb-[20px]">
+      <div class="mb-5">
         <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all", controller: "filter-tabs") %>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-[14px]">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         <% @rewards.each do |reward| %>
           <div data-filter-tabs-target="item" data-panels="all <%= reward.category_id %>">
             <%= render Ui::RewardCatalogCard::Component.new(reward: reward) %>

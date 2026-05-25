@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Caio",
+    "age": 12,
+    "trait": "fala que vai começar o trabalho de escola 'depois que organizar a mesa, baixar uma fonte boa e escolher a cor do título'"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Quarta à noite. Trabalho de história pra entregar sexta. Caio abre o caderno, olha o tema 'Revolução Francesa', fecha. Liga o computador. Passa 40 minutos escolhendo fonte. Mais 20 procurando uma capa bonita no Pinterest. Não escreveu uma linha. Vai dormir prometendo que amanhã 'começa cedo'."
+    },
+    {
+      "id": "s2",
+      "text": "Quinta de manhã, no café, o pai pergunta: 'Como tá o trabalho?' Caio: 'Tô esperando ter uma ideia boa.' O pai pousa a xícara. 'Filho, você não tá esperando ideia. Você tá com medo de escrever uma coisa ruim. Pergunta diferente: do que você tá com medo?' Caio fica olhando o leite."
+    },
+    {
+      "id": "s3",
+      "text": "Caio responde baixo: 'Medo da professora achar tosco.' O pai: 'Então escreve tosco primeiro. Depois melhora. Página em branco não dá pra melhorar.' Caio sobe, abre o Word, digita 'A Revolução Francesa começou porque o povo tava com fome.' Frase boba. Mas a página deixou de estar em branco. Em uma hora, escreveu duas páginas."
+    }
+  ],
+  "ending": "O trabalho do Caio não virou obra-prima. Tirou 7,5. Mas ele descobriu uma pergunta que vai usar mil vezes: quando travar, em vez de 'preciso me organizar', perguntar 'do que tô com medo'. Destrava mais.",
+  "micro_check": {
+    "question": "{{learner_name}}, qual pergunta o pai do Caio fez que mudou tudo?",
+    "options": [
+      "'Você já estudou o suficiente?'",
+      "'Quer que eu te ajude a fazer um cronograma?'",
+      "'Do que você tá com medo?'",
+      "'Por que você não começou antes?'"
+    ],
+    "correct_index": 2,
+    "rationale": "A pergunta 'do que tô com medo' tira a máscara da procrastinação. 'Preciso me organizar' soa produtivo, mas quase sempre é medo travestido. Nomear o medo é o que destrava — não mais planejamento."
+  }
+}

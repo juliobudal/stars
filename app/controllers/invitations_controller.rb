@@ -11,7 +11,7 @@ class InvitationsController < ApplicationController
   def accept
     result = Auth::AcceptInvitation.call(token: params[:token])
     if result.success?
-      cookies.signed.permanent[:family_id] = { value: result.family.id, httponly: true, same_site: :lax }
+      cookies.signed.permanent[:family_id] = { value: result.data[:family].id, httponly: true, same_site: :lax }
       redirect_to new_parent_profile_path(onboarding: true, invited: true)
     else
       render plain: result.error, status: :not_found

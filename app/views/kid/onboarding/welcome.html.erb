@@ -1,0 +1,35 @@
+<%= render Ui::ProgressSteps::Component.new(current: @step, total: 4) %>
+
+<div class="flex-1 flex flex-col items-center text-center pt-2">
+  <%# Mascote bouncing · uses the kid's palette via SmileyAvatar. %>
+  <div class="relative mb-6">
+    <div class="ls-mascot-bounce">
+      <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 128, decorative: true) %>
+    </div>
+    <span class="absolute -top-1 -right-2" aria-hidden="true">
+      <%= render Ui::Icon::Component.new(:star, size: 22, color: "var(--star)") %>
+    </span>
+  </div>
+
+  <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase mb-2" style="color: var(--primary);">
+    Bem-vindo, <%= current_profile.name %>!
+  </div>
+
+  <h1 class="font-display text-[28px] leading-tight font-extrabold tracking-[-0.01em] m-0 mb-3" style="color: var(--text);">
+    Vamos juntos virar<br>super-aluno?
+  </h1>
+
+  <p class="text-[15px] font-bold leading-relaxed max-w-[320px]" style="color: var(--text-muted);">
+    Aqui você faz missões, ganha <strong style="color: var(--star-2);">estrelinhas</strong> e troca por recompensas legais da sua família.
+  </p>
+</div>
+
+<div class="pt-6">
+  <%= link_to kid_welcome_interests_path,
+        class: "ls-btn-3d ls-btn ls-btn-primary w-full text-center inline-flex items-center justify-center gap-2 font-display font-extrabold uppercase tracking-[0.5px] no-underline",
+        style: "padding: 14px 20px; border-radius: 14px; background: var(--primary); color: white; font-size: 16px; box-shadow: 0 4px 0 var(--primary-2);",
+        "data-testid": "welcome-next" do %>
+    Bora!
+    <%= render Ui::Icon::Component.new("arrow-right-01", size: 18, color: "white") %>
+  <% end %>
+</div>

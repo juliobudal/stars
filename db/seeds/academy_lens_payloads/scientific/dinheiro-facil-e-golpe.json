@@ -1,0 +1,20 @@
+{
+  "headline": "Se fosse fácil e seguro, o mundo já tinha pegado — sobrar 'pra você' é sinal vermelho.",
+  "mechanism_steps": [
+    "Mercados são caçadores de oportunidade: assim que algo paga bem com pouco risco, milhares de pessoas correm e o ganho some. Por isso oportunidades reais têm fila — não anúncios em rede social.",
+    "Golpistas usam 4 sinais para fisgar: retorno alto (10%/mês!), sem risco (garantido!), urgência (só hoje!), e pedido de indicação (chame amigos). Esse padrão se repete há séculos.",
+    "Quem cai não é burro — é gente que confiou. Por isso a defesa não é 'ser esperto', é decorar o padrão e desligar quando ele aparece. Os 4 sinais juntos = quase 100% golpe."
+  ],
+  "illustration_hint": "Anúncio de celular brilhando com 4 selos vermelhos brilhantes: '10% AO MÊS!', 'SEM RISCO!', 'SÓ HOJE!', 'INDIQUE 3 AMIGOS!'. Embaixo, uma criança com lupa olhando os selos com expressão de detetive. Atrás do anúncio, sombra de uma pirâmide invertida com pessoas caindo.",
+  "micro_check": {
+    "question": "Um influencer mostra app que 'rende 8% por semana, garantido, vagas só hoje, e você ganha bônus indicando amigos'. Qual leitura é melhor?",
+    "options": [
+      "Pode ser real, vou só investir um pouquinho pra testar.",
+      "Os 4 sinais clássicos de golpe estão todos presentes — quase certo que é fraude.",
+      "Se o influencer indica, é confiável.",
+      "Vou esperar mais gente investir pra ver se funciona, e entro depois."
+    ],
+    "correct_index": 1,
+    "rationale": "Retorno absurdo + zero risco + urgência + indicar amigos é a assinatura do esquema-Ponzi desde 1920. O fato de outras pessoas estarem entrando é parte do golpe — quanto mais entra, maior o crash quando explode."
+  }
+}

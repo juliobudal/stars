@@ -103,22 +103,29 @@ RSpec.describe Profile, type: :model do
     end
 
     describe "#broadcast_wishlist_card callback" do
-      it "broadcasts to kid_<id> when points change" do
-        expect {
-          child.update!(points: child.points + 5)
-        }.to have_broadcasted_to("kid_#{child.id}")
+      it "broadcasts to the profile's fx_stage when points change" do
+        called = 0
+        allow(Turbo::StreamsChannel).to receive(:broadcast_replace_to) do |*streamables, **|
+          called += 1 if streamables == [ child, "fx_stage" ]
+        end
+        child.update!(points: child.points + 5)
+        expect(called).to eq(1)
       end
 
-      it "broadcasts to kid_<id> when wishlist_reward changes" do
-        expect {
-          child.update!(wishlist_reward: reward)
-        }.to have_broadcasted_to("kid_#{child.id}")
+      it "broadcasts to the profile's fx_stage when wishlist_reward changes" do
+        called = 0
+        allow(Turbo::StreamsChannel).to receive(:broadcast_replace_to) do |*streamables, **|
+          called += 1 if streamables == [ child, "fx_stage" ]
+        end
+        child.update!(wishlist_reward: reward)
+        expect(called).to eq(1)
       end
 
       it "does not broadcast when an unrelated attribute changes" do
-        expect {
-          child.update!(name: "Novo Nome")
-        }.not_to have_broadcasted_to("kid_#{child.id}")
+        called = 0
+        allow(Turbo::StreamsChannel).to receive(:broadcast_replace_to) { called += 1 }
+        child.update!(name: "Novo Nome")
+        expect(called).to eq(0)
       end
     end
   end

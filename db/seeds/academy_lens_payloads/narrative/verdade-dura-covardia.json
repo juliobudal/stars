@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Helena",
+    "age": 13,
+    "trait": "tem orgulho de 'falar tudo na cara' e acha que franqueza é sinônimo de honestidade"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Recreio. Helena chega perto da Bia, que estreou um corte de cabelo curto. 'Bia, posso ser sincera? Ficou horrível. Parece cogumelo.' Solta uma risada. Duas amigas riem junto, sem graça. Bia tenta sorrir, mas o sorriso não chega no olho. Vai pro banheiro e demora pra voltar."
+    },
+    {
+      "id": "s2",
+      "text": "Na volta pra casa, a irmã mais velha, Júlia, ouve Helena contar a cena rindo. Júlia para no meio do passeio. 'Você falou isso porque ela precisava ouvir, ou porque você precisava falar?' Helena trava. 'Eu fui sincera.' Júlia: 'Sincera com quem? Não foi pra ajudar ela. Foi pra você parecer corajosa.'"
+    },
+    {
+      "id": "s3",
+      "text": "À noite, Helena lembra do sorriso da Bia que não chegou no olho. Pega o celular. Apaga três versões da mensagem. Manda a quarta: 'Bia, falei besteira hoje no recreio. Não tinha que ter rido do seu cabelo na frente das outras. Desculpa.' Bia responde dois minutos depois, só com 'obg'."
+    }
+  ],
+  "ending": "Helena dorme com um 'obg' seco no celular. Não foi perdão completo — foi a Bia avisando que ouviu. Helena percebe que a tal franqueza dela tinha mais a ver com plateia do que com a Bia.",
+  "micro_check": {
+    "question": "{{learner_name}}, qual a pergunta que a Júlia faz pra Helena travar?",
+    "options": [
+      "'Por que você não falou em particular com a Bia?'",
+      "'Você falou porque ela precisava ouvir, ou porque você precisava falar?'",
+      "'Você acha que ela vai te perdoar um dia?'",
+      "'Por que você sempre tem que ser o centro das atenções?'"
+    ],
+    "correct_index": 1,
+    "rationale": "A pergunta da Júlia separa duas coisas que parecem iguais: verdade dita pra ajudar o outro e verdade dita pra mostrar coragem. Quando o motivo é plateia, não é honestidade — é descarga emocional com endereço errado."
+  }
+}

@@ -39,12 +39,12 @@
   <% end %>
 
   <%# ─── Meta coletiva semanal ─── %>
-  <div class="relative z-10 mb-4">
+  <div class="relative z-10 mb-5">
     <%= render "shared/family_goal_widget", goal: @family_goal, viewer: current_profile %>
   </div>
 
   <%# ─── Stats grid ─── %>
-  <div class="z-10 relative grid grid-cols-2 lg:grid-cols-4 gap-3 mb-[22px]">
+  <div class="z-10 relative grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
     <%= render Ui::StatCard::Component.new(value: @stats[:total_stars],       label: "Estrelinhas",     icon: "star",   tint: "reward") %>
     <%= render Ui::StatCard::Component.new(value: @stats[:active_missions],   label: "Missões ativas",  icon: "target", tint: "info") %>
     <%= render Ui::StatCard::Component.new(value: @stats[:rewards_count],     label: "Prêmios",         icon: "bag",    tint: "prize") %>
@@ -52,8 +52,8 @@
   </div>
 
   <%# ─── Suas crianças ─── %>
-  <section class="mb-[22px]">
-    <div class="flex items-center justify-between mb-[14px]">
+  <section class="mb-5">
+    <div class="flex items-center justify-between mb-3">
       <h2 class="text-[16px] font-extrabold m-0" style="color: var(--text);">Suas crianças</h2>
       <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: parent_profiles_path) do %>
         + Adicionar
@@ -83,7 +83,7 @@
 
   <%# ─── Aprovações pendentes ─── %>
   <section>
-    <div class="flex items-center justify-between mb-[14px]">
+    <div class="flex items-center justify-between mb-3">
       <h2 class="text-[16px] font-extrabold m-0" style="color: var(--text);">Aprovações pendentes</h2>
       <%= link_to "Ver tudo", parent_approvals_path, class: "text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline", style: "color: var(--c-info-600);" %>
     </div>

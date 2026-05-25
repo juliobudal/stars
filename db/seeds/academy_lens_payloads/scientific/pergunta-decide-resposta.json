@@ -1,0 +1,20 @@
+{
+  "headline": "'Salvar 70%' soa diferente de 'perder 30%' — mesma matemática, sentimentos opostos.",
+  "mechanism_steps": [
+    "Em 1981 Tversky e Kahneman testaram: 'remédio salva 200 de 600' fez todo mundo escolher o seguro. 'Deixa 400 de 600 morrerem' fez escolher o arriscado. Mesma matemática, escolhas opostas.",
+    "O cérebro não calcula o número — ele sente a palavra. 'Salvar' ativa cuidado, segurança, ganho. 'Morrer' ativa medo, perda, urgência. A emoção chega antes da conta e decide por você.",
+    "Por isso iogurte vende como '95% sem gordura', não '5% com gordura'. Médico fala '90% de sobrevivência', não '10% de mortalidade'. Quem escolhe a forma da pergunta já decidiu sua resposta."
+  ],
+  "illustration_hint": "Balança com dois pratos. Esquerda: copo na metade com 'meio cheio' brilhando em verde. Direita: copo idêntico com 'meio vazio' em vermelho. A balança pende todinha pro lado verde, mesmo a água sendo igual. A coruja Duo embaixo de sobrancelha franzida.",
+  "micro_check": {
+    "question": "Duas lojas vendem o MESMO biscoito pelo MESMO preço. Qual frase faz {{learner_name}} sentir que é mais saudável, mesmo sendo igual?",
+    "options": [
+      "'Biscoito com 5% de açúcar'",
+      "'Biscoito 95% sem açúcar'",
+      "'Biscoito com açúcar moderado'",
+      "'Biscoito doce padrão'"
+    ],
+    "correct_index": 1,
+    "rationale": "'95% sem açúcar' é exatamente a mesma matemática de '5% com açúcar' — mas o cérebro lê o número grande primeiro e sente saudável. Quem escolheu a forma da frase já te empurrou pra resposta sem você notar."
+  }
+}

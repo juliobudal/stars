@@ -1,0 +1,20 @@
+{
+  "headline": "Você pergunta. Aparecem 10 milhoes. Os 10 primeiros foram escolhidos por formula secreta.",
+  "mechanism_steps": [
+    "Quando você busca 'melhor tenis pra correr', o Google não le os sites na hora — ele já leu todos antes e guardou um índice gigante, tipo o índice no fim de um livro, só que com bilhoes de páginas.",
+    "Pra decidir QUEM aparece primeiro, ele aplica fórmula com 200+ ingredientes: links recebidos, velocidade, casamento com sua busca, localização. Larry Page e Brin chamaram de PageRank em 1998.",
+    "Quem sabe os ingredientes sobe — existe uma indústria (SEO) pra isso. Quem não sabe afunda na página 7, onde ninguém clica. O buscador não escolhe pela verdade; escolhe pelo placar da fórmula."
+  ],
+  "illustration_hint": "Página do Google com barra de busca. Acima dos 3 primeiros resultados, uma engrenagem gigante girando, com ingredientes coloridos entrando: 'links recebidos', 'velocidade', 'localização', 'histórico'. Os 200 outros resultados ficam empilhados pequenininhos lá embaixo.",
+  "micro_check": {
+    "question": "{{learner_name}} busca 'remedio caseiro pra dor de cabeca' e clica no primeiro resultado. Por que esse site apareceu em primeiro?",
+    "options": [
+      "Porque e o site mais correto e verdadeiro sobre o assunto.",
+      "Porque um medico do Google leu e aprovou.",
+      "Porque a formula do buscador deu mais pontos pra ele — não quer dizer que é o melhor ou o mais certo.",
+      "Porque tem o maior número de visitas no Brasil."
+    ],
+    "correct_index": 2,
+    "rationale": "Buscador não avalia verdade — ele ordena por uma formula de 200+ ingredientes (links, velocidade, palavras, localizacao). Aparecer em primeiro significa que ganhou o jogo da formula, não que é o mais correto."
+  }
+}

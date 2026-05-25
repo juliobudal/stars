@@ -187,7 +187,7 @@ new_missions = [
   # ── CARÁTER (+2) ───────────────────────────────────────────────────────
   {
     slug: "desculpa-que-conserta",
-    subject: "carater", trail: "palavra-dada",
+    subject: "carater", trail: "palavra-honestidade",
     title: "Por que a desculpa de 'mas eu...' não funciona?",
     hook: "Pedir desculpa direito conserta. Pedir mal piora — e quase ninguém pede direito.",
     angle: "Anatomia da desculpa: explicar o erro + reconhecer impacto + dizer o que fará diferente. Sem 'mas...'.",
@@ -208,7 +208,7 @@ new_missions = [
   },
   {
     slug: "calar-quando-falar-fofoca",
-    subject: "carater", trail: "palavra-dada",
+    subject: "carater", trail: "palavra-honestidade",
     title: "Falar mal de quem não tá presente vicia. Por quê?",
     hook: "Fofoca dá prazer rápido como salgadinho — e custa amizades como Provérbios já avisava.",
     angle: "Dopamina do 'estar do lado certo' bate de frente com Provérbios 16:28 ('o fofoqueiro separa amigos íntimos') e Tiago 3:5-6 (a língua é fogo: pequena chama, floresta inteira).",

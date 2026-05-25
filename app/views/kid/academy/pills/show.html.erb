@@ -27,7 +27,7 @@
   </header>
 
   <div class="flex items-center gap-3 mb-4">
-    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-[22px]"
+    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-[22px]"
          style="background: color-mix(in oklab, <%= color_var %> 18%, var(--surface)); border: 2px solid <%= color_var %>;">
       <%= @action_label[:emoji] %>
     </div>
@@ -51,14 +51,14 @@
   </div>
 
   <%# Reuse the primitive partials from the mission flow. Pill is a single
-      lens with no advance/next — we render and stop. %>
+      lens with no advance/next · we render and stop. %>
   <% if @primitive && @payload.present? %>
     <%= render "kid/academy/missions/lens_#{@primitive}",
                concept: @concept, payload: @payload, color_var: color_var %>
   <% else %>
     <div class="lens-card p-5">
       <p class="font-display text-[14px] leading-snug m-0" style="color: var(--text-muted);">
-        Pílula carregando — recarregue em alguns segundos.
+        Pílula carregando. Recarregue em alguns segundos.
       </p>
     </div>
   <% end %>
@@ -67,26 +67,26 @@
     <% unless @pill_view.shared_with_parent? %>
       <%= button_to kid_academy_share_pill_path(@pill_view),
                     method: :post,
-                    class: "ls-btn-3d",
-                    style: "background: var(--primary); color: white; padding: 14px 18px; border-radius: 14px; box-shadow: 0 4px 0 var(--primary-2); font-weight: 800; font-family: var(--font-display, Nunito), sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px;" do %>
+                    class: "ls-btn-3d font-display font-extrabold flex items-center justify-center gap-2",
+                    style: "background: var(--primary); color: white; padding: 14px 16px; border-radius: 14px; box-shadow: 0 4px 0 var(--primary-2);" do %>
         💬 Conta pro pai/mãe
       <% end %>
     <% else %>
-      <div class="rounded-2xl px-4 py-3 text-center font-display font-extrabold"
+      <div class="rounded-xl px-4 py-3 text-center font-display font-extrabold"
            style="background: var(--c-mint-soft); color: var(--c-mint-dark); border: 2px solid var(--c-mint);">
         ✓ Já compartilhei com o pai/mãe!
       </div>
     <% end %>
 
     <%= link_to kid_academy_pills_path,
-                class: "ls-btn-3d text-center",
-                style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06); padding: 12px 18px; border-radius: 12px; color: var(--text); font-weight: 700; font-family: var(--font-display, Nunito), sans-serif;" do %>
+                class: "ls-btn-3d text-center font-display font-bold no-underline",
+                style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06); padding: 12px 16px; border-radius: 12px; color: var(--text);" do %>
       📔 Ver caderno de pílulas
     <% end %>
 
     <%= link_to kid_root_path,
-                class: "ls-btn-3d text-center",
-                style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06); padding: 12px 18px; border-radius: 12px; color: var(--text); font-weight: 700; font-family: var(--font-display, Nunito), sans-serif;" do %>
+                class: "ls-btn-3d text-center font-display font-bold no-underline",
+                style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06); padding: 12px 16px; border-radius: 12px; color: var(--text);" do %>
       Voltar pra Jornada
     <% end %>
   </div>

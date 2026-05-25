@@ -6,7 +6,7 @@ module Ui
       SIZES = {
         sm: "text-[13px] py-1.5 px-3 rounded-lg",
         md: "text-[15px] py-2.5 px-4 rounded-xl",
-        lg: "text-[17px] py-4 px-5 rounded-2xl"
+        lg: "text-[17px] py-4 px-5 rounded-xl"
       }.freeze
 
       def initialize(name:, options:, selected: nil, placeholder: nil, id: nil,

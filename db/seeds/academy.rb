@@ -81,13 +81,13 @@ CURRICULUM_V2 = [
           },
           {
             slug: "foco-profundo-25min",
-            title: "Por que 25 minutos podem valer mais que 2 horas?",
-            hook: "Foco profundo é o novo QI.",
-            angle: "Deep work de Cal Newport. Bloco curto de atenção total > horas de meia-atenção.",
-            central_insight: "Quem treina 25 minutos seguidos de foco real, em poucos meses, deixa para trás quem 'estuda 2 horas com celular do lado'.",
+            title: "O que muda quando você dura 25 minutos seguidos?",
+            hook: "Quem amarra 25 minutos aprende. Quem fragmenta, esquece.",
+            angle: "Pomodoro + estudo de prática deliberada de Anders Ericsson: a qualidade do bloco bate a quantidade da hora dispersa.",
+            central_insight: "Se você junta 25 minutos sem interrupção, o cérebro chega na camada profunda; se fragmenta, fica na superfície sem grudar.",
             curiosity_facts: [
-              "Cal Newport (Georgetown): blocos de 25-50 min são o sweet spot do cérebro.",
-              "Estudo da Universidade do Michigan: 1h focada ensina mais que 4h fragmentadas.",
+              "Anders Ericsson (Florida State) acompanhou músicos e cirurgiões: o que separa os melhores é tempo em prática deliberada — não horas totais.",
+              "Estudo da Universidade de Michigan: 1h focada ensina mais que 4h fragmentadas.",
               "Foco é músculo — fica mais forte cada vez que você o usa, e mais fraco cada vez que cede."
             ],
             challenge_prompt: "Faça 1 bloco de 25 minutos com celular fora da vista, fazendo uma coisa só.",
@@ -95,9 +95,17 @@ CURRICULUM_V2 = [
             challenge_observable: "Quanto rendeu vs. um dia normal.",
             learning_objective: "Aplicar 1 bloco de Pomodoro de 25 min e comparar com sessão fragmentada.",
             illustration_key: "target",
-            source: "Cal Newport",
+            source: "Anders Ericsson",
             framework: "regra prática"
-          },
+          }
+        ]
+      },
+      {
+        slug: "habitos-sem-sofrer",
+        title: "Hábitos Sem Sofrer",
+        arc_hook: "Quem desenha o ambiente decide o comportamento — vontade é só ajudante.",
+        position: 2,
+        missions: [
           {
             slug: "habito-2-minutos",
             title: "Como criar um hábito novo sem sofrer?",
@@ -107,15 +115,72 @@ CURRICULUM_V2 = [
             curiosity_facts: [
               "James Clear: 'ler 1 página por dia' venceu 'ler 1 hora por dia' em 100% dos casos que ele acompanhou.",
               "O cérebro guarda a IDENTIDADE da repetição, não o tamanho — fez 1x = 'sou alguém que faz isso'.",
-              "Hábito é voto de identidade: cada repetição é um voto em quem você quer ser."
+              "BJ Fogg (Stanford) chama de 'tiny habits' — começo minúsculo é o único que sobrevive 30 dias."
             ],
             challenge_prompt: "Pegue 1 hábito que você quer ter e crie a versão de 2 minutos. Faça hoje.",
             challenge_when: "hoje",
             challenge_observable: "Se foi mais fácil do que o cérebro previa.",
             learning_objective: "Reduzir 1 desejo de hábito à sua versão de 2 min e cumprir 1x.",
             illustration_key: "spark",
-            source: "James Clear",
+            source: "James Clear + BJ Fogg",
             framework: "regra prática + paradoxo"
+          },
+          {
+            slug: "habito-vence-meta",
+            title: "Por que o hábito vence a meta?",
+            hook: "Meta é onde você quer chegar. Hábito é quem você está virando.",
+            angle: "Identidade-voto: cada repetição é voto em 'sou alguém que…'. Meta morre quando atinge ou falha; identidade só morre se você parar de votar.",
+            central_insight: "Se você corre porque 'quer perder 5kg', para no 5º kg. Se corre porque 'sou alguém que corre', segue mesmo depois.",
+            curiosity_facts: [
+              "Aristóteles, 2.300 anos atrás: 'somos o que fazemos repetidamente — excelência é hábito, não ato'.",
+              "Estudo de Roy Baumeister: pessoas com identidade ligada ao hábito têm 3× mais chance de manter após 1 ano.",
+              "Quem para de fumar dizendo 'eu não sou fumante' tem mais sucesso que quem diz 'estou tentando parar'."
+            ],
+            challenge_prompt: "Escolha 1 hábito atual seu. Reescreva como identidade: 'sou alguém que ___'. Diga em voz alta hoje quando for fazer.",
+            challenge_when: "hoje",
+            challenge_observable: "Se a versão-identidade muda quanto custa fazer.",
+            learning_objective: "Converter 1 hábito de meta-resultado para identidade-voto.",
+            illustration_key: "spark",
+            source: "James Clear + Aristóteles",
+            framework: "reframe"
+          },
+          {
+            slug: "parar-doi-mais-que-comecar",
+            title: "Por que parar dói mais que continuar?",
+            hook: "Começar custa esforço. Quebrar a fileira custa identidade.",
+            angle: "Momentum do hábito + efeito Hawthorne caseiro: visualizar a sequência (calendário, streak) faz o cérebro proteger ela como recurso.",
+            central_insight: "Se você marca X no calendário em 14 dias seguidos, perder o 15º não custa 1 dia — custa a sequência inteira na sua cabeça.",
+            curiosity_facts: [
+              "Jerry Seinfeld atribuiu sua produtividade ao 'don't break the chain' — calendário marcado a cada dia escrevendo.",
+              "Pesquisa de psicologia do esporte mostra: o streak ativa as mesmas regiões cerebrais da posse — perder = perder.",
+              "Apps de hábito como Strava e Duolingo são engenharia em cima disso — a fileira vale mais que o dia."
+            ],
+            challenge_prompt: "Pegue um hábito que tenta há tempo. Marque hoje no calendário. Faça por 3 dias seguidos sem quebrar — sinta o peso do 4º.",
+            challenge_when: "esta-semana",
+            challenge_observable: "Se no 4º dia você fez mesmo sem querer só pra não perder a fileira.",
+            learning_objective: "Marcar 3 dias seguidos visíveis e perceber o peso da quebra.",
+            illustration_key: "spark",
+            source: "Jerry Seinfeld + Charles Duhigg",
+            framework: "experimento"
+          },
+          {
+            slug: "ambiente-decide-mais-que-vontade",
+            title: "Por que ambiente decide mais que vontade?",
+            hook: "Mude a sala — não a alma. Vontade chega tarde; ambiente já decidiu.",
+            angle: "BJ Fogg (Stanford): comportamento = motivação × habilidade × gatilho. Reduzir fricção do bom + adicionar fricção do ruim faz vontade descansar.",
+            central_insight: "Se você guarda doce na cozinha, come doce; se guarda no carro do vizinho, não come — não mudou a vontade, mudou o ambiente.",
+            curiosity_facts: [
+              "BJ Fogg: 'comportamento não muda na cabeça — muda no design'.",
+              "Estudo de cantina escolar: trocar lugar de salada e batata-frita na fila aumentou consumo de salada em 30% sem qualquer aviso.",
+              "Atletas olímpicos contratam coaches só pra desenhar rotinas de manhã — porque o ambiente da manhã decide o dia."
+            ],
+            challenge_prompt: "Pegue 1 hábito ruim seu. Mude 1 coisa no AMBIENTE pra dificultar (não na vontade). Veja 2 dias.",
+            challenge_when: "esta-semana",
+            challenge_observable: "Se o hábito apareceu menos vezes só por causa da mudança de ambiente.",
+            learning_objective: "Modificar 1 elemento do ambiente físico pra reduzir 1 hábito indesejado.",
+            illustration_key: "spark",
+            source: "BJ Fogg + Richard Thaler",
+            framework: "experimento + nudge"
           }
         ]
       },
@@ -123,7 +188,7 @@ CURRICULUM_V2 = [
         slug: "vies-cerebro",
         title: "Seu Cérebro Mente Pra Você",
         arc_hook: "Quem conhece os truques do próprio cérebro pensa melhor que 90% das pessoas.",
-        position: 2,
+        position: 3,
         missions: [
           {
             slug: "vies-confirmacao",
@@ -167,10 +232,10 @@ CURRICULUM_V2 = [
             slug: "pensar-devagar",
             title: "Quando o pensamento rápido te trai?",
             hook: "Você tem 2 cérebros — um pula, outro pensa.",
-            angle: "Sistema 1 vs Sistema 2 de Kahneman. Rápido decide quase tudo automaticamente; raramente acordamos o lento.",
+            angle: "Sistema 1 vs Sistema 2 de Tversky e Kahneman. Rápido decide quase tudo automaticamente; raramente acordamos o lento.",
             central_insight: "Quem só usa o cérebro rápido vive de palpite. Quem treina o devagar, decide melhor sob pressão.",
             curiosity_facts: [
-              "Kahneman ganhou Nobel mostrando: 95% das nossas decisões são automáticas, sistema-1.",
+              "Amos Tversky e Daniel Kahneman mostraram: 95% das nossas decisões são automáticas, sistema-1.",
               "Sistema-2 (lento) só liga quando algo é difícil — senão, é palpite.",
               "Teste clássico: bastão + bola = R$1,10; bastão custa R$1 a mais. Quanto a bola? Quase todo mundo erra de cara."
             ],
@@ -179,7 +244,110 @@ CURRICULUM_V2 = [
             challenge_observable: "Se a resposta mudou.",
             learning_objective: "Inserir pausa de 60s entre estímulo e decisão em 1 caso real.",
             illustration_key: "clock",
-            source: "Daniel Kahneman",
+            source: "Amos Tversky",
+            framework: "dado científico"
+          },
+          {
+            slug: "sabe-mais-sente-menos",
+            title: "Por que quanto mais você sabe, MENOS você sente que sabe?",
+            hook: "Iniciante se acha expert. Expert se acha iniciante. A escala vira do avesso.",
+            angle: "Efeito Dunning-Kruger: quem sabe pouco não tem repertório pra ver o que falta saber. Quem sabe muito enxerga a vastidão do que ainda não domina.",
+            central_insight: "Se a pessoa parece 100% certa do que diz, suspeite — não é prova de saber, é prova de não saber o suficiente pra duvidar.",
+            curiosity_facts: [
+              "Dunning e Kruger (Cornell, 1999) testaram alunos: os piores de cada turma SE achavam acima da média; os melhores, abaixo.",
+              "Mesmo padrão em médicos, motoristas, programadores e jogadores de xadrez — universal.",
+              "Sócrates já tinha sacado: 'só sei que nada sei' — o expert que sabe que o assunto é maior que ele."
+            ],
+            challenge_prompt: "Pense em 1 assunto que você se acha bom. Liste 3 perguntas sobre ele que você NÃO sabe responder. Honesto.",
+            challenge_when: "hoje",
+            challenge_observable: "Se ficou mais difícil achar 3 lacunas do que parecia.",
+            learning_objective: "Identificar 3 lacunas honestas em 1 assunto que se considera dominar.",
+            illustration_key: "search",
+            source: "David Dunning + Justin Kruger",
+            framework: "experimento + paradoxo"
+          }
+        ]
+      },
+      {
+        slug: "emocoes-fortes",
+        title: "Emoções Fortes",
+        arc_hook: "Emoção não é fraqueza nem inimiga — é dado de alta velocidade.",
+        position: 4,
+        missions: [
+          {
+            slug: "atencao-sem-tela",
+            title: "Por que tédio é cheiro de criatividade?",
+            hook: "O cérebro só inventa quando o mundo para de gritar.",
+            angle: "Manoush Zomorodi + Sandi Mann: tédio é fome de mente — quem nunca passa por ele, perde a janela de geração de ideias.",
+            central_insight: "Se você nunca fica entediado, você nunca tem ideias novas — o cérebro precisa de espaço vazio pra criar.",
+            curiosity_facts: [
+              "Sandi Mann (Universidade de Central Lancashire): 6 min de tédio antes de tarefa criativa AUMENTAM originalidade em ~25%.",
+              "Crianças que nunca ficam entediadas têm menos imaginação espontânea.",
+              "Big Magic e Walter Isaacson contam: quase toda invenção famosa nasceu no banho, na caminhada, no avião — tédio físico, mente solta."
+            ],
+            challenge_prompt: "Caminhe 15 min HOJE sem celular, sem fone. Só andando.",
+            challenge_when: "hoje",
+            challenge_observable: "Ideias ou pensamentos que apareceram.",
+            learning_objective: "Cumprir 15 min de movimento sem estímulo digital.",
+            illustration_key: "walk",
+            source: "Sandi Mann + Manoush Zomorodi",
+            framework: "experimento"
+          },
+          {
+            slug: "de-onde-vem-raiva",
+            title: "De onde vem a raiva (e por que 6 segundos mudam tudo)?",
+            hook: "A raiva acende em 250 milésimos. O 'eu' acorda em 6 segundos.",
+            angle: "Amígdala dispara antes do córtex pré-frontal acordar. Os 6 segundos clássicos são o tempo do andar de cima entrar online.",
+            central_insight: "Se você responder antes de 6 segundos, a amígdala fala por você; se esperar, o córtex chega e a frase muda.",
+            curiosity_facts: [
+              "Joseph LeDoux mapeou: estímulo de ameaça pega o caminho curto pra amígdala em ~12ms — pulou o pensamento.",
+              "Lisa Feldman Barrett mostra: nomear a emoção ('estou com raiva') desacelera a amígdala em segundos.",
+              "Marco Aurélio (séc. II), Meditações: 'lembra que o tempo entre ser provocado e responder é o lugar onde mora a liberdade'."
+            ],
+            challenge_prompt: "Na próxima vez que você sentir raiva subindo, conte até 6 antes de responder. Conta o que muda na frase.",
+            challenge_when: "esta-semana",
+            challenge_observable: "Se a primeira frase que ia sair seria diferente da que saiu depois dos 6 segundos.",
+            learning_objective: "Aplicar pausa de 6 segundos em 1 momento de raiva real.",
+            illustration_key: "bolt",
+            source: "Joseph LeDoux + Marco Aurélio",
+            framework: "dado neurológico + tradição"
+          },
+          {
+            slug: "ansiedade-e-energia",
+            title: "Ansiedade é energia procurando saída — não inimigo.",
+            hook: "Mesmo combustível da empolgação. A diferença é como você lê.",
+            angle: "Lisa Feldman Barrett: ansiedade e empolgação compartilham assinatura corporal idêntica — coração acelera, mãos suam, estômago aperta. Cérebro decide o nome pela narrativa em volta.",
+            central_insight: "Se você renomeia 'estou ansioso' como 'meu corpo está se preparando', a química não muda — mas o que você faz com ela muda completamente.",
+            curiosity_facts: [
+              "Lisa Feldman Barrett (Northeastern) mostrou: ansiedade e empolgação compartilham o mesmo perfil corporal — diferença é interpretação.",
+              "Alison Wood Brooks (Harvard): quem diz 'estou empolgado' antes de falar em público tem performance ~17% melhor que quem diz 'estou calmo'.",
+              "Tentar 'acalmar' é mais difícil que reinterpretar — porque a química já saiu; não dá ré, mas dá pra mudar o nome."
+            ],
+            challenge_prompt: "Antes da próxima situação que dá frio na barriga, fale em voz alta: 'estou empolgado, meu corpo está pronto'. Note.",
+            challenge_when: "esta-semana",
+            challenge_observable: "Se a sensação corporal segue igual mas a cabeça reage diferente.",
+            learning_objective: "Aplicar reinterpretação (ansioso → empolgado) em 1 situação real.",
+            illustration_key: "bolt",
+            source: "Lisa Feldman Barrett + Alison Wood Brooks",
+            framework: "reframe + dado científico"
+          },
+          {
+            slug: "por-que-rejeicao-doi",
+            title: "Por que rejeição dói no corpo (não só na cabeça)?",
+            hook: "Levou um 'não' e doeu no peito? Não é metáfora — é o mesmo circuito da dor física.",
+            angle: "Naomi Eisenberger (UCLA): exclusão social acende o córtex cingulado anterior — região idêntica à da dor de queimadura.",
+            central_insight: "Se rejeição dói exatamente como machucado, então 'só deixa pra lá' é como dizer pra alguém quebrado 'só anda'. O remédio é diferente: nomear, validar, mover.",
+            curiosity_facts: [
+              "Eisenberger (2003) usou ressonância pra mostrar: cérebro de quem é deixado de fora de um joguinho online acende a mesma área da dor física.",
+              "Pesquisa: Tylenol (analgésico comum) reduziu sintomas de dor emocional em estudos — porque pega a mesma química.",
+              "Crianças expulsas de grupos na infância carregam efeito mensurável no cérebro adulto — não é frescura."
+            ],
+            challenge_prompt: "Pense em 1 rejeição recente (pequena vale). Nomeie em voz alta: 'isso doeu porque…'. Veja se nomear desinflama.",
+            challenge_when: "hoje",
+            challenge_observable: "Se colocar palavra na dor reduz a intensidade dela.",
+            learning_objective: "Nomear 1 rejeição recente e observar o efeito da nomeação.",
+            illustration_key: "heart-pulse",
+            source: "Naomi Eisenberger (UCLA)",
             framework: "dado científico"
           }
         ]
@@ -246,7 +414,7 @@ CURRICULUM_V2 = [
           {
             slug: "10-min-movimento",
             title: "Por que 10 minutos por dia vencem 1 hora no sábado?",
-            hook: "Consistência derrota intensidade.",
+            hook: "Quem se mexe 10 min todo dia, em 1 mês vence quem 'maratona' 1 hora no sábado.",
             angle: "Hipócrates: 'caminhar é o melhor remédio'. O corpo recompensa regularidade.",
             central_insight: "Se você se mexe 10 min todo dia, em 1 mês está mais forte que quem 'maratona' 1 hora no sábado.",
             curiosity_facts: [
@@ -286,7 +454,7 @@ CURRICULUM_V2 = [
       {
         slug: "tempo-de-tela",
         title: "Você Comanda as Telas?",
-        arc_hook: "Apps foram desenhados pra te prender. Você foi desenhado pra escolher.",
+        arc_hook: "O sono cobra silêncio — e a tela cobra de volta.",
         position: 2,
         missions: [
           {
@@ -326,25 +494,90 @@ CURRICULUM_V2 = [
             illustration_key: "phone",
             source: "B.F. Skinner",
             framework: "paradoxo + caso"
+          }
+        ]
+      },
+      {
+        slug: "respiracao-dor-calma",
+        title: "Respiração, Dor e Calma",
+        arc_hook: "Seu corpo é o primeiro botão de calma — antes do remédio, antes do pensamento.",
+        position: 3,
+        missions: [
+          {
+            slug: "respirar-acalma",
+            title: "Como respirar muda o cérebro em 30 segundos?",
+            hook: "Soltar o ar devagar é o único botão de calma sem app, sem remédio, sem dinheiro.",
+            angle: "Respirar devagar acende o nervo vago — desacelera coração, abaixa cortisol, devolve foco. Em 30 segundos.",
+            central_insight: "Se você inspira em 4s e solta em 6s, o nervo vago liga e o corpo entra em modo calma — antes do pensamento decidir nada.",
+            curiosity_facts: [
+              "Respiração 4-7-8 (inspirar 4s, segurar 7s, soltar 8s) reduz frequência cardíaca em segundos — sistema parassimpático online.",
+              "Andrew Huberman (Stanford): 2 ciclos de 'fisiological sigh' (2 inspirações curtas + sopro longo) cortam ansiedade em ~30 segundos.",
+              "Monges tibetanos passam horas em respiração lenta — exames mostram cérebro 3-4× mais relaxado que média."
+            ],
+            challenge_prompt: "Antes da próxima coisa estressante hoje, faça 5 ciclos de 4-7-8. Note o antes/depois no corpo.",
+            challenge_when: "hoje",
+            challenge_observable: "Se o coração desacelerou e a frase pensada mudou.",
+            learning_objective: "Aplicar 1 ciclo de respiração lenta antes de momento estressante e observar mudança corporal.",
+            illustration_key: "heart-pulse",
+            source: "Andrew Huberman + Andrew Weil",
+            framework: "experimento corporal"
           },
           {
-            slug: "atencao-sem-tela",
-            title: "Como recuperar sua atenção?",
-            hook: "Tédio é o primeiro passo da criatividade.",
-            angle: "Cal Newport — minimalismo digital. Reaprender a ficar sem estímulo.",
-            central_insight: "Se você nunca fica entediado, você nunca tem ideias novas — o cérebro precisa de espaço vazio pra criar.",
+            slug: "postura-puxa-humor",
+            title: "Por que postura ruim deixa você triste?",
+            hook: "Ombro caído puxa o humor pra baixo. Não é metáfora.",
+            angle: "Feedback corpo→mente: postura encolhida diminui testosterona, aumenta cortisol e o cérebro 'lê' o corpo pra calibrar emoção.",
+            central_insight: "Se você senta encolhido por 2 minutos, o cérebro vai te empurrar pra humor encolhido; abrir o peito 2 minutos puxa pro contrário — corpo manda mensagem pra cabeça.",
             curiosity_facts: [
-              "Estudos: 6 min de tédio antes de tarefa criativa AUMENTA originalidade em ~25%.",
-              "Crianças que nunca ficam entediadas têm menos imaginação espontânea.",
-              "Cal Newport: 'silêncio é o oxigênio do pensamento profundo'."
+              "Erik Peper (San Francisco State): postura ereta aumenta recall de memórias positivas em ~35%.",
+              "Pesquisa de psicologia social: 2 min de 'pose de poder' (peito aberto) já mexem com hormônios mensuráveis no sangue.",
+              "Atletas em pódio fazem a mesma pose mundialmente — peito pra fora, braço erguido — antes de qualquer treinamento cultural."
             ],
-            challenge_prompt: "Caminhe 15 min HOJE sem celular, sem fone. Só andando.",
+            challenge_prompt: "Hoje, no momento que sentir desânimo, force 2 minutos de postura aberta (peito pra fora, ombros pra trás). Note se algo mudou.",
             challenge_when: "hoje",
-            challenge_observable: "Ideias ou pensamentos que apareceram.",
-            learning_objective: "Cumprir 15 min de movimento sem estímulo digital.",
-            illustration_key: "walk",
-            source: "Cal Newport",
-            framework: "experimento"
+            challenge_observable: "Se forçar o corpo aberto puxou o ânimo junto.",
+            learning_objective: "Experimentar 2 min de postura aberta num momento de desânimo e relatar mudança.",
+            illustration_key: "muscle",
+            source: "Erik Peper",
+            framework: "experimento corporal"
+          },
+          {
+            slug: "dor-quando-confiar",
+            title: "Quando dor é alarme — e quando é alarme falso?",
+            hook: "Dor é sinal. Mas o sino toca às vezes sem fogo.",
+            angle: "Gate-control de Melzack: dor é interpretação do cérebro a partir de sinal nervoso + contexto + memória — não medição direta.",
+            central_insight: "Se a dor aparece sempre no mesmo lugar e some quando você se distrai, é alarme treinado; se ela cresce com movimento e tem mancha visível, é alarme real — saber diferenciar evita exagero e descuido.",
+            curiosity_facts: [
+              "Ronald Melzack (McGill) mostrou: cérebro 'fabrica' a dor — fantasma de membro amputado dói de verdade, sem perna.",
+              "Pessoas com dor crônica que aprendem como dor funciona reduzem ~40% da intensidade só por entender o mecanismo.",
+              "Soldados feridos em batalha relatam dor MENOR que civis com ferimento equivalente — o contexto muda o sinal."
+            ],
+            challenge_prompt: "Pegue 1 dor pequena que você teve hoje (cabeça, barriga). Faça 3 perguntas: cresce com movimento? tem inchaço/mancha? some quando distrai? Decida se é alarme real ou treinado.",
+            challenge_when: "hoje",
+            challenge_observable: "Se a checagem mudou como você reagiu (descansar vs ignorar).",
+            learning_objective: "Aplicar 3 perguntas-de-alarme em 1 dor real e decidir resposta.",
+            illustration_key: "heart-pulse",
+            source: "Ronald Melzack",
+            framework: "modelo + experimento"
+          },
+          {
+            slug: "frio-foco-30s",
+            title: "Por que frio acorda mais que café?",
+            hook: "Um susto de frio acende foco em 30 segundos — sem cafeína, sem açúcar.",
+            angle: "Choque térmico libera noradrenalina (3× o nível de base) que dá foco — efeito dura ~1h, sem o crash da cafeína.",
+            central_insight: "Se você joga água gelada no rosto ou termina o banho com 30 segundos frio, o cérebro acorda como se fosse alarme — e o foco fica pelas próximas horas.",
+            curiosity_facts: [
+              "Estudos mostram que 30s a 1min de água fria triplicam o nível de noradrenalina circulante.",
+              "Wim Hof testou: pessoas que aplicam frio + respiração toleram baixas temperaturas que 'fisiologicamente impossíveis'.",
+              "Banhos frios curtos reduzem inflamação e ajudam recuperação muscular — usado por atletas há décadas."
+            ],
+            challenge_prompt: "Termine o próximo banho com 30 segundos de água fria. Cronometre. Repare no foco da próxima hora.",
+            challenge_when: "hoje",
+            challenge_observable: "Se o foco ficou diferente vs. um dia normal sem o frio.",
+            learning_objective: "Aplicar 30s de água fria ao fim do banho e comparar foco da hora seguinte.",
+            illustration_key: "drop",
+            source: "Wim Hof + Andrew Huberman",
+            framework: "experimento + dado fisiológico"
           }
         ]
       }
@@ -365,8 +598,8 @@ CURRICULUM_V2 = [
     trails: [
       {
         slug: "impulso-vs-planejamento",
-        title: "Quem manda no seu dinheiro?",
-        arc_hook: "Quem não decide quando gasta, gasta sempre.",
+        title: "Quem decide quando você compra?",
+        arc_hook: "Cada compra é uma escolha contra mil outras invisíveis.",
         position: 1,
         missions: [
           {
@@ -377,7 +610,7 @@ CURRICULUM_V2 = [
             central_insight: "Se você espera 24 horas antes de comprar algo, mais da metade do desejo evapora — e revela o que era impulso.",
             curiosity_facts: [
               "Marketing é desenhado pra você comprar HOJE, não pra você comprar BEM.",
-              "Estudo: ~60% dos itens comprados por impulso teriam sido recusados se houvesse 24h de espera.",
+              "Pesquisa: ~60% dos itens comprados por impulso teriam sido recusados se houvesse 24h de espera.",
               "O cérebro distingue mal 'eu quero' de 'eu preciso'."
             ],
             challenge_prompt: "Identifique 1 coisa que está com vontade de comprar. Espere 24h antes de comprar.",
@@ -388,12 +621,102 @@ CURRICULUM_V2 = [
             source: "Dave Ramsey",
             framework: "regra prática"
           },
-          # (querer-precisar removido 2026-05-21 — duplicava custo-oportunidade-real
-          # na metáfora balança/gangorra. Custo-oportunidade tem distrator mais forte.)
+          {
+            slug: "ja-gastei-tanto",
+            title: "Por que 'já gastei tanto' te faz gastar mais?",
+            hook: "Dinheiro perdido não volta sendo defendido.",
+            angle: "Custo afundado: continuar investindo em algo que já deu errado só pra justificar o que foi gasto antes — armadilha cognitiva clássica.",
+            central_insight: "Se você está num filme ruim e pensa 'já paguei o ingresso, vou aguentar', você gasta 2 horas além do dinheiro perdido — agora perde dinheiro E tempo.",
+            curiosity_facts: [
+              "Daniel Kahneman e Richard Thaler mostraram: humanos defendem perdas como se ainda dessem pra recuperar — quase sempre afundam mais.",
+              "Empresas falidas continuam vivas mais tempo do que deveriam só porque sócios não admitem perda.",
+              "Esportistas que apostam no jogo errado tendem a dobrar a aposta pra 'recuperar' — quase nunca recuperam."
+            ],
+            challenge_prompt: "Pense em 1 coisa atual sua (curso, jogo, hábito, projeto) que você só continua por causa do que já investiu. Honesto: vale continuar pelo FUTURO, ou só pelo passado?",
+            challenge_when: "esta-semana",
+            challenge_observable: "Se admitiu pelo menos 1 'já gastei tanto' que estava te custando mais.",
+            learning_objective: "Identificar 1 decisão atual presa em custo afundado e re-avaliar pela frente.",
+            illustration_key: "coin",
+            source: "Richard Thaler + Daniel Kahneman",
+            framework: "experimento mental"
+          }
+        ]
+      },
+      {
+        slug: "de-onde-dinheiro-nasce",
+        title: "De Onde Dinheiro Nasce?",
+        arc_hook: "Dinheiro não cai do céu — nasce de habilidade rara, ideia útil ou troca esperta.",
+        position: 2,
+        missions: [
+          {
+            slug: "por-que-pagam-mais",
+            title: "Por que algumas profissões pagam tanto mais que outras?",
+            hook: "Médico ganha 10× o pintor de parede. Por quê?",
+            angle: "Oferta e demanda da habilidade: quanto mais raro o conjunto de habilidades + quanto maior a demanda + quanto mais difícil substituir, maior o preço — economia básica de Sowell.",
+            central_insight: "Se algo é raro de fazer (poucos sabem) e muito pedido (todo mundo precisa), o preço sobe. Habilidade comum + pouca demanda = pouco pagamento, mesmo trabalho duro.",
+            curiosity_facts: [
+              "Thomas Sowell: salário é preço da sua habilidade no mercado — nada moral, só raridade × demanda.",
+              "Programadores ganham bem porque demanda dispara e formar 1 leva anos — escassez de gente capaz.",
+              "Influencer top ganha milhões porque atenção virou recurso raro — e ele junta milhões de atenções num lugar só."
+            ],
+            challenge_prompt: "Liste 3 profissões que ganham muito e 3 que ganham pouco. Pra cada uma, pergunte: é rara? Tem muita gente precisando? É fácil substituir?",
+            challenge_when: "hoje",
+            challenge_observable: "Se o padrão de raridade × demanda explica os salários melhor que 'merece' ou 'não merece'.",
+            learning_objective: "Aplicar análise oferta-demanda em 6 profissões e detectar o padrão.",
+            illustration_key: "coin",
+            source: "Thomas Sowell",
+            framework: "análise"
+          },
+          {
+            slug: "ideia-vira-dinheiro",
+            title: "Como uma ideia vira dinheiro?",
+            hook: "Bilhões nascem de gente que viu um problema antes dos outros — e fez algo a respeito.",
+            angle: "Dinheiro grande vem de criar valor (resolver problema novo, atender necessidade real) — não de extrair valor (tirar pedaço do que outros fizeram).",
+            central_insight: "Se você resolve um problema que muita gente tem, eles te pagam de novo e de novo; se você só tira pedaço do que outros fazem, sua margem some quando alguém faz igual.",
+            curiosity_facts: [
+              "Airbnb nasceu de 3 caras alugando colchão inflável quando uma feira lotou hotel em SF — viram um problema e construíram a solução.",
+              "Mark Cuban virou bilionário não vendendo coisa cara, mas inventando jeito novo de transmitir áudio pela internet em 1995.",
+              "Pesquisas mostram: empreendedores que 'resolvem' problema próprio têm 3× mais sucesso que os que 'querem ficar ricos'."
+            ],
+            challenge_prompt: "Pense em 1 coisa irritante do seu dia (algo que você gostaria que existisse). Anote. Pergunte: quantas pessoas têm o mesmo problema?",
+            challenge_when: "hoje",
+            challenge_observable: "Se a ideia é boba só pra você ou se outros também sofrem com isso.",
+            learning_objective: "Identificar 1 problema próprio + estimar quantas pessoas teriam o mesmo.",
+            illustration_key: "spark",
+            source: "Paul Graham + Mariana Mazzucato",
+            framework: "experimento"
+          },
+          {
+            slug: "dinheiro-facil-e-golpe",
+            title: "Por que dinheiro fácil é quase sempre golpe?",
+            hook: "Se fosse fácil e seguro, o mundo já teria pegado. Sobrou pra você? Suspeite.",
+            angle: "Eficiência do mercado: oportunidades reais não ficam paradas — alguém aproveita. O que 'sobra fácil' geralmente é golpe ou risco escondido.",
+            central_insight: "Se alguém te oferece 'rendimento alto, sem risco, urgente, indica amigos', são 4 sinais clássicos de golpe — o mundo inteiro teria filas se fosse verdade.",
+            curiosity_facts: [
+              "Esquemas de pirâmide têm o mesmo padrão há séculos: prometem retorno grande, exigem urgência, pedem novos participantes.",
+              "Charles Ponzi (1920) inventou o esquema-Ponzi prometendo 50% em 90 dias — durou 8 meses antes de explodir.",
+              "Charlie Munger: 'me mostre o incentivo e te mostro o resultado' — quem ganha com o convite, geralmente ganha em cima de você."
+            ],
+            challenge_prompt: "Procure hoje 1 anúncio nas redes que promete 'renda extra fácil'. Aplique os 4 sinais (retorno alto, sem risco, urgência, indica amigos). Conte quantos batem.",
+            challenge_when: "hoje",
+            challenge_observable: "Quantos dos 4 sinais aparecem no anúncio que você achou.",
+            learning_objective: "Aplicar checklist de 4 sinais de golpe em 1 anúncio real.",
+            illustration_key: "search",
+            source: "Charlie Munger + Charles Ponzi",
+            framework: "checklist + caso histórico"
+          }
+        ]
+      },
+      {
+        slug: "como-dinheiro-cresce",
+        title: "Como Dinheiro Cresce Sem Você?",
+        arc_hook: "Tempo é o ingrediente que faz dinheiro pequeno virar montanha — se você não atrapalhar.",
+        position: 3,
+        missions: [
           {
             slug: "guardar-mais-que-gastar",
             title: "Por que pessoas ricas guardam mais que gastam?",
-            hook: "Saldo positivo cresce — saldo zero some.",
+            hook: "Saldo que cresce vence salário que some.",
             angle: "Disciplina de poupar > tamanho do salário. Conceito de pagar-se-primeiro.",
             central_insight: "Se você guarda primeiro e gasta o resto, sobra dinheiro; se gasta primeiro e tenta guardar o resto, nunca sobra.",
             curiosity_facts: [
@@ -427,6 +750,25 @@ CURRICULUM_V2 = [
             illustration_key: "coin",
             source: "Morgan Housel + Albert Einstein",
             framework: "experimento numérico"
+          },
+          {
+            slug: "inflacao-imposto-invisivel",
+            title: "Por que inflação é imposto que ninguém vota?",
+            hook: "Pão de 1 real ontem virou pão de 8 reais hoje. Quem aumentou?",
+            angle: "Inflação corrói poder de compra: mesmo dinheiro compra menos. Guardar embaixo do colchão = perder devagar sem perceber.",
+            central_insight: "Se você não investe nem em renda fixa básica, seu dinheiro encolhe enquanto está guardado — inflação tira sem você assinar nada.",
+            curiosity_facts: [
+              "Em 1994, R$100 no Brasil compravam 100 pães. Em 2024, compram ~12 — mesmo dinheiro, 8× menos comida.",
+              "Milton Friedman: 'inflação é tributação sem legislação' — ninguém vota nela, todos pagam.",
+              "Países com inflação altíssima (Venezuela, Argentina recente) — o dinheiro perde valor mais rápido que se ganha."
+            ],
+            challenge_prompt: "Pergunte pra um adulto da família: quanto custava um pão / uma Coca / uma passagem 20 anos atrás? Calcule o aumento.",
+            challenge_when: "esta-semana",
+            challenge_observable: "Quanto a vida ficou mais cara mesmo sem ninguém 'subir o preço de propósito'.",
+            learning_objective: "Comparar preço de 1 item agora vs. 20 anos atrás e medir corrosão.",
+            illustration_key: "coin",
+            source: "Milton Friedman",
+            framework: "experimento intergeracional"
           }
         ]
       }
@@ -446,8 +788,8 @@ CURRICULUM_V2 = [
     angle: "Honestidade, coragem, gratidão, perseverança, palavra. Sem sermão — através de cena, dilema, escolha.",
     trails: [
       {
-        slug: "palavra-dada",
-        title: "Sua palavra vale o que?",
+        slug: "palavra-honestidade",
+        title: "Palavra & Honestidade",
         arc_hook: "Quem cumpre o que diz, em 10 anos vira raro.",
         position: 1,
         missions: [
@@ -472,12 +814,12 @@ CURRICULUM_V2 = [
           },
           {
             slug: "compromisso-cumprido",
-            title: "O que faz alguém confiável?",
-            hook: "Confiança são depósitos. Quebra é saque.",
+            title: "Por que cumprir o pequeno conta mais que jurar o grande?",
+            hook: "Cada 'volto em 10 min' cumprido vale mais que mil promessas solenes.",
             angle: "Cada compromisso cumprido deposita; cada falha saca.",
             central_insight: "Quem cumpre o pequeno todo dia constrói algo invisível — e raríssimo: confiança.",
             curiosity_facts: [
-              "Stephen Covey: relação tem 'conta bancária emocional' — deposite ou saque.",
+              "Ronald Heifetz: relação carrega 'conta de confiança' — cada gesto pequeno deposita ou saca.",
               "1 falha grande pode anular 20 depósitos.",
               "Pessoas confiáveis ganham, em média, 30% mais ao longo da carreira."
             ],
@@ -486,28 +828,36 @@ CURRICULUM_V2 = [
             challenge_observable: "Se a pessoa percebeu (geralmente percebe).",
             learning_objective: "Cumprir 1 compromisso exato em horário e palavra.",
             illustration_key: "check",
-            source: "Stephen Covey",
+            source: "Ronald Heifetz",
             framework: "metáfora financeira"
           },
           {
-            slug: "gratidao-muda-vista",
-            title: "Por que gratidão muda o que você vê?",
-            hook: "Sua cabeça é uma lente — gratidão muda o filtro.",
-            angle: "Gratidão treinada vira ferramenta atencional: você passa a notar o que estava lá.",
-            central_insight: "Se você lista 3 coisas boas todo dia, em 30 dias começa a NOTAR coisas boas sem listar — o filtro mudou.",
+            slug: "verdade-dura-covardia",
+            title: "Quando 'verdade dura' é covardia disfarçada?",
+            hook: "Falar a verdade pra descarregar é alívio seu — não bondade.",
+            angle: "Verdade que serve tem 3 marcas: é necessária, é dita com cuidado, e quem fala paga o custo. Falta uma das três, vira descarga emocional.",
+            central_insight: "Se você fala uma verdade dura sem pensar no outro, você não foi corajoso — descarregou seu desconforto.",
             curiosity_facts: [
-              "Robert Emmons (UC Davis): 30 dias de diário de gratidão reduz sintomas depressivos em ~25%.",
-              "Cérebro grato libera dopamina + serotonina ao MESMO tempo — combinação rara.",
-              "Pessoas gratas dormem melhor, segundo 11 estudos diferentes — não é placebo."
+              "Provérbios 15:1 (NTLH): 'a resposta branda desvia o furor, mas a palavra dura suscita a ira'.",
+              "Pesquisas de psicologia de feedback: críticas que começam por 'sinceramente' costumam ferir 3× mais sem mudar comportamento.",
+              "Aristóteles em Ética a Nicômaco: virtude é meio-termo — verdade vira covardia quando falta cuidado, e fofoca quando falta utilidade."
             ],
-            challenge_prompt: "Antes de dormir hoje, escreva 3 coisas específicas pelas quais você é grato. Pequenas valem.",
-            challenge_when: "hoje",
-            challenge_observable: "Se notou algo bom que normalmente passaria batido.",
-            learning_objective: "Listar 3 gratidões específicas em 1 noite.",
-            illustration_key: "sparkle",
-            source: "Robert Emmons (Psicologia Positiva)",
-            framework: "experimento + ciência"
-          },
+            challenge_prompt: "Pense numa 'verdade dura' que você sentiu vontade de dizer recentemente. Pergunte: era necessária pro outro? Ou descarregar seria mais pra você?",
+            challenge_when: "esta-semana",
+            challenge_observable: "Quantas das 'verdades duras' que você diria sobrariam após o filtro.",
+            learning_objective: "Aplicar o filtro 'necessidade × cuidado × custo próprio' em 1 verdade dura recente.",
+            illustration_key: "users",
+            source: "Provérbios + Aristóteles",
+            framework: "filtro ético"
+          }
+        ]
+      },
+      {
+        slug: "coragem-medo",
+        title: "Coragem & Medo",
+        arc_hook: "Coragem não é a ausência do medo — é dar o passo enquanto ele ainda fala.",
+        position: 2,
+        missions: [
           {
             slug: "coragem-nao-ausencia-medo",
             title: "Coragem é a ausência do medo?",
@@ -526,6 +876,128 @@ CURRICULUM_V2 = [
             illustration_key: "bolt",
             source: "Marco Aurélio + Aristóteles",
             framework: "reframe + ação"
+          },
+          {
+            slug: "esperar-pronto-e-medo",
+            title: "Por que 'esperar estar pronto' é não querer começar?",
+            hook: "Procrastinação raramente é preguiça. Quase sempre é medo bem educado.",
+            angle: "Steven Pressfield chama de 'The Resistance' — quanto mais importante a tarefa pra você, mais o cérebro fabrica desculpas elegantes pra adiar.",
+            central_insight: "Se você está adiando algo que sabe que importa, pergunte-se: 'do que estou com medo aqui?' A resposta honesta destrava muito mais que 'só me organizar melhor'.",
+            curiosity_facts: [
+              "Tim Pychyl (Carleton University) mostra: procrastinadores não têm pior gestão de tempo — têm pior regulação emocional. Adiam pra fugir do desconforto.",
+              "Steven Pressfield: 'a resistência é mais forte quanto mais a tarefa importa pra alma da pessoa'.",
+              "Estudo: nomear o medo escondido por trás do adiamento reduz procrastinação em ~40% — sem nenhuma técnica de produtividade."
+            ],
+            challenge_prompt: "Pegue 1 coisa que você está adiando há mais de 1 semana. Em voz alta: 'estou adiando isso porque tenho medo de ___'. Termine a frase honestamente.",
+            challenge_when: "hoje",
+            challenge_observable: "Qual medo apareceu (rejeição, falhar, parecer bobo, descobrir que não vai dar certo).",
+            learning_objective: "Nomear o medo escondido por trás de 1 procrastinação atual.",
+            illustration_key: "bolt",
+            source: "Steven Pressfield + Tim Pychyl",
+            framework: "reframe"
+          },
+          {
+            slug: "pedir-ajuda-pesa-mais",
+            title: "Por que pedir ajuda parece mais difícil que sofrer?",
+            hook: "Orgulho prefere afundar sozinho a admitir que precisa de mão estendida.",
+            angle: "Orgulho ativa a mesma região cerebral do status social — pedir ajuda é interpretado como perda de status, mesmo quando salva a vida. Humildade é treinar o cérebro a aceitar a perda aparente pelo ganho real.",
+            central_insight: "Se você espera o problema ficar gigante pra pedir ajuda, quem ajuda fica chocado — não pelo problema, mas por você ter aguentado sozinho tanto tempo. Pedir cedo é força, não fraqueza.",
+            curiosity_facts: [
+              "Provérbios 11:2: 'quando vem a soberba, vem também a desonra; mas com os humildes está a sabedoria'.",
+              "Brené Brown: 'vulnerabilidade não é fraqueza — é o lugar de onde nasce coragem, conexão e criatividade'.",
+              "Pesquisa: pessoas que pedem ajuda mais cedo resolvem problemas ~3× mais rápido, e quem ajuda raramente acha menos delas — quase sempre o contrário."
+            ],
+            challenge_prompt: "Pense em 1 coisa pequena que está te custando há dias e que alguém perto resolveria em minutos. Peça ajuda HOJE.",
+            challenge_when: "hoje",
+            challenge_observable: "Quão rápido o problema sumiu quando alguém colocou a mão.",
+            learning_objective: "Pedir ajuda em 1 problema atual sem esperar 'piorar primeiro'.",
+            illustration_key: "users",
+            source: "Provérbios + Brené Brown",
+            framework: "reframe"
+          }
+        ]
+      },
+      {
+        slug: "gratidao-contentamento",
+        title: "Gratidão & Contentamento",
+        arc_hook: "A vista é treinada — você passa a ver o que pratica olhar.",
+        position: 3,
+        missions: [
+          {
+            slug: "gratidao-muda-vista",
+            title: "Por que gratidão muda o que você vê?",
+            hook: "Cérebro grato passa a notar coisas boas que sempre estiveram lá — você ganha vista nova sem mudar o cenário.",
+            angle: "Gratidão treinada vira ferramenta atencional: você passa a notar o que estava lá.",
+            central_insight: "Se você lista 3 coisas boas todo dia, em 30 dias começa a NOTAR coisas boas sem listar — o filtro mudou.",
+            curiosity_facts: [
+              "Robert Emmons (UC Davis): 30 dias de diário de gratidão reduz sintomas depressivos em ~25%.",
+              "Cérebro grato libera dopamina + serotonina ao MESMO tempo — combinação rara.",
+              "Pessoas gratas dormem melhor, segundo 11 estudos diferentes — não é placebo."
+            ],
+            challenge_prompt: "Antes de dormir hoje, escreva 3 coisas específicas pelas quais você é grato. Pequenas valem.",
+            challenge_when: "hoje",
+            challenge_observable: "Se notou algo bom que normalmente passaria batido.",
+            learning_objective: "Listar 3 gratidões específicas em 1 noite.",
+            illustration_key: "sparkle",
+            source: "Robert Emmons (Psicologia Positiva)",
+            framework: "experimento + ciência"
+          },
+          {
+            slug: "comparar-te-rouba",
+            title: "Por que comparar com os outros rouba o que você tem?",
+            hook: "Quem olha pro lado o tempo todo perde o que estava à frente.",
+            angle: "Comparação social ascendente (olhar quem tem mais) ativa a mesma região cerebral da inveja — e desativa as regiões da satisfação. O efeito é mensurável e cumulativo.",
+            central_insight: "Se você compara o seu bastidor com a vitrine dos outros, sempre vai perder — você está somando os seus problemas reais com a versão polida dos outros.",
+            curiosity_facts: [
+              "Eclesiastes 4:4: 'todo o esforço e toda a destreza no trabalho representam concorrência do homem com o seu próximo. Também isso é vaidade e correr atrás do vento'.",
+              "Pesquisa Penn State (2020): 30 minutos por dia em redes sociais aumentam sintomas de tristeza em ~33% — efeito direto da comparação social.",
+              "Filósofo Sêneca: 'aquele que sabe ser pobre é rico' — porque parou de comparar com o que não tem."
+            ],
+            challenge_prompt: "Hoje, antes de abrir rede social, faça a pergunta: 'eu vou comparar a minha vida real com a vitrine dos outros?'. Se sim, espere mais 1h.",
+            challenge_when: "hoje",
+            challenge_observable: "Quantas vezes a comparação aconteceu mesmo com aviso prévio.",
+            learning_objective: "Aplicar 1 pausa consciente antes de feed e notar o efeito da comparação.",
+            illustration_key: "search",
+            source: "Eclesiastes + Sêneca",
+            framework: "tradição + dado"
+          },
+          {
+            slug: "reclamar-te-enfraquece",
+            title: "Por que reclamar enfraquece — mesmo quando dá razão?",
+            hook: "Toda queixa treina o cérebro a notar mais o que dá pra reclamar.",
+            angle: "Cada reclamação ativa neurônios que pavimentam o caminho — a 10ª vez que você se queixa do mesmo, fica mais fácil enxergar o problema e mais difícil enxergar saída.",
+            central_insight: "Se você reclama de algo todo dia, você não está 'desabafando' — está treinando seu cérebro a ver mais problema e menos solução. O ruim cresce com a luz que você dá.",
+            curiosity_facts: [
+              "Marco Aurélio, Meditações (séc. II): 'a felicidade da sua vida depende da qualidade dos seus pensamentos'.",
+              "Pesquisas de Steven Parton mostram: ouvir reclamação dos outros encolhe o hipocampo (memória) — efeito mensurável.",
+              "Provérbios 17:22: 'o coração alegre é bom remédio, mas o espírito abatido seca os ossos'."
+            ],
+            challenge_prompt: "Hoje, marque cada vez que você reclamar de algo (escreva mentalmente um X). À noite, conte. Aposto que vai surpreender.",
+            challenge_when: "hoje",
+            challenge_observable: "Quantas reclamações você soltou — provavelmente mais do que esperava.",
+            learning_objective: "Contar honestamente o número de reclamações em 1 dia e ficar consciente da frequência.",
+            illustration_key: "search",
+            source: "Marco Aurélio + Provérbios",
+            framework: "experimento"
+          },
+          {
+            slug: "perdao-liberta-quem-perdoa",
+            title: "Por que perdoar liberta quem perdoa (não quem é perdoado)?",
+            hook: "Guardar mágoa é beber veneno e esperar o outro morrer.",
+            angle: "Hannah Arendt: perdão é a única ação que quebra o ciclo de retaliação. Marcos 11:25 + Mateus 6:14 — perdoar não é dizer 'tudo bem'; é largar a corda que prendia você ao machucado.",
+            central_insight: "Se você guarda mágoa, paga pedágio cerebral todo dia revivendo a cena — o outro raramente sabe. Perdoar não inocenta ele; liberta você do pedágio diário.",
+            curiosity_facts: [
+              "Hannah Arendt: 'sem perdão, ficamos presos a um único ato pra sempre' — perdão é a saída de emergência do passado.",
+              "Estudo Forgiveness Project (Charlotte vanOyen Witvliet, Hope College): pessoas que praticam perdão têm pressão arterial e cortisol menores — efeito biológico, não só emocional.",
+              "Marcos 11:25 e Eclesiástico 28:2 — tradição cristã há 2 mil anos diz: perdão é receita pra a alma própria, não favor pro outro."
+            ],
+            challenge_prompt: "Pense em 1 mágoa antiga que ainda te visita. Escreva uma frase: 'eu solto isso porque me cansa carregar'. Releia em 3 dias.",
+            challenge_when: "esta-semana",
+            challenge_observable: "Se a mágoa visitou menos vezes a sua cabeça nessa semana.",
+            learning_objective: "Praticar 1 ato deliberado de soltar uma mágoa pequena.",
+            illustration_key: "sparkle",
+            source: "Hannah Arendt + Marcos 11:25",
+            framework: "tradição + dado fisiológico"
           }
         ]
       }
@@ -546,7 +1018,7 @@ CURRICULUM_V2 = [
     trails: [
       {
         slug: "como-tecnologia-funciona",
-        title: "Como as máquinas pensam?",
+        title: "Como as Máquinas Pensam?",
         arc_hook: "Quem entende como a máquina decide, decide melhor sobre ela.",
         position: 1,
         missions: [
@@ -607,6 +1079,98 @@ CURRICULUM_V2 = [
             source: "Emily Bender / 'stochastic parrots' + Provérbios 14:15",
             framework: "desmistificação + discernimento cristão"
           },
+        ]
+      },
+      {
+        slug: "internet-de-verdade",
+        title: "Como a Internet Realmente Funciona",
+        arc_hook: "Antes da mágica, tem cabos, números e fila — desmistificar é poder.",
+        position: 2,
+        missions: [
+          {
+            slug: "digito-youtube-o-que-rola",
+            title: "O que acontece entre você digitar 'youtube.com' e o vídeo aparecer?",
+            hook: "Em meio segundo, sua mensagem dá meio planeta de volta — e ninguém te explica como.",
+            angle: "DNS + roteamento: nome (youtube.com) vira número (IP), pacotes viajam por dezenas de roteadores até o servidor, voltam com vídeo em pedaços.",
+            central_insight: "Se cada nome de site é só apelido que precisa ser traduzido em número, e cada mensagem viaja em pedacinhos por caminhos diferentes, internet é correio rápido — não mágica.",
+            curiosity_facts: [
+              "Servidores DNS são tipo lista telefônica gigante — quando você digita 'youtube.com', alguém pergunta 'qual é o IP disso?' antes da conexão começar.",
+              "Sua mensagem viaja em pacotes de até 1500 bytes cada — quebrada em pedacinhos que podem pegar caminhos diferentes e se reagrupar no destino.",
+              "Vint Cerf e Bob Kahn inventaram TCP/IP em 1973 — o protocolo que governa praticamente toda a internet até hoje."
+            ],
+            challenge_prompt: "Abra o terminal e digite 'ping youtube.com'. Veja o IP que aparece e quantos milissegundos demora a resposta.",
+            challenge_when: "hoje",
+            challenge_observable: "Qual o IP que aparece e quanto tempo a viagem leva.",
+            learning_objective: "Executar 1 ping e ver IP + latência real até um servidor.",
+            illustration_key: "spark",
+            source: "Vint Cerf + Bob Kahn",
+            framework: "desmistificação"
+          },
+          {
+            slug: "wifi-onda-com-limite",
+            title: "Por que WiFi não tem fio mas tem limite?",
+            hook: "WiFi não é mágica nem vácuo — é onda invisível que se atrapalha com as outras.",
+            angle: "WiFi é onda de rádio em frequências específicas (2,4 e 5 GHz). Quanto mais dispositivos no mesmo canal, mais 'pessoas falando ao mesmo tempo' — congestionamento que reduz velocidade.",
+            central_insight: "Se WiFi é só onda de rádio dividida em canais, todo dispositivo conectado divide o mesmo bolo — em casa cheia, todos ficam lentos porque a fila é a mesma.",
+            curiosity_facts: [
+              "WiFi tem ~14 canais em 2,4GHz — mas só 3 não se sobrepõem (1, 6, 11). Vizinhos no mesmo canal brigam pela mesma faixa.",
+              "Microondas operam em 2,45 GHz — quase a mesma frequência do WiFi 2,4 GHz, por isso esquentar comida pode derrubar conexão.",
+              "5 GHz é mais rápido e menos congestionado, mas atravessa parede pior — por isso o WiFi do quarto distante fica fraco."
+            ],
+            challenge_prompt: "Veja quantos dispositivos estão conectados ao WiFi de casa agora. Tente baixar algo grande com tudo conectado vs. com metade desligado. Compare.",
+            challenge_when: "hoje",
+            challenge_observable: "Se a velocidade muda quando você reduz dispositivos na rede.",
+            learning_objective: "Comparar velocidade de download com diferentes números de dispositivos ativos.",
+            illustration_key: "spark",
+            source: "Guglielmo Marconi (base do rádio)",
+            framework: "experimento"
+          },
+          {
+            slug: "quem-decide-busca",
+            title: "Quem decide a ordem das respostas no Google?",
+            hook: "Você pergunta. Aparecem 10 milhões. Os 10 primeiros são escolhidos por fórmula secreta.",
+            angle: "Algoritmo de busca (PageRank evoluído) ranqueia páginas por dezenas de sinais: links recebidos, qualidade percebida, comportamento do usuário, idioma, localização — tudo simultâneo.",
+            central_insight: "Se buscador não 'sabe a verdade' e sim ordena por fórmula, então quem aparece em cima ganhou o jogo da fórmula — não necessariamente é o melhor.",
+            curiosity_facts: [
+              "Larry Page e Sergey Brin criaram PageRank em 1998 — a ideia central: páginas com mais links de outras páginas importantes sobem.",
+              "Hoje o algoritmo do Google considera mais de 200 fatores diferentes pra ordenar os resultados.",
+              "Páginas que dominam o topo geralmente pagam SEO especialistas — não são necessariamente as mais corretas, são as mais 'otimizadas pra a fórmula'."
+            ],
+            challenge_prompt: "Pesquise 1 pergunta de curiosidade no Google. Anote os 3 primeiros resultados. Pergunte: por que esses? Pague atenção ao tipo de site.",
+            challenge_when: "hoje",
+            challenge_observable: "Padrão dos 3 primeiros (site grande, com publicidade, atualizado recentemente).",
+            learning_objective: "Identificar 3 sinais que provavelmente colocaram os top 3 resultados em destaque.",
+            illustration_key: "search",
+            source: "Larry Page + Sergey Brin",
+            framework: "desmistificação"
+          },
+          {
+            slug: "video-chega-rapido-como",
+            title: "Como vídeo do TikTok chega tão rápido se está em outro país?",
+            hook: "Vídeo NÃO vem da China. Tem cópia 30km de você.",
+            angle: "CDN (Content Delivery Network): grandes plataformas mantêm CÓPIAS dos vídeos populares em servidores espalhados pelo planeta — quando você abre, o vídeo vem do servidor mais próximo, não da matriz.",
+            central_insight: "Se TikTok carrega vídeo viral em 1 segundo, é porque ele já estava ESPELHADO em um servidor perto de você antes de você pedir — ninguém esperou a viagem física até a China.",
+            curiosity_facts: [
+              "Cloudflare, Akamai e Netflix Open Connect têm milhares de servidores espalhados pelo mundo — quase todo tráfego importante passa por eles.",
+              "Netflix coloca 'caixas' de armazenamento dentro de provedores de internet locais — o filme que você assiste pode estar literalmente no prédio do seu provedor.",
+              "Sem CDN, qualquer vídeo viral derrubaria o servidor original — milhões de pessoas pedindo ao mesmo tempo, sem rede de cópias."
+            ],
+            challenge_prompt: "Abra 'whatismyipaddress.com' e veja sua cidade detectada. Abra um vídeo no YouTube e cheque (em ferramentas de desenvolvedor → network) de onde o vídeo vem.",
+            challenge_when: "hoje",
+            challenge_observable: "Se o vídeo vem de servidor próximo (Brasil) ou distante (EUA).",
+            learning_objective: "Comparar localização do servidor de vídeo com sua localização atual.",
+            illustration_key: "spark",
+            source: "Adrian Cockcroft (arquitetura Netflix)",
+            framework: "desmistificação"
+          }
+        ]
+      },
+      {
+        slug: "privacidade-seguranca",
+        title: "Privacidade e Segurança Digital",
+        arc_hook: "O que você posta tem cópia em mil lugares — e quem te vê continua vendo mesmo sem login.",
+        position: 3,
+        missions: [
           {
             slug: "algoritmo-tem-limites",
             title: "Por que o feed não te mostra tudo que existe?",
@@ -627,6 +1191,90 @@ CURRICULUM_V2 = [
             framework: "desmistificação + safeguards"
           },
           {
+            slug: "foto-fica-mesmo-apagada",
+            title: "Por que sua foto fica em 5 lugares mesmo depois de apagar?",
+            hook: "Internet é tinta, não giz — apagar do seu feed não apaga do mundo.",
+            angle: "Cada upload é replicado: cópia no servidor da plataforma, no cache de CDN, no celular de quem viu, em screenshots, em backups da plataforma. Apagar 1 cópia (a sua) não toca as outras 4.",
+            central_insight: "Se você posta uma foto, no instante seguinte ela tem 5 cópias — sua decisão de apagar só remove 1. Por isso pensar 2 vezes antes de postar vale mais que apagar depois.",
+            curiosity_facts: [
+              "Wayback Machine (archive.org) preserva versões antigas de bilhões de sites — coisas apagadas vivem lá pra sempre.",
+              "Bruce Schneier, especialista em segurança: 'na internet, a memória é o padrão; o esquecimento é o esforço'.",
+              "Estudos mostram que ~40% das fotos comprometedoras de adolescentes online foram postadas pela pessoa MESMA — e apagadas depois sem efeito."
+            ],
+            challenge_prompt: "Pegue 1 post seu antigo. Imagine que ele foi visto por 5 pessoas que não conhecem você. Como ele soaria pra elas hoje?",
+            challenge_when: "hoje",
+            challenge_observable: "Se o post envelheceu bem ou se você o veria diferente hoje.",
+            learning_objective: "Avaliar 1 post próprio antigo pela perspectiva de quem não conhece o contexto.",
+            illustration_key: "search",
+            source: "Bruce Schneier",
+            framework: "reframe"
+          },
+          {
+            slug: "ve-quem-te-ve",
+            title: "Sem login, eles ainda te reconhecem. Como?",
+            hook: "Você é uma digital invisível: fonte, tela, idioma, hora do clique.",
+            angle: "Fingerprinting: combinação única de fonte instalada + resolução + idioma + extensões + GPU = identifica seu navegador entre milhões, mesmo sem cookie nem login.",
+            central_insight: "Se mesmo sem login os sites te reconhecem por combinação de detalhes, então 'modo anônimo' não esconde tudo — apenas o cookie. O fingerprint vai junto.",
+            curiosity_facts: [
+              "EFF (Electronic Frontier Foundation) tem o site 'Cover Your Tracks' — testa quão único é seu navegador. Geralmente é único entre milhões.",
+              "Browsers como Brave e Firefox lançaram features anti-fingerprinting nos últimos anos — Chrome ainda é mais permissivo.",
+              "Cory Doctorow: 'modo anônimo te esconde de você mesmo, não dos sites'."
+            ],
+            challenge_prompt: "Entre em 'coveryourtracks.eff.org' e clique 'test your browser'. Veja quão único você é online.",
+            challenge_when: "hoje",
+            challenge_observable: "Quão raro é seu fingerprint — quase sempre 1 em milhões.",
+            learning_objective: "Rodar 1 teste de fingerprint e ver a unicidade do próprio navegador.",
+            illustration_key: "search",
+            source: "Electronic Frontier Foundation + Cory Doctorow",
+            framework: "experimento"
+          },
+          {
+            slug: "senha-unica-vale-mais",
+            title: "Senha forte ou senha única? Qual vale mais?",
+            hook: "Senha forte que você usa em todo site é igual chave de cofre que abre 100 casas.",
+            angle: "Vazamento de senha em 1 site exposto = vazamento em todos os sites que usaram a mesma. Único vence forte: senha única medíocre é mais segura que senha forte reutilizada.",
+            central_insight: "Se você usa a mesma senha em 10 sites, basta UM ser hackeado pra todos os 10 caírem — único é mais importante que forte.",
+            curiosity_facts: [
+              "Have I Been Pwned (haveibeenpwned.com): bilhões de senhas vazadas estão lá; digite seu email e veja em quantos vazamentos você está.",
+              "Gerenciadores de senha (Bitwarden, 1Password) resolvem o problema: você decora 1 forte, eles geram únicas pra cada site.",
+              "Pesquisa: 65% das pessoas reutilizam senhas entre sites — por isso vazamentos pegam tantas contas em cadeia."
+            ],
+            challenge_prompt: "Entre em haveibeenpwned.com com seu email principal. Veja em quantos vazamentos você apareceu.",
+            challenge_when: "hoje",
+            challenge_observable: "Quantos vazamentos do seu email — quase sempre mais que 1.",
+            learning_objective: "Verificar quantos vazamentos atingiram 1 email seu real.",
+            illustration_key: "search",
+            source: "Troy Hunt (Have I Been Pwned)",
+            framework: "experimento"
+          },
+          {
+            slug: "antes-de-enviar-pense",
+            title: "Antes de mandar essa mensagem: se a sua vó lesse, mandava?",
+            hook: "Tela apaga o filtro que existiria cara-a-cara — antes de enviar, imagine quem te ama lendo.",
+            angle: "Desinibição online: anonimato + ausência do rosto do outro + impulsividade da tela liberam falas que pessoa nunca soltaria pessoalmente. O conteúdo fica gravado e ressoa muito além do momento.",
+            central_insight: "Se você hesita em mostrar a mensagem pra quem te ama, não envie. Tela apagou o filtro, mas a consequência viaja igual.",
+            curiosity_facts: [
+              "John Suler descreveu em 2004 o 'online disinhibition effect' — sem o rosto do outro presente, falamos coisas que jamais diríamos cara-a-cara.",
+              "Conselho clássico: leia em voz alta antes de enviar. Se soaria estranho na frente da sua avó, é sinal pra apagar e reescrever.",
+              "Provérbios 15:1: 'a resposta branda desvia o furor; a palavra dura suscita a ira'. 2.500 anos antes do WhatsApp."
+            ],
+            challenge_prompt: "Antes da próxima mensagem 'no impulso' hoje, espere 60 segundos. Releia. Se soaria mal de boca, reescreva.",
+            challenge_when: "hoje",
+            challenge_observable: "Quantas mensagens você reescreveu antes de mandar.",
+            learning_objective: "Aplicar 1 pausa de 60s antes de mandar 1 mensagem impulsiva.",
+            illustration_key: "users",
+            source: "John Suler + Provérbios 15:1",
+            framework: "regra prática + tradição"
+          }
+        ]
+      },
+      {
+        slug: "voce-criando",
+        title: "Você Criando",
+        arc_hook: "Quem cria muda — quem só consome aprende sobre os outros, não sobre si.",
+        position: 4,
+        missions: [
+          {
             slug: "criador-vs-consumidor",
             title: "Criar muda você mais que consumir?",
             hook: "Mil horas assistindo ≠ uma hora criando.",
@@ -644,6 +1292,44 @@ CURRICULUM_V2 = [
             illustration_key: "magic",
             source: "Edgar Dale + Austin Kleon",
             framework: "experimento"
+          },
+          {
+            slug: "codigo-e-receita-executavel",
+            title: "Como uma linha de código faz coisa?",
+            hook: "Código não é mágica — é receita que a máquina segue sem improvisar.",
+            angle: "Programar é decompor problema em passos exatos + variáveis (caixinhas com nomes) + condicionais (se isso, faça aquilo) + repetição. O computador executa literal — diferente de pessoa, não 'entende o que você quis dizer'.",
+            central_insight: "Se computador segue receita literal e nunca 'preenche o que faltou', então quem escreve código bom é quem aprende a pensar com clareza — programar treina raciocínio mais que digitação.",
+            curiosity_facts: [
+              "Seymour Papert (MIT) criou em 1967 a linguagem LOGO, com tartaruga que andava em comando — crianças de 8 anos programando geometria.",
+              "Hoje, Scratch (do MIT também) tem 100+ milhões de usuários no mundo — código por blocos, sem digitar nada.",
+              "GPT-4 e outras IAs facilitaram MUITO escrever código — mas quem entende lógica usa essas ferramentas 10× melhor que quem não entende."
+            ],
+            challenge_prompt: "Entre em scratch.mit.edu. Em 10 minutos, faça uma tartaruga (sprite) andar 100 passos pra direita e mudar de cor. Sem tutorial: tente.",
+            challenge_when: "hoje",
+            challenge_observable: "Se você conseguiu fazer a tartaruga obedecer 2 comandos seguidos.",
+            learning_objective: "Programar em Scratch 1 sprite executando 2 comandos sequenciais.",
+            illustration_key: "spark",
+            source: "Seymour Papert",
+            framework: "experimento + introdução"
+          },
+          {
+            slug: "copiar-pra-aprender",
+            title: "Copiar pra aprender é gold. Copiar pra entregar é roubo. Como distinguir?",
+            hook: "A mesma cópia muda de nome conforme o que você faz com ela depois.",
+            angle: "Copiar pra entender o COMO (replicar pra estudar a técnica) é base do aprendizado de toda arte e ofício. Copiar pra ENTREGAR como seu é roubo. O divisor é: cita ou esconde?",
+            central_insight: "Se você copia algo, replica pra aprender o jeito, e depois cria sua versão com aquela técnica — você virou aprendiz. Se copia, esconde e entrega — virou ladrão.",
+            curiosity_facts: [
+              "Austin Kleon (Steal Like an Artist): 'todos os artistas começam copiando — o segredo é copiar muitos, não um só, e citar quem te ensinou'.",
+              "Picasso disse: 'bons artistas copiam, grandes artistas roubam' — querendo dizer 'absorvem tão profundamente que vira parte deles'. Diferente de plagiar.",
+              "Wikipedia funciona em modelo de cópia com citação — é por isso que ela cresceu mais que qualquer enciclopédia tradicional."
+            ],
+            challenge_prompt: "Pegue 1 desenho/texto/música que você gosta. Tente reproduzir até onde conseguir. Marque o que aprendeu. (Não entregue como seu — só estude.)",
+            challenge_when: "esta-semana",
+            challenge_observable: "Qual técnica nova você captou ao tentar replicar.",
+            learning_objective: "Reproduzir 1 obra alheia pra estudar técnica e nomear o que aprendeu.",
+            illustration_key: "magic",
+            source: "Austin Kleon + Picasso",
+            framework: "ética + prática"
           }
         ]
       }
@@ -664,8 +1350,8 @@ CURRICULUM_V2 = [
     trails: [
       {
         slug: "quando-trava",
-        title: "Quando trava — o que fazer?",
-        arc_hook: "Estratégia vence força.",
+        title: "Quando Trava — o Que Fazer?",
+        arc_hook: "Travar é dado, não fracasso — desde que você leia o sinal.",
         position: 1,
         missions: [
           {
@@ -690,7 +1376,7 @@ CURRICULUM_V2 = [
           {
             slug: "erro-dado",
             title: "Por que errar te ajuda?",
-            hook: "Cérebro só cresce quando dá errado.",
+            hook: "Acertar só confirma o que já sabe. Errar é o que ensina o novo.",
             angle: "Neuroplasticidade dispara no erro — não no acerto.",
             central_insight: "Se você só faz o que sabe, você não aprende — o aprendizado mora exatamente onde dói errar.",
             curiosity_facts: [
@@ -745,6 +1431,71 @@ CURRICULUM_V2 = [
             framework: "método em cadeia"
           }
         ]
+      },
+      {
+        slug: "mente-de-cientista",
+        title: "Mente de Cientista",
+        arc_hook: "Quem tenta confirmar, confirma. Quem tenta refutar, aprende.",
+        position: 2,
+        missions: [
+          {
+            slug: "cientista-tenta-refutar",
+            title: "Por que cientista tenta provar que está errado?",
+            hook: "Boa hipótese é a que PODE quebrar — não a que parece bonita.",
+            angle: "Karl Popper: refutabilidade. Uma teoria boa faz previsão específica que poderia falhar; uma teoria 'que explica tudo' não explica nada.",
+            central_insight: "Se sua ideia não tem como ser provada errada, ela não é teoria — é fé disfarçada. O sinal de uma boa hipótese é poder cair, e não cair quando testada.",
+            curiosity_facts: [
+              "Karl Popper (1934) revolucionou a filosofia da ciência: ciência avança por refutação, não por confirmação.",
+              "Einstein previu em 1915 que a gravidade do sol deformaria luz das estrelas em ângulo exato. Em 1919, eclipse confirmou. Se NÃO tivesse confirmado, teoria caía. Por isso era teoria de verdade.",
+              "Astrologia, teorias da conspiração e auto-ajuda 'tudo explica' são clássicas em NÃO serem refutáveis — explicam qualquer resultado, então não predizem nada."
+            ],
+            challenge_prompt: "Pegue 1 opinião sua. Pergunte: 'que prova me faria mudar de ideia?'. Se não tem resposta clara, suspeite — é fé, não opinião.",
+            challenge_when: "hoje",
+            challenge_observable: "Se foi fácil achar uma prova refutadora ou se nada te faria mudar de ideia.",
+            learning_objective: "Aplicar teste de refutabilidade em 1 opinião própria.",
+            illustration_key: "search",
+            source: "Karl Popper",
+            framework: "teste filosófico"
+          },
+          {
+            slug: "pergunta-decide-resposta",
+            title: "Por que o jeito de fazer a pergunta decide a resposta?",
+            hook: "'Salvar 70%' soa diferente de 'perder 30%' — mesma matemática, sentimentos opostos.",
+            angle: "Framing (Tversky e Kahneman): a forma como a opção é apresentada muda completamente a escolha, mesmo quando o conteúdo é idêntico.",
+            central_insight: "Se você muda a pergunta, muda a resposta — e quem controla o framing controla a decisão sem você perceber.",
+            curiosity_facts: [
+              "Experimento clássico (1981): dois grupos receberam mesmo problema com palavras diferentes. Grupo 'salvar 200 de 600' escolheu a opção segura; grupo 'deixar morrer 400 de 600' escolheu a arriscada. Mesma matemática.",
+              "Médicos: pacientes aceitam mais uma cirurgia se ouvem '90% de sobrevivência' do que '10% de mortalidade' — mesma estatística, decisão diferente.",
+              "Propaganda usa framing o tempo todo: 'iogurte com 95% sem gordura' vende mais que 'iogurte com 5% de gordura'."
+            ],
+            challenge_prompt: "Hoje, pegue 1 propaganda e tente REESCREVER a frase principal pelo lado contrário (perder vs ganhar, antes vs depois). Veja se muda o impacto.",
+            challenge_when: "hoje",
+            challenge_observable: "Se a versão invertida soa menos atraente — o que diz da força do framing original.",
+            learning_objective: "Inverter o framing de 1 propaganda real e comparar impacto emocional.",
+            illustration_key: "search",
+            source: "Amos Tversky + Daniel Kahneman",
+            framework: "experimento"
+          },
+          {
+            slug: "intuicao-vs-calculo-quando",
+            title: "Quando intuição vence cálculo (e quando ela mente)?",
+            hook: "Bombeiro veterano sente o teto cair sem calcular. Investidor 'sente' o mercado e quebra.",
+            angle: "Gary Klein × Daniel Kahneman: intuição funciona QUANDO há (1) domínio estável + (2) feedback rápido + (3) muitas horas de prática. Falta um, intuição é palpite disfarçado.",
+            central_insight: "Se o ambiente é estável e você tem milhares de horas + feedback rápido (bombeiro, médico de emergência), intuição é gold. Se é caótico (bolsa, política, futuro), intuição é miragem — calcule.",
+            curiosity_facts: [
+              "Bombeiro veterano que 'sentiu' o piso ceder e mandou time sair antes de incêndio (sem entender por que) — depois descobriram: temperatura assimétrica que ele percebeu inconscientemente.",
+              "Pesquisas com investidores: nenhuma estratégia de 'sentir o mercado' venceu fundo passivo de índice em 10 anos consecutivos.",
+              "Daniel Kahneman e Gary Klein chegaram a um acordo raro: ambos concordam que intuição vale, MAS só nos domínios certos."
+            ],
+            challenge_prompt: "Pense em 1 decisão que você vai tomar essa semana. Pergunte: é domínio estável + feedback rápido + muita prática minha? Se sim, intuição vale. Se não, calcule.",
+            challenge_when: "esta-semana",
+            challenge_observable: "Em qual das duas situações sua intuição estaria certa vs. arriscada.",
+            learning_objective: "Aplicar critério de Klein-Kahneman em 1 decisão real.",
+            illustration_key: "puzzle",
+            source: "Gary Klein + Daniel Kahneman",
+            framework: "modelo de decisão"
+          }
+        ]
       }
     ]
   },
@@ -769,8 +1520,8 @@ CURRICULUM_V2 = [
         missions: [
           {
             slug: "escutar-de-verdade",
-            title: "Quase ninguém escuta de verdade — por que?",
-            hook: "A maioria espera a vez de falar.",
+            title: "Por que quase ninguém escuta de verdade?",
+            hook: "Quem escuta 5 minutos sem interromper, em 1 conversa só, fica memorável pra vida.",
             angle: "Diferença entre ouvir esperando responder vs. ouvir pra entender.",
             central_insight: "Quem escuta 5 minutos sem interromper, em 1 conversa só, fica memorável pra vida — porque quase ninguém faz isso.",
             curiosity_facts: [
@@ -789,7 +1540,7 @@ CURRICULUM_V2 = [
           {
             slug: "manipulacao-marcas",
             title: "Como propagandas manipulam você?",
-            hook: "Você é o produto.",
+            hook: "Toda propaganda usa 3 truques antigos — quem aprende a vê-los, para de cair em quase todos.",
             angle: "Gatilhos de Cialdini: escassez, prova social, autoridade, reciprocidade.",
             central_insight: "Quem reconhece os 3 truques mais usados (escassez, prova social, status) não cai em quase nenhum.",
             curiosity_facts: [
@@ -807,8 +1558,8 @@ CURRICULUM_V2 = [
           },
           {
             slug: "silencio-constroi-confianca",
-            title: "Por que silêncio constrói confiança?",
-            hook: "Quem fala demais perde — quem escolhe quando, ganha.",
+            title: "Por que 2 segundos de silêncio depois que o outro fala vira ouro?",
+            hook: "Quem espera 2 segundos antes de responder ganha mais que quem responde rápido.",
             angle: "Pausa estratégica em conversa: vira espaço pro outro existir.",
             central_insight: "Se você espera 2 segundos antes de responder, a outra pessoa sente que foi ouvida — e quem se sente ouvido confia.",
             curiosity_facts: [
@@ -842,6 +1593,155 @@ CURRICULUM_V2 = [
             illustration_key: "check",
             source: "Center for Creative Leadership (SBI Model)",
             framework: "modelo em 3 passos"
+          }
+        ]
+      },
+      {
+        slug: "conflito-sem-destruir",
+        title: "Conflito Sem Destruir",
+        arc_hook: "Discordar sem virar inimigo é a arte que separa relação de campo de batalha.",
+        position: 2,
+        missions: [
+          {
+            slug: "defender-endurece-opiniao",
+            title: "Por que defender uma opinião em voz alta endurece ela em você?",
+            hook: "Cada vez que você defende algo publicamente, fica mais difícil mudar de ideia depois.",
+            angle: "Efeito de compromisso (Cialdini) + identidade-voto: defender em voz alta vira 'sou alguém que pensa X' — refutar agora ameaça identidade, não só ideia.",
+            central_insight: "Se você defende uma opinião publicamente, ela vira parte sua — e mudar passa a custar não 'admitir erro de ideia', mas 'admitir derrota de identidade'. Por isso quase ninguém muda de ideia em briga.",
+            curiosity_facts: [
+              "Robert Cialdini: pessoas que escreveram a favor de uma posição (mesmo sem acreditar) começam a acreditar mais nela em dias.",
+              "Estudo clássico de Festinger: dissonância cognitiva — quanto mais alto o custo de defender uma posição, mais a pessoa passa a acreditar nela.",
+              "Por isso negociadores experientes não pedem 'admita que está errado' — pedem 'me ajude a entender' e dão saída pro outro mudar sem perder cara."
+            ],
+            challenge_prompt: "Em discussão hoje, tente NÃO defender publicamente sua posição imediatamente. Diga 'preciso pensar mais' antes. Veja se a opinião muda depois.",
+            challenge_when: "hoje",
+            challenge_observable: "Se conseguir mais informação antes de declarar mudou a opinião final.",
+            learning_objective: "Adiar declaração pública em 1 discussão e re-avaliar depois.",
+            illustration_key: "users",
+            source: "Robert Cialdini + Leon Festinger",
+            framework: "experimento social"
+          },
+          {
+            slug: "100-certo-e-cego",
+            title: "Por que '100% certo' é sinal de cego?",
+            hook: "Quem nunca achou que o outro também tem ponto, ainda não tem ponto bom.",
+            angle: "Princípio da caridade (Daniel Dennett, regra das discussões honestas): primeiro entenda o argumento do outro tão bem que ele aceitaria sua descrição — depois discorde, se ainda discordar.",
+            central_insight: "Se você só sabe descrever a opinião do outro de forma ridícula, você ainda não a entendeu — e qualquer crítica que faz vai pra um espantalho, não pra a posição real.",
+            curiosity_facts: [
+              "Daniel Dennett: 4 regras pra crítica honesta — comece reescrevendo o argumento do outro tão bem que ele diga 'isso! eu queria ter dito assim!'.",
+              "John Stuart Mill: 'quem só conhece o próprio lado, conhece pouco — não viu o argumento do outro completo'.",
+              "Em debates políticos, ~80% das pessoas conseguem caricaturar bem 'o outro lado' mas não conseguem reproduzir o melhor argumento oposto. Sinal de espantalho."
+            ],
+            challenge_prompt: "Pegue 1 opinião que você considera errada. Tente escrever em 3 frases o MELHOR argumento de quem pensa o contrário — como se você acreditasse.",
+            challenge_when: "hoje",
+            challenge_observable: "Se foi mais difícil que parecia escrever o argumento contra como se fosse seu.",
+            learning_objective: "Reconstruir argumento oposto em 3 frases sem caricaturar.",
+            illustration_key: "search",
+            source: "Daniel Dennett + John Stuart Mill",
+            framework: "exercício filosófico"
+          },
+          {
+            slug: "pedido-dificil-sem-inimigo",
+            title: "Como pedir uma coisa difícil sem virar inimigo?",
+            hook: "DESC: Descrever + Expressar + Sugerir + Consequência. Pedidos viram diálogo, não ataque.",
+            angle: "Modelo DESC (Bower & Bower): em vez de acusar ('você nunca…'), descrever fato + sentimento + sugestão + impacto — desarma defesa e abre conversa.",
+            central_insight: "Se você quer mudança real do outro, não acuse — descreva o que viu, expresse o que sentiu, sugira o que quer, mostre o impacto. 'Você é egoísta' não muda nada. DESC muda quase sempre.",
+            curiosity_facts: [
+              "Modelo DESC nasceu em 1976 em terapia comportamental — foi adotado por gestores, pais, casais.",
+              "Pesquisa de comunicação: pedidos no formato DESC têm 4× mais chance de mudar comportamento do outro vs. acusação direta.",
+              "Marshall Rosenberg (Comunicação Não-Violenta) construiu modelo parecido — observação, sentimento, necessidade, pedido."
+            ],
+            challenge_prompt: "Pegue 1 reclamação que você tem com alguém próximo. Reescreva no formato DESC. Tente conversar usando essa versão.",
+            challenge_when: "esta-semana",
+            challenge_observable: "Se a outra pessoa ouviu sem defesa imediata.",
+            learning_objective: "Aplicar DESC em 1 conversa difícil real.",
+            illustration_key: "users",
+            source: "Sharon Bower + Marshall Rosenberg",
+            framework: "modelo em 4 passos"
+          }
+        ]
+      },
+      {
+        slug: "voce-e-multidao",
+        title: "Você e a Multidão",
+        arc_hook: "Quem segue a maioria sem ver, vira ela — sem decidir.",
+        position: 3,
+        missions: [
+          {
+            slug: "7-erradas-vs-1-certa",
+            title: "Por que 7 pessoas erradas convencem 1 certa a ficar calada?",
+            hook: "Asch mostrou: maioria errada faz pessoa certa duvidar do próprio olho.",
+            angle: "Experimento de Solomon Asch (1951): 75% das pessoas concordaram com resposta visivelmente errada quando 7 outros antes deles deram a errada — pressão social vence percepção direta.",
+            central_insight: "Se 7 pessoas dizem que a linha curta é a longa, a maioria das pessoas duvida dos próprios olhos antes de discordar. Saber disso é o que separa 'opinião própria' de 'eco'.",
+            curiosity_facts: [
+              "Solomon Asch (1951) mostrou linhas a grupos. 7 cúmplices apontavam errado de propósito. ~75% dos participantes reais cederam pelo menos 1 vez.",
+              "Quando 1 outra pessoa também discordava da maioria, o conformismo caía drasticamente — coragem é contagiosa quando aparece.",
+              "Versões modernas mostram efeito ainda em pequenos grupos online (chat com 4 pessoas) — pressão social escala para qualquer mídia."
+            ],
+            challenge_prompt: "Em alguma decisão de grupo hoje (escolher restaurante, votar em algo), defenda a posição diferente se você sinceramente pensa diferente. Note quanto custou.",
+            challenge_when: "hoje",
+            challenge_observable: "Se foi mais difícil que parecia falar contrário à maioria.",
+            learning_objective: "Discordar publicamente em 1 situação de grupo e relatar o custo emocional.",
+            illustration_key: "users",
+            source: "Solomon Asch",
+            framework: "experimento clássico"
+          },
+          {
+            slug: "viralizar-nao-e-verdade",
+            title: "Por que viral não é igual a verdade?",
+            hook: "Algoritmo escolhe o que prende atenção — não o que é verdadeiro.",
+            angle: "Engajamento como métrica favorece outrage, surpresa, polarização — coisas que viralizam não pela verdade, mas pelo gatilho emocional. Verdade chata morre no feed.",
+            central_insight: "Se algo viraliza, isso só prova que prendeu atenção de muita gente — não que é verdade. Quem confunde os dois acredita em mentira só porque ela 'pegou'.",
+            curiosity_facts: [
+              "Estudo MIT (Soroush Vosoughi, 2018) analisou 126 mil notícias no Twitter: notícias FALSAS espalham 6× mais rápido que verdadeiras.",
+              "Porque conteúdo que provoca raiva, surpresa ou medo gera engajamento — verdade comum não dispara emoção forte.",
+              "Por isso 'eu vi na internet' precisa virar 'vi onde, quem publicou, quem confirmou' — viral é métrica de espalhamento, não de verdade."
+            ],
+            challenge_prompt: "Pegue 1 conteúdo viral que você viu hoje. Pergunte: quem é a fonte original? Onde isso foi confirmado? Quanto tempo leva pra achar a fonte?",
+            challenge_when: "hoje",
+            challenge_observable: "Se levou mais que 2 minutos pra achar fonte primária — ou se nem existe.",
+            learning_objective: "Investigar fonte primária de 1 conteúdo viral.",
+            illustration_key: "search",
+            source: "Soroush Vosoughi (MIT)",
+            framework: "experimento + dado"
+          },
+          {
+            slug: "midia-mostra-o-angulo",
+            title: "Por que mídia mostra o que mostra (e omite o que omite)?",
+            hook: "Mesmo fato vira histórias diferentes — dependendo do ângulo que mostra.",
+            angle: "Framing midiático: mesmo evento ganha narrativa diferente conforme o que se enquadra no recorte. Não é mentira (raramente); é seleção. Saliência (o que aparece) decide percepção pública.",
+            central_insight: "Se você vê só 1 fonte, você vê só 1 ângulo. Comparar 3 fontes diferentes sobre o MESMO evento revela o ângulo que cada uma escolheu mostrar.",
+            curiosity_facts: [
+              "Wilbur Schramm e outros pesquisadores de mídia mapearam: 5 grandes 'tipos de framing' que jornalismos usam — herói/vítima, conflito, custo, responsabilidade individual ou sistêmica.",
+              "Manchete sobre o mesmo fato em jornal de esquerda, de centro, e de direita produz 3 narrativas mensuravelmente diferentes — sem mentir, só recortando.",
+              "Por isso quem lê 1 só fonte de notícia tem 'visão estreita por construção', mesmo se for fonte 'séria'."
+            ],
+            challenge_prompt: "Pegue 1 notícia atual. Procure ela em 3 fontes diferentes (G1, BBC, jornal local). Anote o que cada uma DESTACOU e o que cada uma OMITIU.",
+            challenge_when: "hoje",
+            challenge_observable: "Quão diferentes ficaram as 3 versões da mesma notícia.",
+            learning_objective: "Comparar 3 fontes sobre 1 notícia e mapear ângulos divergentes.",
+            illustration_key: "search",
+            source: "Wilbur Schramm",
+            framework: "análise comparativa"
+          },
+          {
+            slug: "amizade-real-vs-seguidor",
+            title: "Por que 5 amigos de verdade valem mais que 5 mil seguidores?",
+            hook: "Seu cérebro consegue cuidar de ~5 pessoas. O resto, no fundo, é paisagem.",
+            angle: "Robin Dunbar mapeou camadas de relação no cérebro humano: ~5 íntimos, ~15 amigos próximos, ~50 amigos, ~150 conhecidos. Acima de 150, é abstração. Era das redes confunde camada com volume.",
+            central_insight: "Se o cérebro só cuida de ~5 íntimos, ter 5 mil seguidores não enche esse vazio — só dá ilusão. Investir tempo nos 5 reais é matemática, não sentimentalismo.",
+            curiosity_facts: [
+              "Robin Dunbar (Oxford) mapeou em primatas e humanos: cérebro escala pra cerca de 150 relações estáveis máximas — o 'número de Dunbar'.",
+              "Dentro dos 150, há camadas: ~5 íntimos que você ligaria às 3 da manhã, ~15 amigos próximos, ~50 amigos, ~150 conhecidos.",
+              "Pesquisa de mídia social: usuários que 'curtem' 200 perfis ativamente seguem cuidar profundamente de menos de 10 — capacidade não escala com volume."
+            ],
+            challenge_prompt: "Liste seus 5 íntimos verdadeiros (quem você ligaria às 3 da manhã). Mande mensagem genuína pra 1 deles hoje — sem agenda.",
+            challenge_when: "hoje",
+            challenge_observable: "Se a lista de 5 é mais curta do que parecia — e como você se sente após mandar a mensagem.",
+            learning_objective: "Identificar os 5 íntimos reais e fazer 1 ato deliberado de manutenção.",
+            illustration_key: "users",
+            source: "Robin Dunbar",
+            framework: "modelo + dado"
           }
         ]
       }

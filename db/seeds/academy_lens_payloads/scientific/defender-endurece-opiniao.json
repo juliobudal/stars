@@ -1,0 +1,20 @@
+{
+  "headline": "Cada vez que você defende algo publicamente, fica mais difícil mudar de ideia depois.",
+  "mechanism_steps": [
+    "Robert Cialdini mostrou: gente que escreve um texto a favor de uma posição começa a acreditar mais nela — só de ter defendido em voz alta, o cérebro passa a tratar a posição como 'minha'.",
+    "Leon Festinger chamou isso de dissonância cognitiva: quanto mais alto o custo de ter defendido (em público, gritando), mais o cérebro precisa acreditar — senão admite que se expôs à toa.",
+    "Por isso bom negociador nunca encurrala: deixa saída pro outro mudar sem perder cara. Sem saída, o outro vira refém da própria boca e cava mais fundo a posição errada."
+  ],
+  "illustration_hint": "Duas crianças num pátio. A primeira em cima de uma caixa gritando 'EU TENHO RAZÃO' com a opinião grudando no peito feito armadura pesada. A segunda, mais quieta, segura a mesma opinião em uma das mãos, leve, ainda podendo trocar de mão.",
+  "micro_check": {
+    "question": "{{learner_name}} discordou alto na frente da turma sobre um time. Depois descobre que estava errado. Por que custa tanto admitir agora?",
+    "options": [
+      "Porque a opinião defendida em público virou parte da identidade — admitir erro vira admitir derrota pessoal.",
+      "Porque o cérebro esquece rápido o que foi dito alto e não consegue mais lembrar do argumento.",
+      "Porque a turma vai gostar mais de quem nunca muda de ideia em nada.",
+      "Porque o time vai perder se {{learner_name}} mudar de lado agora."
+    ],
+    "correct_index": 0,
+    "rationale": "Cialdini e Festinger mostraram: defender em público faz a opinião grudar na identidade. Mudar deixa de ser 'troquei de ideia' e passa a ser 'admiti que me expus errado' — por isso o cérebro resiste."
+  }
+}

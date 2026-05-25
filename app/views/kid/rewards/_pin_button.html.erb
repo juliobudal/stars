@@ -1,4 +1,4 @@
-<%# Local: reward (Reward), pinned (Boolean) — turbo-frame target so ::create/::destroy can re-render. %>
+<%# Local: reward (Reward), pinned (Boolean) · turbo-frame target so ::create/::destroy can re-render. %>
 <%= turbo_frame_tag dom_id(reward, :pin), class: "absolute top-2 right-2 z-10" do %>
   <% if pinned %>
     <%= button_to kid_wishlist_path,

@@ -1,0 +1,20 @@
+{
+  "headline": "Tela apaga o filtro que existiria cara-a-cara — antes de enviar, pense quem te ama lendo.",
+  "mechanism_steps": [
+    "John Suler descreveu o 'online disinhibition effect': sem o rosto do outro presente, sem voz, sem reação imediata, o cérebro libera falas que jamais sairiam pessoalmente.",
+    "Mas a mensagem viaja igual — e fica gravada. Cinco segundos pra digitar, anos pra esquecer. O outro lê quando você não está. A reação dele vem sem você presente pra explicar.",
+    "Por isso o teste mais útil é simples: leia em voz alta antes de enviar. Se soaria estranho cara-a-cara, ou se você não mostraria pra alguém que te ama, apague e reescreva."
+  ],
+  "illustration_hint": "Uma criança no celular pronta pra apertar 'enviar' numa mensagem brava. Acima da tela, um espelhinho mostra a mesma frase saindo da boca dela cara-a-cara com a outra pessoa — a outra pessoa recua com expressão ferida. A criança hesita, apaga, reescreve.",
+  "micro_check": {
+    "question": "{{learner_name}} está bravo e digitou uma mensagem dura pro colega. Antes de mandar, qual teste ajuda mais?",
+    "options": [
+      "Mandar logo antes que a raiva passe.",
+      "Ler em voz alta e perguntar: 'se a minha vó lesse, eu mandava?'.",
+      "Tirar print antes pra guardar pro caso de o outro apagar.",
+      "Esperar o outro mandar primeiro pra reagir."
+    ],
+    "correct_index": 1,
+    "rationale": "Ler em voz alta + imaginar quem te ama lendo expõe o que a tela escondeu. Se você não mostraria pessoalmente, é sinal claro de que o filtro caiu — apague e reescreva. Provérbios 15:1 vale: resposta branda desvia furor."
+  }
+}

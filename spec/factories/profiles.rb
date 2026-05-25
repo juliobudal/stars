@@ -7,6 +7,7 @@
 #  color              :string
 #  email              :citext
 #  name               :string
+#  onboarded_at       :datetime
 #  pin_digest         :string
 #  points             :integer          default(0)
 #  role               :integer
@@ -34,14 +35,21 @@ FactoryBot.define do
     role { :child }
     points { 0 }
     pin { "1234" }
+    onboarded_at { Time.current }
 
     trait :parent do
       role { :parent }
       sequence(:email) { |n| "parent#{n}@example.com" }
+      onboarded_at { nil }
     end
 
     trait :child do
       role { :child }
+    end
+
+    # Brand-new child who has not finished the welcome flow yet.
+    trait :fresh do
+      onboarded_at { nil }
     end
   end
 end

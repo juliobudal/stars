@@ -19,7 +19,7 @@
     <span class="text-[12px] font-bold text-muted-foreground row gap-1">Saldo: <span class="<%= net_color_class %>"><%= render Ui::StarValue::Component.new(value: day_net.abs, size: :xs, prefix: net_prefix, color: :current) %></span></span>
   </div>
 
-  <%# Log entries — each is its own card via .history-entry %>
+  <%# Log entries · each is its own card via .history-entry %>
   <div class="mb-5">
     <% logs.each do |h| %>
       <%= render Ui::HistoryRow::Component.new(log: h, with_divider: false) %>

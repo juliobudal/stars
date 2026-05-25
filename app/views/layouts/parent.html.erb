@@ -7,14 +7,15 @@
   </head>
 
   <body class="min-h-screen bg-bg-deep overflow-x-hidden lg:pl-[220px]" data-controller="loading">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:px-4 focus:py-2 focus:rounded-[10px] focus:bg-surface focus:text-text focus:font-extrabold focus:shadow-[0_4px_0_var(--hairline)]">Pular para o conteúdo</a>
     <% if current_profile %>
       <%= turbo_stream_from current_profile.family, "approvals" %>
       <%= render "shared/parent_nav" %>
     <% end %>
-    <div class="p-6 w-full max-w-[1100px] mx-auto lg:px-10 lg:pb-6 pb-[calc(env(safe-area-inset-bottom)+120px)] <%= content_for?(:container_class) ? content_for(:container_class) : '' %>">
+    <main id="main-content" class="p-6 w-full max-w-[1100px] mx-auto lg:px-10 lg:pb-6 pb-[calc(env(safe-area-inset-bottom)+120px)] <%= content_for?(:container_class) ? content_for(:container_class) : '' %>">
       <%= render Ui::Flash::Component.new %>
       <%= yield %>
-    </div>
+    </main>
     <%= render "shared/pwa_shell" %>
   </body>
 </html>

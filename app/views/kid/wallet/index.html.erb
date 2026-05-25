@@ -12,7 +12,7 @@
   <% end %>
 
   <%# Week Summary Cards (3-col) %>
-  <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-4 z-10 relative">
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5 z-10 relative">
     <%= render Ui::StatMetric::Component.new(value: @week_earned,   label: "Conquistado", tint: "mint",    prefix: "+") %>
     <%= render Ui::StatMetric::Component.new(value: @week_spent,    label: "Gasto",       tint: "rose",    prefix: "−") %>
     <%= render Ui::StatMetric::Component.new(value: @week_missions, label: "Missões",     tint: "primary") %>
@@ -73,16 +73,16 @@
       <% end %>
     </div>
 
-    <%# Panel: Descobertas — feed narrativo Academy v4 (cartas) %>
+    <%# Panel: Descobertas · feed narrativo Academy v4 (cartas) %>
     <div id="panel-discoveries" class="flex flex-col gap-3 hidden">
       <% if @recent_cards.any? %>
-        <h3 class="font-display text-[12px] font-extrabold tracking-[1.5px] uppercase mt-1 mb-1 px-1"
+        <h3 class="font-display text-[12px] font-extrabold tracking-[1.5px] uppercase mb-1 px-1"
             style="color: var(--c-mint-dark);">CARTAS RECENTES</h3>
         <% @recent_cards.each do |card| %>
           <article class="ls-card-3d flex items-start gap-3"
                    style="background: var(--surface); border: 2px solid var(--hairline);
-                          border-radius: 14px; padding: 12px 14px; box-shadow: 0 3px 0 rgba(0,0,0,0.06);">
-            <div class="w-9 h-9 rounded-lg shrink-0 flex items-center justify-center"
+                          border-radius: 14px; padding: 12px 14px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);">
+            <div class="w-10 h-10 rounded-xl shrink-0 flex items-center justify-center"
                  style="background: <%= card.mission.subject.color.presence || 'var(--primary)' %>;">
               <%= render Ui::Icon::Component.new((card.illustration_key.presence || card.mission.subject.icon).to_sym, size: 16, color: "white") %>
             </div>
@@ -107,7 +107,7 @@
     </div>
 
     <%# Panel: Aguardando %>
-    <div id="panel-pending" class="flex flex-col gap-5 hidden">
+    <div id="panel-pending" class="flex flex-col gap-3 hidden">
       <% if @pending_tasks.any? %>
         <% @pending_tasks.each_with_index do |task, i| %>
           <%= render Ui::MissionCard::Component.new(mission: task, status: "waiting", variant: "bubble", index: i) %>
@@ -123,7 +123,7 @@
     </div>
 
     <%# Panel: Rejeitadas %>
-    <div id="panel-rejected" class="flex flex-col gap-5 hidden">
+    <div id="panel-rejected" class="flex flex-col gap-3 hidden">
       <% if @rejected_tasks.any? %>
         <% @rejected_tasks.each do |task| %>
           <%= render partial: "kid/wallet/rejected_task", locals: { rejected_task: task } %>

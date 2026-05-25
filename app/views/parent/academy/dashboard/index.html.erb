@@ -42,7 +42,7 @@
                                         subtitle: "Cadastre perfis em /parent/profiles para liberar a Academia.") %>
   <% else %>
     <%# ── Kid tabs ──────────────────────────────────────── %>
-    <div class="flex flex-wrap gap-2 mb-5">
+    <div class="flex flex-wrap gap-2 mb-4">
       <% @children.each do |child| %>
         <% selected = child.id == @selected_kid.id %>
         <%= link_to parent_academy_dashboard_path(kid_id: child.id),
@@ -56,8 +56,7 @@
     </div>
 
     <%# ── Concepts crossed ─────────────────────────────── %>
-    <section class="ls-card-3d mb-4"
-             style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);">
+    <section class="ls-card-3d surface-card-3d-soft mb-4">
       <div class="flex items-baseline justify-between mb-3">
         <h2 class="font-display text-[16px] font-extrabold m-0" style="color: var(--text);">Conceitos atravessados</h2>
         <span class="text-[11px] font-extrabold uppercase tracking-[1px]" style="color: var(--text-muted);">
@@ -101,8 +100,7 @@
     </section>
 
     <%# ── Recent discovery cards ───────────────────────── %>
-    <section class="ls-card-3d mb-4"
-             style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);">
+    <section class="ls-card-3d surface-card-3d-soft mb-4">
       <h2 class="font-display text-[16px] font-extrabold mb-3 m-0" style="color: var(--text);">Cartas recentes</h2>
       <% if @recent_cards.empty? %>
         <div class="flex items-start gap-3 p-3 rounded-xl"
@@ -171,8 +169,7 @@
     </div>
 
     <%# ── Secrets unlocked ─────────────────────────────── %>
-    <section class="ls-card-3d mb-4"
-             style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);">
+    <section class="ls-card-3d surface-card-3d-soft mb-4">
       <h2 class="font-display text-[16px] font-extrabold mb-3 m-0" style="color: var(--text);">Segredos desbloqueados</h2>
       <% if @secret_unlocks.empty? %>
         <div class="flex items-start gap-3 p-3 rounded-xl"
@@ -186,7 +183,7 @@
               Nenhum segredo aberto
             </div>
             <p class="text-[12px] font-bold mt-1 mb-0" style="color: var(--text-muted);">
-              Segredos abrem quando <strong style="color: var(--text);"><%= @selected_kid.name %></strong> volta a um conceito 3+ vezes ou erra padrão. Constância destrava — não pressa.
+              Segredos abrem quando <strong style="color: var(--text);"><%= @selected_kid.name %></strong> volta a um conceito 3+ vezes ou erra padrão. Constância destrava, não pressa.
             </p>
           </div>
         </div>

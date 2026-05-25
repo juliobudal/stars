@@ -9,7 +9,7 @@
         data: { action: "click->ui-modal#open", ui_modal_id_param: "modal_#{dom_id(profile_task)}" }
       ) %>
 
-  <%# Confirmation modal — reuses existing flow %>
+  <%# Confirmation modal · reuses existing flow %>
   <%= render Ui::Modal::Component.new(id: "modal_#{dom_id(profile_task)}") do %>
     <div class="flex items-center justify-center flex-col text-center gap-4">
       <%= render Ui::IconTile::Component.new(icon: cat[:icon], color: cat[:tint], size: 88) %>

@@ -1,0 +1,20 @@
+{
+  "headline": "Iniciante se acha expert. Expert se sente iniciante. A confiança engana ao contrário.",
+  "mechanism_steps": [
+    "Quando você sabe pouco de um assunto, falta repertório pra enxergar o que falta saber — você só vê o pedacinho que conhece e ele parece o todo. Confiança alta, competência baixa.",
+    "Quando você aprende mais, descobre as camadas que existem por baixo — começa a ver perguntas que nem sabia que existiam. A confiança despenca enquanto a competência sobe.",
+    "Por isso a fala mais arrogante quase nunca vem do especialista — vem do iniciante que ainda não tropeçou nas camadas escondidas. Sócrates já dizia: 'só sei que nada sei'."
+  ],
+  "illustration_hint": "Gráfico em forma de montanha-russa. À esquerda, criança num pico baixo com sorriso bobo de muita confiança. Depois despenca num vale fundo onde aparece olhando pra cima de uma montanha gigantesca que não tinha visto antes — agora humilde, ferramentas na mão, escalando devagar.",
+  "micro_check": {
+    "question": "{{learner_name}} ouve duas pessoas conversando sobre um assunto. Uma fala com certeza absoluta; a outra diz 'depende, ainda estou estudando'. Qual sinal merece mais atenção?",
+    "options": [
+      "A que fala com certeza — quem sabe, sabe.",
+      "A que diz 'depende' — quem viu as camadas escondidas hesita mais.",
+      "A mais alta — quem grita convence.",
+      "A mais velha — idade equivale a saber."
+    ],
+    "correct_index": 1,
+    "rationale": "O efeito Dunning-Kruger mostra: confiança absoluta costuma ser sinal de quem ainda não enxergou o tamanho do que não sabe. Hesitar com argumento ('depende, porque…') quase sempre vem de quem mergulhou fundo."
+  }
+}

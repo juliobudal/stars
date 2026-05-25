@@ -10,7 +10,7 @@
   <% if character["name"].present? %>
     <div class="flex items-center gap-3 mb-4 pb-3"
          style="border-bottom: 2px dashed var(--hairline);">
-      <div class="w-12 h-12 rounded-2xl flex items-center justify-center font-display text-[18px] font-extrabold"
+      <div class="w-12 h-12 rounded-xl flex items-center justify-center font-display text-[18px] font-extrabold"
            style="background: color-mix(in oklab, <%= color_var %> 18%, var(--surface));
                   border: 2px solid <%= color_var %>; color: <%= color_var %>;">
         <%= character["name"].to_s.first %>
@@ -30,7 +30,7 @@
 
   <div class="flex flex-col gap-3" data-lens-stage-target="narrativeScenes">
     <% scenes.each_with_index do |scene, idx| %>
-      <div class="rounded-2xl p-4 lens-narrative-scene <%= 'lens-narrative-scene--locked' if idx > 0 && !review_mode %>"
+      <div class="rounded-xl p-4 lens-narrative-scene <%= 'lens-narrative-scene--locked' if idx > 0 && !review_mode %>"
            data-scene-index="<%= idx %>"
            style="background: <%= idx.zero? ? "color-mix(in oklab, #{color_var} 8%, var(--surface))" : 'var(--surface-2)' %>;
                   border: 2px solid <%= idx.zero? ? color_var : 'var(--hairline)' %>;">
@@ -62,7 +62,7 @@
     <% end %>
 
     <% if ending.present? %>
-      <div class="rounded-2xl p-4 lens-narrative-scene <%= 'lens-narrative-scene--locked' unless review_mode %>"
+      <div class="rounded-xl p-4 lens-narrative-scene <%= 'lens-narrative-scene--locked' unless review_mode %>"
            data-scene-index="ending"
            data-lens-stage-target="narrativeFinal"
            style="background: var(--surface-2); border: 2px dashed var(--hairline);">
@@ -79,7 +79,7 @@
 
   <% unless review_mode %>
     <button type="button"
-            class="w-full mt-4 px-4 py-3 rounded-2xl font-display font-extrabold text-[13px] tracking-wide uppercase anim-press ls-btn-3d"
+            class="w-full mt-4 px-4 py-3 rounded-xl font-display font-extrabold text-[13px] tracking-wide uppercase anim-press ls-btn-3d"
             style="background: var(--surface); color: var(--text); border: 2px solid var(--hairline); box-shadow: 0 3px 0 var(--hairline);"
             data-action="click->lens-stage#advanceScene"
             data-lens-stage-target="advanceSceneBtn">
@@ -94,6 +94,7 @@
        aria-hidden="<%= 'true' unless review_mode %>">
     <%= render "kid/academy/missions/lens_micro_check",
                micro_check: payload["micro_check"], color_var: color_var,
-               review_mode: review_mode, signal_payload: signal_payload %>
+               review_mode: review_mode, signal_payload: signal_payload,
+               lens_type: local_assigns[:lens_type] %>
   </div>
 <% end %>

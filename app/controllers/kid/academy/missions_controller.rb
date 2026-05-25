@@ -15,6 +15,7 @@ class Kid::Academy::MissionsController < Kid::Academy::BaseController
     review_result = ::Academy::Missions::ReviewMode.call(learner: current_learner, mission: @mission)
     if review_result.success?
       @review_stage = review_result.data
+      @challenge_committed = @mission.challenge? && challenge_already_committed?
       return render :review
     end
 
@@ -28,6 +29,7 @@ class Kid::Academy::MissionsController < Kid::Academy::BaseController
     end
 
     @stage = result.data
+    @streak = current_mission_streak
     render :lens_stage
   end
 
@@ -55,6 +57,8 @@ class Kid::Academy::MissionsController < Kid::Academy::BaseController
     payload = signal_payload_params
     outcome = params[:outcome].presence || "completed"
 
+    update_mission_streak(payload)
+
     result = ::Academy::Missions::AdvanceLens.call(
       progress: @progress, signal_payload: payload, outcome: outcome,
       learner: current_learner
@@ -70,7 +74,65 @@ class Kid::Academy::MissionsController < Kid::Academy::BaseController
     redirect_to kid_academy_subject_mission_path(@subject, @mission)
   end
 
+  # POST /kid/academy/subjects/:subject_id/missions/:id/commit_challenge
+  #
+  # Turns a mission's `challenge_prompt` (mini-desafio) into a ProfileTask in
+  # `awaiting_approval` status. Plugs the Academy module into the host star
+  # economy: parent approves through the usual flow and the kid earns
+  # ACADEMY_CHALLENGE_POINTS stars.
+  def commit_challenge
+    return redirect_no_challenge unless @mission.challenge?
+
+    if challenge_already_committed?
+      return redirect_to kid_academy_subject_mission_path(@subject, @mission),
+                         notice: "Você já mandou esse desafio para aprovação. ⏳"
+    end
+
+    category = current_profile.family.categories.ordered.first
+    unless category
+      return redirect_to kid_academy_subject_mission_path(@subject, @mission),
+                         alert: "Sua família precisa de pelo menos uma categoria."
+    end
+
+    result = ::Tasks::CreateCustomService.call(
+      profile: current_profile,
+      params: {
+        custom_title: challenge_task_title(@mission),
+        custom_description: @mission.challenge_prompt,
+        custom_points: ACADEMY_CHALLENGE_POINTS,
+        custom_category_id: category.id
+      }
+    )
+
+    if result.success?
+      redirect_to kid_academy_subject_mission_path(@subject, @mission),
+                  notice: "Desafio enviado para aprovação. 🎯"
+    else
+      redirect_to kid_academy_subject_mission_path(@subject, @mission),
+                  alert: result.error
+    end
+  end
+
   private
+
+  ACADEMY_CHALLENGE_POINTS = 5
+  private_constant :ACADEMY_CHALLENGE_POINTS
+
+  def challenge_task_title(mission)
+    "Desafio: #{mission.title}".truncate(ProfileTask::CUSTOM_TITLE_MAX)
+  end
+
+  def challenge_already_committed?
+    current_profile.profile_tasks
+      .where(source: :custom, custom_title: challenge_task_title(@mission))
+      .where(status: %i[awaiting_approval approved])
+      .exists?
+  end
+
+  def redirect_no_challenge
+    redirect_to kid_academy_subject_mission_path(@subject, @mission),
+                alert: "Essa missão não tem mini-desafio."
+  end
 
   SIGNAL_PAYLOAD_KEYS = %i[
     micro_check_correct affective_tap predict_value choices elapsed_seconds
@@ -99,5 +161,27 @@ class Kid::Academy::MissionsController < Kid::Academy::BaseController
   def render_unavailable(reason)
     @reason = reason
     render :v5_placeholder, status: :service_unavailable
+  end
+
+  # ── Mission streak (QW3) ──────────────────────────────────────────
+  # Session-scoped flame counter that bumps on consecutive correct
+  # micro_checks within the same mission. Wrong answer resets to 0.
+  # Switching missions resets to 0. Stays put on advances without a
+  # micro_check signal (e.g. predict reveal, narrative scene flips).
+  def current_mission_streak
+    return 0 unless session[:academy_streak_mission_id] == @mission.id
+    session[:academy_streak_count].to_i
+  end
+
+  def update_mission_streak(payload)
+    correctness = payload.is_a?(Hash) ? payload["micro_check_correct"].to_s : ""
+    return if correctness.empty? # advance without a micro_check signal
+
+    if session[:academy_streak_mission_id] != @mission.id
+      session[:academy_streak_mission_id] = @mission.id
+      session[:academy_streak_count] = 0
+    end
+
+    session[:academy_streak_count] = correctness == "true" ? session[:academy_streak_count].to_i + 1 : 0
   end
 end

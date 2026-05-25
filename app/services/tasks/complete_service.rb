@@ -76,14 +76,7 @@ module Tasks
     def broadcast_all_cleared
       tier = Ui::Celebration.tier_for(:all_cleared)
       payload = { message: "Todas as missões de hoje! 🎉" }
-      Turbo::StreamsChannel.broadcast_append_to(
-        "kid_#{@profile_task.profile.id}",
-        target: "fx_stage",
-        partial: "kid/shared/celebration",
-        locals: { tier: tier, payload: payload }
-      )
-    rescue StandardError => e
-      Rails.logger.warn("[Tasks::CompleteService] broadcast failed id=#{@profile_task.id} error=#{e.message}")
+      Ui::FxBroadcaster.celebrate(profile: @profile_task.profile, tier: tier, payload: payload)
     end
   end
 end

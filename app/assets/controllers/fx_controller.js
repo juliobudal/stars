@@ -118,6 +118,9 @@ export default class extends Controller {
     if (now - this._lastBurstAt < 500) return
     this._lastBurstAt = now
 
+    // FX confetti palette is intentionally divergent from brand tokens:
+    // softer/pastel-shifted for visual effect. Keep these literals here —
+    // do not collapse into --primary/--star/etc.
     const colors = payload?.palette === "gold"
       ? ["#ffc41a", "#ffd96a", "#ffeaa0"]
       : ["#ffc41a", "#ff8a5c", "#ff5a8a", "#3ed49e", "#38b6ff", "#9b7aff"]

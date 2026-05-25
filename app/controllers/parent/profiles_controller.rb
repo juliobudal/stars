@@ -59,7 +59,10 @@ class Parent::ProfilesController < ApplicationController
   end
 
   def reset_pin
-    profile = current_family.profiles.find(params[:id])
+    scope = current_family.profiles.where(role: :child).or(
+      current_family.profiles.where(id: current_profile.id)
+    )
+    profile = scope.find(params[:id])
     result = Auth::ResetPin.call(profile: profile, new_pin: params[:pin], actor: current_profile)
     if result.success?
       redirect_to parent_settings_path, notice: "PIN redefinido."

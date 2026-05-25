@@ -39,8 +39,7 @@
 
       <%= link_to (locked ? "#" : kid_academy_subject_mission_path(@subject, mission)),
                   data: { action: ("click->academy-loading#showLesson" unless locked) },
-                  class: "block ls-card-3d anim-press #{'opacity-60 pointer-events-none' if locked}",
-                  style: "background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); text-decoration: none;" do %>
+                  class: "block ls-card-3d surface-card-3d anim-press no-underline #{'opacity-60 pointer-events-none' if locked}" do %>
         <div class="flex items-start gap-3">
           <div class="w-11 h-11 rounded-full flex items-center justify-center shrink-0 font-extrabold text-[16px]"
                style="background: <%= status == 'mastered' ? 'var(--c-star)' : status == 'completed' ? 'var(--c-primary)' : locked ? 'var(--hairline)' : @subject.color %>; color: white; box-shadow: 0 3px 0 rgba(0,0,0,0.08);">

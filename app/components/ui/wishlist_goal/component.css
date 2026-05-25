@@ -1,4 +1,4 @@
-/* Ui::WishlistGoal — colocated styles. Prefer Tailwind utilities; fall back here only for animation. */
+/* Ui::WishlistGoal · colocated styles. Prefer Tailwind utilities; fall back here only for animation. */
 
 .wishlist-goal__fill {
   transition: width var(--dur-long) var(--ease-spring);

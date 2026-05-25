@@ -40,7 +40,7 @@
   </div>
 
   <% if payload["anchor_question"].present? %>
-    <div class="rounded-2xl p-4 mt-4"
+    <div class="rounded-xl p-4 mt-4"
          style="background: color-mix(in oklab, <%= color_var %> 10%, var(--surface)); border: 2px solid <%= color_var %>;">
       <p class="font-display text-[14px] font-extrabold leading-snug m-0" style="color: var(--text);">
         <%= payload["anchor_question"] %>
@@ -50,8 +50,8 @@
 
   <% if payload["reveal"].present? %>
     <div class="lens-reveal mt-3" <% unless review_mode %>data-lens-stage-target="compareReveal" hidden<% end %>>
-      <div class="rounded-2xl p-4"
-           style="background: var(--surface-2); border: 2px dashed <%= color_var %>;">
+      <div class="rounded-xl p-4"
+           style="background: color-mix(in oklab, <%= color_var %> 12%, var(--surface)); border: 2px solid <%= color_var %>;">
         <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-1"
              style="color: <%= color_var %>;">
           Reflexão

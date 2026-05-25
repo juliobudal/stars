@@ -28,8 +28,6 @@ RSpec.describe Academy::Guide::Ask do
     expect(result).to be_success
     expect(result.data[:user_message].content).to eq("Por que 23 min?")
     expect(result.data[:guide_message].content).to eq("Resposta calma do Guia.")
-    expect(result.data[:remaining_messages]).to eq(4)
-    expect(result.data[:closed]).to be(false)
     expect(result.data[:guide_message].tokens_in).to eq(50)
     expect(result.data[:guide_message].tokens_out).to eq(30)
   end
@@ -46,32 +44,18 @@ RSpec.describe Academy::Guide::Ask do
     expect(result.data[:guide_message].flagged).to be(true)
   end
 
-  it "blocks call before LLM when quota is exhausted" do
-    convo = create(:academy_guide_conversation, learner_id: learner.id, mission: mission, started_at: 1.hour.ago)
-    5.times { create(:academy_guide_message, conversation: convo, role: :user) }
-
-    expect(client).not_to receive(:chat)
-    result = described_class.call(learner: learner, mission: mission, user_content: "oi", client: client)
-    expect(result).not_to be_success
-    expect(result.error).to eq(:quota_exhausted)
-  end
-
-  it "marks conversation closed after the 5th user message" do
+  it "reuses today's conversation across multiple calls" do
     allow(client).to receive(:chat).and_return(llm_response("ok"))
-    5.times { described_class.call(learner: learner, mission: mission, user_content: "uma pergunta", client: client) }
-    convo = Academy::GuideConversation.last
-    expect(convo.closed_at).to be_present
+    3.times { described_class.call(learner: learner, mission: mission, user_content: "uma pergunta", client: client) }
+    expect(Academy::GuideConversation.where(learner_id: learner.id, mission_id: mission.id).count).to eq(1)
   end
 
-  it "rolls back persistence on Client::Error and does not consume a quota slot" do
+  it "rolls back persistence on Client::Error" do
     allow(client).to receive(:chat).and_raise(Academy::Llm::Client::Error, "boom")
 
     expect {
       described_class.call(learner: learner, mission: mission, user_content: "olá", client: client)
     }.not_to change(Academy::GuideMessage, :count)
-
-    quota = Academy::Guide::QuotaCheck.call(learner: learner, mission: mission)
-    expect(quota.data[:remaining_messages]).to eq(5)
   end
 
   it "fails fast when LLM key is missing" do

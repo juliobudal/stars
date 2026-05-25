@@ -1,0 +1,33 @@
+{
+  "character": {
+    "name": "Vini",
+    "age": 9,
+    "trait": "quebrou um copo da coleção da mãe e tentou pedir desculpa do jeito que ele sempre via os adultos pedirem"
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "text": "Domingo de manhã. Vini joga bola na sala — proibido. A bola bate na estante. Cai o copo azul que era da bisavó. Estilhaços. A mãe entra, olha o chão, olha o Vini. Não grita. Só fala: 'Vini.' Vini começa: 'Desculpa, mãe, mas eu tava só brincando e o Téo ficou me provocando e a sala é pequena e...'"
+    },
+    {
+      "id": "s2",
+      "text": "A mãe levanta a mão. 'Vini, para. Eu não quero ouvir 'mas'. Tenta de novo. Sem 'mas'.' Vini engole. Tenta: 'Desculpa, mãe, mas...' Para sozinho. Respira. 'Desculpa, mãe. Eu joguei bola na sala. Eu quebrei o copo da bisavó. Foi minha culpa.' A mãe abaixa pra pegar o caco maior."
+    },
+    {
+      "id": "s3",
+      "text": "A mãe: 'Agora a parte que dói. O que você vai fazer pra consertar?' Vini pensa. 'Eu vou varrer. E eu vou juntar minha mesada de dois meses pra te dar.' A mãe: 'O copo era da bisavó, não tem preço. Mas eu aceito a vassoura e que você não jogue bola dentro de casa nunca mais.' Vini balança a cabeça. Vai pegar a vassoura."
+    }
+  ],
+  "ending": "Vini varre. A mãe deixa um caco grande em cima do balcão por uma semana — não pra punir, mas pra Vini ver. Quando some, no domingo seguinte, Vini sente que aquela semana inteira foi parte do pedido de desculpa. A frase ficou: 'foi minha culpa, sem mas.'",
+  "micro_check": {
+    "question": "{{learner_name}}, qual a regra que a mãe do Vini deu pra ele pedir desculpa de novo?",
+    "options": [
+      "Pedir desculpa três vezes seguidas.",
+      "Pedir sem usar a palavra 'mas'.",
+      "Pedir ajoelhado pra ela acreditar.",
+      "Pedir só depois de pensar uma hora."
+    ],
+    "correct_index": 1,
+    "rationale": "Toda vez que uma desculpa começa com 'mas', vira defesa, não pedido. 'Mas o Téo provocou' transfere culpa. 'Foi minha culpa' assume. A mãe ainda pediu uma ação concreta — desculpa boa tem reparo junto."
+  }
+}

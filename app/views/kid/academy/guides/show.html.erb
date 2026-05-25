@@ -1,4 +1,4 @@
-<% content_for(:title) { "O Guia — #{@mission.title}" } %>
+<% content_for(:title) { "O Guia · #{@mission.title}" } %>
 <%
   color_var = "var(--academy-pokedex-#{@mission.concept.pokedex_color_key.presence || 'cognitivo'})"
 %>
@@ -23,11 +23,6 @@
           <%= @mission.title %>
         </h1>
       </div>
-
-      <div class="font-display text-[11px] font-extrabold rounded-full px-3 py-1.5"
-           style="background: var(--surface); border: 2px solid var(--hairline); color: var(--text-muted);">
-        <%= @remaining %>/5
-      </div>
     </div>
   </header>
 
@@ -41,7 +36,7 @@
           Pergunta o que quiser sobre essa missão.
         </p>
         <p class="font-display text-[13px] leading-snug m-0" style="color: var(--text-muted);">
-          5 perguntas por dia. O Guia só fala do que tá rolando aqui.
+          O Guia só fala do que tá rolando aqui.
         </p>
       </div>
     <% else %>
@@ -51,32 +46,20 @@
     <% end %>
   </section>
 
-  <%# ── Input or closed state ─────────────────────────────────── %>
-  <% if @session_state == :closed_today %>
-    <div class="lens-card p-4 text-center"
-         style="background: var(--surface-2); border-color: var(--hairline);">
-      <p class="font-display text-[14px] font-extrabold leading-snug m-0" style="color: var(--text);">
-        Você usou suas 5 perguntas de hoje. Volta amanhã! 🌙
-      </p>
+  <%# ── Input ─────────────────────────────────────────────────── %>
+  <%= form_with url: kid_academy_subject_mission_guide_path(@subject, @mission),
+                method: :post, local: true, class: "lens-card p-3" do |f| %>
+    <%= f.text_area :content,
+                    rows: 3,
+                    maxlength: 500,
+                    required: true,
+                    placeholder: "O que você quer entender?",
+                    class: "w-full rounded-xl p-3 font-display text-[15px] leading-snug",
+                    style: "background: var(--surface); border: 2px solid var(--hairline); color: var(--text); outline: none;" %>
+    <div class="flex items-center justify-end mt-3">
+      <%= f.submit "Perguntar →",
+                   class: "px-5 py-2.5 rounded-xl font-display font-extrabold text-[14px] anim-press ls-btn-3d border-0",
+                   style: "background: var(--primary); color: white; box-shadow: 0 4px 0 var(--primary-2);" %>
     </div>
-  <% else %>
-    <%= form_with url: kid_academy_subject_mission_guide_path(@subject, @mission),
-                  method: :post, local: true, class: "lens-card p-3" do |f| %>
-      <%= f.text_area :content,
-                      rows: 3,
-                      maxlength: 500,
-                      required: true,
-                      placeholder: "O que você quer entender?",
-                      class: "w-full rounded-2xl p-3 font-display text-[15px] leading-snug",
-                      style: "background: var(--surface); border: 2px solid var(--hairline); color: var(--text); outline: none;" %>
-      <div class="flex items-center justify-between mt-3">
-        <span class="font-display text-[11px]" style="color: var(--text-muted);">
-          <%= @remaining %> <%= @remaining == 1 ? "pergunta restante" : "perguntas restantes" %>
-        </span>
-        <%= f.submit "Perguntar →",
-                     class: "px-5 py-2.5 rounded-2xl font-display font-extrabold text-[14px] anim-press ls-btn-3d border-0",
-                     style: "background: var(--primary); color: white; box-shadow: 0 4px 0 var(--primary-2);" %>
-      </div>
-    <% end %>
   <% end %>
 </div>

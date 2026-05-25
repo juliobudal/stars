@@ -1,0 +1,20 @@
+{
+  "headline": "Dinheiro já perdido não volta sendo defendido — só perde mais junto.",
+  "mechanism_steps": [
+    "O cérebro detesta admitir que perdeu — por isso continua investindo tempo/dinheiro em coisa que já deu errado, só pra justificar o que foi gasto antes.",
+    "Mas a pergunta certa nunca é 'quanto já gastei?'. É 'quanto vou ganhar a mais se seguir vs. se sair?'. O passado é morto — só o futuro decide.",
+    "Por isso pessoas terminam filme ruim por 'já paguei', dobram aposta perdida pra 'recuperar' e seguem em relação tóxica por 'já investi tanto' — todos pagam dobrado pela mesma cilada."
+  ],
+  "illustration_hint": "Uma criança no cinema com expressão de tédio, comendo pipoca sem vontade. No canto, um relógio mostra 1h restante. Sob a poltrona, uma sacola transparente com bilhetes velhos escrito '1h já gasta'. Setinha apontando: 'a 1h gasta + 1h por gastar = perder 2h em vez de 1'.",
+  "micro_check": {
+    "question": "{{learner_name}} comprou um curso online que está chato e não está aprendendo. Faltam 8 aulas. Qual pergunta ajuda mais a decidir?",
+    "options": [
+      "'Já paguei muito, vou aguentar até o fim.'",
+      "'Daqui pra frente, as 8 aulas restantes valem mais que outras 8h fazendo algo melhor?'",
+      "'O que vão pensar de mim se eu desistir?'",
+      "'Vou só passar pela frente sem prestar atenção pra dizer que terminei.'"
+    ],
+    "correct_index": 1,
+    "rationale": "A pergunta certa olha pra frente: vale mais SEGUIR ou SAIR daqui em diante? O passado (dinheiro gasto) já foi — defender ele só faz perder mais tempo. Custo afundado = passado, decisão = futuro."
+  }
+}

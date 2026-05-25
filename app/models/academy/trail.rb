@@ -47,14 +47,36 @@ module Academy
     def to_param = slug
 
     def progress_for(learner_id)
-      mission_ids = missions.where(active: true).pluck(:id)
-      return { total: 0, done: 0, mastered: 0, ratio: 0.0 } if mission_ids.empty?
+      self.class.progresses_for(learner_id, trails: [ self ]).fetch(id)
+    end
 
-      progresses = MissionProgress.where(learner_id: learner_id, mission_id: mission_ids)
-      done     = progresses.where(status: %i[completed mastered]).count
-      mastered = progresses.where(status: :mastered).count
-      total    = mission_ids.size
-      { total: total, done: done, mastered: mastered, ratio: done.to_f / total }
+    # Batch variant: 3 queries total, regardless of how many trails.
+    # Returns { trail_id => { total:, done:, mastered:, ratio: } }.
+    def self.progresses_for(learner_id, trails:)
+      trail_ids = trails.map(&:id)
+      return {} if trail_ids.empty?
+
+      totals = Mission.where(active: true, trail_id: trail_ids).reorder(nil).group(:trail_id).count
+      done = MissionProgress
+               .joins(:mission)
+               .where(learner_id: learner_id, academy_missions: { trail_id: trail_ids, active: true })
+               .where(status: %i[completed mastered])
+               .group("academy_missions.trail_id").count
+      mastered = MissionProgress
+                   .joins(:mission)
+                   .where(learner_id: learner_id, academy_missions: { trail_id: trail_ids, active: true })
+                   .where(status: :mastered)
+                   .group("academy_missions.trail_id").count
+
+      trail_ids.index_with do |tid|
+        total = totals[tid] || 0
+        if total.zero?
+          { total: 0, done: 0, mastered: 0, ratio: 0.0 }
+        else
+          d = done[tid] || 0
+          { total: total, done: d, mastered: mastered[tid] || 0, ratio: d.to_f / total }
+        end
+      end
     end
   end
 end

@@ -133,7 +133,10 @@
   /* Shadows — Duolingo 3D */
   --shadow-btn: 0 4px 0 rgba(0, 0, 0, 0.12);
   --shadow-btn-hover: 0 6px 0 rgba(0, 0, 0, 0.12);
+  --shadow-card-light: 0 4px 0 rgba(0, 0, 0, 0.04);
+  --shadow-card-subtle: 0 4px 0 rgba(0, 0, 0, 0.06);
   --shadow-card: 0 4px 0 rgba(0, 0, 0, 0.08);
+  --shadow-card-heavy: 0 4px 0 rgba(0, 0, 0, 0.12);
   --shadow-lift: 0 6px 0 rgba(0, 0, 0, 0.08);
   --border-card: 2px solid var(--hairline);
 
@@ -407,7 +410,10 @@
   /* Shadows */
   --shadow-btn: var(--shadow-btn);
   --shadow-btn-hover: var(--shadow-btn-hover);
+  --shadow-card-light: var(--shadow-card-light);
+  --shadow-card-subtle: var(--shadow-card-subtle);
   --shadow-card: var(--shadow-card);
+  --shadow-card-heavy: var(--shadow-card-heavy);
   --shadow-lift: var(--shadow-lift);
 
   /* Colors used in design system */
@@ -486,3 +492,22 @@
 
 /* Active-tab depth shadow */
 @utility shadow-tab-active { box-shadow: 0 2px 0 var(--color-primary-depth); }
+
+/* ── Surface cards — Duolingo 3D depth ──
+   Two utilities for the canonical "white card on hairline border with depth shadow"
+   used across kid/parent dashboards. Pick the variant by hierarchy weight, not by mood.
+   For one-off variants (different radius, padding, or shadow offset) stay inline. */
+@utility surface-card-3d {
+  background: var(--surface);
+  border: var(--border-card);
+  border-radius: var(--r-xl);
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+}
+@utility surface-card-3d-soft {
+  background: var(--surface);
+  border: var(--border-card);
+  border-radius: var(--r-xl);
+  padding: 16px;
+  box-shadow: var(--shadow-card-subtle);
+}

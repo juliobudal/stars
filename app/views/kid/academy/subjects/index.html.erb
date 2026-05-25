@@ -34,7 +34,7 @@
 
   <div id="academy-flash"></div>
 
-  <%# ── Bússola do Explorador (v4 — 3 cards) ─────────────── %>
+  <%# ── Bússola do Explorador (v4 · 3 cards) ─────────────── %>
   <% if @compass_plan && @compass_plan.cards.any? %>
     <section class="mb-5">
       <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase mb-2 px-1" style="color: var(--c-primary-dark);">
@@ -154,10 +154,9 @@
                        else "var(--hairline)"
                        end
         %>
-        <%= link_to kid_academy_subject_path(subject), class: "block ls-card-3d anim-press",
-                    style: "background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.08); position: relative; overflow: hidden;" do %>
+        <%= link_to kid_academy_subject_path(subject), class: "block ls-card-3d surface-card-3d anim-press relative overflow-hidden" do %>
           <div class="flex items-start gap-3">
-            <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
                  style="background: <%= subject.color %>; box-shadow: 0 3px 0 rgba(0,0,0,0.08);">
               <%= render Ui::Icon::Component.new(subject.icon.to_sym, size: 26, color: "white") %>
             </div>
@@ -207,7 +206,7 @@
         <% @recent_cards.each do |card| %>
           <article class="shrink-0 snap-start ls-card-3d"
                    style="background: var(--surface); border: 2px solid var(--c-star); border-radius: 14px; padding: 12px; box-shadow: 0 4px 0 var(--star-depth); width: 220px;">
-            <div class="w-10 h-10 rounded-2xl flex items-center justify-center mb-2"
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-2"
                  style="background: <%= card.mission.subject.color %>;">
               <%= render Ui::Icon::Component.new(card.illustration_key.to_s.presence&.to_sym || :sparkle, size: 20, color: "white") %>
             </div>

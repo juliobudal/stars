@@ -1,0 +1,20 @@
+{
+  "headline": "Asch mostrou: maioria errada faz pessoa certa duvidar do próprio olho.",
+  "mechanism_steps": [
+    "Em 1951 Solomon Asch botou uma pessoa numa sala com 7 cúmplices. Mostrava 3 linhas — uma claramente mais longa. Os 7 falavam sério que a curta era a longa. A pessoa real respondia por último.",
+    "Cerca de 75% dos participantes cederam pelo menos uma vez e disseram em voz alta que a curta era a longa. O olho via o certo. A boca repetia o grupo. O cérebro escolheu pertencer em vez de acertar.",
+    "Detalhe que muda tudo: quando UMA outra pessoa do grupo também discordava, o conformismo despencava. Coragem é contagiosa — basta um aliado pra liberar o olho de novo."
+  ],
+  "illustration_hint": "Mesa com 8 cadeiras vista de cima. 7 figuras apontam pra uma linha curta dizendo 'é a maior!' com setas confiantes. A 8ª criança aponta tímida pra linha realmente longa, com uma bolha mostrando ela duvidando do próprio dedo. Ao lado, uma figura levanta o dedo pra concordar com ela — e a tímida endireita o ombro.",
+  "micro_check": {
+    "question": "Numa sala, 6 colegas dizem que a resposta certa é A. {{learner_name}} viu claramente que é B. Pelo experimento de Asch, o que aumenta MUITO a chance de {{learner_name}} falar B em voz alta?",
+    "options": [
+      "{{learner_name}} ter respondido errado nas últimas provas pra ganhar humildade.",
+      "Ter pelo menos UMA outra pessoa na sala que também discorde do grupo — coragem fica contagiosa.",
+      "O grupo todo estar de mau humor naquele dia.",
+      "{{learner_name}} ser a pessoa mais nova da sala."
+    ],
+    "correct_index": 1,
+    "rationale": "Asch testou exatamente isso: com 1 aliado, o conformismo despenca. Pertencer ao grupo pesa muito no cérebro, mas basta um segundo discordante pra liberar o resto a falar o que viu de verdade."
+  }
+}

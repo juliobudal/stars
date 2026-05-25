@@ -1,0 +1,20 @@
+{
+  "headline": "Verdade dura sem cuidado é descarga emocional — não coragem.",
+  "mechanism_steps": [
+    "Falar a verdade dura tem 3 motivos possíveis: pode ser necessária (o outro precisa saber), pode ser útil (vai mudar algo), ou pode ser só alívio seu (você precisava soltar).",
+    "Quando os 3 ingredientes faltam — necessidade, cuidado e você pagando algum custo — sobra só descarga. Você se sente aliviado; o outro fica machucado sem ganhar mudança.",
+    "Coragem real fala a verdade quando ela serve, com cuidado pra como entrega, e topa pagar o custo do desconforto. O resto é covardia disfarçada: pega o atalho do desabafo e chama de honestidade."
+  ],
+  "illustration_hint": "Duas crianças conversando. Esquerda: solta um balão de palavras pesadas tipo 'você é chato' e o outro recua. Direita: o mesmo conteúdo aparece em balão dividido em três pedaços — 'eu vi isso aqui', 'isso me incomodou porque…', 'vamos fazer diferente?'. Setinha: 'mesma verdade, peso totalmente outro'.",
+  "micro_check": {
+    "question": "{{learner_name}} acha o desenho do irmão feio. O irmão pergunta 'tá bom?'. Qual resposta é verdade que serve, e não covardia?",
+    "options": [
+      "'Tá péssimo, você não desenha nada.'",
+      "'Aqui as pernas ficaram tortas. Tenta apagar e fazer de novo, ia ficar mais forte.'",
+      "'Mente: tá lindo.'",
+      "'Desisto, não dá pra falar nada com você sem você ficar bravo.'"
+    ],
+    "correct_index": 1,
+    "rationale": "A resposta certa é específica, útil e sem julgar a pessoa. 'Tá péssimo' é descarga; mentir é evitar o custo; 'desisto' é ataque disfarçado. Verdade que serve dá direção sem rebaixar."
+  }
+}

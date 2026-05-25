@@ -1,4 +1,4 @@
-<%# Kid interests picker — chips grid, multi-select 3-5. %>
+<%# Kid interests picker · chips grid, multi-select 3-5. %>
 <div class="screen screen-enter with-nav">
   <%= render Ui::KidTopBar::Component.new(profile: current_profile, streak: current_profile.streak_days) %>
 
@@ -61,7 +61,7 @@
          data-interest-picker-target="footer">
       <span class="text-[13px] font-bold" style="color: var(--text-muted);"
             data-interest-picker-target="count">
-        <%= @selected.size %> escolhidas — mínimo <%= @min %>, máximo <%= @max %>
+        <%= @selected.size %> escolhidas. Mínimo <%= @min %>, máximo <%= @max %>
       </span>
       <%= f.button type: :submit,
                    class: "ls-btn ls-btn-primary",

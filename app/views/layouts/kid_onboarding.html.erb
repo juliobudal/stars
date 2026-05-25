@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <title><%= content_for(:title) || "LittleStars | Bem-vindo" %></title>
+    <%= render "shared/head" %>
+    <%= yield :head %>
+  </head>
+
+  <body class="min-h-screen bg-bg-deep overflow-x-hidden" data-palette="<%= palette_for(current_profile) %>" data-controller="fx loading">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:px-4 focus:py-2 focus:rounded-[10px] focus:bg-surface focus:text-text focus:font-extrabold focus:shadow-[0_4px_0_var(--hairline)]">Pular para o conteúdo</a>
+    <%= render "kid/shared/fx_stage" %>
+    <main id="main-content" class="w-full max-w-[430px] mx-auto pt-8 pb-12 px-5 min-h-screen flex flex-col">
+      <%= render Ui::Flash::Component.new %>
+      <%= yield %>
+    </main>
+    <%= render "shared/pwa_shell" %>
+  </body>
+</html>

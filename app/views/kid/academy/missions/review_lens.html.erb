@@ -1,4 +1,4 @@
-<% content_for(:title) { "Revisão — #{@mission.title}" } %>
+<% content_for(:title) { "Revisão · #{@mission.title}" } %>
 <%
   visit = @entry.visit
   cache = @entry.lens_cache
@@ -51,17 +51,17 @@
   </header>
 
   <%# ── Read-only banner ──────────────────────────────────────── %>
-  <div class="rounded-2xl px-4 py-2.5 mb-4 flex items-center gap-2"
+  <div class="rounded-xl px-4 py-2.5 mb-4 flex items-center gap-2"
        style="background: color-mix(in oklab, <%= color_var %> 12%, var(--surface)); border: 1.5px solid color-mix(in oklab, <%= color_var %> 45%, var(--hairline));">
     <span aria-hidden="true">👁️</span>
     <span class="font-display text-[12px] font-extrabold tracking-[0.5px]" style="color: var(--text);">
-      Modo revisão — você já completou esta lição
+      Modo revisão: você já completou esta lição
     </span>
   </div>
 
   <%# ── Body header ───────────────────────────────────────────── %>
   <div class="flex items-center gap-3 mb-4">
-    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-[22px]"
+    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-[22px]"
          style="background: color-mix(in oklab, <%= color_var %> 18%, var(--surface)); border: 2px solid <%= color_var %>;">
       <%= action_label[:emoji] %>
     </div>
@@ -81,7 +81,8 @@
       <% interpolated_payload = ::Academy::Lens::InterpolatePayload.render(payload: cache.payload, learner: current_learner) %>
       <%= render "kid/academy/missions/lens_#{primitive}",
                  concept: @mission.concept, payload: interpolated_payload, color_var: color_var,
-                 review_mode: true, signal_payload: (visit.signal_payload || {}) %>
+                 review_mode: true, signal_payload: (visit.signal_payload || {}),
+                 lens_type: lens_type %>
     <% else %>
       <div class="lens-card p-5">
         <p class="font-display text-[14px] leading-snug m-0" style="color: var(--text-muted);">
@@ -96,18 +97,18 @@
     <% if prev_id %>
       <%= link_to "← Anterior",
                   kid_academy_subject_mission_review_visit_path(@subject, @mission, prev_id),
-                  class: "flex-1 text-center px-4 py-3 rounded-2xl font-display font-extrabold text-[14px] anim-press",
+                  class: "flex-1 text-center px-4 py-3 rounded-xl font-display font-extrabold text-[14px] anim-press",
                   style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 var(--hairline); color: var(--text); text-decoration: none;" %>
     <% end %>
     <% if next_id %>
       <%= link_to "Próxima →",
                   kid_academy_subject_mission_review_visit_path(@subject, @mission, next_id),
-                  class: "flex-1 text-center px-4 py-3 rounded-2xl font-display font-extrabold text-[14px] anim-press",
+                  class: "flex-1 text-center px-4 py-3 rounded-xl font-display font-extrabold text-[14px] anim-press",
                   style: "background: var(--primary); color: white; box-shadow: 0 4px 0 var(--primary-2); border: 0; text-decoration: none;" %>
     <% else %>
       <%= link_to "✓ Voltar à revisão",
                   kid_academy_subject_mission_path(@subject, @mission),
-                  class: "flex-1 text-center px-4 py-3 rounded-2xl font-display font-extrabold text-[14px] anim-press",
+                  class: "flex-1 text-center px-4 py-3 rounded-xl font-display font-extrabold text-[14px] anim-press",
                   style: "background: var(--primary); color: white; box-shadow: 0 4px 0 var(--primary-2); border: 0; text-decoration: none;" %>
     <% end %>
   </div>

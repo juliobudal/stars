@@ -33,13 +33,13 @@
       { id: "inactive", label: "Inativas",  count: inactive_count }
     ]
   %>
-  <div class="mb-[20px]">
+  <div class="mb-5">
     <%= render Ui::FilterChips::Component.new(items: chip_items, active: "all", controller: "filter-tabs") %>
   </div>
 
   <%# Mission grid %>
   <% if @global_tasks.any? %>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <% @global_tasks.each do |m| %>
         <%= render "mission_card", mission: m, assigned: (m.assigned_profiles.any? ? m.assigned_profiles : @kids) %>
       <% end %>

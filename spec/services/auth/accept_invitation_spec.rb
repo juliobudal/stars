@@ -12,7 +12,7 @@ RSpec.describe Auth::AcceptInvitation do
   it "marks invitation accepted and returns family" do
     result = described_class.call(token: invitation.token)
     expect(result.success?).to be true
-    expect(result.family).to eq(family)
+    expect(result.data[:family]).to eq(family)
     expect(invitation.reload.accepted_at).to be_present
   end
 

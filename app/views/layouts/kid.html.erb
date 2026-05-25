@@ -7,9 +7,10 @@
   </head>
 
   <body class="min-h-screen bg-bg-deep overflow-x-hidden" data-palette="<%= palette_for(current_profile) %>" data-controller="fx loading academy-loading">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:px-4 focus:py-2 focus:rounded-[10px] focus:bg-surface focus:text-text focus:font-extrabold focus:shadow-[0_4px_0_var(--hairline)]">Pular para o conteúdo</a>
     <%= render "shared/kid_nav" %>
     <%= render "kid/shared/fx_stage" %>
-    <main class="w-full max-w-[430px] md:max-w-[560px] lg:max-w-[720px] mx-auto pb-[calc(env(safe-area-inset-bottom)+160px)]">
+    <main id="main-content" class="w-full max-w-[430px] md:max-w-[560px] lg:max-w-[720px] mx-auto pb-[calc(env(safe-area-inset-bottom)+160px)]">
       <%= render Ui::Flash::Component.new %>
       <%= yield %>
     </main>

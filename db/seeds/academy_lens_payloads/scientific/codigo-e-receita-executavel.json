@@ -1,0 +1,20 @@
+{
+  "headline": "Codigo não e mágica — e receita que a maquina segue ao pe da letra, sem improvisar.",
+  "mechanism_steps": [
+    "Computador não adivinha. Tem três ferramentas: caixinha de valor (variável), 'se isso então aquilo' (condicional) e bloco repetido (loop). Tudo é combinação das três.",
+    "Quando você escreve 'se a vida for zero, mostre Game Over', o computador faz EXATAMENTE isso. Se esqueceu de dizer 'desligue a música', ela continua tocando. Ele não preenche o que você esqueceu.",
+    "Programar treina pensar com clareza: pra a máquina fazer certo, você quebra o problema em passos exatos. Seymour Papert criou o LOGO nos anos 60 com essa tese — programar organiza o raciocínio."
+  ],
+  "illustration_hint": "Robô amigável tipo Duo segurando um livro de receita aberto, lendo passos com lupa. Ao lado, jogo de videogame: na tela, balão 'se vida = 0, mostre GAME OVER'. O robô aponta cada palavra do código com dedinho, sem improvisar nada.",
+  "micro_check": {
+    "question": "{{learner_name}} escreveu um joguinho onde escreveu só: 'quando o monstro encostar, perde uma vida'. Por que o jogo Não mostra 'Game Over' quando às vidas chegam a zero?",
+    "options": [
+      "Porque o computador esquece de checar com o tempo.",
+      "Porque {{learner_name}} escreveu só a regra de 'perder vida', sem dizer o que fazer em zero. Máquina não adivinha.",
+      "Porque jogo bom precisa de internet pra acabar.",
+      "Porque tem que apertar Esc pra ele perceber que acabou."
+    ],
+    "correct_index": 1,
+    "rationale": "Computador só faz o que está escrito. Se a receita diz 'perde vida ao encostar' mas não diz 'se vida = 0, mostre Game Over', ele perde vida até ficar negativo sem dar tela final. Programar e prever cada passo."
+  }
+}

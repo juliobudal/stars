@@ -40,8 +40,8 @@
       </p>
       <div class="mt-4">
         <%= link_to "Tomar a pílula do dia →", kid_academy_pill_path,
-                    class: "ls-btn-3d inline-block",
-                    style: "background: var(--primary); color: white; padding: 12px 18px; border-radius: 12px; box-shadow: 0 4px 0 var(--primary-2); font-weight: 800; font-family: var(--font-display, Nunito), sans-serif; text-decoration: none;" %>
+                    class: "ls-btn-3d inline-block font-display font-extrabold no-underline",
+                    style: "background: var(--primary); color: white; padding: 12px 16px; border-radius: 12px; box-shadow: 0 4px 0 var(--primary-2);" %>
       </div>
     </div>
   <% else %>
@@ -54,7 +54,7 @@
                       class: "ls-card-3d block",
                       style: "background: var(--surface); border: 2px solid #{color_var}; border-radius: 14px; padding: 12px 14px; box-shadow: 0 4px 0 color-mix(in oklab, #{color_var} 30%, transparent); text-decoration: none; color: inherit;" do %>
             <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-[20px] shrink-0"
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center text-[20px] shrink-0"
                    style="background: color-mix(in oklab, <%= color_var %> 18%, var(--surface)); border: 2px solid <%= color_var %>;">
                 💊
               </div>
@@ -85,16 +85,16 @@
       <div class="flex items-center justify-between gap-3 mt-5">
         <% if @page > 1 %>
           <%= link_to "← Anterior", kid_academy_pills_path(page: @page - 1),
-                      class: "ls-btn-3d",
-                      style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06); padding: 10px 14px; border-radius: 12px; color: var(--text); font-weight: 700; font-family: var(--font-display, Nunito), sans-serif; text-decoration: none;" %>
+                      class: "ls-btn-3d font-display font-bold no-underline",
+                      style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06); padding: 10px 14px; border-radius: 12px; color: var(--text);" %>
         <% else %>
           <span></span>
         <% end %>
 
         <% if @has_more %>
           <%= link_to "Próxima →", kid_academy_pills_path(page: @page + 1),
-                      class: "ls-btn-3d",
-                      style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06); padding: 10px 14px; border-radius: 12px; color: var(--text); font-weight: 700; font-family: var(--font-display, Nunito), sans-serif; text-decoration: none;" %>
+                      class: "ls-btn-3d font-display font-bold no-underline",
+                      style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06); padding: 10px 14px; border-radius: 12px; color: var(--text);" %>
         <% end %>
       </div>
     <% end %>

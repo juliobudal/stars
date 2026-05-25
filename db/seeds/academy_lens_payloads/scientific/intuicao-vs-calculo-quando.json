@@ -1,0 +1,20 @@
+{
+  "headline": "Bombeiro veterano sente o teto cair sem pensar. Investidor 'sente' o mercado e quebra.",
+  "mechanism_steps": [
+    "Gary Klein estudou um bombeiro que mandou o time sair de casa em chamas sem saber por quê. Segundos depois o piso caiu. A sala estava quente demais, o som vinha de baixo — o cérebro leu sem nomear.",
+    "Funcionou porque incêndio tem 3 ingredientes: ambiente estável (fogo é igual há milênios), feedback rápido (piso cai em segundos), milhares de horas de prática. Os três juntos: intuição vira precisa.",
+    "Mercado tem zero dos três: caótico, feedback demora anos, situação nunca repete. Quase nenhum investidor que 'sente o mercado' vence fundo de índice em 10 anos. Sem os três, intuição é palpite."
+  ],
+  "illustration_hint": "Esquerda: bombeiro de capacete na porta de casa em chamas, seta laranja na barriga apontando 'SAI AGORA', teto cedendo atrás. Direita: investidor de terno olhando gráfico zigzag, mesma seta apontando 'COMPRA', gráfico despencando. A coruja Duo no meio com plaquinha 'depende do terreno'.",
+  "micro_check": {
+    "question": "Em qual situação {{learner_name}} pode confiar na intuição (palpite rápido sem calcular)?",
+    "options": [
+      "Adivinhar qual time vai ganhar a Copa do Mundo do ano que vem",
+      "Escolher um número da Mega-Sena que 'parece certo'",
+      "Sentir, depois de 3 anos treinando xadrez todo dia, que aquela jogada é cilada",
+      "Decidir num segundo qual ação da bolsa comprar olhando o gráfico"
+    ],
+    "correct_index": 2,
+    "rationale": "Xadrez tem os três ingredientes: regras estáveis, feedback rápido (perde peça em 2 jogadas) e horas de prática. Copa, loteria e bolsa são caóticas demais — ali intuição é só palpite com cara de certeza."
+  }
+}

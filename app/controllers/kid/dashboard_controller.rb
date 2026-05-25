@@ -1,8 +1,4 @@
-class Kid::DashboardController < ApplicationController
-  include Authenticatable
-  before_action :require_child!
-  layout "kid"
-
+class Kid::DashboardController < Kid::BaseController
   def index
     ensure_todays_tasks
     @profile_tasks    = ProfileTask.pending.where(profile: current_profile).includes(:global_task)

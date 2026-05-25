@@ -1,6 +1,11 @@
 import { Controller } from '@hotwired/stimulus'
 import confetti from 'canvas-confetti'
 
+const readToken = (name, fallback) => {
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+  return value || fallback
+}
+
 export default class extends Controller {
   connect() {
     if (this.element.dataset.confettiOnConnect === 'true') {
@@ -40,13 +45,18 @@ export default class extends Controller {
       particleCount: 100,
       spread: 70,
       origin: { y: 0.6 },
-      colors: ['#58cc02', '#1cb0f6', '#ffc800', '#ff4b4b']
+      colors: [
+        readToken('--primary', '#58cc02'),
+        readToken('--c-info-500', '#1cb0f6'),
+        readToken('--star', '#ffc800'),
+        readToken('--danger', '#ff4b4b'),
+      ]
     })
   }
 
   schoolPride() {
     const end = Date.now() + (3 * 1000)
-    const colors = ['#58cc02', '#ffffff']
+    const colors = [readToken('--primary', '#58cc02'), readToken('--surface', '#ffffff')]
 
     ;(function frame() {
       confetti({
