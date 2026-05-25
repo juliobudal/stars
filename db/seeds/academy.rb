@@ -1078,7 +1078,7 @@ CURRICULUM_V2 = [
             illustration_key: "spark",
             source: "Emily Bender / 'stochastic parrots' + Provérbios 14:15",
             framework: "desmistificação + discernimento cristão"
-          },
+          }
         ]
       },
       {

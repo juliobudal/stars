@@ -442,7 +442,7 @@ CONCEPT_BRIEFS = {
   "identidade-voto" => {
     the_essence: "Cada repetição é voto em quem você é se tornando — não no resultado distante.",
     common_confusion: "Achar que o hábito serve pra alcançar uma meta; ele serve pra confirmar uma identidade.",
-    forbidden_terms: [ ]
+    forbidden_terms: []
   }
 }.freeze
 

@@ -80,10 +80,10 @@ module Ui
       end
 
       def container_style
-        s = ["display: block", "color: inherit", "text-decoration: none",
+        s = [ "display: block", "color: inherit", "text-decoration: none",
              "background: #{tint[:bg]}",
              "border-radius: 14px",
-             "padding: 12px 14px"]
+             "padding: 12px 14px" ]
         s << (ghost ? "border: 2px dashed #{tint[:border]}" : "border: 2px solid #{tint[:border]}")
         s << "box-shadow: 0 4px 0 #{tint[:shadow]}" if tint[:shadow]
         s.join("; ")

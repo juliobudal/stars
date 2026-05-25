@@ -42,5 +42,5 @@ Rails.application.configure do
 
   # Nonce-gate inline scripts (Turbo + Stimulus tags pick this up via csp_meta_tag).
   config.content_security_policy_nonce_generator = ->(request) { SecureRandom.base64(16) }
-  config.content_security_policy_nonce_directives = %w(script-src)
+  config.content_security_policy_nonce_directives = %w[script-src]
 end
