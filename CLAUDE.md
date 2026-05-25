@@ -18,7 +18,7 @@ LittleStars — gamified family task manager with "star economy" for kids. Rails
 
 ## Stack
 
-Rails 8.1 · Ruby 3.3+ · PostgreSQL 16 · Vite + Propshaft · Tailwind 4 · Stimulus · Turbo · ViewComponent 4.7 · RSpec + FactoryBot + Capybara · Solid Queue/Cache/Cable · Kamal · `langchainrb` + `ruby-openai` (Academy module, OpenRouter transport).
+Rails 8.1 · Ruby 3.3+ · PostgreSQL 16 · Vite + Propshaft · Tailwind 4 · Stimulus · Turbo · ViewComponent 4.7 · RSpec + FactoryBot + Capybara · Solid Queue/Cache/Cable · Kamal · OpenRouter (Academy chatbot only, via `Academy::Llm::Client`).
 
 Dev environment is Devcontainer/Docker Compose. Run commands inside `web` container.
 
@@ -56,7 +56,7 @@ Namespaced dual-interface app: `parent/` vs `kid/` routes, controllers, views, a
 
 Sub-features that justify their own boundary live under a top-level namespace with prefixed tables and zero FK into host tables. They communicate with the host only through controllers and a `Module::Learner`-style value adapter. **Never reference host models (`Profile`, `Family`, ...) from inside a module.**
 
-- **`Academy::`** — pedagogical missions. **v2 shipped 2026-05-16**: 26 tabelas, 7 áreas de formação humana, currículo invisível via 45 conceitos + 9 skills, spaced repetition (recall), segredos desbloqueáveis, adaptação por sinal. All under `app/{models,services,controllers,views}/academy/` and `/kid/academy/*`, `/parent/academy/*`. Tables prefixed `academy_*`. **See `docs/academy-v2.md` before editing.** `AdvanceTurn#finalize_mission!` (v4) orquestra 4 hooks em ordem fixa: `Cards::MintAfterMission` → `Wagers::Create` → `Signals::Record` → `Secrets::EvaluateForLearner` (ordem importa: `Secrets::EvaluateForLearner` lê o estado deixado pelos anteriores). `Skills::Award` e `Medals::AwardForMission` são v2 legacy (parent dashboard read-only) — não chame do kid path.
+- **`Academy::`** — pedagogical missions. **v2 shipped 2026-05-16**: 26 tabelas, 7 áreas de formação humana, currículo invisível via 45 conceitos + 9 skills, spaced repetition (recall), segredos desbloqueáveis, adaptação por sinal. All under `app/{models,services,controllers,views}/academy/` and `/kid/academy/*`, `/parent/academy/*`. Tables prefixed `academy_*`. **See `docs/academy-v2.md` before editing.** `Missions::Finalize` orquestra 4 hooks em ordem fixa: `Cards::MintAfterMission` → `Pokedex::Advance` → `Signals::Record` → `Secrets::EvaluateForLearner` (ordem importa: `Secrets::EvaluateForLearner` lê o estado deixado pelos anteriores).
 
   **Conteúdo das aulas é 100% curado** (seedado em `db/seeds/academy_lens_payloads/`, lido por `Lens::ResolveCuratedPayload`). O único LLM em runtime é o chatbot "O Guia" (`Academy::Guide::Ask`, persona "authoritative + mysterious + fascinated") exposto em `/kid/academy/subjects/:id/missions/:id/guide` — 5 perguntas/dia por (kid × missão), via DeepSeek/OpenRouter (env `OPENROUTER_API_KEY`). Sem a env, o botão 🦉 fica escondido e a missão funciona normal.
 

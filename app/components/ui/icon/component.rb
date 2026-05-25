@@ -82,7 +82,6 @@ class Ui::Icon::Component < ApplicationComponent
     coins: "coins-01",
     compass: "compass-01",
     globe: "global",
-    medal: "medal-01",
     trophy: "champion",
     mountain: "mountain",
     handshake: "handshake-01",
