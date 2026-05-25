@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_22_040847) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_25_175606) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -220,7 +220,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_22_040847) do
     t.integer "current_session_index", default: 0, null: false
     t.bigint "learner_id", null: false
     t.bigint "mission_id", null: false
-    t.datetime "skills_awarded_at", comment: "Set the first time Skills::Award(:completed) runs for this progress; further calls are no-ops"
     t.datetime "started_at"
     t.integer "status", default: 0, null: false
     t.integer "total_checkpoints", default: 0, null: false

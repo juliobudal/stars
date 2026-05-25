@@ -8,7 +8,6 @@
 #  completed_at                                                                                                     :datetime
 #  correct_checkpoints                                                                                              :integer          default(0), not null
 #  current_session_index                                                                                            :integer          default(0), not null
-#  skills_awarded_at(Set the first time Skills::Award(:completed) runs for this progress; further calls are no-ops) :datetime
 #  started_at                                                                                                       :datetime
 #  status                                                                                                           :integer          default("not_started"), not null
 #  total_checkpoints                                                                                                :integer          default(0), not null
