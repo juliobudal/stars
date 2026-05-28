@@ -1,0 +1,12 @@
+[     951ms] [ERROR] Loading the font 'http://127.0.0.1:10302/vite/fonts/hugeicons/hgi-stroke-rounded.woff2' violates the following Content Security Policy directive: "font-src 'self' https: data:". The action has been blocked. @ http://localhost:10301/kid/academy:0
+[     971ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:10302/vite/?token=_Rv4tHaavdRl' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:10301/vite/@vite/client:744
+[     971ms] [ERROR] [vite] failed to connect to websocket (Error: WebSocket closed without opened.).  @ http://localhost:10301/vite/@vite/client:771
+[    1028ms] Error: WebSocket closed without opened.
+    at WebSocket.<anonymous> (http://localhost:10301/vite/@vite/client:423:30)
+[    1065ms] [INFO] [pwa] sw registered, scope: http://localhost:10301/ @ http://localhost:10301/vite/entrypoints/pwa.js:7
+[  141302ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:10302/vite/?token=_Rv4tHaavdRl' failed: Error in connection establishment: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:10301/vite/@vite/client:744
+[  141302ms] [ERROR] [vite] failed to connect to websocket (Error: WebSocket closed without opened.).  @ http://localhost:10301/vite/@vite/client:771
+[  141305ms] Error: WebSocket closed without opened.
+    at WebSocket.<anonymous> (http://localhost:10301/vite/@vite/client:423:30)
+[  141369ms] [ERROR] Loading the font 'http://127.0.0.1:10302/vite/fonts/hugeicons/hgi-stroke-rounded.woff2' violates the following Content Security Policy directive: "font-src 'self' https: data:". The action has been blocked. @ http://localhost:10301/vite/controllers/academy_pill_controller.js?t=1779965894136:36
+[  141376ms] [INFO] [pwa] sw registered, scope: http://localhost:10301/ @ http://localhost:10301/vite/entrypoints/pwa.js:7

@@ -1,4 +1,5 @@
 {
+  "license": "UNLICENSED",
   "dependencies": {
     "@floating-ui/dom": "^1.7.6",
     "@hotwired/stimulus": "^3.2.2",
@@ -26,6 +27,7 @@
   "scripts": {
     "dev": "bin\\/vite dev",
     "build": "bin\\/vite build",
-    "standard": "standard"
+    "lint:js": "bash scripts/check-js-syntax.sh",
+    "standard": "bash scripts/check-js-syntax.sh"
   }
 }

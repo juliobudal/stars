@@ -1,0 +1,61 @@
+- generic [active] [ref=e1]:
+  - link "Pular para o conteúdo" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Navegação principal" [ref=e3]:
+    - link "Jornada" [ref=e4] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e5]: 󲑲
+      - generic [ref=e6]: Jornada
+    - link "Academia" [ref=e7] [cursor=pointer]:
+      - /url: /kid/academy
+      - generic [ref=e8]: 󲌸
+      - generic [ref=e9]: Academia
+    - link "Lojinha" [ref=e10] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e11]: 󲊉
+      - generic [ref=e12]: Lojinha
+    - link "Diário" [ref=e13] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e14]: 󱖃
+      - generic [ref=e15]: Diário
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - link "Voltar" [ref=e20] [cursor=pointer]:
+            - /url: /kid/academy
+            - generic [ref=e21]: 󱑘
+          - generic [ref=e22]:
+            - generic [ref=e23]: Trilha
+            - heading "🧠 Seu cérebro mente pra você" [level=1] [ref=e24]
+        - paragraph [ref=e25]: Tudo que você vê, lembra e sente passa por um filtro — e o filtro inventa coisas. Vamos pegar ele no flagra.
+      - list [ref=e26]:
+        - listitem [ref=e27]:
+          - link "Cócegas em si mesmo Por que você NÃO consegue fazer cócegas em você mesmo?" [ref=e28] [cursor=pointer]:
+            - /url: /kid/academy/trails/seu-cerebro-mente/lessons/cocegas-em-si-mesmo
+            - generic [ref=e29]:
+              - generic [ref=e31]: 󲓧
+              - generic [ref=e32]:
+                - heading "Cócegas em si mesmo" [level=2] [ref=e33]
+                - paragraph [ref=e34]: Por que você NÃO consegue fazer cócegas em você mesmo?
+        - listitem [ref=e35]:
+          - link "2 O gorila invisível Como dá pra um gorila passar na sua frente sem você ver?" [ref=e36] [cursor=pointer]:
+            - /url: /kid/academy/trails/seu-cerebro-mente/lessons/gorila-invisivel
+            - generic [ref=e37]:
+              - generic [ref=e38]: "2"
+              - generic [ref=e39]:
+                - heading "O gorila invisível" [level=2] [ref=e40]
+                - paragraph [ref=e41]: Como dá pra um gorila passar na sua frente sem você ver?
+        - listitem [ref=e42]:
+          - generic [ref=e44]:
+            - generic [ref=e46]: 󲍽
+            - generic [ref=e47]:
+              - heading "A memória que nunca aconteceu" [level=2] [ref=e48]
+              - paragraph [ref=e49]: Bloqueada
+        - listitem [ref=e50]:
+          - generic [ref=e52]:
+            - generic [ref=e54]: 󲍽
+            - generic [ref=e55]:
+              - heading "As cores não existem lá fora" [level=2] [ref=e56]
+              - paragraph [ref=e57]: Bloqueada
+  - text: 󲎤

@@ -8,7 +8,7 @@
   @apply content-[''] block w-10 h-10 absolute left-1/2 top-1/2 -mt-[26px] -ml-[24px] z-20;
   animation: fxSpin var(--dur-ambient) var(--ease-snap) infinite;
   background-color: currentColor;
-  mask-image: url('/images/icons/spinner.svg');
+  mask-image: url('./spinner.svg');
   mask-size: cover;
 }
 

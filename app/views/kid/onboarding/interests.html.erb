@@ -46,7 +46,7 @@
                text-align: center;
                color: <%= checked ? 'var(--primary)' : 'var(--text)' %>;
                user-select:none;
-               transition: transform .05s;">
+               transition: transform var(--dur-fast) ease;">
         <input type="checkbox"
                name="interest_keys[]"
                value="<%= entry.key %>"

@@ -2,10 +2,10 @@
 
 module Ui
   module ShortcutCard
-    # Tappable navigation card used across kid pages for "go-to" shortcuts:
-    # Pílula do Dia, Lightning Round, Eu curto, Elenco, add-custom-mission, etc.
-    # Replaces 6+ near-identical inline blocks that drifted on padding, radius,
-    # and shadow depth. Geometry is fixed; tint switches the color tokens.
+    # Tappable navigation card used across kid pages for "go-to" shortcuts
+    # (Academia, Eu curto, etc.). Replaces near-identical inline blocks that
+    # drifted on padding, radius, and shadow depth. Geometry is fixed; tint
+    # switches the color tokens.
     class Component < ApplicationComponent
       TINTS = {
         primary: {

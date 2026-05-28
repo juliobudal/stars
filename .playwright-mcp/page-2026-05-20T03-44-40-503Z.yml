@@ -1,0 +1,72 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - text: 󱸠
+    - navigation "Principal" [ref=e2]:
+      - generic [ref=e4]:
+        - generic [ref=e6]: 󲎤
+        - generic [ref=e7]:
+          - generic [ref=e8]: LittleStars
+          - generic [ref=e9]: Modo pais
+      - generic [ref=e10]:
+        - link "Início" [ref=e11] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e12]: 󱯉
+          - generic [ref=e13]: Início
+        - link "Crianças" [ref=e14] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e15]: 󲗦
+          - generic [ref=e16]: Crianças
+        - link "Missões" [ref=e17] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e18]: 󲑽
+          - generic [ref=e19]: Missões
+        - link "Prêmios" [ref=e20] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e21]: 󲊉
+          - generic [ref=e22]: Prêmios
+        - link "Categorias" [ref=e23] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e24]: 󱖠
+          - generic [ref=e25]: Categorias
+        - link "Aprovações" [ref=e26] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e27]: 󱞿
+          - generic [ref=e28]: Aprovações
+        - link "Configurações" [ref=e29] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e30]: 󲉌
+          - generic [ref=e31]: Configurações
+      - generic [ref=e32]:
+        - link "Editar meu perfil" [ref=e33] [cursor=pointer]:
+          - /url: /parent/profiles/1/edit
+          - img "Mamãe" [ref=e34]:
+            - generic [ref=e35]: 󲗕
+          - generic [ref=e36]:
+            - generic [ref=e37]: Mamãe
+            - generic [ref=e38]: Responsável · Editar
+          - generic [ref=e39]: 󲀏
+        - button "Trocar perfil" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]: 󱶂
+          - text: Trocar perfil
+    - text: 󱯉 󱞿 󲑽 󲊉 󱸠
+  - generic [ref=e45]:
+    - banner [ref=e46]:
+      - generic [ref=e48]:
+        - heading "Aprovações" [level=1] [ref=e49]
+        - paragraph [ref=e50]: Nenhuma pendência no momento
+    - generic [ref=e52]:
+      - tablist [ref=e54]:
+        - tab "Missões 0" [selected] [ref=e55] [cursor=pointer]:
+          - generic [ref=e56]: 󲑲
+          - text: Missões
+          - generic [ref=e57]: "0"
+        - tab "Prêmios 0" [ref=e58] [cursor=pointer]:
+          - generic [ref=e59]: 󲊉
+          - text: Prêmios
+          - generic [ref=e60]: "0"
+      - generic [ref=e62]:
+        - generic [ref=e64]: 󲓧
+        - heading "Tudo em dia!" [level=3] [ref=e65]
+        - paragraph [ref=e66]: Nenhuma missão aguardando aprovação.
+      - text: 󲓧
+  - text: 󲎤

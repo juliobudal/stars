@@ -1,0 +1,74 @@
+- generic [active] [ref=e316]:
+  - navigation "Navegação principal" [ref=e317]:
+    - link "Jornada" [ref=e318] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e319]: 󲑲
+      - generic [ref=e320]: Jornada
+    - link "Academia" [ref=e321] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e322]: 󲌸
+      - generic [ref=e323]: Academia
+    - link "Lojinha" [ref=e324] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e325]: 󲊉
+      - generic [ref=e326]: Lojinha
+    - link "Diário" [ref=e327] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e328]: 󱖃
+      - generic [ref=e329]: Diário
+  - main [ref=e330]:
+    - generic [ref=e331]:
+      - generic [ref=e332]:
+        - generic [ref=e333]:
+          - link "Voltar para Mente Forte" [ref=e334] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e336]:
+            - generic [ref=e337]: MENTE FORTE
+            - heading "Por que mexer no celular é tão difícil de parar?" [level=1] [ref=e338]
+          - link "Falar com O Guia" [ref=e339] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/guide
+            - text: 🦉
+        - generic "Progresso da missão" [ref=e340]
+      - generic [ref=e348]:
+        - generic [ref=e349]: 🔬
+        - generic [ref=e350]:
+          - heading "Como funciona" [level=2] [ref=e351]
+          - generic [ref=e352]: sobre Dopamina
+        - generic "Narrado por A Naturalista" [ref=e353]:
+          - generic [ref=e354]: 🦋
+          - generic [ref=e355]: A Naturalista
+      - generic [ref=e356]:
+        - generic [ref=e357]:
+          - heading "O beep chega no seu cérebro 80 milésimos antes do pensamento." [level=2] [ref=e358]
+          - paragraph [ref=e359]: "Cérebro em corte lateral. Seta vermelha rápida saindo do ouvido direto pra um pontinho profundo (núcleo accumbens) em ~80ms. Seta cinza lenta indo até o córtex pré-frontal em ~300ms, chegando depois. Texto sutil: 'a decisão chega tarde'."
+          - list [ref=e360]:
+            - listitem [ref=e361]:
+              - generic [ref=e362]: "1"
+              - generic [ref=e363]: O som da notificação entra pela orelha e ativa uma região profunda do cérebro chamada núcleo accumbens — antes mesmo de o córtex pré-frontal, a parte que pensa, entrar em cena.
+            - listitem [ref=e364]:
+              - generic [ref=e365]: "2"
+              - generic [ref=e366]: Esse núcleo libera dopamina. Não pela mensagem em si — pela CHANCE de ela ser boa. Prêmio incerto bate mais forte que prêmio garantido.
+            - listitem [ref=e367]:
+              - generic [ref=e368]: "3"
+              - generic [ref=e369]: Quando o córtex finalmente acorda e decide se você pega o celular, a mão já está se movendo. O 'eu escolhi' chegou atrasado na festa.
+        - generic [ref=e370]:
+          - generic [ref=e371]: Pergunta rápida
+          - paragraph [ref=e372]: Por que apps de rede social viciam mais que livros?
+          - generic [ref=e373]:
+            - button "A Porque cada deslizar pode ou não trazer algo legal — prêmio incerto." [disabled] [ref=e374]:
+              - generic [ref=e375]: A
+              - generic [ref=e376]: Porque cada deslizar pode ou não trazer algo legal — prêmio incerto.
+            - button "B Porque o cérebro adora coisas coloridas em movimento." [disabled] [ref=e377]:
+              - generic [ref=e378]: B
+              - generic [ref=e379]: Porque o cérebro adora coisas coloridas em movimento.
+            - button "C Porque você usa os dedos e isso ativa mais áreas do cérebro." [disabled] [ref=e380]:
+              - generic [ref=e381]: C
+              - generic [ref=e382]: Porque você usa os dedos e isso ativa mais áreas do cérebro.
+            - button "D Porque a tela emite luz azul que estimula a dopamina." [disabled] [ref=e383]:
+              - generic [ref=e384]: D
+              - generic [ref=e385]: Porque a tela emite luz azul que estimula a dopamina.
+          - generic [ref=e388]:
+            - generic [ref=e389]: Por quê
+            - paragraph [ref=e390]: "O ingrediente que vicia é a INCERTEZA da recompensa, não cor, movimento ou luz. É a mesma química do caça-níquel: o cérebro paga atenção pela CHANCE, não pela garantia."
+        - button "Continuar →" [ref=e387]
+  - text: 󲎤

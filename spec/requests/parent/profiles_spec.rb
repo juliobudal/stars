@@ -50,7 +50,7 @@ RSpec.describe "Parent::Profiles", type: :request do
       end
 
       context "with invalid params" do
-        it "renders new with unprocessable_entity status" do
+        it "renders new with unprocessable_content status" do
           expect {
             post parent_profiles_path, params: { profile: { name: "" } }
           }.not_to change(Profile, :count)

@@ -1,0 +1,59 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e18]:
+        - link "Voltar" [ref=e19] [cursor=pointer]:
+          - /url: /kid
+          - generic [ref=e20]: 󱑘
+        - generic [ref=e21]:
+          - heading "Nova missão!" [level=2] [ref=e22]
+          - generic [ref=e23]: Conta o que você fez. Os pais aprovam e você ganha estrelas!
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]: O que você fez?
+          - textbox "O que você fez?" [ref=e27]:
+            - /placeholder: "Ex.: Arrumei a estante"
+        - generic [ref=e28]:
+          - generic [ref=e29]: Conta mais (opcional)
+          - textbox "Conta mais (opcional)" [ref=e30]:
+            - /placeholder: Como foi?
+        - generic [ref=e31]:
+          - generic [ref=e32]: Quanto vale?
+          - spinbutton "Quanto vale?" [ref=e33]: "10"
+          - paragraph [ref=e34]: Os pais podem ajustar.
+        - generic [ref=e35]:
+          - generic [ref=e36]: Categoria
+          - combobox "Categoria" [ref=e37]:
+            - option "Escolha uma..." [selected]
+            - option "Brinquedos"
+            - option "Docinhos"
+            - option "Experiências"
+            - option "Outro"
+            - option "Passeios"
+            - option "Telinha"
+        - generic [ref=e38]:
+          - generic [ref=e39]: Recado pros pais (opcional)
+          - textbox "Recado pros pais (opcional)" [ref=e40]:
+            - /placeholder: Quer mandar um recado?
+        - generic [ref=e41]:
+          - link "Cancelar" [ref=e42] [cursor=pointer]:
+            - /url: /kid
+          - button "Enviar pra aprovação" [ref=e43] [cursor=pointer]
+  - text: 󲎤

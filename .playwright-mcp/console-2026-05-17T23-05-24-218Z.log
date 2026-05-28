@@ -1,0 +1,2 @@
+[      20ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:10301/kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/visits/1197:0
+[  129170ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:10301/profile_session/new:0

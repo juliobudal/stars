@@ -1,0 +1,69 @@
+- generic [active] [ref=e462]:
+  - navigation "Navegação principal" [ref=e463]:
+    - link "Jornada" [ref=e464] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e465]: 󲑲
+      - generic [ref=e466]: Jornada
+    - link "Academia" [ref=e467] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e468]: 󲌸
+      - generic [ref=e469]: Academia
+    - link "Lojinha" [ref=e470] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e471]: 󲊉
+      - generic [ref=e472]: Lojinha
+    - link "Diário" [ref=e473] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e474]: 󱖃
+      - generic [ref=e475]: Diário
+  - main [ref=e476]:
+    - generic [ref=e477]:
+      - generic [ref=e478]: 󲓧
+      - generic [ref=e479]: Missão completa! ✨
+    - generic [ref=e480]:
+      - generic [ref=e482]:
+        - link "Voltar para Mente Forte" [ref=e483] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte
+        - generic [ref=e485]:
+          - generic [ref=e486]: MENTE FORTE · REVISÃO
+          - heading "Quanto custa uma notificação?" [level=1] [ref=e487]
+      - generic [ref=e488]:
+        - generic [ref=e490]: ✓
+        - generic [ref=e491]: Missão completa
+        - paragraph [ref=e492]:
+          - strong [ref=e493]: "5"
+          - text: lições percorridas sobre
+          - strong [ref=e494]: Custo da troca
+          - text: .
+      - generic [ref=e495]:
+        - link "📖 Lição 1 Conta a história" [ref=e496] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/notificacoes-custam-23-min/visits/2040
+          - generic [ref=e497]: 📖
+          - generic [ref=e498]:
+            - generic [ref=e499]: Lição 1
+            - generic [ref=e500]: Conta a história
+        - link "👁 Lição 2 Faz isso agora" [ref=e503] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/notificacoes-custam-23-min/visits/2041
+          - generic [ref=e504]: 👁
+          - generic [ref=e505]:
+            - generic [ref=e506]: Lição 2
+            - generic [ref=e507]: Faz isso agora
+        - link "🔬 Lição 3 Como funciona" [ref=e510] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/notificacoes-custam-23-min/visits/2042
+          - generic [ref=e511]: 🔬
+          - generic [ref=e512]:
+            - generic [ref=e513]: Lição 3
+            - generic [ref=e514]: Como funciona
+        - link "📈 Lição 4 Adivinha" [ref=e517] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/notificacoes-custam-23-min/visits/2043
+          - generic [ref=e518]: 📈
+          - generic [ref=e519]:
+            - generic [ref=e520]: Lição 4
+            - generic [ref=e521]: Adivinha
+        - link "🔭 Lição 5 Em outro lugar" [ref=e524] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/notificacoes-custam-23-min/visits/2044
+          - generic [ref=e525]: 🔭
+          - generic [ref=e526]:
+            - generic [ref=e527]: Lição 5
+            - generic [ref=e528]: Em outro lugar
+  - text: 󲎤

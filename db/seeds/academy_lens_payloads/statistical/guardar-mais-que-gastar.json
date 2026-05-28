@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, se você ganha 10 reais de mesada, quantos reais você acha que a maioria das pessoas guarda antes de gastar o resto? Chuta um valor entre 0 e 10.",
-  "predict_unit": "vezes/semana",
-  "predict_min": 0,
-  "predict_max": 10,
-  "reveal_value": 1,
-  "reveal_source": "Em muitas famílias, poupar pode ser uma parte pequena da renda; o recomendado é começar poupando um pedaço daquilo que recebe. Exemplo: se ganha 10 reais, tente guardar 1 real (10%).",
-  "interpretation": "1 real de cada 10. Parece pouco, mas é o que faz a diferença entre ter um dinheiro guardado no fim do mês e não ter nada. Quem espera 'sobrar' para guardar quase nunca vê sobra — o que sobra some em besteira. Guardar antes é o truque."
-}

@@ -67,57 +67,23 @@ Rails.application.routes.draw do
     resource :wishlist, only: %i[create destroy], controller: "wishlist"
     resource :interests, only: %i[show update], controller: "interests"
 
-    # Academy module — see app/models/academy.rb for isolation rules.
+    # Academy module — Pílulas de Conhecimento. See app/models/academy.rb
+    # for isolation rules. Trails hold ordered curated lessons; the optional
+    # LLM Guia chat is scoped to a lesson.
     namespace :academy do
-      root to: "subjects#index"
-      resources :subjects, only: %i[index show], param: :id do
-        resources :trails, only: %i[show], param: :id
-        resources :missions, only: %i[show], param: :id do
-          member do
-            post :advance
-            post :commit_challenge
-          end
-          get "visits/:visit_id", to: "missions#review_visit", as: :review_visit
+      root to: "trails#index"
+      resources :trails, only: %i[show], param: :slug do
+        resources :lessons, only: %i[show], param: :slug do
+          member { post :complete }
           resource :guide, only: %i[show create], controller: "guides"
         end
       end
-      get "atlas", to: "atlas#index", as: :atlas
-      resources :practice_wagers, only: %i[update], path: "apostas"
-      # Pílula do Dia — daily 60-90s lens surface.
-      # `pill` (singular) shows today's pick; `pills` (plural) lists history;
-      # per-id share endpoint records the parent share for that PillView row.
-      get  "pill", to: "pills#show", as: :pill
-      get  "pills", to: "pills#index", as: :pills
-      post "pills/:id/share", to: "pills#share", as: :share_pill
-
-      # Lightning Round — 5 retrieval questions in ≤90s.
-      get  "lightning", to: "lightning#show",   as: :lightning
-      post "lightning", to: "lightning#answer", as: :lightning_answer
-
-      # Cast gallery — the 5 sub-voices the kid meets across lens types.
-      get "cast", to: "cast#index", as: :cast
     end
   end
 
   namespace :parent do
     namespace :academy do
       get "/", to: "dashboard#index", as: :dashboard
-      get "compare", to: "dashboard#compare", as: :compare
-      get "library", to: "library#index", as: :library
-      resources :practice_wagers, only: %i[update], path: "apostas"
-      resources :journeys, only: %i[index]
-      resources :cards, only: %i[show], constraints: { format: "svg" }
-    end
-  end
-
-  namespace :admin do
-    namespace :academy do
-      resources :missions, only: %i[index show edit update]
-      resources :lenses, only: %i[index edit update] do
-        member do
-          patch :flag
-        end
-      end
     end
   end
 end

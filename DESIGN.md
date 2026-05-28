@@ -1,614 +1,288 @@
-# LittleStars Design System
-
-Source of truth for the **LittleStars Duolingo Style** visual language. If a pattern isn't in here, it shouldn't ship.
-
+---
+name: LittleStars
+description: Gamified family task manager with a tactile, encouraging Duolingo-style visual language.
+colors:
+  primary: "#58CC02"
+  primary-depth: "#46A302"
+  primary-soft: "#DCFCE7"
+  primary-glow: "#86EFAC"
+  star: "#FFC800"
+  star-depth: "#E0A800"
+  star-soft: "#FFF4DA"
+  reward-text: "#B36F00"
+  info-sky: "#1CB0F6"
+  info-sky-depth: "#1899D6"
+  info-sky-soft: "#DDF4FF"
+  character-lilac: "#CE82FF"
+  character-lilac-depth: "#A855E0"
+  streak-coral: "#FF9600"
+  streak-coral-depth: "#CC7700"
+  danger: "#FF4B4B"
+  danger-depth: "#C53232"
+  bg: "#F7F7F7"
+  surface: "#FFFFFF"
+  surface-muted: "#F7F7F7"
+  hairline: "#E5E5E5"
+  text: "#4B4B4B"
+  text-muted: "#777777"
+  text-soft: "#AFAFAF"
+typography:
+  display:
+    fontFamily: "Nunito, system-ui, sans-serif"
+    fontSize: "36px"
+    fontWeight: 800
+    lineHeight: 1.1
+    letterSpacing: "normal"
+  headline:
+    fontFamily: "Nunito, system-ui, sans-serif"
+    fontSize: "26px"
+    fontWeight: 800
+    lineHeight: 1.15
+    letterSpacing: "normal"
+  title:
+    fontFamily: "Nunito, system-ui, sans-serif"
+    fontSize: "22px"
+    fontWeight: 800
+    lineHeight: 1.2
+    letterSpacing: "normal"
+  subtitle:
+    fontFamily: "Nunito, system-ui, sans-serif"
+    fontSize: "18px"
+    fontWeight: 800
+    lineHeight: 1.25
+    letterSpacing: "normal"
+  body:
+    fontFamily: "Nunito, system-ui, sans-serif"
+    fontSize: "15px"
+    fontWeight: 700
+    lineHeight: 1.5
+    letterSpacing: "normal"
+  label:
+    fontFamily: "Nunito, system-ui, sans-serif"
+    fontSize: "11px"
+    fontWeight: 800
+    lineHeight: 1.2
+    letterSpacing: "0.5px"
+rounded:
+  sm: "10px"
+  md: "12px"
+  lg: "14px"
+  xl: "16px"
+  featured: "20px"
+  full: "999px"
+spacing:
+  "1": "4px"
+  "2": "10px"
+  "3": "14px"
+  "4": "20px"
+  "5": "28px"
+  "6": "36px"
+  "7": "48px"
+  "8": "64px"
+components:
+  button-primary:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.surface}"
+    typography: "{typography.label}"
+    rounded: "{rounded.lg}"
+    padding: "14px 20px"
+  button-primary-active:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.surface}"
+    rounded: "{rounded.lg}"
+    padding: "14px 20px"
+  button-secondary:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.text}"
+    typography: "{typography.label}"
+    rounded: "{rounded.lg}"
+    padding: "14px 20px"
+  card:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.text}"
+    rounded: "{rounded.xl}"
+    padding: "16px"
+  stat-card:
+    backgroundColor: "{colors.primary-soft}"
+    textColor: "{colors.text}"
+    rounded: "{rounded.xl}"
+    padding: "16px"
+  filter-pill:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.text-muted}"
+    typography: "{typography.label}"
+    rounded: "{rounded.sm}"
+    padding: "8px 14px"
+  filter-pill-selected:
+    backgroundColor: "{colors.primary-soft}"
+    textColor: "{colors.primary-depth}"
+    typography: "{typography.label}"
+    rounded: "{rounded.sm}"
+    padding: "8px 14px"
+  input:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.text}"
+    typography: "{typography.body}"
+    rounded: "{rounded.lg}"
+    padding: "12px 14px"
+  badge-star:
+    backgroundColor: "{colors.star-soft}"
+    textColor: "{colors.reward-text}"
+    typography: "{typography.label}"
+    rounded: "{rounded.full}"
+    padding: "4px 10px"
+  toggle:
+    backgroundColor: "{colors.primary}"
+    rounded: "{rounded.full}"
+    width: "52px"
+    height: "30px"
 ---
 
-## 1. Principles
+# Design System: LittleStars
 
-- **Playful · gamified · 3D** — every interactive element has a depth shadow (`0 4px 0`); buttons depress on click (`translateY(2px); box-shadow: none`).
-- **Bold weight, compact radii** — Nunito 700/800 throughout; corners 10–16px (no soft 22–32px).
-- **Mobile-first** — kid shells target `max-w-[430px]`; parent shells expand with sidebar at `lg`.
-- **One token system** — every color/font/radius/shadow comes from a CSS variable in `tailwind/theme.css`. Raw hex is only allowed in that file.
-- **Rails Way** — ViewComponents + CSS vars. No inline hex in templates, no copy-pasted markup.
+## 1. Overview
 
----
+**Creative North Star: "The Encouraging Arcade"**
 
-## 2. Palette — Duolingo
+LittleStars is a cooperative game between parents and kids, and the interface should feel like a friendly arcade cabinet, not an admin panel. Every interactive surface is a physical, pressable object: it sits on a flat 3D depth shadow (`0 4px 0`), depresses on touch, and springs back. The system never punishes. Errors are gentle, progress is celebrated with confetti and pulses, and the dominant color is an optimistic Duolingo green. The mood is **encouraging, playful, formative**: a child should want to open the app alone, and a parent should feel the screen time is building character rather than numbing it.
 
-All tokens defined in `app/assets/stylesheets/tailwind/theme.css`. Use the variable, never the hex.
+This is a **product** register: the design serves the task (configure a chore, approve it, redeem a reward, finish a knowledge pill), it is not the product itself. Density is low and mobile-first. The kid shell is a single thumb-reachable column capped at `430px`; the parent shell is a calm dashboard with a fixed sidebar. Hierarchy comes from bold weight (Nunito 700/800) and tactile depth, not from drop shadows, gradients, or glass.
 
-| Token | Hex | Role |
-|---|---|---|
-| `--bg-deep` / `--bg-mid` | `#F7F7F7` | App background |
-| `--bg-soft` | `#DCFCE7` | Subtle surfaces / primary tint surface |
-| `--surface` | `#FFFFFF` | Cards |
-| `--surface-2` / `--surface-muted` | `#F7F7F7` | Inset / chips / muted |
-| `--primary` | `#58CC02` | Brand · Duolingo green |
-| `--primary-2` / `--success-2` | `#46A302` | Primary depth shadow |
-| `--primary-soft` | `#DCFCE7` | Primary tint |
-| `--primary-glow` | `#86EFAC` | Primary ring |
-| `--star` | `#FFC800` | Stars / rewards |
-| `--star-2` | `#E0A800` | Star depth |
-| `--star-soft` | `#FFF4DA` | Star tint |
-| `--c-reward-text` / `--c-amber-dark` | `#B36F00` | Star count text |
-| `--hairline` | `#E5E5E5` | Borders / dividers |
-| `--c-sky` / `-soft` / `-dark` | `#1CB0F6` / `#DDF4FF` / `#1899D6` | Info accent |
-| `--c-info-500` / `-600` / `-100` | `#1CB0F6` / `#1899D6` / `#DDF4FF` | Semantic info aliases |
-| `--c-mint` / `-soft` / `-dark` | `#58CC02` / `#DCFCE7` / `#46A302` | Success-adjacent (= primary) |
-| `--c-peach` / `-soft` / `-dark` | `#F472B6` / `#FCE7F3` / `#BE185D` | Pink accent |
-| `--c-rose` / `-soft` / `-dark` | `#EC4899` / `#FCE7F3` / `#BE185D` | Rose accent |
-| `--c-lilac` / `-soft` / `-dark` | `#CE82FF` / `#F3E8FF` / `#7C3AED` | Character / kid-purple |
-| `--c-character-500` / `-600` | `#CE82FF` / `#A855E0` | Kid avatar fill / depth |
-| `--c-coral` / `-dark` / `-soft` | `#FF9600` / `#CC7700` / `#FFE4CC` | Streak / warning |
-| `--c-streak` / `--c-streak-2` | `#FF9600` / `#CC7700` | Flame badge |
-| `--success` / `--success-2` | `#58CC02` / `#46A302` | Semantic success |
-| `--danger` / `--danger-2` | `#FF4B4B` / `#C53232` | Semantic danger |
-| `--text` / `--text-muted` / `--text-soft` | `#4B4B4B` / `#777777` / `#AFAFAF` | Foreground ramp |
+What this system explicitly rejects: the retired "Berry Pop" era (lilac `#A78BFA`, Fraunces display serif, soft blurry `rgba(...) 0 4px 12px` shadows). It also rejects generic SaaS sterility, gradient text, blurry glassmorphism, and the cold corporate dashboard look. If a screen could pass for a B2B analytics tool, it has failed.
 
-**Per-kid palette overrides:** `data-palette="peach|rose|mint|sky|lilac|coral"` on the kid layout reassigns `--primary` family to that accent. Shadows, typography, and radii inherit Duolingo defaults — only the primary color tints. The canonical kid color map (with avatar fills) lives in `app/components/ui/smiley_avatar/component.rb` `COLOR_MAP`.
+**Key Characteristics:**
+- Tactile 3D depth on every interactive element (`0 4px 0`), with a mandatory press-and-spring motion contract.
+- One bold typeface (Nunito) at heavy weights; 700 is the floor, 800 is the emphasis.
+- Compact radii (10–16px), never the soft 22–32px of the retired era.
+- Duolingo green primary, with a small cast of saturated accents (star gold, sky blue, character lilac, streak coral) used by role.
+- Per-kid palette theming: a `data-palette` attribute re-tints only the primary family; depth, type, and radii stay constant.
+- Single token source of truth in `app/assets/stylesheets/tailwind/theme.css`; raw hex is forbidden everywhere else.
 
-**Rule:** all color usage in views goes through a CSS variable. Raw hex is only allowed in `tailwind/theme.css`.
+## 2. Colors
 
-**Exception — `public/offline.html`:** the PWA offline fallback page must render without `theme.css` being available (the service worker may serve it while the asset cache is cold or stale). It therefore inlines its own minimal Duolingo-token-equivalent CSS, including raw `#58CC02`, `#46A302`, `#F7F7F7`, `#4B4B4B`. This is the only view file outside `theme.css` where raw hex is tolerated. Any change to brand color tokens must be mirrored in `public/offline.html` by hand.
+A bright, saturated, candy-shop palette anchored by one optimistic green, with each accent assigned a fixed semantic job so the screen never reads as random color noise.
 
----
+### Primary
+- **Duolingo Green** (`#58CC02`): the brand spine. Primary buttons, progress fills, active states, success. Carries roughly 30–50% of an action-heavy screen.
+- **Green Depth** (`#46A302`): the depth-shadow color *under* the green, never a fill. Gives primary buttons their pressable 3D base.
+- **Mint Tint** (`#DCFCE7`): soft surfaces, selected-pill backgrounds, the focus ring glow.
+
+### Secondary
+- **Star Gold** (`#FFC800`): the star economy currency. Balances, rewards, streak rewards, difficulty pickers. Gold is *the points color*; do not use it decoratively.
+- **Star Depth** (`#E0A800`) / **Star Tint** (`#FFF4DA`) / **Reward Text** (`#B36F00`): the gold's depth shadow, its soft surface, and the high-contrast text color for star counts on light tints.
+
+### Tertiary
+- **Sky Blue** (`#1CB0F6`): informational accent and the parent sidebar active state. Calm, secondary to green.
+- **Character Lilac** (`#CE82FF`): kid identity and avatars only. This is the *people* color, not a generic accent.
+- **Streak Coral** (`#FF9600`): streaks, flames, and soft warnings. Heat and momentum.
+- **Danger Red** (`#FF4B4B`): destructive actions and hard errors only. Rare by design.
+
+### Neutral
+- **App Background** (`#F7F7F7`): the canvas behind both shells. Never pure white, never pure black.
+- **Surface White** (`#FFFFFF`): cards and elevated objects.
+- **Surface Muted** (`#F7F7F7`): insets, chips, idle picker cells.
+- **Hairline** (`#E5E5E5`): the 2px border on every card and field.
+- **Text** (`#4B4B4B`) / **Text Muted** (`#777777`) / **Text Soft** (`#AFAFAF`): the foreground ramp. There is no `#000` text anywhere.
+
+### Named Rules
+**The One Source Rule.** Every color in a view comes from a CSS variable defined in `tailwind/theme.css`. Raw hex outside that file is forbidden. The single sanctioned exception is `public/offline.html`, which must render with no stylesheet available and therefore inlines its own brand hex; any brand-color change must be mirrored there by hand.
+
+**The Semantic Color Rule.** Each accent has one job: gold is points, lilac is people, coral is streaks/warnings, sky is info, red is danger. Never reach for an accent because a screen "needs more color". Color is meaning, not decoration.
+
+**The Per-Kid Tint Rule.** `data-palette="peach|rose|mint|sky|lilac|coral"` on the kid shell reassigns only the `--primary` family. Shadows, typography, and radii always inherit the Duolingo defaults. A kid's theme tints the brand, it does not redesign the app.
 
 ## 3. Typography
 
-```css
---font-display: 'Nunito', system-ui, sans-serif;
---font-body:    'Nunito', system-ui, sans-serif;
-```
-
-Nunito is the only display + body family. Loaded via Google Fonts in `shared/_head.html.erb`. Tailwind's `--font-sans` also maps to Nunito. **Do not use Fraunces or Inter.**
-
-| Role | Class / Pattern | Size | Weight |
-|---|---|---|---|
-| H1 | `font-extrabold text-2xl` | 26px | 800 |
-| H2 | `font-extrabold text-xl` | 22px | 800 |
-| H3 / Card title | `font-extrabold text-lg` | 18px | 800 |
-| Body default | — | 14–15px | 700 |
-| Subtitle / meta | `text-sm text-text-muted` | 13px | 700 |
-| Eyebrow / label | uppercase tracking-[0.5px] text-text-muted | 11–12px | 800 |
-| Button label | uppercase tracking-[0.5px] | 12–14px | 800 |
-| Caption / helper | `text-xs` | 11px | 700 |
-
-All font weights default to 700 (`font-bold`). 800 (`font-extrabold`) is the emphasis weight — use it for headings, buttons, stat numbers, badge labels, eyebrows.
-
----
-
-## 4. Spacing & Layout
-
-Spacing scale (`--space-1..8`): `4 / 10 / 14 / 20 / 28 / 36 / 48 / 64`.
-
-Radius scale: `--r-sm 10 · --r-md 12 · --r-lg 14 · --r-xl 16 · --r-featured 20 · --r-full 999`.
-
-| Element | Radius |
-|---|---|
-| Pills / small chips | 10–12px |
-| Buttons | 14px (`var(--r-lg)`) |
-| Cards / sections | 16px (`var(--r-xl)`) |
-| Modals / hero | 20px |
-| Avatars / circular badges | 999px |
-
-Shells:
-- **Kid shell** — `max-w-[430px] md:max-w-[560px] lg:max-w-[720px]`, sticky bottom pill nav, `BgShapes` background, body class `min-h-screen bg-bg-deep`.
-- **Parent shell** — fixed sidebar `220px` at ≥1024px (`lg:pl-[220px]` on body), off-canvas (<1024px) with mobile header bar. Main column `max-w-[1100px]`, padding `p-6 lg:px-10 pb-24 lg:pb-6`, body bg `bg-bg-deep` (matches kid).
-
----
-
-## 5. Shadows — 3D depth
-
-```css
---shadow-btn:           0 4px 0 rgba(0, 0, 0, 0.12);   /* primary depth uses --primary-2 */
---shadow-btn-hover:     0 6px 0 rgba(0, 0, 0, 0.12);
---shadow-card-light:    0 4px 0 rgba(0, 0, 0, 0.04);   /* faint depth — chips, mini-cards */
---shadow-card-subtle:   0 4px 0 rgba(0, 0, 0, 0.06);   /* parent dashboard cards */
---shadow-card:          0 4px 0 rgba(0, 0, 0, 0.08);   /* canonical kid card depth */
---shadow-card-heavy:    0 4px 0 rgba(0, 0, 0, 0.12);   /* hero/featured cards */
---shadow-lift:          0 6px 0 rgba(0, 0, 0, 0.08);
-```
-
-**Per-color button depth utilities** (defined in `theme.css` `@utility` blocks):
-- `shadow-btn-primary` → `0 4px 0 var(--primary-2)`
-- `shadow-btn-success`, `shadow-btn-destructive`, `shadow-btn-warning`, `shadow-btn-secondary` — same pattern.
-- `-hover` variant adds 1px depth, `-active` collapses to `0 1px 0`.
-
-**Card surface utilities** (for the canonical "white card on hairline + depth" pattern):
-- `surface-card-3d` — `--shadow-card` (0.08). Kid hierarchy default.
-- `surface-card-3d-soft` — `--shadow-card-subtle` (0.06). Parent dashboard sections.
-- Both apply `border: var(--border-card)`, `border-radius: var(--r-xl)`, `padding: 16px`.
-- For non-canonical variants (different radius / padding / shadow offset), stay inline and use the shadow tokens directly.
-
-**3D motion contract** (mandatory for any element with a depth shadow):
-```css
-.depth-element { transition: transform 0.05s; }
-.depth-element:active { transform: translateY(2px); box-shadow: none !important; }
-@media (prefers-reduced-motion: reduce) {
-  .depth-element { transition: none; }
-}
-```
-
-Cards lift on hover: `transform: translateY(-2px); box-shadow: var(--shadow-lift);`.
-
----
-
-## 6. Components
-
-Location: `app/components/ui/<name>/`. Always reach for a `Ui::*` first; only write inline markup if no component fits.
-
-### Navigation & layout
-
-| Component | Path | Key props / notes |
-|---|---|---|
-| `Ui::TopBar` | `ui/top_bar/` | `title:`, `subtitle:`, `back_url:` — parent sub-page header |
-| `Ui::KidTopBar` | `ui/kid_top_bar/` | kid-shell page header with avatar + palette |
-| `Ui::PageHeader` | `ui/page_header/` | hero section with eyebrow + title + subtitle |
-| `Ui::Drawer` | `ui/drawer/` | off-canvas sidebar panel (mobile parent nav) |
-| `Ui::Tabs` | `ui/tabs/` | horizontal tab bar; use for top-level content switching |
-| `Ui::CategoryTabs` | `ui/category_tabs/` | pill-style category switcher inside a page |
-| `Ui::FilterChips` | `ui/filter_chips/` | `items:`, `active:`, `controller:` (3D pills: active = colored fill + colored border + depth shadow; idle = white + hairline border) |
-| `Ui::BgShapes` | `ui/bg_shapes/` | floating blurred orb layer; rendered inside kid layout |
-
-### Buttons & actions
-
-| Component | Path | Key props / notes |
-|---|---|---|
-| `Ui::Btn` | `ui/btn/` | `variant:`, `size:`, `tone:` — primary driver of `shadow-btn-*` depth utilities |
-
-### Cards & data display
-
-| Component | Path | Key props / notes |
-|---|---|---|
-| `Ui::Card` | `ui/card/` | base white surface with `2px hairline` + `0 4px 0` shadow |
-| `Ui::StatCard` | `ui/stat_card/` | `value:`, `label:`, `icon:`, `tint:` (pastel bg + 2px colored border) |
-| `Ui::StatMetric` | `ui/stat_metric/` | compact inline stat (number + label) |
-| `Ui::HeaderStatChip` | `ui/header_stat_chip/` | pill stat chip in page headers |
-| `Ui::KidProgressCard` | `ui/kid_progress_card/` | `kid:`, `awaiting_count:`, `missions_count:` (avatar 3D ring + level pill + progress bar) |
-| `Ui::KidPlaceholderCard` | `ui/kid_placeholder_card/` | empty slot card (add-kid CTA) |
-| `Ui::MissionCard` | `ui/mission_card/` | `mission:`, `status:`, `variant:` (16px radius, 2px border, card shadow, hover lift) |
-| `Ui::MissionListRow` | `ui/mission_list_row/` | compact row variant for mission lists |
-| `Ui::ApprovalRow` | `ui/approval_row/` | `kid:`, `title:`, `points:`, `approve_url:`, `reject_url:` |
-| `Ui::ActivityRow` | `ui/activity_row/` | `log:` or explicit fields; `with_divider:` — earn/redeem ledger entry |
-| `Ui::HistoryRow` | `ui/history_row/` | read-only log row for activity history pages |
-| `Ui::RedemptionRow` | `ui/redemption_row/` | reward redemption record with status badge |
-| `Ui::RewardCatalogCard` | `ui/reward_catalog_card/` | `reward:` — icon cell (56×56, tint + border) + star pill + edit/delete actions |
-| `Ui::CategoryRow` | `ui/category_row/` | category label + grouped items in a list |
-| `Ui::WishlistGoal` | `ui/wishlist_goal/` | `profile:` — pinned-reward goal card with progress bar; empty / filled / funded states; lives inside `turbo_frame_tag dom_id(profile, :wishlist)` for live broadcast (`Ui::Icon`, `--primary`, `--primary-2`, `--primary-soft`, `--star`, `--hairline`; `ls-card-3d`, `ls-btn-3d`; reduced-motion-safe progress fill) |
-
-### Avatars & identity
-
-| Component | Path | Key props / notes |
-|---|---|---|
-| `Ui::SmileyAvatar` | `ui/smiley_avatar/` | `kid:`, `size:`, `face:` — per-kid palette from `COLOR_MAP` |
-| `Ui::Avatar` | `ui/avatar/` | generic avatar (initials fallback) |
-| `Ui::KidAvatar` | `ui/kid_avatar/` | kid-specific avatar with palette ring |
-| `Ui::KidInitialChip` | `ui/kid_initial_chip/` | inline chip with kid initial + palette color |
-| `Ui::ProfileCard` | `ui/profile_card/` | profile-select card (160px, 20px radius, avatar + name + role badge) |
-| `Ui::ProfilePicker` | `ui/profile_picker/` | full profile selection grid |
-| `Ui::LogoMark` | `ui/logo_mark/` | LittleStars star logo glyph |
-| `Ui::Brand` | `ui/brand/` | full logo lockup (mark + wordmark) |
-
-### Badges & chips
-
-| Component | Path | Key props / notes |
-|---|---|---|
-| `Ui::Badge` | `ui/badge/` | generic status/count badge |
-| `Ui::Chip` | `ui/chip/` | small pill label |
-| `Ui::BalanceChip` | `ui/balance_chip/` | star balance display pill |
-| `Ui::StarBadge` | `ui/star_badge/` | star count badge with yellow tint |
-| `Ui::StarValue` | `ui/star_value/` | inline star icon + number |
-| `Ui::StreakBadge` | `ui/streak_badge/` | `streak:`, `size:` (yellow tint + flame + count) |
-
-### Forms
-
-| Component | Path | Key props / notes |
-|---|---|---|
-| `Ui::Toggle` | `ui/toggle/` | green track 52×30 + white thumb + inset depth shadow |
-| `Ui::Select` | `ui/select/` | styled `<select>` with hairline border + focus ring |
-| `Ui::IconPicker` | `ui/icon_picker/` | 8-col grid of icon cells; selected = tint bg + colored border + depth |
-| `Ui::ColorSwatchPicker` | `ui/color_swatch_picker/` | per-kid color picker swatches |
-| `Ui::FormSection` | `ui/form_section/` | grouped form block with eyebrow label |
-| `Ui::FormErrors` | `ui/form_errors/` | model error summary (list above form) |
-
-### Overlays & feedback
-
-| Component | Path | Key props / notes |
-|---|---|---|
-| `Ui::Modal` | `ui/modal/` | Turbo-compatible dialog; 20px radius; 24px for PIN exception |
-| `Ui::PinModal` | `ui/pin_modal/` | 340px PIN entry dialog (see §15) |
-| `Ui::Toast` | `ui/toast/` | auto-dismiss 3–5 s; `type: success|error|info`; `aria-live="polite"` |
-| `Ui::Flash` | `ui/flash/` | reads Rails `flash`; delegates to Toast |
-| `Ui::Alert` | `ui/alert/` | inline alert banner (non-dismissible) |
-| `Ui::Spinner` | `ui/spinner/` | loading indicator; use inside `Ui::Btn` during async ops |
-| `Ui::Tooltip` | `ui/tooltip/` | hover/focus tooltip; always keyboard-reachable |
-| `Ui::TurboConfirm` | `ui/turbo_confirm/` | custom Turbo confirm dialog (replaces browser `confirm()`) |
-| `Ui::Celebration` | `ui/celebration/` | full-screen success overlay |
-| `Ui::Confetti` | `ui/confetti/` | confetti particle burst layer |
-| `Ui::InstallPrompt` | `ui/install_prompt/` | bottom-fixed PWA install card; reveals on `beforeinstallprompt`; dismissible with 7-day localStorage cooldown (`pwa-install-dismissed-at`); rendered hidden on every kid + parent layout. Tokens: `--primary`, `--primary-2`, `--text`, `--text-muted`, `--hairline`, `0 4px 0` depth shadow, 14px radius. Stimulus identifier `install-prompt`; auto-hides when `display-mode: standalone` or recent dismissal. |
-| `Ui::IosInstallHint` | `ui/ios_install_hint/` | iOS Safari hint pointing to Share → "Adicionar à Tela de Início"; iPad/iPhone/iPod only via UA + `navigator.standalone === false`; rendered hidden on every kid + parent layout. Tokens: neutral surface (`--surface`), `--text`, `--text-muted`, `--hairline`, `0 4px 0` depth shadow, 14px radius. Stimulus identifier `ios-install-hint`; 7-day localStorage dismissal. |
-
-### Utility
-
-| Component | Path | Key props / notes |
-|---|---|---|
-| `Ui::Empty` | `ui/empty/` | `icon:`, `title:`, `subtitle:`, `color:` — zero-state screen |
-| `Ui::Icon` | `ui/icon/` | `name`, `size:`, `color:`, `weight:` — SVG icon wrapper |
-| `Ui::IconTile` | `ui/icon_tile/` | square tile with icon + tint background |
-| `Ui::Group` | `ui/group/` | grouped list container with hairline dividers |
-| `Ui::Heading` | `ui/heading/` | semantic heading with Nunito 800 + optional eyebrow |
-| `Ui::Clipboard` | `ui/clipboard/` | copy-to-clipboard button wrapper |
-| `Ui::Tokens` | `ui/tokens.rb` (module) | `category_for(key)`, `frequency_for(key)`, `tint_soft`, `tint_fg` |
-
----
-
-## 7. Page Patterns
-
-### Kid shell
-- `layouts/kid.html.erb` body: `min-h-screen bg-bg-deep` + `data-palette` + `data-controller="fx"`
-- Main: `p-6 w-full max-w-[430px] md:max-w-[560px] lg:max-w-[720px] mx-auto pb-24 md:pb-10`
-- Sticky bottom pill nav
-- `Ui::BgShapes` renders floating orbs
-- `data-palette="<%= palette_for(current_profile) %>"` on `<body>` enables per-kid accent
-
-### Parent shell
-- `layouts/parent.html.erb` body: `min-h-screen bg-bg-deep overflow-x-hidden lg:pl-[220px]` — defaults inherit Duolingo green (no `data-palette`)
-- Side nav fixed left at ≥1024px (220px wide, white bg, 2px right hairline)
-- Active nav item: soft tint background + 2px colored border + colored text (sky-blue accent in mocks; primary green also valid)
-- Off-canvas drawer on mobile with header bar toggle
-- Main: `max-w-[1100px]`, centered, `p-6 lg:px-10 pb-24 lg:pb-6`
-- Sidebar footer profile chip: 34×34 green avatar + name + role label
-
----
-
-## 8. Forms
-
-- `.form-field` wraps each input
-- `.form-label` — uppercase 12px tracking 0.5 weight 800 color `var(--text-muted)`
-- `.form-input` / `.form-select` — 15px Nunito 700, `2px solid var(--hairline)` resting, focus ring `box-shadow: 0 0 0 3px var(--primary-soft); border-color: var(--primary)`
-- Icon picker: 8-col grid, aspect-ratio 1, selected = soft tint bg + colored border + depth shadow (`0 3px 0`)
-- Star difficulty picker: 10-cell row, filled = `--star-soft` bg + `--star` border + `0 3px 0 --star-2`, empty = `--surface-2` bg + hairline border
-- Frequency cards: 3-col grid, selected = soft tint + colored border + depth shadow
-- Toggle: green track + white thumb (see `Ui::Toggle`)
-
----
-
-## 9. Motion
-
-### Easing tokens (`tailwind/motion.css`)
-
-| Token | Value | Use |
-|---|---|---|
-| `--ease-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Modals, pop-ins, spring feedback |
-| `--ease-spring-soft` | `cubic-bezier(0.22, 1.4, 0.36, 1)` | Card hover lifts, tile reveals |
-| `--ease-snap` | `cubic-bezier(0.4, 0, 0.2, 1)` | Shake, error states, snappy transitions |
-| `--ease-out-back` | `cubic-bezier(0.34, 1.20, 0.64, 1)` | Softer overshoot (alternative to spring) |
-| `--dur-instant` | `80ms` | 3D press feedback only |
-| `--dur-fast` | `120ms` | Micro-interactions, hover lifts |
-| `--dur-base` | `240ms` | Standard state transitions |
-| `--dur-pop` | `380ms` | Spring pops, reveals |
-| `--dur-long` | `600ms` | Progress fills, big reveals |
-| `--dur-ambient` | `2500ms` | Idle loops (mascot, coin, spinner) |
-
-**Rule:** Components must reference tokens via `var(--dur-*)` / `var(--ease-*)`. Raw `ms`/`s` literals in component CSS will be flagged by `make lint-motion` (see §9.4).
-
-### Motion utility classes
-
-**Use these classes — never write ad-hoc `transition`/`animation` CSS in components.**
-
-#### 3D press utilities (`ls-*`)
-
-| Class | Behavior |
-|---|---|
-| `ls-btn-3d` | `transition: transform 0.05s` + `:active → translateY(2px), box-shadow: none` |
-| `ls-filter-pill` | Same as `ls-btn-3d` — for filter/tab pills |
-| `ls-key-3d` | Same — for PIN numpad keys |
-| `ls-aux-key` | Same — for secondary keys (backspace) |
-| `ls-icon-cell` | `transition 0.05s` + `:active → scale(0.92)` |
-| `ls-star-cell` | Same as `ls-icon-cell` — for star difficulty pickers |
-| `ls-card-3d` | `transition: transform/box-shadow 0.1s` + `:hover → translateY(-2px), shadow-lift` |
-
-#### Spring animation utilities (`anim-*`)
-
-| Class | Keyframe | Duration | Easing |
-|---|---|---|---|
-| `anim-press` | `scale(0.96)` on `:active` | `--dur-fast` | `--ease-spring` |
-| `anim-tile` | hover lift + shadow | `--dur-base` | `--ease-spring-soft` |
-| `anim-pop-in` | fade + scale(0.9) + translateY(8px) → none | `--dur-pop` | `--ease-spring` |
-| `anim-pulse-once` | scale 1 → 1.12 → 1 | `--dur-pop` | `--ease-spring` |
-| `anim-shake` | translateX zig-zag | `360ms` | `--ease-snap` |
-| `anim-bounce-once` | translateY bounce | `500ms` | `--ease-spring` |
-| `anim-fade-up` | opacity + translateY(8px) → none | `--dur-base` | `--ease-spring-soft` |
-| `anim-shimmer` | loading shimmer gradient | `1.4s infinite` | linear |
-| `anim-spin` | continuous rotation (spinners) | `--dur-ambient` infinite | `--ease-snap` |
-| `anim-card-enter` | fade + translateY(8px) → none | `--dur-base` | `--ease-spring-soft` |
-| `anim-progress` | width transition (progress bars) | `--dur-long` | `--ease-spring-soft` |
-
-#### Effects catalog (opt-in, trigger-driven)
-
-| Class | Trigger | Use |
-|---|---|---|
-| `anim-count-up` | Turbo Stream re-render of `Profile.points` balance | Pulse-green tick on points change (`ApproveService`, `RedeemService` broadcasts) |
-| `anim-streak-flame` | Always-on while element visible | Streak badge flicker (kid dashboard streak indicator) |
-| `anim-reward-unlock` | Turbo Stream replace `_locked` → `_affordable` | Reward becomes affordable — spring + brightness pop |
-| `anim-approve-check` | Approval row state transition to "approved" | SVG checkmark stroke draws in (apply to `<svg class="anim-approve-check">`) |
-| `anim-toast-slide` | Mount of toast / flash | Top-down slide entry (PWA update, flash messages) |
-| `anim-progress-shimmer` | While progress bar is `> 0%` and `< 100%` | Ambient sheen over filled portion (uses `::after` pseudo) |
-| `anim-haptic` | Opt-in on 3D press elements | Warm halo flash on `:active` (uses `::after` pseudo). Layer over `.ls-btn-3d` for extra tactile feedback on celebration CTAs |
-
-#### Legacy `animate-*` classes (`animations.css`)
-
-| Class | Keyframe | Duration |
-|---|---|---|
-| `animate-slide-in` | `slideIn` (left) | 0.4s |
-| `animate-slide-in-right` | `slideInR` (right) | 0.4s |
-| `animate-pop-in` | `popIn` | 0.3s |
-| `animate-float` | `float` (infinite) | 3s |
-| `animate-shake` | `shake` | 0.4s |
-| `animate-slide-in-card` | `slideInCard` | 0.4s |
-| `animate-pop-card` | `popCard` | 0.4s |
-| `animate-star-pulse` | `starPulse` (infinite) | 2s |
-| `hover-wobble` | `wobble` on hover | 0.3s |
-
-#### Thematic animations
-
-| Class | Use |
-|---|---|
-| `ls-mascot-bounce` | Mascot idle bounce (2.5s infinite) |
-| `ls-coin-shake` | Coin/star idle rattle (3s infinite) |
-
-### Stagger rule
-
-```erb
-style="animation-delay: <%= index * 0.04 %>s"
-```
-Cap at 5 items (0.16s max delay). Beyond 5, no delay.
-
-### Lint guardrail (§9.4)
-
-`make lint-motion` (also run in CI via `bin/ci`) fails the build if it finds:
-
-- Raw durations in `transition:` / `animation:` declarations under `app/components/**` or `app/views/**` (use `var(--dur-*)`).
-- Tailwind `duration-N` utilities in ERB (use a tokenized `style="transition: ... var(--dur-*) ..."` or an `.anim-*` class).
-
-To allow a justified exception, add `motion-lint: allow` as a comment on the same line.
-
-### Reduced motion
-
-All `ls-*` and `anim-*` classes have `prefers-reduced-motion: reduce` overrides in `motion.css` — no manual `@media` needed when using these classes. For custom animations, always add:
-```css
-@media (prefers-reduced-motion: reduce) {
-  .my-class { animation: none; transition: none; }
-}
-```
-
----
-
-## 10. Accessibility
-
-- Icon-only buttons must carry `aria-label`.
-- Tab switchers need `role=tablist` on container and `role=tab` with `aria-selected` on buttons (`Ui::FilterChips` does this).
-- Focus rings: inputs use `box-shadow: 0 0 0 3px var(--primary-soft)`. Buttons use `:focus-visible` outline (not `:focus`).
-- All interactive nodes must have a non-icon text fallback (`sr-only` if needed).
-- 3D buttons keep `:focus-visible` outline distinct from `:active` press state.
-- **Modals:** use `inert` on all body siblings when open; return focus to the trigger element on close via WeakMap (not a stored selector). `Ui::Modal` implements this.
-- **Toasts:** use `aria-live="polite"` so screen readers announce without stealing focus.
-- Minimum touch target: 44×44px. Expand hit area with padding rather than changing the visual size.
-
----
-
-## 11. Do / Don't
-
-**✗ Don't**
-- Write `style="..."` for anything a utility class or component already covers. Allowed exceptions: dynamic values (`width: 73%`, computed `--kid-color`).
-- Reference raw hex from views — go through CSS vars.
-- Mix old "Berry Pop" lilac/Fraunces tokens with the current system. They were removed.
-- Soften the 3D shadow stack — depth shadows must be `0 4px 0`, not blurry. No `rgba(...) 0 4px 12px` for buttons.
-- Drop below `font-weight: 700` for body text or `800` for buttons/headings.
-- Use border-radius > 20px outside of avatars and modals.
-- Duplicate category/frequency metadata across views — use `Ui::Tokens`.
-
-**✓ Do**
-- Reach for `Ui::*` first. If no component fits, use `.card` + utility classes.
-- If a pattern repeats twice, extract a component in the same PR that needs it.
-- Use 2px borders everywhere. Active states swap the border color to the tint, not the thickness.
-- Keep kid-facing copy playful, parent-facing copy concise.
-- Honor `prefers-reduced-motion: reduce` on every transitioned element.
-
----
-
-## 12. Component-extraction checklist
-
-Before adding a page, scan the mock for these patterns. If any recur, use the listed component:
-
-**Navigation**
-- Page header with back arrow → `Ui::TopBar` (parent) or `Ui::KidTopBar` (kid)
-- Hero title + eyebrow + subtitle section → `Ui::PageHeader`
-- Segmented pill switcher → `Ui::FilterChips`
-- Category/content tabs → `Ui::Tabs` or `Ui::CategoryTabs`
-- Off-canvas sidebar → `Ui::Drawer`
-
-**Cards & rows**
-- Stat tile → `Ui::StatCard`
-- Kid dashboard card → `Ui::KidProgressCard`
-- Reward catalog tile → `Ui::RewardCatalogCard`
-- Mission card → `Ui::MissionCard`
-- Compact mission row → `Ui::MissionListRow`
-- Approval row with two actions → `Ui::ApprovalRow`
-- Ledger / activity entry → `Ui::ActivityRow`
-- Redemption record → `Ui::RedemptionRow`
-- Read-only log row → `Ui::HistoryRow`
-- Category + items group → `Ui::CategoryRow`
-- Empty slot / placeholder → `Ui::KidPlaceholderCard`
-
-**Identity**
-- Per-kid avatar → `Ui::SmileyAvatar`
-- Avatar with initials fallback → `Ui::Avatar`
-- Inline kid initial chip → `Ui::KidInitialChip`
-- Profile select card → `Ui::ProfileCard`
-
-**Badges & chips**
-- Star balance display → `Ui::BalanceChip`
-- Streak counter → `Ui::StreakBadge`
-- Star count → `Ui::StarBadge` or `Ui::StarValue`
-- Status label → `Ui::Badge` or `Ui::Chip`
-
-**Feedback & overlays**
-- Dialog / modal → `Ui::Modal`
-- Confirmation before destructive action → `Ui::TurboConfirm`
-- Auto-dismiss notification → `Ui::Toast`
-- Inline alert → `Ui::Alert`
-- Full-screen success → `Ui::Celebration` + `Ui::Confetti`
-- Loading indicator → `Ui::Spinner`
-
-**Forms**
-- On/off setting → `Ui::Toggle`
-- Icon picker → `Ui::IconPicker`
-- Color picker → `Ui::ColorSwatchPicker`
-- Grouped form block → `Ui::FormSection`
-- Validation errors → `Ui::FormErrors`
-
-**Zero states**
-- Empty screen → `Ui::Empty`
-
-If a pattern doesn't fit any entry above, add a row to §6 of this file in the same PR.
-
----
-
-## 13. Component state matrix
-
-| Element | Idle | Hover | Active / Pressed | Selected | Disabled |
-|---|---|---|---|---|---|
-| Primary button | `bg-primary` + `0 4px 0 --primary-2` | `0 6px 0 --primary-2` + `translateY(-1px)` (optional) | `translateY(2px)` + `box-shadow: none` | — | `opacity: 0.5; cursor: not-allowed` |
-| Secondary button | `bg-surface` + `2px hairline` + `0 4px 0 #C9C9C9` | `0 5px 0 #C9C9C9` | `translateY(2px)` + `box-shadow: none` | — | same as primary |
-| Filter pill | `bg-surface` + `2px hairline` + `0 3px 0 hairline` | hairline darken | press | colored fill + `2px primary border` + `0 3px 0 --primary-2` | — |
-| Card | `bg-surface` + `2px hairline` + `0 4px 0 rgba(0,0,0,0.08)` | `translateY(-2px)` + `0 6px 0 rgba(0,0,0,0.08)` | — | colored border + soft tint bg | reduced opacity |
-| Picker cell (icon/star/freq) | `bg-surface-muted` + `2px hairline` | `scale(1.05)` (icon) | `scale(0.92)` (star) | tint bg + colored border + `0 3px 0 depth` | — |
-| Input | `2px hairline` | hairline darken | — | `2px primary border` + `0 0 0 3px primary-soft` | reduced opacity |
-| Nav item (sidebar) | text-muted + transparent bg | bg-surface-muted | — | sky-tint bg + sky border + sky text | — |
-| Toggle | gray track | — | — | green track + white thumb (right) | reduced opacity |
-
----
-
-## 14. Profile selection (entry screen)
-
-Layout: centered column. Header = 48px yellow logo tile + "LittleStars" 22px/800. H1 "Quem é você?" 28px/800. Subtitle 14px/700 muted. Profile cards in a flex-wrap row (max-width 720px).
-
-**Profile card** (`Ui::ProfileCard`):
-- 160px width, 20px radius, 2px hairline border, white bg.
-- Card shadow: `0 4px 0 rgba(0,0,0,0.08)`. Hover lift: `translateY(-4px)`.
-- Avatar: 88px circle, palette fill, `0 5px 0 [palette-depth]` shadow ring, centered.
-- Name below avatar: 17px/800 `var(--text)`.
-- Role/status badge: soft tint pill with colored text (e.g., parent = sky soft + sky-dark, kid = lilac soft + lilac-dark + star icon + "12 · Nível 1").
-- Optional top-right corner badge: streak count (yellow tile + flame + count) or lock icon (sky tint + lock).
-- Selected state (PIN open): 3px primary border + `0 4px 0 var(--primary-2)`.
-
-Footer chip: "Cada perfil é protegido por um PIN" — 14px radius, 2px hairline, surface-muted bg, 12px/700 muted text.
-
-## 15. PIN modal
-
-Backdrop: dim profile select (`filter: blur(2px); opacity: 0.4`) + overlay `rgba(75,75,75,0.45)`.
-
-Modal card (`Ui::PinModal`):
-- 340px width, **24px radius** (modal exception), 2px hairline border, white bg.
-- Card shadow: `0 8px 0 rgba(0,0,0,0.12)` — taller depth than standard cards.
-- Close X button (top-right): 32×32, 10px radius, 2px hairline, `0 2px 0 hairline` shadow, `:active translateY(2px)`.
-- Header: 72×72 character avatar with palette fill + `0 4px 0 [palette-depth]`, "Olá, [Name]!" 18px/800, "Digite seu PIN secreto" 12px/700 muted.
-- Dot indicators: 4 × 16px circles centered, gap 10px.
-  - Filled = palette `[ink]` color + `0 2px 0 [darker-ink]` depth.
-  - Empty = white + 2px hairline.
-- Number pad: 3-col grid, gap 10px.
-  - Each key: aspect 1.2, 14px radius, 2px hairline border, white bg, `0 4px 0 hairline` shadow.
-  - Number 22px/800 `var(--text)`.
-  - Backspace key: `var(--surface-muted)` bg, same border/shadow, stroke icon `var(--text-muted)`.
-  - Empty grid slot at position 10 (left of 0).
-  - All keys honor `prefers-reduced-motion: reduce`.
-- "Esqueci meu PIN" link: centered below pad, 12px/800 uppercase tracking 0.5 sky-dark.
-
----
-
-## 16. Tailwind v4 authoring rules
-
-This project uses **Tailwind v4** (CSS-first config, no `tailwind.config.js`).
-
-### Token authoring
-
-```css
-/* tokens live in :root — never in @theme */
-:root {
-  --primary: #58CC02;
-}
-
-/* expose to Tailwind utilities in @theme inline */
-@theme inline {
-  --color-primary: var(--primary);
-}
-/* now bg-primary, text-primary, border-primary all work */
-```
-
-**Rule:** design tokens → `:root` in `theme.css`. Tailwind utility mapping → `@theme inline` in the same file. Never put raw hex inside `@theme`.
-
-### Adding new utilities
-
-Use `@utility`, not `@layer utilities` with `@apply`:
-
-```css
-/* ✓ correct — Tailwind v4 */
-@utility shadow-btn-primary {
-  box-shadow: 0 4px 0 var(--color-primary-depth);
-}
-
-/* ✗ wrong — v4 dropped @apply support in @layer */
-@layer utilities {
-  .shadow-btn-primary { @apply shadow-md; }
-}
-```
-
-### Adding new animations
-
-```css
-/* put @keyframes in @layer base, expose class in @layer utilities */
-@layer base {
-  @keyframes myAnim {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-}
-@layer utilities {
-  .animate-my-anim {
-    animation: myAnim 0.3s var(--ease-spring) both;
-  }
-}
-```
-
-Prefer `anim-*` naming for new spring/motion classes; `animate-*` for one-off keyframe wrappers.
-
-### Arbitrary values
-
-Use CSS var references for dynamic values, not hardcoded strings:
-
-```html
-<!-- ✓ -->
-<div class="bg-[var(--primary-soft)]">
-<div style="width: 73%">               <!-- truly dynamic only -->
-
-<!-- ✗ raw hex in markup -->
-<div class="bg-[#DCFCE7]">
-```
-
-### Safe areas (iOS)
-
-`viewport-fit=cover` is set in `_head.html.erb`. Reference safe area insets with:
-```css
-padding-bottom: env(safe-area-inset-bottom, 0px);
-```
-The bottom nav and fixed CTAs must account for this. Tailwind arbitrary: `pb-[env(safe-area-inset-bottom)]`.
-
-### Icon system
-
-Icons use `Ui::Icon::Component` which wraps HugeIcons SVG glyphs. Pass name as string or symbol:
-```erb
-<%= render Ui::Icon::Component.new("star", size: 20, color: "var(--star)") %>
-```
-Never use emoji as icons. Never `<img>` for icons. Stroke weight defaults to 1.5; use `weight: 2` for heavier context.
+**Display Font:** Nunito (with `system-ui, sans-serif` fallback)
+**Body Font:** Nunito (the only family; display and body are the same face at different weights)
+**Label/Mono Font:** none distinct; labels are Nunito 800 uppercase.
+
+**Character:** Nunito is rounded, warm, and friendly: a face that reads as approachable to a child without becoming childish. The entire system runs on weight contrast within this one family. There is no serif, no second font, no italic display. Fraunces and Inter are explicitly banned.
+
+### Hierarchy
+- **Display** (800, 36px / `--text-3xl`, line-height 1.1): the largest celebratory numbers and hero moments. Used sparingly.
+- **Headline / H1** (800, 26px / `--text-2xl`, line-height 1.15): page titles ("Quem é você?").
+- **Title / H2** (800, 22px / `--text-xl`, line-height 1.2): section headings.
+- **Subtitle / H3** (800, 18px / `--text-lg`, line-height 1.25): card titles.
+- **Body** (700, 14–15px / `--text-base`, line-height 1.5): default running text. Cap measure at 65–75ch.
+- **Label** (800, 11px / `--text-xs`, uppercase, letter-spacing 0.5px): eyebrows, button labels, badge text, form labels.
+
+### Named Rules
+**The 700 Floor Rule.** Body text never drops below `font-weight: 700`. Headings, buttons, stat numbers, and badge labels are `800`. Light and regular weights do not exist in this system; thin type would break the chunky, tactile feel.
+
+**The One Voice Rule.** One typeface, full stop. Hierarchy is achieved by scale and weight, never by introducing a second family. If a screen feels flat, increase the weight or size step (ratio ≥1.25), do not add a font.
+
+## 4. Elevation
+
+This system conveys depth through **hard, flat, offset shadows** (`0 4px 0` with zero blur), not soft ambient shadows. Every elevated object looks like a physical key or tile resting on the surface, with a colored "side" visible beneath it. Blur is reserved exclusively for the decorative background orb layer (`Ui::BgShapes`); it never appears on a functional element. Lifted blurry card shadows from the retired era are banned.
+
+### Shadow Vocabulary
+- **Card depth** (`box-shadow: 0 4px 0 rgba(0,0,0,0.08)`): the canonical kid card. Use `surface-card-3d`.
+- **Card depth, subtle** (`0 4px 0 rgba(0,0,0,0.06)`): parent dashboard sections. Use `surface-card-3d-soft`.
+- **Card depth, light / heavy** (`0 4px 0 rgba(0,0,0,0.04)` / `0.12`): chips/mini-cards and hero/featured cards respectively.
+- **Button depth** (`0 4px 0 var(--{tone}-depth)`): primary/success/destructive/warning/secondary buttons each rest on their own depth color via the `shadow-btn-*` utilities. Hover adds 1px (`0 5px 0`), active collapses to `0 1px 0`.
+- **Lift** (`0 6px 0 rgba(0,0,0,0.08)`): the hover state of a card, paired with `translateY(-2px)`.
+
+### Named Rules
+**The 3D Motion Contract.** Any element carrying a depth shadow must press and spring. On `:active` it sets `transform: translateY(2px); box-shadow: none` over `transition: transform 0.05s`. Cards instead lift on `:hover` (`translateY(-2px)` + lift shadow). This is mandatory, and every such element must include a `prefers-reduced-motion: reduce` override that disables the transition. The `ls-btn-3d`, `ls-card-3d`, and sibling utilities encode this; never hand-roll it.
+
+**The Hard-Shadow Rule.** Depth shadows are `0 4px 0` with no blur and no spread. A blurry button shadow (`rgba(...) 0 4px 12px`) is the single clearest sign the design has regressed to the retired Berry Pop era. If it looks soft, it is wrong.
+
+## 5. Components
+
+Reusable UI lives as `Ui::*` ViewComponents under `app/components/ui/<name>/`. Always reach for an existing component before writing inline markup; if a pattern recurs twice, extract a component in the same PR. The library is large (buttons, cards, rows, avatars, badges, chips, forms, overlays); the canonical primitives below define the visual contract every component follows.
+
+### Buttons
+- **Shape:** 14px corners (`--r-lg`).
+- **Primary:** green fill (`#58CC02`), white uppercase 800 label, padding `14px 20px`, resting on `0 4px 0 var(--primary-2)`.
+- **Hover / Active:** hover deepens to `0 5px 0`; active collapses to `0 1px 0` with `translateY(2px)`, per the 3D Motion Contract.
+- **Secondary / Ghost:** white fill, 2px hairline border, dark text, gray depth (`0 4px 0 #C9C9C9`). Driven by `Ui::Btn` `variant:`/`tone:`, which selects the matching `shadow-btn-*` utility.
+
+### Chips & Pills
+- **Filter pill** (`Ui::FilterChips`): idle is white + 2px hairline + faint depth; selected is a colored tint fill + 2px colored border + colored depth. State swaps the *color*, never the border thickness. Needs `role=tablist`/`role=tab` + `aria-selected`.
+- **Badges** (`Ui::StarBadge`, `Ui::StreakBadge`, `Ui::Badge`): pill-shaped tint surfaces with a matching dark text color (star = gold tint + reward-text; streak = coral).
+
+### Cards / Containers
+- **Corner style:** 16px (`--r-xl`); modals and hero step up to 20px (`--r-featured`).
+- **Background:** white surface on the `#F7F7F7` canvas.
+- **Border:** always 2px hairline (`var(--border-card)`). 2px borders are universal; selected state recolors the border.
+- **Shadow strategy:** `surface-card-3d` (0.08) for kid hierarchy, `surface-card-3d-soft` (0.06) for parent dashboard. See Elevation.
+- **Internal padding:** 16px default. Cards lift on hover (`ls-card-3d`).
+- **Nesting is banned.** Never put a depth card inside another depth card.
+
+### Inputs / Fields
+- **Style:** white fill, 2px hairline border, 14px radius, Nunito 700 at 15px (`.form-input` / `Ui::Select`).
+- **Focus:** border shifts to `var(--primary)` and a 3px soft glow appears (`box-shadow: 0 0 0 3px var(--primary-soft)`). No outline-style focus on fields.
+- **Label:** uppercase 12px, 800, letter-spacing 0.5, `var(--text-muted)`.
+- **Toggle** (`Ui::Toggle`): 52×30 green track + white thumb with an inset depth shadow.
+
+### Navigation
+- **Kid shell:** a sticky bottom pill nav, single column capped `max-w-[430px]` (`md:560`, `lg:720`), `Ui::BgShapes` orb layer behind, `data-palette` on `<body>`.
+- **Parent shell:** a fixed 220px left sidebar at ≥1024px (white, 2px right hairline), off-canvas drawer below. Active nav item = soft tint background + 2px colored border + colored text (sky accent in mocks; primary green also valid). Main column `max-w-[1100px]`.
+
+### Motion & Feedback (signature behavior)
+Motion is tokenized in `tailwind/motion.css` and consumed only via utility classes; raw `ms`/`s` durations in component CSS are blocked by `make lint-motion`. Easing is exponential ease-out (`--ease-spring`, `--ease-spring-soft`, `--ease-snap`); never bounce or elastic on layout. Durations run `--dur-instant` (80ms press) through `--dur-ambient` (2500ms idle loops). Use the `ls-*` press utilities and `anim-*` spring/effect classes (`anim-pop-in`, `anim-count-up` on balance changes, `anim-reward-unlock`, confetti on success). Stagger lists by `index * 0.04s`, capped at 5 items. Every motion class ships a `prefers-reduced-motion: reduce` fallback.
+
+### Iconography
+Functional icons are HugeIcons SVG via `Ui::Icon`; never emoji and never `<img>` for affordances. The one sanctioned exception is the Academy "método do mistério" narrative (🤔 💡 🔮 🦉), where emoji are decorative content, always `aria-hidden="true"` and never the sole label of a control.
+
+## 6. Do's and Don'ts
+
+### Do:
+- **Do** route every color, font, radius, and shadow through a CSS variable in `tailwind/theme.css`. Raw hex lives only there (plus the documented `public/offline.html` exception).
+- **Do** reach for a `Ui::*` ViewComponent first; only write inline markup when nothing fits, then document the new component in the same PR.
+- **Do** give every interactive element a `0 4px 0` depth shadow and the full 3D Motion Contract (press, spring, reduced-motion fallback).
+- **Do** keep type at Nunito 700 minimum, 800 for headings/buttons/numbers.
+- **Do** use 2px borders everywhere; selected states swap the border *color*, not its thickness.
+- **Do** assign accents by meaning: gold = points, lilac = people, coral = streaks, sky = info, red = danger.
+- **Do** keep kid copy playful and parent copy concise, and honor `prefers-reduced-motion` on every transition.
+
+### Don't:
+- **Don't** reintroduce the retired Berry Pop / Soft Candy era: no Fraunces, no lilac `#A78BFA` as primary, no soft blurry shadows.
+- **Don't** soften the 3D stack. Depth shadows are `0 4px 0`, hard and flat, never `rgba(...) 0 4px 12px`.
+- **Don't** use `background-clip: text` gradient text, decorative glassmorphism, or blur on any functional element (blur is for `Ui::BgShapes` only).
+- **Don't** use a `border-left`/`border-right` greater than 1px as a colored accent stripe. Use a full 2px border or a tint background.
+- **Don't** drop below `font-weight: 700`, and never introduce a second typeface.
+- **Don't** use border-radius greater than 20px outside avatars and modals, and never nest a depth card inside another.
+- **Don't** use emoji for functional icons (buttons, status, nav); use `Ui::Icon`. Emoji are allowed only as decorative Academy narrative content.
+- **Don't** let a screen read like a generic SaaS dashboard. If it could pass for a B2B analytics tool, rework it until it feels like the Encouraging Arcade.

@@ -1,0 +1,16 @@
+[     193ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:10302/vite/?token=V5jPyHi1ukrb' failed: Error in connection establishment: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:10301/vite/@vite/client:744
+[     194ms] [ERROR] [vite] failed to connect to websocket (Error: WebSocket closed without opened.).  @ http://localhost:10301/vite/@vite/client:771
+[     198ms] Error: WebSocket closed without opened.
+    at WebSocket.<anonymous> (http://localhost:10301/vite/@vite/client:423:30)
+[     421ms] [INFO] [pwa] sw registered, scope: http://localhost:10301/ @ http://localhost:10301/vite/entrypoints/pwa.js:7
+[ 1128982ms] [ERROR] WebSocket connection to 'ws://localhost:10301/cable' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/src-T2DHKQQI.js?v=6be70a8e:174
+[ 1136844ms] [ERROR] WebSocket connection to 'ws://localhost:10301/cable' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/src-T2DHKQQI.js?v=6be70a8e:174
+[ 1145701ms] [ERROR] WebSocket connection to 'ws://localhost:10301/cable' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/src-T2DHKQQI.js?v=6be70a8e:174
+[ 1669863ms] [ERROR] WebSocket connection to 'ws://localhost:10301/cable' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/src-T2DHKQQI.js?v=6be70a8e:174
+[ 1677550ms] [ERROR] WebSocket connection to 'ws://localhost:10301/cable' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/src-T2DHKQQI.js?v=6be70a8e:174
+[ 1686230ms] [ERROR] WebSocket connection to 'ws://localhost:10301/cable' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/src-T2DHKQQI.js?v=6be70a8e:174
+[ 1732292ms] [ERROR] WebSocket connection to 'ws://localhost:10301/cable' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/src-T2DHKQQI.js?v=6be70a8e:174
+[ 1739543ms] [ERROR] WebSocket connection to 'ws://localhost:10301/cable' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/src-T2DHKQQI.js?v=6be70a8e:174
+[ 1747830ms] [ERROR] WebSocket connection to 'ws://localhost:10301/cable' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/src-T2DHKQQI.js?v=6be70a8e:174
+[ 1787907ms] [ERROR] WebSocket connection to 'ws://localhost:10301/cable' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/src-T2DHKQQI.js?v=6be70a8e:174
+[ 1795014ms] [ERROR] WebSocket connection to 'ws://localhost:10301/cable' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/src-T2DHKQQI.js?v=6be70a8e:174

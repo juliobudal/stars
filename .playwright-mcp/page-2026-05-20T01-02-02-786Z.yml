@@ -1,0 +1,73 @@
+- generic [active] [ref=e48]:
+  - navigation "Navegação principal" [ref=e49]:
+    - link "Jornada" [ref=e50] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e51]: 󲑲
+      - generic [ref=e52]: Jornada
+    - link "Academia" [ref=e53] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e54]: 󲌸
+      - generic [ref=e55]: Academia
+    - link "Lojinha" [ref=e56] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e57]: 󲊉
+      - generic [ref=e58]: Lojinha
+    - link "Diário" [ref=e59] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e60]: 󱖃
+      - generic [ref=e61]: Diário
+  - main [ref=e62]:
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - link [ref=e65] [cursor=pointer]:
+          - /url: /kid/academy/subjects/dinheiro-vida
+        - generic [ref=e67]:
+          - generic [ref=e68]: Dinheiro & Vida Real · TRILHA 1
+          - heading "Quem manda no seu dinheiro?" [level=1] [ref=e69]
+      - generic [ref=e70]:
+        - generic [ref=e71]: O ARCO DESTA TRILHA
+        - paragraph [ref=e72]: "\"Quem não decide quando gasta, gasta sempre.\""
+      - generic [ref=e73]:
+        - link "1 Por que comprar por impulso é uma armadilha? \"Você quer agora — daqui a 1 dia, talvez nem queira mais.\"" [ref=e74] [cursor=pointer]:
+          - /url: /kid/academy/subjects/dinheiro-vida/missions/impulso-perigoso
+          - generic [ref=e75]:
+            - generic [ref=e76]: "1"
+            - generic [ref=e77]:
+              - generic [ref=e78]: Por que comprar por impulso é uma armadilha?
+              - generic [ref=e79]: "\"Você quer agora — daqui a 1 dia, talvez nem queira mais.\""
+        - link "Quase tudo que você 'precisa' é desejo?":
+          - /url: "#"
+          - generic:
+            - generic:
+              - generic: 󲍽
+            - generic:
+              - generic: Quase tudo que você 'precisa' é desejo?
+        - link "Por que pessoas ricas guardam mais que gastam?":
+          - /url: "#"
+          - generic:
+            - generic:
+              - generic: 󲍽
+            - generic:
+              - generic: Por que pessoas ricas guardam mais que gastam?
+        - link "Como dinheiro vira mais dinheiro sozinho?":
+          - /url: "#"
+          - generic:
+            - generic:
+              - generic: 󲍽
+            - generic:
+              - generic: Como dinheiro vira mais dinheiro sozinho?
+        - link "Cada 'sim' é mil 'nãos' invisíveis":
+          - /url: "#"
+          - generic:
+            - generic:
+              - generic: 󲍽
+            - generic:
+              - generic: Cada 'sim' é mil 'nãos' invisíveis
+        - link "Por que 'de R$200 por R$150' parece barato?":
+          - /url: "#"
+          - generic:
+            - generic:
+              - generic: 󲍽
+            - generic:
+              - generic: Por que 'de R$200 por R$150' parece barato?
+  - text: 󲎤

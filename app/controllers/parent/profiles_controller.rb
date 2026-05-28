@@ -34,7 +34,7 @@ class Parent::ProfilesController < ApplicationController
       end
     else
       @profile = result.data || current_family.profiles.new(attrs)
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -49,7 +49,7 @@ class Parent::ProfilesController < ApplicationController
         redirect_to parent_root_path, notice: "Filho atualizado com sucesso!"
       end
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

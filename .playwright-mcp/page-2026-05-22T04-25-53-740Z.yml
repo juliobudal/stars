@@ -1,0 +1,137 @@
+- generic [active] [ref=e112]:
+  - main [ref=e113]:
+    - progressbar [ref=e114]
+    - generic [ref=e119]:
+      - heading "O que você curte?" [level=1] [ref=e120]
+      - paragraph [ref=e121]:
+        - text: Escolhe de
+        - strong [ref=e122]: 3 a 5
+        - text: — vamos usar pra deixar as missões com a sua cara.
+    - generic [ref=e123]:
+      - generic [ref=e124]:
+        - generic [ref=e125] [cursor=pointer]:
+          - checkbox "Dinossauros" [checked]
+          - generic [ref=e126]: 🦖
+          - generic [ref=e127]: Dinossauros
+        - generic [ref=e128] [cursor=pointer]:
+          - checkbox "Gatos"
+          - generic [ref=e129]: 🐱
+          - generic [ref=e130]: Gatos
+        - generic [ref=e131] [cursor=pointer]:
+          - checkbox "Cachorros"
+          - generic [ref=e132]: 🐶
+          - generic [ref=e133]: Cachorros
+        - generic [ref=e134] [cursor=pointer]:
+          - checkbox "Oceano e peixes"
+          - generic [ref=e135]: 🐠
+          - generic [ref=e136]: Oceano e peixes
+        - generic [ref=e137] [cursor=pointer]:
+          - checkbox "Insetos"
+          - generic [ref=e138]: 🐛
+          - generic [ref=e139]: Insetos
+        - generic [ref=e140] [cursor=pointer]:
+          - checkbox "Pássaros"
+          - generic [ref=e141]: 🦜
+          - generic [ref=e142]: Pássaros
+        - generic [ref=e143] [cursor=pointer]:
+          - checkbox "Acampar/natureza"
+          - generic [ref=e144]: 🏕️
+          - generic [ref=e145]: Acampar/natureza
+        - generic [ref=e146] [cursor=pointer]:
+          - checkbox "Futebol"
+          - generic [ref=e147]: ⚽
+          - generic [ref=e148]: Futebol
+        - generic [ref=e149] [cursor=pointer]:
+          - checkbox "Skate"
+          - generic [ref=e150]: 🛹
+          - generic [ref=e151]: Skate
+        - generic [ref=e152] [cursor=pointer]:
+          - checkbox "Dança"
+          - generic [ref=e153]: 💃
+          - generic [ref=e154]: Dança
+        - generic [ref=e155] [cursor=pointer]:
+          - checkbox "Artes marciais"
+          - generic [ref=e156]: 🥋
+          - generic [ref=e157]: Artes marciais
+        - generic [ref=e158] [cursor=pointer]:
+          - checkbox "Espaço e planetas" [checked]
+          - generic [ref=e159]: 🪐
+          - generic [ref=e160]: Espaço e planetas
+        - generic [ref=e161] [cursor=pointer]:
+          - checkbox "Dragões e mitos"
+          - generic [ref=e162]: 🐉
+          - generic [ref=e163]: Dragões e mitos
+        - generic [ref=e164] [cursor=pointer]:
+          - checkbox "Robôs e IA"
+          - generic [ref=e165]: 🤖
+          - generic [ref=e166]: Robôs e IA
+        - generic [ref=e167] [cursor=pointer]:
+          - checkbox "Experimentos"
+          - generic [ref=e168]: 🧪
+          - generic [ref=e169]: Experimentos
+        - generic [ref=e170] [cursor=pointer]:
+          - checkbox "Desenho" [checked]
+          - generic [ref=e171]: 🎨
+          - generic [ref=e172]: Desenho
+        - generic [ref=e173] [cursor=pointer]:
+          - checkbox "Música"
+          - generic [ref=e174]: 🎵
+          - generic [ref=e175]: Música
+        - generic [ref=e176] [cursor=pointer]:
+          - checkbox "Ler livros"
+          - generic [ref=e177]: 📚
+          - generic [ref=e178]: Ler livros
+        - generic [ref=e179] [cursor=pointer]:
+          - checkbox "Lego/construir"
+          - generic [ref=e180]: 🧱
+          - generic [ref=e181]: Lego/construir
+        - generic [ref=e182] [cursor=pointer]:
+          - checkbox "Minecraft"
+          - generic [ref=e183]: ⛏️
+          - generic [ref=e184]: Minecraft
+        - generic [ref=e185] [cursor=pointer]:
+          - checkbox "Roblox"
+          - generic [ref=e186]: 🎮
+          - generic [ref=e187]: Roblox
+        - generic [ref=e188] [cursor=pointer]:
+          - checkbox "RPG de mesa"
+          - generic [ref=e189]: 🎲
+          - generic [ref=e190]: RPG de mesa
+        - generic [ref=e191] [cursor=pointer]:
+          - checkbox "Jogos de tabuleiro"
+          - generic [ref=e192]: 🎯
+          - generic [ref=e193]: Jogos de tabuleiro
+        - generic [ref=e194] [cursor=pointer]:
+          - checkbox "Cozinhar e doces"
+          - generic [ref=e195]: 🍰
+          - generic [ref=e196]: Cozinhar e doces
+        - generic [ref=e197] [cursor=pointer]:
+          - checkbox "Pizza"
+          - generic [ref=e198]: 🍕
+          - generic [ref=e199]: Pizza
+        - generic [ref=e200] [cursor=pointer]:
+          - checkbox "Brincar com irmãos"
+          - generic [ref=e201]: 👯
+          - generic [ref=e202]: Brincar com irmãos
+        - generic [ref=e203] [cursor=pointer]:
+          - checkbox "Hora com avós"
+          - generic [ref=e204]: 👴
+          - generic [ref=e205]: Hora com avós
+        - generic [ref=e206] [cursor=pointer]:
+          - checkbox "Carros"
+          - generic [ref=e207]: 🚗
+          - generic [ref=e208]: Carros
+        - generic [ref=e209] [cursor=pointer]:
+          - checkbox "Aviões"
+          - generic [ref=e210]: ✈️
+          - generic [ref=e211]: Aviões
+        - generic [ref=e212] [cursor=pointer]:
+          - checkbox "Viajar"
+          - generic [ref=e213]: 🗺️
+          - generic [ref=e214]: Viajar
+      - generic [ref=e215]:
+        - generic [ref=e216]: 3 escolhidas — mínimo 3, máximo 5
+        - button "Próximo" [ref=e217] [cursor=pointer]:
+          - text: Próximo
+          - generic [ref=e218]: 󱑩
+  - text: 󲎤

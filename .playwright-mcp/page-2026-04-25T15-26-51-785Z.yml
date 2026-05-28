@@ -1,0 +1,8 @@
+- generic [ref=e3]:
+  - img [ref=e4]
+  - heading "Criar família" [level=1] [ref=e6]
+  - generic [ref=e7]:
+    - textbox "Nome da família" [ref=e8]
+    - textbox "Email" [ref=e9]
+    - textbox "Senha (mín. 12 caracteres)" [ref=e10]
+    - button "Criar" [ref=e11] [cursor=pointer]

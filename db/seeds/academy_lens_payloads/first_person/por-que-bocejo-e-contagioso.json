@@ -1,6 +1,0 @@
-{
-  "action_prompt": "Vai até alguém da família e BOCEJA de propósito, com som, olhando pra pessoa. Tipo um bocejo grande, prolongado. Espera 30 segundos sem dizer nada e observa o que ela faz com o rosto e a respiração.",
-  "sensory_anchor": "A pessoa bocejou de volta, fez cara de quem ia bocejar mas segurou, ou nada aconteceu? Quanto tempo demorou pra reação? Em geral acontece em 5-15 segundos.",
-  "expected_time_seconds": 60,
-  "reveal": "60-70% das pessoas bocejam de volta. Isso usa neurônios-espelho: o cérebro copia ações que vê em outros mamíferos próximos. É a mesma rede que faz a gente sorrir junto, sentir dor quando alguém leva tombo. O bocejo é teste barato desse circuito de empatia automática."
-}

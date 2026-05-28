@@ -1,0 +1,199 @@
+- generic [active] [ref=e87]:
+  - navigation "Navegação principal" [ref=e88]:
+    - link "Jornada" [ref=e89] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e90]: 󲑲
+      - generic [ref=e91]: Jornada
+    - link "Academia" [ref=e92] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e93]: 󲌸
+      - generic [ref=e94]: Academia
+    - link "Lojinha" [ref=e95] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e96]: 󲊉
+      - generic [ref=e97]: Lojinha
+    - link "Diário" [ref=e98] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e99]: 󱖃
+      - generic [ref=e100]: Diário
+  - main [ref=e101]:
+    - generic [ref=e102]:
+      - generic [ref=e103]:
+        - generic [ref=e105]:
+          - generic [ref=e106]: 󲎤
+          - generic [ref=e107]: "0"
+        - button "Trocar de perfil" [ref=e110] [cursor=pointer]:
+          - generic [ref=e111]: 󱶂
+          - text: Trocar
+      - generic [ref=e112]:
+        - generic [ref=e113]:
+          - img "Lis" [ref=e115]:
+            - generic [ref=e116]: 󱮊
+          - generic [ref=e117]: 󲎤
+          - generic [ref=e118]: 󲎤
+        - generic [ref=e119]:
+          - generic [ref=e120]: Boa tarde, Lis!
+          - heading "Bora pegar mais hoje?" [level=1] [ref=e121]:
+            - generic [ref=e122]: Bora pegar mais
+            - generic [ref=e123]: 󲎤
+            - generic [ref=e124]: hoje?
+          - paragraph [ref=e125]:
+            - generic [ref=e126]:
+              - text: Você tem
+              - strong [ref=e127]: 8 missões
+              - text: pra completar
+      - generic [ref=e128]:
+        - generic [ref=e129]:
+          - generic [ref=e130]:
+            - generic [ref=e131]: Você está no
+            - generic [ref=e132]:
+              - generic [ref=e133]: NÍVEL 1
+              - generic [ref=e134]: → Nível 2
+          - generic [ref=e135]:
+            - generic [ref=e136]: 0/20
+            - generic [ref=e137]: Estrelinhas
+        - generic [ref=e139]:
+          - generic [ref=e140]: 󲎤
+          - generic [ref=e141]:
+            - text: Faltam
+            - strong [ref=e142]: 20 estrelinha
+            - text: pra subir!
+      - link "Sua meta Escolher um prêmio Toque pra ir pra Lojinha" [ref=e145] [cursor=pointer]:
+        - /url: /kid/rewards
+        - generic [ref=e147]: 󲎤
+        - generic [ref=e148]:
+          - paragraph [ref=e149]: Sua meta
+          - paragraph [ref=e150]: Escolher um prêmio
+          - paragraph [ref=e151]: Toque pra ir pra Lojinha
+        - generic [ref=e152]: 󱑩
+      - generic [ref=e153]:
+        - heading "Missões de hoje" [level=2] [ref=e154]
+        - generic [ref=e155]:
+          - generic [ref=e156]: 0 de 8
+          - generic [ref=e157]: 󲓧
+      - generic [ref=e159]:
+        - generic [ref=e161]:
+          - generic [ref=e163]: 󲎤
+          - generic [ref=e164]:
+            - generic [ref=e165]: Meta da família
+            - generic [ref=e166]: "[Família] Pizza no jantar de sexta"
+            - generic [ref=e168]:
+              - generic [ref=e169]:
+                - text: "0"
+                - generic [ref=e170]: 󲎤
+                - generic [ref=e171]: /
+                - text: "150"
+                - generic [ref=e172]: 󲎤
+              - generic [ref=e173]: 0%
+        - generic [ref=e175]:
+          - generic [ref=e177]: 󲎤
+          - generic [ref=e178]:
+            - generic [ref=e179]: Meta da família
+            - generic [ref=e180]: "[Família] Cinema todo mundo junto"
+            - generic [ref=e182]:
+              - generic [ref=e183]:
+                - text: "0"
+                - generic [ref=e184]: 󲎤
+                - generic [ref=e185]: /
+                - text: "400"
+                - generic [ref=e186]: 󲎤
+              - generic [ref=e187]: 0%
+        - generic [ref=e189]:
+          - generic [ref=e191]: 󲎤
+          - generic [ref=e192]:
+            - generic [ref=e193]: Meta da família
+            - generic [ref=e194]: "[Família] Viagem pequena (2-3 dias)"
+            - generic [ref=e196]:
+              - generic [ref=e197]:
+                - text: "0"
+                - generic [ref=e198]: 󲎤
+                - generic [ref=e199]: /
+                - text: "6000"
+                - generic [ref=e200]: 󲎤
+              - generic [ref=e201]: 0%
+      - generic [ref=e203]:
+        - generic [ref=e204]:
+          - generic [ref=e205] [cursor=pointer]:
+            - generic [ref=e207]: 󱦞
+            - generic [ref=e208]:
+              - generic [ref=e209]: Escovar dentinhos 2x (manhã + noite)
+              - generic [ref=e211]: Saúde · diária
+            - generic [ref=e213]:
+              - img [ref=e214]
+              - generic [ref=e216]: "10"
+          - text: 󱦞 󱦞 󲀏 󲓧
+        - generic [ref=e217]:
+          - generic [ref=e218] [cursor=pointer]:
+            - generic [ref=e220]: 󱤈
+            - generic [ref=e221]:
+              - generic [ref=e222]: Rotina da manhã (lavar rosto + pentear + banheiro)
+              - generic [ref=e224]: Rotina · diária
+            - generic [ref=e226]:
+              - img [ref=e227]
+              - generic [ref=e229]: "15"
+          - text: 󱤈 󱤈 󲀏 󲓧
+        - generic [ref=e230]:
+          - generic [ref=e231] [cursor=pointer]:
+            - generic [ref=e233]: 󱯉
+            - generic [ref=e234]:
+              - generic [ref=e235]: Meu cantinho (roupa no cesto + sapatos + cama com ajuda)
+              - generic [ref=e237]: Casa · diária
+            - generic [ref=e239]:
+              - img [ref=e240]
+              - generic [ref=e242]: "15"
+          - text: 󱯉 󱯉 󲀏 󲓧
+        - generic [ref=e243]:
+          - generic [ref=e244] [cursor=pointer]:
+            - generic [ref=e246]: 󱯉
+            - generic [ref=e247]:
+              - generic [ref=e248]: Trocar a água do Simba
+              - generic [ref=e250]: Casa · diária
+            - generic [ref=e252]:
+              - img [ref=e253]
+              - generic [ref=e255]: "10"
+          - text: 󱯉 󱯉 󲀏 󲓧
+        - generic [ref=e256]:
+          - generic [ref=e257] [cursor=pointer]:
+            - generic [ref=e259]: 󱦞
+            - generic [ref=e260]:
+              - generic [ref=e261]: Comer toda a verdurinha + beber água do dia
+              - generic [ref=e263]: Saúde · diária
+            - generic [ref=e265]:
+              - img [ref=e266]
+              - generic [ref=e268]: "15"
+          - text: 󱦞 󱦞 󲀏 󲓧
+        - generic [ref=e269]:
+          - generic [ref=e270] [cursor=pointer]:
+            - generic [ref=e272]: 󱖃
+            - generic [ref=e273]:
+              - generic [ref=e274]: Aprender algo novo (10 min)
+              - generic [ref=e276]: Escola · diária
+            - generic [ref=e278]:
+              - img [ref=e279]
+              - generic [ref=e281]: "15"
+          - text: 󱖃 󱖃 󲀏 󲓧
+        - generic [ref=e282]:
+          - generic [ref=e283] [cursor=pointer]:
+            - generic [ref=e285]: 󱤈
+            - generic [ref=e286]:
+              - generic [ref=e287]: Fazer a oração antes de dormir
+              - generic [ref=e289]: Rotina · diária
+            - generic [ref=e291]:
+              - img [ref=e292]
+              - generic [ref=e294]: "5"
+          - text: 󱤈 󱤈 󲀏 󲓧
+        - generic [ref=e295]:
+          - generic [ref=e296] [cursor=pointer]:
+            - generic [ref=e298]: 󱤈
+            - generic [ref=e299]:
+              - generic [ref=e300]: Dia sem brigar com os irmãos
+              - generic [ref=e302]: Rotina · diária
+            - generic [ref=e304]:
+              - img [ref=e305]
+              - generic [ref=e307]: "10"
+          - text: 󱤈 󱤈 󲀏 󲓧
+      - link "Fez algo fora da lista? Adicionar" [ref=e308] [cursor=pointer]:
+        - /url: /kid/missions/new
+        - generic [ref=e309]: 󲁸
+        - text: Fez algo fora da lista? Adicionar
+  - text: 󲎤

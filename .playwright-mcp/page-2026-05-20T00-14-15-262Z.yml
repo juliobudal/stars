@@ -1,0 +1,50 @@
+- generic [active] [ref=e283]:
+  - navigation "Navegação principal" [ref=e284]:
+    - link "Jornada" [ref=e285] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e286]: 󲑲
+      - generic [ref=e287]: Jornada
+    - link "Academia" [ref=e288] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e289]: 󲌸
+      - generic [ref=e290]: Academia
+    - link "Lojinha" [ref=e291] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e292]: 󲊉
+      - generic [ref=e293]: Lojinha
+    - link "Diário" [ref=e294] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e295]: 󱖃
+      - generic [ref=e296]: Diário
+  - main [ref=e297]:
+    - generic [ref=e298]:
+      - generic [ref=e299]:
+        - generic [ref=e300]:
+          - link "Voltar para Dinheiro & Vida Real" [ref=e301] [cursor=pointer]:
+            - /url: /kid/academy/subjects/dinheiro-vida
+          - generic [ref=e303]:
+            - generic [ref=e304]: DINHEIRO & VIDA REAL
+            - heading "Por que comprar por impulso é uma armadilha?" [level=1] [ref=e305]
+        - generic "Progresso da missão" [ref=e306]
+      - generic [ref=e314]:
+        - generic [ref=e315]: 📈
+        - generic [ref=e316]:
+          - heading "Adivinha" [level=2] [ref=e317]
+          - generic [ref=e318]: sobre Recompensa imediata
+      - generic [ref=e319]:
+        - generic [ref=e320]:
+          - generic [ref=e321]: Sua aposta
+          - paragraph [ref=e322]: "Theo, chuta: quantas vezes por dia uma pessoa pega o celular só por impulso — sem ter recebido notificação, sem abrir app, só o dedo coçando pra tocar na tela? Palpita antes de ver."
+          - generic [ref=e323]:
+            - generic [ref=e324]: 1vezes/dia
+            - generic [ref=e325]: 101vezes/dia
+            - generic [ref=e326]: 200vezes/dia
+          - 'slider "Theo, chuta: quantas vezes por dia uma pessoa pega o celular só por impulso — sem ter recebido notificação, sem abrir app, só o dedo coçando pra tocar na tela? Palpita antes de ver." [disabled] [ref=e327]': "101"
+          - button "Ver resposta" [disabled] [ref=e328] [cursor=pointer]
+          - generic [ref=e332]:
+            - generic [ref=e333]: Resposta real
+            - generic [ref=e334]: 96vezes/dia
+            - paragraph [ref=e335]: "96 vezes por dia. Quase uma vez a cada 10 minutos acordado. O celular vira uma máquina de recompensa imediata: você toca, ele acende, pronto — dopamina de graça. O problema? Você troca o que queria de verdade (ler, jogar, conversar) pelo brilho instantâneo da tela. Preferir pouco-agora a muito-depois, em ação."
+            - paragraph [ref=e336]: "Fonte: estimativa baseada em estudos de uso de tela: cerca de 90 a 100 toques/dia em média, com variações entre indivíduos (Dscout 2022, amostra de 94 usuários Android)."
+        - button "Continuar →" [ref=e330]
+  - text: 󲎤

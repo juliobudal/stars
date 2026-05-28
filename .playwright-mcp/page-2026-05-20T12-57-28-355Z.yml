@@ -1,0 +1,62 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - button "Copy as text" [ref=e3]
+    - heading "NoMethodError in Kid::Academy::Pills#show" [level=1] [ref=e4]
+  - main [ref=e5]:
+    - paragraph [ref=e6]: "Showing /app/app/views/kid/academy/pills/show.html.erb where line #69 raised:"
+    - code [ref=e8]: "undefined method `share_pill_kid_academy_path' for an instance of #<Class:0x000071e38fee47f8>"
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - text: Extracted source (around line
+        - strong [ref=e11]: "#68"
+        - text: "):"
+      - table [ref=e13]:
+        - rowgroup [ref=e14]:
+          - 'row "66 67 68 69 70 71 <div class=\"mt-5 flex flex-col gap-3\"> <% unless @pill_view.shared_with_parent? %> <%= button_to share_pill_kid_academy_path (@pill_view), method: :post, class: \"ls-btn-3d\", style: \"background: var(--primary); color: white; padding: 14px 18px; border-radius: 14px; box-shadow: 0 4px 0 var(--primary-2); font-weight: 800; font-family: var(--font-display, Nunito), sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px;\" do %>" [ref=e15]':
+            - cell "66 67 68 69 70 71" [ref=e16]:
+              - generic [ref=e17]: 66 67 68 69 70 71
+            - 'cell "<div class=\"mt-5 flex flex-col gap-3\"> <% unless @pill_view.shared_with_parent? %> <%= button_to share_pill_kid_academy_path (@pill_view), method: :post, class: \"ls-btn-3d\", style: \"background: var(--primary); color: white; padding: 14px 18px; border-radius: 14px; box-shadow: 0 4px 0 var(--primary-2); font-weight: 800; font-family: var(--font-display, Nunito), sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px;\" do %>" [ref=e18]':
+              - generic [ref=e19]:
+                - generic [ref=e20]: <div class="mt-5 flex flex-col gap-3">
+                - generic [ref=e21]: <% unless @pill_view.shared_with_parent? %>
+                - generic [ref=e22]:
+                  - text: <%= button_to
+                  - generic [ref=e23]: share_pill_kid_academy_path
+                  - text: (@pill_view),
+                - generic [ref=e24]: "method: :post,"
+                - generic [ref=e25]: "class: \"ls-btn-3d\","
+                - generic [ref=e26]: "style: \"background: var(--primary); color: white; padding: 14px 18px; border-radius: 14px; box-shadow: 0 4px 0 var(--primary-2); font-weight: 800; font-family: var(--font-display, Nunito), sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px;\" do %>"
+    - paragraph
+    - paragraph [ref=e27]:
+      - code [ref=e28]: "Rails.root: /app"
+    - generic [ref=e29]:
+      - link "Application Trace" [ref=e30] [cursor=pointer]:
+        - /url: "#"
+      - text: "|"
+      - link "Framework Trace" [ref=e31] [cursor=pointer]:
+        - /url: "#"
+      - text: "|"
+      - link "Full Trace" [ref=e32] [cursor=pointer]:
+        - /url: "#"
+      - code [ref=e34]:
+        - 'link "/app/app/views/kid/academy/pills/show.html.erb:69:in `_app_views_kid_academy_pills_show_html_erb___3765104809269057789_52640''" [ref=e36] [cursor=pointer]':
+          - /url: "#"
+        - 'link "/app/app/controllers/application_controller.rb:35:in `block in with_family_locale''" [ref=e38] [cursor=pointer]':
+          - /url: "#"
+        - 'link "/app/app/controllers/application_controller.rb:35:in `with_family_locale''" [ref=e40] [cursor=pointer]':
+          - /url: "#"
+    - heading "Request" [level=2] [ref=e41]
+    - paragraph [ref=e42]: "Parameters:"
+    - generic [ref=e43]: None
+    - link "Toggle session dump" [ref=e46] [cursor=pointer]:
+      - /url: "#"
+    - link "Toggle env dump" [ref=e49] [cursor=pointer]:
+      - /url: "#"
+    - heading "Response" [level=2] [ref=e50]
+    - paragraph [ref=e51]: "Headers:"
+    - generic [ref=e52]: None
+  - generic [ref=e53]:
+    - generic [ref=e55]:
+      - generic "close" [ref=e57] [cursor=pointer]: ×
+      - generic [ref=e59]: ">>"
+    - textbox [ref=e61]

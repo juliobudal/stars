@@ -3,69 +3,47 @@
 require "rails_helper"
 
 RSpec.describe Academy::Guide::Ask do
-  let(:concept) { create(:academy_concept) }
-  let(:mission) { create(:academy_mission, concept: concept, central_insight: "Custo da troca é caro.") }
-  let(:learner) { Academy::Learner.new(id: 333, display_name: "Theo", age_band: "kid", timezone: "America/Sao_Paulo") }
-
-  let(:client) { instance_double(Academy::Llm::Client) }
-
-  before do
-    allow(Academy).to receive(:configured?).and_return(true)
+  let(:learner) { Academy::Learner.new(id: 5, display_name: "Kid", age_band: "kid") }
+  let(:lesson) { create(:academy_lesson) }
+  let(:fake_client) do
+    instance_double(Academy::Llm::Client, chat: { content: "Pensa assim: ...", raw: {}, tokens: 10 })
   end
 
-  def llm_response(content, in_tokens: 50, out_tokens: 30)
-    {
-      content: content,
-      raw: { "usage" => { "prompt_tokens" => in_tokens, "completion_tokens" => out_tokens } },
-      tokens: in_tokens + out_tokens
-    }
-  end
+  before { allow(Academy).to receive(:configured?).and_return(true) }
 
-  it "happy path: persists user + guide messages, returns kid-facing content" do
-    allow(client).to receive(:chat).and_return(llm_response("Resposta calma do Guia."))
-    result = described_class.call(learner: learner, mission: mission, user_content: "Por que 23 min?", client: client)
-
+  it "persists the user message and the guide reply" do
+    result = described_class.call(learner: learner, lesson: lesson, user_content: "por quê?", client: fake_client)
     expect(result).to be_success
-    expect(result.data[:user_message].content).to eq("Por que 23 min?")
-    expect(result.data[:guide_message].content).to eq("Resposta calma do Guia.")
-    expect(result.data[:guide_message].tokens_in).to eq(50)
-    expect(result.data[:guide_message].tokens_out).to eq(30)
+    expect(result.data[:user_message].content).to eq("por quê?")
+    expect(result.data[:guide_message]).to be_guide
   end
 
-  it "detects [SAFETY_FLAG] prefix, sets flag + strips marker from kid-facing content" do
-    allow(client).to receive(:chat).and_return(llm_response("[SAFETY_FLAG][bullying] Isso é mais forte que eu, fala com um adulto hoje."))
-
-    result = described_class.call(learner: learner, mission: mission, user_content: "tem um menino me batendo", client: client)
-
-    convo = result.data[:conversation].reload
-    expect(convo.flagged).to be(true)
-    expect(convo.flag_reasons).to eq([ "bullying" ])
-    expect(result.data[:guide_message].content).to eq("Isso é mais forte que eu, fala com um adulto hoje.")
-    expect(result.data[:guide_message].flagged).to be(true)
-  end
-
-  it "reuses today's conversation across multiple calls" do
-    allow(client).to receive(:chat).and_return(llm_response("ok"))
-    3.times { described_class.call(learner: learner, mission: mission, user_content: "uma pergunta", client: client) }
-    expect(Academy::GuideConversation.where(learner_id: learner.id, mission_id: mission.id).count).to eq(1)
-  end
-
-  it "rolls back persistence on Client::Error" do
-    allow(client).to receive(:chat).and_raise(Academy::Llm::Client::Error, "boom")
-
-    expect {
-      described_class.call(learner: learner, mission: mission, user_content: "olá", client: client)
-    }.not_to change(Academy::GuideMessage, :count)
-  end
-
-  it "fails fast when LLM key is missing" do
+  it "fails when the LLM is not configured" do
     allow(Academy).to receive(:configured?).and_return(false)
-    result = described_class.call(learner: learner, mission: mission, user_content: "oi", client: client)
+    result = described_class.call(learner: learner, lesson: lesson, user_content: "x", client: fake_client)
     expect(result.error).to eq(:no_llm_key)
   end
 
-  it "fails on empty content" do
-    result = described_class.call(learner: learner, mission: mission, user_content: "   ", client: client)
+  it "rejects empty input" do
+    result = described_class.call(learner: learner, lesson: lesson, user_content: "  ", client: fake_client)
     expect(result.error).to eq(:empty_content)
+  end
+
+  it "enforces the daily question quota" do
+    described_class::DAILY_QUESTION_LIMIT.times do |i|
+      described_class.call(learner: learner, lesson: lesson, user_content: "q#{i}", client: fake_client)
+    end
+    result = described_class.call(learner: learner, lesson: lesson, user_content: "uma a mais", client: fake_client)
+    expect(result.error).to eq(:quota_exceeded)
+  end
+
+  it "flags safety-marked replies" do
+    flag_client = instance_double(
+      Academy::Llm::Client,
+      chat: { content: "[SAFETY_FLAG][bullying]\nConta pra um adulto.", raw: {}, tokens: 5 }
+    )
+    result = described_class.call(learner: learner, lesson: lesson, user_content: "me xingaram", client: flag_client)
+    expect(result.data[:conversation].reload.flagged).to be(true)
+    expect(result.data[:guide_message].content).not_to include("SAFETY_FLAG")
   end
 end

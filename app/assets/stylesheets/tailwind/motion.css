@@ -293,69 +293,6 @@
     from { background-position: 200% 0; }
     to { background-position: -200% 0; }
   }
-
-  /* ── Lens feedback FX (confetti + XP pop + card pulse) ── */
-  .lens-fx-overlay {
-    pointer-events: none;
-    overflow: visible;
-    z-index: 60;
-  }
-  .lens-fx-confetti {
-    position: absolute;
-    width: 8px;
-    height: 12px;
-    border-radius: 2px;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    will-change: transform, opacity;
-    animation: fxConfettiBurst 900ms cubic-bezier(0.22, 1.4, 0.36, 1) forwards;
-  }
-  @keyframes fxConfettiBurst {
-    0%   { transform: translate(-50%, -50%) rotate(0deg) scale(0.5); opacity: 0; }
-    10%  { opacity: 1; }
-    100% { transform: translate(var(--fx-dx), var(--fx-dy)) rotate(var(--fx-rot)) scale(1); opacity: 0; }
-  }
-
-  .lens-fx-xp {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-display, Nunito), sans-serif;
-    font-weight: 800;
-    font-size: 22px;
-    color: var(--primary, #58CC02);
-    text-shadow: 0 2px 0 rgba(0,0,0,0.18);
-    letter-spacing: 0.5px;
-    pointer-events: none;
-    animation: fxXpPop 1100ms cubic-bezier(0.22, 1.4, 0.36, 1) forwards;
-    white-space: nowrap;
-  }
-  @keyframes fxXpPop {
-    0%   { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
-    15%  { transform: translate(-50%, -70%) scale(1.15); opacity: 1; }
-    100% { transform: translate(-50%, -160%) scale(1); opacity: 0; }
-  }
-
-  .lens-fx-card-pulse-correct {
-    animation: fxLensCardCorrect 480ms ease-out;
-  }
-  @keyframes fxLensCardCorrect {
-    0%   { box-shadow: 0 4px 0 rgba(0, 0, 0, 0.06), 0 0 0 0 rgba(88, 204, 2, 0); }
-    35%  { box-shadow: 0 4px 0 rgba(0, 0, 0, 0.06), 0 0 0 6px rgba(88, 204, 2, 0.32); }
-    100% { box-shadow: 0 4px 0 rgba(0, 0, 0, 0.06), 0 0 0 0 rgba(88, 204, 2, 0); }
-  }
-  .lens-fx-card-pulse-wrong {
-    animation: fxLensCardWrong 460ms ease-out;
-  }
-  @keyframes fxLensCardWrong {
-    0%, 100% { transform: translateX(0); }
-    20% { transform: translateX(-5px); }
-    40% { transform: translateX(5px); }
-    60% { transform: translateX(-3px); }
-    80% { transform: translateX(2px); }
-  }
 }
 
 @layer utilities {
@@ -394,17 +331,9 @@
     .ls-aux-key,
     .ls-icon-cell,
     .ls-star-cell,
-    .ls-card-3d,
-    .lens-fx-confetti,
-    .lens-fx-xp,
-    .lens-fx-card-pulse-correct,
-    .lens-fx-card-pulse-wrong {
+    .ls-card-3d {
       animation: none !important;
       transition: none !important;
-    }
-    .lens-fx-confetti,
-    .lens-fx-xp {
-      display: none !important;
     }
     .anim-haptic::after {
       animation: none !important;

@@ -1,0 +1,5 @@
+[     127ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:10302/vite/?token=E0FfqsqArsyu' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:10301/vite/@vite/client:744
+[     127ms] [ERROR] [vite] failed to connect to websocket (Error: WebSocket closed without opened.).  @ http://localhost:10301/vite/@vite/client:771
+[     133ms] Error: WebSocket closed without opened.
+    at WebSocket.<anonymous> (http://localhost:10301/vite/@vite/client:423:30)
+[     173ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:10301/assets/fonts/nunito-latin.woff2:0

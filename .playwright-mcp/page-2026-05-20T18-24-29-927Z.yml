@@ -1,0 +1,125 @@
+- generic [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e19]:
+          - generic [ref=e20]: 󲎤
+          - generic [ref=e21]: "0"
+        - button "Trocar de perfil" [ref=e24] [cursor=pointer]:
+          - generic [ref=e25]: 󱶂
+          - text: Trocar
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - img "Júlio Kid" [ref=e29]:
+            - generic [ref=e30]: 󱮊
+          - generic [ref=e31]: 󲎤
+        - generic [ref=e32]:
+          - generic [ref=e33]: Boa tarde, Júlio Kid!
+          - heading "Bora pegar mais hoje?" [level=1] [ref=e34]:
+            - generic [ref=e35]: Bora pegar mais
+            - generic [ref=e36]: 󲎤
+            - generic [ref=e37]: hoje?
+          - paragraph [ref=e38]:
+            - generic [ref=e39]:
+              - text: Você tem
+              - strong [ref=e40]: 1 missão
+              - text: pra completar
+      - link "💊 Pílula do Dia 60 segundos pra ficar mais esperto" [ref=e41] [cursor=pointer]:
+        - /url: /kid/academy/pill
+        - generic [ref=e43]:
+          - generic [ref=e44]: 💊
+          - generic [ref=e45]:
+            - generic [ref=e46]: Pílula do Dia
+            - generic [ref=e47]: 60 segundos pra ficar mais esperto
+      - link "Eu curto Conta pra gente o que você curte!" [ref=e49] [cursor=pointer]:
+        - /url: /kid/interests
+        - generic [ref=e51]:
+          - generic [ref=e52]: 💡
+          - generic [ref=e53]:
+            - generic [ref=e54]: Eu curto
+            - generic [ref=e55]: Conta pra gente o que você curte!
+      - generic [ref=e57]:
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - generic [ref=e60]: Você está no
+            - generic [ref=e61]:
+              - generic [ref=e62]: NÍVEL 1
+              - generic [ref=e63]: → Nível 2
+          - generic [ref=e64]:
+            - generic [ref=e65]: 0/20
+            - generic [ref=e66]: Estrelinhas
+        - generic [ref=e68]:
+          - generic [ref=e69]: 󲎤
+          - generic [ref=e70]:
+            - text: Faltam
+            - strong [ref=e71]: 20 estrelinha
+            - text: pra subir!
+      - link "Sua meta Escolher um prêmio Toque pra ir pra Lojinha" [ref=e74] [cursor=pointer]:
+        - /url: /kid/rewards
+        - generic [ref=e76]: 󲎤
+        - generic [ref=e77]:
+          - paragraph [ref=e78]: Sua meta
+          - paragraph [ref=e79]: Escolher um prêmio
+          - paragraph [ref=e80]: Toque pra ir pra Lojinha
+        - generic [ref=e81]: 󱑩
+      - generic [ref=e82]:
+        - heading "Missões de hoje" [level=2] [ref=e83]
+        - generic [ref=e84]:
+          - generic [ref=e85]: 0 de 1
+          - generic [ref=e86]: 󲓧
+      - generic [ref=e90] [cursor=pointer]:
+        - generic [ref=e92]: 󱦞
+        - generic [ref=e93]:
+          - generic [ref=e94]: Missão homolog 2026-05-20
+          - generic [ref=e96]: Saúde · diária
+        - generic [ref=e97]:
+          - generic [ref=e98]:
+            - img [ref=e99]
+            - generic [ref=e101]: "3"
+          - generic [ref=e103]: 󲓧
+      - link "Fez algo fora da lista? Adicionar" [ref=e104] [cursor=pointer]:
+        - /url: /kid/missions/new
+        - generic [ref=e105]: 󲁸
+        - text: Fez algo fora da lista? Adicionar
+  - text: 󲎤
+  - dialog [ref=e107]:
+    - generic [ref=e109]:
+      - generic [ref=e111]: 󱦞
+      - heading "Missão homolog 2026-05-20" [level=3] [ref=e112]
+      - generic [ref=e113]:
+        - generic [ref=e114]:
+          - generic [ref=e115]: 󱦞
+          - text: Saúde
+        - generic [ref=e117]:
+          - img [ref=e118]
+          - generic [ref=e120]: "+3"
+      - paragraph [ref=e121]: Terminou essa missão? Um responsável vai confirmar.
+      - generic [ref=e122]:
+        - generic [ref=e123]:
+          - generic [ref=e124]:
+            - generic [ref=e125]: 󲀏
+            - text: Recado pros pais (opcional)
+          - textbox "Recado pros pais (opcional)" [active] [ref=e126]:
+            - /placeholder: Conta como foi…
+        - generic [ref=e127]:
+          - button "Ainda não" [ref=e128] [cursor=pointer]
+          - button "Terminei!" [ref=e129] [cursor=pointer]:
+            - generic [ref=e130]: 󲓧
+            - text: Terminei!

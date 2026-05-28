@@ -18,12 +18,10 @@
                 class: "space-y-5 px-1" do |f| %>
 
     <% if flash.now[:alert].present? %>
-      <%= render Ui::Flash::Component.new(kind: :alert, message: flash.now[:alert]) rescue nil %>
-      <% unless defined?(Ui::Flash::Component) %>
-        <div class="rounded-2xl bg-rose-soft text-rose-depth font-bold text-sm px-4 py-3">
-          <%= flash.now[:alert] %>
-        </div>
-      <% end %>
+      <div class="rounded-[14px] border-2 px-4 py-3 text-[13px] font-bold"
+           style="background: var(--danger-soft); color: var(--danger); border-color: var(--danger);">
+        <%= flash.now[:alert] %>
+      </div>
     <% end %>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
@@ -63,11 +61,7 @@
             data-interest-picker-target="count">
         <%= @selected.size %> escolhidas. Mínimo <%= @min %>, máximo <%= @max %>
       </span>
-      <%= f.button type: :submit,
-                   class: "ls-btn ls-btn-primary",
-                   style: "padding: 10px 20px; border-radius: 12px; font-weight:800;" do %>
-        Salvar
-      <% end %>
+      <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>Salvar<% end %>
     </div>
   <% end %>
 </div>

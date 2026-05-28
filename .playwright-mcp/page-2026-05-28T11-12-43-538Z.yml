@@ -1,0 +1,158 @@
+- generic [active] [ref=e1]:
+  - link "Pular para o conteúdo" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Navegação principal" [ref=e3]:
+    - link "Jornada" [ref=e4] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e5]: 󲑲
+      - generic [ref=e6]: Jornada
+    - link "Academia" [ref=e7] [cursor=pointer]:
+      - /url: /kid/academy
+      - generic [ref=e8]: 󲌸
+      - generic [ref=e9]: Academia
+    - link "Lojinha" [ref=e10] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e11]: 󲊉
+      - generic [ref=e12]: Lojinha
+    - link "Diário" [ref=e13] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e14]: 󱖃
+      - generic [ref=e15]: Diário
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e20]:
+          - generic [ref=e21]: 󲎤
+          - generic [ref=e22]: "0"
+        - button "Trocar de perfil" [ref=e25] [cursor=pointer]:
+          - generic [ref=e26]: 󱶂
+          - text: Trocar
+      - generic [ref=e27]:
+        - heading "O que você curte?" [level=1] [ref=e28]
+        - paragraph [ref=e29]: Escolhe de 3 a 5 coisas. A gente usa pra deixar as missões com tema do que você gosta.
+      - generic [ref=e30]:
+        - generic [ref=e31]:
+          - generic [ref=e32] [cursor=pointer]:
+            - checkbox "Dinossauros"
+            - generic [ref=e33]: 🦖
+            - generic [ref=e34]: Dinossauros
+          - generic [ref=e35] [cursor=pointer]:
+            - checkbox "Gatos"
+            - generic [ref=e36]: 🐱
+            - generic [ref=e37]: Gatos
+          - generic [ref=e38] [cursor=pointer]:
+            - checkbox "Cachorros"
+            - generic [ref=e39]: 🐶
+            - generic [ref=e40]: Cachorros
+          - generic [ref=e41] [cursor=pointer]:
+            - checkbox "Oceano e peixes"
+            - generic [ref=e42]: 🐠
+            - generic [ref=e43]: Oceano e peixes
+          - generic [ref=e44] [cursor=pointer]:
+            - checkbox "Insetos"
+            - generic [ref=e45]: 🐛
+            - generic [ref=e46]: Insetos
+          - generic [ref=e47] [cursor=pointer]:
+            - checkbox "Pássaros"
+            - generic [ref=e48]: 🦜
+            - generic [ref=e49]: Pássaros
+          - generic [ref=e50] [cursor=pointer]:
+            - checkbox "Acampar/natureza"
+            - generic [ref=e51]: 🏕️
+            - generic [ref=e52]: Acampar/natureza
+          - generic [ref=e53] [cursor=pointer]:
+            - checkbox "Futebol"
+            - generic [ref=e54]: ⚽
+            - generic [ref=e55]: Futebol
+          - generic [ref=e56] [cursor=pointer]:
+            - checkbox "Skate"
+            - generic [ref=e57]: 🛹
+            - generic [ref=e58]: Skate
+          - generic [ref=e59] [cursor=pointer]:
+            - checkbox "Dança"
+            - generic [ref=e60]: 💃
+            - generic [ref=e61]: Dança
+          - generic [ref=e62] [cursor=pointer]:
+            - checkbox "Artes marciais"
+            - generic [ref=e63]: 🥋
+            - generic [ref=e64]: Artes marciais
+          - generic [ref=e65] [cursor=pointer]:
+            - checkbox "Espaço e planetas"
+            - generic [ref=e66]: 🪐
+            - generic [ref=e67]: Espaço e planetas
+          - generic [ref=e68] [cursor=pointer]:
+            - checkbox "Dragões e mitos"
+            - generic [ref=e69]: 🐉
+            - generic [ref=e70]: Dragões e mitos
+          - generic [ref=e71] [cursor=pointer]:
+            - checkbox "Robôs e IA"
+            - generic [ref=e72]: 🤖
+            - generic [ref=e73]: Robôs e IA
+          - generic [ref=e74] [cursor=pointer]:
+            - checkbox "Experimentos"
+            - generic [ref=e75]: 🧪
+            - generic [ref=e76]: Experimentos
+          - generic [ref=e77] [cursor=pointer]:
+            - checkbox "Desenho"
+            - generic [ref=e78]: 🎨
+            - generic [ref=e79]: Desenho
+          - generic [ref=e80] [cursor=pointer]:
+            - checkbox "Música"
+            - generic [ref=e81]: 🎵
+            - generic [ref=e82]: Música
+          - generic [ref=e83] [cursor=pointer]:
+            - checkbox "Ler livros"
+            - generic [ref=e84]: 📚
+            - generic [ref=e85]: Ler livros
+          - generic [ref=e86] [cursor=pointer]:
+            - checkbox "Lego/construir"
+            - generic [ref=e87]: 🧱
+            - generic [ref=e88]: Lego/construir
+          - generic [ref=e89] [cursor=pointer]:
+            - checkbox "Minecraft"
+            - generic [ref=e90]: ⛏️
+            - generic [ref=e91]: Minecraft
+          - generic [ref=e92] [cursor=pointer]:
+            - checkbox "Roblox"
+            - generic [ref=e93]: 🎮
+            - generic [ref=e94]: Roblox
+          - generic [ref=e95] [cursor=pointer]:
+            - checkbox "RPG de mesa"
+            - generic [ref=e96]: 🎲
+            - generic [ref=e97]: RPG de mesa
+          - generic [ref=e98] [cursor=pointer]:
+            - checkbox "Jogos de tabuleiro"
+            - generic [ref=e99]: 🎯
+            - generic [ref=e100]: Jogos de tabuleiro
+          - generic [ref=e101] [cursor=pointer]:
+            - checkbox "Cozinhar e doces"
+            - generic [ref=e102]: 🍰
+            - generic [ref=e103]: Cozinhar e doces
+          - generic [ref=e104] [cursor=pointer]:
+            - checkbox "Pizza"
+            - generic [ref=e105]: 🍕
+            - generic [ref=e106]: Pizza
+          - generic [ref=e107] [cursor=pointer]:
+            - checkbox "Brincar com irmãos"
+            - generic [ref=e108]: 👯
+            - generic [ref=e109]: Brincar com irmãos
+          - generic [ref=e110] [cursor=pointer]:
+            - checkbox "Hora com avós"
+            - generic [ref=e111]: 👴
+            - generic [ref=e112]: Hora com avós
+          - generic [ref=e113] [cursor=pointer]:
+            - checkbox "Carros"
+            - generic [ref=e114]: 🚗
+            - generic [ref=e115]: Carros
+          - generic [ref=e116] [cursor=pointer]:
+            - checkbox "Aviões"
+            - generic [ref=e117]: ✈️
+            - generic [ref=e118]: Aviões
+          - generic [ref=e119] [cursor=pointer]:
+            - checkbox "Viajar"
+            - generic [ref=e120]: 🗺️
+            - generic [ref=e121]: Viajar
+        - generic [ref=e122]:
+          - generic [ref=e123]: 0 escolhidas — mínimo 3, máximo 5
+          - button "Salvar" [ref=e124] [cursor=pointer]
+  - text: 󲎤

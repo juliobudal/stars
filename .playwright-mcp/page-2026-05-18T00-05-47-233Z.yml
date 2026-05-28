@@ -1,0 +1,69 @@
+- generic [ref=e198]:
+  - navigation "Navegação principal" [ref=e199]:
+    - link "Jornada" [ref=e200] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e201]: 󲑲
+      - generic [ref=e202]: Jornada
+    - link "Academia" [ref=e203] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e204]: 󲌸
+      - generic [ref=e205]: Academia
+    - link "Lojinha" [ref=e206] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e207]: 󲊉
+      - generic [ref=e208]: Lojinha
+    - link "Diário" [ref=e209] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e210]: 󱖃
+      - generic [ref=e211]: Diário
+  - main [ref=e212]:
+    - generic [ref=e213]:
+      - generic [ref=e214]:
+        - link [ref=e215] [cursor=pointer]:
+          - /url: /kid/academy/subjects/corpo-saude
+        - generic [ref=e217]:
+          - generic [ref=e218]: Corpo & Saúde · TRILHA 1
+          - heading "De Onde Vem a Energia Real?" [level=1] [ref=e219]
+      - generic [ref=e220]:
+        - generic [ref=e221]: O ARCO DESTA TRILHA
+        - paragraph [ref=e222]: "\"Pequenas decisões diárias multiplicam (ou roubam) sua energia.\""
+      - generic [ref=e223]:
+        - link "Por que açúcar engana seu cérebro? \"O 'cansaço' das 3 da tarde quase nunca é cansaço.\" Carta no Atlas" [ref=e224] [cursor=pointer]:
+          - /url: /kid/academy/subjects/corpo-saude/missions/acucar-engana-cerebro
+          - generic [ref=e225]:
+            - generic [ref=e227]: 󲓧
+            - generic [ref=e228]:
+              - generic [ref=e229]: Por que açúcar engana seu cérebro?
+              - generic [ref=e230]: "\"O 'cansaço' das 3 da tarde quase nunca é cansaço.\""
+              - generic [ref=e231]:
+                - generic [ref=e232]: 󲌸
+                - generic [ref=e233]: Carta no Atlas
+        - link "2 O que acontece quando você dorme mal? \"1 noite ruim apaga aprendizado de uma semana inteira.\"" [active] [ref=e235] [cursor=pointer]:
+          - /url: /kid/academy/subjects/corpo-saude/missions/noite-ruim-apaga-semana
+          - generic [ref=e236]:
+            - generic [ref=e237]: "2"
+            - generic [ref=e238]:
+              - generic [ref=e239]: O que acontece quando você dorme mal?
+              - generic [ref=e240]: "\"1 noite ruim apaga aprendizado de uma semana inteira.\""
+        - link "Por que 10 minutos por dia vencem 1 hora no sábado?":
+          - /url: "#"
+          - generic:
+            - generic:
+              - generic: 󲍽
+            - generic:
+              - generic: Por que 10 minutos por dia vencem 1 hora no sábado?
+        - link "Quando você acha que está com fome, está com sede?":
+          - /url: "#"
+          - generic:
+            - generic:
+              - generic: 󲍽
+            - generic:
+              - generic: Quando você acha que está com fome, está com sede?
+  - status [ref=e242]:
+    - generic [ref=e243]:
+      - generic [ref=e245]: Escolhendo a primeira lente desta aula…
+      - generic [ref=e246]: preparando sua aula
+      - generic [ref=e251]:
+        - paragraph [ref=e252]: “As estrelas que você junta hoje iluminam caminhos amanhã.”
+        - paragraph [ref=e253]: — O Guia
+  - text: 󲎤

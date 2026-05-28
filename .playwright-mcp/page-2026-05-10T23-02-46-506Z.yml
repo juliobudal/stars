@@ -1,0 +1,549 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - img [ref=e5]
+        - generic [ref=e7]: LittleStars
+      - button [ref=e8] [cursor=pointer]:
+        - generic [ref=e9]: 󱸠
+    - navigation "Principal" [ref=e10]:
+      - generic [ref=e12]:
+        - generic [ref=e14]: 󲎤
+        - generic [ref=e15]:
+          - generic [ref=e16]: LittleStars
+          - generic [ref=e17]: Modo pais
+      - generic [ref=e18]:
+        - link "Início" [ref=e19] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e20]: 󱯉
+          - generic [ref=e21]: Início
+        - link "Crianças" [ref=e22] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e23]: 󲗦
+          - generic [ref=e24]: Crianças
+        - link "Missões" [ref=e25] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e26]: 󲑽
+          - generic [ref=e27]: Missões
+        - link "Prêmios" [ref=e28] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e29]: 󲊉
+          - generic [ref=e30]: Prêmios
+        - link "Categorias" [ref=e31] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e32]: 󱖠
+          - generic [ref=e33]: Categorias
+        - link "Aprovações" [ref=e34] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e35]: 󱞿
+          - generic [ref=e36]: Aprovações
+        - link "Configurações" [ref=e37] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e38]: 󲉌
+          - generic [ref=e39]: Configurações
+      - generic [ref=e40]:
+        - link "Editar meu perfil" [ref=e41] [cursor=pointer]:
+          - /url: /parent/profiles/7354/edit
+          - img "Mamãe" [ref=e42]:
+            - generic [ref=e43]: 󲗕
+          - generic [ref=e44]:
+            - generic [ref=e45]: Mamãe
+            - generic [ref=e46]: Responsável · Editar
+          - generic [ref=e47]: 󲀏
+        - button "Trocar perfil" [ref=e50] [cursor=pointer]:
+          - generic [ref=e51]: 󱶂
+          - text: Trocar perfil
+  - generic [ref=e52]:
+    - link "Início" [ref=e53] [cursor=pointer]:
+      - /url: /parent
+      - generic [ref=e54]:
+        - generic [ref=e55]: 󱯉
+        - generic [ref=e56]: Início
+    - link "Pendências" [ref=e57] [cursor=pointer]:
+      - /url: /parent/approvals
+      - generic [ref=e58]:
+        - generic [ref=e59]: 󱞿
+        - generic [ref=e60]: Pendências
+    - link "Missões" [ref=e61] [cursor=pointer]:
+      - /url: /parent/global_tasks
+      - generic [ref=e62]:
+        - generic [ref=e63]: 󲑽
+        - generic [ref=e64]: Missões
+    - link "Prêmios" [ref=e65] [cursor=pointer]:
+      - /url: /parent/rewards
+      - generic [ref=e66]:
+        - generic [ref=e67]: 󲊉
+        - generic [ref=e68]: Prêmios
+  - generic [ref=e70]:
+    - banner [ref=e71]:
+      - generic [ref=e73]:
+        - heading "Prêmios" [level=1] [ref=e74]
+        - paragraph [ref=e75]: 28 prêmios · precificados em estrelinhas
+      - link "Novo prêmio" [ref=e77] [cursor=pointer]:
+        - /url: /parent/rewards/new
+        - generic [ref=e78]: 󲁸
+        - text: Novo prêmio
+    - generic [ref=e79]:
+      - tablist [ref=e82]:
+        - tab "Todos" [selected] [ref=e83] [cursor=pointer]
+        - tab "Telinha" [ref=e84] [cursor=pointer]
+        - tab "Docinhos" [ref=e85] [cursor=pointer]
+        - tab "Passeios" [ref=e86] [cursor=pointer]
+        - tab "Brinquedos" [ref=e87] [cursor=pointer]
+        - tab "Experiências" [ref=e88] [cursor=pointer]
+        - tab "Outro" [ref=e89] [cursor=pointer]
+      - generic [ref=e90]:
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - generic [ref=e95]: 󲕻
+            - generic [ref=e97]:
+              - generic [ref=e99]: Escolher o que assistir na TV à noite
+              - generic [ref=e102]:
+                - generic [ref=e103]: 󲎤
+                - generic [ref=e104]: "30"
+          - generic [ref=e105]:
+            - generic [ref=e106]: Ativo
+            - generic [ref=e108]:
+              - link "Editar Escolher o que assistir na TV à noite" [ref=e109] [cursor=pointer]:
+                - /url: /parent/rewards/1756/edit
+                - generic [ref=e110]: 󲀏
+              - button "Remover Escolher o que assistir na TV à noite" [ref=e112] [cursor=pointer]:
+                - generic [ref=e113]: 󱣮
+        - generic [ref=e115]:
+          - generic [ref=e116]:
+            - generic [ref=e118]: 󲋰
+            - generic [ref=e120]:
+              - generic [ref=e122]: 30 min extra de celular/tablet
+              - generic [ref=e125]:
+                - generic [ref=e126]: 󲎤
+                - generic [ref=e127]: "30"
+          - generic [ref=e128]:
+            - generic [ref=e129]: Ativo
+            - generic [ref=e131]:
+              - link "Editar 30 min extra de celular/tablet" [ref=e132] [cursor=pointer]:
+                - /url: /parent/rewards/1755/edit
+                - generic [ref=e133]: 󲀏
+              - button "Remover 30 min extra de celular/tablet" [ref=e135] [cursor=pointer]:
+                - generic [ref=e136]: 󱣮
+        - generic [ref=e138]:
+          - generic [ref=e139]:
+            - generic [ref=e141]: 󱘫
+            - generic [ref=e143]:
+              - generic [ref=e145]: Sobremesa especial no jantar
+              - generic [ref=e148]:
+                - generic [ref=e149]: 󲎤
+                - generic [ref=e150]: "35"
+          - generic [ref=e151]:
+            - generic [ref=e152]: Ativo
+            - generic [ref=e154]:
+              - link "Editar Sobremesa especial no jantar" [ref=e155] [cursor=pointer]:
+                - /url: /parent/rewards/1757/edit
+                - generic [ref=e156]: 󲀏
+              - button "Remover Sobremesa especial no jantar" [ref=e158] [cursor=pointer]:
+                - generic [ref=e159]: 󱣮
+        - generic [ref=e161]:
+          - generic [ref=e162]:
+            - generic [ref=e164]: 󱰄
+            - generic [ref=e166]:
+              - generic [ref=e168]: Sorvete com cobertura
+              - generic [ref=e171]:
+                - generic [ref=e172]: 󲎤
+                - generic [ref=e173]: "40"
+          - generic [ref=e174]:
+            - generic [ref=e175]: Ativo
+            - generic [ref=e177]:
+              - link "Editar Sorvete com cobertura" [ref=e178] [cursor=pointer]:
+                - /url: /parent/rewards/1758/edit
+                - generic [ref=e179]: 󲀏
+              - button "Remover Sorvete com cobertura" [ref=e181] [cursor=pointer]:
+                - generic [ref=e182]: 󱣮
+        - generic [ref=e184]:
+          - generic [ref=e185]:
+            - generic [ref=e187]: 󲁐
+            - generic [ref=e189]:
+              - generic [ref=e191]: Escolher o jantar da família
+              - generic [ref=e194]:
+                - generic [ref=e195]: 󲎤
+                - generic [ref=e196]: "50"
+          - generic [ref=e197]:
+            - generic [ref=e198]: Ativo
+            - generic [ref=e200]:
+              - link "Editar Escolher o jantar da família" [ref=e201] [cursor=pointer]:
+                - /url: /parent/rewards/1759/edit
+                - generic [ref=e202]: 󲀏
+              - button "Remover Escolher o jantar da família" [ref=e204] [cursor=pointer]:
+                - generic [ref=e205]: 󱣮
+        - generic [ref=e207]:
+          - generic [ref=e208]:
+            - generic [ref=e210]: 󱺻
+            - generic [ref=e212]:
+              - generic [ref=e214]: Dormir 30 min mais tarde
+              - generic [ref=e217]:
+                - generic [ref=e218]: 󲎤
+                - generic [ref=e219]: "50"
+          - generic [ref=e220]:
+            - generic [ref=e221]: Ativo
+            - generic [ref=e223]:
+              - link "Editar Dormir 30 min mais tarde" [ref=e224] [cursor=pointer]:
+                - /url: /parent/rewards/1760/edit
+                - generic [ref=e225]: 󲀏
+              - button "Remover Dormir 30 min mais tarde" [ref=e227] [cursor=pointer]:
+                - generic [ref=e228]: 󱣮
+        - generic [ref=e230]:
+          - generic [ref=e231]:
+            - generic [ref=e233]: 󲎱
+            - generic [ref=e235]:
+              - generic [ref=e237]: Adesivos / figurinhas
+              - generic [ref=e240]:
+                - generic [ref=e241]: 󲎤
+                - generic [ref=e242]: "60"
+          - generic [ref=e243]:
+            - generic [ref=e244]: Ativo
+            - generic [ref=e246]:
+              - link "Editar Adesivos / figurinhas" [ref=e247] [cursor=pointer]:
+                - /url: /parent/rewards/1761/edit
+                - generic [ref=e248]: 󲀏
+              - button "Remover Adesivos / figurinhas" [ref=e250] [cursor=pointer]:
+                - generic [ref=e251]: 󱣮
+        - generic [ref=e253]:
+          - generic [ref=e254]:
+            - generic [ref=e256]: 󱭯
+            - generic [ref=e258]:
+              - generic [ref=e260]: Lanche favorito (McDonald's/BK)
+              - generic [ref=e263]:
+                - generic [ref=e264]: 󲎤
+                - generic [ref=e265]: "80"
+          - generic [ref=e266]:
+            - generic [ref=e267]: Ativo
+            - generic [ref=e269]:
+              - link "Editar Lanche favorito (McDonald's/BK)" [ref=e270] [cursor=pointer]:
+                - /url: /parent/rewards/1762/edit
+                - generic [ref=e271]: 󲀏
+              - button "Remover Lanche favorito (McDonald's/BK)" [ref=e273] [cursor=pointer]:
+                - generic [ref=e274]: 󱣮
+        - generic [ref=e276]:
+          - generic [ref=e277]:
+            - generic [ref=e279]: 󲃬
+            - generic [ref=e281]:
+              - generic [ref=e283]: Slime, massinha ou esmalte novo
+              - generic [ref=e286]:
+                - generic [ref=e287]: 󲎤
+                - generic [ref=e288]: "100"
+          - generic [ref=e289]:
+            - generic [ref=e290]: Ativo
+            - generic [ref=e292]:
+              - link "Editar Slime, massinha ou esmalte novo" [ref=e293] [cursor=pointer]:
+                - /url: /parent/rewards/1763/edit
+                - generic [ref=e294]: 󲀏
+              - button "Remover Slime, massinha ou esmalte novo" [ref=e296] [cursor=pointer]:
+                - generic [ref=e297]: 󱣮
+        - generic [ref=e299]:
+          - generic [ref=e300]:
+            - generic [ref=e302]: 󱚬
+            - generic [ref=e304]:
+              - generic [ref=e306]: Hot Wheels ou acessório de cabelo
+              - generic [ref=e309]:
+                - generic [ref=e310]: 󲎤
+                - generic [ref=e311]: "120"
+          - generic [ref=e312]:
+            - generic [ref=e313]: Ativo
+            - generic [ref=e315]:
+              - link "Editar Hot Wheels ou acessório de cabelo" [ref=e316] [cursor=pointer]:
+                - /url: /parent/rewards/1764/edit
+                - generic [ref=e317]: 󲀏
+              - button "Remover Hot Wheels ou acessório de cabelo" [ref=e319] [cursor=pointer]:
+                - generic [ref=e320]: 󱣮
+        - generic [ref=e322]:
+          - generic [ref=e323]:
+            - generic [ref=e325]: 󱨓
+            - generic [ref=e327]:
+              - generic [ref=e329]: Saída pro parque com 1 dos pais
+              - generic [ref=e332]:
+                - generic [ref=e333]: 󲎤
+                - generic [ref=e334]: "120"
+          - generic [ref=e335]:
+            - generic [ref=e336]: Ativo
+            - generic [ref=e338]:
+              - link "Editar Saída pro parque com 1 dos pais" [ref=e339] [cursor=pointer]:
+                - /url: /parent/rewards/1765/edit
+                - generic [ref=e340]: 󲀏
+              - button "Remover Saída pro parque com 1 dos pais" [ref=e342] [cursor=pointer]:
+                - generic [ref=e343]: 󱣮
+        - generic [ref=e345]:
+          - generic [ref=e346]:
+            - generic [ref=e348]: 󲁐
+            - generic [ref=e350]:
+              - generic [ref=e352]: "[Família] Pizza no jantar de sexta"
+              - generic [ref=e355]:
+                - generic [ref=e356]: 󲎤
+                - generic [ref=e357]: "150"
+          - generic [ref=e358]:
+            - generic [ref=e359]: Ativo
+            - generic [ref=e361]:
+              - link "Editar [Família] Pizza no jantar de sexta" [ref=e362] [cursor=pointer]:
+                - /url: /parent/rewards/1780/edit
+                - generic [ref=e363]: 󲀏
+              - button "Remover [Família] Pizza no jantar de sexta" [ref=e365] [cursor=pointer]:
+                - generic [ref=e366]: 󱣮
+        - generic [ref=e368]:
+          - generic [ref=e369]:
+            - generic [ref=e371]: 󱥃
+            - generic [ref=e373]:
+              - generic [ref=e375]: Almoço fora só com 1 dos pais
+              - generic [ref=e378]:
+                - generic [ref=e379]: 󲎤
+                - generic [ref=e380]: "180"
+          - generic [ref=e381]:
+            - generic [ref=e382]: Ativo
+            - generic [ref=e384]:
+              - link "Editar Almoço fora só com 1 dos pais" [ref=e385] [cursor=pointer]:
+                - /url: /parent/rewards/1766/edit
+                - generic [ref=e386]: 󲀏
+              - button "Remover Almoço fora só com 1 dos pais" [ref=e388] [cursor=pointer]:
+                - generic [ref=e389]: 󱣮
+        - generic [ref=e391]:
+          - generic [ref=e392]:
+            - generic [ref=e394]: 󱖄
+            - generic [ref=e396]:
+              - generic [ref=e398]: Livro novo (escolha livre)
+              - generic [ref=e401]:
+                - generic [ref=e402]: 󲎤
+                - generic [ref=e403]: "200"
+          - generic [ref=e404]:
+            - generic [ref=e405]: Ativo
+            - generic [ref=e407]:
+              - link "Editar Livro novo (escolha livre)" [ref=e408] [cursor=pointer]:
+                - /url: /parent/rewards/1767/edit
+                - generic [ref=e409]: 󲀏
+              - button "Remover Livro novo (escolha livre)" [ref=e411] [cursor=pointer]:
+                - generic [ref=e412]: 󱣮
+        - generic [ref=e414]:
+          - generic [ref=e415]:
+            - generic [ref=e417]: 󲊉
+            - generic [ref=e419]:
+              - generic [ref=e421]: Tarde no shopping com mãe ou pai
+              - generic [ref=e424]:
+                - generic [ref=e425]: 󲎤
+                - generic [ref=e426]: "200"
+          - generic [ref=e427]:
+            - generic [ref=e428]: Ativo
+            - generic [ref=e430]:
+              - link "Editar Tarde no shopping com mãe ou pai" [ref=e431] [cursor=pointer]:
+                - /url: /parent/rewards/1768/edit
+                - generic [ref=e432]: 󲀏
+              - button "Remover Tarde no shopping com mãe ou pai" [ref=e434] [cursor=pointer]:
+                - generic [ref=e435]: 󱣮
+        - generic [ref=e437]:
+          - generic [ref=e438]:
+            - generic [ref=e440]: 󱮊
+            - generic [ref=e442]:
+              - generic [ref=e444]: Brinquedo médio (pelúcia / boneca / action)
+              - generic [ref=e447]:
+                - generic [ref=e448]: 󲎤
+                - generic [ref=e449]: "300"
+          - generic [ref=e450]:
+            - generic [ref=e451]: Ativo
+            - generic [ref=e453]:
+              - link "Editar Brinquedo médio (pelúcia / boneca / action)" [ref=e454] [cursor=pointer]:
+                - /url: /parent/rewards/1769/edit
+                - generic [ref=e455]: 󲀏
+              - button "Remover Brinquedo médio (pelúcia / boneca / action)" [ref=e457] [cursor=pointer]:
+                - generic [ref=e458]: 󱣮
+        - generic [ref=e460]:
+          - generic [ref=e465]:
+            - generic [ref=e467]: Maquiagem teen (Laura)
+            - generic [ref=e470]:
+              - generic [ref=e471]: 󲎤
+              - generic [ref=e472]: "300"
+          - generic [ref=e473]:
+            - generic [ref=e474]: Ativo
+            - generic [ref=e476]:
+              - link "Editar Maquiagem teen (Laura)" [ref=e477] [cursor=pointer]:
+                - /url: /parent/rewards/1770/edit
+                - generic [ref=e478]: 󲀏
+              - button "Remover Maquiagem teen (Laura)" [ref=e480] [cursor=pointer]:
+                - generic [ref=e481]: 󱣮
+        - generic [ref=e483]:
+          - generic [ref=e484]:
+            - generic [ref=e486]: 󲃬
+            - generic [ref=e488]:
+              - generic [ref=e490]: Jogo de tabuleiro novo
+              - generic [ref=e493]:
+                - generic [ref=e494]: 󲎤
+                - generic [ref=e495]: "350"
+          - generic [ref=e496]:
+            - generic [ref=e497]: Ativo
+            - generic [ref=e499]:
+              - link "Editar Jogo de tabuleiro novo" [ref=e500] [cursor=pointer]:
+                - /url: /parent/rewards/1771/edit
+                - generic [ref=e501]: 󲀏
+              - button "Remover Jogo de tabuleiro novo" [ref=e503] [cursor=pointer]:
+                - generic [ref=e504]: 󱣮
+        - generic [ref=e506]:
+          - generic [ref=e507]:
+            - generic [ref=e509]: 󲂛
+            - generic [ref=e511]:
+              - generic [ref=e513]: Cinema com pipoca grande
+              - generic [ref=e516]:
+                - generic [ref=e517]: 󲎤
+                - generic [ref=e518]: "400"
+          - generic [ref=e519]:
+            - generic [ref=e520]: Ativo
+            - generic [ref=e522]:
+              - link "Editar Cinema com pipoca grande" [ref=e523] [cursor=pointer]:
+                - /url: /parent/rewards/1772/edit
+                - generic [ref=e524]: 󲀏
+              - button "Remover Cinema com pipoca grande" [ref=e526] [cursor=pointer]:
+                - generic [ref=e527]: 󱣮
+        - generic [ref=e529]:
+          - generic [ref=e530]:
+            - generic [ref=e532]: 󱩣
+            - generic [ref=e534]:
+              - generic [ref=e536]: "[Família] Cinema todo mundo junto"
+              - generic [ref=e539]:
+                - generic [ref=e540]: 󲎤
+                - generic [ref=e541]: "400"
+          - generic [ref=e542]:
+            - generic [ref=e543]: Ativo
+            - generic [ref=e545]:
+              - link "Editar [Família] Cinema todo mundo junto" [ref=e546] [cursor=pointer]:
+                - /url: /parent/rewards/1781/edit
+                - generic [ref=e547]: 󲀏
+              - button "Remover [Família] Cinema todo mundo junto" [ref=e549] [cursor=pointer]:
+                - generic [ref=e550]: 󱣮
+        - generic [ref=e552]:
+          - generic [ref=e553]:
+            - generic [ref=e555]: 󱢍
+            - generic [ref=e557]:
+              - generic [ref=e559]: LEGO escolha livre
+              - generic [ref=e562]:
+                - generic [ref=e563]: 󲎤
+                - generic [ref=e564]: "800"
+          - generic [ref=e565]:
+            - generic [ref=e566]: Ativo
+            - generic [ref=e568]:
+              - link "Editar LEGO escolha livre" [ref=e569] [cursor=pointer]:
+                - /url: /parent/rewards/1773/edit
+                - generic [ref=e570]: 󲀏
+              - button "Remover LEGO escolha livre" [ref=e572] [cursor=pointer]:
+                - generic [ref=e573]: 󱣮
+        - generic [ref=e575]:
+          - generic [ref=e576]:
+            - generic [ref=e578]: 󲈃
+            - generic [ref=e580]:
+              - generic [ref=e582]: Patinete ou skate novo
+              - generic [ref=e585]:
+                - generic [ref=e586]: 󲎤
+                - generic [ref=e587]: "1200"
+          - generic [ref=e588]:
+            - generic [ref=e589]: Ativo
+            - generic [ref=e591]:
+              - link "Editar Patinete ou skate novo" [ref=e592] [cursor=pointer]:
+                - /url: /parent/rewards/1774/edit
+                - generic [ref=e593]: 󲀏
+              - button "Remover Patinete ou skate novo" [ref=e595] [cursor=pointer]:
+                - generic [ref=e596]: 󱣮
+        - generic [ref=e598]:
+          - generic [ref=e599]:
+            - generic [ref=e601]: 󱹨
+            - generic [ref=e603]:
+              - generic [ref=e605]: Microscópio ou kit de ciência
+              - generic [ref=e608]:
+                - generic [ref=e609]: 󲎤
+                - generic [ref=e610]: "1500"
+          - generic [ref=e611]:
+            - generic [ref=e612]: Ativo
+            - generic [ref=e614]:
+              - link "Editar Microscópio ou kit de ciência" [ref=e615] [cursor=pointer]:
+                - /url: /parent/rewards/1775/edit
+                - generic [ref=e616]: 󲀏
+              - button "Remover Microscópio ou kit de ciência" [ref=e618] [cursor=pointer]:
+                - generic [ref=e619]: 󱣮
+        - generic [ref=e621]:
+          - generic [ref=e622]:
+            - generic [ref=e624]: 󱔛
+            - generic [ref=e626]:
+              - generic [ref=e628]: Bicicleta nova
+              - generic [ref=e631]:
+                - generic [ref=e632]: 󲎤
+                - generic [ref=e633]: "3000"
+          - generic [ref=e634]:
+            - generic [ref=e635]: Ativo
+            - generic [ref=e637]:
+              - link "Editar Bicicleta nova" [ref=e638] [cursor=pointer]:
+                - /url: /parent/rewards/1776/edit
+                - generic [ref=e639]: 󲀏
+              - button "Remover Bicicleta nova" [ref=e641] [cursor=pointer]:
+                - generic [ref=e642]: 󱣮
+        - generic [ref=e644]:
+          - generic [ref=e645]:
+            - generic [ref=e647]: 󱰄
+            - generic [ref=e649]:
+              - generic [ref=e651]: Máquina de sorvete
+              - generic [ref=e654]:
+                - generic [ref=e655]: 󲎤
+                - generic [ref=e656]: "5000"
+          - generic [ref=e657]:
+            - generic [ref=e658]: Ativo
+            - generic [ref=e660]:
+              - link "Editar Máquina de sorvete" [ref=e661] [cursor=pointer]:
+                - /url: /parent/rewards/1777/edit
+                - generic [ref=e662]: 󲀏
+              - button "Remover Máquina de sorvete" [ref=e664] [cursor=pointer]:
+                - generic [ref=e665]: 󱣮
+        - generic [ref=e667]:
+          - generic [ref=e668]:
+            - generic [ref=e670]: 󲆏
+            - generic [ref=e672]:
+              - generic [ref=e674]: "[Família] Viagem pequena (2-3 dias)"
+              - generic [ref=e677]:
+                - generic [ref=e678]: 󲎤
+                - generic [ref=e679]: "6000"
+          - generic [ref=e680]:
+            - generic [ref=e681]: Ativo
+            - generic [ref=e683]:
+              - link "Editar [Família] Viagem pequena (2-3 dias)" [ref=e684] [cursor=pointer]:
+                - /url: /parent/rewards/1782/edit
+                - generic [ref=e685]: 󲀏
+              - button "Remover [Família] Viagem pequena (2-3 dias)" [ref=e687] [cursor=pointer]:
+                - generic [ref=e688]: 󱣮
+        - generic [ref=e690]:
+          - generic [ref=e691]:
+            - generic [ref=e693]: 󱽔
+            - generic [ref=e695]:
+              - generic [ref=e697]: Nintendo Switch
+              - generic [ref=e700]:
+                - generic [ref=e701]: 󲎤
+                - generic [ref=e702]: "8000"
+          - generic [ref=e703]:
+            - generic [ref=e704]: Ativo
+            - generic [ref=e706]:
+              - link "Editar Nintendo Switch" [ref=e707] [cursor=pointer]:
+                - /url: /parent/rewards/1778/edit
+                - generic [ref=e708]: 󲀏
+              - button "Remover Nintendo Switch" [ref=e710] [cursor=pointer]:
+                - generic [ref=e711]: 󱣮
+        - generic [ref=e713]:
+          - generic [ref=e714]:
+            - generic [ref=e716]: 󲋰
+            - generic [ref=e718]:
+              - generic [ref=e720]: Celular novo (quando idade permitir)
+              - generic [ref=e723]:
+                - generic [ref=e724]: 󲎤
+                - generic [ref=e725]: "12000"
+          - generic [ref=e726]:
+            - generic [ref=e727]: Ativo
+            - generic [ref=e729]:
+              - link "Editar Celular novo (quando idade permitir)" [ref=e730] [cursor=pointer]:
+                - /url: /parent/rewards/1779/edit
+                - generic [ref=e731]: 󲀏
+              - button "Remover Celular novo (quando idade permitir)" [ref=e733] [cursor=pointer]:
+                - generic [ref=e734]: 󱣮
+  - generic [ref=e735]:
+    - generic [ref=e736]: ⭐
+    - generic [ref=e737]:
+      - paragraph [ref=e738]: Instale o LittleStars
+      - paragraph [ref=e739]: Acesso rápido pela tela inicial.
+    - generic [ref=e740]:
+      - button "Instalar" [ref=e741] [cursor=pointer]
+      - button "Agora não" [ref=e742] [cursor=pointer]

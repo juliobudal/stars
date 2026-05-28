@@ -1,0 +1,86 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e64]: Jornada
+    - link "Academia" [ref=e5] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e6]: 󲌸
+      - generic [ref=e65]: Academia
+    - link "Lojinha" [ref=e7] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e8]: 󲊉
+      - generic [ref=e66]: Lojinha
+    - link "Diário" [ref=e9] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e10]: 󱖃
+      - generic [ref=e67]: Diário
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - link "Voltar para Mente Forte" [ref=e15] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e17]:
+            - generic [ref=e18]: MENTE FORTE
+            - heading "Por que mexer no celular é tão difícil de parar?" [level=1] [ref=e19]
+        - generic "Progresso da missão" [ref=e68]
+      - generic [ref=e20]:
+        - generic [ref=e21]: 🔭
+        - generic [ref=e22]:
+          - heading "Em outro lugar" [level=2] [ref=e23]
+          - generic [ref=e24]: sobre Dopamina
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]:
+              - generic [ref=e29]: Origem
+              - generic [ref=e30]: Caça ao tesouro
+              - list [ref=e31]:
+                - listitem [ref=e32]: • mapa do tesouro com X marcado
+                - listitem [ref=e33]: • sensor de metal que apita perto do ouro
+                - listitem [ref=e34]: • emoção de quase achar o baú
+                - listitem [ref=e35]: • caçador que desiste ao encontrar só moedas falsas
+                - listitem [ref=e36]: • tesouro enterrado que nunca é desenterrado
+            - generic [ref=e37]:
+              - generic [ref=e38]: Destino
+              - generic [ref=e39]: Sistema de dopamina
+              - list [ref=e40]:
+                - listitem [ref=e41]: • neurônio que libera dopamina na expectativa
+                - listitem [ref=e42]: • sinal de 'vai atrás disso' no cérebro
+                - listitem [ref=e43]: • vontade forte antes de ganhar um prêmio
+                - listitem [ref=e44]: • criança que perde o interesse depois de conseguir o brincar demais no videogame
+                - listitem [ref=e45]: • recompensa adiada que mantém a motivação
+          - generic [ref=e46]: Pontes
+          - generic [ref=e47]:
+            - generic [ref=e48]:
+              - generic [ref=e76]: mapa do tesouro com X marcado
+              - generic [ref=e77]: →
+              - generic [ref=e78]: neurônio que libera dopamina na expectativa
+            - generic [ref=e49]:
+              - generic [ref=e79]: sensor de metal que apita perto do ouro
+              - generic [ref=e80]: →
+              - generic [ref=e81]: sinal de 'vai atrás disso' no cérebro
+            - generic [ref=e50]:
+              - generic [ref=e82]: emoção de quase achar o baú
+              - generic [ref=e83]: →
+              - generic [ref=e84]: vontade forte antes de ganhar um prêmio
+            - generic [ref=e51]:
+              - generic [ref=e85]: caçador que desiste ao encontrar só moedas falsas
+              - generic [ref=e86]: →
+              - generic [ref=e87]: criança que perde o interesse depois de brincar demais no videogame
+            - generic [ref=e52]:
+              - generic [ref=e88]: tesouro enterrado que nunca é desenterrado
+              - generic [ref=e89]: →
+              - generic [ref=e90]: recompensa adiada que mantém a motivação
+          - paragraph [ref=e54]: Se o sensor de metal apita forte quando o tesouro está perto, mas o caçador nunca cava, o que acontece com a emoção dele? Onde Laura já viu isso acontecer com um amigo que só olhava o celular, mas não jogava?
+        - button "Continuar →" [ref=e56]
+  - generic [ref=e91]:
+    - generic [ref=e93]: 󲎤
+    - generic [ref=e94]:
+      - paragraph [ref=e95]: Instale o LittleStars
+      - paragraph [ref=e96]: Acesso rápido pela tela inicial.
+    - generic [ref=e97]:
+      - button "Instalar" [ref=e98] [cursor=pointer]
+      - button "Agora não" [ref=e99] [cursor=pointer]

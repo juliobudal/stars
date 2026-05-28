@@ -1,0 +1,39 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - link "Voltar" [ref=e6] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e7]: 󱑘
+    - generic [ref=e8]:
+      - heading "Nova missão!" [level=2] [ref=e9]
+      - generic [ref=e10]: Conta o que você fez. Os pais aprovam e você ganha estrelas!
+  - generic [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]: O que você fez?
+      - textbox "O que você fez?" [ref=e14]:
+        - /placeholder: "Ex.: Arrumei a estante"
+    - generic [ref=e15]:
+      - generic [ref=e16]: Conta mais (opcional)
+      - textbox "Conta mais (opcional)" [ref=e17]:
+        - /placeholder: Como foi?
+    - generic [ref=e18]:
+      - generic [ref=e19]: Quanto vale?
+      - spinbutton "Quanto vale?" [ref=e20]: "10"
+      - paragraph [ref=e21]: Os pais podem ajustar.
+    - generic [ref=e22]:
+      - generic [ref=e23]: Categoria
+      - combobox "Categoria" [ref=e24]:
+        - option "Escolha uma..." [selected]
+        - option "Brinquedos"
+        - option "Docinhos"
+        - option "Experiências"
+        - option "Outro"
+        - option "Passeios"
+        - option "Telinha"
+    - generic [ref=e25]:
+      - generic [ref=e26]: Recado pros pais (opcional)
+      - textbox "Recado pros pais (opcional)" [ref=e27]:
+        - /placeholder: Quer mandar um recado?
+    - generic [ref=e28]:
+      - link "Cancelar" [ref=e29] [cursor=pointer]:
+        - /url: /kid
+      - button "Enviar pra aprovação" [ref=e30] [cursor=pointer]

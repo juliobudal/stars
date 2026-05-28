@@ -88,12 +88,8 @@ RSpec.configure do |config|
   # (some specs run job code that opens its own connection; some tests touch
   # FK-less columns like learner_id). Wipe per-test to keep specs isolated.
   ACADEMY_TEST_TABLES = %w[
-    academy_discovery_cards
-    academy_practice_wagers academy_pill_views
-    academy_lens_signals academy_learner_signals academy_learner_lens_visits
     academy_guide_messages academy_guide_conversations
-    academy_messages academy_sessions academy_mission_progresses
-    academy_learner_concepts academy_lens_cache
+    academy_lesson_progresses academy_lessons academy_trails
   ].freeze
 
   # Wipe Academy tables only for specs that actually touch the module — either

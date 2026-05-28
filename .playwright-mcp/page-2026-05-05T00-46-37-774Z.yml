@@ -1,0 +1,289 @@
+- generic [active] [ref=e85]:
+  - navigation "Navegação principal" [ref=e86]:
+    - link "Jornada" [ref=e87] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e88]: 󲑲
+      - generic [ref=e89]: Jornada
+    - link "Lojinha" [ref=e90] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e91]: 󲊉
+      - generic [ref=e92]: Lojinha
+    - link "Diário" [ref=e93] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e94]: 󱖃
+      - generic [ref=e95]: Diário
+  - main [ref=e96]:
+    - generic [ref=e97]:
+      - generic [ref=e98]:
+        - generic [ref=e100]:
+          - generic [ref=e101]: 󲎤
+          - generic [ref=e102]: "50"
+        - button "Trocar de perfil" [ref=e105] [cursor=pointer]:
+          - generic [ref=e106]: 󱶂
+          - text: Trocar
+      - generic [ref=e107]:
+        - generic [ref=e108]:
+          - img "Theo" [ref=e110]:
+            - generic [ref=e111]: 󱮊
+          - generic [ref=e112]: 󲎤
+          - generic [ref=e113]: 󲎤
+        - generic [ref=e114]:
+          - generic [ref=e115]: Boa noite, Theo!
+          - heading "Bora pegar mais hoje?" [level=1] [ref=e116]:
+            - generic [ref=e117]: Bora pegar mais
+            - generic [ref=e118]: 󲎤
+            - generic [ref=e119]: hoje?
+          - paragraph [ref=e120]:
+            - generic [ref=e121]:
+              - text: Você tem
+              - strong [ref=e122]: 20 missões
+              - text: pra completar
+      - generic [ref=e123]:
+        - generic [ref=e124]:
+          - generic [ref=e125]:
+            - generic [ref=e126]: Você está no
+            - generic [ref=e127]:
+              - generic [ref=e128]: NÍVEL 3
+              - generic [ref=e129]: → Nível 4
+          - generic [ref=e130]:
+            - generic [ref=e131]: 10/20
+            - generic [ref=e132]: Estrelinhas
+        - generic [ref=e136]: 󲎤
+        - generic [ref=e137]:
+          - generic [ref=e138]: 󲎤
+          - generic [ref=e139]:
+            - text: Faltam
+            - strong [ref=e140]: 10 estrelinha
+            - text: pra subir!
+      - link "Sua meta Escolher um prêmio Toque pra ir pra Lojinha" [ref=e143] [cursor=pointer]:
+        - /url: /kid/rewards
+        - generic [ref=e145]: 󲎤
+        - generic [ref=e146]:
+          - paragraph [ref=e147]: Sua meta
+          - paragraph [ref=e148]: Escolher um prêmio
+          - paragraph [ref=e149]: Toque pra ir pra Lojinha
+        - generic [ref=e150]: 󱑩
+      - generic [ref=e151]:
+        - heading "Missões de hoje" [level=2] [ref=e152]
+        - generic [ref=e153]:
+          - generic [ref=e154]: 2 de 22
+          - generic [ref=e155]: 󲓧
+      - generic [ref=e156]:
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - generic [ref=e160]: 󱯉
+            - generic [ref=e161]:
+              - generic [ref=e162]: Operação Cama Pronta
+              - generic [ref=e164]: Casa · diária
+            - generic [ref=e167]: 󱞿
+          - generic [ref=e168]:
+            - generic [ref=e170]: 󱖃
+            - generic [ref=e171]:
+              - generic [ref=e172]: Leitura solo (15 min antes de dormir)
+              - generic [ref=e174]: Escola · diária
+            - generic [ref=e177]: 󱞿
+        - generic [ref=e178]:
+          - generic [ref=e179]:
+            - generic [ref=e180] [cursor=pointer]:
+              - generic [ref=e182]: 󱦞
+              - generic [ref=e183]:
+                - generic [ref=e184]: Expedição Dentes Limpos (manhã)
+                - generic [ref=e186]: Saúde · diária
+              - generic [ref=e188]:
+                - img [ref=e189]
+                - generic [ref=e191]: "5"
+            - text: 󱦞 󱦞 󲀏 󲓧
+          - generic [ref=e192]:
+            - generic [ref=e193] [cursor=pointer]:
+              - generic [ref=e195]: 󱦞
+              - generic [ref=e196]:
+                - generic [ref=e197]: Expedição Dentes Limpos (noite)
+                - generic [ref=e199]: Saúde · diária
+              - generic [ref=e201]:
+                - img [ref=e202]
+                - generic [ref=e204]: "5"
+            - text: 󱦞 󱦞 󲀏 󲓧
+          - generic [ref=e205]:
+            - generic [ref=e206] [cursor=pointer]:
+              - generic [ref=e208]: 󱦞
+              - generic [ref=e209]:
+                - generic [ref=e210]: Tomar banho sem ser chamado
+                - generic [ref=e212]: Saúde · diária
+              - generic [ref=e214]:
+                - img [ref=e215]
+                - generic [ref=e217]: "10"
+            - text: 󱦞 󱦞 󲀏 󲓧
+          - generic [ref=e218]:
+            - generic [ref=e219] [cursor=pointer]:
+              - generic [ref=e221]: 󱦞
+              - generic [ref=e222]:
+                - generic [ref=e223]: Beber 6 copos de água
+                - generic [ref=e225]: Saúde · diária
+              - generic [ref=e227]:
+                - img [ref=e228]
+                - generic [ref=e230]: "10"
+            - text: 󱦞 󱦞 󲀏 󲓧
+          - generic [ref=e231]:
+            - generic [ref=e232] [cursor=pointer]:
+              - generic [ref=e234]: 󱯉
+              - generic [ref=e235]:
+                - generic [ref=e236]: Missão Mochila no Lugar
+                - generic [ref=e238]: Casa · diária
+              - generic [ref=e240]:
+                - img [ref=e241]
+                - generic [ref=e243]: "5"
+            - text: 󱯉 󱯉 󲀏 󲓧
+          - generic [ref=e244]:
+            - generic [ref=e245] [cursor=pointer]:
+              - generic [ref=e247]: 󱯉
+              - generic [ref=e248]:
+                - generic [ref=e249]: Protocolo Roupa Pronta (amanhã)
+                - generic [ref=e251]: Casa · diária
+              - generic [ref=e253]:
+                - img [ref=e254]
+                - generic [ref=e256]: "10"
+            - text: 󱯉 󱯉 󲀏 󲓧
+          - generic [ref=e257]:
+            - generic [ref=e258] [cursor=pointer]:
+              - generic [ref=e260]: 󱯉
+              - generic [ref=e261]:
+                - generic [ref=e262]: Sapatos no rack ao chegar
+                - generic [ref=e264]: Casa · diária
+              - generic [ref=e266]:
+                - img [ref=e267]
+                - generic [ref=e269]: "5"
+            - text: 󱯉 󱯉 󲀏 󲓧
+          - generic [ref=e270]:
+            - generic [ref=e271] [cursor=pointer]:
+              - generic [ref=e273]: 󱯉
+              - generic [ref=e274]:
+                - generic [ref=e275]: Levar pratos da família pra pia (após cada refeição)
+                - generic [ref=e277]: Casa · diária
+              - generic [ref=e279]:
+                - img [ref=e280]
+                - generic [ref=e282]: "10"
+            - text: 󱯉 󱯉 󲀏 󲓧
+          - generic [ref=e283]:
+            - generic [ref=e284] [cursor=pointer]:
+              - generic [ref=e286]: 󱯉
+              - generic [ref=e287]:
+                - generic [ref=e288]: Secar a louça do jantar
+                - generic [ref=e290]: Casa · diária
+              - generic [ref=e292]:
+                - img [ref=e293]
+                - generic [ref=e295]: "15"
+            - text: 󱯉 󱯉 󲀏 󲓧
+          - generic [ref=e296]:
+            - generic [ref=e297] [cursor=pointer]:
+              - generic [ref=e299]: 󱯉
+              - generic [ref=e300]:
+                - generic [ref=e301]: Dar comida pro Simba (manhã e noite)
+                - generic [ref=e303]: Casa · diária
+              - generic [ref=e305]:
+                - img [ref=e306]
+                - generic [ref=e308]: "10"
+            - text: 󱯉 󱯉 󲀏 󲓧
+          - generic [ref=e309]:
+            - generic [ref=e310] [cursor=pointer]:
+              - generic [ref=e312]: 󱖃
+              - generic [ref=e313]:
+                - generic [ref=e314]: Lição de casa antes da brincadeira
+                - generic [ref=e316]: Escola · diária
+              - generic [ref=e318]:
+                - img [ref=e319]
+                - generic [ref=e321]: "15"
+            - text: 󱖃 󱖃 󲀏 󲓧
+          - generic [ref=e322]:
+            - generic [ref=e323] [cursor=pointer]:
+              - generic [ref=e325]: 󱖃
+              - generic [ref=e326]:
+                - generic [ref=e327]: Avisar prova/trabalho com antecedência
+                - generic [ref=e329]: Escola · diária
+              - generic [ref=e331]:
+                - img [ref=e332]
+                - generic [ref=e334]: "15"
+            - text: 󱖃 󱖃 󲀏 󲓧
+          - generic [ref=e335]:
+            - generic [ref=e336] [cursor=pointer]:
+              - generic [ref=e338]: 󱖃
+              - generic [ref=e339]:
+                - generic [ref=e340]: Conferir agenda da escola
+                - generic [ref=e342]: Escola · diária
+              - generic [ref=e344]:
+                - img [ref=e345]
+                - generic [ref=e347]: "5"
+            - text: 󱖃 󱖃 󲀏 󲓧
+          - generic [ref=e348]:
+            - generic [ref=e349] [cursor=pointer]:
+              - generic [ref=e351]: 󱖃
+              - generic [ref=e352]:
+                - generic [ref=e353]: Aprender algo novo (15 min)
+                - generic [ref=e355]: Escola · diária
+              - generic [ref=e357]:
+                - img [ref=e358]
+                - generic [ref=e360]: "15"
+            - text: 󱖃 󱖃 󲀏 󲓧
+          - generic [ref=e361]:
+            - generic [ref=e362] [cursor=pointer]:
+              - generic [ref=e364]: 󱤈
+              - generic [ref=e365]:
+                - generic [ref=e366]: Pedir 'por favor' e 'obrigado' o dia todo
+                - generic [ref=e368]: Rotina · diária
+              - generic [ref=e370]:
+                - img [ref=e371]
+                - generic [ref=e373]: "10"
+            - text: 󱤈 󱤈 󲀏 󲓧
+          - generic [ref=e374]:
+            - generic [ref=e375] [cursor=pointer]:
+              - generic [ref=e377]: 󱤈
+              - generic [ref=e378]:
+                - generic [ref=e379]: Fazer a oração antes de dormir
+                - generic [ref=e381]: Rotina · diária
+              - generic [ref=e383]:
+                - img [ref=e384]
+                - generic [ref=e386]: "5"
+            - text: 󱤈 󱤈 󲀏 󲓧
+          - generic [ref=e387]:
+            - generic [ref=e388] [cursor=pointer]:
+              - generic [ref=e390]: 󱤈
+              - generic [ref=e391]:
+                - generic [ref=e392]: Dia sem brigar com os irmãos
+                - generic [ref=e394]: Rotina · diária
+              - generic [ref=e396]:
+                - img [ref=e397]
+                - generic [ref=e399]: "10"
+            - text: 󱤈 󱤈 󲀏 󲓧
+          - generic [ref=e400]:
+            - generic [ref=e401] [cursor=pointer]:
+              - generic [ref=e403]: 󱖃
+              - generic [ref=e404]:
+                - generic [ref=e405]: Treino de tabuada/cálculo (5 min)
+                - generic [ref=e407]: Escola · diária
+              - generic [ref=e409]:
+                - img [ref=e410]
+                - generic [ref=e412]: "10"
+            - text: 󱖃 󱖃 󲀏 󲓧
+          - generic [ref=e413]:
+            - generic [ref=e414] [cursor=pointer]:
+              - generic [ref=e416]: 󱖃
+              - generic [ref=e417]:
+                - generic [ref=e418]: Praticar inglês no Duolingo (10 min)
+                - generic [ref=e420]: Escola · diária
+              - generic [ref=e422]:
+                - img [ref=e423]
+                - generic [ref=e425]: "10"
+            - text: 󱖃 󱖃 󲀏 󲓧
+          - generic [ref=e426]:
+            - generic [ref=e427] [cursor=pointer]:
+              - generic [ref=e429]: 󱤈
+              - generic [ref=e430]:
+                - generic [ref=e431]: Falar uma coisa boa do irmão/irmã
+                - generic [ref=e433]: Rotina · diária
+              - generic [ref=e435]:
+                - img [ref=e436]
+                - generic [ref=e438]: "10"
+            - text: 󱤈 󱤈 󲀏 󲓧
+      - link "Fez algo fora da lista? Adicionar" [ref=e439] [cursor=pointer]:
+        - /url: /kid/missions/new
+        - generic [ref=e440]: 󲁸
+        - text: Fez algo fora da lista? Adicionar

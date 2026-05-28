@@ -1,0 +1,798 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - text: 󱸠
+    - navigation "Principal" [ref=e2]:
+      - generic [ref=e4]:
+        - generic [ref=e6]: 󲎤
+        - generic [ref=e7]:
+          - generic [ref=e8]: LittleStars
+          - generic [ref=e9]: Modo pais
+      - generic [ref=e10]:
+        - link "Início" [ref=e11] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e12]: 󱯉
+          - generic [ref=e13]: Início
+        - link "Crianças" [ref=e14] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e15]: 󲗦
+          - generic [ref=e16]: Crianças
+        - link "Missões" [ref=e17] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e18]: 󲑽
+          - generic [ref=e19]: Missões
+        - link "Prêmios" [ref=e20] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e21]: 󲊉
+          - generic [ref=e22]: Prêmios
+        - link "Categorias" [ref=e23] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e24]: 󱖠
+          - generic [ref=e25]: Categorias
+        - link "Aprovações" [ref=e26] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e27]: 󱞿
+          - generic [ref=e28]: Aprovações
+        - link "Configurações" [ref=e29] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e30]: 󲉌
+          - generic [ref=e31]: Configurações
+      - generic [ref=e32]:
+        - link "Editar meu perfil" [ref=e33] [cursor=pointer]:
+          - /url: /parent/profiles/1/edit
+          - img "Mamãe" [ref=e34]:
+            - generic [ref=e35]: 󲗕
+          - generic [ref=e36]:
+            - generic [ref=e37]: Mamãe
+            - generic [ref=e38]: Responsável · Editar
+          - generic [ref=e39]: 󲀏
+        - button "Trocar perfil" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]: 󱶂
+          - text: Trocar perfil
+    - text: 󱯉 󱞿 󲑽 󲊉 󱸠
+  - generic [ref=e45]:
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - heading "Biblioteca de Pílulas" [level=1] [ref=e48]
+        - paragraph [ref=e49]:
+          - text: Todas as aulas do catálogo ·
+          - strong [ref=e50]: "42"
+          - text: de 42 pílulas ativas · fontes, frameworks e sacadas curados.
+      - link "← Dashboard" [ref=e51] [cursor=pointer]:
+        - /url: /parent/academy
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]: Área
+        - combobox [ref=e55]:
+          - option "Todas" [selected]
+          - option "Mente Forte"
+          - option "Corpo & Saúde"
+          - option "Dinheiro & Vida Real"
+          - option "Caráter & Virtudes"
+          - option "Tecnologia & Criação"
+          - option "Resolver Problemas"
+          - option "Vida & Sociedade"
+      - generic [ref=e56]:
+        - generic [ref=e57]: Fonte / Autor
+        - combobox [ref=e58]:
+          - option "Todos" [selected]
+          - option "Aaron Lazare, On Apology"
+          - option "Andrew Huberman"
+          - option "Andy Hunt / The Pragmatic Programmer"
+          - option "B.F. Skinner"
+          - option "Cal Newport"
+          - option "Carol Dweck"
+          - option "Center for Creative Leadership (SBI Model)"
+          - option "Daniel Kahneman"
+          - option "Daniel Kahneman, Thinking Fast & Slow"
+          - option "Dave Ramsey"
+          - option "Edgar Dale + Austin Kleon"
+          - option "Elizabeth Loftus"
+          - option "Emily Bender / 'stochastic parrots'"
+          - option "Frédéric Bastiat / Charlie Munger"
+          - option "Fundamentos de ML"
+          - option "George Clason (Pai Rico) + Provérbios"
+          - option "George Polya"
+          - option "Gloria Mark (UC Irvine)"
+          - option "Hannes Schulz / sistemas de recomendação"
+          - option "Hipócrates + Bortz"
+          - option "James Clear"
+          - option "Malcolm Gladwell, Blink / Nalini Ambady"
+          - option "Marco Aurélio + Aristóteles"
+          - option "Matthew Walker"
+          - option "Michael Pollan"
+          - option "Morgan Housel + Albert Einstein"
+          - option "Pensamento computacional"
+          - option "Provérbios + Aristóteles"
+          - option "Provérbios + Chris Voss"
+          - option "Provérbios + Dave Ramsey"
+          - option "Robert Cialdini"
+          - option "Robert Emmons (Psicologia Positiva)"
+          - option "Robin Dunbar / antropologia evolutiva"
+          - option "Sakichi Toyoda / Toyota Production System"
+          - option "Stephen Covey"
+          - option "Tristan Harris (ex-Google)"
+          - option "Tristan Harris + Cathy O'Neil"
+          - option "Univ. Connecticut"
+          - option "Vilfredo Pareto + Tim Ferriss"
+      - generic [ref=e59]:
+        - generic [ref=e60]: Framework
+        - combobox [ref=e61]:
+          - option "Todos" [selected]
+          - option "anatomia + caso"
+          - option "caso + checklist"
+          - option "dado + experimento"
+          - option "dado científico"
+          - option "dado científico + ação"
+          - option "dado contra-intuitivo"
+          - option "dado prático"
+          - option "desmistificação"
+          - option "experimento"
+          - option "experimento + cena"
+          - option "experimento + ciência"
+          - option "experimento clássico"
+          - option "experimento mental"
+          - option "experimento numérico"
+          - option "experimento social"
+          - option "fato + dado"
+          - option "ferramenta + caso"
+          - option "mental model"
+          - option "metáfora"
+          - option "metáfora + experimento"
+          - option "metáfora financeira"
+          - option "modelo em 3 passos"
+          - option "método em 4 passos"
+          - option "paradoxo + caso"
+          - option "paradoxo + caso real"
+          - option "reframe + ação"
+          - option "reframe + caso"
+          - option "regra prática"
+          - option "regra prática + paradoxo"
+          - option "regra simples"
+          - option "técnica + experimento"
+      - button [ref=e63] [cursor=pointer]
+    - generic [ref=e64]:
+      - generic [ref=e65]:
+        - generic [ref=e67]: 󱟴
+        - heading "Dinheiro & Vida Real" [level=2] [ref=e68]
+        - generic [ref=e69]: 6 pílulas
+      - generic [ref=e70]:
+        - generic [ref=e71]:
+          - generic [ref=e73]:
+            - generic [ref=e74]: Por que 'de R$200 por R$150' parece barato?
+            - generic [ref=e75]: "\"O primeiro preço que você vê desfigura tudo o que vem depois.\""
+          - generic [ref=e76]:
+            - generic [ref=e77]:
+              - generic [ref=e78]: 󱖃
+              - text: Daniel Kahneman, Thinking Fast & Slow
+            - generic [ref=e79]: experimento clássico
+          - generic [ref=e80]:
+            - strong [ref=e81]: "Objetivo:"
+            - text: Reconhecer anchoring em pelo menos 3 produtos do dia.
+        - generic [ref=e82]:
+          - generic [ref=e84]:
+            - generic [ref=e85]: Cada 'sim' é mil 'nãos' invisíveis
+            - generic [ref=e86]: "\"Você não escolhe entre R$50 e o doce. Escolhe entre o doce e tudo que esse R$50 viraria.\""
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - generic [ref=e89]: 󱖃
+              - text: Frédéric Bastiat / Charlie Munger
+            - generic [ref=e90]: mental model
+          - generic [ref=e91]:
+            - strong [ref=e92]: "Objetivo:"
+            - text: Visualizar o custo invisível em pelo menos 1 decisão de compra.
+        - generic [ref=e93]:
+          - generic [ref=e95]:
+            - generic [ref=e96]: Por que comprar por impulso é uma armadilha?
+            - generic [ref=e97]: "\"Você quer agora — daqui a 1 dia, talvez nem queira mais.\""
+          - generic [ref=e98]:
+            - strong [ref=e99]: "Sacada:"
+            - text: Se você espera 24 horas antes de comprar algo, mais da metade do desejo evapora — e revela o que era impulso.
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - generic [ref=e102]: 󱖃
+              - text: Dave Ramsey
+            - generic [ref=e103]: regra prática
+          - generic [ref=e104]:
+            - strong [ref=e105]: "Objetivo:"
+            - text: Aplicar a regra das 24h em 1 desejo de compra.
+        - generic [ref=e106]:
+          - generic [ref=e108]:
+            - generic [ref=e109]: Quase tudo que você 'precisa' é desejo?
+            - generic [ref=e110]: "\"Categoria errada = grana errada.\""
+          - generic [ref=e111]:
+            - strong [ref=e112]: "Sacada:"
+            - text: Quem aprende cedo a diferença entre N e D, em 30 anos junta 10× mais que quem não aprendeu.
+          - generic [ref=e113]:
+            - generic [ref=e114]:
+              - generic [ref=e115]: 󱖃
+              - text: Provérbios + Dave Ramsey
+            - generic [ref=e116]: regra prática
+          - generic [ref=e117]:
+            - strong [ref=e118]: "Objetivo:"
+            - text: Classificar 10 gastos recentes como necessidade ou desejo.
+        - generic [ref=e119]:
+          - generic [ref=e121]:
+            - generic [ref=e122]: Por que pessoas ricas guardam mais que gastam?
+            - generic [ref=e123]: "\"Saldo positivo cresce — saldo zero some.\""
+          - generic [ref=e124]:
+            - strong [ref=e125]: "Sacada:"
+            - text: Se você guarda primeiro e gasta o resto, sobra dinheiro; se gasta primeiro e tenta guardar o resto, nunca sobra.
+          - generic [ref=e126]:
+            - generic [ref=e127]:
+              - generic [ref=e128]: 󱖃
+              - text: George Clason (Pai Rico) + Provérbios
+            - generic [ref=e129]: regra prática
+          - generic [ref=e130]:
+            - strong [ref=e131]: "Objetivo:"
+            - text: Reservar 10% de uma entrada antes de gastar.
+        - generic [ref=e132]:
+          - generic [ref=e134]:
+            - generic [ref=e135]: Como dinheiro vira mais dinheiro sozinho?
+            - generic [ref=e136]: "\"R$1 hoje vale R$10 daqui a 20 anos — sem você mexer.\""
+          - generic [ref=e137]:
+            - strong [ref=e138]: "Sacada:"
+            - text: Se você começa cedo e deixa o tempo trabalhar, juros pequenos viram montanha — porque o ganho começa a ganhar também.
+          - generic [ref=e139]:
+            - generic [ref=e140]:
+              - generic [ref=e141]: 󱖃
+              - text: Morgan Housel + Albert Einstein
+            - generic [ref=e142]: experimento numérico
+          - generic [ref=e143]:
+            - strong [ref=e144]: "Objetivo:"
+            - text: Simular 1 cenário real de juros compostos.
+    - generic [ref=e145]:
+      - generic [ref=e146]:
+        - generic [ref=e148]: 󲑲
+        - heading "Caráter & Virtudes" [level=2] [ref=e149]
+        - generic [ref=e150]: 6 pílulas
+      - generic [ref=e151]:
+        - generic [ref=e152]:
+          - generic [ref=e154]:
+            - generic [ref=e155]: Por que a desculpa de 'mas eu...' não funciona?
+            - generic [ref=e156]: "\"Pedir desculpa direito conserta. Pedir mal piora — e quase ninguém pede direito.\""
+          - generic [ref=e157]:
+            - generic [ref=e158]:
+              - generic [ref=e159]: 󱖃
+              - text: Aaron Lazare, On Apology
+            - generic [ref=e160]: anatomia + caso
+          - generic [ref=e161]:
+            - strong [ref=e162]: "Objetivo:"
+            - text: Distinguir desculpa real de defesa disfarçada e pedir 1 desculpa direito.
+        - generic [ref=e163]:
+          - generic [ref=e165]:
+            - generic [ref=e166]: Falar mal de quem não tá presente vicia. Por quê?
+            - generic [ref=e167]: "\"Fofoca dá prazer parecido com salgadinho — e custa parecido com salgadinho.\""
+          - generic [ref=e168]:
+            - generic [ref=e169]:
+              - generic [ref=e170]: 󱖃
+              - text: Robin Dunbar / antropologia evolutiva
+            - generic [ref=e171]: fato + dado
+          - generic [ref=e172]:
+            - strong [ref=e173]: "Objetivo:"
+            - text: Reconhecer fofoca + cortar 1 vez sem moralizar a outra pessoa.
+        - generic [ref=e174]:
+          - generic [ref=e176]:
+            - generic [ref=e177]: Por que mentiras pequenas custam caro?
+            - generic [ref=e178]: "\"Mentir 1 vez é fácil. Mentir 100 vezes é prisão.\""
+          - generic [ref=e179]:
+            - strong [ref=e180]: "Sacada:"
+            - text: Se você mente o pequeno, vai precisar mentir o grande — só pra a primeira mentira continuar de pé.
+          - generic [ref=e181]:
+            - generic [ref=e182]:
+              - generic [ref=e183]: 󱖃
+              - text: Provérbios + Aristóteles
+            - generic [ref=e184]: metáfora + experimento
+          - generic [ref=e185]:
+            - strong [ref=e186]: "Objetivo:"
+            - text: Identificar e corrigir 1 mentira recente.
+        - generic [ref=e187]:
+          - generic [ref=e189]:
+            - generic [ref=e190]: O que faz alguém confiável?
+            - generic [ref=e191]: "\"Confiança são depósitos. Quebra é saque.\""
+          - generic [ref=e192]:
+            - strong [ref=e193]: "Sacada:"
+            - text: "Quem cumpre o pequeno todo dia constrói algo invisível — e raríssimo: confiança."
+          - generic [ref=e194]:
+            - generic [ref=e195]:
+              - generic [ref=e196]: 󱖃
+              - text: Stephen Covey
+            - generic [ref=e197]: metáfora financeira
+          - generic [ref=e198]:
+            - strong [ref=e199]: "Objetivo:"
+            - text: Cumprir 1 compromisso exato em horário e palavra.
+        - generic [ref=e200]:
+          - generic [ref=e202]:
+            - generic [ref=e203]: Por que gratidão muda o que você vê?
+            - generic [ref=e204]: "\"Sua cabeça é uma lente — gratidão muda o filtro.\""
+          - generic [ref=e205]:
+            - strong [ref=e206]: "Sacada:"
+            - text: Se você lista 3 coisas boas todo dia, em 30 dias começa a NOTAR coisas boas sem listar — o filtro mudou.
+          - generic [ref=e207]:
+            - generic [ref=e208]:
+              - generic [ref=e209]: 󱖃
+              - text: Robert Emmons (Psicologia Positiva)
+            - generic [ref=e210]: experimento + ciência
+          - generic [ref=e211]:
+            - strong [ref=e212]: "Objetivo:"
+            - text: Listar 3 gratidões específicas em 1 noite.
+        - generic [ref=e213]:
+          - generic [ref=e215]:
+            - generic [ref=e216]: Coragem é a ausência do medo?
+            - generic [ref=e217]: "\"Quem age sem medo é cego — não corajoso.\""
+          - generic [ref=e218]:
+            - strong [ref=e219]: "Sacada:"
+            - text: Se você esperar o medo passar pra agir, nunca age — coragem é dar 1 passo enquanto o medo ainda fala.
+          - generic [ref=e220]:
+            - generic [ref=e221]:
+              - generic [ref=e222]: 󱖃
+              - text: Marco Aurélio + Aristóteles
+            - generic [ref=e223]: reframe + ação
+          - generic [ref=e224]:
+            - strong [ref=e225]: "Objetivo:"
+            - text: Fazer 1 ação adiada por medo.
+    - generic [ref=e226]:
+      - generic [ref=e227]:
+        - generic [ref=e229]: 󱧓
+        - heading "Tecnologia & Criação" [level=2] [ref=e230]
+        - generic [ref=e231]: 6 pílulas
+      - generic [ref=e232]:
+        - generic [ref=e233]:
+          - generic [ref=e235]:
+            - generic [ref=e236]: O algoritmo não te conhece. Conhece 1 milhão como você.
+            - generic [ref=e237]: "\"Você acha que TikTok te conhece. Conhece 1 milhão de você e aposta que você reage igual.\""
+          - generic [ref=e238]:
+            - generic [ref=e239]:
+              - generic [ref=e240]: 󱖃
+              - text: Hannes Schulz / sistemas de recomendação
+            - generic [ref=e241]: desmistificação
+          - generic [ref=e242]:
+            - strong [ref=e243]: "Objetivo:"
+            - text: Ver o algoritmo como estatística, não como mágica nem como espionagem.
+        - generic [ref=e244]:
+          - generic [ref=e246]:
+            - generic [ref=e247]: ChatGPT não pensa. Conta palavras.
+            - generic [ref=e248]: "\"IA não 'sabe'. IA aposta a próxima palavra mais provável — e fala com confiança total mesmo errando.\""
+          - generic [ref=e249]:
+            - generic [ref=e250]:
+              - generic [ref=e251]: 󱖃
+              - text: Emily Bender / 'stochastic parrots'
+            - generic [ref=e252]: desmistificação
+          - generic [ref=e253]:
+            - strong [ref=e254]: "Objetivo:"
+            - text: Tratar IA como ferramenta com erro, não como oráculo.
+        - generic [ref=e255]:
+          - generic [ref=e257]:
+            - generic [ref=e258]: Como um app realmente funciona?
+            - generic [ref=e259]: "\"Cada toque é uma conversa entre você e milhões de linhas de código.\""
+          - generic [ref=e260]:
+            - strong [ref=e261]: "Sacada:"
+            - text: Se você entende que app é 'pedido → cozinha → entrega', você nunca mais olha um botão como 'mágica'.
+          - generic [ref=e262]:
+            - generic [ref=e263]:
+              - generic [ref=e264]: 󱖃
+              - text: Pensamento computacional
+            - generic [ref=e265]: metáfora
+          - generic [ref=e266]:
+            - strong [ref=e267]: "Objetivo:"
+            - text: Identificar componentes (UI/servidor/dados) em 1 app conhecido.
+        - generic [ref=e268]:
+          - generic [ref=e270]:
+            - generic [ref=e271]: Como uma IA toma decisão?
+            - generic [ref=e272]: "\"IA não pensa — ela conta.\""
+          - generic [ref=e273]:
+            - strong [ref=e274]: "Sacada:"
+            - text: Se você acha que IA pensa, vai confiar demais. Se entende que IA estima probabilidade, sabe quando duvidar.
+          - generic [ref=e275]:
+            - generic [ref=e276]:
+              - generic [ref=e277]: 󱖃
+              - text: Fundamentos de ML
+            - generic [ref=e278]: experimento
+          - generic [ref=e279]:
+            - strong [ref=e280]: "Objetivo:"
+            - text: Detectar 1 caso de alucinação ou imprecisão de IA.
+        - generic [ref=e281]:
+          - generic [ref=e283]:
+            - generic [ref=e284]: Como a internet sabe o que você gosta?
+            - generic [ref=e285]: "\"Você assistiu 2 vídeos de cachorro — e o feed virou cachorros.\""
+          - generic [ref=e286]:
+            - strong [ref=e287]: "Sacada:"
+            - text: Se você entende que cada toque vira voto pro algoritmo, você passa a escolher o que vê — em vez de ser escolhido por ele.
+          - generic [ref=e288]:
+            - generic [ref=e289]:
+              - generic [ref=e290]: 󱖃
+              - text: Tristan Harris + Cathy O'Neil
+            - generic [ref=e291]: experimento + cena
+          - generic [ref=e292]:
+            - strong [ref=e293]: "Objetivo:"
+            - text: Reconhecer bolha algorítmica em 1 feed real.
+        - generic [ref=e294]:
+          - generic [ref=e296]:
+            - generic [ref=e297]: Criar muda você mais que consumir?
+            - generic [ref=e298]: "\"Mil horas assistindo ≠ uma hora criando.\""
+          - generic [ref=e299]:
+            - strong [ref=e300]: "Sacada:"
+            - text: Se você só consome, você aprende sobre o que outros fizeram; se você cria, descobre o que VOCÊ pensa.
+          - generic [ref=e301]:
+            - generic [ref=e302]:
+              - generic [ref=e303]: 󱖃
+              - text: Edgar Dale + Austin Kleon
+            - generic [ref=e304]: experimento
+          - generic [ref=e305]:
+            - strong [ref=e306]: "Objetivo:"
+            - text: Criar 1 artefato em 30 minutos.
+    - generic [ref=e307]:
+      - generic [ref=e308]:
+        - generic [ref=e310]: 󲃬
+        - heading "Resolver Problemas" [level=2] [ref=e311]
+        - generic [ref=e312]: 5 pílulas
+      - generic [ref=e313]:
+        - generic [ref=e314]:
+          - generic [ref=e316]:
+            - generic [ref=e317]: Por que explicar o problema pra um pato resolve metade dos bugs?
+            - generic [ref=e318]: "\"Programadores falam com um pato de borracha. Sério. E em 50% dos casos, o pato resolve o problema sozinho.\""
+          - generic [ref=e319]:
+            - generic [ref=e320]:
+              - generic [ref=e321]: 󱖃
+              - text: Andy Hunt / The Pragmatic Programmer
+            - generic [ref=e322]: técnica + experimento
+          - generic [ref=e323]:
+            - strong [ref=e324]: "Objetivo:"
+            - text: Aplicar 'rubber duck' em pelo menos 1 problema travado.
+        - generic [ref=e325]:
+          - generic [ref=e327]:
+            - generic [ref=e328]: Pergunte 'por quê?' 5 vezes seguidas. Aí você acha o problema real.
+            - generic [ref=e329]: "\"Toyota descobriu: se você pergunta 'por quê?' uma vez, conserta o sintoma. Se pergunta 5 vezes, conserta a causa.\""
+          - generic [ref=e330]:
+            - generic [ref=e331]:
+              - generic [ref=e332]: 󱖃
+              - text: Sakichi Toyoda / Toyota Production System
+            - generic [ref=e333]: ferramenta + caso
+          - generic [ref=e334]:
+            - strong [ref=e335]: "Objetivo:"
+            - text: Aplicar os 5 porquês a 1 conflito real esta semana.
+        - generic [ref=e336]:
+          - generic [ref=e338]:
+            - generic [ref=e339]: Como quebrar um problema grande?
+            - generic [ref=e340]: "\"Problema gigante se rende a 4 perguntas.\""
+          - generic [ref=e341]:
+            - strong [ref=e342]: "Sacada:"
+            - text: Se você não consegue resolver, é porque o problema ainda está grande demais — quebre em pedaços menores.
+          - generic [ref=e343]:
+            - generic [ref=e344]:
+              - generic [ref=e345]: 󱖃
+              - text: George Polya
+            - generic [ref=e346]: método em 4 passos
+          - generic [ref=e347]:
+            - strong [ref=e348]: "Objetivo:"
+            - text: Aplicar as 4 perguntas de Polya em 1 problema real.
+        - generic [ref=e349]:
+          - generic [ref=e351]:
+            - generic [ref=e352]: Por que errar te ajuda?
+            - generic [ref=e353]: "\"Cérebro só cresce quando dá errado.\""
+          - generic [ref=e354]:
+            - strong [ref=e355]: "Sacada:"
+            - text: Se você só faz o que sabe, você não aprende — o aprendizado mora exatamente onde dói errar.
+          - generic [ref=e356]:
+            - generic [ref=e357]:
+              - generic [ref=e358]: 󱖃
+              - text: Carol Dweck
+            - generic [ref=e359]: reframe + caso
+          - generic [ref=e360]:
+            - strong [ref=e361]: "Objetivo:"
+            - text: Reinterpretar 3 erros recentes como aprendizado concreto.
+        - generic [ref=e362]:
+          - generic [ref=e364]:
+            - generic [ref=e365]: Como saber qual problema atacar primeiro?
+            - generic [ref=e366]: "\"20% das tarefas dão 80% do resultado.\""
+          - generic [ref=e367]:
+            - strong [ref=e368]: "Sacada:"
+            - text: Se você ataca tudo na ordem que apareceu, perde tempo; se identifica o 1 problema que move 80%, o resto encolhe sozinho.
+          - generic [ref=e369]:
+            - generic [ref=e370]:
+              - generic [ref=e371]: 󱖃
+              - text: Vilfredo Pareto + Tim Ferriss
+            - generic [ref=e372]: regra prática
+          - generic [ref=e373]:
+            - strong [ref=e374]: "Objetivo:"
+            - text: Identificar 1 problema-alavanca entre 5.
+    - generic [ref=e375]:
+      - generic [ref=e376]:
+        - generic [ref=e378]: 󲗦
+        - heading "Vida & Sociedade" [level=2] [ref=e379]
+        - generic [ref=e380]: 5 pílulas
+      - generic [ref=e381]:
+        - generic [ref=e382]:
+          - generic [ref=e384]:
+            - generic [ref=e385]: Você decide quem é a pessoa em 7 segundos. E erra 60% do tempo.
+            - generic [ref=e386]: "\"Seu cérebro fecha um veredito sobre alguém em 7 segundos — antes mesmo de você ouvir o nome.\""
+          - generic [ref=e387]:
+            - generic [ref=e388]:
+              - generic [ref=e389]: 󱖃
+              - text: Malcolm Gladwell, Blink / Nalini Ambady
+            - generic [ref=e390]: dado científico + ação
+          - generic [ref=e391]:
+            - strong [ref=e392]: "Objetivo:"
+            - text: Suspender julgamento de 1 colega que você tinha 'arquivado'.
+        - generic [ref=e393]:
+          - generic [ref=e395]:
+            - generic [ref=e396]: Quase ninguém escuta de verdade — por que?
+            - generic [ref=e397]: "\"A maioria espera a vez de falar.\""
+          - generic [ref=e398]:
+            - strong [ref=e399]: "Sacada:"
+            - text: Quem escuta 5 minutos sem interromper, em 1 conversa só, fica memorável pra vida — porque quase ninguém faz isso.
+          - generic [ref=e400]:
+            - generic [ref=e401]:
+              - generic [ref=e402]: 󱖃
+              - text: Stephen Covey
+            - generic [ref=e403]: experimento
+          - generic [ref=e404]:
+            - strong [ref=e405]: "Objetivo:"
+            - text: Aplicar escuta sem interrupção em 1 conversa real.
+        - generic [ref=e406]:
+          - generic [ref=e408]:
+            - generic [ref=e409]: Como propagandas manipulam você?
+            - generic [ref=e410]: "\"Você é o produto.\""
+          - generic [ref=e411]:
+            - strong [ref=e412]: "Sacada:"
+            - text: Quem reconhece os 3 truques mais usados (escassez, prova social, status) não cai em quase nenhum.
+          - generic [ref=e413]:
+            - generic [ref=e414]:
+              - generic [ref=e415]: 󱖃
+              - text: Robert Cialdini
+            - generic [ref=e416]: caso + checklist
+          - generic [ref=e417]:
+            - strong [ref=e418]: "Objetivo:"
+            - text: Identificar 3 gatilhos de Cialdini em 1 conteúdo.
+        - generic [ref=e419]:
+          - generic [ref=e421]:
+            - generic [ref=e422]: Por que silêncio constrói confiança?
+            - generic [ref=e423]: "\"Quem fala demais perde — quem escolhe quando, ganha.\""
+          - generic [ref=e424]:
+            - strong [ref=e425]: "Sacada:"
+            - text: Se você espera 2 segundos antes de responder, a outra pessoa sente que foi ouvida — e quem se sente ouvido confia.
+          - generic [ref=e426]:
+            - generic [ref=e427]:
+              - generic [ref=e428]: 󱖃
+              - text: Provérbios + Chris Voss
+            - generic [ref=e429]: experimento social
+          - generic [ref=e430]:
+            - strong [ref=e431]: "Objetivo:"
+            - text: Aplicar pausa de 2s em 1 conversa real.
+        - generic [ref=e432]:
+          - generic [ref=e434]:
+            - generic [ref=e435]: Como dar feedback que serve, não que machuca?
+            - generic [ref=e436]: "\"Crítica vira fofoca quando não dá direção.\""
+          - generic [ref=e437]:
+            - strong [ref=e438]: "Sacada:"
+            - text: Se você diz 'você é desorganizado', você ataca; se diz 'isso aqui caiu no chão e ninguém viu', você descreve — e descrição é a única coisa que muda algo.
+          - generic [ref=e439]:
+            - generic [ref=e440]:
+              - generic [ref=e441]: 󱖃
+              - text: Center for Creative Leadership (SBI Model)
+            - generic [ref=e442]: modelo em 3 passos
+          - generic [ref=e443]:
+            - strong [ref=e444]: "Objetivo:"
+            - text: Reescrever 1 feedback no formato SBI.
+    - generic [ref=e445]:
+      - generic [ref=e446]:
+        - generic [ref=e448]: 󱗗
+        - heading "Mente Forte" [level=2] [ref=e449]
+        - generic [ref=e450]: 7 pílulas
+      - generic [ref=e451]:
+        - generic [ref=e452]:
+          - generic [ref=e454]:
+            - generic [ref=e455]: Por que mexer no celular é tão difícil de parar?
+            - generic [ref=e456]: "\"Apps foram desenhados pra te prender — não é fraqueza.\""
+          - generic [ref=e457]:
+            - strong [ref=e458]: "Sacada:"
+            - text: Se você não decide o que faz sua atenção, um algoritmo decide por você.
+          - generic [ref=e459]:
+            - generic [ref=e460]:
+              - generic [ref=e461]: 󱖃
+              - text: Tristan Harris (ex-Google)
+            - generic [ref=e462]: paradoxo + caso real
+          - generic [ref=e463]:
+            - strong [ref=e464]: "Objetivo:"
+            - text: Reconhecer que o design dos apps explora a atenção e tomar 1 ação concreta.
+        - generic [ref=e465]:
+          - generic [ref=e467]:
+            - generic [ref=e468]: Quanto custa uma notificação?
+            - generic [ref=e469]: "\"Cada beep apaga 23 minutos do seu cérebro.\""
+          - generic [ref=e470]:
+            - strong [ref=e471]: "Sacada:"
+            - text: Cada interrupção tira 23 minutos pra voltar — então 5 notificações = 2 horas perdidas.
+          - generic [ref=e472]:
+            - generic [ref=e473]:
+              - generic [ref=e474]: 󱖃
+              - text: Gloria Mark (UC Irvine)
+            - generic [ref=e475]: dado contra-intuitivo
+          - generic [ref=e476]:
+            - strong [ref=e477]: "Objetivo:"
+            - text: Experimentar 30 min sem interrupção e perceber o efeito no próprio foco.
+        - generic [ref=e478]:
+          - generic [ref=e480]:
+            - generic [ref=e481]: Por que 25 minutos podem valer mais que 2 horas?
+            - generic [ref=e482]: "\"Foco profundo é o novo QI.\""
+          - generic [ref=e483]:
+            - strong [ref=e484]: "Sacada:"
+            - text: Quem treina 25 minutos seguidos de foco real, em poucos meses, deixa para trás quem 'estuda 2 horas com celular do lado'.
+          - generic [ref=e485]:
+            - generic [ref=e486]:
+              - generic [ref=e487]: 󱖃
+              - text: Cal Newport
+            - generic [ref=e488]: regra prática
+          - generic [ref=e489]:
+            - strong [ref=e490]: "Objetivo:"
+            - text: Aplicar 1 bloco de Pomodoro de 25 min e comparar com sessão fragmentada.
+        - generic [ref=e491]:
+          - generic [ref=e493]:
+            - generic [ref=e494]: Como criar um hábito novo sem sofrer?
+            - generic [ref=e495]: "\"Vontade morre em planos grandes. Vive em 2 minutos.\""
+          - generic [ref=e496]:
+            - strong [ref=e497]: "Sacada:"
+            - text: Se o novo hábito cabe em 2 minutos, você começa. Se cabe em 1 hora, você desiste no terceiro dia.
+          - generic [ref=e498]:
+            - generic [ref=e499]:
+              - generic [ref=e500]: 󱖃
+              - text: James Clear
+            - generic [ref=e501]: regra prática + paradoxo
+          - generic [ref=e502]:
+            - strong [ref=e503]: "Objetivo:"
+            - text: Reduzir 1 desejo de hábito à sua versão de 2 min e cumprir 1x.
+        - generic [ref=e504]:
+          - generic [ref=e506]:
+            - generic [ref=e507]: Por que você acredita em coisas que confirmam o que já pensa?
+            - generic [ref=e508]: "\"O cérebro é advogado de defesa, não juiz.\""
+          - generic [ref=e509]:
+            - strong [ref=e510]: "Sacada:"
+            - text: Se você só procura provas do que já acha, você nunca aprende — só confirma.
+          - generic [ref=e511]:
+            - generic [ref=e512]:
+              - generic [ref=e513]: 󱖃
+              - text: Daniel Kahneman
+            - generic [ref=e514]: experimento mental
+          - generic [ref=e515]:
+            - strong [ref=e516]: "Objetivo:"
+            - text: Aplicar busca ativa por contra-evidência em 1 opinião própria.
+        - generic [ref=e517]:
+          - generic [ref=e519]:
+            - generic [ref=e520]: Como o cérebro inventa lembranças?
+            - generic [ref=e521]: "\"Você lembra. Tem certeza?\""
+          - generic [ref=e522]:
+            - strong [ref=e523]: "Sacada:"
+            - text: Quem confia 100% na própria memória paga caro — ela costura buracos com inventos sem te avisar.
+          - generic [ref=e524]:
+            - generic [ref=e525]:
+              - generic [ref=e526]: 󱖃
+              - text: Elizabeth Loftus
+            - generic [ref=e527]: paradoxo + caso real
+          - generic [ref=e528]:
+            - strong [ref=e529]: "Objetivo:"
+            - text: Comparar versões de um mesmo evento entre pessoas e notar divergências.
+        - generic [ref=e530]:
+          - generic [ref=e532]:
+            - generic [ref=e533]: Quando o pensamento rápido te trai?
+            - generic [ref=e534]: "\"Você tem 2 cérebros — um pula, outro pensa.\""
+          - generic [ref=e535]:
+            - strong [ref=e536]: "Sacada:"
+            - text: Quem só usa o cérebro rápido vive de palpite. Quem treina o devagar, decide melhor sob pressão.
+          - generic [ref=e537]:
+            - generic [ref=e538]:
+              - generic [ref=e539]: 󱖃
+              - text: Daniel Kahneman
+            - generic [ref=e540]: dado científico
+          - generic [ref=e541]:
+            - strong [ref=e542]: "Objetivo:"
+            - text: Inserir pausa de 60s entre estímulo e decisão em 1 caso real.
+    - generic [ref=e543]:
+      - generic [ref=e544]:
+        - generic [ref=e546]: 󱦞
+        - heading "Corpo & Saúde" [level=2] [ref=e547]
+        - generic [ref=e548]: 7 pílulas
+      - generic [ref=e549]:
+        - generic [ref=e550]:
+          - generic [ref=e552]:
+            - generic [ref=e553]: Por que açúcar engana seu cérebro?
+            - generic [ref=e554]: "\"O 'cansaço' das 3 da tarde quase nunca é cansaço.\""
+          - generic [ref=e555]:
+            - strong [ref=e556]: "Sacada:"
+            - text: Se você come doce pra ter energia, em 30 minutos você vai sentir MENOS energia — e querer mais doce.
+          - generic [ref=e557]:
+            - generic [ref=e558]:
+              - generic [ref=e559]: 󱖃
+              - text: Michael Pollan
+            - generic [ref=e560]: paradoxo + caso
+          - generic [ref=e561]:
+            - strong [ref=e562]: "Objetivo:"
+            - text: Substituir 1 lanche industrializado e comparar saciedade.
+        - generic [ref=e563]:
+          - generic [ref=e565]:
+            - generic [ref=e566]: O que acontece quando você dorme mal?
+            - generic [ref=e567]: "\"1 noite ruim apaga aprendizado de uma semana inteira.\""
+          - generic [ref=e568]:
+            - strong [ref=e569]: "Sacada:"
+            - text: Se você dorme menos de 7h, seu cérebro joga fora boa parte do que tentou aprender no dia.
+          - generic [ref=e570]:
+            - generic [ref=e571]:
+              - generic [ref=e572]: 󱖃
+              - text: Matthew Walker
+            - generic [ref=e573]: dado contra-intuitivo
+          - generic [ref=e574]:
+            - strong [ref=e575]: "Objetivo:"
+            - text: Cumprir 1 noite com 30 min sem tela antes de dormir.
+        - generic [ref=e576]:
+          - generic [ref=e578]:
+            - generic [ref=e579]: Por que 10 minutos por dia vencem 1 hora no sábado?
+            - generic [ref=e580]: "\"Consistência derrota intensidade.\""
+          - generic [ref=e581]:
+            - strong [ref=e582]: "Sacada:"
+            - text: Se você se mexe 10 min todo dia, em 1 mês está mais forte que quem 'maratona' 1 hora no sábado.
+          - generic [ref=e583]:
+            - generic [ref=e584]:
+              - generic [ref=e585]: 󱖃
+              - text: Hipócrates + Bortz
+            - generic [ref=e586]: regra simples
+          - generic [ref=e587]:
+            - strong [ref=e588]: "Objetivo:"
+            - text: Cumprir 10 min de movimento real em 1 dia.
+        - generic [ref=e589]:
+          - generic [ref=e591]:
+            - generic [ref=e592]: Quando você acha que está com fome, está com sede?
+            - generic [ref=e593]: "\"70% das 'fomes' das 16h somem com 1 copo d'água.\""
+          - generic [ref=e594]:
+            - strong [ref=e595]: "Sacada:"
+            - text: Se você não bebeu água há 3 horas e bate fome ou cansaço, beba água primeiro — 70% das vezes resolve.
+          - generic [ref=e596]:
+            - generic [ref=e597]:
+              - generic [ref=e598]: 󱖃
+              - text: Univ. Connecticut
+            - generic [ref=e599]: dado prático
+          - generic [ref=e600]:
+            - strong [ref=e601]: "Objetivo:"
+            - text: Aplicar o teste da água antes de 1 lanche.
+        - generic [ref=e602]:
+          - generic [ref=e604]:
+            - generic [ref=e605]: Por que tela à noite te rouba o sono?
+            - generic [ref=e606]: "\"Luz azul engana seu cérebro pensando que é dia.\""
+          - generic [ref=e607]:
+            - strong [ref=e608]: "Sacada:"
+            - text: Se você usa tela na cama, o seu cérebro acha que é meio-dia — e seu sono paga o preço.
+          - generic [ref=e609]:
+            - generic [ref=e610]:
+              - generic [ref=e611]: 󱖃
+              - text: Andrew Huberman
+            - generic [ref=e612]: dado + experimento
+          - generic [ref=e613]:
+            - strong [ref=e614]: "Objetivo:"
+            - text: Dormir 1 noite com celular fora do quarto.
+        - generic [ref=e615]:
+          - generic [ref=e617]:
+            - generic [ref=e618]: Por que scroll infinito vicia tanto?
+            - generic [ref=e619]: "\"Você desce a tela. E desce. E não para.\""
+          - generic [ref=e620]:
+            - strong [ref=e621]: "Sacada:"
+            - text: Se a próxima rolagem PODE trazer algo legal (mas pode não trazer), seu cérebro vai puxar por horas.
+          - generic [ref=e622]:
+            - generic [ref=e623]:
+              - generic [ref=e624]: 󱖃
+              - text: B.F. Skinner
+            - generic [ref=e625]: paradoxo + caso
+          - generic [ref=e626]:
+            - strong [ref=e627]: "Objetivo:"
+            - text: Limitar 1 sessão de scroll a 10 min via timer.
+        - generic [ref=e628]:
+          - generic [ref=e630]:
+            - generic [ref=e631]: Como recuperar sua atenção?
+            - generic [ref=e632]: "\"Tédio é o primeiro passo da criatividade.\""
+          - generic [ref=e633]:
+            - strong [ref=e634]: "Sacada:"
+            - text: Se você nunca fica entediado, você nunca tem ideias novas — o cérebro precisa de espaço vazio pra criar.
+          - generic [ref=e635]:
+            - generic [ref=e636]:
+              - generic [ref=e637]: 󱖃
+              - text: Cal Newport
+            - generic [ref=e638]: experimento
+          - generic [ref=e639]:
+            - strong [ref=e640]: "Objetivo:"
+            - text: Cumprir 15 min de movimento sem estímulo digital.
+  - text: 󲎤

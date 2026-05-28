@@ -1,0 +1,402 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - text: 󱸠
+    - navigation "Principal" [ref=e2]:
+      - generic [ref=e4]:
+        - generic [ref=e6]: 󲎤
+        - generic [ref=e7]:
+          - generic [ref=e8]: LittleStars
+          - generic [ref=e9]: Modo pais
+      - generic [ref=e10]:
+        - link "Início" [ref=e11] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e12]: 󱯉
+          - generic [ref=e13]: Início
+        - link "Crianças" [ref=e14] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e15]: 󲗦
+          - generic [ref=e16]: Crianças
+        - link "Missões" [ref=e17] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e18]: 󲑽
+          - generic [ref=e19]: Missões
+        - link "Prêmios" [ref=e20] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e21]: 󲊉
+          - generic [ref=e22]: Prêmios
+        - link "Categorias" [ref=e23] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e24]: 󱖠
+          - generic [ref=e25]: Categorias
+        - link "Aprovações" [ref=e26] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e27]: 󱞿
+          - generic [ref=e28]: Aprovações
+        - link "Configurações" [ref=e29] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e30]: 󲉌
+          - generic [ref=e31]: Configurações
+      - generic [ref=e32]:
+        - link "Editar meu perfil" [ref=e33] [cursor=pointer]:
+          - /url: /parent/profiles/1/edit
+          - img "Mamãe" [ref=e34]:
+            - generic [ref=e35]: 󲗕
+          - generic [ref=e36]:
+            - generic [ref=e37]: Mamãe
+            - generic [ref=e38]: Responsável · Editar
+          - generic [ref=e39]: 󲀏
+        - button "Trocar perfil" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]: 󱶂
+          - text: Trocar perfil
+    - text: 󱯉 󱞿 󲑽 󲊉 󱸠
+  - generic [ref=e45]:
+    - generic [ref=e46]:
+      - heading "Cache de lentes" [level=1] [ref=e47]
+      - generic [ref=e48]: 25 linhas
+    - generic [ref=e49]:
+      - combobox [ref=e50]:
+        - option "Todos os tipos" [selected]
+        - option "scientific"
+        - option "narrative"
+        - option "ethical"
+        - option "statistical"
+        - option "engineering"
+        - option "historical"
+        - option "first_person"
+        - option "analogy_bridge"
+      - combobox [ref=e51]:
+        - option "Todos os conceitos" [selected]
+        - option "Dopamina (dopamina)"
+        - option "Recompensa variável (recompensa-variavel)"
+        - option "Recompensa imediata (recompensa-imediata)"
+        - option "Gratificação tardia (gratificacao-tardia)"
+        - option "Loop do hábito (habito-loop)"
+        - option "Identidade (identidade)"
+        - option "Atenção (atencao)"
+        - option "Foco (foco)"
+        - option "Custo da troca (switch-cost)"
+        - option "Trabalho profundo (deep-work)"
+        - option "Pensar rápido vs devagar (sistema-1-vs-2)"
+        - option "Viés de confirmação (vies-confirmacao)"
+        - option "Memória reconstrutiva (memoria-reconstrutiva)"
+        - option "Ceticismo saudável (ceticismo)"
+        - option "Neuroplasticidade (neuroplasticidade)"
+        - option "Regra dos 2 minutos (regra-dos-2-min)"
+        - option "Criatividade (criatividade)"
+        - option "Sono consolida memória (sono-consolidacao)"
+        - option "Melatonina (melatonina)"
+        - option "Homeostase (homeostase)"
+        - option "Pico de glicose (glicose-pico)"
+        - option "Ultraprocessados (ultraprocessados)"
+        - option "Consistência (consistencia)"
+        - option "Sinais do corpo (sinal-corporal)"
+        - option "Prova social (prova-social)"
+        - option "Escassez percebida (escassez-percebida)"
+        - option "Empatia (empatia)"
+        - option "Escuta ativa (escuta-ativa)"
+        - option "Comunicação (comunicacao)"
+        - option "Palavra dada (palavra-dada)"
+        - option "Confiança (confianca)"
+        - option "Pausa estratégica (pausa-estrategica)"
+        - option "Feedback formativo (feedback-formativo)"
+        - option "Virtude é hábito (virtude-habito)"
+        - option "Coragem (coragem)"
+        - option "Honestidade (honestidade)"
+        - option "Gratidão (gratidao)"
+        - option "Juros compostos (juros-compostos)"
+        - option "Tradeoff (tradeoff)"
+        - option "Escassez (escassez)"
+        - option "Pagar-se primeiro (pagar-se-primeiro)"
+        - option "Pensamento computacional (pensamento-computacional)"
+        - option "Probabilidade (probabilidade)"
+        - option "Sistemas (sistemas)"
+        - option "Algoritmo de recomendação (algoritmo-recomendacao)"
+        - option "Aprendizado ativo (aprendizado-ativo)"
+        - option "Decomposição (decomposicao)"
+        - option "Estratégia (estrategia)"
+        - option "Decisão sob pressão (decisao-rapida)"
+        - option "Loop de feedback (feedback-loop)"
+        - option "Causa e efeito (causa-e-efeito)"
+        - option "Princípio de Pareto (pareto)"
+        - option "Cinco Porquês (5-porques)"
+      - combobox [ref=e52]:
+        - option "Tudo" [selected]
+        - option "Só sinalizadas"
+      - button "Filtrar" [ref=e53]
+    - generic [ref=e54]:
+      - article [ref=e55]:
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - generic [ref=e58]: engineering
+            - generic [ref=e59]: Sono consolida memória
+          - generic [ref=e60]: engineering.v3 · pt-BR · kid · gerada 3 minutos atrás
+        - generic [ref=e61]:
+          - link "Editar" [ref=e62] [cursor=pointer]:
+            - /url: /admin/academy/lenses/582/edit
+          - button "Regenerar" [ref=e64] [cursor=pointer]
+          - button "Sinalizar" [ref=e66] [cursor=pointer]
+      - article [ref=e67]:
+        - generic [ref=e68]:
+          - generic [ref=e69]:
+            - generic [ref=e70]: statistical
+            - generic [ref=e71]: Sono consolida memória
+          - generic [ref=e72]: statistical.v3 · pt-BR · kid · gerada 6 minutos atrás
+        - generic [ref=e73]:
+          - link "Editar" [ref=e74] [cursor=pointer]:
+            - /url: /admin/academy/lenses/578/edit
+          - button "Regenerar" [ref=e76] [cursor=pointer]
+          - button "Sinalizar" [ref=e78] [cursor=pointer]
+      - article [ref=e79]:
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - generic [ref=e82]: historical
+            - generic [ref=e83]: Sono consolida memória
+          - generic [ref=e84]: historical.v3 · pt-BR · kid · gerada 6 minutos atrás
+        - generic [ref=e85]:
+          - link "Editar" [ref=e86] [cursor=pointer]:
+            - /url: /admin/academy/lenses/577/edit
+          - button "Regenerar" [ref=e88] [cursor=pointer]
+          - button "Sinalizar" [ref=e90] [cursor=pointer]
+      - article [ref=e91]:
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - generic [ref=e94]: scientific
+            - generic [ref=e95]: Sono consolida memória
+          - generic [ref=e96]: scientific.v4 · pt-BR · kid · gerada 7 minutos atrás
+        - generic [ref=e97]:
+          - link "Editar" [ref=e98] [cursor=pointer]:
+            - /url: /admin/academy/lenses/575/edit
+          - button "Regenerar" [ref=e100] [cursor=pointer]
+          - button "Sinalizar" [ref=e102] [cursor=pointer]
+      - article [ref=e103]:
+        - generic [ref=e104]:
+          - generic [ref=e105]:
+            - generic [ref=e106]: first person
+            - generic [ref=e107]: Sono consolida memória
+          - generic [ref=e108]: first_person.v3 · pt-BR · kid · gerada 8 minutos atrás
+        - generic [ref=e109]:
+          - link "Editar" [ref=e110] [cursor=pointer]:
+            - /url: /admin/academy/lenses/574/edit
+          - button "Regenerar" [ref=e112] [cursor=pointer]
+          - button "Sinalizar" [ref=e114] [cursor=pointer]
+      - article [ref=e115]:
+        - generic [ref=e116]:
+          - generic [ref=e117]:
+            - generic [ref=e118]: narrative
+            - generic [ref=e119]: Sono consolida memória
+          - generic [ref=e120]: narrative.v4 · pt-BR · kid · gerada 8 minutos atrás
+        - generic [ref=e121]:
+          - link "Editar" [ref=e122] [cursor=pointer]:
+            - /url: /admin/academy/lenses/573/edit
+          - button "Regenerar" [ref=e124] [cursor=pointer]
+          - button "Sinalizar" [ref=e126] [cursor=pointer]
+      - article [ref=e127]:
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - generic [ref=e130]: scientific
+            - generic [ref=e131]: Dopamina
+          - generic [ref=e132]: scientific.v4 · pt-BR · kid · gerada aproximadamente 1 hora atrás
+        - generic [ref=e133]:
+          - link "Editar" [ref=e134] [cursor=pointer]:
+            - /url: /admin/academy/lenses/525/edit
+          - button "Regenerar" [ref=e136] [cursor=pointer]
+          - button "Sinalizar" [ref=e138] [cursor=pointer]
+      - article [ref=e139]:
+        - generic [ref=e140]:
+          - generic [ref=e141]:
+            - generic [ref=e142]: analogy bridge
+            - generic [ref=e143]: Dopamina
+          - generic [ref=e144]: analogy_bridge.v3 · pt-BR · kid · gerada aproximadamente 5 horas atrás
+        - generic [ref=e145]:
+          - link "Editar" [ref=e146] [cursor=pointer]:
+            - /url: /admin/academy/lenses/477/edit
+          - button "Regenerar" [ref=e148] [cursor=pointer]
+          - button "Sinalizar" [ref=e150] [cursor=pointer]
+      - article [ref=e151]:
+        - generic [ref=e152]:
+          - generic [ref=e153]:
+            - generic [ref=e154]: statistical
+            - generic [ref=e155]: Dopamina
+          - generic [ref=e156]: statistical.v3 · pt-BR · kid · gerada aproximadamente 5 horas atrás
+        - generic [ref=e157]:
+          - link "Editar" [ref=e158] [cursor=pointer]:
+            - /url: /admin/academy/lenses/476/edit
+          - button "Regenerar" [ref=e160] [cursor=pointer]
+          - button "Sinalizar" [ref=e162] [cursor=pointer]
+      - article [ref=e163]:
+        - generic [ref=e164]:
+          - generic [ref=e165]:
+            - generic [ref=e166]: scientific
+            - generic [ref=e167]: Dopamina
+          - generic [ref=e168]: scientific.v3 · pt-BR · kid · gerada aproximadamente 5 horas atrás
+        - generic [ref=e169]:
+          - link "Editar" [ref=e170] [cursor=pointer]:
+            - /url: /admin/academy/lenses/475/edit
+          - button "Regenerar" [ref=e172] [cursor=pointer]
+          - button "Sinalizar" [ref=e174] [cursor=pointer]
+      - article [ref=e175]:
+        - generic [ref=e176]:
+          - generic [ref=e177]:
+            - generic [ref=e178]: historical
+            - generic [ref=e179]: Dopamina
+          - generic [ref=e180]: historical.v3 · pt-BR · kid · gerada aproximadamente 5 horas atrás
+        - generic [ref=e181]:
+          - link "Editar" [ref=e182] [cursor=pointer]:
+            - /url: /admin/academy/lenses/474/edit
+          - button "Regenerar" [ref=e184] [cursor=pointer]
+          - button "Sinalizar" [ref=e186] [cursor=pointer]
+      - article [ref=e187]:
+        - generic [ref=e188]:
+          - generic [ref=e189]:
+            - generic [ref=e190]: first person
+            - generic [ref=e191]: Dopamina
+          - generic [ref=e192]: first_person.v3 · pt-BR · kid · gerada aproximadamente 5 horas atrás
+        - generic [ref=e193]:
+          - link "Editar" [ref=e194] [cursor=pointer]:
+            - /url: /admin/academy/lenses/473/edit
+          - button "Regenerar" [ref=e196] [cursor=pointer]
+          - button "Sinalizar" [ref=e198] [cursor=pointer]
+      - article [ref=e199]:
+        - generic [ref=e200]:
+          - generic [ref=e201]:
+            - generic [ref=e202]: narrative
+            - generic [ref=e203]: Dopamina
+          - generic [ref=e204]: narrative.v3 · pt-BR · kid · gerada aproximadamente 5 horas atrás
+        - generic [ref=e205]:
+          - link "Editar" [ref=e206] [cursor=pointer]:
+            - /url: /admin/academy/lenses/472/edit
+          - button "Regenerar" [ref=e208] [cursor=pointer]
+          - button "Sinalizar" [ref=e210] [cursor=pointer]
+      - article [ref=e211]:
+        - generic [ref=e212]:
+          - generic [ref=e213]:
+            - generic [ref=e214]: scientific
+            - generic [ref=e215]: Sistemas
+          - generic [ref=e216]: scientific.v2 · pt-BR · kid · gerada aproximadamente 6 horas atrás
+        - generic [ref=e217]:
+          - link "Editar" [ref=e218] [cursor=pointer]:
+            - /url: /admin/academy/lenses/414/edit
+          - button "Regenerar" [ref=e220] [cursor=pointer]
+          - button "Sinalizar" [ref=e222] [cursor=pointer]
+      - article [ref=e223]:
+        - generic [ref=e224]:
+          - generic [ref=e225]:
+            - generic [ref=e226]: first person
+            - generic [ref=e227]: Sistemas
+          - generic [ref=e228]: first_person.v2 · pt-BR · kid · gerada aproximadamente 6 horas atrás
+        - generic [ref=e229]:
+          - link "Editar" [ref=e230] [cursor=pointer]:
+            - /url: /admin/academy/lenses/413/edit
+          - button "Regenerar" [ref=e232] [cursor=pointer]
+          - button "Sinalizar" [ref=e234] [cursor=pointer]
+      - article [ref=e235]:
+        - generic [ref=e236]:
+          - generic [ref=e237]:
+            - generic [ref=e238]: historical
+            - generic [ref=e239]: Sistemas
+          - generic [ref=e240]: historical.v2 · pt-BR · kid · gerada aproximadamente 6 horas atrás
+        - generic [ref=e241]:
+          - link "Editar" [ref=e242] [cursor=pointer]:
+            - /url: /admin/academy/lenses/412/edit
+          - button "Regenerar" [ref=e244] [cursor=pointer]
+          - button "Sinalizar" [ref=e246] [cursor=pointer]
+      - article [ref=e247]:
+        - generic [ref=e248]:
+          - generic [ref=e249]:
+            - generic [ref=e250]: narrative
+            - generic [ref=e251]: Sistemas
+          - generic [ref=e252]: narrative.v2 · pt-BR · kid · gerada aproximadamente 6 horas atrás
+        - generic [ref=e253]:
+          - link "Editar" [ref=e254] [cursor=pointer]:
+            - /url: /admin/academy/lenses/411/edit
+          - button "Regenerar" [ref=e256] [cursor=pointer]
+          - button "Sinalizar" [ref=e258] [cursor=pointer]
+      - article [ref=e259]:
+        - generic [ref=e260]:
+          - generic [ref=e261]:
+            - generic [ref=e262]: analogy bridge
+            - generic [ref=e263]: Pico de glicose
+          - generic [ref=e264]: analogy_bridge.v2 · pt-BR · kid · gerada aproximadamente 9 horas atrás
+        - generic [ref=e265]:
+          - link "Editar" [ref=e266] [cursor=pointer]:
+            - /url: /admin/academy/lenses/38/edit
+          - button "Regenerar" [ref=e268] [cursor=pointer]
+          - button "Sinalizar" [ref=e270] [cursor=pointer]
+      - article [ref=e271]:
+        - generic [ref=e272]:
+          - generic [ref=e273]:
+            - generic [ref=e274]: engineering
+            - generic [ref=e275]: Pico de glicose
+          - generic [ref=e276]: engineering.v2 · pt-BR · kid · gerada aproximadamente 9 horas atrás
+        - generic [ref=e277]:
+          - link "Editar" [ref=e278] [cursor=pointer]:
+            - /url: /admin/academy/lenses/37/edit
+          - button "Regenerar" [ref=e280] [cursor=pointer]
+          - button "Sinalizar" [ref=e282] [cursor=pointer]
+      - article [ref=e283]:
+        - generic [ref=e284]:
+          - generic [ref=e285]:
+            - generic [ref=e286]: statistical
+            - generic [ref=e287]: Pico de glicose
+          - generic [ref=e288]: statistical.v2 · pt-BR · kid · gerada aproximadamente 9 horas atrás
+        - generic [ref=e289]:
+          - link "Editar" [ref=e290] [cursor=pointer]:
+            - /url: /admin/academy/lenses/36/edit
+          - button "Regenerar" [ref=e292] [cursor=pointer]
+          - button "Sinalizar" [ref=e294] [cursor=pointer]
+      - article [ref=e295]:
+        - generic [ref=e296]:
+          - generic [ref=e297]:
+            - generic [ref=e298]: scientific
+            - generic [ref=e299]: Pico de glicose
+          - generic [ref=e300]: scientific.v2 · pt-BR · kid · gerada aproximadamente 9 horas atrás
+        - generic [ref=e301]:
+          - link "Editar" [ref=e302] [cursor=pointer]:
+            - /url: /admin/academy/lenses/26/edit
+          - button "Regenerar" [ref=e304] [cursor=pointer]
+          - button "Sinalizar" [ref=e306] [cursor=pointer]
+      - article [ref=e307]:
+        - generic [ref=e308]:
+          - generic [ref=e309]:
+            - generic [ref=e310]: narrative
+            - generic [ref=e311]: Pico de glicose
+          - generic [ref=e312]: narrative.v2 · pt-BR · kid · gerada aproximadamente 9 horas atrás
+        - generic [ref=e313]:
+          - link "Editar" [ref=e314] [cursor=pointer]:
+            - /url: /admin/academy/lenses/25/edit
+          - button "Regenerar" [ref=e316] [cursor=pointer]
+          - button "Sinalizar" [ref=e318] [cursor=pointer]
+      - article [ref=e319]:
+        - generic [ref=e320]:
+          - generic [ref=e321]:
+            - generic [ref=e322]: scientific
+            - generic [ref=e323]: Melatonina
+          - generic [ref=e324]: scientific.v2 · pt-BR · kid · gerada aproximadamente 18 horas atrás
+        - generic [ref=e325]:
+          - link "Editar" [ref=e326] [cursor=pointer]:
+            - /url: /admin/academy/lenses/24/edit
+          - button "Regenerar" [ref=e328] [cursor=pointer]
+          - button "Sinalizar" [ref=e330] [cursor=pointer]
+      - article [ref=e331]:
+        - generic [ref=e332]:
+          - generic [ref=e333]:
+            - generic [ref=e334]: first person
+            - generic [ref=e335]: Melatonina
+          - generic [ref=e336]: first_person.v2 · pt-BR · kid · gerada aproximadamente 18 horas atrás
+        - generic [ref=e337]:
+          - link "Editar" [ref=e338] [cursor=pointer]:
+            - /url: /admin/academy/lenses/23/edit
+          - button "Regenerar" [ref=e340] [cursor=pointer]
+          - button "Sinalizar" [ref=e342] [cursor=pointer]
+      - article [ref=e343]:
+        - generic [ref=e344]:
+          - generic [ref=e345]:
+            - generic [ref=e346]: narrative
+            - generic [ref=e347]: Melatonina
+          - generic [ref=e348]: narrative.v2 · pt-BR · kid · gerada aproximadamente 18 horas atrás
+        - generic [ref=e349]:
+          - link "Editar" [ref=e350] [cursor=pointer]:
+            - /url: /admin/academy/lenses/22/edit
+          - button "Regenerar" [ref=e352] [cursor=pointer]
+          - button "Sinalizar" [ref=e354] [cursor=pointer]
+  - text: 󲎤

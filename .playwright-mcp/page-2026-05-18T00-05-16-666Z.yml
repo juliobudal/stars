@@ -1,0 +1,51 @@
+- generic [active] [ref=e143]:
+  - navigation "Navegação principal" [ref=e144]:
+    - link "Jornada" [ref=e145] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e146]: 󲑲
+      - generic [ref=e147]: Jornada
+    - link "Academia" [ref=e148] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e149]: 󲌸
+      - generic [ref=e150]: Academia
+    - link "Lojinha" [ref=e151] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e152]: 󲊉
+      - generic [ref=e153]: Lojinha
+    - link "Diário" [ref=e154] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e155]: 󱖃
+      - generic [ref=e156]: Diário
+  - main [ref=e157]:
+    - generic [ref=e158]:
+      - generic [ref=e159]:
+        - link [ref=e160] [cursor=pointer]:
+          - /url: /kid/academy/subjects
+        - generic [ref=e162]:
+          - generic [ref=e163]: ÁREA DE FORMAÇÃO
+          - heading "Corpo & Saúde" [level=1] [ref=e164]
+        - generic [ref=e165]: Nv. 1
+      - generic [ref=e166]:
+        - generic [ref=e167]:
+          - generic [ref=e168]: 󱦞
+          - generic [ref=e169]: Novato · +6 pra mestre
+        - paragraph [ref=e172]: Cuidar do corpo como ferramenta poderosa.
+      - generic [ref=e173]: TRILHAS
+      - generic [ref=e174]:
+        - link "1 De Onde Vem a Energia Real? \"Pequenas decisões diárias multiplicam (ou roubam) sua energia.\" 1/4" [ref=e175] [cursor=pointer]:
+          - /url: /kid/academy/subjects/corpo-saude/trails/energia-do-dia
+          - generic [ref=e176]:
+            - generic [ref=e178]: "1"
+            - generic [ref=e179]:
+              - generic [ref=e180]: De Onde Vem a Energia Real?
+              - paragraph [ref=e181]: "\"Pequenas decisões diárias multiplicam (ou roubam) sua energia.\""
+              - generic [ref=e185]: 1/4
+        - link "2 Você Comanda as Telas? \"Apps foram desenhados pra te prender. Você foi desenhado pra escolher.\" 0/3" [ref=e187] [cursor=pointer]:
+          - /url: /kid/academy/subjects/corpo-saude/trails/tempo-de-tela
+          - generic [ref=e188]:
+            - generic [ref=e190]: "2"
+            - generic [ref=e191]:
+              - generic [ref=e192]: Você Comanda as Telas?
+              - paragraph [ref=e193]: "\"Apps foram desenhados pra te prender. Você foi desenhado pra escolher.\""
+              - generic [ref=e196]: 0/3
+  - text: 󲎤

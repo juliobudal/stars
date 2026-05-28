@@ -1,0 +1,764 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - img [ref=e5]
+        - generic [ref=e7]: LittleStars
+      - button "Abrir menu" [ref=e8] [cursor=pointer]:
+        - generic [ref=e9]: 󱸠
+    - navigation "Principal" [ref=e10]:
+      - generic [ref=e12]:
+        - generic [ref=e14]: 󲎤
+        - generic [ref=e15]:
+          - generic [ref=e16]: LittleStars
+          - generic [ref=e17]: Modo pais
+      - generic [ref=e18]:
+        - link "Início" [ref=e19] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e20]: 󱯉
+          - generic [ref=e21]: Início
+        - link "Crianças" [ref=e22] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e23]: 󲗦
+          - generic [ref=e24]: Crianças
+        - link "Missões" [ref=e25] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e26]: 󲑽
+          - generic [ref=e27]: Missões
+        - link "Prêmios" [ref=e28] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e29]: 󲊉
+          - generic [ref=e30]: Prêmios
+        - link "Categorias" [ref=e31] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e32]: 󱖠
+          - generic [ref=e33]: Categorias
+        - link "Aprovações" [ref=e34] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e35]: 󱞿
+          - generic [ref=e36]: Aprovações
+        - link "Configurações" [ref=e37] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e38]: 󲉌
+          - generic [ref=e39]: Configurações
+      - generic [ref=e40]:
+        - link "Editar meu perfil" [ref=e41] [cursor=pointer]:
+          - /url: /parent/profiles/1/edit
+          - img "Mamãe" [ref=e42]:
+            - generic [ref=e43]: 󲗕
+          - generic [ref=e44]:
+            - generic [ref=e45]: Mamãe
+            - generic [ref=e46]: Responsável · Editar
+          - generic [ref=e47]: 󲀏
+        - button "Trocar perfil" [ref=e50] [cursor=pointer]:
+          - generic [ref=e51]: 󱶂
+          - text: Trocar perfil
+    - generic [ref=e52]:
+      - link "Início" [ref=e53] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e54]:
+          - generic [ref=e55]: 󱯉
+          - generic [ref=e56]: Início
+      - link "Pendências" [ref=e57] [cursor=pointer]:
+        - /url: /parent/approvals
+        - generic [ref=e58]:
+          - generic [ref=e59]: 󱞿
+          - generic [ref=e60]: Pendências
+      - link "Missões" [ref=e61] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e62]:
+          - generic [ref=e63]: 󲑽
+          - generic [ref=e64]: Missões
+      - link "Prêmios" [ref=e65] [cursor=pointer]:
+        - /url: /parent/rewards
+        - generic [ref=e66]:
+          - generic [ref=e67]: 󲊉
+          - generic [ref=e68]: Prêmios
+      - button "Mais opções" [ref=e69] [cursor=pointer]:
+        - generic [ref=e70]:
+          - generic [ref=e71]: 󱸠
+          - generic [ref=e72]: Mais
+  - generic [ref=e74]:
+    - banner [ref=e75]:
+      - generic [ref=e77]:
+        - heading "Missões" [level=1] [ref=e78]
+        - paragraph [ref=e79]: 33 missões no catálogo · 33 ativas
+      - link "Nova missão" [ref=e81] [cursor=pointer]:
+        - /url: /parent/global_tasks/new
+        - generic [ref=e82]: 󲁸
+        - text: Nova missão
+    - tablist [ref=e85]:
+      - tab "Todas 33" [selected] [ref=e86] [cursor=pointer]:
+        - text: Todas
+        - generic [ref=e87]: "33"
+      - tab "Diárias 24" [ref=e88] [cursor=pointer]:
+        - text: Diárias
+        - generic [ref=e89]: "24"
+      - tab "Semanais 9" [ref=e90] [cursor=pointer]:
+        - text: Semanais
+        - generic [ref=e91]: "9"
+      - tab "Inativas 0" [ref=e92] [cursor=pointer]:
+        - text: Inativas
+        - generic [ref=e93]: "0"
+    - generic [ref=e94]:
+      - generic [ref=e95]:
+        - button "Desativar missão" [ref=e97] [cursor=pointer]:
+          - generic [ref=e98]: 󲓧
+        - link "Repor bala fini caseira Casa Semanal 20 Atribuída a 3 crianças Ativa" [ref=e99] [cursor=pointer]:
+          - /url: /parent/global_tasks/33/edit
+          - generic [ref=e100]:
+            - generic [ref=e102]: 󱯉
+            - generic [ref=e103]:
+              - generic [ref=e104]:
+                - generic [ref=e105]:
+                  - generic [ref=e107]: Repor bala fini caseira
+                  - generic [ref=e108]:
+                    - generic [ref=e109]: Casa
+                    - generic [ref=e110]: Semanal
+                - generic [ref=e111]:
+                  - generic [ref=e112]: 󲎤
+                  - generic [ref=e113]: "20"
+              - generic [ref=e114]:
+                - generic [ref=e115]: Atribuída a 3 crianças
+                - generic [ref=e116]: Ativa
+      - generic [ref=e118]:
+        - button "Desativar missão" [ref=e120] [cursor=pointer]:
+          - generic [ref=e121]: 󲓧
+        - link "Repor o gelo no congelador Casa Semanal 20 Atribuída a 3 crianças Ativa" [ref=e122] [cursor=pointer]:
+          - /url: /parent/global_tasks/32/edit
+          - generic [ref=e123]:
+            - generic [ref=e125]: 󱯉
+            - generic [ref=e126]:
+              - generic [ref=e127]:
+                - generic [ref=e128]:
+                  - generic [ref=e130]: Repor o gelo no congelador
+                  - generic [ref=e131]:
+                    - generic [ref=e132]: Casa
+                    - generic [ref=e133]: Semanal
+                - generic [ref=e134]:
+                  - generic [ref=e135]: 󲎤
+                  - generic [ref=e136]: "20"
+              - generic [ref=e137]:
+                - generic [ref=e138]: Atribuída a 3 crianças
+                - generic [ref=e139]: Ativa
+      - generic [ref=e141]:
+        - button "Desativar missão" [ref=e143] [cursor=pointer]:
+          - generic [ref=e144]: 󲓧
+        - link "Dia sem brigar com os irmãos Rotina Todo dia 10 Atribuída a 3 crianças Ativa" [ref=e145] [cursor=pointer]:
+          - /url: /parent/global_tasks/31/edit
+          - generic [ref=e146]:
+            - generic [ref=e148]: 󱤈
+            - generic [ref=e149]:
+              - generic [ref=e150]:
+                - generic [ref=e151]:
+                  - generic [ref=e153]: Dia sem brigar com os irmãos
+                  - generic [ref=e154]:
+                    - generic [ref=e155]: Rotina
+                    - generic [ref=e156]: Todo dia
+                - generic [ref=e157]:
+                  - generic [ref=e158]: 󲎤
+                  - generic [ref=e159]: "10"
+              - generic [ref=e160]:
+                - generic [ref=e161]: Atribuída a 3 crianças
+                - generic [ref=e162]: Ativa
+      - generic [ref=e164]:
+        - button "Desativar missão" [ref=e166] [cursor=pointer]:
+          - generic [ref=e167]: 󲓧
+        - link "Fazer a oração antes de dormir Rotina Todo dia 5 Atribuída a 3 crianças Ativa" [ref=e168] [cursor=pointer]:
+          - /url: /parent/global_tasks/30/edit
+          - generic [ref=e169]:
+            - generic [ref=e171]: 󱤈
+            - generic [ref=e172]:
+              - generic [ref=e173]:
+                - generic [ref=e174]:
+                  - generic [ref=e176]: Fazer a oração antes de dormir
+                  - generic [ref=e177]:
+                    - generic [ref=e178]: Rotina
+                    - generic [ref=e179]: Todo dia
+                - generic [ref=e180]:
+                  - generic [ref=e181]: 󲎤
+                  - generic [ref=e182]: "5"
+              - generic [ref=e183]:
+                - generic [ref=e184]: Atribuída a 3 crianças
+                - generic [ref=e185]: Ativa
+      - generic [ref=e187]:
+        - button "Desativar missão" [ref=e189] [cursor=pointer]:
+          - generic [ref=e190]: 󲓧
+        - link "Cozinhar uma receita completa com supervisão Outro Semanal 50 Atribuída a Laura Ativa" [ref=e191] [cursor=pointer]:
+          - /url: /parent/global_tasks/29/edit
+          - generic [ref=e192]:
+            - generic [ref=e194]: 󲌸
+            - generic [ref=e195]:
+              - generic [ref=e196]:
+                - generic [ref=e197]:
+                  - generic [ref=e199]: Cozinhar uma receita completa com supervisão
+                  - generic [ref=e200]:
+                    - generic [ref=e201]: Outro
+                    - generic [ref=e202]: Semanal
+                - generic [ref=e203]:
+                  - generic [ref=e204]: 󲎤
+                  - generic [ref=e205]: "50"
+              - generic [ref=e206]:
+                - generic [ref=e207]: Atribuída a Laura
+                - generic [ref=e208]: Ativa
+      - generic [ref=e210]:
+        - button "Desativar missão" [ref=e212] [cursor=pointer]:
+          - generic [ref=e213]: 󲓧
+        - 'link "Chapéu de irmã: ler pra Lis OU ajudar Theo na lição Rotina Semanal 30 Atribuída a Laura Ativa" [ref=e214] [cursor=pointer]':
+          - /url: /parent/global_tasks/28/edit
+          - generic [ref=e215]:
+            - generic [ref=e217]: 󱤈
+            - generic [ref=e218]:
+              - generic [ref=e219]:
+                - generic [ref=e220]:
+                  - generic [ref=e222]: "Chapéu de irmã: ler pra Lis OU ajudar Theo na lição"
+                  - generic [ref=e223]:
+                    - generic [ref=e224]: Rotina
+                    - generic [ref=e225]: Semanal
+                - generic [ref=e226]:
+                  - generic [ref=e227]: 󲎤
+                  - generic [ref=e228]: "30"
+              - generic [ref=e229]:
+                - generic [ref=e230]: Atribuída a Laura
+                - generic [ref=e231]: Ativa
+      - generic [ref=e233]:
+        - button "Desativar missão" [ref=e235] [cursor=pointer]:
+          - generic [ref=e236]: 󲓧
+        - link "Chore semanal rotativa (Sala / Geladeira / Banheiros) Casa Semanal 35 Atribuída a Laura Ativa" [ref=e237] [cursor=pointer]:
+          - /url: /parent/global_tasks/27/edit
+          - generic [ref=e238]:
+            - generic [ref=e240]: 󱯉
+            - generic [ref=e241]:
+              - generic [ref=e242]:
+                - generic [ref=e243]:
+                  - generic [ref=e245]: Chore semanal rotativa (Sala / Geladeira / Banheiros)
+                  - generic [ref=e246]:
+                    - generic [ref=e247]: Casa
+                    - generic [ref=e248]: Semanal
+                - generic [ref=e249]:
+                  - generic [ref=e250]: 󲎤
+                  - generic [ref=e251]: "35"
+              - generic [ref=e252]:
+                - generic [ref=e253]: Atribuída a Laura
+                - generic [ref=e254]: Ativa
+      - generic [ref=e256]:
+        - button "Desativar missão" [ref=e258] [cursor=pointer]:
+          - generic [ref=e259]: 󲓧
+        - link "Praticar inglês no Duolingo (15 min) Escola Todo dia 15 Atribuída a Laura Ativa" [ref=e260] [cursor=pointer]:
+          - /url: /parent/global_tasks/26/edit
+          - generic [ref=e261]:
+            - generic [ref=e263]: 󱖃
+            - generic [ref=e264]:
+              - generic [ref=e265]:
+                - generic [ref=e266]:
+                  - generic [ref=e268]: Praticar inglês no Duolingo (15 min)
+                  - generic [ref=e269]:
+                    - generic [ref=e270]: Escola
+                    - generic [ref=e271]: Todo dia
+                - generic [ref=e272]:
+                  - generic [ref=e273]: 󲎤
+                  - generic [ref=e274]: "15"
+              - generic [ref=e275]:
+                - generic [ref=e276]: Atribuída a Laura
+                - generic [ref=e277]: Ativa
+      - generic [ref=e279]:
+        - button "Desativar missão" [ref=e281] [cursor=pointer]:
+          - generic [ref=e282]: 󲓧
+        - link "Estudar 30 min + ler 20 min antes de dormir Escola Todo dia 25 Atribuída a Laura Ativa" [ref=e283] [cursor=pointer]:
+          - /url: /parent/global_tasks/25/edit
+          - generic [ref=e284]:
+            - generic [ref=e286]: 󱖃
+            - generic [ref=e287]:
+              - generic [ref=e288]:
+                - generic [ref=e289]:
+                  - generic [ref=e291]: Estudar 30 min + ler 20 min antes de dormir
+                  - generic [ref=e292]:
+                    - generic [ref=e293]: Escola
+                    - generic [ref=e294]: Todo dia
+                - generic [ref=e295]:
+                  - generic [ref=e296]: 󲎤
+                  - generic [ref=e297]: "25"
+              - generic [ref=e298]:
+                - generic [ref=e299]: Atribuída a Laura
+                - generic [ref=e300]: Ativa
+      - generic [ref=e302]:
+        - button "Desativar missão" [ref=e304] [cursor=pointer]:
+          - generic [ref=e305]: 󲓧
+        - link "Lição de casa antes do lazer Escola Todo dia 20 Atribuída a Laura Ativa" [ref=e306] [cursor=pointer]:
+          - /url: /parent/global_tasks/24/edit
+          - generic [ref=e307]:
+            - generic [ref=e309]: 󱖃
+            - generic [ref=e310]:
+              - generic [ref=e311]:
+                - generic [ref=e312]:
+                  - generic [ref=e314]: Lição de casa antes do lazer
+                  - generic [ref=e315]:
+                    - generic [ref=e316]: Escola
+                    - generic [ref=e317]: Todo dia
+                - generic [ref=e318]:
+                  - generic [ref=e319]: 󲎤
+                  - generic [ref=e320]: "20"
+              - generic [ref=e321]:
+                - generic [ref=e322]: Atribuída a Laura
+                - generic [ref=e323]: Ativa
+      - generic [ref=e325]:
+        - button "Desativar missão" [ref=e327] [cursor=pointer]:
+          - generic [ref=e328]: 󲓧
+        - link "Levar o Simba pra passear Casa Todo dia 20 Atribuída a Laura Ativa" [ref=e329] [cursor=pointer]:
+          - /url: /parent/global_tasks/23/edit
+          - generic [ref=e330]:
+            - generic [ref=e332]: 󱯉
+            - generic [ref=e333]:
+              - generic [ref=e334]:
+                - generic [ref=e335]:
+                  - generic [ref=e337]: Levar o Simba pra passear
+                  - generic [ref=e338]:
+                    - generic [ref=e339]: Casa
+                    - generic [ref=e340]: Todo dia
+                - generic [ref=e341]:
+                  - generic [ref=e342]: 󲎤
+                  - generic [ref=e343]: "20"
+              - generic [ref=e344]:
+                - generic [ref=e345]: Atribuída a Laura
+                - generic [ref=e346]: Ativa
+      - generic [ref=e348]:
+        - button "Desativar missão" [ref=e350] [cursor=pointer]:
+          - generic [ref=e351]: 󲓧
+        - link "Lavar a louça do jantar Casa Todo dia 20 Atribuída a Laura Ativa" [ref=e352] [cursor=pointer]:
+          - /url: /parent/global_tasks/22/edit
+          - generic [ref=e353]:
+            - generic [ref=e355]: 󱯉
+            - generic [ref=e356]:
+              - generic [ref=e357]:
+                - generic [ref=e358]:
+                  - generic [ref=e360]: Lavar a louça do jantar
+                  - generic [ref=e361]:
+                    - generic [ref=e362]: Casa
+                    - generic [ref=e363]: Todo dia
+                - generic [ref=e364]:
+                  - generic [ref=e365]: 󲎤
+                  - generic [ref=e366]: "20"
+              - generic [ref=e367]:
+                - generic [ref=e368]: Atribuída a Laura
+                - generic [ref=e369]: Ativa
+      - generic [ref=e371]:
+        - button "Desativar missão" [ref=e373] [cursor=pointer]:
+          - generic [ref=e374]: 󲓧
+        - link "Quarto organizado, chão livre Casa Todo dia 15 Atribuída a Laura Ativa" [ref=e375] [cursor=pointer]:
+          - /url: /parent/global_tasks/21/edit
+          - generic [ref=e376]:
+            - generic [ref=e378]: 󱯉
+            - generic [ref=e379]:
+              - generic [ref=e380]:
+                - generic [ref=e381]:
+                  - generic [ref=e383]: Quarto organizado, chão livre
+                  - generic [ref=e384]:
+                    - generic [ref=e385]: Casa
+                    - generic [ref=e386]: Todo dia
+                - generic [ref=e387]:
+                  - generic [ref=e388]: 󲎤
+                  - generic [ref=e389]: "15"
+              - generic [ref=e390]:
+                - generic [ref=e391]: Atribuída a Laura
+                - generic [ref=e392]: Ativa
+      - generic [ref=e394]:
+        - button "Desativar missão" [ref=e396] [cursor=pointer]:
+          - generic [ref=e397]: 󲓧
+        - link "Mochila e uniforme prontos pra amanhã Casa Todo dia 10 Atribuída a Laura Ativa" [ref=e398] [cursor=pointer]:
+          - /url: /parent/global_tasks/20/edit
+          - generic [ref=e399]:
+            - generic [ref=e401]: 󱯉
+            - generic [ref=e402]:
+              - generic [ref=e403]:
+                - generic [ref=e404]:
+                  - generic [ref=e406]: Mochila e uniforme prontos pra amanhã
+                  - generic [ref=e407]:
+                    - generic [ref=e408]: Casa
+                    - generic [ref=e409]: Todo dia
+                - generic [ref=e410]:
+                  - generic [ref=e411]: 󲎤
+                  - generic [ref=e412]: "10"
+              - generic [ref=e413]:
+                - generic [ref=e414]: Atribuída a Laura
+                - generic [ref=e415]: Ativa
+      - generic [ref=e417]:
+        - button "Desativar missão" [ref=e419] [cursor=pointer]:
+          - generic [ref=e420]: 󲓧
+        - link "Skincare e higiene completa Saúde Todo dia 10 Atribuída a Laura Ativa" [ref=e421] [cursor=pointer]:
+          - /url: /parent/global_tasks/19/edit
+          - generic [ref=e422]:
+            - generic [ref=e424]: 󱦞
+            - generic [ref=e425]:
+              - generic [ref=e426]:
+                - generic [ref=e427]:
+                  - generic [ref=e429]: Skincare e higiene completa
+                  - generic [ref=e430]:
+                    - generic [ref=e431]: Saúde
+                    - generic [ref=e432]: Todo dia
+                - generic [ref=e433]:
+                  - generic [ref=e434]: 󲎤
+                  - generic [ref=e435]: "10"
+              - generic [ref=e436]:
+                - generic [ref=e437]: Atribuída a Laura
+                - generic [ref=e438]: Ativa
+      - generic [ref=e440]:
+        - button "Desativar missão" [ref=e442] [cursor=pointer]:
+          - generic [ref=e443]: 󲓧
+        - link "Dar banho no Simba Casa Semanal 40 Atribuída a Theo Ativa" [ref=e444] [cursor=pointer]:
+          - /url: /parent/global_tasks/18/edit
+          - generic [ref=e445]:
+            - generic [ref=e447]: 󱯉
+            - generic [ref=e448]:
+              - generic [ref=e449]:
+                - generic [ref=e450]:
+                  - generic [ref=e452]: Dar banho no Simba
+                  - generic [ref=e453]:
+                    - generic [ref=e454]: Casa
+                    - generic [ref=e455]: Semanal
+                - generic [ref=e456]:
+                  - generic [ref=e457]: 󲎤
+                  - generic [ref=e458]: "40"
+              - generic [ref=e459]:
+                - generic [ref=e460]: Atribuída a Theo
+                - generic [ref=e461]: Ativa
+      - generic [ref=e463]:
+        - button "Desativar missão" [ref=e465] [cursor=pointer]:
+          - generic [ref=e466]: 󲓧
+        - link "Chore semanal rotativa (Caçada Lixo / Estante / Espelho) Casa Semanal 25 Atribuída a Theo Ativa" [ref=e467] [cursor=pointer]:
+          - /url: /parent/global_tasks/17/edit
+          - generic [ref=e468]:
+            - generic [ref=e470]: 󱯉
+            - generic [ref=e471]:
+              - generic [ref=e472]:
+                - generic [ref=e473]:
+                  - generic [ref=e475]: Chore semanal rotativa (Caçada Lixo / Estante / Espelho)
+                  - generic [ref=e476]:
+                    - generic [ref=e477]: Casa
+                    - generic [ref=e478]: Semanal
+                - generic [ref=e479]:
+                  - generic [ref=e480]: 󲎤
+                  - generic [ref=e481]: "25"
+              - generic [ref=e482]:
+                - generic [ref=e483]: Atribuída a Theo
+                - generic [ref=e484]: Ativa
+      - generic [ref=e486]:
+        - button "Desativar missão" [ref=e488] [cursor=pointer]:
+          - generic [ref=e489]: 󲓧
+        - link "Praticar inglês no Duolingo (10 min) Escola Todo dia 10 Atribuída a Theo Ativa" [ref=e490] [cursor=pointer]:
+          - /url: /parent/global_tasks/16/edit
+          - generic [ref=e491]:
+            - generic [ref=e493]: 󱖃
+            - generic [ref=e494]:
+              - generic [ref=e495]:
+                - generic [ref=e496]:
+                  - generic [ref=e498]: Praticar inglês no Duolingo (10 min)
+                  - generic [ref=e499]:
+                    - generic [ref=e500]: Escola
+                    - generic [ref=e501]: Todo dia
+                - generic [ref=e502]:
+                  - generic [ref=e503]: 󲎤
+                  - generic [ref=e504]: "10"
+              - generic [ref=e505]:
+                - generic [ref=e506]: Atribuída a Theo
+                - generic [ref=e507]: Ativa
+      - generic [ref=e509]:
+        - button "Desativar missão" [ref=e511] [cursor=pointer]:
+          - generic [ref=e512]: 󲓧
+        - link "Leitura solo (15 min antes de dormir) Escola Todo dia 15 Atribuída a Theo Ativa" [ref=e513] [cursor=pointer]:
+          - /url: /parent/global_tasks/15/edit
+          - generic [ref=e514]:
+            - generic [ref=e516]: 󱖃
+            - generic [ref=e517]:
+              - generic [ref=e518]:
+                - generic [ref=e519]:
+                  - generic [ref=e521]: Leitura solo (15 min antes de dormir)
+                  - generic [ref=e522]:
+                    - generic [ref=e523]: Escola
+                    - generic [ref=e524]: Todo dia
+                - generic [ref=e525]:
+                  - generic [ref=e526]: 󲎤
+                  - generic [ref=e527]: "15"
+              - generic [ref=e528]:
+                - generic [ref=e529]: Atribuída a Theo
+                - generic [ref=e530]: Ativa
+      - generic [ref=e532]:
+        - button "Desativar missão" [ref=e534] [cursor=pointer]:
+          - generic [ref=e535]: 󲓧
+        - link "Lição de casa antes da brincadeira Escola Todo dia 15 Atribuída a Theo Ativa" [ref=e536] [cursor=pointer]:
+          - /url: /parent/global_tasks/14/edit
+          - generic [ref=e537]:
+            - generic [ref=e539]: 󱖃
+            - generic [ref=e540]:
+              - generic [ref=e541]:
+                - generic [ref=e542]:
+                  - generic [ref=e544]: Lição de casa antes da brincadeira
+                  - generic [ref=e545]:
+                    - generic [ref=e546]: Escola
+                    - generic [ref=e547]: Todo dia
+                - generic [ref=e548]:
+                  - generic [ref=e549]: 󲎤
+                  - generic [ref=e550]: "15"
+              - generic [ref=e551]:
+                - generic [ref=e552]: Atribuída a Theo
+                - generic [ref=e553]: Ativa
+      - generic [ref=e555]:
+        - button "Desativar missão" [ref=e557] [cursor=pointer]:
+          - generic [ref=e558]: 󲓧
+        - link "Dar comida pro Simba (manhã + noite) Casa Todo dia 10 Atribuída a Theo Ativa" [ref=e559] [cursor=pointer]:
+          - /url: /parent/global_tasks/13/edit
+          - generic [ref=e560]:
+            - generic [ref=e562]: 󱯉
+            - generic [ref=e563]:
+              - generic [ref=e564]:
+                - generic [ref=e565]:
+                  - generic [ref=e567]: Dar comida pro Simba (manhã + noite)
+                  - generic [ref=e568]:
+                    - generic [ref=e569]: Casa
+                    - generic [ref=e570]: Todo dia
+                - generic [ref=e571]:
+                  - generic [ref=e572]: 󲎤
+                  - generic [ref=e573]: "10"
+              - generic [ref=e574]:
+                - generic [ref=e575]: Atribuída a Theo
+                - generic [ref=e576]: Ativa
+      - generic [ref=e578]:
+        - button "Desativar missão" [ref=e580] [cursor=pointer]:
+          - generic [ref=e581]: 󲓧
+        - link "Secar a louça do jantar Casa Todo dia 15 Atribuída a Theo Ativa" [ref=e582] [cursor=pointer]:
+          - /url: /parent/global_tasks/12/edit
+          - generic [ref=e583]:
+            - generic [ref=e585]: 󱯉
+            - generic [ref=e586]:
+              - generic [ref=e587]:
+                - generic [ref=e588]:
+                  - generic [ref=e590]: Secar a louça do jantar
+                  - generic [ref=e591]:
+                    - generic [ref=e592]: Casa
+                    - generic [ref=e593]: Todo dia
+                - generic [ref=e594]:
+                  - generic [ref=e595]: 󲎤
+                  - generic [ref=e596]: "15"
+              - generic [ref=e597]:
+                - generic [ref=e598]: Atribuída a Theo
+                - generic [ref=e599]: Ativa
+      - generic [ref=e601]:
+        - button "Desativar missão" [ref=e603] [cursor=pointer]:
+          - generic [ref=e604]: 󲓧
+        - link "Prep escola (mochila + roupa amanhã + agenda) Casa Todo dia 15 Atribuída a Theo Ativa" [ref=e605] [cursor=pointer]:
+          - /url: /parent/global_tasks/11/edit
+          - generic [ref=e606]:
+            - generic [ref=e608]: 󱯉
+            - generic [ref=e609]:
+              - generic [ref=e610]:
+                - generic [ref=e611]:
+                  - generic [ref=e613]: Prep escola (mochila + roupa amanhã + agenda)
+                  - generic [ref=e614]:
+                    - generic [ref=e615]: Casa
+                    - generic [ref=e616]: Todo dia
+                - generic [ref=e617]:
+                  - generic [ref=e618]: 󲎤
+                  - generic [ref=e619]: "15"
+              - generic [ref=e620]:
+                - generic [ref=e621]: Atribuída a Theo
+                - generic [ref=e622]: Ativa
+      - generic [ref=e624]:
+        - button "Desativar missão" [ref=e626] [cursor=pointer]:
+          - generic [ref=e627]: 󲓧
+        - link "Banho sozinho + cama pronta Rotina Todo dia 15 Atribuída a Theo Ativa" [ref=e628] [cursor=pointer]:
+          - /url: /parent/global_tasks/10/edit
+          - generic [ref=e629]:
+            - generic [ref=e631]: 󱤈
+            - generic [ref=e632]:
+              - generic [ref=e633]:
+                - generic [ref=e634]:
+                  - generic [ref=e636]: Banho sozinho + cama pronta
+                  - generic [ref=e637]:
+                    - generic [ref=e638]: Rotina
+                    - generic [ref=e639]: Todo dia
+                - generic [ref=e640]:
+                  - generic [ref=e641]: 󲎤
+                  - generic [ref=e642]: "15"
+              - generic [ref=e643]:
+                - generic [ref=e644]: Atribuída a Theo
+                - generic [ref=e645]: Ativa
+      - generic [ref=e647]:
+        - button "Desativar missão" [ref=e649] [cursor=pointer]:
+          - generic [ref=e650]: 󲓧
+        - link "Escovar dentes 2x (manhã + noite) Saúde Todo dia 10 Atribuída a Theo Ativa" [ref=e651] [cursor=pointer]:
+          - /url: /parent/global_tasks/9/edit
+          - generic [ref=e652]:
+            - generic [ref=e654]: 󱦞
+            - generic [ref=e655]:
+              - generic [ref=e656]:
+                - generic [ref=e657]:
+                  - generic [ref=e659]: Escovar dentes 2x (manhã + noite)
+                  - generic [ref=e660]:
+                    - generic [ref=e661]: Saúde
+                    - generic [ref=e662]: Todo dia
+                - generic [ref=e663]:
+                  - generic [ref=e664]: 󲎤
+                  - generic [ref=e665]: "10"
+              - generic [ref=e666]:
+                - generic [ref=e667]: Atribuída a Theo
+                - generic [ref=e668]: Ativa
+      - generic [ref=e670]:
+        - button "Desativar missão" [ref=e672] [cursor=pointer]:
+          - generic [ref=e673]: 󲓧
+        - link "Ajudar a guardar as compras Casa Semanal 25 Atribuída a Lis Ativa" [ref=e674] [cursor=pointer]:
+          - /url: /parent/global_tasks/8/edit
+          - generic [ref=e675]:
+            - generic [ref=e677]: 󱯉
+            - generic [ref=e678]:
+              - generic [ref=e679]:
+                - generic [ref=e680]:
+                  - generic [ref=e682]: Ajudar a guardar as compras
+                  - generic [ref=e683]:
+                    - generic [ref=e684]: Casa
+                    - generic [ref=e685]: Semanal
+                - generic [ref=e686]:
+                  - generic [ref=e687]: 󲎤
+                  - generic [ref=e688]: "25"
+              - generic [ref=e689]:
+                - generic [ref=e690]: Atribuída a Lis
+                - generic [ref=e691]: Ativa
+      - generic [ref=e693]:
+        - button "Desativar missão" [ref=e695] [cursor=pointer]:
+          - generic [ref=e696]: 󲓧
+        - link "Ajudar a regar as plantinhas Casa Semanal 20 Atribuída a Lis Ativa" [ref=e697] [cursor=pointer]:
+          - /url: /parent/global_tasks/7/edit
+          - generic [ref=e698]:
+            - generic [ref=e700]: 󱯉
+            - generic [ref=e701]:
+              - generic [ref=e702]:
+                - generic [ref=e703]:
+                  - generic [ref=e705]: Ajudar a regar as plantinhas
+                  - generic [ref=e706]:
+                    - generic [ref=e707]: Casa
+                    - generic [ref=e708]: Semanal
+                - generic [ref=e709]:
+                  - generic [ref=e710]: 󲎤
+                  - generic [ref=e711]: "20"
+              - generic [ref=e712]:
+                - generic [ref=e713]: Atribuída a Lis
+                - generic [ref=e714]: Ativa
+      - generic [ref=e716]:
+        - button "Desativar missão" [ref=e718] [cursor=pointer]:
+          - generic [ref=e719]: 󲓧
+        - link "Aprender algo novo (10 min) Escola Todo dia 15 Atribuída a Lis Ativa" [ref=e720] [cursor=pointer]:
+          - /url: /parent/global_tasks/6/edit
+          - generic [ref=e721]:
+            - generic [ref=e723]: 󱖃
+            - generic [ref=e724]:
+              - generic [ref=e725]:
+                - generic [ref=e726]:
+                  - generic [ref=e728]: Aprender algo novo (10 min)
+                  - generic [ref=e729]:
+                    - generic [ref=e730]: Escola
+                    - generic [ref=e731]: Todo dia
+                - generic [ref=e732]:
+                  - generic [ref=e733]: 󲎤
+                  - generic [ref=e734]: "15"
+              - generic [ref=e735]:
+                - generic [ref=e736]: Atribuída a Lis
+                - generic [ref=e737]: Ativa
+      - generic [ref=e739]:
+        - button "Desativar missão" [ref=e741] [cursor=pointer]:
+          - generic [ref=e742]: 󲓧
+        - link "Comer toda a verdurinha + beber água do dia Saúde Todo dia 15 Atribuída a Lis Ativa" [ref=e743] [cursor=pointer]:
+          - /url: /parent/global_tasks/5/edit
+          - generic [ref=e744]:
+            - generic [ref=e746]: 󱦞
+            - generic [ref=e747]:
+              - generic [ref=e748]:
+                - generic [ref=e749]:
+                  - generic [ref=e751]: Comer toda a verdurinha + beber água do dia
+                  - generic [ref=e752]:
+                    - generic [ref=e753]: Saúde
+                    - generic [ref=e754]: Todo dia
+                - generic [ref=e755]:
+                  - generic [ref=e756]: 󲎤
+                  - generic [ref=e757]: "15"
+              - generic [ref=e758]:
+                - generic [ref=e759]: Atribuída a Lis
+                - generic [ref=e760]: Ativa
+      - generic [ref=e762]:
+        - button "Desativar missão" [ref=e764] [cursor=pointer]:
+          - generic [ref=e765]: 󲓧
+        - link "Trocar a água do Simba Casa Todo dia 10 Atribuída a Lis Ativa" [ref=e766] [cursor=pointer]:
+          - /url: /parent/global_tasks/4/edit
+          - generic [ref=e767]:
+            - generic [ref=e769]: 󱯉
+            - generic [ref=e770]:
+              - generic [ref=e771]:
+                - generic [ref=e772]:
+                  - generic [ref=e774]: Trocar a água do Simba
+                  - generic [ref=e775]:
+                    - generic [ref=e776]: Casa
+                    - generic [ref=e777]: Todo dia
+                - generic [ref=e778]:
+                  - generic [ref=e779]: 󲎤
+                  - generic [ref=e780]: "10"
+              - generic [ref=e781]:
+                - generic [ref=e782]: Atribuída a Lis
+                - generic [ref=e783]: Ativa
+      - generic [ref=e785]:
+        - button "Desativar missão" [ref=e787] [cursor=pointer]:
+          - generic [ref=e788]: 󲓧
+        - link "Meu cantinho (roupa no cesto + sapatos + cama com ajuda) Casa Todo dia 15 Atribuída a Lis Ativa" [ref=e789] [cursor=pointer]:
+          - /url: /parent/global_tasks/3/edit
+          - generic [ref=e790]:
+            - generic [ref=e792]: 󱯉
+            - generic [ref=e793]:
+              - generic [ref=e794]:
+                - generic [ref=e795]:
+                  - generic [ref=e797]: Meu cantinho (roupa no cesto + sapatos + cama com ajuda)
+                  - generic [ref=e798]:
+                    - generic [ref=e799]: Casa
+                    - generic [ref=e800]: Todo dia
+                - generic [ref=e801]:
+                  - generic [ref=e802]: 󲎤
+                  - generic [ref=e803]: "15"
+              - generic [ref=e804]:
+                - generic [ref=e805]: Atribuída a Lis
+                - generic [ref=e806]: Ativa
+      - generic [ref=e808]:
+        - button "Desativar missão" [ref=e810] [cursor=pointer]:
+          - generic [ref=e811]: 󲓧
+        - link "Rotina da manhã (lavar rosto + pentear + banheiro) Rotina Todo dia 15 Atribuída a Lis Ativa" [ref=e812] [cursor=pointer]:
+          - /url: /parent/global_tasks/2/edit
+          - generic [ref=e813]:
+            - generic [ref=e815]: 󱤈
+            - generic [ref=e816]:
+              - generic [ref=e817]:
+                - generic [ref=e818]:
+                  - generic [ref=e820]: Rotina da manhã (lavar rosto + pentear + banheiro)
+                  - generic [ref=e821]:
+                    - generic [ref=e822]: Rotina
+                    - generic [ref=e823]: Todo dia
+                - generic [ref=e824]:
+                  - generic [ref=e825]: 󲎤
+                  - generic [ref=e826]: "15"
+              - generic [ref=e827]:
+                - generic [ref=e828]: Atribuída a Lis
+                - generic [ref=e829]: Ativa
+      - generic [ref=e831]:
+        - button "Desativar missão" [ref=e833] [cursor=pointer]:
+          - generic [ref=e834]: 󲓧
+        - link "Escovar dentinhos 2x (manhã + noite) Saúde Todo dia 10 Atribuída a Lis Ativa" [ref=e835] [cursor=pointer]:
+          - /url: /parent/global_tasks/1/edit
+          - generic [ref=e836]:
+            - generic [ref=e838]: 󱦞
+            - generic [ref=e839]:
+              - generic [ref=e840]:
+                - generic [ref=e841]:
+                  - generic [ref=e843]: Escovar dentinhos 2x (manhã + noite)
+                  - generic [ref=e844]:
+                    - generic [ref=e845]: Saúde
+                    - generic [ref=e846]: Todo dia
+                - generic [ref=e847]:
+                  - generic [ref=e848]: 󲎤
+                  - generic [ref=e849]: "10"
+              - generic [ref=e850]:
+                - generic [ref=e851]: Atribuída a Lis
+                - generic [ref=e852]: Ativa
+  - text: 󲎤

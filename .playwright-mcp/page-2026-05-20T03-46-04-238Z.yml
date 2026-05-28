@@ -1,0 +1,97 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - text: 󱸠
+    - navigation "Principal" [ref=e2]:
+      - generic [ref=e4]:
+        - generic [ref=e6]: 󲎤
+        - generic [ref=e7]:
+          - generic [ref=e8]: LittleStars
+          - generic [ref=e9]: Modo pais
+      - generic [ref=e10]:
+        - link "Início" [ref=e11] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e12]: 󱯉
+          - generic [ref=e13]: Início
+        - link "Crianças" [ref=e14] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e15]: 󲗦
+          - generic [ref=e16]: Crianças
+        - link "Missões" [ref=e17] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e18]: 󲑽
+          - generic [ref=e19]: Missões
+        - link "Prêmios" [ref=e20] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e21]: 󲊉
+          - generic [ref=e22]: Prêmios
+        - link "Categorias" [ref=e23] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e24]: 󱖠
+          - generic [ref=e25]: Categorias
+        - link "Aprovações" [ref=e26] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e27]: 󱞿
+          - generic [ref=e28]: Aprovações
+        - link "Configurações" [ref=e29] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e30]: 󲉌
+          - generic [ref=e31]: Configurações
+      - generic [ref=e32]:
+        - link "Editar meu perfil" [ref=e33] [cursor=pointer]:
+          - /url: /parent/profiles/1/edit
+          - img "Mamãe" [ref=e34]:
+            - generic [ref=e35]: 󲗕
+          - generic [ref=e36]:
+            - generic [ref=e37]: Mamãe
+            - generic [ref=e38]: Responsável · Editar
+          - generic [ref=e39]: 󲀏
+        - button "Trocar perfil" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]: 󱶂
+          - text: Trocar perfil
+    - text: 󱯉 󱞿 󲑽 󲊉 󱸠
+  - generic [ref=e45]:
+    - generic [ref=e47]:
+      - link "Voltar" [ref=e48] [cursor=pointer]:
+        - /url: /parent/rewards
+        - generic [ref=e49]: 󱑘
+      - generic [ref=e50]:
+        - heading "Novo prêmio" [level=2] [ref=e51]
+        - generic [ref=e52]: Crie um prêmio para as crianças trocarem suas estrelinhas
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e56]: Nome do prêmio
+        - textbox "Nome do prêmio" [ref=e57]:
+          - /placeholder: "Ex: Sorvete de chocolate"
+        - generic [ref=e58]: Use frases curtas que a criança entenda.
+      - generic [ref=e59]:
+        - generic [ref=e60]: Escolha um ícone
+        - generic [ref=e61]:
+          - button "Escolher ícone" [ref=e62] [cursor=pointer]:
+            - generic [ref=e65]: 󱰄
+          - generic [ref=e66]: Toque para escolher um ícone
+          - text: 󱚙 󱰄 󱫸 󱨓 󱢍 󲁐 󱩣 󱺺 󱖠 󱬎 󱨌
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - generic [ref=e69]: 󲎤
+          - text: Quantas estrelinhas custa?
+        - spinbutton "Quantas estrelinhas custa?" [ref=e70]
+      - generic [ref=e71]:
+        - generic [ref=e72]: Categoria
+        - generic [ref=e73]:
+          - combobox
+          - button "Telinha" [ref=e74] [cursor=pointer]:
+            - generic [ref=e75]: Telinha
+            - img [ref=e77]
+      - generic [ref=e80]:
+        - generic [ref=e81]:
+          - generic [ref=e82]: Meta familiar
+          - generic [ref=e83]: Premio coletivo. Soma estrelinhas de toda família na semana.
+        - generic "Meta familiar" [ref=e84] [cursor=pointer]:
+          - checkbox "Meta familiar" [ref=e85]
+      - generic [ref=e88]:
+        - link "Cancelar" [ref=e89] [cursor=pointer]:
+          - /url: /parent/rewards
+        - button "Salvar prêmio" [ref=e90] [cursor=pointer]:
+          - generic [ref=e91]: 󲓧
+          - text: Salvar prêmio
+  - text: 󲎤

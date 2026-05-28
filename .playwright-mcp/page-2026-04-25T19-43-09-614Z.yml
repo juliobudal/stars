@@ -1,0 +1,88 @@
+- generic [active] [ref=e1]:
+  - button "Trocar perfil" [ref=e4] [cursor=pointer]
+  - navigation "Principal" [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - img [ref=e8]
+        - generic [ref=e10]:
+          - generic [ref=e11]: LittleStars
+          - text: MODO PAIS
+      - button "Trocar família" [ref=e12] [cursor=pointer]:
+        - generic [ref=e13]: F
+        - generic [ref=e14]: Família Teste UI
+        - generic [ref=e15]: 󱑩
+    - generic [ref=e16]:
+      - link "Início" [ref=e17] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e19]: Início
+      - link "Crianças" [ref=e20] [cursor=pointer]:
+        - /url: /parent/profiles
+        - generic [ref=e21]: 󲗦
+        - generic [ref=e22]: Crianças
+      - link "Missões" [ref=e23] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e25]: Missões
+      - link "Prêmios" [ref=e26] [cursor=pointer]:
+        - /url: /parent/rewards
+        - generic [ref=e27]: 󲊉
+        - generic [ref=e28]: Prêmios
+      - link "Aprovações" [ref=e29] [cursor=pointer]:
+        - /url: /parent/approvals
+        - generic [ref=e30]: 󱞿
+        - generic [ref=e31]: Aprovações
+      - link "Configurações" [ref=e32] [cursor=pointer]:
+        - /url: /parent/settings
+        - generic [ref=e34]: Configurações
+    - generic [ref=e36]:
+      - img [ref=e37]
+      - generic [ref=e41]:
+        - generic [ref=e42]: Julio
+        - generic [ref=e43]: Responsável
+      - button "Sair" [ref=e45] [cursor=pointer]:
+        - generic [ref=e46]: 󱶂
+  - text: 󱞿 󲊉
+  - generic [ref=e48]:
+    - generic [ref=e50]:
+      - link [ref=e51] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e52]: 󱑘
+      - generic [ref=e53]:
+        - heading "Novo perfil" [level=2] [ref=e54]
+        - generic [ref=e55]: Crie um perfil para seu filho(a)
+    - generic [ref=e57]:
+      - generic [ref=e60]: 󱮊
+      - generic [ref=e61]:
+        - generic [ref=e62]: Nome
+        - textbox "Nome" [ref=e63]:
+          - /placeholder: "Ex: Lila"
+      - generic [ref=e64]:
+        - generic [ref=e65]: Avatar
+        - generic [ref=e66]:
+          - generic [ref=e67] [cursor=pointer]:
+            - radio [ref=e68]
+            - generic [ref=e70]: 󱮊
+          - generic [ref=e71] [cursor=pointer]:
+            - radio [ref=e72]
+            - generic [ref=e74]: 󱒺
+          - generic [ref=e75] [cursor=pointer]:
+            - radio [ref=e76]
+            - generic [ref=e78]: 󱢆
+          - generic [ref=e79] [cursor=pointer]:
+            - radio [ref=e80]
+            - generic [ref=e82]: 󱮊
+      - generic [ref=e83]:
+        - generic [ref=e84]: Cor
+        - generic [ref=e85]:
+          - radio [ref=e87]
+          - radio [ref=e90]
+          - radio [ref=e93]
+          - radio [ref=e96]
+          - radio [ref=e99]
+          - radio [ref=e102]
+      - generic [ref=e104]:
+        - generic [ref=e105]: PIN (4 dígitos)
+        - textbox "PIN (4 dígitos)" [ref=e106]
+      - generic [ref=e107]:
+        - link "Voltar" [ref=e108] [cursor=pointer]:
+          - /url: /parent/profiles
+        - button "Salvar Perfil" [ref=e109] [cursor=pointer]

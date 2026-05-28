@@ -1,0 +1,61 @@
+- generic [active] [ref=e1]:
+  - button "Trocar perfil" [ref=e4] [cursor=pointer]
+  - navigation "Principal" [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - img [ref=e8]
+        - generic [ref=e10]:
+          - generic [ref=e11]: LittleStars
+          - text: MODO PAIS
+      - button "Trocar família" [ref=e12] [cursor=pointer]:
+        - generic [ref=e13]: F
+        - generic [ref=e14]: Família Teste UI
+        - generic [ref=e15]: 󱑩
+    - generic [ref=e16]:
+      - link "Início" [ref=e17] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e19]: Início
+      - link "Crianças" [ref=e20] [cursor=pointer]:
+        - /url: /parent/profiles
+        - generic [ref=e21]: 󲗦
+        - generic [ref=e22]: Crianças
+      - link "Missões" [ref=e23] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e25]: Missões
+      - link "Prêmios" [ref=e26] [cursor=pointer]:
+        - /url: /parent/rewards
+        - generic [ref=e27]: 󲊉
+        - generic [ref=e28]: Prêmios
+      - link "Aprovações" [ref=e29] [cursor=pointer]:
+        - /url: /parent/approvals
+        - generic [ref=e30]: 󱞿
+        - generic [ref=e31]: Aprovações
+      - link "Configurações" [ref=e32] [cursor=pointer]:
+        - /url: /parent/settings
+        - generic [ref=e34]: Configurações
+    - generic [ref=e36]:
+      - img [ref=e37]
+      - generic [ref=e41]:
+        - generic [ref=e42]: Julio
+        - generic [ref=e43]: Responsável
+      - button "Sair" [ref=e45] [cursor=pointer]:
+        - generic [ref=e46]: 󱶂
+  - text: 󱞿 󲊉
+  - generic [ref=e48]:
+    - generic [ref=e49]:
+      - generic [ref=e51]:
+        - heading "Crianças" [level=1] [ref=e52]
+        - generic [ref=e53]: Gerencie as crianças da família. Adicione novas, mude cor, nome ou expressão.
+      - link "+ Adicionar criança" [ref=e55] [cursor=pointer]:
+        - /url: /parent/profiles/new
+        - generic [ref=e56]: 󲎤
+        - text: + Adicionar criança
+    - generic [ref=e57]:
+      - link "+ Adicionar criança" [ref=e58] [cursor=pointer]:
+        - /url: /parent/profiles/new
+        - generic [ref=e59]: +
+        - generic [ref=e60]: Adicionar criança
+      - generic [ref=e62]:
+        - generic [ref=e64]: 󲗦
+        - heading "Nenhum perfil" [level=3] [ref=e65]
+        - paragraph [ref=e66]: Adicione sua primeira criança para começar!

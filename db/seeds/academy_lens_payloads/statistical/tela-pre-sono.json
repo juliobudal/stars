@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, depois de olhar pra tela do celular antes de dormir, quanto tempo a luz azul atrasa seu sono? Chuta em minutos.",
-  "predict_unit": "minutos",
-  "predict_min": 0,
-  "predict_max": 120,
-  "reveal_value": 10,
-  "reveal_source": "Estimativa de especialistas: a luz azul das telas pode atrasar o sono em 5 a 20 minutos, dependendo da pessoa e do brilho.",
-  "interpretation": "10 minutos é a média. Parece pouco, mas se você repete isso toda noite, seu relógio interno vai se atrasando aos poucos — e acordar fica mais difícil. A melatonina, hormônio do sono, só é liberada quando a luz azul diminui. Tela ligada = produção pausada."
-}

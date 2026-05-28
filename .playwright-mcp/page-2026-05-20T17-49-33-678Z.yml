@@ -1,0 +1,79 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e18]:
+        - link "Voltar para Mente Forte" [ref=e19] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte
+        - generic [ref=e21]:
+          - generic [ref=e22]: MENTE FORTE · REVISÃO
+          - heading "Por que mexer no celular é tão difícil de parar?" [level=1] [ref=e23]
+        - link "Falar com O Guia" [ref=e24] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/guide
+          - text: 🦉
+      - generic [ref=e25]:
+        - generic [ref=e27]: ✓
+        - generic [ref=e28]: Missão completa · 1/4
+        - paragraph [ref=e29]:
+          - strong [ref=e30]: "5"
+          - text: lições percorridas sobre
+          - strong [ref=e31]: Dopamina
+          - text: .
+      - link "🃏 Pra sua coleção Se você não decide o que faz sua atenção, um algoritmo decide por você. Toque pra ver no Atlas →" [ref=e32] [cursor=pointer]:
+        - /url: /kid/academy/atlas
+        - generic [ref=e33]:
+          - generic [ref=e34]: 🃏
+          - generic [ref=e35]:
+            - generic [ref=e36]: Pra sua coleção
+            - generic [ref=e37]: Se você não decide o que faz sua atenção, um algoritmo decide por você.
+            - generic [ref=e38]: Toque pra ver no Atlas →
+      - link "Próxima missão →" [ref=e39] [cursor=pointer]:
+        - /url: /kid/academy/subjects/mente-forte/missions/notificacoes-custam-23-min
+      - generic [ref=e40]:
+        - link "📖 Lição 1 Conta a história" [ref=e41] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/visits/542
+          - generic [ref=e42]: 📖
+          - generic [ref=e43]:
+            - generic [ref=e44]: Lição 1
+            - generic [ref=e45]: Conta a história
+        - link "👁 Lição 2 Faz isso agora" [ref=e48] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/visits/543
+          - generic [ref=e49]: 👁
+          - generic [ref=e50]:
+            - generic [ref=e51]: Lição 2
+            - generic [ref=e52]: Faz isso agora
+        - link "🔬 Lição 3 Como funciona" [ref=e55] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/visits/544
+          - generic [ref=e56]: 🔬
+          - generic [ref=e57]:
+            - generic [ref=e58]: Lição 3
+            - generic [ref=e59]: Como funciona
+        - link "📈 Lição 4 Adivinha" [ref=e62] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/visits/545
+          - generic [ref=e63]: 📈
+          - generic [ref=e64]:
+            - generic [ref=e65]: Lição 4
+            - generic [ref=e66]: Adivinha
+        - link "🔭 Lição 5 Em outro lugar" [ref=e69] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/visits/546
+          - generic [ref=e70]: 🔭
+          - generic [ref=e71]:
+            - generic [ref=e72]: Lição 5
+            - generic [ref=e73]: Em outro lugar
+  - text: 󲎤

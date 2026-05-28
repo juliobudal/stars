@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, quando alguém aplica os '5 porquês' num problema, em quantos por cento dos casos a causa raiz é uma FALHA DE PROCESSO — e não culpa de uma pessoa?",
-  "predict_unit": "%",
-  "predict_min": 0,
-  "predict_max": 100,
-  "reveal_value": 90,
-  "reveal_source": "Estimativa derivada da tradição Toyota/Lean (Sakichi Toyoda, anos 1930), replicada na literatura de operações: a maioria das causas raiz, quando bem cavadas, é falha de processo, não erro humano. O número exato varia.",
-  "interpretation": "Culpar uma pessoa é o PRIMEIRO porquê — o cérebro descansa rápido nessa resposta. Os outros 4 levam a um sistema mal desenhado. A diferença prática é grande: trocar quem fez não resolve. Consertar o processo, sim. Por isso o método cava cinco vezes, não uma."
-}

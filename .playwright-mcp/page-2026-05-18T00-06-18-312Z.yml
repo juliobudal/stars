@@ -1,0 +1,43 @@
+- generic [active] [ref=e323]:
+  - navigation "Navegação principal" [ref=e324]:
+    - link "Jornada" [ref=e325] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e326]: 󲑲
+      - generic [ref=e327]: Jornada
+    - link "Academia" [ref=e328] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e329]: 󲌸
+      - generic [ref=e330]: Academia
+    - link "Lojinha" [ref=e331] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e332]: 󲊉
+      - generic [ref=e333]: Lojinha
+    - link "Diário" [ref=e334] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e335]: 󱖃
+      - generic [ref=e336]: Diário
+  - main [ref=e337]:
+    - generic [ref=e338]:
+      - generic [ref=e339]:
+        - generic [ref=e340]:
+          - link "Voltar para Corpo & Saúde" [ref=e341] [cursor=pointer]:
+            - /url: /kid/academy/subjects/corpo-saude
+          - generic [ref=e343]:
+            - generic [ref=e344]: CORPO & SAÚDE
+            - heading "O que acontece quando você dorme mal?" [level=1] [ref=e345]
+        - generic "Progresso da missão" [ref=e346]
+      - generic [ref=e354]:
+        - generic [ref=e355]: 👁
+        - generic [ref=e356]:
+          - heading "Faz isso agora" [level=2] [ref=e357]
+          - generic [ref=e358]: sobre Sono consolida memória
+      - generic [ref=e359]:
+        - generic [ref=e360]:
+          - generic [ref=e361]: Faça isto agora
+          - paragraph [ref=e362]: "Ok Theo: fecha os olhos por 10 segundos e tenta lembrar exatamente o que você comeu no café da manhã. Agora abre os olhos e escreve isso mentalmente."
+          - generic [ref=e364]: 15s
+          - generic [ref=e365]:
+            - button "Comecei" [ref=e366] [cursor=pointer]
+            - button "Pronto" [disabled] [ref=e367] [cursor=pointer]
+        - button "Continuar →" [ref=e369]
+  - text: 󲎤

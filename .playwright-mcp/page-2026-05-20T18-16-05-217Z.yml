@@ -1,0 +1,145 @@
+- generic [active] [ref=e90]:
+  - generic [ref=e91]:
+    - generic [ref=e92]:
+      - generic [ref=e93]:
+        - img [ref=e94]
+        - generic [ref=e96]: LittleStars
+      - button "Abrir menu" [ref=e97] [cursor=pointer]:
+        - generic [ref=e98]: 󱸠
+    - navigation "Principal" [ref=e99]:
+      - generic [ref=e101]:
+        - generic [ref=e103]: 󲎤
+        - generic [ref=e104]:
+          - generic [ref=e105]: LittleStars
+          - generic [ref=e106]: Modo pais
+      - generic [ref=e107]:
+        - link "Início" [ref=e108] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e109]: 󱯉
+          - generic [ref=e110]: Início
+        - link "Crianças" [ref=e111] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e112]: 󲗦
+          - generic [ref=e113]: Crianças
+        - link "Academia" [ref=e114] [cursor=pointer]:
+          - /url: /parent/academy
+          - generic [ref=e115]: 󲌸
+          - generic [ref=e116]: Academia
+        - link "Missões" [ref=e117] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e118]: 󲑽
+          - generic [ref=e119]: Missões
+        - link "Prêmios" [ref=e120] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e121]: 󲊉
+          - generic [ref=e122]: Prêmios
+        - link "Categorias" [ref=e123] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e124]: 󱖠
+          - generic [ref=e125]: Categorias
+        - link "Aprovações" [ref=e126] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e127]: 󱞿
+          - generic [ref=e128]: Aprovações
+        - link "Configurações" [ref=e129] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e130]: 󲉌
+          - generic [ref=e131]: Configurações
+      - generic [ref=e132]:
+        - link "Editar meu perfil" [ref=e133] [cursor=pointer]:
+          - /url: /parent/profiles/1171/edit
+          - img "Pai Homolog" [ref=e134]:
+            - generic [ref=e135]: 󲗕
+          - generic [ref=e136]:
+            - generic [ref=e137]: Pai Homolog
+            - generic [ref=e138]: Responsável · Editar
+          - generic [ref=e139]: 󲀏
+        - button "Trocar perfil" [ref=e142] [cursor=pointer]:
+          - generic [ref=e143]: 󱶂
+          - text: Trocar perfil
+    - generic [ref=e144]:
+      - link "Início" [ref=e145] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e146]:
+          - generic [ref=e147]: 󱯉
+          - generic [ref=e148]: Início
+      - link "Academia" [ref=e149] [cursor=pointer]:
+        - /url: /parent/academy
+        - generic [ref=e150]:
+          - generic [ref=e151]: 󲌸
+          - generic [ref=e152]: Academia
+      - link "Pendências" [ref=e153] [cursor=pointer]:
+        - /url: /parent/approvals
+        - generic [ref=e154]:
+          - generic [ref=e155]: 󱞿
+          - generic [ref=e156]: Pendências
+      - link "Missões" [ref=e157] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e158]:
+          - generic [ref=e159]: 󲑽
+          - generic [ref=e160]: Missões
+      - button "Mais opções" [ref=e161] [cursor=pointer]:
+        - generic [ref=e162]:
+          - generic [ref=e163]: 󱸠
+          - generic [ref=e164]: Mais
+  - generic [ref=e166]:
+    - banner [ref=e167]:
+      - generic [ref=e169]:
+        - heading "Olá, Pai Homolog! 👋" [level=1] [ref=e170]
+        - paragraph [ref=e171]: Júlio Kid está em dia com as missões
+      - link "Nova missão" [ref=e174] [cursor=pointer]:
+        - /url: /parent/global_tasks/new
+        - generic [ref=e175]: 󲁸
+        - text: Nova missão
+    - generic [ref=e176]:
+      - generic [ref=e177]:
+        - generic [ref=e178]: 󲎤
+        - generic [ref=e179]: "0"
+        - generic [ref=e180]: Estrelinhas
+      - generic [ref=e181]:
+        - generic [ref=e182]: 󲑲
+        - generic [ref=e183]: "0"
+        - generic [ref=e184]: Missões ativas
+      - generic [ref=e185]:
+        - generic [ref=e186]: 󲊉
+        - generic [ref=e187]: "0"
+        - generic [ref=e188]: Prêmios
+      - generic [ref=e189]:
+        - generic [ref=e190]: 󱞿
+        - generic [ref=e191]: "0"
+        - generic [ref=e192]: Pendentes →
+    - generic [ref=e193]:
+      - generic [ref=e194]:
+        - heading "Suas crianças" [level=2] [ref=e195]
+        - link "+ Adicionar" [ref=e196] [cursor=pointer]:
+          - /url: /parent/profiles
+      - generic [ref=e199]:
+        - generic [ref=e200]:
+          - img "Júlio Kid" [ref=e202]:
+            - generic [ref=e203]: 󱮊
+          - generic [ref=e204]: N1
+        - generic [ref=e205]:
+          - generic [ref=e206]:
+            - generic [ref=e207]: Júlio Kid
+            - generic [ref=e208]:
+              - generic [ref=e209]: faltam 20
+              - generic [ref=e210]: 󲎤
+              - generic [ref=e211]: pro nível 2
+          - generic [ref=e213]:
+            - generic [ref=e214]:
+              - generic [ref=e215]: 󲎤
+              - text: 0 saldo
+            - generic [ref=e216]:
+              - generic [ref=e217]: 󲑲
+              - text: 0 ativas
+            - generic [ref=e218]: Sem meta
+    - generic [ref=e219]:
+      - generic [ref=e220]:
+        - heading "Aprovações pendentes" [level=2] [ref=e221]
+        - link "Ver tudo" [ref=e222] [cursor=pointer]:
+          - /url: /parent/approvals
+      - generic [ref=e223]:
+        - generic [ref=e225]: 󲓧
+        - heading "Tudo em dia!" [level=3] [ref=e226]
+        - paragraph [ref=e227]: Nenhuma missão aguardando aprovação.
+  - text: 󲎤

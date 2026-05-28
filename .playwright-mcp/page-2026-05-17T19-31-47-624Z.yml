@@ -1,0 +1,72 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e50]: Jornada
+    - link "Academia" [ref=e5] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e6]: 󲌸
+      - generic [ref=e51]: Academia
+    - link "Lojinha" [ref=e7] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e8]: 󲊉
+      - generic [ref=e52]: Lojinha
+    - link "Diário" [ref=e9] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e10]: 󱖃
+      - generic [ref=e53]: Diário
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - link "Voltar para Mente Forte" [ref=e15] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e17]:
+            - generic [ref=e18]: MENTE FORTE
+            - heading "Por que mexer no celular é tão difícil de parar?" [level=1] [ref=e19]
+        - generic "Progresso da missão" [ref=e54]
+      - generic [ref=e20]:
+        - generic [ref=e21]: 🔬
+        - generic [ref=e22]:
+          - heading "Como funciona" [level=2] [ref=e23]
+          - generic [ref=e24]: sobre Dopamina
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - heading "Dopamina não é prazer — é o sinal de 'vai atrás disso'" [level=2] [ref=e27]
+          - paragraph [ref=e28]: Um cachorro farejando, com uma seta brilhante saindo do nariz dele em direção à comida — a seta é a dopamina, não a comida.
+          - list [ref=e29]:
+            - listitem [ref=e30]:
+              - generic [ref=e62]: "1"
+              - generic [ref=e63]: Seu cérebro detecta uma pista de recompensa possível (cheiro de pizza, notificação).
+            - listitem [ref=e31]:
+              - generic [ref=e64]: "2"
+              - generic [ref=e65]: Neurônios liberam dopamina, que aumenta motivação e foco naquela pista.
+            - listitem [ref=e32]:
+              - generic [ref=e66]: "3"
+              - generic [ref=e67]: Você age atrás da recompensa; o prazer real vem depois, de outra molécula.
+        - generic [ref=e33]:
+          - generic [ref=e34]: Pergunta rápida
+          - paragraph [ref=e35]: Laura sente um puxão pra abrir o celular sem nem saber por quê. O que provavelmente acabou de subir?
+          - generic [ref=e36]:
+            - button "A Serotonina depois de descansar" [ref=e37] [cursor=pointer]:
+              - generic [ref=e68]: A
+              - generic [ref=e69]: Serotonina depois de descansar
+            - button "B Dopamina antecipando uma notificação" [ref=e38] [cursor=pointer]:
+              - generic [ref=e70]: B
+              - generic [ref=e71]: Dopamina antecipando uma notificação
+            - button "C Adrenalina por susto" [ref=e39] [cursor=pointer]:
+              - generic [ref=e72]: C
+              - generic [ref=e73]: Adrenalina por susto
+            - button "D Melatonina pra dormir" [ref=e40] [cursor=pointer]:
+              - generic [ref=e74]: D
+              - generic [ref=e75]: Melatonina pra dormir
+        - button "Continuar →" [ref=e42]
+  - generic [ref=e76]:
+    - generic [ref=e78]: 󲎤
+    - generic [ref=e79]:
+      - paragraph [ref=e80]: Instale o LittleStars
+      - paragraph [ref=e81]: Acesso rápido pela tela inicial.
+    - generic [ref=e82]:
+      - button "Instalar" [ref=e83] [cursor=pointer]
+      - button "Agora não" [ref=e84] [cursor=pointer]

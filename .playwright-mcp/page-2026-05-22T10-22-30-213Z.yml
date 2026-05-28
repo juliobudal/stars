@@ -1,0 +1,21 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - progressbar [ref=e3]
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e12]: 󱮊
+        - generic [ref=e13]: ✨
+        - generic [ref=e14]: 🎉
+        - generic [ref=e16]: 󲎤
+      - heading "Tudo pronto, Audit Kid!" [level=1] [ref=e17]:
+        - text: Tudo pronto,
+        - text: Audit Kid!
+      - paragraph [ref=e18]:
+        - text: Suas missões já estão te esperando.
+        - text: Bora ganhar a primeira
+        - strong [ref=e19]: estrelinha
+        - text: "?"
+    - button "Começar" [ref=e21] [cursor=pointer]:
+      - text: Começar
+      - generic [ref=e22]: 󲎤
+  - text: 󲎤

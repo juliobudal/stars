@@ -1,0 +1,26 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]: 󲓧
+    - generic [ref=e4]: Sessão da família encerrada.
+  - generic [ref=e6]:
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e11]: 󲎤
+        - generic [ref=e12]: LittleStars
+      - generic [ref=e13]: Família LittleStars
+    - heading "Bem-vindo de volta!" [level=1] [ref=e14]
+    - paragraph [ref=e15]: Entra pra acompanhar as missões
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]: Email da família
+        - textbox "Email da família" [ref=e20]
+      - generic [ref=e21]:
+        - generic [ref=e22]: Senha
+        - textbox "Senha" [ref=e23]
+      - button "Entrar" [ref=e24] [cursor=pointer]
+    - generic [ref=e25]:
+      - link "Criar família" [ref=e26] [cursor=pointer]:
+        - /url: /registration/new
+      - generic [ref=e27]: ·
+      - link "Esqueci a senha" [ref=e28] [cursor=pointer]:
+        - /url: /password_reset/new

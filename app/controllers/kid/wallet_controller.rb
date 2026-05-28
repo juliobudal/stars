@@ -23,11 +23,5 @@ class Kid::WalletController < Kid::BaseController
 
     @pending_tasks  = current_profile.profile_tasks.awaiting_approval.includes(:global_task, :custom_category).order(updated_at: :desc)
     @rejected_tasks = current_profile.profile_tasks.rejected.includes(:global_task, :custom_category).order(updated_at: :desc).limit(50)
-
-    # Diário das descobertas — feed narrativo da Academy: últimas 5 cartas.
-    @recent_cards = ::Academy::DiscoveryCard
-                      .for_learner(current_profile.id)
-                      .includes(mission: :subject)
-                      .limit(5)
   end
 end

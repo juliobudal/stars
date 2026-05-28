@@ -16,88 +16,6 @@
              awaiting_count: @awaiting_tasks.count,
              completed_today_count: @completed_today.count %>
 
-  <%# ── Shortcut cards (Pílula, Lightning, Eu curto) ── %>
-  <% kid_interests = current_profile.interest_keys(5) %>
-  <% interests_title = kid_interests.any? ?
-       kid_interests.first(3).map { |k| ProfileInterest::Catalog.emoji_for(k) + " " + ProfileInterest::Catalog.label_for(k) }.join("  ·  ") :
-       "Conta pra gente o que você curte!" %>
-  <% has_fading = ::Academy::LearnerConcept.for_learner(current_profile.id)
-                    .where(level: 1..2).where("last_seen_at < ?", 7.days.ago).exists? %>
-
-  <div class="flex flex-col gap-3 mb-5 z-2 relative shrink-0">
-    <%= render Ui::ShortcutCard::Component.new(
-          url: kid_academy_pill_path,
-          tint: :primary,
-          emoji: "💊",
-          eyebrow: "Pílula do Dia",
-          title: "60 segundos pra ficar mais esperto",
-          test_id: "kid-pill-card"
-        ) %>
-
-    <% if has_fading %>
-      <%= render Ui::ShortcutCard::Component.new(
-            url: kid_academy_lightning_path,
-            tint: :amber,
-            emoji: "⚡",
-            eyebrow: "Lightning Round",
-            title: "90 segundos · 5 perguntas",
-            test_id: "kid-lightning-card"
-          ) %>
-    <% end %>
-
-    <%= render Ui::ShortcutCard::Component.new(
-          url: kid_interests_path,
-          tint: :neutral,
-          emoji: "💡",
-          eyebrow: "Eu curto",
-          title: interests_title,
-          test_id: "kid-interests-card"
-        ) %>
-  </div>
-
-  <%# ── Level progress card ── %>
-  <div class="ls-card-3d surface-card-3d mb-5 z-2 shrink-0">
-    <div class="flex justify-between items-start mb-2.5 gap-3">
-      <div>
-        <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--text-muted);">Você está no</div>
-        <div class="flex items-center gap-2 mt-0.5">
-          <div class="font-display text-[14px] font-extrabold"
-               style="background: var(--primary); color: white; padding: 4px 10px; border-radius: 8px; box-shadow: 0 2px 0 var(--primary-2);">
-            NÍVEL <%= @level %>
-          </div>
-          <span class="font-display text-[13px] font-extrabold" style="color: var(--primary-2);">→ Nível <%= @level + 1 %></span>
-        </div>
-      </div>
-      <div class="text-right">
-        <div class="font-display text-[22px] font-extrabold leading-none" style="color: var(--primary-2);">
-          <%= @level_progress %><span class="text-[14px]" style="color: var(--text-soft);">/<%= @level_size %></span>
-        </div>
-        <div class="font-display text-[10px] font-extrabold tracking-[0.5px] uppercase mt-0.5" style="color: var(--text-muted);">Estrelinhas</div>
-      </div>
-    </div>
-
-    <div class="relative overflow-hidden" style="height: 18px; background: var(--hairline); border-radius: 10px;">
-      <div class="anim-progress h-full relative"
-           style="width: <%= @level_pct %>%; background: var(--primary); border-radius: 10px;">
-        <% if @level_pct.positive? %>
-          <div class="absolute right-1.5 top-1/2 -translate-y-1/2">
-            <%= render Ui::Icon::Component.new(:star, size: 11, color: "white") %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="flex items-center gap-1.5 mt-2.5">
-      <%= render Ui::Icon::Component.new(:star, size: 14, color: "var(--star)") %>
-      <span class="text-[12px] font-bold" style="color: var(--text);">
-        Faltam <strong class="font-extrabold" style="color: var(--primary-2);"><%= pluralize(@level_remaining, "estrelinha", plural: "estrelinhas") %></strong> pra subir!
-      </span>
-    </div>
-  </div>
-
-  <%# ── Wishlist goal card ── %>
-  <%= render "kid/wishlist/goal", profile: current_profile %>
-
   <%# ── Section heading + counter ── %>
   <div class="flex justify-between items-center mb-3 px-1 shrink-0 z-2">
     <h2 class="font-display text-[16px] font-extrabold m-0" style="color: var(--text);">Missões de hoje</h2>
@@ -163,9 +81,68 @@
     <% end %>
   </div>
 
-  <%# ── Meta coletiva semanal (below missions to keep daily run focused) ── %>
+  <%# ── Ghost CTA: create custom mission (quiet, secondary affordance) ── %>
+  <%= link_to new_kid_mission_path,
+        class: "ls-btn-3d anim-press font-display flex items-center justify-center gap-2 w-full text-center mb-5 z-2 shrink-0 no-underline",
+        style: "background: var(--surface); color: var(--text-muted); border: 2px dashed var(--hairline); border-radius: 14px; padding: 12px 14px; font-size: 13px; font-weight: 800;" do %>
+    <%= render Ui::Icon::Component.new(:plus, size: 16, color: "currentColor") %>
+    Fiz algo fora da lista
+  <% end %>
+
+  <%# ── Level progress (quiet, non-interactive info block) ── %>
+  <div class="mb-5 z-2 shrink-0" style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px;">
+    <div class="flex items-center justify-between mb-2.5">
+      <div class="flex items-center gap-2">
+        <span class="font-display text-[14px] font-extrabold"
+              style="background: var(--primary); color: white; padding: 4px 10px; border-radius: 8px;">
+          Nível <%= @level %>
+        </span>
+        <span class="font-display text-[13px] font-extrabold" style="color: var(--text-muted);">
+          <%= @level_progress %>/<%= @level_size %>
+        </span>
+      </div>
+      <span class="font-display text-[12px] font-bold" style="color: var(--text);">
+        Faltam <strong class="font-extrabold" style="color: var(--primary-2);"><%= @level_remaining %></strong> pra subir
+      </span>
+    </div>
+
+    <div class="relative overflow-hidden" style="height: 14px; background: var(--hairline); border-radius: 10px;">
+      <div class="anim-progress h-full" style="width: <%= @level_pct %>%; background: var(--primary); border-radius: 10px;"></div>
+    </div>
+  </div>
+
+  <%# ── Wishlist goal card ── %>
+  <%= render "kid/wishlist/goal", profile: current_profile %>
+
+  <%# ── Shortcut cards (Academia, Eu curto) ── %>
+  <% kid_interests = current_profile.interest_keys(5) %>
+  <% interests_title = kid_interests.any? ?
+       kid_interests.first(3).map { |k| ProfileInterest::Catalog.emoji_for(k) + " " + ProfileInterest::Catalog.label_for(k) }.join("  ·  ") :
+       "Conta pra gente o que você curte!" %>
+
+  <div class="flex flex-col gap-3 mb-5 z-2 relative shrink-0">
+    <%= render Ui::ShortcutCard::Component.new(
+          url: kid_academy_root_path,
+          tint: :primary,
+          icon: "search-01",
+          eyebrow: "Academia",
+          title: "Descubra uma pílula de conhecimento",
+          test_id: "kid-academy-card"
+        ) %>
+
+    <%= render Ui::ShortcutCard::Component.new(
+          url: kid_interests_path,
+          tint: :neutral,
+          icon: "idea-01",
+          eyebrow: "Eu curto",
+          title: interests_title,
+          test_id: "kid-interests-card"
+        ) %>
+  </div>
+
+  <%# ── Meta coletiva semanal ── %>
   <div class="relative z-2 mb-5">
-    <%= render "shared/family_goal_widget", goal: @family_goal, viewer: current_profile %>
+    <%= render "shared/family_goal_widget", goal: @family_goal, viewer: current_profile, limit: 1 %>
   </div>
 
   <%# ── Upcoming weekly/monthly missions ── %>
@@ -173,16 +150,6 @@
     <div class="relative z-2 mb-5">
       <%= render "kid/dashboard/upcoming_missions_widget", upcoming: @upcoming_missions %>
     </div>
-  <% end %>
-
-  <%# ── Ghost CTA: create custom mission ── %>
-  <%= link_to new_kid_mission_path,
-        class: "ls-btn-3d font-display flex items-center justify-center gap-2.5 w-full text-center mb-5 z-2 shrink-0 no-underline",
-        style: "background: var(--primary-soft); color: var(--primary-2); border: 2px solid color-mix(in oklab, var(--primary) 35%, var(--hairline)); border-radius: 14px; padding: 13px 14px; font-size: 13px; font-weight: 800; box-shadow: 0 3px 0 color-mix(in oklab, var(--primary) 28%, var(--hairline));" do %>
-    <span class="grid place-items-center" style="width: 22px; height: 22px; background: var(--primary); color: white; border-radius: 7px; box-shadow: 0 2px 0 var(--primary-2);">
-      <%= render Ui::Icon::Component.new(:plus, size: 13, color: "white") %>
-    </span>
-    Fez algo fora da lista? Adicionar
   <% end %>
 
 </div>

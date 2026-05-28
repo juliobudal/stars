@@ -6,13 +6,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 LittleStars — gamified family task manager with "star economy" for kids. Rails 8 fullstack app.
 
-- `PRD_LittleStars.md` — product spec
+- `PRODUCT.md` — product spec
 - `TECHSPEC.md` — authoritative architecture reference (models, services, routes, UI mapping)
-- `docs/academy-v2.md` — Academy module **v2** (Formação Humana, 26 tabelas, 7 áreas, currículo invisível) — read before touching anything under `Academy::`
-- `docs/academy-lesson-structure.md` — camadas (catálogo + schema + DB) que estruturam o conteúdo curado de cada aula
-- `.planning/designs/` — specs ativas: `academy-v4-spec.md`, `academy-v4-tasks.md`, `casa-magica/`
-- `.planning/audits/` — auditorias correntes (brutal-review v2, lens v3 follow-ups)
-- `.planning/archive/` — docs concluídos/superseded (ver `2026-05-18-cleanup/README.md` para histórico)
+- `specs/001-academy-redesign/` — **authoritative** Academy spec (redesign 2026-05-28): `spec.md`, `plan.md`, `tasks.md`. Read before touching anything under `Academy::`.
 - Current milestone: UI/UX Duolingo rebranding (MVP core done)
 - Visual language: **Duolingo style** (green primary `#58CC02`, Nunito 700/800, 3D `0 4px 0` shadows, 10–16px radii). See `DESIGN.md` for the full system. Old Berry Pop / lilac / Fraunces tokens retired.
 
@@ -30,8 +26,10 @@ Dev workflow is Docker Compose. Use `make` targets — they exec inside the `web
 
 - `make setup` — full bootstrap (build image, migrate, seed)
 - `make dev` / `make dev-detached` — start stack
-- `make rspec` (alias `make test`) — full RSpec suite. For a single example: `make shell` then `bundle exec rspec spec/services/tasks/approve_service_spec.rb:42` inside the container
-- `make lint` (alias `make rubocop`) — rubocop-rails-omakase + standard
+- `make rspec` (alias `make test`) — full RSpec suite. For a single/path run: `make rspec SPEC=spec/services/tasks/approve_service_spec.rb` (or `make test ARGS='spec/...:42'`)
+- `make lint` (alias `make rubocop`) — rubocop-rails-omakase
+- `make lint-motion` — blocks raw motion durations in views/components
+- `make lint-js` — JS syntax gate (`node --check` across frontend files)
 - `make brakeman` · `make audit` · `make ci` — security + full CI
 - `make migrate` · `make seed` · `make db-reseed` · `make reset` — db ops
 - `make shell` — bash into web container · `make c` — rails console · `make shell-db` — psql
@@ -56,9 +54,9 @@ Namespaced dual-interface app: `parent/` vs `kid/` routes, controllers, views, a
 
 Sub-features that justify their own boundary live under a top-level namespace with prefixed tables and zero FK into host tables. They communicate with the host only through controllers and a `Module::Learner`-style value adapter. **Never reference host models (`Profile`, `Family`, ...) from inside a module.**
 
-- **`Academy::`** — pedagogical missions. **v2 shipped 2026-05-16**: 26 tabelas, 7 áreas de formação humana, currículo invisível via 45 conceitos + 9 skills, spaced repetition (recall), segredos desbloqueáveis, adaptação por sinal. All under `app/{models,services,controllers,views}/academy/` and `/kid/academy/*`, `/parent/academy/*`. Tables prefixed `academy_*`. **See `docs/academy-v2.md` before editing.** `Missions::Finalize` orquestra 4 hooks em ordem fixa: `Cards::MintAfterMission` → `Pokedex::Advance` → `Signals::Record` → `Secrets::EvaluateForLearner` (ordem importa: `Secrets::EvaluateForLearner` lê o estado deixado pelos anteriores).
+- **`Academy::`** — "Pílulas de Conhecimento" (redesign 2026-05-28, spec `specs/001-academy-redesign/`). Radicalmente simples: **5 tabelas** (`academy_trails`, `academy_lessons`, `academy_lesson_progresses`, `academy_guide_conversations`, `academy_guide_messages`). Modelo: **Trilha → Aulas (pílulas) ordenadas**, desbloqueadas em sequência. O v2/v4 (pokédex, conceitos/grafo, lens, signals, skills, ranks, segredos, wagers, lightning, missions/subjects) foi **removido**. All under `app/{models,services,controllers,views}/academy/` and `/kid/academy/*`, `/parent/academy/*`. Tables prefixed `academy_*`.
 
-  **Conteúdo das aulas é 100% curado** (seedado em `db/seeds/academy_lens_payloads/`, lido por `Lens::ResolveCuratedPayload`). O único LLM em runtime é o chatbot "O Guia" (`Academy::Guide::Ask`, persona "authoritative + mysterious + fascinated") exposto em `/kid/academy/subjects/:id/missions/:id/guide` — 5 perguntas/dia por (kid × missão), via DeepSeek/OpenRouter (env `OPENROUTER_API_KEY`). Sem a env, o botão 🦉 fica escondido e a missão funciona normal.
+  **Formato da aula (método do mistério, conteúdo 100% curado em `db/seeds/academy.rb`)**: `enigma → pistas → revelação → teste → fisgada`, definido no `payload` jsonb de `Academy::Lesson` (`clues[]`, `revelation`, `check{}`, `hook`). O reveal passo-a-passo é client-side via `academy_pill_controller.js`. Serviços: `Lessons::Available` (status locked/available/completed), `Lessons::Complete` (idempotente). O único LLM em runtime é o chatbot "O Guia" (`Academy::Guide::Ask`, persona "authoritative + mysterious + fascinated") escopado a uma aula em `/kid/academy/trails/:slug/lessons/:slug/guide` — 5 perguntas/dia por kid, via DeepSeek/OpenRouter (env `OPENROUTER_API_KEY`). Sem a env, o botão 🦉 some e a aula funciona normal.
 
 To add a new module, mirror the Academy contract: top-level namespace, prefixed tables, zero FK into host, communicate via controllers + a `Module::Learner` value adapter only.
 

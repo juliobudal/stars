@@ -1,0 +1,65 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e50]: Jornada
+    - link "Academia" [ref=e5] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e6]: 󲌸
+      - generic [ref=e51]: Academia
+    - link "Lojinha" [ref=e7] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e8]: 󲊉
+      - generic [ref=e52]: Lojinha
+    - link "Diário" [ref=e9] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e10]: 󱖃
+      - generic [ref=e53]: Diário
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - link "Voltar para Mente Forte" [ref=e15] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e17]:
+            - generic [ref=e18]: MENTE FORTE
+            - heading "Quando o pensamento rápido te trai?" [level=1] [ref=e19]
+        - generic "Progresso da missão" [ref=e54]
+      - generic [ref=e20]:
+        - generic [ref=e21]: 🔬
+        - generic [ref=e22]:
+          - heading "Como funciona" [level=2] [ref=e23]
+          - generic [ref=e24]: sobre Pensar rápido vs devagar
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - 'heading "Seu cérebro tem dois pilotos: um automático e um que acorda na hora do perigo." [level=2] [ref=e27]'
+          - paragraph [ref=e28]: "Ilustração de um cockpit com dois pilotos: um robô (Sistema-1) no piloto automático, mãos soltas, olhando pro horizonte; ao lado, um humano (Sistema-2) dormindo na cadeira, com um alarme vermelho piscando 'PROBLEMA' no painel."
+          - list [ref=e29]:
+            - listitem [ref=e30]:
+              - generic [ref=e62]: "1"
+              - generic [ref=e63]: O Sistema-1 varre tudo ao redor e decide rápido — reconhece um rosto, pega um copo, responde 'tudo bem' sem pensar.
+            - listitem [ref=e31]:
+              - generic [ref=e64]: "2"
+              - generic [ref=e65]: Quando o estímulo é fácil, o Sistema-1 resolve sozinho; o Sistema-2 entra quando a situação exige cuidado ou cálculo — como fazer 17 × 24 de cabeça.
+            - listitem [ref=e32]:
+              - generic [ref=e66]: "3"
+              - generic [ref=e67]: "O Sistema-2 raramente acorda sozinho: precisa de um alarme — uma conta difícil, uma pergunta inesperada, ou o Sistema-1 gritar 'não sei'."
+        - generic [ref=e33]:
+          - generic [ref=e34]: Pergunta rápida
+          - paragraph [ref=e35]: Theo está andando de bicicleta na rua plana e vazia. De repente, um carro freia na frente dele. Qual sistema acorda primeiro?
+          - generic [ref=e36]:
+            - button "A Sistema-1, porque ele já sabe desviar sem pensar." [ref=e37] [cursor=pointer]:
+              - generic [ref=e68]: A
+              - generic [ref=e69]: Sistema-1, porque ele já sabe desviar sem pensar.
+            - button "B Sistema-2, porque andar de bicicleta é difícil." [ref=e38] [cursor=pointer]:
+              - generic [ref=e70]: B
+              - generic [ref=e71]: Sistema-2, porque andar de bicicleta é difícil.
+            - button "C Nenhum dos dois, porque o cérebro desliga em emergências." [ref=e39] [cursor=pointer]:
+              - generic [ref=e72]: C
+              - generic [ref=e73]: Nenhum dos dois, porque o cérebro desliga em emergências.
+            - button "D Sistema-2, porque ele precisa calcular a distância do carro." [ref=e40] [cursor=pointer]:
+              - generic [ref=e74]: D
+              - generic [ref=e75]: Sistema-2, porque ele precisa calcular a distância do carro.
+        - button "Continuar →" [ref=e42]
+  - text: 󲎤

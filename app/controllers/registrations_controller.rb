@@ -13,7 +13,7 @@ class RegistrationsController < ApplicationController
     else
       @family = result.data || Family.new(registration_params)
       flash.now[:alert] = result.error
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 

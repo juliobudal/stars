@@ -1,0 +1,89 @@
+- generic [active] [ref=e65]:
+  - navigation "Navegação principal" [ref=e66]:
+    - link "Jornada" [ref=e67] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e68]: 󲑲
+      - generic [ref=e69]: Jornada
+    - link "Academia" [ref=e70] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e71]: 󲌸
+      - generic [ref=e72]: Academia
+    - link "Lojinha" [ref=e73] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e74]: 󲊉
+      - generic [ref=e75]: Lojinha
+    - link "Diário" [ref=e76] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e77]: 󱖃
+      - generic [ref=e78]: Diário
+  - main [ref=e79]:
+    - generic [ref=e80]:
+      - generic [ref=e81]:
+        - generic [ref=e83]:
+          - generic [ref=e84]: 󲎤
+          - generic [ref=e85]: "0"
+        - button "Trocar de perfil" [ref=e88] [cursor=pointer]:
+          - generic [ref=e89]: 󱶂
+          - text: Trocar
+      - generic [ref=e90]:
+        - generic [ref=e91]:
+          - img "Júlio Kid" [ref=e93]:
+            - generic [ref=e94]: 󱮊
+          - generic [ref=e95]: 󲎤
+        - generic [ref=e96]:
+          - generic [ref=e97]: Boa tarde, Júlio Kid!
+          - heading "Bora pegar mais hoje?" [level=1] [ref=e98]:
+            - generic [ref=e99]: Bora pegar mais
+            - generic [ref=e100]: 󲎤
+            - generic [ref=e101]: hoje?
+          - paragraph [ref=e102]:
+            - generic [ref=e103]: Tudo feito por hoje!
+            - generic [ref=e104]: 󱿡
+      - link "💊 Pílula do Dia 60 segundos pra ficar mais esperto" [ref=e105] [cursor=pointer]:
+        - /url: /kid/academy/pill
+        - generic [ref=e107]:
+          - generic [ref=e108]: 💊
+          - generic [ref=e109]:
+            - generic [ref=e110]: Pílula do Dia
+            - generic [ref=e111]: 60 segundos pra ficar mais esperto
+      - link "Eu curto Conta pra gente o que você curte!" [ref=e113] [cursor=pointer]:
+        - /url: /kid/interests
+        - generic [ref=e115]:
+          - generic [ref=e116]: 💡
+          - generic [ref=e117]:
+            - generic [ref=e118]: Eu curto
+            - generic [ref=e119]: Conta pra gente o que você curte!
+      - generic [ref=e121]:
+        - generic [ref=e122]:
+          - generic [ref=e123]:
+            - generic [ref=e124]: Você está no
+            - generic [ref=e125]:
+              - generic [ref=e126]: NÍVEL 1
+              - generic [ref=e127]: → Nível 2
+          - generic [ref=e128]:
+            - generic [ref=e129]: 0/20
+            - generic [ref=e130]: Estrelinhas
+        - generic [ref=e132]:
+          - generic [ref=e133]: 󲎤
+          - generic [ref=e134]:
+            - text: Faltam
+            - strong [ref=e135]: 20 estrelinha
+            - text: pra subir!
+      - link "Sua meta Escolher um prêmio Toque pra ir pra Lojinha" [ref=e138] [cursor=pointer]:
+        - /url: /kid/rewards
+        - generic [ref=e140]: 󲎤
+        - generic [ref=e141]:
+          - paragraph [ref=e142]: Sua meta
+          - paragraph [ref=e143]: Escolher um prêmio
+          - paragraph [ref=e144]: Toque pra ir pra Lojinha
+        - generic [ref=e145]: 󱑩
+      - heading "Missões de hoje" [level=2] [ref=e147]
+      - generic [ref=e149]:
+        - generic [ref=e151]: 󲎤
+        - heading "Nenhuma missão hoje" [level=3] [ref=e152]
+        - paragraph [ref=e153]: Um responsável vai adicionar novas missões pra você
+      - link "Fez algo fora da lista? Adicionar" [ref=e154] [cursor=pointer]:
+        - /url: /kid/missions/new
+        - generic [ref=e155]: 󲁸
+        - text: Fez algo fora da lista? Adicionar
+  - text: 󲎤

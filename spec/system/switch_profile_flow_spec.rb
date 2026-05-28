@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe "Switch profile flow", type: :system, js: true do
   let!(:family) { Family.create!(name: "Fam", email: "fam@example.com", password: "supersecret1234") }
-  let!(:kid)    { family.profiles.create!(name: "Lila", role: :child, pin: "1234") }
-  let!(:other)  { family.profiles.create!(name: "Theo", role: :child, pin: "5678") }
+  let!(:kid)    { family.profiles.create!(name: "Lila", role: :child, pin: "1234", onboarded_at: Time.current) }
+  let!(:other)  { family.profiles.create!(name: "Theo", role: :child, pin: "5678", onboarded_at: Time.current) }
 
   it "returns to picker, family cookie intact" do
     sign_in_profile(kid, pin: "1234")

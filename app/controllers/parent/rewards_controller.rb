@@ -19,7 +19,7 @@ class Parent::RewardsController < ApplicationController
     if @reward.save
       redirect_to parent_rewards_path, notice: "Recompensa criada com sucesso!"
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -30,7 +30,7 @@ class Parent::RewardsController < ApplicationController
     if @reward.update(reward_params)
       redirect_to parent_rewards_path, notice: "Recompensa atualizada."
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

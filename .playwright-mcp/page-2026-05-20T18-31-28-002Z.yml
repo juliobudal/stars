@@ -1,0 +1,76 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e18]:
+        - link "Voltar pro Home" [ref=e19] [cursor=pointer]:
+          - /url: /kid
+        - generic [ref=e21]:
+          - generic [ref=e22]: Elenco
+          - heading "Quem conta cada aula" [level=1] [ref=e23]
+        - generic [ref=e25]: 1/5
+      - paragraph [ref=e26]: Cada aula é narrada por uma das cinco vozes do elenco d'O Guia. Conheça quem fala com você.
+      - list [ref=e27]:
+        - listitem [ref=e28]:
+          - article [ref=e29]:
+            - generic [ref=e30]:
+              - generic [ref=e31]: 🦋
+              - generic [ref=e32]:
+                - generic [ref=e33]:
+                  - heading "A Naturalista" [level=2] [ref=e34]
+                  - generic [ref=e35]: ✓ encontrada
+                - paragraph [ref=e36]: Lupa sempre na mão
+                - paragraph [ref=e37]: 3 lentes com essa voz
+        - listitem [ref=e38]:
+          - article [ref=e39]:
+            - generic [ref=e40]:
+              - generic [ref=e41]: 🏛
+              - generic [ref=e42]:
+                - generic [ref=e43]:
+                  - heading "O Historiador" [level=2] [ref=e44]
+                  - generic [ref=e45]: ainda não
+                - paragraph [ref=e46]: Linha do tempo na ponta da língua
+        - listitem [ref=e47]:
+          - article [ref=e48]:
+            - generic [ref=e49]:
+              - generic [ref=e50]: 🛠
+              - generic [ref=e51]:
+                - generic [ref=e52]:
+                  - heading "A Engenheira" [level=2] [ref=e53]
+                  - generic [ref=e54]: ainda não
+                - paragraph [ref=e55]: Tradeoff é o brinquedo favorito
+        - listitem [ref=e56]:
+          - article [ref=e57]:
+            - generic [ref=e58]:
+              - generic [ref=e59]: 🌉
+              - generic [ref=e60]:
+                - generic [ref=e61]:
+                  - heading "O Tradutor" [level=2] [ref=e62]
+                  - generic [ref=e63]: ainda não
+                - paragraph [ref=e64]: Vê o padrão entre dois mundos
+        - listitem [ref=e65]:
+          - article [ref=e66]:
+            - generic [ref=e67]:
+              - generic [ref=e68]: ⚖️
+              - generic [ref=e69]:
+                - generic [ref=e70]:
+                  - heading "A Conselheira" [level=2] [ref=e71]
+                  - generic [ref=e72]: ainda não
+                - paragraph [ref=e73]: Mostra os dois lados sem decidir
+  - text: 󲎤

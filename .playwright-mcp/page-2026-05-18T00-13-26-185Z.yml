@@ -1,0 +1,461 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - text: 󱸠
+    - navigation "Principal" [ref=e2]:
+      - generic [ref=e4]:
+        - generic [ref=e6]: 󲎤
+        - generic [ref=e7]:
+          - generic [ref=e8]: LittleStars
+          - generic [ref=e9]: Modo pais
+      - generic [ref=e10]:
+        - link "Início" [ref=e11] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e12]: 󱯉
+          - generic [ref=e13]: Início
+        - link "Crianças" [ref=e14] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e15]: 󲗦
+          - generic [ref=e16]: Crianças
+        - link "Missões" [ref=e17] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e18]: 󲑽
+          - generic [ref=e19]: Missões
+        - link "Prêmios" [ref=e20] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e21]: 󲊉
+          - generic [ref=e22]: Prêmios
+        - link "Categorias" [ref=e23] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e24]: 󱖠
+          - generic [ref=e25]: Categorias
+        - link "Aprovações" [ref=e26] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e27]: 󱞿
+          - generic [ref=e28]: Aprovações
+        - link "Configurações" [ref=e29] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e30]: 󲉌
+          - generic [ref=e31]: Configurações
+      - generic [ref=e32]:
+        - link "Editar meu perfil" [ref=e33] [cursor=pointer]:
+          - /url: /parent/profiles/1/edit
+          - img "Mamãe" [ref=e34]:
+            - generic [ref=e35]: 󲗕
+          - generic [ref=e36]:
+            - generic [ref=e37]: Mamãe
+            - generic [ref=e38]: Responsável · Editar
+          - generic [ref=e39]: 󲀏
+        - button "Trocar perfil" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]: 󱶂
+          - text: Trocar perfil
+    - text: 󱯉 󱞿 󲑽 󲊉 󱸠
+  - generic [ref=e45]:
+    - heading "Academy CMS — Missões" [level=1] [ref=e46]
+    - generic [ref=e47]:
+      - combobox [ref=e48]:
+        - option "(todas as áreas)" [selected]
+        - option "Mente Forte"
+        - option "Corpo & Saúde"
+        - option "Dinheiro & Vida Real"
+        - option "Caráter & Virtudes"
+        - option "Tecnologia & Criação"
+        - option "Resolver Problemas"
+        - option "Vida & Sociedade"
+      - button "Filtrar" [ref=e49]
+    - table [ref=e50]:
+      - rowgroup [ref=e51]:
+        - row "Área Título Conceito Ativa" [ref=e52]:
+          - columnheader "Área" [ref=e53]
+          - columnheader "Título" [ref=e54]
+          - columnheader "Conceito" [ref=e55]
+          - columnheader "Ativa" [ref=e56]
+          - columnheader [ref=e57]
+      - rowgroup [ref=e58]:
+        - row "Mente Forte Por que mexer no celular é tão difícil de parar? Dopamina sim editar" [ref=e59]:
+          - cell "Mente Forte" [ref=e60]
+          - cell "Por que mexer no celular é tão difícil de parar?" [ref=e61]
+          - cell "Dopamina" [ref=e62]:
+            - code [ref=e63]: Dopamina
+          - cell "sim" [ref=e64]
+          - cell "editar" [ref=e65]:
+            - link "editar" [ref=e66] [cursor=pointer]:
+              - /url: /admin/academy/missions/celular-dif%C3%ADcil-parar/edit
+        - row "Mente Forte Quanto custa uma notificação? Custo da troca sim editar" [ref=e67]:
+          - cell "Mente Forte" [ref=e68]
+          - cell "Quanto custa uma notificação?" [ref=e69]
+          - cell "Custo da troca" [ref=e70]:
+            - code [ref=e71]: Custo da troca
+          - cell "sim" [ref=e72]
+          - cell "editar" [ref=e73]:
+            - link "editar" [ref=e74] [cursor=pointer]:
+              - /url: /admin/academy/missions/notificacoes-custam-23-min/edit
+        - row "Mente Forte Por que 25 minutos podem valer mais que 2 horas? Trabalho profundo sim editar" [ref=e75]:
+          - cell "Mente Forte" [ref=e76]
+          - cell "Por que 25 minutos podem valer mais que 2 horas?" [ref=e77]
+          - cell "Trabalho profundo" [ref=e78]:
+            - code [ref=e79]: Trabalho profundo
+          - cell "sim" [ref=e80]
+          - cell "editar" [ref=e81]:
+            - link "editar" [ref=e82] [cursor=pointer]:
+              - /url: /admin/academy/missions/foco-profundo-25min/edit
+        - row "Mente Forte Como criar um hábito novo sem sofrer? Regra dos 2 minutos sim editar" [ref=e83]:
+          - cell "Mente Forte" [ref=e84]
+          - cell "Como criar um hábito novo sem sofrer?" [ref=e85]
+          - cell "Regra dos 2 minutos" [ref=e86]:
+            - code [ref=e87]: Regra dos 2 minutos
+          - cell "sim" [ref=e88]
+          - cell "editar" [ref=e89]:
+            - link "editar" [ref=e90] [cursor=pointer]:
+              - /url: /admin/academy/missions/habito-2-minutos/edit
+        - row "Mente Forte Por que você acredita em coisas que confirmam o que já pensa? Viés de confirmação sim editar" [ref=e91]:
+          - cell "Mente Forte" [ref=e92]
+          - cell "Por que você acredita em coisas que confirmam o que já pensa?" [ref=e93]
+          - cell "Viés de confirmação" [ref=e94]:
+            - code [ref=e95]: Viés de confirmação
+          - cell "sim" [ref=e96]
+          - cell "editar" [ref=e97]:
+            - link "editar" [ref=e98] [cursor=pointer]:
+              - /url: /admin/academy/missions/vies-confirmacao/edit
+        - row "Mente Forte Como o cérebro inventa lembranças? Memória reconstrutiva sim editar" [ref=e99]:
+          - cell "Mente Forte" [ref=e100]
+          - cell "Como o cérebro inventa lembranças?" [ref=e101]
+          - cell "Memória reconstrutiva" [ref=e102]:
+            - code [ref=e103]: Memória reconstrutiva
+          - cell "sim" [ref=e104]
+          - cell "editar" [ref=e105]:
+            - link "editar" [ref=e106] [cursor=pointer]:
+              - /url: /admin/academy/missions/memoria-falsa/edit
+        - row "Mente Forte Quando o pensamento rápido te trai? Pensar rápido vs devagar sim editar" [ref=e107]:
+          - cell "Mente Forte" [ref=e108]
+          - cell "Quando o pensamento rápido te trai?" [ref=e109]
+          - cell "Pensar rápido vs devagar" [ref=e110]:
+            - code [ref=e111]: Pensar rápido vs devagar
+          - cell "sim" [ref=e112]
+          - cell "editar" [ref=e113]:
+            - link "editar" [ref=e114] [cursor=pointer]:
+              - /url: /admin/academy/missions/pensar-devagar/edit
+        - row "Corpo & Saúde Por que açúcar engana seu cérebro? Pico de glicose sim editar" [ref=e115]:
+          - cell "Corpo & Saúde" [ref=e116]
+          - cell "Por que açúcar engana seu cérebro?" [ref=e117]
+          - cell "Pico de glicose" [ref=e118]:
+            - code [ref=e119]: Pico de glicose
+          - cell "sim" [ref=e120]
+          - cell "editar" [ref=e121]:
+            - link "editar" [ref=e122] [cursor=pointer]:
+              - /url: /admin/academy/missions/acucar-engana-cerebro/edit
+        - row "Corpo & Saúde O que acontece quando você dorme mal? Sono consolida memória sim editar" [ref=e123]:
+          - cell "Corpo & Saúde" [ref=e124]
+          - cell "O que acontece quando você dorme mal?" [ref=e125]
+          - cell "Sono consolida memória" [ref=e126]:
+            - code [ref=e127]: Sono consolida memória
+          - cell "sim" [ref=e128]
+          - cell "editar" [ref=e129]:
+            - link "editar" [ref=e130] [cursor=pointer]:
+              - /url: /admin/academy/missions/noite-ruim-apaga-semana/edit
+        - row "Corpo & Saúde Por que 10 minutos por dia vencem 1 hora no sábado? Consistência sim editar" [ref=e131]:
+          - cell "Corpo & Saúde" [ref=e132]
+          - cell "Por que 10 minutos por dia vencem 1 hora no sábado?" [ref=e133]
+          - cell "Consistência" [ref=e134]:
+            - code [ref=e135]: Consistência
+          - cell "sim" [ref=e136]
+          - cell "editar" [ref=e137]:
+            - link "editar" [ref=e138] [cursor=pointer]:
+              - /url: /admin/academy/missions/10-min-movimento/edit
+        - row "Corpo & Saúde Quando você acha que está com fome, está com sede? Sinais do corpo sim editar" [ref=e139]:
+          - cell "Corpo & Saúde" [ref=e140]
+          - cell "Quando você acha que está com fome, está com sede?" [ref=e141]
+          - cell "Sinais do corpo" [ref=e142]:
+            - code [ref=e143]: Sinais do corpo
+          - cell "sim" [ref=e144]
+          - cell "editar" [ref=e145]:
+            - link "editar" [ref=e146] [cursor=pointer]:
+              - /url: /admin/academy/missions/agua-confunde-fome/edit
+        - row "Corpo & Saúde Por que tela à noite te rouba o sono? Melatonina sim editar" [ref=e147]:
+          - cell "Corpo & Saúde" [ref=e148]
+          - cell "Por que tela à noite te rouba o sono?" [ref=e149]
+          - cell "Melatonina" [ref=e150]:
+            - code [ref=e151]: Melatonina
+          - cell "sim" [ref=e152]
+          - cell "editar" [ref=e153]:
+            - link "editar" [ref=e154] [cursor=pointer]:
+              - /url: /admin/academy/missions/tela-pre-sono/edit
+        - row "Corpo & Saúde Por que scroll infinito vicia tanto? Recompensa variável sim editar" [ref=e155]:
+          - cell "Corpo & Saúde" [ref=e156]
+          - cell "Por que scroll infinito vicia tanto?" [ref=e157]
+          - cell "Recompensa variável" [ref=e158]:
+            - code [ref=e159]: Recompensa variável
+          - cell "sim" [ref=e160]
+          - cell "editar" [ref=e161]:
+            - link "editar" [ref=e162] [cursor=pointer]:
+              - /url: /admin/academy/missions/scroll-infinito-mente/edit
+        - row "Corpo & Saúde Como recuperar sua atenção? Criatividade sim editar" [ref=e163]:
+          - cell "Corpo & Saúde" [ref=e164]
+          - cell "Como recuperar sua atenção?" [ref=e165]
+          - cell "Criatividade" [ref=e166]:
+            - code [ref=e167]: Criatividade
+          - cell "sim" [ref=e168]
+          - cell "editar" [ref=e169]:
+            - link "editar" [ref=e170] [cursor=pointer]:
+              - /url: /admin/academy/missions/atencao-sem-tela/edit
+        - row "Dinheiro & Vida Real Por que 'de R$200 por R$150' parece barato? Escassez percebida sim editar" [ref=e171]:
+          - cell "Dinheiro & Vida Real" [ref=e172]
+          - cell "Por que 'de R$200 por R$150' parece barato?" [ref=e173]
+          - cell "Escassez percebida" [ref=e174]:
+            - code [ref=e175]: Escassez percebida
+          - cell "sim" [ref=e176]
+          - cell "editar" [ref=e177]:
+            - link "editar" [ref=e178] [cursor=pointer]:
+              - /url: /admin/academy/missions/anchoring-no-preco/edit
+        - row "Dinheiro & Vida Real Cada 'sim' é mil 'nãos' invisíveis Tradeoff sim editar" [ref=e179]:
+          - cell "Dinheiro & Vida Real" [ref=e180]
+          - cell "Cada 'sim' é mil 'nãos' invisíveis" [ref=e181]
+          - cell "Tradeoff" [ref=e182]:
+            - code [ref=e183]: Tradeoff
+          - cell "sim" [ref=e184]
+          - cell "editar" [ref=e185]:
+            - link "editar" [ref=e186] [cursor=pointer]:
+              - /url: /admin/academy/missions/custo-oportunidade-real/edit
+        - row "Dinheiro & Vida Real Por que comprar por impulso é uma armadilha? Recompensa imediata sim editar" [ref=e187]:
+          - cell "Dinheiro & Vida Real" [ref=e188]
+          - cell "Por que comprar por impulso é uma armadilha?" [ref=e189]
+          - cell "Recompensa imediata" [ref=e190]:
+            - code [ref=e191]: Recompensa imediata
+          - cell "sim" [ref=e192]
+          - cell "editar" [ref=e193]:
+            - link "editar" [ref=e194] [cursor=pointer]:
+              - /url: /admin/academy/missions/impulso-perigoso/edit
+        - row "Dinheiro & Vida Real Quase tudo que você 'precisa' é desejo? Tradeoff sim editar" [ref=e195]:
+          - cell "Dinheiro & Vida Real" [ref=e196]
+          - cell "Quase tudo que você 'precisa' é desejo?" [ref=e197]
+          - cell "Tradeoff" [ref=e198]:
+            - code [ref=e199]: Tradeoff
+          - cell "sim" [ref=e200]
+          - cell "editar" [ref=e201]:
+            - link "editar" [ref=e202] [cursor=pointer]:
+              - /url: /admin/academy/missions/querer-precisar/edit
+        - row "Dinheiro & Vida Real Por que pessoas ricas guardam mais que gastam? Pagar-se primeiro sim editar" [ref=e203]:
+          - cell "Dinheiro & Vida Real" [ref=e204]
+          - cell "Por que pessoas ricas guardam mais que gastam?" [ref=e205]
+          - cell "Pagar-se primeiro" [ref=e206]:
+            - code [ref=e207]: Pagar-se primeiro
+          - cell "sim" [ref=e208]
+          - cell "editar" [ref=e209]:
+            - link "editar" [ref=e210] [cursor=pointer]:
+              - /url: /admin/academy/missions/guardar-mais-que-gastar/edit
+        - row "Dinheiro & Vida Real Como dinheiro vira mais dinheiro sozinho? Juros compostos sim editar" [ref=e211]:
+          - cell "Dinheiro & Vida Real" [ref=e212]
+          - cell "Como dinheiro vira mais dinheiro sozinho?" [ref=e213]
+          - cell "Juros compostos" [ref=e214]:
+            - code [ref=e215]: Juros compostos
+          - cell "sim" [ref=e216]
+          - cell "editar" [ref=e217]:
+            - link "editar" [ref=e218] [cursor=pointer]:
+              - /url: /admin/academy/missions/dinheiro-vira-dinheiro/edit
+        - row "Caráter & Virtudes Por que a desculpa de 'mas eu...' não funciona? Palavra dada sim editar" [ref=e219]:
+          - cell "Caráter & Virtudes" [ref=e220]
+          - cell "Por que a desculpa de 'mas eu...' não funciona?" [ref=e221]
+          - cell "Palavra dada" [ref=e222]:
+            - code [ref=e223]: Palavra dada
+          - cell "sim" [ref=e224]
+          - cell "editar" [ref=e225]:
+            - link "editar" [ref=e226] [cursor=pointer]:
+              - /url: /admin/academy/missions/desculpa-que-conserta/edit
+        - row "Caráter & Virtudes Falar mal de quem não tá presente vicia. Por quê? Honestidade sim editar" [ref=e227]:
+          - cell "Caráter & Virtudes" [ref=e228]
+          - cell "Falar mal de quem não tá presente vicia. Por quê?" [ref=e229]
+          - cell "Honestidade" [ref=e230]:
+            - code [ref=e231]: Honestidade
+          - cell "sim" [ref=e232]
+          - cell "editar" [ref=e233]:
+            - link "editar" [ref=e234] [cursor=pointer]:
+              - /url: /admin/academy/missions/calar-quando-falar-fofoca/edit
+        - row "Caráter & Virtudes Por que mentiras pequenas custam caro? Honestidade sim editar" [ref=e235]:
+          - cell "Caráter & Virtudes" [ref=e236]
+          - cell "Por que mentiras pequenas custam caro?" [ref=e237]
+          - cell "Honestidade" [ref=e238]:
+            - code [ref=e239]: Honestidade
+          - cell "sim" [ref=e240]
+          - cell "editar" [ref=e241]:
+            - link "editar" [ref=e242] [cursor=pointer]:
+              - /url: /admin/academy/missions/mentiras-pequenas-custam/edit
+        - row "Caráter & Virtudes O que faz alguém confiável? Palavra dada sim editar" [ref=e243]:
+          - cell "Caráter & Virtudes" [ref=e244]
+          - cell "O que faz alguém confiável?" [ref=e245]
+          - cell "Palavra dada" [ref=e246]:
+            - code [ref=e247]: Palavra dada
+          - cell "sim" [ref=e248]
+          - cell "editar" [ref=e249]:
+            - link "editar" [ref=e250] [cursor=pointer]:
+              - /url: /admin/academy/missions/compromisso-cumprido/edit
+        - row "Caráter & Virtudes Por que gratidão muda o que você vê? Gratidão sim editar" [ref=e251]:
+          - cell "Caráter & Virtudes" [ref=e252]
+          - cell "Por que gratidão muda o que você vê?" [ref=e253]
+          - cell "Gratidão" [ref=e254]:
+            - code [ref=e255]: Gratidão
+          - cell "sim" [ref=e256]
+          - cell "editar" [ref=e257]:
+            - link "editar" [ref=e258] [cursor=pointer]:
+              - /url: /admin/academy/missions/gratidao-muda-vista/edit
+        - row "Caráter & Virtudes Coragem é a ausência do medo? Coragem sim editar" [ref=e259]:
+          - cell "Caráter & Virtudes" [ref=e260]
+          - cell "Coragem é a ausência do medo?" [ref=e261]
+          - cell "Coragem" [ref=e262]:
+            - code [ref=e263]: Coragem
+          - cell "sim" [ref=e264]
+          - cell "editar" [ref=e265]:
+            - link "editar" [ref=e266] [cursor=pointer]:
+              - /url: /admin/academy/missions/coragem-nao-ausencia-medo/edit
+        - row "Tecnologia & Criação O algoritmo não te conhece. Conhece 1 milhão como você. Algoritmo de recomendação sim editar" [ref=e267]:
+          - cell "Tecnologia & Criação" [ref=e268]
+          - cell "O algoritmo não te conhece. Conhece 1 milhão como você." [ref=e269]
+          - cell "Algoritmo de recomendação" [ref=e270]:
+            - code [ref=e271]: Algoritmo de recomendação
+          - cell "sim" [ref=e272]
+          - cell "editar" [ref=e273]:
+            - link "editar" [ref=e274] [cursor=pointer]:
+              - /url: /admin/academy/missions/algoritmo-conhece-voces-1milhao/edit
+        - row "Tecnologia & Criação ChatGPT não pensa. Conta palavras. Probabilidade sim editar" [ref=e275]:
+          - cell "Tecnologia & Criação" [ref=e276]
+          - cell "ChatGPT não pensa. Conta palavras." [ref=e277]
+          - cell "Probabilidade" [ref=e278]:
+            - code [ref=e279]: Probabilidade
+          - cell "sim" [ref=e280]
+          - cell "editar" [ref=e281]:
+            - link "editar" [ref=e282] [cursor=pointer]:
+              - /url: /admin/academy/missions/ia-nao-e-magica/edit
+        - row "Tecnologia & Criação Como um app realmente funciona? Sistemas sim editar" [ref=e283]:
+          - cell "Tecnologia & Criação" [ref=e284]
+          - cell "Como um app realmente funciona?" [ref=e285]
+          - cell "Sistemas" [ref=e286]:
+            - code [ref=e287]: Sistemas
+          - cell "sim" [ref=e288]
+          - cell "editar" [ref=e289]:
+            - link "editar" [ref=e290] [cursor=pointer]:
+              - /url: /admin/academy/missions/como-app-funciona/edit
+        - row "Tecnologia & Criação Como uma IA toma decisão? Probabilidade sim editar" [ref=e291]:
+          - cell "Tecnologia & Criação" [ref=e292]
+          - cell "Como uma IA toma decisão?" [ref=e293]
+          - cell "Probabilidade" [ref=e294]:
+            - code [ref=e295]: Probabilidade
+          - cell "sim" [ref=e296]
+          - cell "editar" [ref=e297]:
+            - link "editar" [ref=e298] [cursor=pointer]:
+              - /url: /admin/academy/missions/como-ia-decide/edit
+        - row "Tecnologia & Criação Como a internet sabe o que você gosta? Algoritmo de recomendação sim editar" [ref=e299]:
+          - cell "Tecnologia & Criação" [ref=e300]
+          - cell "Como a internet sabe o que você gosta?" [ref=e301]
+          - cell "Algoritmo de recomendação" [ref=e302]:
+            - code [ref=e303]: Algoritmo de recomendação
+          - cell "sim" [ref=e304]
+          - cell "editar" [ref=e305]:
+            - link "editar" [ref=e306] [cursor=pointer]:
+              - /url: /admin/academy/missions/como-internet-conhece-voce/edit
+        - row "Tecnologia & Criação Criar muda você mais que consumir? Aprendizado ativo sim editar" [ref=e307]:
+          - cell "Tecnologia & Criação" [ref=e308]
+          - cell "Criar muda você mais que consumir?" [ref=e309]
+          - cell "Aprendizado ativo" [ref=e310]:
+            - code [ref=e311]: Aprendizado ativo
+          - cell "sim" [ref=e312]
+          - cell "editar" [ref=e313]:
+            - link "editar" [ref=e314] [cursor=pointer]:
+              - /url: /admin/academy/missions/criador-vs-consumidor/edit
+        - row "Resolver Problemas Por que explicar o problema pra um pato resolve metade dos bugs? Decomposição sim editar" [ref=e315]:
+          - cell "Resolver Problemas" [ref=e316]
+          - cell "Por que explicar o problema pra um pato resolve metade dos bugs?" [ref=e317]
+          - cell "Decomposição" [ref=e318]:
+            - code [ref=e319]: Decomposição
+          - cell "sim" [ref=e320]
+          - cell "editar" [ref=e321]:
+            - link "editar" [ref=e322] [cursor=pointer]:
+              - /url: /admin/academy/missions/pensar-em-voz-alta/edit
+        - row "Resolver Problemas Pergunte 'por quê?' 5 vezes seguidas. Aí você acha o problema real. Cinco Porquês sim editar" [ref=e323]:
+          - cell "Resolver Problemas" [ref=e324]
+          - cell "Pergunte 'por quê?' 5 vezes seguidas. Aí você acha o problema real." [ref=e325]
+          - cell "Cinco Porquês" [ref=e326]:
+            - code [ref=e327]: Cinco Porquês
+          - cell "sim" [ref=e328]
+          - cell "editar" [ref=e329]:
+            - link "editar" [ref=e330] [cursor=pointer]:
+              - /url: /admin/academy/missions/cinco-porques-resolve/edit
+        - row "Resolver Problemas Como quebrar um problema grande? Decomposição sim editar" [ref=e331]:
+          - cell "Resolver Problemas" [ref=e332]
+          - cell "Como quebrar um problema grande?" [ref=e333]
+          - cell "Decomposição" [ref=e334]:
+            - code [ref=e335]: Decomposição
+          - cell "sim" [ref=e336]
+          - cell "editar" [ref=e337]:
+            - link "editar" [ref=e338] [cursor=pointer]:
+              - /url: /admin/academy/missions/quebrar-problema/edit
+        - row "Resolver Problemas Por que errar te ajuda? Neuroplasticidade sim editar" [ref=e339]:
+          - cell "Resolver Problemas" [ref=e340]
+          - cell "Por que errar te ajuda?" [ref=e341]
+          - cell "Neuroplasticidade" [ref=e342]:
+            - code [ref=e343]: Neuroplasticidade
+          - cell "sim" [ref=e344]
+          - cell "editar" [ref=e345]:
+            - link "editar" [ref=e346] [cursor=pointer]:
+              - /url: /admin/academy/missions/erro-dado/edit
+        - row "Resolver Problemas Como saber qual problema atacar primeiro? Princípio de Pareto sim editar" [ref=e347]:
+          - cell "Resolver Problemas" [ref=e348]
+          - cell "Como saber qual problema atacar primeiro?" [ref=e349]
+          - cell "Princípio de Pareto" [ref=e350]:
+            - code [ref=e351]: Princípio de Pareto
+          - cell "sim" [ref=e352]
+          - cell "editar" [ref=e353]:
+            - link "editar" [ref=e354] [cursor=pointer]:
+              - /url: /admin/academy/missions/priorizar-pareto/edit
+        - row "Resolver Problemas Por que perguntar 'por quê' 5 vezes resolve quase tudo? Cinco Porquês — editar" [ref=e355]:
+          - cell "Resolver Problemas" [ref=e356]
+          - cell "Por que perguntar 'por quê' 5 vezes resolve quase tudo?" [ref=e357]
+          - cell "Cinco Porquês" [ref=e358]:
+            - code [ref=e359]: Cinco Porquês
+          - cell "—" [ref=e360]
+          - cell "editar" [ref=e361]:
+            - link "editar" [ref=e362] [cursor=pointer]:
+              - /url: /admin/academy/missions/5-porques/edit
+        - row "Vida & Sociedade Você decide quem é a pessoa em 7 segundos. E erra 60% do tempo. Viés de confirmação sim editar" [ref=e363]:
+          - cell "Vida & Sociedade" [ref=e364]
+          - cell "Você decide quem é a pessoa em 7 segundos. E erra 60% do tempo." [ref=e365]
+          - cell "Viés de confirmação" [ref=e366]:
+            - code [ref=e367]: Viés de confirmação
+          - cell "sim" [ref=e368]
+          - cell "editar" [ref=e369]:
+            - link "editar" [ref=e370] [cursor=pointer]:
+              - /url: /admin/academy/missions/primeira-impressao-erra/edit
+        - row "Vida & Sociedade Quase ninguém escuta de verdade — por que? Escuta ativa sim editar" [ref=e371]:
+          - cell "Vida & Sociedade" [ref=e372]
+          - cell "Quase ninguém escuta de verdade — por que?" [ref=e373]
+          - cell "Escuta ativa" [ref=e374]:
+            - code [ref=e375]: Escuta ativa
+          - cell "sim" [ref=e376]
+          - cell "editar" [ref=e377]:
+            - link "editar" [ref=e378] [cursor=pointer]:
+              - /url: /admin/academy/missions/escutar-de-verdade/edit
+        - row "Vida & Sociedade Como propagandas manipulam você? Prova social sim editar" [ref=e379]:
+          - cell "Vida & Sociedade" [ref=e380]
+          - cell "Como propagandas manipulam você?" [ref=e381]
+          - cell "Prova social" [ref=e382]:
+            - code [ref=e383]: Prova social
+          - cell "sim" [ref=e384]
+          - cell "editar" [ref=e385]:
+            - link "editar" [ref=e386] [cursor=pointer]:
+              - /url: /admin/academy/missions/manipulacao-marcas/edit
+        - row "Vida & Sociedade Por que silêncio constrói confiança? Pausa estratégica sim editar" [ref=e387]:
+          - cell "Vida & Sociedade" [ref=e388]
+          - cell "Por que silêncio constrói confiança?" [ref=e389]
+          - cell "Pausa estratégica" [ref=e390]:
+            - code [ref=e391]: Pausa estratégica
+          - cell "sim" [ref=e392]
+          - cell "editar" [ref=e393]:
+            - link "editar" [ref=e394] [cursor=pointer]:
+              - /url: /admin/academy/missions/silencio-constroi-confianca/edit
+        - row "Vida & Sociedade Como dar feedback que serve, não que machuca? Feedback formativo sim editar" [ref=e395]:
+          - cell "Vida & Sociedade" [ref=e396]
+          - cell "Como dar feedback que serve, não que machuca?" [ref=e397]
+          - cell "Feedback formativo" [ref=e398]:
+            - code [ref=e399]: Feedback formativo
+          - cell "sim" [ref=e400]
+          - cell "editar" [ref=e401]:
+            - link "editar" [ref=e402] [cursor=pointer]:
+              - /url: /admin/academy/missions/feedback-que-serve/edit
+  - text: 󲎤

@@ -27,7 +27,7 @@ module Kid
         @selected = keys
         @min = MIN_PICKS
         @max = MAX_PICKS
-        return render :show, status: :unprocessable_entity
+        return render :show, status: :unprocessable_content
       end
 
       ActiveRecord::Base.transaction do

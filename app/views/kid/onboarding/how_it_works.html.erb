@@ -11,15 +11,15 @@
 
 <div class="flex flex-col gap-3 flex-1">
   <%# Card 1 · Missões %>
-  <div class="ls-card-3d p-4"
-       style="background: linear-gradient(135deg, var(--primary-soft) 0%, var(--surface) 75%); border: 2px solid var(--primary); border-radius: 16px; box-shadow: 0 4px 0 var(--primary-2);">
+  <div class="p-4"
+       style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px;">
     <div class="flex items-start gap-3">
-      <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 text-[24px]"
-           style="background: var(--surface); border: 2px solid var(--primary);">
-        🎯
+      <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
+           style="background: var(--primary-soft); border: 2px solid var(--primary);">
+        <%= render Ui::Icon::Component.new(:target, size: 24, color: "var(--primary-2)") %>
       </div>
       <div class="min-w-0 flex-1">
-        <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--primary);">
+        <div class="font-display text-[13px] font-extrabold" style="color: var(--primary-2);">
           Missões
         </div>
         <div class="font-display text-[17px] font-extrabold leading-tight mt-0.5" style="color: var(--text);">
@@ -33,15 +33,15 @@
   </div>
 
   <%# Card 2 · Estrelinhas %>
-  <div class="ls-card-3d p-4"
-       style="background: linear-gradient(135deg, var(--star-soft) 0%, var(--surface) 75%); border: 2px solid var(--star); border-radius: 16px; box-shadow: 0 4px 0 var(--star-2);">
+  <div class="p-4"
+       style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px;">
     <div class="flex items-start gap-3">
       <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
-           style="background: var(--surface); border: 2px solid var(--star);">
+           style="background: var(--star-soft); border: 2px solid var(--star);">
         <%= render Ui::Icon::Component.new(:star, size: 26, color: "var(--star-2)") %>
       </div>
       <div class="min-w-0 flex-1">
-        <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--c-amber-dark);">
+        <div class="font-display text-[13px] font-extrabold" style="color: var(--c-amber-dark);">
           Estrelinhas
         </div>
         <div class="font-display text-[17px] font-extrabold leading-tight mt-0.5" style="color: var(--text);">
@@ -55,15 +55,15 @@
   </div>
 
   <%# Card 3 · Recompensas %>
-  <div class="ls-card-3d p-4"
-       style="background: linear-gradient(135deg, var(--c-peach-soft) 0%, var(--surface) 75%); border: 2px solid var(--c-peach); border-radius: 16px; box-shadow: 0 4px 0 var(--c-peach-dark);">
+  <div class="p-4"
+       style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px;">
     <div class="flex items-start gap-3">
-      <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 text-[24px]"
-           style="background: var(--surface); border: 2px solid var(--c-peach);">
-        🎁
+      <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
+           style="background: var(--c-peach-soft); border: 2px solid var(--c-peach);">
+        <%= render Ui::Icon::Component.new(:gift, size: 24, color: "var(--c-peach-dark)") %>
       </div>
       <div class="min-w-0 flex-1">
-        <div class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--c-peach-dark);">
+        <div class="font-display text-[13px] font-extrabold" style="color: var(--c-peach-dark);">
           Recompensas
         </div>
         <div class="font-display text-[17px] font-extrabold leading-tight mt-0.5" style="color: var(--text);">

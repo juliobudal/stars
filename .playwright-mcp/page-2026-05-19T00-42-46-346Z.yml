@@ -1,0 +1,75 @@
+- generic [active] [ref=e383]:
+  - navigation "Navegação principal" [ref=e384]:
+    - link "Jornada" [ref=e385] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e386]: 󲑲
+      - generic [ref=e387]: Jornada
+    - link "Academia" [ref=e388] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e389]: 󲌸
+      - generic [ref=e390]: Academia
+    - link "Lojinha" [ref=e391] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e392]: 󲊉
+      - generic [ref=e393]: Lojinha
+    - link "Diário" [ref=e394] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e395]: 󱖃
+      - generic [ref=e396]: Diário
+  - main [ref=e397]:
+    - generic [ref=e398]:
+      - generic [ref=e399]:
+        - generic [ref=e400]:
+          - link "Voltar para Mente Forte" [ref=e401] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e403]:
+            - generic [ref=e404]: MENTE FORTE
+            - heading "Quanto custa uma notificação?" [level=1] [ref=e405]
+        - generic "Progresso da missão" [ref=e406]
+      - generic [ref=e414]:
+        - generic [ref=e415]: 🔭
+        - generic [ref=e416]:
+          - heading "Em outro lugar" [level=2] [ref=e417]
+          - generic [ref=e418]: sobre Custo da troca
+      - generic [ref=e419]:
+        - generic [ref=e420]:
+          - generic [ref=e421]:
+            - generic [ref=e422]:
+              - generic [ref=e423]: Origem
+              - generic [ref=e424]: Rodovia com cabines de pedágio
+              - list [ref=e425]:
+                - listitem [ref=e426]: • Você está em viagem longa, em velocidade constante — atenção focada na estrada
+                - listitem [ref=e427]: • Cada pedágio força você a desacelerar, parar, pagar, e acelerar de novo
+                - listitem [ref=e428]: • Atravessar o pedágio em si demora 30 segundos — mas voltar à velocidade leva minutos
+                - listitem [ref=e429]: • Cinco pedágios em sequência transformam uma viagem de 1h em uma viagem de 2h
+                - listitem [ref=e430]: • O cansaço extra não vem da estrada — vem da repetição de desacelerar/acelerar
+            - generic [ref=e431]:
+              - generic [ref=e432]: Destino
+              - generic [ref=e433]: Sessão de estudo com notificações
+              - list [ref=e434]:
+                - listitem [ref=e435]: • Você está com cabeça focada em um problema, em ritmo estável
+                - listitem [ref=e436]: • Cada beep força sair do problema, ler, decidir, voltar
+                - listitem [ref=e437]: • O beep em si dura 1 segundo — mas reconstruir o contexto leva 23 minutos
+                - listitem [ref=e438]: • Cinco beeps em sequência transformam 1h de estudo em mais de 2h
+                - listitem [ref=e439]: • O cansaço extra não vem do conteúdo — vem da repetição de sair/voltar
+          - generic [ref=e440]: Pontes
+          - generic [ref=e441]:
+            - generic [ref=e442]:
+              - generic [ref=e443]: Cabine de pedágio na rodovia
+              - generic [ref=e444]: →
+              - generic [ref=e445]: Notificação durante o estudo
+            - generic [ref=e446]:
+              - generic [ref=e447]: Tempo de retomar velocidade após o pedágio
+              - generic [ref=e448]: →
+              - generic [ref=e449]: 23 minutos de reconstrução do contexto mental
+            - generic [ref=e450]:
+              - generic [ref=e451]: Pedágio dobra o tempo da viagem
+              - generic [ref=e452]: →
+              - generic [ref=e453]: 5 notificações dobram o tempo da lição
+            - generic [ref=e454]:
+              - generic [ref=e455]: Estrada sem pedágio = chegar descansado
+              - generic [ref=e456]: →
+              - generic [ref=e457]: Sessão sem beep = terminar com energia
+          - paragraph [ref=e459]: Se você escolhe rotas com menos pedágio numa viagem, por que aceita rotas com mais beep no estudo?
+        - button "Continuar →" [ref=e461]
+  - text: 󲎤

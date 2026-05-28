@@ -1,0 +1,78 @@
+- generic [active] [ref=e175]:
+  - navigation "Navegação principal" [ref=e176]:
+    - link "Jornada" [ref=e177] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e178]: 󲑲
+      - generic [ref=e179]: Jornada
+    - link "Academia" [ref=e180] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e181]: 󲌸
+      - generic [ref=e182]: Academia
+    - link "Lojinha" [ref=e183] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e184]: 󲊉
+      - generic [ref=e185]: Lojinha
+    - link "Diário" [ref=e186] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e187]: 󱖃
+      - generic [ref=e188]: Diário
+  - main [ref=e189]:
+    - generic [ref=e190]:
+      - generic [ref=e191]:
+        - generic [ref=e192]:
+          - link "Voltar para Mente Forte" [ref=e193] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e195]:
+            - generic [ref=e196]: MENTE FORTE
+            - heading "Por que mexer no celular é tão difícil de parar?" [level=1] [ref=e197]
+          - link "Falar com O Guia" [ref=e198] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/guide
+            - text: 🦉
+        - generic "Progresso da missão" [ref=e199]
+      - generic [ref=e207]:
+        - generic [ref=e208]: 📖
+        - generic [ref=e209]:
+          - heading "Conta a história" [level=2] [ref=e210]
+          - generic [ref=e211]: sobre Dopamina
+        - generic "Narrado por A Naturalista" [ref=e212]:
+          - generic [ref=e213]: 🦋
+          - generic [ref=e214]: A Naturalista
+      - generic [ref=e215]:
+        - generic [ref=e216]:
+          - generic [ref=e217]:
+            - generic [ref=e218]: T
+            - generic [ref=e219]:
+              - generic [ref=e220]: Tristan Harris, 16
+              - generic [ref=e221]: Mágico amador obcecado por como prender a atenção das pessoas.
+          - generic [ref=e222]:
+            - generic [ref=e223]:
+              - generic [ref=e224]: Cena 1
+              - paragraph [ref=e225]: "Aos 16, Tristan estudava magia. Não para enganar — para entender o truque por trás do truque. Como o mago segura sua atenção exatamente onde quer? Anos depois, ele entra no Google. Descobre que o lugar inteiro pensa igual: como prender olho humano em uma tela."
+            - generic [ref=e229]:
+              - generic [ref=e230]: Cena 2
+              - paragraph [ref=e231]: "Dentro do Google, Tristan vê as planilhas. Times inteiros de engenheiros otimizando uma métrica: 'tempo de tela'. Não 'usuário satisfeito'. Não 'aprendeu algo'. Apenas tempo. Cada notificação, cor de botão, ordem do feed — testado em milhões de pessoas até descobrir o que prende mais."
+            - generic [ref=e232]:
+              - generic [ref=e233]: Cena 3
+              - paragraph [ref=e234]: "Em 2013, Tristan manda um documento interno: 'A Call to Minimize Distraction & Respect Users' Attention'. Em duas semanas, dezesseis mil colegas leem. Em 2015, ele sai do Google. Hoje fala em parlamentos sobre o que ajudou a construir."
+            - generic [ref=e235]:
+              - generic [ref=e236]: Final
+              - paragraph [ref=e237]: "Quando você desliza o feed às onze da noite e não consegue parar, lembra: você não está fraco. Está sozinho contra um exército de gente que testou cada pixel pra te segurar mais um minuto. Saber o nome do truque é o primeiro passo pra não cair nele."
+          - button "Próxima cena →" [disabled] [ref=e226] [cursor=pointer]
+        - generic [ref=e239]:
+          - generic [ref=e240]: Pergunta rápida
+          - paragraph [ref=e241]: Por que Tristan Harris saiu do Google?
+          - generic [ref=e242]:
+            - button "A Porque viu que estava ajudando a construir algo que sequestra atenção em escala." [ref=e243] [cursor=pointer]:
+              - generic [ref=e244]: A
+              - generic [ref=e245]: Porque viu que estava ajudando a construir algo que sequestra atenção em escala.
+            - button "B Porque queria ganhar mais dinheiro fundando uma startup própria." [ref=e246] [cursor=pointer]:
+              - generic [ref=e247]: B
+              - generic [ref=e248]: Porque queria ganhar mais dinheiro fundando uma startup própria.
+            - button "C Porque o Google demitiu engenheiros que falavam sobre ética." [ref=e249] [cursor=pointer]:
+              - generic [ref=e250]: C
+              - generic [ref=e251]: Porque o Google demitiu engenheiros que falavam sobre ética.
+            - button "D Porque ele preferia trabalhar com hardware em vez de software." [ref=e252] [cursor=pointer]:
+              - generic [ref=e253]: D
+              - generic [ref=e254]: Porque ele preferia trabalhar com hardware em vez de software.
+        - button "Continuar →" [ref=e228]
+  - text: 󲎤

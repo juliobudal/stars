@@ -1,0 +1,193 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - text: 󱸠
+    - navigation "Principal" [ref=e2]:
+      - generic [ref=e4]:
+        - generic [ref=e6]: 󲎤
+        - generic [ref=e7]:
+          - generic [ref=e8]: LittleStars
+          - generic [ref=e9]: Modo pais
+      - generic [ref=e10]:
+        - link "Início" [ref=e11] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e12]: 󱯉
+          - generic [ref=e13]: Início
+        - link "Crianças" [ref=e14] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e15]: 󲗦
+          - generic [ref=e16]: Crianças
+        - link "Missões" [ref=e17] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e18]: 󲑽
+          - generic [ref=e19]: Missões
+        - link "Prêmios" [ref=e20] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e21]: 󲊉
+          - generic [ref=e22]: Prêmios
+        - link "Categorias" [ref=e23] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e24]: 󱖠
+          - generic [ref=e25]: Categorias
+        - link "Aprovações 3" [ref=e26] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e27]: 󱞿
+          - generic [ref=e28]: Aprovações
+          - generic [ref=e29]: "3"
+        - link "Configurações" [ref=e30] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e31]: 󲉌
+          - generic [ref=e32]: Configurações
+      - generic [ref=e33]:
+        - link "Editar meu perfil" [ref=e34] [cursor=pointer]:
+          - /url: /parent/profiles/322/edit
+          - img "Mamãe" [ref=e35]:
+            - generic [ref=e36]: 󲗕
+          - generic [ref=e37]:
+            - generic [ref=e38]: Mamãe
+            - generic [ref=e39]: Responsável · Editar
+          - generic [ref=e40]: 󲀏
+        - button "Trocar perfil" [ref=e43] [cursor=pointer]:
+          - generic [ref=e44]: 󱶂
+          - text: Trocar perfil
+  - text: 󱯉 󱞿 󲑽 󲊉
+  - generic [ref=e46]:
+    - banner [ref=e47]:
+      - generic [ref=e49]:
+        - heading "Configurações" [level=1] [ref=e50]
+        - paragraph [ref=e51]: Família, responsáveis e regras do sistema.
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - generic [ref=e55]: Família
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - generic [ref=e58]:
+                - generic [ref=e59]: Nome da família
+                - generic [ref=e60]: Aparece no app das crianças
+              - generic [ref=e61]: Família Budal
+            - generic [ref=e62]:
+              - generic [ref=e63]: Idioma
+              - generic [ref=e65]:
+                - combobox
+                - button "Português (BR)" [ref=e66] [cursor=pointer]:
+                  - generic [ref=e67]: Português (BR)
+                  - img [ref=e69]
+            - generic [ref=e71]:
+              - generic [ref=e72]: Fuso horário
+              - generic [ref=e74]:
+                - combobox
+                - button "São Paulo (GMT-3)" [ref=e75] [cursor=pointer]:
+                  - generic [ref=e76]: São Paulo (GMT-3)
+                  - img [ref=e78]
+            - generic [ref=e80]:
+              - generic [ref=e81]: Início de semana
+              - generic [ref=e82]:
+                - generic [ref=e83] [cursor=pointer]:
+                  - radio "DOM" [ref=e84]
+                  - generic [ref=e85]: DOM
+                - generic [ref=e86] [cursor=pointer]:
+                  - radio "SEG" [checked] [ref=e87]
+                  - generic [ref=e88]: SEG
+        - generic [ref=e89]:
+          - generic [ref=e90]: Responsáveis
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - img "Mamãe" [ref=e93]:
+                - generic [ref=e94]: 󲗕
+              - generic [ref=e95]:
+                - generic [ref=e96]: Mamãe
+                - generic [ref=e97]: mamae@familia.com · Administradora
+              - button "Editar responsável" [ref=e98] [cursor=pointer]:
+                - generic [ref=e99]: 󲀏
+            - generic [ref=e100]:
+              - img "Papai" [ref=e101]:
+                - generic [ref=e102]: 󲗕
+              - generic [ref=e103]:
+                - generic [ref=e104]: Papai
+                - generic [ref=e105]: papai@familia.com · Administrador
+              - button "Editar responsável" [ref=e106] [cursor=pointer]:
+                - generic [ref=e107]: 󲀏
+            - link "Convidar responsável" [ref=e108] [cursor=pointer]:
+              - /url: /parent/invitations/new
+              - generic [ref=e109]: 󲁸
+              - text: Convidar responsável
+      - generic [ref=e110]:
+        - generic [ref=e111]: Regras do sistema
+        - generic [ref=e112]:
+          - generic [ref=e113]:
+            - generic [ref=e114]:
+              - generic [ref=e115]: Exigir foto na conclusão
+              - generic [ref=e116]: Criança precisa anexar uma foto para marcar missão como feita
+            - checkbox [ref=e118]
+          - generic [ref=e121]:
+            - generic [ref=e122]:
+              - generic [ref=e123]: Estrelas expiram
+              - generic [ref=e124]: Estrelas não usadas expiram após 30 dias
+            - checkbox [ref=e126]
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - generic [ref=e131]: Permitir saldo negativo
+              - generic [ref=e132]: Crianças podem ficar 'devendo' estrelas por rejeições
+            - checkbox [ref=e134]
+          - generic [ref=e137]:
+            - generic [ref=e138]:
+              - generic [ref=e139]: Auto-aprovar missões até
+              - generic [ref=e140]: Missões de valor baixo são aprovadas automaticamente (deixe em branco para desativar)
+            - spinbutton [ref=e141]
+      - button "Salvar alterações" [ref=e143] [cursor=pointer]:
+        - generic [ref=e144]: 󲓧
+        - text: Salvar alterações
+    - generic [ref=e146]:
+      - generic [ref=e147]: PINs dos perfis
+      - list [ref=e148]:
+        - listitem [ref=e149]:
+          - generic [ref=e150]:
+            - img "Laura" [ref=e151]:
+              - generic [ref=e152]: 󱮊
+            - generic [ref=e153]:
+              - generic [ref=e154]: Laura
+              - generic [ref=e155]: Criança
+          - generic [ref=e156]:
+            - textbox "Novo PIN" [ref=e157]
+            - button "Resetar" [ref=e158] [cursor=pointer]
+        - listitem [ref=e159]:
+          - generic [ref=e160]:
+            - img "Lis" [ref=e161]:
+              - generic [ref=e162]: 󱮊
+            - generic [ref=e163]:
+              - generic [ref=e164]: Lis
+              - generic [ref=e165]: Criança
+          - generic [ref=e166]:
+            - textbox "Novo PIN" [ref=e167]
+            - button "Resetar" [ref=e168] [cursor=pointer]
+        - listitem [ref=e169]:
+          - generic [ref=e170]:
+            - img "Mamãe" [ref=e171]:
+              - generic [ref=e172]: 󲗕
+            - generic [ref=e173]:
+              - generic [ref=e174]: Mamãe
+              - generic [ref=e175]: Responsável
+          - generic [ref=e176]:
+            - textbox "Novo PIN" [ref=e177]
+            - button "Resetar" [ref=e178] [cursor=pointer]
+        - listitem [ref=e179]:
+          - generic [ref=e180]:
+            - img "Papai" [ref=e181]:
+              - generic [ref=e182]: 󲗕
+            - generic [ref=e183]:
+              - generic [ref=e184]: Papai
+              - generic [ref=e185]: Responsável
+          - generic [ref=e186]:
+            - textbox "Novo PIN" [ref=e187]
+            - button "Resetar" [ref=e188] [cursor=pointer]
+        - listitem [ref=e189]:
+          - generic [ref=e190]:
+            - img "Theo" [ref=e191]:
+              - generic [ref=e192]: 󱮊
+            - generic [ref=e193]:
+              - generic [ref=e194]: Theo
+              - generic [ref=e195]: Criança
+          - generic [ref=e196]:
+            - textbox "Novo PIN" [ref=e197]
+            - button "Resetar" [ref=e198] [cursor=pointer]
+    - button "Sair desta família neste dispositivo" [ref=e201] [cursor=pointer]

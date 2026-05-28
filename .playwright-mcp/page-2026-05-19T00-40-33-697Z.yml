@@ -1,0 +1,72 @@
+- generic [ref=e132]:
+  - navigation "Navegação principal" [ref=e133]:
+    - link "Jornada" [ref=e134] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e135]: 󲑲
+      - generic [ref=e136]: Jornada
+    - link "Academia" [ref=e137] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e138]: 󲌸
+      - generic [ref=e139]: Academia
+    - link "Lojinha" [ref=e140] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e141]: 󲊉
+      - generic [ref=e142]: Lojinha
+    - link "Diário" [ref=e143] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e144]: 󱖃
+      - generic [ref=e145]: Diário
+  - main [ref=e146]:
+    - generic [ref=e147]:
+      - generic [ref=e148]:
+        - generic [ref=e149]:
+          - link "Voltar para Mente Forte" [ref=e150] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e152]:
+            - generic [ref=e153]: MENTE FORTE
+            - heading "Quanto custa uma notificação?" [level=1] [ref=e154]
+        - generic "Progresso da missão" [ref=e155]
+      - generic [ref=e163]:
+        - generic [ref=e164]: 📖
+        - generic [ref=e165]:
+          - heading "Conta a história" [level=2] [ref=e166]
+          - generic [ref=e167]: sobre Custo da troca
+      - generic [ref=e168]:
+        - generic [ref=e169]:
+          - generic [ref=e170]:
+            - generic [ref=e171]: G
+            - generic [ref=e172]:
+              - generic [ref=e173]: Gloria Mark, 18
+              - generic [ref=e174]: Pesquisadora de computação que cronometrava o trabalho dos outros sem ninguém perceber.
+          - generic [ref=e175]:
+            - generic [ref=e176]:
+              - generic [ref=e177]: Cena 1
+              - paragraph [ref=e178]: "Anos 2000. Gloria Mark, professora da Universidade da Califórnia em Irvine, fica três dias seguidos atrás de cada funcionário de uma empresa, cronômetro na mão. Mede tudo: cada email aberto, cada chat respondido, cada vez que o olhar saía da tarefa principal."
+            - generic [ref=e198]:
+              - generic [ref=e199]: Cena 2
+              - paragraph [ref=e200]: "Resultado: a pessoa média trocava de tarefa a cada 3 minutos. Cada interrupção custava em média 23 minutos e 15 segundos pra ela voltar ao que estava antes. Pior — quase nunca voltava de fato. A maioria das 'volta-pra-tarefa' acabava em outra tarefa diferente."
+            - generic:
+              - generic: Cena 3
+              - paragraph: "Em 2023, Gloria publica 'Attention Span'. A descoberta mais dolorosa do livro: em 2004 ela media tempo médio em uma tela em 2 minutos e meio. Em 2016, a mesma medição deu 47 segundos. Não é que as pessoas ficaram piores — é que as telas ficaram melhores em interromper."
+            - generic:
+              - generic: Final
+              - paragraph: "Gloria não diz 'desligue tudo'. Ela diz: você não precisa ser perfeito, só precisa SABER. Cada beep que você deixa entrar é uma escolha — agora consciente. O 'gratis' do beep é mentira: você paga em 23 minutos, na próxima hora."
+          - button "Próxima cena →" [active] [ref=e179] [cursor=pointer]
+        - generic [ref=e180]:
+          - generic [ref=e181]: Pergunta rápida
+          - paragraph [ref=e182]: O que Gloria Mark mediu entre 2004 e 2016 sobre tempo de atenção em telas?
+          - generic [ref=e183]:
+            - button "A Caiu de 2 minutos e meio pra 47 segundos." [ref=e184] [cursor=pointer]:
+              - generic [ref=e185]: A
+              - generic [ref=e186]: Caiu de 2 minutos e meio pra 47 segundos.
+            - button "B Caiu de 5 minutos pra 2 minutos." [ref=e187] [cursor=pointer]:
+              - generic [ref=e188]: B
+              - generic [ref=e189]: Caiu de 5 minutos pra 2 minutos.
+            - button "C Subiu, porque as pessoas se acostumaram com várias telas." [ref=e190] [cursor=pointer]:
+              - generic [ref=e191]: C
+              - generic [ref=e192]: Subiu, porque as pessoas se acostumaram com várias telas.
+            - button "D Ficou igual — o que mudou foi só a quantidade de telas." [ref=e193] [cursor=pointer]:
+              - generic [ref=e194]: D
+              - generic [ref=e195]: Ficou igual — o que mudou foi só a quantidade de telas.
+        - button "Continuar →" [ref=e197]
+  - text: 󲎤

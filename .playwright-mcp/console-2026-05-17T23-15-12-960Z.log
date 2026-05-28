@@ -1,0 +1,13 @@
+[     118ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:10302/vite/?token=8LrvtAuv-dw1' failed: Error in connection establishment: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:10301/vite/@vite/client:744
+[     118ms] [ERROR] [vite] failed to connect to websocket (Error: WebSocket closed without opened.).  @ http://localhost:10301/vite/@vite/client:771
+[     119ms] Error: WebSocket closed without opened.
+    at WebSocket.<anonymous> (http://localhost:10301/vite/@vite/client:423:30)
+[     197ms] [INFO] [pwa] sw registered, scope: http://localhost:10301/ @ http://localhost:10301/vite/entrypoints/pwa.js:7
+[   21529ms] [ERROR] Error: Form responses must redirect to another location
+    at _FormSubmission.requestSucceededWithResponse (http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/chunk-FZTH6YJ6.js?v=6be70a8e:1065:21)
+    at FetchRequest.receive (http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/chunk-FZTH6YJ6.js?v=6be70a8e:750:21)
+    at FetchRequest.perform (http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/chunk-FZTH6YJ6.js?v=6be70a8e:728:25) @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/chunk-FZTH6YJ6.js?v=6be70a8e:3647
+[   47681ms] [ERROR] Error: Form responses must redirect to another location
+    at _FormSubmission.requestSucceededWithResponse (http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/chunk-FZTH6YJ6.js?v=6be70a8e:1065:21)
+    at FetchRequest.receive (http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/chunk-FZTH6YJ6.js?v=6be70a8e:750:21)
+    at FetchRequest.perform (http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/chunk-FZTH6YJ6.js?v=6be70a8e:728:25) @ http://localhost:10301/vite/@fs/app/node_modules/.vite/deps/chunk-FZTH6YJ6.js?v=6be70a8e:3647

@@ -38,7 +38,7 @@ module Kid
         @min = MIN_PICKS
         @max = MAX_PICKS
         flash.now[:alert] = "Escolhe ao menos #{MIN_PICKS} coisas que você curte!"
-        return render :interests, status: :unprocessable_entity
+        return render :interests, status: :unprocessable_content
       end
 
       ActiveRecord::Base.transaction do

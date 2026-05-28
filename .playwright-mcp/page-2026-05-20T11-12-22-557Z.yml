@@ -1,0 +1,45 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e42]: Jornada
+    - link "Academia" [ref=e5] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e6]: 󲌸
+      - generic [ref=e43]: Academia
+    - link "Lojinha" [ref=e7] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e8]: 󲊉
+      - generic [ref=e44]: Lojinha
+    - link "Diário" [ref=e9] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e10]: 󱖃
+      - generic [ref=e45]: Diário
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - link "Voltar para Mente Forte" [ref=e15] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e17]:
+            - generic [ref=e18]: MENTE FORTE
+            - heading "Quando o pensamento rápido te trai?" [level=1] [ref=e19]
+        - generic "Progresso da missão" [ref=e46]
+      - generic [ref=e20]:
+        - generic [ref=e21]: 📈
+        - generic [ref=e22]:
+          - heading "Adivinha" [level=2] [ref=e23]
+          - generic [ref=e24]: sobre Pensar rápido vs devagar
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]: Sua aposta
+          - paragraph [ref=e28]: Theo, quantos por cento das decisões que você toma num dia normal — o que comer, qual caminho fazer, o que responder numa mensagem — saem no automático, sem você notar que decidiu?
+          - generic [ref=e29]:
+            - generic [ref=e54]: 0%
+            - generic [ref=e30]: 50%
+            - generic [ref=e55]: 100%
+          - slider "Theo, quantos por cento das decisões que você toma num dia normal — o que comer, qual caminho fazer, o que responder numa mensagem — saem no automático, sem você notar que decidiu?" [ref=e31] [cursor=pointer]: "50"
+          - button "Ver resposta" [ref=e32] [cursor=pointer]
+        - button "Continuar →" [ref=e34]
+  - text: 󲎤

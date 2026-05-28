@@ -1,0 +1,109 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - text: 󱸠
+    - navigation "Principal" [ref=e2]:
+      - generic [ref=e4]:
+        - generic [ref=e6]: 󲎤
+        - generic [ref=e7]:
+          - generic [ref=e8]: LittleStars
+          - generic [ref=e9]: Modo pais
+      - generic [ref=e10]:
+        - link "Início" [ref=e11] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e12]: 󱯉
+          - generic [ref=e13]: Início
+        - link "Crianças" [ref=e14] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e15]: 󲗦
+          - generic [ref=e16]: Crianças
+        - link "Academia" [ref=e17] [cursor=pointer]:
+          - /url: /parent/academy
+          - generic [ref=e18]: 󲌸
+          - generic [ref=e19]: Academia
+        - link "Missões" [ref=e20] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e21]: 󲑽
+          - generic [ref=e22]: Missões
+        - link "Prêmios" [ref=e23] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e24]: 󲊉
+          - generic [ref=e25]: Prêmios
+        - link "Categorias" [ref=e26] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e27]: 󱖠
+          - generic [ref=e28]: Categorias
+        - link "Aprovações" [ref=e29] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e30]: 󱞿
+          - generic [ref=e31]: Aprovações
+        - link "Configurações" [ref=e32] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e33]: 󲉌
+          - generic [ref=e34]: Configurações
+      - generic [ref=e35]:
+        - link "Editar meu perfil" [ref=e36] [cursor=pointer]:
+          - /url: /parent/profiles/1215/edit
+          - generic [ref=e38]: 󲗕
+          - generic [ref=e39]:
+            - generic [ref=e40]: Mamãe
+            - generic [ref=e41]: Responsável · Editar
+          - generic [ref=e42]: 󲀏
+        - button "Trocar perfil" [ref=e45] [cursor=pointer]:
+          - generic [ref=e46]: 󱶂
+          - text: Trocar perfil
+    - text: 󱯉 󲌸 󱞿 󲑽 󱸠
+  - generic [ref=e48]:
+    - generic [ref=e49]:
+      - generic [ref=e50]:
+        - heading "Academia" [level=1] [ref=e51]
+        - paragraph [ref=e52]: Currículo invisível, comportamentos visíveis. O que cada filho está formando de verdade.
+      - generic [ref=e53]:
+        - link "Comparar filhos →" [ref=e54] [cursor=pointer]:
+          - /url: /parent/academy/compare
+        - link "Biblioteca de pílulas →" [ref=e55] [cursor=pointer]:
+          - /url: /parent/academy/library
+    - generic [ref=e56]:
+      - link "Laura" [ref=e57] [cursor=pointer]:
+        - /url: /parent/academy?kid_id=1219
+      - link "Lis" [ref=e58] [cursor=pointer]:
+        - /url: /parent/academy?kid_id=1218
+      - link "Theo" [ref=e59] [cursor=pointer]:
+        - /url: /parent/academy?kid_id=1217
+    - generic [ref=e60]:
+      - generic [ref=e61]:
+        - heading "Conceitos atravessados" [level=2] [ref=e62]
+        - generic [ref=e63]: 0 distintos
+      - generic [ref=e64]:
+        - generic [ref=e66]: 󲌸
+        - generic [ref=e67]:
+          - generic [ref=e68]: Currículo invisível ainda zerado
+          - paragraph [ref=e69]:
+            - text: Os conceitos aparecem quando
+            - strong [ref=e70]: Laura
+            - text: termina 1 aula da Academia. Combine 10 minutos hoje à noite.
+    - generic [ref=e71]:
+      - heading "Cartas recentes" [level=2] [ref=e72]
+      - generic [ref=e73]:
+        - generic [ref=e75]: 󱬎
+        - generic [ref=e76]:
+          - generic [ref=e77]: Sem cartas cunhadas ainda
+          - paragraph [ref=e78]:
+            - text: Cada aula completa vira uma carta colecionável pra
+            - strong [ref=e79]: Laura
+            - text: . Vale começar pela bússola da Academia hoje.
+    - generic [ref=e80]:
+      - generic [ref=e82]: 󲌸
+      - generic [ref=e83]:
+        - generic [ref=e84]: Esta semana
+        - generic [ref=e85]: 0 tokens consumidos (sem aulas nos últimos 7 dias)
+    - generic [ref=e86]:
+      - heading "Segredos desbloqueados" [level=2] [ref=e87]
+      - generic [ref=e88]:
+        - generic [ref=e90]: 󱶛
+        - generic [ref=e91]:
+          - generic [ref=e92]: Nenhum segredo aberto
+          - paragraph [ref=e93]:
+            - text: Segredos abrem quando
+            - strong [ref=e94]: Laura
+            - text: volta a um conceito 3+ vezes ou erra padrão. Constância destrava — não pressa.
+  - text: 󲎤

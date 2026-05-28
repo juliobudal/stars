@@ -15,7 +15,7 @@
 
   <%# ── Balance hero (clean) ── %>
   <div class="flex items-center justify-between gap-3 mb-5 z-2 shrink-0"
-       style="background: var(--surface); border: 2px solid var(--star); border-radius: 16px; padding: 14px 16px; box-shadow: 0 4px 0 var(--star-2);">
+       style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 14px 16px;">
     <div class="flex items-center gap-3 min-w-0">
       <div class="grid place-items-center shrink-0"
            style="width: 44px; height: 44px; background: var(--star-soft); border-radius: 12px; border: 2px solid var(--star);">
@@ -117,7 +117,7 @@
             <span><%= reward.cost %></span>
           </div>
           <div class="redeem-ritual__arrow">
-            <%= render Ui::Icon::Component.new("arrow-right", size: 20, color: "var(--text-soft)") %>
+            <%= render Ui::Icon::Component.new("arrow-right", size: 20, color: "var(--text-muted)") %>
           </div>
           <div class="redeem-ritual__prize" style="background: <%= tint_soft %>; border-color: <%= tint_fg %>;">
             <%= render Ui::Icon::Component.new(reward_icon, size: 28, color: tint_fg) %>

@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "Você faz a versão de 2 minutos do hábito todo dia, sem falhar UM dia. Em 1 ano, quantos minutos no total você terá investido?",
-  "predict_unit": "minutos",
-  "predict_min": 60,
-  "predict_max": 3000,
-  "reveal_value": 730,
-  "reveal_source": "Aritmética simples: 2 min × 365 dias = 730 minutos (~12 horas). James Clear, 'Atomic Habits' (2018) — exemplo recorrente sobre efeito composto comportamental.",
-  "interpretation": "730 minutos = 12 horas dedicadas a UMA coisa que você antes 'nunca tinha tempo'. Mas a comparação que dói é com 'vou treinar 1h/dia': em geral dura 4 dias, totaliza 4 horas, depois para. O que parece pequeno demais ganha — o que parece sério demais quebra. Constância vence intensidade num ano."
-}

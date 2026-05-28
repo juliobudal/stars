@@ -1,0 +1,46 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - link "Voltar para Mente Forte" [ref=e19] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e21]:
+            - generic [ref=e22]: MENTE FORTE
+            - heading "Por que mexer no celular é tão difícil de parar?" [level=1] [ref=e23]
+        - generic "Progresso da missão" [ref=e24]
+      - generic [ref=e32]:
+        - generic [ref=e33]: 📖
+        - generic [ref=e34]:
+          - heading "Conta a história" [level=2] [ref=e35]
+          - generic [ref=e36]: sobre Dopamina
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - generic [ref=e39]:
+            - generic [ref=e40]: T
+            - generic [ref=e41]:
+              - generic [ref=e42]: Tristan Harris, 16
+              - generic [ref=e43]: Mágico amador obcecado por como prender a atenção das pessoas.
+          - generic [ref=e45]:
+            - generic [ref=e46]: Cena 1
+            - paragraph [ref=e47]: "Aos 16, Tristan estudava magia. Não para enganar — para entender o truque por trás do truque. Como o mago segura sua atenção exatamente onde quer? Anos depois, ele entra no Google. Descobre que o lugar inteiro pensa igual: como prender olho humano em uma tela."
+          - button "Próxima cena →" [ref=e48] [cursor=pointer]
+        - button "Continuar →" [ref=e50]
+  - text: 󲎤

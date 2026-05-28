@@ -1,0 +1,72 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - text: 󱸠
+    - navigation "Principal" [ref=e2]:
+      - generic [ref=e4]:
+        - generic [ref=e6]: 󲎤
+        - generic [ref=e7]:
+          - generic [ref=e8]: LittleStars
+          - generic [ref=e9]: Modo pais
+      - generic [ref=e10]:
+        - link "Início" [ref=e11] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e12]: 󱯉
+          - generic [ref=e13]: Início
+        - link "Crianças" [ref=e14] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e15]: 󲗦
+          - generic [ref=e16]: Crianças
+        - link "Missões" [ref=e17] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e18]: 󲑽
+          - generic [ref=e19]: Missões
+        - link "Prêmios" [ref=e20] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e21]: 󲊉
+          - generic [ref=e22]: Prêmios
+        - link "Categorias" [ref=e23] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e24]: 󱖠
+          - generic [ref=e25]: Categorias
+        - link "Aprovações 3" [ref=e26] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e27]: 󱞿
+          - generic [ref=e28]: Aprovações
+          - generic [ref=e29]: "3"
+        - link "Configurações" [ref=e30] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e31]: 󲉌
+          - generic [ref=e32]: Configurações
+      - generic [ref=e33]:
+        - link "Editar meu perfil" [ref=e34] [cursor=pointer]:
+          - /url: /parent/profiles/322/edit
+          - img "Mamãe" [ref=e35]:
+            - generic [ref=e36]: 󲗕
+          - generic [ref=e37]:
+            - generic [ref=e38]: Mamãe
+            - generic [ref=e39]: Responsável · Editar
+          - generic [ref=e40]: 󲀏
+        - button "Trocar perfil" [ref=e43] [cursor=pointer]:
+          - generic [ref=e44]: 󱶂
+          - text: Trocar perfil
+  - text: 󱯉 󱞿 󲑽 󲊉
+  - generic [ref=e46]:
+    - banner [ref=e47]:
+      - generic [ref=e49]:
+        - heading "Extrato" [level=1] [ref=e50]
+        - paragraph [ref=e51]: Histórico completo da família
+    - generic [ref=e52]:
+      - generic [ref=e54]:
+        - generic [ref=e56]: 󱑸
+        - generic [ref=e57]:
+          - generic [ref=e58]: Ganhou
+          - generic [ref=e59]: +0 ★
+      - generic [ref=e61]:
+        - generic [ref=e63]: 󱑂
+        - generic [ref=e64]:
+          - generic [ref=e65]: Gastou
+          - generic [ref=e66]: −0 ★
+    - generic [ref=e68]:
+      - generic [ref=e70]: 󲈐
+      - heading "Nada no extrato ainda" [level=3] [ref=e71]
+      - paragraph [ref=e72]: Complete missões ou faça resgates pra começar o histórico

@@ -1,0 +1,126 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - generic [ref=e19]: ACADEMIA
+          - generic [ref=e20]:
+            - generic [ref=e21]: 󲌸
+            - generic [ref=e22]: Aprendiz
+        - heading "Suas áreas de formação" [level=1] [ref=e23]
+        - paragraph [ref=e24]:
+          - text: Cada aula entrega
+          - strong [ref=e25]: 1 ideia que muda alguma coisa hoje
+          - text: .
+      - generic [ref=e26]:
+        - generic [ref=e27]: 🧭 BÚSSOLA DO EXPLORADOR
+        - generic [ref=e28]:
+          - link "✨ TRILHA QUENTE · Mente Forte Por que você acredita em coisas que confirmam o que já pensa? \"O cérebro é advogado de defesa, não juiz.\"" [ref=e29] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte/missions/vies-confirmacao
+            - generic [ref=e31]: ✨ TRILHA QUENTE · Mente Forte
+            - heading "Por que você acredita em coisas que confirmam o que já pensa?" [level=2] [ref=e32]
+            - paragraph [ref=e33]: "\"O cérebro é advogado de defesa, não juiz.\""
+          - 'link "🌍 TERRITÓRIO NOVO · Corpo & Saúde Por que açúcar engana seu cérebro? Território novo: \"Corpo & Saúde\" — você nunca explorou." [ref=e34] [cursor=pointer]':
+            - /url: /kid/academy/subjects/corpo-saude/missions/acucar-engana-cerebro
+            - generic [ref=e36]: 🌍 TERRITÓRIO NOVO · Corpo & Saúde
+            - heading "Por que açúcar engana seu cérebro?" [level=2] [ref=e37]
+            - paragraph [ref=e38]: "Território novo: \"Corpo & Saúde\" — você nunca explorou."
+      - generic [ref=e40]:
+        - link "Mente Forte Nv. 1 Dominar a própria mente 1/7" [ref=e41] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e42]:
+            - generic [ref=e44]: 󱗗
+            - generic [ref=e45]:
+              - generic [ref=e46]:
+                - generic [ref=e47]: Mente Forte
+                - generic [ref=e48]: Nv. 1
+              - generic [ref=e49]: Dominar a própria mente
+              - generic [ref=e53]: 1/7
+        - link "Corpo & Saúde Nv. 0 Cuidar do corpo como ferramenta poderosa 0/7" [ref=e54] [cursor=pointer]:
+          - /url: /kid/academy/subjects/corpo-saude
+          - generic [ref=e55]:
+            - generic [ref=e57]: 󱦞
+            - generic [ref=e58]:
+              - generic [ref=e59]:
+                - generic [ref=e60]: Corpo & Saúde
+                - generic [ref=e61]: Nv. 0
+              - generic [ref=e62]: Cuidar do corpo como ferramenta poderosa
+              - generic [ref=e66]: 0/7
+        - link "Dinheiro & Vida Real Nv. 0 Inteligência financeira e responsabilidade 0/6" [ref=e67] [cursor=pointer]:
+          - /url: /kid/academy/subjects/dinheiro-vida
+          - generic [ref=e68]:
+            - generic [ref=e70]: 󱟴
+            - generic [ref=e71]:
+              - generic [ref=e72]:
+                - generic [ref=e73]: Dinheiro & Vida Real
+                - generic [ref=e74]: Nv. 0
+              - generic [ref=e75]: Inteligência financeira e responsabilidade
+              - generic [ref=e79]: 0/6
+        - link "Caráter & Virtudes Nv. 0 Formar caráter forte 0/6" [ref=e80] [cursor=pointer]:
+          - /url: /kid/academy/subjects/carater
+          - generic [ref=e81]:
+            - generic [ref=e83]: 󲑲
+            - generic [ref=e84]:
+              - generic [ref=e85]:
+                - generic [ref=e86]: Caráter & Virtudes
+                - generic [ref=e87]: Nv. 0
+              - generic [ref=e88]: Formar caráter forte
+              - generic [ref=e92]: 0/6
+        - link "Tecnologia & Criação Nv. 0 Sair do consumir e entrar no criar 0/6" [ref=e93] [cursor=pointer]:
+          - /url: /kid/academy/subjects/tecnologia-criacao
+          - generic [ref=e94]:
+            - generic [ref=e96]: 󱧓
+            - generic [ref=e97]:
+              - generic [ref=e98]:
+                - generic [ref=e99]: Tecnologia & Criação
+                - generic [ref=e100]: Nv. 0
+              - generic [ref=e101]: Sair do consumir e entrar no criar
+              - generic [ref=e105]: 0/6
+        - link "Resolver Problemas Nv. 0 Autonomia intelectual 0/5" [ref=e106] [cursor=pointer]:
+          - /url: /kid/academy/subjects/resolver-problemas
+          - generic [ref=e107]:
+            - generic [ref=e109]: 󲃬
+            - generic [ref=e110]:
+              - generic [ref=e111]:
+                - generic [ref=e112]: Resolver Problemas
+                - generic [ref=e113]: Nv. 0
+              - generic [ref=e114]: Autonomia intelectual
+              - generic [ref=e118]: 0/5
+        - link "Vida & Sociedade Nv. 0 Entender pessoas e o mundo 0/5" [ref=e119] [cursor=pointer]:
+          - /url: /kid/academy/subjects/vida-sociedade
+          - generic [ref=e120]:
+            - generic [ref=e122]: 󲗦
+            - generic [ref=e123]:
+              - generic [ref=e124]:
+                - generic [ref=e125]: Vida & Sociedade
+                - generic [ref=e126]: Nv. 0
+              - generic [ref=e127]: Entender pessoas e o mundo
+              - generic [ref=e131]: 0/5
+      - generic [ref=e132]:
+        - generic [ref=e133]:
+          - generic [ref=e134]: ATLAS · ÚLTIMAS DESCOBERTAS
+          - link "Ver tudo →" [ref=e135] [cursor=pointer]:
+            - /url: /kid/academy/atlas
+        - article [ref=e137]:
+          - generic [ref=e139]: 󲋰
+          - generic [ref=e140]: Mente Forte
+          - paragraph [ref=e141]: Se você não decide o que faz sua atenção, um algoritmo decide por você.
+          - generic [ref=e142]: Tristan Harris
+  - text: 󲎤
