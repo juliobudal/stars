@@ -1,0 +1,51 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e18]:
+        - link "Voltar" [ref=e19] [cursor=pointer]:
+          - /url: /kid
+          - generic [ref=e20]: 󱑘
+        - generic [ref=e21]:
+          - heading "Diário" [level=2] [ref=e22]
+          - generic [ref=e23]: Suas estrelinhas ganhas e gastas
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]: "+0"
+          - generic [ref=e27]: Conquistado
+        - generic [ref=e28]:
+          - generic [ref=e29]: −0
+          - generic [ref=e30]: Gasto
+        - generic [ref=e31]:
+          - generic [ref=e32]: "0"
+          - generic [ref=e33]: Missões
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - button "Tudo" [ref=e36] [cursor=pointer]
+          - button "Conquistadas" [ref=e37] [cursor=pointer]
+          - button "Compras" [ref=e38] [cursor=pointer]
+          - button "Descobertas" [ref=e39] [cursor=pointer]
+          - button "Aguardando" [ref=e40] [cursor=pointer]
+          - button "Rejeitadas" [ref=e41] [cursor=pointer]
+        - generic [ref=e43]:
+          - generic [ref=e45]: 󲈐
+          - heading "Nenhuma atividade ainda" [level=3] [ref=e46]
+          - paragraph [ref=e47]: Complete missões ou faça resgates pra começar o histórico
+        - text: 󲈐 󲈐 󲑲 󱟴 󱽲 󱞿 󲈐
+  - text: 󲎤

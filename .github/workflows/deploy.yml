@@ -40,10 +40,14 @@ jobs:
           cache: yarn
       - run: yarn install --frozen-lockfile
       - run: bin/rubocop
+      - run: bash scripts/check-motion-tokens.sh
+      - run: bash scripts/check-js-syntax.sh
       - run: bin/brakeman --no-pager -q -w2
       - run: bundle exec rails db:prepare
+      - run: env RAILS_ENV=test bundle exec rails db:environment:set
+      - run: env RAILS_ENV=test bundle exec rails db:seed:replant
       - run: bin/vite build
-      - run: bundle exec rspec --exclude-pattern "spec/system/**/*_spec.rb"
+      - run: env RAILS_ENV=test bundle exec rails db:environment:set && bundle exec rspec --exclude-pattern "spec/system/**/*_spec.rb"
 
   deploy:
     name: Deploy to Dokploy

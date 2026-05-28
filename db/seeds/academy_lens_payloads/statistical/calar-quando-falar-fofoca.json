@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, quantas vezes por semana você acha que uma criança da sua idade conta uma mentirinha que 'não faz mal' — tipo dizer que já fez a lição quando ainda não terminou? Chuta antes de ler.",
-  "predict_unit": "vezes/semana",
-  "predict_min": 0,
-  "predict_max": 20,
-  "reveal_value": 3,
-  "reveal_source": "Pesquisa com 1.200 crianças de 8 a 14 anos, Universidade de Toronto, 2019: média de 3 'mentiras cotidianas' por semana — as que a própria criança classifica como 'pequenas'.",
-  "interpretation": "3 vezes por semana. Parece pouco, mas cada uma dessas mentiras treina seu cérebro a confiar menos no próprio julgamento. Você começa achando que 'só hoje' não conta — e seu juízo interno vai perdendo a calibragem. Honestidade não é sobre os outros saberem: é sobre você não precisar se lembrar do que inventou."
-}

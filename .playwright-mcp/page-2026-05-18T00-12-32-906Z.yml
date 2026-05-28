@@ -1,0 +1,61 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - button "Copy as text" [ref=e3]
+    - heading "NoMethodError in Parent::Academy::Dashboard#index" [level=1] [ref=e4]
+  - main [ref=e5]:
+    - paragraph [ref=e6]: "Showing /app/app/views/parent/academy/dashboard/index.html.erb where line #119 raised:"
+    - code [ref=e8]: "undefined method `values' for nil"
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - text: Extracted source (around line
+        - strong [ref=e11]: "#118"
+        - text: "):"
+      - table [ref=e13]:
+        - rowgroup [ref=e14]:
+          - 'row "116 117 118 119 120 121 <%# ── Disciplina vs honestidade (challenge ratio) ──── %> <% total_challenges = @challenge_stats .values .sum %> <section class=\"ls-card-3d mb-4\" style=\"background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);\"> <div class=\"flex items-baseline justify-between mb-3\">" [ref=e15]':
+            - cell "116 117 118 119 120 121" [ref=e16]:
+              - generic [ref=e17]: 116 117 118 119 120 121
+            - 'cell "<%# ── Disciplina vs honestidade (challenge ratio) ──── %> <% total_challenges = @challenge_stats .values .sum %> <section class=\"ls-card-3d mb-4\" style=\"background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);\"> <div class=\"flex items-baseline justify-between mb-3\">" [ref=e18]':
+              - generic [ref=e19]:
+                - generic [ref=e21]: <%# ── Disciplina vs honestidade (challenge ratio) ──── %>
+                - generic [ref=e22]:
+                  - text: <% total_challenges = @challenge_stats
+                  - generic [ref=e23]: .values
+                  - text: .sum %>
+                - generic [ref=e24]: <section class="ls-card-3d mb-4"
+                - generic [ref=e25]: "style=\"background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);\">"
+                - generic [ref=e26]: <div class="flex items-baseline justify-between mb-3">
+    - paragraph
+    - paragraph [ref=e27]:
+      - code [ref=e28]: "Rails.root: /app"
+    - generic [ref=e29]:
+      - link "Application Trace" [ref=e30] [cursor=pointer]:
+        - /url: "#"
+      - text: "|"
+      - link "Framework Trace" [ref=e31] [cursor=pointer]:
+        - /url: "#"
+      - text: "|"
+      - link "Full Trace" [ref=e32] [cursor=pointer]:
+        - /url: "#"
+      - code [ref=e34]:
+        - 'link "/app/app/views/parent/academy/dashboard/index.html.erb:119:in `_app_views_parent_academy_dashboard_index_html_erb__3873319081384481603_142600''" [ref=e36] [cursor=pointer]':
+          - /url: "#"
+        - 'link "/app/app/controllers/application_controller.rb:35:in `block in with_family_locale''" [ref=e38] [cursor=pointer]':
+          - /url: "#"
+        - 'link "/app/app/controllers/application_controller.rb:35:in `with_family_locale''" [ref=e40] [cursor=pointer]':
+          - /url: "#"
+    - heading "Request" [level=2] [ref=e41]
+    - paragraph [ref=e42]: "Parameters:"
+    - generic [ref=e43]: None
+    - link "Toggle session dump" [ref=e46] [cursor=pointer]:
+      - /url: "#"
+    - link "Toggle env dump" [ref=e49] [cursor=pointer]:
+      - /url: "#"
+    - heading "Response" [level=2] [ref=e50]
+    - paragraph [ref=e51]: "Headers:"
+    - generic [ref=e52]: None
+  - generic [ref=e53]:
+    - generic [ref=e55]:
+      - generic "close" [ref=e57] [cursor=pointer]: ×
+      - generic [ref=e59]: ">>"
+    - textbox [ref=e61]

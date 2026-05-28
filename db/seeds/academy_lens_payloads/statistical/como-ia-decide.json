@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, de cada 100 respostas que ChatGPT dá sobre fatos específicos (nomes, datas, números), quantas você acha que têm erro factual escondido? Chuta.",
-  "predict_unit": "%",
-  "predict_min": 0,
-  "predict_max": 100,
-  "reveal_value": 20,
-  "reveal_source": "Stanford HELM (2023) + Vectara Hallucination Index (2024): GPT-4 e modelos equivalentes erram entre 15% e 25% em perguntas factuais específicas — média prática de ~20%.",
-  "interpretation": "20 em 100. Uma de cada cinco respostas fluentes da IA tem erro factual escondido — e ela fala com a mesma confiança nas 100. Ela não diferencia 'sei' de 'estou chutando bonito'. Provérbios 14:15 vale dobrado aqui: o prudente verifica antes de confiar."
-}

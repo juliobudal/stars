@@ -1,0 +1,20 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - progressbar [ref=e3]
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e12]: 󱮊
+        - generic [ref=e14]: 󲎤
+      - generic [ref=e15]: Bem-vindo, Lila Onboard!
+      - heading "Vamos juntos virar super-aluno?" [level=1] [ref=e16]:
+        - text: Vamos juntos virar
+        - text: super-aluno?
+      - paragraph [ref=e17]:
+        - text: Aqui você faz missões, ganha
+        - strong [ref=e18]: estrelinhas
+        - text: e troca por recompensas legais da sua família.
+    - link "Bora!" [ref=e20] [cursor=pointer]:
+      - /url: /kid/welcome/interests
+      - text: Bora!
+      - generic [ref=e21]: 󱑩
+  - text: 󲎤

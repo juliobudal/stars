@@ -1,0 +1,6 @@
+[     155ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:10302/vite/?token=8LrvtAuv-dw1' failed: Error in connection establishment: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:10301/vite/@vite/client:744
+[     155ms] [ERROR] [vite] failed to connect to websocket (Error: WebSocket closed without opened.).  @ http://localhost:10301/vite/@vite/client:771
+[     155ms] Error: WebSocket closed without opened.
+    at WebSocket.<anonymous> (http://localhost:10301/vite/@vite/client:423:30)
+[     263ms] [INFO] [pwa] sw registered, scope: http://localhost:10301/ @ http://localhost:10301/vite/entrypoints/pwa.js:7
+[     282ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://localhost:10301/kid/academy/subjects:0

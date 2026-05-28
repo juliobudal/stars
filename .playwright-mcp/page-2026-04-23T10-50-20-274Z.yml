@@ -1,0 +1,41 @@
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - img [ref=e6]
+    - generic [ref=e13]: LITTLESTARS
+    - heading "Quem vai brilhar hoje?" [level=1] [ref=e14]
+    - paragraph [ref=e15]: Escolha seu perfil pra começar a aventura
+  - generic [ref=e16]:
+    - button "Lila ⭐ 390 🔥 0" [ref=e18] [cursor=pointer]:
+      - img [ref=e20]
+      - generic [ref=e25]: Lila
+      - generic [ref=e26]:
+        - generic [ref=e27]: ⭐ 390
+        - generic [ref=e28]: 🔥 0
+    - button "Mamãe RESPONSÁVEL" [ref=e30] [cursor=pointer]:
+      - img [ref=e32]
+      - generic [ref=e36]: Mamãe
+      - generic [ref=e37]: RESPONSÁVEL
+    - button "Papai RESPONSÁVEL" [ref=e39] [cursor=pointer]:
+      - img [ref=e41]
+      - generic [ref=e45]: Papai
+      - generic [ref=e46]: RESPONSÁVEL
+    - button "Theo ⭐ 180 🔥 0" [ref=e48] [cursor=pointer]:
+      - img [ref=e50]
+      - generic [ref=e55]: Theo
+      - generic [ref=e56]:
+        - generic [ref=e57]: ⭐ 180
+        - generic [ref=e58]: 🔥 0
+    - button "Zoe ⭐ 520 🔥 0" [ref=e60] [cursor=pointer]:
+      - img [ref=e62]
+      - generic [ref=e67]: Zoe
+      - generic [ref=e68]:
+        - generic [ref=e69]: ⭐ 520
+        - generic [ref=e70]: 🔥 0
+    - link "+ Adicionar perfil" [ref=e71] [cursor=pointer]:
+      - /url: /parent/profiles/new
+      - generic [ref=e72]: +
+      - text: Adicionar
+      - text: perfil
+  - link "Área dos pais" [ref=e74] [cursor=pointer]:
+    - /url: /parent
+    - text: Área dos pais →

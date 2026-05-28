@@ -1,0 +1,63 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e8]: 󲎤
+      - generic [ref=e9]: LittleStars
+    - generic [ref=e10]: Bora começar!
+  - generic [ref=e13]: 󲗕
+  - heading "Quem é você?" [level=1] [ref=e14]
+  - paragraph [ref=e15]: Toque no seu rostinho pra entrar
+  - generic [ref=e16]:
+    - generic [ref=e17]:
+      - link "Mamãe Responsável" [ref=e18] [cursor=pointer]:
+        - /url: /profile_session/new?profile_id=3378
+        - generic [ref=e20]: 󲍽
+        - generic [ref=e23]: 󲗕
+        - generic [ref=e24]: Mamãe
+        - generic [ref=e25]: Responsável
+      - link "Papai Responsável" [ref=e26] [cursor=pointer]:
+        - /url: /profile_session/new?profile_id=3379
+        - generic [ref=e28]: 󲍽
+        - generic [ref=e31]: 󲗕
+        - generic [ref=e32]: Papai
+        - generic [ref=e33]: Responsável
+      - link "Theo 0" [active] [ref=e34] [cursor=pointer]:
+        - /url: /profile_session/new?profile_id=3380
+        - generic [ref=e37]: 󱮊
+        - generic [ref=e38]: Theo
+        - generic [ref=e39]:
+          - generic [ref=e40]: 󲎤
+          - text: "0"
+      - link "Lis 0" [ref=e41] [cursor=pointer]:
+        - /url: /profile_session/new?profile_id=3381
+        - generic [ref=e44]: 󱮊
+        - generic [ref=e45]: Lis
+        - generic [ref=e46]:
+          - generic [ref=e47]: 󲎤
+          - text: "0"
+      - link "Laura 0" [ref=e48] [cursor=pointer]:
+        - /url: /profile_session/new?profile_id=3382
+        - generic [ref=e51]: 󱮊
+        - generic [ref=e52]: Laura
+        - generic [ref=e53]:
+          - generic [ref=e54]: 󲎤
+          - text: "0"
+    - dialog "Olá, Theo!" [ref=e56]:
+      - button "Fechar" [ref=e57] [cursor=pointer]:
+        - generic [ref=e58]: 󱚙
+      - generic [ref=e61]: 󱮊
+      - generic [ref=e62]: Olá, Theo!
+      - generic [ref=e63]: Digite seu PIN secreto
+      - generic [ref=e70]:
+        - button "1" [ref=e71] [cursor=pointer]
+        - button "2" [ref=e72] [cursor=pointer]
+        - button "3" [ref=e73] [cursor=pointer]
+        - button "4" [ref=e74] [cursor=pointer]
+        - button "5" [ref=e75] [cursor=pointer]
+        - button "6" [ref=e76] [cursor=pointer]
+        - button "7" [ref=e77] [cursor=pointer]
+        - button "8" [ref=e78] [cursor=pointer]
+        - button "9" [ref=e79] [cursor=pointer]
+        - button "0" [ref=e81] [cursor=pointer]
+        - button "Apagar" [ref=e82] [cursor=pointer]: ⌫
+      - paragraph [ref=e83]: Esqueceu? Pede ajuda pros pais.

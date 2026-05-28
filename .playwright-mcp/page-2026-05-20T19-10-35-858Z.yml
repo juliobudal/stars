@@ -1,0 +1,151 @@
+- generic [active] [ref=e211]:
+  - generic [ref=e212]:
+    - generic [ref=e213]:
+      - generic [ref=e214]:
+        - img [ref=e215]
+        - generic [ref=e217]: LittleStars
+      - button "Abrir menu" [ref=e218] [cursor=pointer]:
+        - generic [ref=e219]: 󱸠
+    - navigation "Principal" [ref=e220]:
+      - generic [ref=e222]:
+        - generic [ref=e224]: 󲎤
+        - generic [ref=e225]:
+          - generic [ref=e226]: LittleStars
+          - generic [ref=e227]: Modo pais
+      - generic [ref=e228]:
+        - link "Início" [ref=e229] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e230]: 󱯉
+          - generic [ref=e231]: Início
+        - link "Crianças" [ref=e232] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e233]: 󲗦
+          - generic [ref=e234]: Crianças
+        - link "Academia" [ref=e235] [cursor=pointer]:
+          - /url: /parent/academy
+          - generic [ref=e236]: 󲌸
+          - generic [ref=e237]: Academia
+        - link "Missões" [ref=e238] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e239]: 󲑽
+          - generic [ref=e240]: Missões
+        - link "Prêmios" [ref=e241] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e242]: 󲊉
+          - generic [ref=e243]: Prêmios
+        - link "Categorias" [ref=e244] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e245]: 󱖠
+          - generic [ref=e246]: Categorias
+        - link "Aprovações" [ref=e247] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e248]: 󱞿
+          - generic [ref=e249]: Aprovações
+        - link "Configurações" [ref=e250] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e251]: 󲉌
+          - generic [ref=e252]: Configurações
+      - generic [ref=e253]:
+        - link "Editar meu perfil" [ref=e254] [cursor=pointer]:
+          - /url: /parent/profiles/1171/edit
+          - generic [ref=e256]: 󲗕
+          - generic [ref=e257]:
+            - generic [ref=e258]: Pai Homolog
+            - generic [ref=e259]: Responsável · Editar
+          - generic [ref=e260]: 󲀏
+        - button "Trocar perfil" [ref=e263] [cursor=pointer]:
+          - generic [ref=e264]: 󱶂
+          - text: Trocar perfil
+    - generic [ref=e265]:
+      - link "Início" [ref=e266] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e267]:
+          - generic [ref=e268]: 󱯉
+          - generic [ref=e269]: Início
+      - link "Academia" [ref=e270] [cursor=pointer]:
+        - /url: /parent/academy
+        - generic [ref=e271]:
+          - generic [ref=e272]: 󲌸
+          - generic [ref=e273]: Academia
+      - link "Aprovações" [ref=e274] [cursor=pointer]:
+        - /url: /parent/approvals
+        - generic [ref=e275]:
+          - generic [ref=e276]: 󱞿
+          - generic [ref=e277]: Aprovações
+      - link "Missões" [ref=e278] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e279]:
+          - generic [ref=e280]: 󲑽
+          - generic [ref=e281]: Missões
+      - button "Mais opções" [ref=e282] [cursor=pointer]:
+        - generic [ref=e283]:
+          - generic [ref=e284]: 󱸠
+          - generic [ref=e285]: Mais
+  - generic [ref=e286]:
+    - generic [ref=e287]:
+      - generic [ref=e288]: 󲓧
+      - generic [ref=e289]: Tarefa criada com sucesso.
+    - generic [ref=e290]:
+      - banner [ref=e291]:
+        - generic [ref=e293]:
+          - heading "Missões" [level=1] [ref=e294]
+          - paragraph [ref=e295]: 2 missões no catálogo · 2 ativas
+        - link "Nova missão" [ref=e297] [cursor=pointer]:
+          - /url: /parent/global_tasks/new
+          - generic [ref=e298]: 󲁸
+          - text: Nova missão
+      - tablist [ref=e301]:
+        - tab "Todas 2" [selected] [ref=e302] [cursor=pointer]:
+          - text: Todas
+          - generic [ref=e303]: "2"
+        - tab "Diárias 2" [ref=e304] [cursor=pointer]:
+          - text: Diárias
+          - generic [ref=e305]: "2"
+        - tab "Semanais 0" [ref=e306] [cursor=pointer]:
+          - text: Semanais
+          - generic [ref=e307]: "0"
+        - tab "Inativas 0" [ref=e308] [cursor=pointer]:
+          - text: Inativas
+          - generic [ref=e309]: "0"
+      - generic [ref=e310]:
+        - generic [ref=e311]:
+          - button "Desativar missão" [ref=e313] [cursor=pointer]:
+            - generic [ref=e314]: 󲓧
+          - link "Verify turbo header Geral Todo dia 3 Atribuída a Júlio Kid Ativa" [ref=e315] [cursor=pointer]:
+            - /url: /parent/global_tasks/1156/edit
+            - generic [ref=e316]:
+              - generic [ref=e318]: 󲌸
+              - generic [ref=e319]:
+                - generic [ref=e320]:
+                  - generic [ref=e321]:
+                    - generic [ref=e323]: Verify turbo header
+                    - generic [ref=e324]:
+                      - generic [ref=e325]: Geral
+                      - generic [ref=e326]: Todo dia
+                  - generic [ref=e327]:
+                    - generic [ref=e328]: 󲎤
+                    - generic [ref=e329]: "3"
+                - generic [ref=e330]:
+                  - generic [ref=e331]: Atribuída a Júlio Kid
+                  - generic [ref=e332]: Ativa
+        - generic [ref=e334]:
+          - button "Desativar missão" [ref=e336] [cursor=pointer]:
+            - generic [ref=e337]: 󲓧
+          - link "Missão homolog 2026-05-20 Saúde Todo dia 3 Atribuída a Júlio Kid Ativa" [ref=e338] [cursor=pointer]:
+            - /url: /parent/global_tasks/1145/edit
+            - generic [ref=e339]:
+              - generic [ref=e341]: 󱦞
+              - generic [ref=e342]:
+                - generic [ref=e343]:
+                  - generic [ref=e344]:
+                    - generic [ref=e346]: Missão homolog 2026-05-20
+                    - generic [ref=e347]:
+                      - generic [ref=e348]: Saúde
+                      - generic [ref=e349]: Todo dia
+                  - generic [ref=e350]:
+                    - generic [ref=e351]: 󲎤
+                    - generic [ref=e352]: "3"
+                - generic [ref=e353]:
+                  - generic [ref=e354]: Atribuída a Júlio Kid
+                  - generic [ref=e355]: Ativa
+  - text: 󲎤

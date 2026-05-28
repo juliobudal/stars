@@ -22,12 +22,16 @@ Rails 8.1 · Ruby 3.3+ · PostgreSQL 16 · Vite + Propshaft · Tailwind 4 · Sti
 
 ## Run
 
-Dev environment is Devcontainer / Docker Compose. From the `web` container:
+Dev environment is Devcontainer / Docker Compose. From the project root:
 
 ```sh
 bin/setup    # bundle + db:prepare
 bin/dev      # Rails + Vite (Procfile.dev)
 make rspec   # full test suite (runs inside container)
+make lint    # rubocop
+make lint-motion
+make lint-js
+make ci      # full quality/security/test pipeline
 ```
 
 See `CLAUDE.md` for the full command reference.

@@ -1,10 +1,10 @@
 <% if locked_rewards.any? %>
   <div class="flex items-center gap-2 mb-3 px-1">
     <div class="grid place-items-center shrink-0"
-         style="width: 24px; height: 24px; background: var(--text-soft); border-radius: 8px; box-shadow: 0 2px 0 var(--text-muted);">
+         style="width: 24px; height: 24px; background: var(--text-muted); border-radius: 8px; box-shadow: 0 2px 0 var(--text);">
       <%= render Ui::Icon::Component.new("lock", size: 13, color: "white") %>
     </div>
-    <h2 class="font-display text-[15px] font-extrabold uppercase tracking-[0.5px] m-0" style="color: var(--text-muted);">Continua juntando!</h2>
+    <h2 class="font-display text-[16px] font-extrabold m-0" style="color: var(--text-muted);">Continua juntando!</h2>
   </div>
 
   <div class="grid grid-cols-2 gap-3 mb-6">
@@ -41,7 +41,7 @@
             <div class="inline-flex items-center gap-1">
               <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--star)") %>
               <span class="font-display text-[12px] font-extrabold" style="color: var(--text);">
-                <%= balance %><span style="color: var(--text-soft);">/<%= reward.cost %></span>
+                <%= balance %><span style="color: var(--text-muted);">/<%= reward.cost %></span>
               </span>
             </div>
             <span class="font-display text-[10px] font-extrabold uppercase tracking-[0.5px]" style="color: var(--primary-2);">

@@ -1,0 +1,142 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - text: 󱸠
+    - navigation "Principal" [ref=e2]:
+      - generic [ref=e4]:
+        - generic [ref=e6]: 󲎤
+        - generic [ref=e7]:
+          - generic [ref=e8]: LittleStars
+          - generic [ref=e9]: Modo pais
+      - generic [ref=e10]:
+        - link "Início" [ref=e11] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e12]: 󱯉
+          - generic [ref=e13]: Início
+        - link "Crianças" [ref=e14] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e15]: 󲗦
+          - generic [ref=e16]: Crianças
+        - link "Missões" [ref=e17] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e18]: 󲑽
+          - generic [ref=e19]: Missões
+        - link "Prêmios" [ref=e20] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e21]: 󲊉
+          - generic [ref=e22]: Prêmios
+        - link "Categorias" [ref=e23] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e24]: 󱖠
+          - generic [ref=e25]: Categorias
+        - link "Aprovações" [ref=e26] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e27]: 󱞿
+          - generic [ref=e28]: Aprovações
+        - link "Configurações" [ref=e29] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e30]: 󲉌
+          - generic [ref=e31]: Configurações
+      - generic [ref=e32]:
+        - link "Editar meu perfil" [ref=e33] [cursor=pointer]:
+          - /url: /parent/profiles/1/edit
+          - img "Mamãe" [ref=e34]:
+            - generic [ref=e35]: 󲗕
+          - generic [ref=e36]:
+            - generic [ref=e37]: Mamãe
+            - generic [ref=e38]: Responsável · Editar
+          - generic [ref=e39]: 󲀏
+        - button "Trocar perfil" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]: 󱶂
+          - text: Trocar perfil
+    - text: 󱯉 󱞿 󲑽 󲊉 󱸠
+  - generic [ref=e45]:
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - heading "Academia" [level=1] [ref=e48]
+        - paragraph [ref=e49]: Currículo invisível, comportamentos visíveis. O que cada filho está formando de verdade.
+      - generic [ref=e50]:
+        - link "Comparar filhos →" [ref=e51] [cursor=pointer]:
+          - /url: /parent/academy/compare
+        - link "Biblioteca de pílulas →" [ref=e52] [cursor=pointer]:
+          - /url: /parent/academy/library
+    - generic [ref=e53]:
+      - link "Laura" [ref=e54] [cursor=pointer]:
+        - /url: /parent/academy?kid_id=5
+      - link "Lis" [ref=e55] [cursor=pointer]:
+        - /url: /parent/academy?kid_id=4
+      - link "Theo" [ref=e56] [cursor=pointer]:
+        - /url: /parent/academy?kid_id=3
+    - generic [ref=e57]: Sem rank ainda — Theo precisa concluir aulas pra subir.
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - heading "Radar de habilidades" [level=2] [ref=e60]
+        - generic [ref=e61]: 9 skills
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - generic [ref=e65]: 󲑲
+          - generic [ref=e67]:
+            - generic [ref=e68]: Disciplina
+            - generic [ref=e69]: "0"
+        - generic [ref=e71]:
+          - generic [ref=e73]: 󲌸
+          - generic [ref=e75]:
+            - generic [ref=e76]: Curiosidade
+            - generic [ref=e77]: "0"
+        - generic [ref=e79]:
+          - generic [ref=e81]: 󱠗
+          - generic [ref=e83]:
+            - generic [ref=e84]: Autonomia
+            - generic [ref=e85]: "0"
+        - generic [ref=e87]:
+          - generic [ref=e89]: 󲑲
+          - generic [ref=e91]:
+            - generic [ref=e92]: Foco
+            - generic [ref=e93]: "0"
+        - generic [ref=e95]:
+          - generic [ref=e97]: 󱦞
+          - generic [ref=e99]:
+            - generic [ref=e100]: Saúde
+            - generic [ref=e101]: "0"
+        - generic [ref=e103]:
+          - generic [ref=e105]: 󲗦
+          - generic [ref=e107]:
+            - generic [ref=e108]: Comunicação
+            - generic [ref=e109]: "0"
+        - generic [ref=e111]:
+          - generic [ref=e113]: 󲃬
+          - generic [ref=e115]:
+            - generic [ref=e116]: Lógica
+            - generic [ref=e117]: "0"
+        - generic [ref=e119]:
+          - generic [ref=e121]: 󲓧
+          - generic [ref=e123]:
+            - generic [ref=e124]: Responsabilidade
+            - generic [ref=e125]: "0"
+        - generic [ref=e127]:
+          - generic [ref=e129]: 󱶛
+          - generic [ref=e131]:
+            - generic [ref=e132]: Criatividade
+            - generic [ref=e133]: "0"
+    - generic [ref=e135]:
+      - generic [ref=e136]:
+        - heading "Conceitos atravessados" [level=2] [ref=e137]
+        - generic [ref=e138]: 1 distintos
+      - generic [ref=e139]:
+        - generic [ref=e140]: saude
+        - generic [ref=e142]: Pico de glicose
+    - generic [ref=e143]:
+      - heading "Cartas recentes" [level=2] [ref=e144]
+      - article [ref=e146]:
+        - generic [ref=e148]: 󱐟
+        - generic [ref=e149]:
+          - generic [ref=e150]: Se você come doce pra ter energia, em 30 minutos você vai sentir MENOS energia — e querer mais doce.
+          - generic [ref=e151]: Corpo & Saúde · 17/05
+    - generic [ref=e152]:
+      - generic [ref=e154]: 󲌸
+      - generic [ref=e155]:
+        - generic [ref=e156]: Esta semana
+        - generic [ref=e157]: 0 tokens consumidos (sem aulas nos últimos 7 dias)
+    - generic [ref=e158]:
+      - heading "Segredos desbloqueados" [level=2] [ref=e159]
+      - paragraph [ref=e160]: Nenhum segredo aberto — eles surgem quando regras de progresso são satisfeitas.
+  - text: 󲎤

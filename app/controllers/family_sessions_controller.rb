@@ -22,7 +22,7 @@ class FamilySessionsController < ApplicationController
       redirect_to new_profile_session_path
     else
       flash.now[:alert] = "Email ou senha inválidos."
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 

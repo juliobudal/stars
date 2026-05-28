@@ -13,7 +13,7 @@ class Parent::SettingsController < ApplicationController
     if @family.update(settings_params)
       redirect_to parent_settings_path, notice: "Salvo"
     else
-      render :show, status: :unprocessable_entity
+      render :show, status: :unprocessable_content
     end
   end
 

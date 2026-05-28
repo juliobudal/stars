@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Profile pick + PIN flow", type: :system, js: true do
   let!(:family) { Family.create!(name: "Fam", email: "fam@example.com", password: "supersecret1234") }
-  let!(:kid)    { family.profiles.create!(name: "Lila", role: :child, pin: "1234") }
+  let!(:kid)    { family.profiles.create!(name: "Lila", role: :child, pin: "1234", onboarded_at: Time.current) }
 
   it "lets a kid log in with PIN" do
     sign_in_family(family)

@@ -1,0 +1,78 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e18]:
+        - link "Voltar pro Home" [ref=e19] [cursor=pointer]:
+          - /url: /kid
+        - generic [ref=e21]:
+          - generic [ref=e22]: Pílula do Dia
+          - heading "Sono consolida memória" [level=1] [ref=e23]
+      - generic [ref=e24]:
+        - generic [ref=e25]: 🔭
+        - generic [ref=e26]:
+          - heading "Em outro lugar" [level=2] [ref=e27]
+          - generic [ref=e28]: 60-90 segundos · sem missão
+        - generic "Narrado por O Tradutor" [ref=e29]:
+          - generic [ref=e30]: 🌉
+          - generic [ref=e31]: O Tradutor
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e35]: Origem
+            - generic [ref=e36]: Pendrive salvando o trabalho da escola
+            - list [ref=e37]:
+              - listitem [ref=e38]: • Você passa horas digitando o trabalho durante o dia
+              - listitem [ref=e39]: • À noite, conecta o pendrive e salva — é quando o arquivo de fato vira permanente
+              - listitem [ref=e40]: • Se tirar o pendrive antes de salvar, o trabalho do dia some
+              - listitem [ref=e41]: • Salvamento incompleto deixa pedaços corrompidos no arquivo
+              - listitem [ref=e42]: • Sem salvar, no dia seguinte você começa do zero — mesmo tendo trabalhado
+          - generic [ref=e43]:
+            - generic [ref=e44]: Destino
+            - generic [ref=e45]: Sono consolidando o que você aprendeu hoje
+            - list [ref=e46]:
+              - listitem [ref=e47]: • Você passa o dia inteiro vendo, ouvindo, treinando coisas novas
+              - listitem [ref=e48]: • À noite, no sono profundo, o cérebro transfere isso pra memória permanente
+              - listitem [ref=e49]: • Se cortar o sono, o que você aprendeu no dia some em grande parte
+              - listitem [ref=e50]: • Sono picado deixa lembranças vagas, fragmentadas
+              - listitem [ref=e51]: • Sem sono, no dia seguinte você 'sabia' a matéria — agora não sabe mais
+        - generic [ref=e52]: Pontes
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - generic [ref=e55]: Pendrive conectado salvando o arquivo
+            - generic [ref=e56]: →
+            - generic [ref=e57]: Sono profundo consolidando memórias
+          - generic [ref=e58]:
+            - generic [ref=e59]: Tirar o pendrive antes do fim
+            - generic [ref=e60]: →
+            - generic [ref=e61]: Acordar antes do ciclo completar
+          - generic [ref=e62]:
+            - generic [ref=e63]: Arquivo corrompido depois de salvamento ruim
+            - generic [ref=e64]: →
+            - generic [ref=e65]: Lembrança vaga depois de sono ruim
+          - generic [ref=e66]:
+            - generic [ref=e67]: Começar o dia seguinte do zero
+            - generic [ref=e68]: →
+            - generic [ref=e69]: Acordar sem fixar o que treinou
+        - paragraph [ref=e71]: Se você nunca tiraria o pendrive antes do trabalho salvar, por que vira a noite na véspera da prova esperando que o cérebro salve sozinho?
+      - generic [ref=e72]:
+        - button "💬 Conta pro pai/mãe" [ref=e74] [cursor=pointer]
+        - link "Voltar pra Jornada" [ref=e75] [cursor=pointer]:
+          - /url: /kid
+  - text: 󲎤

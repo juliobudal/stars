@@ -1,0 +1,183 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - text: 󱸠
+    - navigation "Principal" [ref=e2]:
+      - generic [ref=e4]:
+        - generic [ref=e6]: 󲎤
+        - generic [ref=e7]:
+          - generic [ref=e8]: LittleStars
+          - generic [ref=e9]: Modo pais
+      - generic [ref=e10]:
+        - link "Início" [ref=e11] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e12]: 󱯉
+          - generic [ref=e13]: Início
+        - link "Crianças" [ref=e14] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e15]: 󲗦
+          - generic [ref=e16]: Crianças
+        - link "Missões" [ref=e17] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e18]: 󲑽
+          - generic [ref=e19]: Missões
+        - link "Prêmios" [ref=e20] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e21]: 󲊉
+          - generic [ref=e22]: Prêmios
+        - link "Categorias" [ref=e23] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e24]: 󱖠
+          - generic [ref=e25]: Categorias
+        - link "Aprovações 3" [ref=e26] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e27]: 󱞿
+          - generic [ref=e28]: Aprovações
+          - generic [ref=e29]: "3"
+        - link "Configurações" [ref=e30] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e31]: 󲉌
+          - generic [ref=e32]: Configurações
+      - generic [ref=e33]:
+        - link "Editar meu perfil" [ref=e34] [cursor=pointer]:
+          - /url: /parent/profiles/6047/edit
+          - img "Mamãe" [ref=e35]:
+            - generic [ref=e36]: 󲗕
+          - generic [ref=e37]:
+            - generic [ref=e38]: Mamãe
+            - generic [ref=e39]: Responsável · Editar
+          - generic [ref=e40]: 󲀏
+        - button "Trocar perfil" [ref=e43] [cursor=pointer]:
+          - generic [ref=e44]: 󱶂
+          - text: Trocar perfil
+  - text: 󱯉 󱞿 󲑽 󲊉
+  - generic [ref=e46]:
+    - generic [ref=e48]:
+      - link "Voltar" [ref=e49] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e50]: 󱑘
+      - generic [ref=e51]:
+        - heading "Nova missão" [level=2] [ref=e52]
+        - generic [ref=e53]: Crie uma tarefa para a família conquistar estrelinhas
+    - generic [ref=e55]:
+      - generic [ref=e56]:
+        - generic [ref=e57]: Título da missão
+        - textbox "Título da missão" [ref=e58]:
+          - /placeholder: "Ex: Arrumar a cama"
+        - generic [ref=e59]: Use frases curtas que a criança entenda.
+      - generic [ref=e60]:
+        - generic [ref=e61]: Escolha um ícone
+        - generic [ref=e62]:
+          - button "Escolher ícone" [ref=e63] [cursor=pointer]:
+            - generic [ref=e66]: 󱔉
+          - generic [ref=e67]: Toque para escolher um ícone
+          - text: 󱚙 󱔉 󱤈 󱖃 󱥃 󱖕 󱖁 󱖂 󱼧 󲏰 󱯉 󱻡 󱦞 󲑲
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e70]: 󲎤
+          - text: Quantas estrelinhas vale?
+        - generic [ref=e71]:
+          - button "1 estrelinha" [ref=e72] [cursor=pointer]:
+            - generic [ref=e73]: 󲎤
+          - button "2 estrelinhas" [ref=e74] [cursor=pointer]:
+            - generic [ref=e75]: 󲎤
+          - button "3 estrelinhas" [ref=e76] [cursor=pointer]:
+            - generic [ref=e77]: 󲎤
+          - button "4 estrelinhas" [ref=e78] [cursor=pointer]:
+            - generic [ref=e79]: 󲎤
+          - button "5 estrelinhas" [ref=e80] [cursor=pointer]:
+            - generic [ref=e81]: 󲎤
+          - button "6 estrelinhas" [ref=e82] [cursor=pointer]:
+            - generic [ref=e83]: 󲎤
+          - button "7 estrelinhas" [ref=e84] [cursor=pointer]:
+            - generic [ref=e85]: 󲎤
+          - button "8 estrelinhas" [ref=e86] [cursor=pointer]:
+            - generic [ref=e87]: 󲎤
+          - button "9 estrelinhas" [ref=e88] [cursor=pointer]:
+            - generic [ref=e89]: 󲎤
+          - button "10 estrelinhas" [ref=e90] [cursor=pointer]:
+            - generic [ref=e91]: 󲎤
+        - generic [ref=e92]:
+          - generic [ref=e93]: Tarefa fácil
+          - generic [ref=e94]: 3 estrelinhas
+          - generic [ref=e95]: Tarefa difícil
+      - generic [ref=e96]:
+        - generic [ref=e97]: Frequência
+        - generic [ref=e98]:
+          - generic [ref=e99] [cursor=pointer]:
+            - radio "Diária Todo dia" [ref=e100]
+            - generic [ref=e101]: 󱞿
+            - generic [ref=e102]: Diária
+            - generic [ref=e103]: Todo dia
+          - generic [ref=e104] [cursor=pointer]:
+            - radio "Semanal Uma vez/semana" [ref=e105]
+            - generic [ref=e106]: 󲈐
+            - generic [ref=e107]: Semanal
+            - generic [ref=e108]: Uma vez/semana
+          - generic [ref=e109] [cursor=pointer]:
+            - radio "Mensal Uma vez/mês" [ref=e110]
+            - generic [ref=e111]: 󲈐
+            - generic [ref=e112]: Mensal
+            - generic [ref=e113]: Uma vez/mês
+          - generic [ref=e114] [cursor=pointer]:
+            - radio "Única Só uma vez" [ref=e115]
+            - generic [ref=e116]: 󲓧
+            - generic [ref=e117]: Única
+            - generic [ref=e118]: Só uma vez
+      - generic [ref=e119]:
+        - generic [ref=e120]: Repetível no período
+        - generic [ref=e122] [cursor=pointer]:
+          - generic [ref=e123]: Permitir mais de uma execução por período
+          - checkbox "Permitir múltiplas execuções por período" [ref=e124]
+      - generic [ref=e127]:
+        - generic [ref=e128]: Categoria
+        - generic [ref=e129]:
+          - generic [ref=e130] [cursor=pointer]:
+            - radio "Casa" [ref=e131]
+            - generic [ref=e132]: 󱯉
+            - text: Casa
+          - generic [ref=e133] [cursor=pointer]:
+            - radio "Escola" [ref=e134]
+            - generic [ref=e135]: 󱖃
+            - text: Escola
+          - generic [ref=e136] [cursor=pointer]:
+            - radio "Rotina" [ref=e137]
+            - generic [ref=e138]: 󱤈
+            - text: Rotina
+          - generic [ref=e139] [cursor=pointer]:
+            - radio "Saúde" [ref=e140]
+            - generic [ref=e141]: 󱦞
+            - text: Saúde
+          - generic [ref=e142] [cursor=pointer]:
+            - radio "Outro" [ref=e143]
+            - generic [ref=e144]: 󲌸
+            - text: Outro
+      - generic [ref=e145]:
+        - generic [ref=e146]: Para quem é essa missão?
+        - paragraph [ref=e147]: Selecione uma ou mais crianças. Deixe em branco para atribuir a todas.
+        - generic [ref=e148]:
+          - generic [ref=e149] [cursor=pointer]:
+            - checkbox "Laura" [ref=e150]
+            - generic [ref=e152]: 󱮊
+            - generic [ref=e153]: Laura
+            - generic [ref=e154]: 󲓧
+          - generic [ref=e155] [cursor=pointer]:
+            - checkbox "Lis" [ref=e156]
+            - generic [ref=e158]: 󱮊
+            - generic [ref=e159]: Lis
+            - generic [ref=e160]: 󲓧
+          - generic [ref=e161] [cursor=pointer]:
+            - checkbox "Theo" [ref=e162]
+            - generic [ref=e164]: 󱮊
+            - generic [ref=e165]: Theo
+            - generic [ref=e166]: 󲓧
+      - generic [ref=e167]:
+        - generic [ref=e168]:
+          - generic [ref=e169]: Missão ativa
+          - generic [ref=e170]: Missões pausadas não aparecem para a criança
+        - checkbox [checked] [ref=e172]
+      - generic [ref=e175]:
+        - link "Cancelar" [ref=e176] [cursor=pointer]:
+          - /url: /parent/global_tasks
+        - button "Salvar missão" [ref=e177] [cursor=pointer]:
+          - generic [ref=e178]: 󲓧
+          - text: Salvar missão

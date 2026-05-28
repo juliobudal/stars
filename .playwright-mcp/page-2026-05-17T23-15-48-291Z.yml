@@ -1,0 +1,56 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - link "Voltar para Mente Forte" [ref=e19] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e21]:
+            - generic [ref=e22]: MENTE FORTE
+            - heading "Por que mexer no celular é tão difícil de parar?" [level=1] [ref=e23]
+        - generic "Progresso da missão" [ref=e24]
+      - generic [ref=e32]:
+        - generic [ref=e33]: 📖
+        - generic [ref=e34]:
+          - heading "Conta a história" [level=2] [ref=e35]
+          - generic [ref=e36]: sobre Dopamina
+      - generic [ref=e37]:
+        - button "Próxima cena →" [ref=e39] [cursor=pointer]
+        - generic [ref=e40]:
+          - generic [ref=e41]: Pergunta rápida
+          - paragraph [ref=e42]: Theo está jogando um jogo novo. Cada vez que aparece um baú brilhante na tela, Theo sente uma aceleração no peito e clica mais rápido. O que está acontecendo no cérebro de Theo?
+          - generic [ref=e43]:
+            - button "A O baú brilhante já está dando prazer — a dopamina é a sensação boa de ver o baú." [disabled] [ref=e44]:
+              - generic [ref=e45]: A
+              - generic [ref=e46]: O baú brilhante já está dando prazer — a dopamina é a sensação boa de ver o baú.
+            - button "B O cérebro liberou dopamina ao ver o baú, e isso criou a vontade de clicar para abri-lo." [disabled] [ref=e47]:
+              - generic [ref=e48]: B
+              - generic [ref=e49]: O cérebro liberou dopamina ao ver o baú, e isso criou a vontade de clicar para abri-lo.
+            - button "C O baú brilhante cansa o cérebro, e a dopamina serve para descansar." [disabled] [ref=e50]:
+              - generic [ref=e51]: C
+              - generic [ref=e52]: O baú brilhante cansa o cérebro, e a dopamina serve para descansar.
+            - button "D A dopamina no jogo faz o dedo de Theo clicar sozinho, sem o cérebro mandar." [disabled] [ref=e53]:
+              - generic [ref=e54]: D
+              - generic [ref=e55]: A dopamina no jogo faz o dedo de Theo clicar sozinho, sem o cérebro mandar.
+          - generic [ref=e58]:
+            - generic [ref=e59]: Por quê
+            - paragraph [ref=e60]: A dopamina não é a sensação de prazer do baú — é o sinal que faz o cérebro querer correr atrás da recompensa. A aceleração no peito é a motivação, não a felicidade.
+        - button "Continuar →" [ref=e57]
+  - text: 󲎤

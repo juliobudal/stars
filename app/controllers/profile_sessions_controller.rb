@@ -35,7 +35,7 @@ class ProfileSessionsController < ApplicationController
       flash.now[:alert] = "PIN incorreto."
       @profiles = current_family.profiles.order(:created_at)
       @selected_profile = profile
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 

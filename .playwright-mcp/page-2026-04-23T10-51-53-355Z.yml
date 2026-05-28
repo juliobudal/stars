@@ -1,0 +1,110 @@
+- generic [active] [ref=e1]:
+  - navigation "Principal" [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 
+      - generic [ref=e6]:
+        - generic [ref=e7]: LittleStars
+        - text: Estrelas Incríveis
+    - generic [ref=e8]:
+      - link "Início" [ref=e9] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e10]: 
+        - generic [ref=e11]: Início
+      - link "Aprovações 1" [ref=e12] [cursor=pointer]:
+        - /url: /parent/approvals
+        - generic [ref=e13]: 
+        - generic [ref=e14]: Aprovações
+        - generic [ref=e15]: "1"
+      - link "Missões" [ref=e16] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e17]: 
+        - generic [ref=e18]: Missões
+      - link "Loja" [ref=e19] [cursor=pointer]:
+        - /url: /parent/rewards
+        - generic [ref=e20]: 
+        - generic [ref=e21]: Loja
+      - link "Filhos" [ref=e22] [cursor=pointer]:
+        - /url: /parent/profiles
+        - generic [ref=e23]: 
+        - generic [ref=e24]: Filhos
+    - button "Sair" [ref=e27] [cursor=pointer]:
+      - generic [ref=e28]: 
+      - generic [ref=e29]: Sair
+  - text:    
+  - generic [ref=e31]:
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - link [ref=e34] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e35]: 
+        - generic [ref=e36]:
+          - heading "Lojinha" [level=2] [ref=e37]
+          - generic [ref=e38]: Catálogo de recompensas da família
+      - link "Nova" [ref=e40] [cursor=pointer]:
+        - /url: /parent/rewards/new
+        - generic [ref=e41]: 
+        - text: Nova
+    - generic [ref=e42]:
+      - generic [ref=e43]:
+        - generic [ref=e45]: 
+        - generic [ref=e46]:
+          - generic [ref=e47]: Escolher filme
+          - generic [ref=e48]: RECOMPENSA
+          - generic [ref=e49]:
+            - generic [ref=e50]: 
+            - generic [ref=e51]: "50"
+        - generic [ref=e52]:
+          - generic [ref=e54]: 
+          - button [ref=e56] [cursor=pointer]:
+            - generic [ref=e57]: 
+      - generic [ref=e58]:
+        - generic [ref=e60]: 
+        - generic [ref=e61]:
+          - generic [ref=e62]: Sorvete de chocolate
+          - generic [ref=e63]: RECOMPENSA
+          - generic [ref=e64]:
+            - generic [ref=e65]: 
+            - generic [ref=e66]: "80"
+        - generic [ref=e67]:
+          - generic [ref=e69]: 
+          - button [ref=e71] [cursor=pointer]:
+            - generic [ref=e72]: 
+      - generic [ref=e73]:
+        - generic [ref=e75]: 
+        - generic [ref=e76]:
+          - generic [ref=e77]: 1h de Video Game
+          - generic [ref=e78]: RECOMPENSA
+          - generic [ref=e79]:
+            - generic [ref=e80]: 
+            - generic [ref=e81]: "150"
+        - generic [ref=e82]:
+          - generic [ref=e84]: 
+          - button [ref=e86] [cursor=pointer]:
+            - generic [ref=e87]: 
+      - generic [ref=e88]:
+        - generic [ref=e90]: 
+        - generic [ref=e91]:
+          - generic [ref=e92]: Passeio ao parque
+          - generic [ref=e93]: RECOMPENSA
+          - generic [ref=e94]:
+            - generic [ref=e95]: 
+            - generic [ref=e96]: "250"
+        - generic [ref=e97]:
+          - generic [ref=e99]: 
+          - button [ref=e101] [cursor=pointer]:
+            - generic [ref=e102]: 
+      - generic [ref=e103]:
+        - generic [ref=e106]:
+          - generic [ref=e107]: LEGO novo
+          - generic [ref=e108]: RECOMPENSA
+          - generic [ref=e109]:
+            - generic [ref=e110]: 
+            - generic [ref=e111]: "600"
+        - generic [ref=e112]:
+          - generic [ref=e114]: 
+          - button [ref=e116] [cursor=pointer]:
+            - generic [ref=e117]: 
+      - link "Novo prêmio" [ref=e118] [cursor=pointer]:
+        - /url: /parent/rewards/new
+        - generic [ref=e120]: 
+        - generic [ref=e121]: Novo prêmio

@@ -1,0 +1,56 @@
+- generic [active] [ref=e258]:
+  - navigation "Navegação principal" [ref=e259]:
+    - link "Jornada" [ref=e260] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e261]: 󲑲
+      - generic [ref=e262]: Jornada
+    - link "Academia" [ref=e263] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e264]: 󲌸
+      - generic [ref=e265]: Academia
+    - link "Lojinha" [ref=e266] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e267]: 󲊉
+      - generic [ref=e268]: Lojinha
+    - link "Diário" [ref=e269] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e270]: 󱖃
+      - generic [ref=e271]: Diário
+  - main [ref=e272]:
+    - generic [ref=e273]:
+      - generic [ref=e274]:
+        - generic [ref=e275]:
+          - link "Voltar para Mente Forte" [ref=e276] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e278]:
+            - generic [ref=e279]: MENTE FORTE
+            - heading "Por que mexer no celular é tão difícil de parar?" [level=1] [ref=e280]
+          - link "Falar com O Guia" [ref=e281] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/guide
+            - text: 🦉
+        - generic "Progresso da missão" [ref=e282]
+      - generic [ref=e290]:
+        - generic [ref=e291]: 👁
+        - generic [ref=e292]:
+          - heading "Faz isso agora" [level=2] [ref=e293]
+          - generic [ref=e294]: sobre Dopamina
+        - generic "Narrado por A Naturalista" [ref=e295]:
+          - generic [ref=e296]: 🦋
+          - generic [ref=e297]: A Naturalista
+      - generic [ref=e298]:
+        - generic [ref=e299]:
+          - generic [ref=e300]: Faça isto agora
+          - paragraph [ref=e301]: Põe o celular em outra sala — fora do alcance visual e do som. Senta. Liga um timer de 5 minutos. Não faz nada além de existir. Quando bater a vontade de levantar e ir buscar, conta até dez antes de decidir.
+          - generic [ref=e303]: 30s
+          - generic [ref=e304]:
+            - button "Comecei" [disabled] [ref=e305] [cursor=pointer]
+            - button "Pronto" [disabled] [ref=e306] [cursor=pointer]
+          - generic [ref=e309]:
+            - generic [ref=e310]:
+              - generic [ref=e311]: Sinta
+              - paragraph [ref=e312]: Onde aparece o impulso — peito, mão, pensamento intrusivo, sensação de 'preciso ver algo'? Repara também a hora em que aparece pela primeira vez nos 5 min.
+            - generic [ref=e313]:
+              - generic [ref=e314]: O que aconteceu
+              - paragraph [ref=e315]: "O impulso que você sentiu não veio do celular — o celular nem está aí. Veio do CIRCUITO que o app instalou em você ao longo dos meses. Esse circuito dispara mesmo sem o estímulo presente. Saber disso muda o jogo: você não está combatendo o aparelho, está reparando o caminho dopaminérgico."
+        - button "Continuar →" [ref=e308]
+  - text: 󲎤

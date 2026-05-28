@@ -7,9 +7,9 @@
 <div class="flex flex-col gap-1 <%= align %>">
   <span class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase"
         style="color: <%= is_guide ? color_var : 'var(--text-muted)' %>;">
-    <%= is_guide ? "🦉 O Guia" : "Você" %>
+    <% if is_guide %><span aria-hidden="true">🦉</span> O Guia<% else %>Você<% end %>
   </span>
-  <div class="lens-card p-3 max-w-[90%]"
+  <div class="academy-card p-3 max-w-[90%]"
        style="background: <%= bubble_bg %>; border-color: <%= bubble_border %>;">
     <p class="font-display text-[14px] leading-snug m-0 whitespace-pre-wrap" style="color: var(--text);">
       <%= message.content %>

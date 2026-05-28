@@ -1,0 +1,57 @@
+- generic [active] [ref=e46]:
+  - banner [ref=e47]:
+    - button "Copy as text" [ref=e48]
+    - heading "NameError in Kid::Dashboard#index" [level=1] [ref=e49]
+  - main [ref=e50]:
+    - paragraph [ref=e51]: "Showing /home/julio-budal/Projetos/guardian/app/views/layouts/kid.html.erb where line #28 raised:"
+    - code [ref=e53]: "undefined local variable or method `kid_activity_logs_path' for an instance of #<Class:0x0000760fe12acb20>"
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - text: Extracted source (around line
+        - strong [ref=e56]: "#27"
+        - text: "):"
+      - table [ref=e58]:
+        - rowgroup [ref=e59]:
+          - 'row "25 26 27 28 29 30 <%= nav_item.call(\"target\", kid_root_path, \"Missões\") %> <%= nav_item.call(\"bag\", kid_rewards_path, \"Loja\") %> <%= nav_item.call(\"scroll\", kid_activity_logs_path , \"Extrato\") %> <%= button_to sessions_path, method: :delete, class: \"nav-item\", title: \"Sair\" do %> <%= render Ui::Icon::Component.new(\"logout\", size: 26) %>" [ref=e60]':
+            - cell "25 26 27 28 29 30" [ref=e61]:
+              - generic [ref=e62]: 25 26 27 28 29 30
+            - 'cell "<%= nav_item.call(\"target\", kid_root_path, \"Missões\") %> <%= nav_item.call(\"bag\", kid_rewards_path, \"Loja\") %> <%= nav_item.call(\"scroll\", kid_activity_logs_path , \"Extrato\") %> <%= button_to sessions_path, method: :delete, class: \"nav-item\", title: \"Sair\" do %> <%= render Ui::Icon::Component.new(\"logout\", size: 26) %>" [ref=e63]':
+              - generic [ref=e64]:
+                - generic [ref=e65]: <%= nav_item.call("target", kid_root_path, "Missões") %>
+                - generic [ref=e66]: <%= nav_item.call("bag", kid_rewards_path, "Loja") %>
+                - generic [ref=e67]:
+                  - text: <%= nav_item.call("scroll",
+                  - generic [ref=e68]: kid_activity_logs_path
+                  - text: ", \"Extrato\") %>"
+                - generic [ref=e70]: "<%= button_to sessions_path, method: :delete, class: \"nav-item\", title: \"Sair\" do %>"
+                - generic [ref=e71]: "<%= render Ui::Icon::Component.new(\"logout\", size: 26) %>"
+    - paragraph
+    - paragraph [ref=e72]:
+      - code [ref=e73]: "Rails.root: /home/julio-budal/Projetos/guardian"
+    - generic [ref=e74]:
+      - link "Application Trace" [ref=e75] [cursor=pointer]:
+        - /url: "#"
+      - text: "|"
+      - link "Framework Trace" [ref=e76] [cursor=pointer]:
+        - /url: "#"
+      - text: "|"
+      - link "Full Trace" [ref=e77] [cursor=pointer]:
+        - /url: "#"
+      - code [ref=e79]:
+        - 'link "/home/julio-budal/Projetos/guardian/app/views/layouts/kid.html.erb:28:in `_app_views_layouts_kid_html_erb___4258227889235753102_49560''" [ref=e81] [cursor=pointer]':
+          - /url: "#"
+    - heading "Request" [level=2] [ref=e82]
+    - paragraph [ref=e83]: "Parameters:"
+    - generic [ref=e84]: None
+    - link "Toggle session dump" [ref=e87] [cursor=pointer]:
+      - /url: "#"
+    - link "Toggle env dump" [ref=e90] [cursor=pointer]:
+      - /url: "#"
+    - heading "Response" [level=2] [ref=e91]
+    - paragraph [ref=e92]: "Headers:"
+    - generic [ref=e93]: None
+  - generic [ref=e94]:
+    - generic [ref=e96]:
+      - generic "close" [ref=e98] [cursor=pointer]: ×
+      - generic [ref=e100]: ">>"
+    - textbox [ref=e102]

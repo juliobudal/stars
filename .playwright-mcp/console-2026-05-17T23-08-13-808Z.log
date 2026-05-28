@@ -1,0 +1,13 @@
+[   93822ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:10302/vite/?token=8LrvtAuv-dw1' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:10301/vite/@vite/client:744
+[   93822ms] [ERROR] [vite] failed to connect to websocket (Error: WebSocket closed without opened.).  @ http://localhost:10301/vite/@vite/client:771
+[   93823ms] Error: WebSocket closed without opened.
+    at WebSocket.<anonymous> (http://localhost:10301/vite/@vite/client:423:30)
+[   93886ms] [INFO] [pwa] sw registered, scope: http://localhost:10301/ @ http://localhost:10301/vite/entrypoints/pwa.js:7
+[   93889ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://localhost:10301/kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar:0
+[  363968ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:10302/vite/?token=8LrvtAuv-dw1' failed: Error in connection establishment: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:10301/vite/@vite/client:744
+[  363969ms] [ERROR] [vite] failed to connect to websocket (Error: WebSocket closed without opened.).  @ http://localhost:10301/vite/@vite/client:771
+[  363969ms] Error: WebSocket closed without opened.
+    at WebSocket.<anonymous> (http://localhost:10301/vite/@vite/client:423:30)
+[  364029ms] [INFO] [pwa] sw registered, scope: http://localhost:10301/ @ http://localhost:10301/vite/entrypoints/pwa.js:7
+[  364033ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://localhost:10301/kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar:0
+[  373737ms] [INFO] [pwa] install outcome: accepted @ http://localhost:10301/vite/controllers/install_prompt_controller.js:35

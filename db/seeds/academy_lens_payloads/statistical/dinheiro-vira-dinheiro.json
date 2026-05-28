@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, se você guardar R$ 100 hoje e nunca mais mexer, quanto vira em 30 anos com juros de 10% ao ano? Chuta antes de ler.",
-  "predict_unit": "vezes/dia",
-  "predict_min": 1,
-  "predict_max": 15,
-  "reveal_value": 17.4,
-  "reveal_source": "Cálculo: 100 × (1,10)^30 ≈ 1.744,94. Fator de crescimento ≈ 17,4x. Fonte: fórmula de juros compostos, valor exato arredondado.",
-  "interpretation": "17 vezes e meia. Seu dinheiro vira 17 cópias de si mesmo sem você fazer nada. O segredo não é o valor inicial — é o tempo. Cada ano, o ganho do ano anterior também rende. É ganho que ganha ganho."
-}

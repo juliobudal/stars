@@ -81,7 +81,7 @@ RSpec.describe "Kid::Onboarding", type: :request do
 
     it "rejects fewer than 3 selections" do
       patch kid_welcome_interests_path, params: { interest_keys: %w[dinossauros espaco] }
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(fresh_child.profile_interests).to be_empty
     end
 

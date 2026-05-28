@@ -1,0 +1,62 @@
+- generic [active] [ref=e460]:
+  - navigation "Navegação principal" [ref=e461]:
+    - link "Jornada" [ref=e462] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e463]: 󲑲
+      - generic [ref=e464]: Jornada
+    - link "Academia" [ref=e465] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e466]: 󲌸
+      - generic [ref=e467]: Academia
+    - link "Lojinha" [ref=e468] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e469]: 󲊉
+      - generic [ref=e470]: Lojinha
+    - link "Diário" [ref=e471] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e472]: 󱖃
+      - generic [ref=e473]: Diário
+  - main [ref=e474]:
+    - generic [ref=e475]:
+      - generic [ref=e476]:
+        - generic [ref=e477]:
+          - link "Voltar para Corpo & Saúde" [ref=e478] [cursor=pointer]:
+            - /url: /kid/academy/subjects/corpo-saude
+          - generic [ref=e480]:
+            - generic [ref=e481]: CORPO & SAÚDE
+            - heading "O que acontece quando você dorme mal?" [level=1] [ref=e482]
+        - generic "Progresso da missão" [ref=e483]
+      - generic [ref=e491]:
+        - generic [ref=e492]: 🕰
+        - generic [ref=e493]:
+          - heading "Atravessando o tempo" [level=2] [ref=e494]
+          - generic [ref=e495]: sobre Sono consolida memória
+      - generic [ref=e496]:
+        - generic [ref=e497]:
+          - generic [ref=e498]: "Padrão: O cérebro salva o arquivo enquanto você dorme"
+          - list [ref=e499]:
+            - listitem [ref=e500]:
+              - generic [ref=e502]: "1885"
+              - generic [ref=e503]:
+                - generic [ref=e504]: Hermann Ebbinghaus decora listas de sílabas sem sentido, depois dorme. Na manhã seguinte, lembra mais do que se tivesse ficado acordado estudando.
+                - generic [ref=e505]: Retenção maior após intervalo com sono do que após intervalo acordado — efeito de consolidação.
+            - listitem [ref=e506]:
+              - generic [ref=e508]: "1966"
+              - generic [ref=e509]:
+                - generic [ref=e510]: Pesquisadores californianos treinam ratos num labirinto. Metade dorme, metade fica acordada. Os que dormem lembram o caminho melhor no dia seguinte.
+                - generic [ref=e511]: Sono pós-treino melhora desempenho em tarefa espacial — consolidação dependente de sono em mamíferos.
+            - listitem [ref=e512]:
+              - generic [ref=e514]: "2013"
+              - generic [ref=e515]:
+                - generic [ref=e516]: Ressonância magnética mostra o cérebro humano 'repetindo' padrões de aprendizado do dia durante o sono profundo — como se estivesse rebobinando e salvando.
+                - generic [ref=e517]: Neuroimagem revela reativação de memórias durante o sono — mecanismo neural da consolidação.
+          - paragraph [ref=e519]: O que as três cenas — separadas por mais de 100 anos — estão mostrando que acontece exatamente igual?
+        - button "Continuar →" [disabled] [ref=e521]
+  - status [ref=e522]:
+    - generic [ref=e523]:
+      - generic [ref=e525]: Costurando a próxima lente…
+      - generic [ref=e526]: preparando sua aula
+      - generic [ref=e531]:
+        - paragraph [ref=e532]: “Quem ouve com atenção fica mais sábio.”
+        - paragraph [ref=e533]: — Provérbios 1:5
+  - text: 󲎤

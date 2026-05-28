@@ -1,0 +1,52 @@
+- generic [active] [ref=e90]:
+  - navigation "Navegação principal" [ref=e91]:
+    - link "Jornada" [ref=e92] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e93]: 󲑲
+      - generic [ref=e94]: Jornada
+    - link "Academia" [ref=e95] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e96]: 󲌸
+      - generic [ref=e97]: Academia
+    - link "Lojinha" [ref=e98] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e99]: 󲊉
+      - generic [ref=e100]: Lojinha
+    - link "Diário" [ref=e101] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e102]: 󱖃
+      - generic [ref=e103]: Diário
+  - main [ref=e104]:
+    - generic [ref=e105]:
+      - generic [ref=e106]:
+        - generic [ref=e107]:
+          - link "Voltar para Mente Forte" [ref=e108] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e110]:
+            - generic [ref=e111]: MENTE FORTE
+            - heading "Por que você acredita em coisas que confirmam o que já pensa?" [level=1] [ref=e112]
+          - link "Falar com O Guia" [ref=e113] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte/missions/vies-confirmacao/guide
+            - text: 🦉
+        - generic "Progresso da missão" [ref=e114]
+      - generic [ref=e122]:
+        - generic [ref=e123]: 📖
+        - generic [ref=e124]:
+          - heading "Conta a história" [level=2] [ref=e125]
+          - generic [ref=e126]: sobre Viés de confirmação
+        - generic "Narrado por A Naturalista" [ref=e127]:
+          - generic [ref=e128]: 🦋
+          - generic [ref=e129]: A Naturalista
+      - generic [ref=e130]:
+        - generic [ref=e131]:
+          - generic [ref=e132]:
+            - generic [ref=e133]: A
+            - generic [ref=e134]:
+              - generic [ref=e135]: Antônia, 12
+              - generic [ref=e136]: decide rápido se gosta ou não de alguém e depois só guarda na memória as cenas que confirmam o que já decidiu
+          - generic [ref=e138]:
+            - generic [ref=e139]: Cena 1
+            - paragraph [ref=e140]: "Segunda, aula de ciências. Renato, o professor novo, pede pra Antônia resolver uma equação no quadro. Ela troca um sinal. Renato, calmo: 'Olha de novo, falta um detalhe.' Ela apaga, refaz, acerta, senta. Pensa: 'Esse professor implica comigo.' Anota mentalmente: corrigiu na frente da turma."
+          - button "Próxima cena →" [ref=e141] [cursor=pointer]
+        - button "Continuar →" [ref=e143]
+  - text: 󲎤

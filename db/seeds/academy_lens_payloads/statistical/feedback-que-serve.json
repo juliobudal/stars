@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "De cada 10 feedbacks que um professor dá na sala de aula, quantos você acha que DESCREVEM uma ação específica (tipo 'você pulou a etapa de verificar a conta') — em vez de julgar a pessoa ('você é desatento')? Chuta.",
-  "predict_unit": "vezes/dia",
-  "predict_min": 0,
-  "predict_max": 10,
-  "reveal_value": 2,
-  "reveal_source": "Baseado em pesquisas sobre feedback formativo: a maioria dos feedbacks escolares ainda é genérica ou pessoal, não descritiva de ação.",
-  "interpretation": "2 em cada 10. Só 20% dos feedbacks que você recebe descrevem O QUE você fez — os outros 80% falam sobre QUEM você é. 'Bom trabalho' não te ensina nada. 'Você inverteu a ordem na terceira linha' te dá um caminho. A diferença não é gentileza: é informação."
-}

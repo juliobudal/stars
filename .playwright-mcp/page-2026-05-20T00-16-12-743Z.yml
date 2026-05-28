@@ -1,0 +1,75 @@
+- generic [active] [ref=e477]:
+  - navigation "Navegação principal" [ref=e478]:
+    - link "Jornada" [ref=e479] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e480]: 󲑲
+      - generic [ref=e481]: Jornada
+    - link "Academia" [ref=e482] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e483]: 󲌸
+      - generic [ref=e484]: Academia
+    - link "Lojinha" [ref=e485] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e486]: 󲊉
+      - generic [ref=e487]: Lojinha
+    - link "Diário" [ref=e488] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e489]: 󱖃
+      - generic [ref=e490]: Diário
+  - main [ref=e491]:
+    - generic [ref=e492]:
+      - generic [ref=e493]:
+        - generic [ref=e494]:
+          - link "Voltar para Dinheiro & Vida Real" [ref=e495] [cursor=pointer]:
+            - /url: /kid/academy/subjects/dinheiro-vida
+          - generic [ref=e497]:
+            - generic [ref=e498]: DINHEIRO & VIDA REAL
+            - heading "Por que comprar por impulso é uma armadilha?" [level=1] [ref=e499]
+        - generic "Progresso da missão" [ref=e500]
+      - generic [ref=e508]:
+        - generic [ref=e509]: 📖
+        - generic [ref=e510]:
+          - heading "Conta a história" [level=2] [ref=e511]
+          - generic [ref=e512]: sobre Recompensa imediata
+      - generic [ref=e513]:
+        - generic [ref=e514]:
+          - generic [ref=e515]:
+            - generic [ref=e516]: L
+            - generic [ref=e517]:
+              - generic [ref=e518]: Léo, 11
+              - generic [ref=e519]: ganha dinheiro extra ajudando a avó com pequenas tarefas e gasta tudo no primeiro lugar brilhante que vê
+          - generic [ref=e520]:
+            - generic [ref=e521]:
+              - generic [ref=e522]: Cena 1
+              - paragraph [ref=e523]: Quarta, 16h. A avó paga R$50 pra Léo digitar a lista de compras do mês. Léo já estava de olho num boné dos Lakers da loja do shopping da esquina. Sai da casa da avó direto pra lá. R$48,90 depois, volta com o boné na cabeça antes mesmo de pôr no pé da escada de casa.
+            - generic:
+              - generic: Cena 2
+              - paragraph: "Sexta. A turma combina o cinema de tarde — filme novo do Homem-Aranha. Entrada R$25 + pipoca R$15 = R$40. Léo conta o que sobrou: R$1,10. Pede pra mãe: 'Empresta R$40?' Mãe: 'Não. Você acabou de ganhar R$50 da vovó na quarta.' Léo: 'Mas era pra uma coisa importante.' Mãe: 'O boné? Léo. O cinema também — e você combinou de ir desde semana passada.'"
+            - generic:
+              - generic: Cena 3
+              - paragraph: Léo fica em casa. A turma manda story da pipoca, foto na poltrona, vídeo do trailer da Marvel antes do filme. Léo passa o sábado com o boné em cima da escrivaninha. No domingo de manhã, joga ele dentro da gaveta de meias e fecha com força.
+            - generic:
+              - generic: Cena 4
+              - paragraph: Quarta seguinte, Léo digita a lista da avó de novo. Recebe R$50. Coloca a nota dobrada no bolso de trás. No caminho pra casa, passa em frente à mesma loja do shopping. Olha a vitrine. Continua andando. Em casa, separa R$25 num envelope que escreve 'cinema sexta' e guarda na gaveta — em cima do boné.
+            - generic:
+              - generic: Final
+              - paragraph: Sexta, cinema. Léo entra primeiro, com o ingresso já pago. A pipoca, ele divide com a turma. O boné dos Lakers continua na gaveta, embaixo do envelope. Léo nem se lembra dele até desfazer a mala da escola, semanas depois.
+          - button "Próxima cena →" [ref=e524] [cursor=pointer]
+        - generic [ref=e525]:
+          - generic [ref=e526]: Pergunta rápida
+          - paragraph [ref=e527]: Theo, qual o pulo na cabeça do Léo na hora que ele viu o boné na vitrine?
+          - generic [ref=e528]:
+            - button "A Léo pesou com calma boné contra cinema antes de decidir gastar" [ref=e529] [cursor=pointer]:
+              - generic [ref=e530]: A
+              - generic [ref=e531]: Léo pesou com calma boné contra cinema antes de decidir gastar
+            - button "B O cérebro entregou recompensa pelo brilho de AGORA — o cinema da sexta nem entrou na conta" [ref=e532] [cursor=pointer]:
+              - generic [ref=e533]: B
+              - generic [ref=e534]: O cérebro entregou recompensa pelo brilho de AGORA — o cinema da sexta nem entrou na conta
+            - button "C Léo não gostava de cinema mesmo, foi só sincero consigo" [ref=e535] [cursor=pointer]:
+              - generic [ref=e536]: C
+              - generic [ref=e537]: Léo não gostava de cinema mesmo, foi só sincero consigo
+            - button "D A avó tinha mandado ele comprar o boné, ele só obedeceu" [ref=e538] [cursor=pointer]:
+              - generic [ref=e539]: D
+              - generic [ref=e540]: A avó tinha mandado ele comprar o boné, ele só obedeceu
+        - button "Continuar →" [ref=e542]
+  - text: 󲎤

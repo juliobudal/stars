@@ -59,11 +59,20 @@ jobs:
       - name: Prepare database
         run: bin/rails db:prepare
 
+      - name: Validate test seed replant
+        run: env RAILS_ENV=test bin/rails db:environment:set && env RAILS_ENV=test bin/rails db:seed:replant
+
       - name: Run RSpec
-        run: bundle exec rspec --exclude-pattern "spec/system/**/*_spec.rb"
+        run: env RAILS_ENV=test bin/rails db:environment:set && bundle exec rspec --exclude-pattern "spec/system/**/*_spec.rb"
 
       - name: Lint with RuboCop
         run: bin/rubocop --no-color
+
+      - name: Check motion tokens
+        run: bash scripts/check-motion-tokens.sh
+
+      - name: Check JS syntax
+        run: bash scripts/check-js-syntax.sh
 
       - name: Brakeman security scan
         run: bin/brakeman --no-pager

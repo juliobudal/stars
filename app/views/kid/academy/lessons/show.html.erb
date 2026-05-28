@@ -1,0 +1,136 @@
+<% content_for(:title) { @lesson.title } %>
+<% check = @lesson.check %>
+
+<div class="screen no-nav screen-enter">
+  <header class="flex items-center gap-3 mb-4">
+    <%= link_to kid_academy_trail_path(@trail),
+          "aria-label": "Voltar para a trilha",
+          class: "w-11 h-11 rounded-full flex items-center justify-center anim-press shrink-0",
+          style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06);" do %>
+      <%= render Ui::Icon::Component.new(:back, size: 18, color: "var(--text)") %>
+    <% end %>
+    <div class="flex-1 min-w-0">
+      <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase truncate" style="color: var(--text-muted);">
+        <%= @trail.title %><%= " · revisão" if @completed %>
+      </div>
+      <h1 class="font-display text-[16px] font-extrabold leading-tight m-0 truncate" style="color: var(--text);">
+        <%= @lesson.title %>
+      </h1>
+    </div>
+    <% if @guide_enabled %>
+      <%= link_to kid_academy_trail_lesson_guide_path(@trail, @lesson),
+            "aria-label": "Perguntar ao Guia",
+            class: "w-11 h-11 rounded-full flex items-center justify-center anim-press shrink-0 text-[20px]",
+            style: "background: var(--star-soft); border: 2px solid var(--star); box-shadow: 0 3px 0 var(--star-2);" do %>
+        <span aria-hidden="true">🦉</span>
+      <% end %>
+    <% end %>
+  </header>
+
+  <div data-controller="academy-pill"
+       data-academy-pill-correct-index="<%= check ? check["answer_index"] : -1 %>">
+
+    <%# ── Step 0: Enigma ───────────────────────────────────────── %>
+    <section data-academy-pill-target="step" class="anim-pop-in">
+      <%= render Ui::Card::Component.new(padding: "md", class: "text-center") do %>
+        <div class="text-[34px] mb-2" aria-hidden="true">🤔</div>
+        <p class="font-display text-[20px] font-extrabold leading-snug m-0" style="color: var(--text);">
+          <%= @lesson.enigma %>
+        </p>
+      <% end %>
+      <%= render Ui::Btn::Component.new(variant: "primary", block: true, class: "mt-4", data: { action: "academy-pill#next" }) do %>
+        Investigar →
+      <% end %>
+    </section>
+
+    <%# ── Steps: Clues ─────────────────────────────────────────── %>
+    <% @lesson.clues.each_with_index do |clue, idx| %>
+      <section data-academy-pill-target="step" class="anim-pop-in" hidden>
+        <%= render Ui::Card::Component.new(padding: "sm") do %>
+          <div class="font-display text-[11px] font-extrabold tracking-[1.5px] uppercase mb-2" style="color: var(--c-sky-dark);">
+            Pista <%= idx + 1 %>
+          </div>
+          <p class="font-display text-[16px] font-bold leading-snug m-0" style="color: var(--text);">
+            <%= clue %>
+          </p>
+        <% end %>
+        <%= render Ui::Btn::Component.new(variant: "primary", block: true, class: "mt-4", data: { action: "academy-pill#next" }) do %>
+          <%= idx == @lesson.clues.size - 1 ? "Já sei…" : "Mais uma pista →" %>
+        <% end %>
+      </section>
+    <% end %>
+
+    <%# ── Step: Revelation (intentional primary-tint variant) ──── %>
+    <section data-academy-pill-target="step" class="anim-pop-in" hidden>
+      <div class="p-6" style="background: var(--primary-soft); border: 2px solid var(--primary); border-radius: var(--r-xl); box-shadow: 0 4px 0 var(--primary-2);">
+        <div class="font-display text-[11px] font-extrabold tracking-[1.5px] uppercase mb-2 flex items-center gap-1" style="color: var(--primary-2);">
+          <span aria-hidden="true">💡</span> A revelação
+        </div>
+        <p class="font-display text-[19px] font-extrabold leading-snug m-0" style="color: var(--text);">
+          <%= @lesson.revelation %>
+        </p>
+      </div>
+      <%= render Ui::Btn::Component.new(variant: "primary", block: true, class: "mt-4", data: { action: "academy-pill#next" }) do %>
+        <%= check ? "Testar →" : "Continuar →" %>
+      <% end %>
+    </section>
+
+    <%# ── Step: Check (optional) ───────────────────────────────── %>
+    <% if check %>
+      <section data-academy-pill-target="step" class="anim-pop-in" hidden>
+        <%= render Ui::Card::Component.new(padding: "sm") do %>
+          <p class="font-display text-[16px] font-extrabold leading-snug m-0 mb-4" style="color: var(--text);">
+            <%= check["prompt"] %>
+          </p>
+          <div class="flex flex-col gap-2.5">
+            <% Array(check["options"]).each_with_index do |opt, i| %>
+              <button type="button"
+                      data-academy-pill-target="option"
+                      data-action="academy-pill#answer"
+                      data-index="<%= i %>"
+                      class="academy-option text-left font-display text-[15px] font-bold px-4 py-3 rounded-[12px] anim-press cursor-pointer"
+                      style="background: var(--surface); border: 2px solid var(--hairline); color: var(--text);">
+                <%= opt %>
+              </button>
+            <% end %>
+          </div>
+          <div data-academy-pill-target="feedback" class="academy-feedback mt-4 p-3 rounded-[12px]" role="status" aria-live="polite" hidden>
+            <p class="font-display text-[14px] font-extrabold leading-snug m-0 mb-1">
+              <span data-academy-pill-target="verdictCorrect" class="inline-flex items-center gap-1.5" style="color: var(--primary-2);" hidden>
+                <%= render Ui::Icon::Component.new(:check, size: 16, color: "var(--primary-2)") %> Acertou!
+              </span>
+              <span data-academy-pill-target="verdictWrong" class="inline-flex items-center gap-1.5" style="color: var(--text);" hidden>
+                <%= render Ui::Icon::Component.new(:close, size: 16, color: "var(--text)") %> Quase lá!
+              </span>
+            </p>
+            <p class="font-display text-[13px] font-bold leading-snug m-0" style="color: var(--text);">
+              <%= check["explanation"].presence || "Boa — anota essa." %>
+            </p>
+          </div>
+        <% end %>
+        <%= render Ui::Btn::Component.new(variant: "primary", block: true, class: "mt-4", data: { academy_pill_target: "continue", action: "academy-pill#next" }, hidden: true) do %>
+          Continuar →
+        <% end %>
+      </section>
+    <% end %>
+
+    <%# ── Step: Hook + Complete ────────────────────────────────── %>
+    <section data-academy-pill-target="step" class="anim-pop-in" hidden>
+      <div class="p-6 text-center" style="background: var(--surface-2); border: 2px solid var(--hairline); border-radius: var(--r-xl);">
+        <div class="text-[28px] mb-2" aria-hidden="true">🔮</div>
+        <div class="font-display text-[11px] font-extrabold tracking-[1.5px] uppercase mb-2" style="color: var(--text-muted);">
+          Próxima pílula
+        </div>
+        <p class="font-display text-[16px] font-bold leading-snug m-0" style="color: var(--text);">
+          <%= @lesson.hook %>
+        </p>
+      </div>
+      <%= form_with url: complete_kid_academy_trail_lesson_path(@trail, @lesson), method: :post, data: { turbo: false }, class: "mt-4" do %>
+        <%= hidden_field_tag :check_choice, "", data: { academy_pill_target: "choiceInput" } %>
+        <%= render Ui::Btn::Component.new(variant: "primary", block: true, type: "submit") do %>
+          Concluir pílula <%= render Ui::Icon::Component.new(:check, size: 18, color: "white") %>
+        <% end %>
+      <% end %>
+    </section>
+  </div>
+</div>

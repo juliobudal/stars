@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, chuta: quantas vezes uma pessoa comum conta uma mentira pequena num dia — dessas que 'não fazem mal'? Palpita um número.",
-  "predict_unit": "vezes/dia",
-  "predict_min": 0,
-  "predict_max": 20,
-  "reveal_value": 2,
-  "reveal_source": "Estimativa baseada em pesquisas de psicologia social (DePaulo et al., 1996): adultos mentem em média 1-2 vezes por dia, incluindo mentiras 'inofensivas'. O número é uma aproximação didática.",
-  "interpretation": "Duas vezes por dia. Parece pouco, mas em um ano são mais de 700 mentirinhas. O problema não é a mentira em si — é que cada uma delas enfraquece seu próprio detector de verdade. Você começa a não saber mais quando está sendo honesto consigo mesmo."
-}

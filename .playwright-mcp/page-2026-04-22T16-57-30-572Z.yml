@@ -1,0 +1,82 @@
+- generic [active] [ref=e46]:
+  - generic [ref=e48]:
+    - generic [ref=e49]: "{:class=>\"confetti-layer\", :style=>\"display: none;\", :data=>{:celebration_target=>\"layer\"}}"
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - generic [ref=e53]: 
+        - generic [ref=e54]:
+          - generic [ref=e55]: Oi,
+          - generic [ref=e56]: Lila!
+      - generic [ref=e57]:
+        - generic [ref=e58]: 
+        - generic [ref=e59]: 
+    - generic [ref=e61]:
+      - generic [ref=e62]:
+        - generic [ref=e64]: 
+        - generic [ref=e65]:
+          - generic [ref=e66]: Meu Cofrinho
+          - generic [ref=e67]:
+            - generic [ref=e69]: 
+            - generic [ref=e70]: "340"
+          - generic [ref=e71]: estrelinhas guardadas
+        - link "Lojinha" [ref=e72] [cursor=pointer]:
+          - /url: /kid/rewards
+          - generic [ref=e73]: 
+          - text: Lojinha
+      - generic [ref=e75]:
+        - generic [ref=e76]: PROGRESSO DE HOJE
+        - generic [ref=e77]: 1/4 ✨
+    - generic [ref=e80]:
+      - generic [ref=e82]:
+        - button "Pra Fazer 3" [ref=e83] [cursor=pointer]:
+          - generic [ref=e84]: 
+          - text: Pra Fazer
+          - generic [ref=e85]: "3"
+        - button "Aguardando 1" [ref=e86] [cursor=pointer]:
+          - generic [ref=e87]: 
+          - text: Aguardando
+          - generic [ref=e88]: "1"
+      - generic [ref=e89]:
+        - generic [ref=e90]:
+          - generic [ref=e91] [cursor=pointer]:
+            - generic [ref=e93]: 
+            - generic [ref=e94]:
+              - generic [ref=e95]: Arrumar a cama
+              - generic [ref=e97]: Casa · diária
+            - generic [ref=e99]:
+              - generic [ref=e100]: 
+              - generic [ref=e101]: "20"
+          - text:       
+        - generic [ref=e102]:
+          - generic [ref=e103] [cursor=pointer]:
+            - generic [ref=e105]: 
+            - generic [ref=e106]:
+              - generic [ref=e107]: Escovar os dentes
+              - generic [ref=e109]: Rotina · diária
+            - generic [ref=e111]:
+              - generic [ref=e112]: 
+              - generic [ref=e113]: "10"
+          - text:       
+        - generic [ref=e114]:
+          - generic [ref=e115] [cursor=pointer]:
+            - generic [ref=e117]: 
+            - generic [ref=e118]:
+              - generic [ref=e119]: Dar comida ao pet
+              - generic [ref=e121]: Rotina · diária
+            - generic [ref=e123]:
+              - generic [ref=e124]: 
+              - generic [ref=e125]: "15"
+          - text:       
+      - text:  
+  - generic [ref=e126]:
+    - link "Missões" [ref=e127] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e128]: 
+    - link "Loja" [ref=e129] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e130]: 
+    - link "Extrato" [ref=e131] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e132]: 
+    - button "Sair" [ref=e134] [cursor=pointer]:
+      - generic [ref=e135]: 

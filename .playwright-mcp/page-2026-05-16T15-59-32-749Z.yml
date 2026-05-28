@@ -1,0 +1,51 @@
+- generic [active] [ref=e126]:
+  - navigation "Navegação principal" [ref=e127]:
+    - link "Jornada" [ref=e128] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e129]: 󲑲
+      - generic [ref=e130]: Jornada
+    - link "Academia" [ref=e131] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e132]: 󲌸
+      - generic [ref=e133]: Academia
+    - link "Lojinha" [ref=e134] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e135]: 󲊉
+      - generic [ref=e136]: Lojinha
+    - link "Diário" [ref=e137] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e138]: 󱖃
+      - generic [ref=e139]: Diário
+  - main [ref=e140]:
+    - generic [ref=e141]:
+      - generic [ref=e142]:
+        - link [ref=e143] [cursor=pointer]:
+          - /url: /kid/academy/subjects
+        - generic [ref=e145]:
+          - generic [ref=e146]: ÁREA DE FORMAÇÃO
+          - heading "Mente Forte" [level=1] [ref=e147]
+        - generic [ref=e148]: Nv. 0
+      - generic [ref=e149]:
+        - generic [ref=e150]:
+          - generic [ref=e151]: 󱗗
+          - generic [ref=e152]: Novato · +7 pra mestre
+        - paragraph [ref=e154]: Dominar a própria mente.
+      - generic [ref=e155]: TRILHAS
+      - generic [ref=e156]:
+        - link "1 Quem Manda na Sua Atenção? \"Se você não programa sua atenção, alguém programa por você.\" 0/4" [ref=e157] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/trails/atencao
+          - generic [ref=e158]:
+            - generic [ref=e160]: "1"
+            - generic [ref=e161]:
+              - generic [ref=e162]: Quem Manda na Sua Atenção?
+              - paragraph [ref=e163]: "\"Se você não programa sua atenção, alguém programa por você.\""
+              - generic [ref=e166]: 0/4
+        - link "2 Seu Cérebro Mente Pra Você \"Quem conhece os truques do próprio cérebro pensa melhor que 90% das pessoas.\" 0/3" [ref=e168] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/trails/vies-cerebro
+          - generic [ref=e169]:
+            - generic [ref=e171]: "2"
+            - generic [ref=e172]:
+              - generic [ref=e173]: Seu Cérebro Mente Pra Você
+              - paragraph [ref=e174]: "\"Quem conhece os truques do próprio cérebro pensa melhor que 90% das pessoas.\""
+              - generic [ref=e177]: 0/3
+  - text: 󲎤

@@ -1,0 +1,56 @@
+- generic [active] [ref=e1]:
+  - text:    
+  - generic [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 
+    - link "Lojinha" [ref=e5] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e6]: 
+    - link "Diário" [ref=e7] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e8]: 
+      - generic [ref=e9]: Diário
+    - button "Sair" [ref=e11] [cursor=pointer]:
+      - generic [ref=e12]: 
+  - generic [ref=e14]:
+    - generic [ref=e16]:
+      - link [ref=e17] [cursor=pointer]:
+        - /url: /kid
+        - generic [ref=e18]: 
+      - generic [ref=e19]:
+        - heading "Diário" [level=2] [ref=e20]
+        - generic [ref=e21]: Suas estrelinhas ganhas e gastas
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]: CONQUISTADO
+        - generic [ref=e25]: +50 ⭐
+        - generic [ref=e26]: esta semana
+      - generic [ref=e27]:
+        - generic [ref=e28]: GASTO
+        - generic [ref=e29]: −0 ⭐
+        - generic [ref=e30]: em prêmios
+      - generic [ref=e31]:
+        - generic [ref=e32]: MISSÕES FEITAS
+        - generic [ref=e33]: "1"
+        - generic [ref=e34]: aprovadas
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - button "Tudo" [ref=e37] [cursor=pointer]
+        - button "Conquistadas" [ref=e38] [cursor=pointer]
+        - button "Compras" [ref=e39] [cursor=pointer]
+        - button "Aguardando" [ref=e40] [cursor=pointer]
+        - button "Rejeitadas" [ref=e41] [cursor=pointer]
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - generic [ref=e44]: Hoje
+          - generic [ref=e45]: "Saldo: +50 ⭐"
+        - generic [ref=e47]:
+          - generic [ref=e49]: 
+          - generic [ref=e50]:
+            - generic [ref=e51]: "Missão Concluída: Fazer a lição de casa"
+            - generic [ref=e52]:
+              - generic [ref=e53]: Conquista
+              - generic [ref=e54]: 10:07
+          - generic [ref=e55]: +50 ⭐
+      - text:    

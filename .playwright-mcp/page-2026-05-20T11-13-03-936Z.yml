@@ -1,0 +1,75 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e63]: Jornada
+    - link "Academia" [ref=e5] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e6]: 󲌸
+      - generic [ref=e64]: Academia
+    - link "Lojinha" [ref=e7] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e8]: 󲊉
+      - generic [ref=e65]: Lojinha
+    - link "Diário" [ref=e9] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e10]: 󱖃
+      - generic [ref=e66]: Diário
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - link "Voltar para Mente Forte" [ref=e15] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e17]:
+            - generic [ref=e18]: MENTE FORTE
+            - heading "Quando o pensamento rápido te trai?" [level=1] [ref=e19]
+        - generic "Progresso da missão" [ref=e67]
+      - generic [ref=e20]:
+        - generic [ref=e21]: 🔭
+        - generic [ref=e22]:
+          - heading "Em outro lugar" [level=2] [ref=e23]
+          - generic [ref=e24]: sobre Pensar rápido vs devagar
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]:
+              - generic [ref=e29]: Origem
+              - generic [ref=e30]: "Carro com dois motores: elétrico e a combustão"
+              - list [ref=e31]:
+                - listitem [ref=e32]: • Elétrico arranca rápido, gasta pouco, ideal pra trânsito do dia
+                - listitem [ref=e33]: • Combustão é mais forte, mais lento pra ligar, ideal pra subida pesada
+                - listitem [ref=e34]: • Sistema decide qual usar — geralmente escolhe o elétrico (é mais barato)
+                - listitem [ref=e35]: • Em subida íngreme, se ficar só no elétrico, falha e atola
+                - listitem [ref=e36]: • Bom motorista sabe quando forçar o sistema a chamar o motor maior
+            - generic [ref=e37]:
+              - generic [ref=e38]: Destino
+              - generic [ref=e39]: "Seu cérebro com dois sistemas: rápido e devagar"
+              - list [ref=e40]:
+                - listitem [ref=e41]: • Rápido (S1) reage em segundos, gasta pouca energia, ideal pra rotina
+                - listitem [ref=e42]: • Devagar (S2) é mais preciso, exige esforço, ideal pra decisão complicada
+                - listitem [ref=e43]: • Cérebro escolhe o S1 quase sempre — é mais barato
+                - listitem [ref=e44]: • Em decisão importante, se ficar só no S1, erra e estraga
+                - listitem [ref=e45]: • Treino é saber quando forçar o cérebro a ligar o S2
+          - generic [ref=e46]: Pontes
+          - generic [ref=e47]:
+            - generic [ref=e48]:
+              - generic [ref=e75]: Motor elétrico, leve e padrão
+              - generic [ref=e76]: →
+              - generic [ref=e77]: Sistema 1, rápido e automático
+            - generic [ref=e49]:
+              - generic [ref=e78]: Motor a combustão, forte e lento
+              - generic [ref=e79]: →
+              - generic [ref=e80]: Sistema 2, lento e analítico
+            - generic [ref=e50]:
+              - generic [ref=e81]: Carro sempre prefere o motor barato
+              - generic [ref=e82]: →
+              - generic [ref=e83]: Cérebro sempre prefere o sistema barato
+            - generic [ref=e51]:
+              - generic [ref=e84]: Motorista força o motor pesado em subida
+              - generic [ref=e85]: →
+              - generic [ref=e86]: Você força o S2 em decisão pesada
+          - paragraph [ref=e53]: Se um motorista que só usa elétrico atola em subida, em que momentos você 'atola' por não ter ligado o sistema 2 a tempo?
+        - button "Continuar →" [ref=e55]
+  - text: 󲎤

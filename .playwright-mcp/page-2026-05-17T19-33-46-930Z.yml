@@ -1,0 +1,73 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e72]: Jornada
+    - link "Academia" [ref=e5] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e6]: 󲌸
+      - generic [ref=e73]: Academia
+    - link "Lojinha" [ref=e7] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e8]: 󲊉
+      - generic [ref=e74]: Lojinha
+    - link "Diário" [ref=e9] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e10]: 󱖃
+      - generic [ref=e75]: Diário
+  - main [ref=e11]:
+    - generic [ref=e15]:
+      - generic [ref=e17]:
+        - link "Voltar para Mente Forte" [ref=e18] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte
+        - generic [ref=e20]:
+          - generic [ref=e21]: MENTE FORTE · REVISÃO
+          - heading "Por que mexer no celular é tão difícil de parar?" [level=1] [ref=e22]
+      - generic [ref=e23]:
+        - generic [ref=e76]: ✓
+        - generic [ref=e25]: Missão completa
+        - paragraph [ref=e26]:
+          - strong [ref=e27]: "5"
+          - text: lentes percorridas sobre
+          - strong [ref=e28]: Dopamina
+          - text: .
+      - generic [ref=e29]:
+        - link "📖 Lente 1 Conta a história" [ref=e30] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/visits/1193
+          - generic [ref=e31]: 📖
+          - generic [ref=e32]:
+            - generic [ref=e33]: Lente 1
+            - generic [ref=e34]: Conta a história
+        - link "👁 Lente 2 Faz isso agora" [ref=e37] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/visits/1194
+          - generic [ref=e38]: 👁
+          - generic [ref=e39]:
+            - generic [ref=e40]: Lente 2
+            - generic [ref=e41]: Faz isso agora
+        - link "🕰 Lente 3 Atravessando o tempo" [ref=e44] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/visits/1195
+          - generic [ref=e45]: 🕰
+          - generic [ref=e46]:
+            - generic [ref=e47]: Lente 3
+            - generic [ref=e48]: Atravessando o tempo
+        - link "🔬 Lente 4 Como funciona" [ref=e51] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/visits/1196
+          - generic [ref=e52]: 🔬
+          - generic [ref=e53]:
+            - generic [ref=e54]: Lente 4
+            - generic [ref=e55]: Como funciona
+        - link "🔭 Lente 5 Em outro lugar" [ref=e58] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar/visits/1197
+          - generic [ref=e59]: 🔭
+          - generic [ref=e60]:
+            - generic [ref=e61]: Lente 5
+            - generic [ref=e62]: Em outro lugar
+  - generic [ref=e77]:
+    - generic [ref=e79]: 󲎤
+    - generic [ref=e80]:
+      - paragraph [ref=e81]: Instale o LittleStars
+      - paragraph [ref=e82]: Acesso rápido pela tela inicial.
+    - generic [ref=e83]:
+      - button "Instalar" [ref=e84] [cursor=pointer]
+      - button "Agora não" [ref=e85] [cursor=pointer]

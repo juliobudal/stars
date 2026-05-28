@@ -1,0 +1,194 @@
+- generic [active] [ref=e57]:
+  - text:    
+  - generic [ref=e58]:
+    - link "Jornada" [ref=e59] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e60]: 
+      - generic [ref=e61]: Jornada
+    - link "Lojinha" [ref=e62] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e63]: 
+    - link "Diário" [ref=e64] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e65]: 
+    - button "Sair" [ref=e67] [cursor=pointer]:
+      - generic [ref=e68]: 
+  - generic [ref=e70]:
+    - generic [ref=e71]:
+      - generic [ref=e72]:
+        - img [ref=e73]
+        - generic [ref=e78]:
+          - generic [ref=e79]: OI,
+          - generic [ref=e80]: Lila!
+      - generic [ref=e81]:
+        - generic [ref=e82]: 🔥 0 dias
+        - generic [ref=e84]: 
+        - img [ref=e85]
+    - generic [ref=e93]:
+      - generic [ref=e94]:
+        - generic [ref=e96]: 
+        - generic [ref=e97]:
+          - generic [ref=e98]: MEU COFRINHO
+          - generic [ref=e99]:
+            - generic [ref=e100]:
+              - generic [ref=e102]: 
+              - generic [ref=e103]: "390"
+            - generic [ref=e104]: estrelinhas guardadas
+      - generic [ref=e106]:
+        - generic [ref=e107]: PROGRESSO DE HOJE
+        - generic [ref=e108]: 1 de 9 ✨
+    - generic [ref=e111]:
+      - heading "Minhas missões de hoje" [level=2] [ref=e112]
+      - generic [ref=e113]: 9 missões · escolha qualquer uma
+    - generic [ref=e114]:
+      - generic [ref=e117]:
+        - generic [ref=e118]:
+          - generic [ref=e119]: 
+          - generic [ref=e120]: "+50"
+        - generic [ref=e121]:
+          - generic [ref=e122]:
+            - generic [ref=e123]: Fazer a lição de casa
+            - generic "Aprovada" [ref=e124]:
+              - generic [ref=e125]: 
+          - generic [ref=e126]:
+            - generic [ref=e127]: Escola
+            - generic [ref=e128]: ·
+            - generic [ref=e129]: daily
+            - generic [ref=e130]: ·
+            - generic [ref=e131]:
+              - generic [ref=e132]: 
+              - text: "50"
+      - generic [ref=e133]:
+        - generic [ref=e134] [cursor=pointer]:
+          - generic [ref=e135]:
+            - generic [ref=e136]: 
+            - generic [ref=e137]: AGORA
+          - generic [ref=e138]:
+            - generic [ref=e139]:
+              - generic [ref=e140]: Arrumar a cama
+              - generic "Em andamento" [ref=e141]:
+                - generic [ref=e142]: 
+            - generic [ref=e143]:
+              - generic [ref=e144]: Casa
+              - generic [ref=e145]: ·
+              - generic [ref=e146]: daily
+              - generic [ref=e147]: ·
+              - generic [ref=e148]:
+                - generic [ref=e149]: 
+                - text: "20"
+        - text:     
+      - generic [ref=e150]:
+        - generic [ref=e151] [cursor=pointer]:
+          - generic [ref=e153]: 
+          - generic [ref=e154]:
+            - generic [ref=e155]:
+              - generic [ref=e156]: Escovar os dentes
+              - generic "A fazer" [ref=e157]
+            - generic [ref=e159]:
+              - generic [ref=e160]: Rotina
+              - generic [ref=e161]: ·
+              - generic [ref=e162]: daily
+              - generic [ref=e163]: ·
+              - generic [ref=e164]:
+                - generic [ref=e165]: 
+                - text: "10"
+        - text:     
+      - generic [ref=e166]:
+        - generic [ref=e167] [cursor=pointer]:
+          - generic [ref=e169]: 
+          - generic [ref=e170]:
+            - generic [ref=e171]:
+              - generic [ref=e172]: Dar comida ao pet
+              - generic "A fazer" [ref=e173]
+            - generic [ref=e175]:
+              - generic [ref=e176]: Rotina
+              - generic [ref=e177]: ·
+              - generic [ref=e178]: daily
+              - generic [ref=e179]: ·
+              - generic [ref=e180]:
+                - generic [ref=e181]: 
+                - text: "15"
+        - text:     
+      - generic [ref=e182]:
+        - generic [ref=e183] [cursor=pointer]:
+          - generic [ref=e185]: 
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - generic [ref=e188]: Arrumar a cama
+              - generic "A fazer" [ref=e189]
+            - generic [ref=e191]:
+              - generic [ref=e192]: Casa
+              - generic [ref=e193]: ·
+              - generic [ref=e194]: daily
+              - generic [ref=e195]: ·
+              - generic [ref=e196]:
+                - generic [ref=e197]: 
+                - text: "20"
+        - text:     
+      - generic [ref=e198]:
+        - generic [ref=e199] [cursor=pointer]:
+          - generic [ref=e201]: 
+          - generic [ref=e202]:
+            - generic [ref=e203]:
+              - generic [ref=e204]: Escovar os dentes
+              - generic "A fazer" [ref=e205]
+            - generic [ref=e207]:
+              - generic [ref=e208]: Rotina
+              - generic [ref=e209]: ·
+              - generic [ref=e210]: daily
+              - generic [ref=e211]: ·
+              - generic [ref=e212]:
+                - generic [ref=e213]: 
+                - text: "10"
+        - text:     
+      - generic [ref=e214]:
+        - generic [ref=e215] [cursor=pointer]:
+          - generic [ref=e217]: 
+          - generic [ref=e218]:
+            - generic [ref=e219]:
+              - generic [ref=e220]: Fazer a lição de casa
+              - generic "A fazer" [ref=e221]
+            - generic [ref=e223]:
+              - generic [ref=e224]: Escola
+              - generic [ref=e225]: ·
+              - generic [ref=e226]: daily
+              - generic [ref=e227]: ·
+              - generic [ref=e228]:
+                - generic [ref=e229]: 
+                - text: "50"
+        - text:     
+      - generic [ref=e230]:
+        - generic [ref=e231] [cursor=pointer]:
+          - generic [ref=e233]: 
+          - generic [ref=e234]:
+            - generic [ref=e235]:
+              - generic [ref=e236]: Lavar a louça
+              - generic "A fazer" [ref=e237]
+            - generic [ref=e239]:
+              - generic [ref=e240]: Casa
+              - generic [ref=e241]: ·
+              - generic [ref=e242]: daily
+              - generic [ref=e243]: ·
+              - generic [ref=e244]:
+                - generic [ref=e245]: 
+                - text: "40"
+        - text:     
+      - generic [ref=e246]:
+        - generic [ref=e247] [cursor=pointer]:
+          - generic [ref=e249]: 
+          - generic [ref=e250]:
+            - generic [ref=e251]:
+              - generic [ref=e252]: Dar comida ao pet
+              - generic "A fazer" [ref=e253]
+            - generic [ref=e255]:
+              - generic [ref=e256]: Rotina
+              - generic [ref=e257]: ·
+              - generic [ref=e258]: daily
+              - generic [ref=e259]: ·
+              - generic [ref=e260]:
+                - generic [ref=e261]: 
+                - text: "15"
+        - text:     
+      - generic [ref=e262]:
+        - img "Lumi" [ref=e265]
+        - generic [ref=e266]: +50 ao concluir tudo

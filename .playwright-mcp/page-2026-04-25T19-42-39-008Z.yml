@@ -1,0 +1,26 @@
+- generic [ref=e3]:
+  - img [ref=e4]
+  - heading "Quem é você?" [level=1] [ref=e6]
+  - generic [ref=e7]:
+    - link "J Julio Pai/Mãe" [ref=e9] [cursor=pointer]:
+      - /url: /profile_session/new?profile_id=764
+      - generic [ref=e10]: J
+      - generic [ref=e11]: Julio
+      - generic [ref=e12]: Pai/Mãe
+    - generic [ref=e14]:
+      - generic [ref=e15]: J
+      - generic [ref=e16]: Julio
+      - generic [ref=e17]: Digite seu PIN
+      - generic [ref=e24]:
+        - button "1" [ref=e25] [cursor=pointer]
+        - button "2" [ref=e26] [cursor=pointer]
+        - button "3" [ref=e27] [cursor=pointer]
+        - button "4" [ref=e28] [cursor=pointer]
+        - button "5" [ref=e29] [cursor=pointer]
+        - button "6" [ref=e30] [cursor=pointer]
+        - button "7" [ref=e31] [cursor=pointer]
+        - button "8" [ref=e32] [cursor=pointer]
+        - button "9" [ref=e33] [cursor=pointer]
+        - button "esc" [ref=e34] [cursor=pointer]
+        - button "0" [active] [ref=e35] [cursor=pointer]
+        - button "⌫" [ref=e36] [cursor=pointer]

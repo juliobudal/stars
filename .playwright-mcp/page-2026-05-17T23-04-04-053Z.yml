@@ -1,0 +1,62 @@
+- generic [active] [ref=e207]:
+  - navigation "Navegação principal" [ref=e208]:
+    - link "Jornada" [ref=e209] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e210]: 󲑲
+      - generic [ref=e211]: Jornada
+    - link "Academia" [ref=e212] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e213]: 󲌸
+      - generic [ref=e214]: Academia
+    - link "Lojinha" [ref=e215] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e216]: 󲊉
+      - generic [ref=e217]: Lojinha
+    - link "Diário" [ref=e218] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e219]: 󱖃
+      - generic [ref=e220]: Diário
+  - main [ref=e221]:
+    - generic [ref=e222]:
+      - generic [ref=e223]:
+        - link [ref=e224] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte
+        - generic [ref=e226]:
+          - generic [ref=e227]: Mente Forte · TRILHA 1
+          - heading "Quem Manda na Sua Atenção?" [level=1] [ref=e228]
+      - generic [ref=e229]:
+        - generic [ref=e230]: O ARCO DESTA TRILHA
+        - paragraph [ref=e231]: "\"Se você não programa sua atenção, alguém programa por você.\""
+      - generic [ref=e232]:
+        - link "Por que mexer no celular é tão difícil de parar? \"Apps foram desenhados pra te prender — não é fraqueza.\" Carta no Atlas" [ref=e233] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar
+          - generic [ref=e234]:
+            - generic [ref=e236]: 󲓧
+            - generic [ref=e237]:
+              - generic [ref=e238]: Por que mexer no celular é tão difícil de parar?
+              - generic [ref=e239]: "\"Apps foram desenhados pra te prender — não é fraqueza.\""
+              - generic [ref=e240]:
+                - generic [ref=e241]: 󲌸
+                - generic [ref=e242]: Carta no Atlas
+        - link "2 Quanto custa uma notificação? \"Cada beep apaga 23 minutos do seu cérebro.\"" [ref=e244] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte/missions/notificacoes-custam-23-min
+          - generic [ref=e245]:
+            - generic [ref=e246]: "2"
+            - generic [ref=e247]:
+              - generic [ref=e248]: Quanto custa uma notificação?
+              - generic [ref=e249]: "\"Cada beep apaga 23 minutos do seu cérebro.\""
+        - link "Por que 25 minutos podem valer mais que 2 horas?":
+          - /url: "#"
+          - generic:
+            - generic:
+              - generic: 󲍽
+            - generic:
+              - generic: Por que 25 minutos podem valer mais que 2 horas?
+        - link "Como criar um hábito novo sem sofrer?":
+          - /url: "#"
+          - generic:
+            - generic:
+              - generic: 󲍽
+            - generic:
+              - generic: Como criar um hábito novo sem sofrer?
+  - text: 󲎤

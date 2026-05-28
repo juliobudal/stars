@@ -1,26 +1,24 @@
-<% content_for(:title) { "O Guia · #{@mission.title}" } %>
-<%
-  color_var = "var(--academy-pokedex-#{@mission.concept.pokedex_color_key.presence || 'cognitivo'})"
-%>
+<% content_for(:title) { "O Guia · #{@lesson.title}" } %>
+<% color_var = "var(--primary)" %>
 
-<div class="screen screen-enter">
+<div class="screen no-nav screen-enter">
   <%# ── Header ────────────────────────────────────────────────── %>
   <header class="-mx-4 px-4 pt-3 pb-3 mb-4">
     <div class="flex items-center gap-3">
-      <%= link_to kid_academy_subject_mission_path(@subject, @mission),
-                  "aria-label": "Voltar para a missão",
-                  class: "w-10 h-10 rounded-full flex items-center justify-center anim-press shrink-0",
+      <%= link_to kid_academy_trail_lesson_path(@trail, @lesson),
+                  "aria-label": "Voltar para a aula",
+                  class: "w-11 h-11 rounded-full flex items-center justify-center anim-press shrink-0",
                   style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06);" do %>
-        <%= render Ui::Icon::Component.new(:chevron_left, size: 18, color: "var(--text)") %>
+        <%= render Ui::Icon::Component.new(:back, size: 18, color: "var(--text)") %>
       <% end %>
 
       <div class="flex-1 min-w-0">
         <div class="font-display text-[10px] font-extrabold tracking-[1.5px] uppercase truncate"
              style="color: <%= color_var %>;">
-          <%= @subject.name.upcase %> · O GUIA
+          <span aria-hidden="true">🦉</span> O GUIA
         </div>
         <h1 class="font-display text-[17px] font-extrabold leading-tight m-0 truncate" style="color: var(--text);">
-          <%= @mission.title %>
+          <%= @lesson.title %>
         </h1>
       </div>
     </div>
@@ -29,14 +27,14 @@
   <%# ── Conversation transcript ───────────────────────────────── %>
   <section aria-label="Conversa" class="flex flex-col gap-3 mb-4">
     <% if @messages.empty? %>
-      <div class="lens-card p-5 text-center"
+      <div class="academy-card p-5 text-center"
            style="background: color-mix(in oklab, <%= color_var %> 10%, var(--surface)); border-color: <%= color_var %>;">
-        <div class="text-[28px] mb-1">🦉</div>
+        <div class="text-[28px] mb-1" aria-hidden="true">🦉</div>
         <p class="font-display text-[15px] font-extrabold leading-snug m-0 mb-1" style="color: var(--text);">
-          Pergunta o que quiser sobre essa missão.
+          Pergunta o que quiser sobre essa aula.
         </p>
         <p class="font-display text-[13px] leading-snug m-0" style="color: var(--text-muted);">
-          O Guia só fala do que tá rolando aqui.
+          O Guia só fala do que tá rolando aqui. 5 perguntas por dia.
         </p>
       </div>
     <% else %>
@@ -47,8 +45,8 @@
   </section>
 
   <%# ── Input ─────────────────────────────────────────────────── %>
-  <%= form_with url: kid_academy_subject_mission_guide_path(@subject, @mission),
-                method: :post, local: true, class: "lens-card p-3" do |f| %>
+  <%= form_with url: kid_academy_trail_lesson_guide_path(@trail, @lesson),
+                method: :post, local: true, class: "academy-card p-3" do |f| %>
     <%= f.text_area :content,
                     rows: 3,
                     maxlength: 500,

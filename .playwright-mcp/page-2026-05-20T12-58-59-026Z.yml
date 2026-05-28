@@ -1,0 +1,78 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - link "Voltar para Como o Mundo Funciona" [ref=e19] [cursor=pointer]:
+            - /url: /kid/academy/subjects/como-o-mundo-funciona
+          - generic [ref=e21]:
+            - generic [ref=e22]: COMO O MUNDO FUNCIONA
+            - heading "Por que o céu é azul (e não roxo)?" [level=1] [ref=e23]
+        - generic "Progresso da missão" [ref=e24]
+      - generic [ref=e32]:
+        - generic [ref=e33]: 🔭
+        - generic [ref=e34]:
+          - heading "Em outro lugar" [level=2] [ref=e35]
+          - generic [ref=e36]: sobre Por que o céu é azul
+        - generic "Narrado por O Tradutor" [ref=e37]:
+          - generic [ref=e38]: 🌉
+          - generic [ref=e39]: O Tradutor
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - generic [ref=e43]:
+              - generic [ref=e44]: Origem
+              - generic [ref=e45]: Bola de gude jogada num corredor de bolinhas
+              - list [ref=e46]:
+                - listitem [ref=e47]: • Você joga uma bola grande no meio de bolinhas pequenas espalhadas
+                - listitem [ref=e48]: • A bola grande passa quase reta, mal desvia das pequenas
+                - listitem [ref=e49]: • Uma bola pequena bate em todas e ricocheteia pra tudo quanto é canto
+                - listitem [ref=e50]: • Quem olha de longe vê o corredor cheio das ricocheteadas, não da reta
+                - listitem [ref=e51]: • Bola pequena demais escapa pelo vão sem bater em ninguém
+            - generic [ref=e52]:
+              - generic [ref=e53]: Destino
+              - generic [ref=e54]: Luz do sol batendo no ar
+              - list [ref=e55]:
+                - listitem [ref=e56]: • Luz branca traz todas as cores misturadas no mesmo feixe
+                - listitem [ref=e57]: • Vermelho tem onda 'grande', passa quase reta pelo ar
+                - listitem [ref=e58]: • Azul tem onda 'pequena', bate nas moléculas e espalha pra tudo lado
+                - listitem [ref=e59]: • Você olha pro céu e vê o azul espalhado, não a luz reta
+                - listitem [ref=e60]: • Raio ultravioleta é tão pequeno que muitos escapam pela atmosfera
+          - generic [ref=e61]: Pontes
+          - generic [ref=e62]:
+            - generic [ref=e63]:
+              - generic [ref=e64]: Bola grande passa reta no corredor
+              - generic [ref=e65]: →
+              - generic [ref=e66]: Luz vermelha passa reta pelo ar
+            - generic [ref=e67]:
+              - generic [ref=e68]: Bola pequena ricocheteia em todas direções
+              - generic [ref=e69]: →
+              - generic [ref=e70]: Luz azul espalha em todas direções
+            - generic [ref=e71]:
+              - generic [ref=e72]: De longe se vê o ricochete, não a reta
+              - generic [ref=e73]: →
+              - generic [ref=e74]: De baixo se vê o azul espalhado, não o feixe reto
+            - generic [ref=e75]:
+              - generic [ref=e76]: Tamanho da bola decide se desvia ou não
+              - generic [ref=e77]: →
+              - generic [ref=e78]: Tamanho da onda decide qual cor espalha
+          - paragraph [ref=e80]: Se o sol manda todas as cores juntas, qual seria a cor do céu num planeta com ar feito de moléculas bem maiores que as do nosso?
+        - button "Continuar →" [ref=e82]
+  - text: 󲎤

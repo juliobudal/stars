@@ -1,0 +1,115 @@
+- generic [active] [ref=e1]:
+  - navigation "Principal" [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 
+      - generic [ref=e6]:
+        - generic [ref=e7]: LittleStars
+        - text: Estrelas Incríveis 2 pais · 3 filhos
+    - generic [ref=e8]:
+      - link "Início" [ref=e9] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e10]: 
+        - generic [ref=e11]: Início
+      - link "Filhos" [ref=e12] [cursor=pointer]:
+        - /url: /parent/profiles
+        - generic [ref=e13]: 
+        - generic [ref=e14]: Filhos
+      - link "Missões" [ref=e15] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e16]: 
+        - generic [ref=e17]: Missões
+      - link "Prêmios" [ref=e18] [cursor=pointer]:
+        - /url: /parent/rewards
+        - generic [ref=e19]: 
+        - generic [ref=e20]: Prêmios
+      - link "Aprovações 1" [ref=e21] [cursor=pointer]:
+        - /url: /parent/approvals
+        - generic [ref=e22]: 
+        - generic [ref=e23]: Aprovações
+        - generic [ref=e24]: "1"
+      - link "Configurações" [ref=e25] [cursor=pointer]:
+        - /url: /parent/settings
+        - generic [ref=e26]: 
+        - generic [ref=e27]: Configurações
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - img [ref=e30]
+        - generic [ref=e34]:
+          - generic [ref=e35]: Mamãe
+          - generic [ref=e36]: Administrador(a)
+      - button "Sair" [ref=e38] [cursor=pointer]:
+        - generic [ref=e39]: 
+        - generic [ref=e40]: Sair
+  - text:    
+  - generic [ref=e42]:
+    - generic [ref=e44]:
+      - link [ref=e45] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e46]: 
+      - generic [ref=e47]:
+        - heading "Configurações" [level=2] [ref=e48]
+        - generic [ref=e49]: Preferências da família
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - generic [ref=e53]: Família
+          - generic [ref=e54]:
+            - generic [ref=e55]:
+              - generic [ref=e56]: Nome
+              - textbox [ref=e57]: Estrelas Incríveis
+            - generic [ref=e58]:
+              - generic [ref=e59]: Idioma
+              - combobox [ref=e60]:
+                - option "Português (Brasil)" [selected]
+                - option "English"
+            - generic [ref=e61]:
+              - generic [ref=e62]: Fuso horário
+              - combobox [ref=e63]:
+                - option "America/Sao_Paulo" [selected]
+                - option "America/New_York"
+                - option "Europe/Lisbon"
+            - generic [ref=e64]:
+              - generic [ref=e65]:
+                - generic [ref=e66]: Semana começa no domingo
+                - generic [ref=e67]: Caso contrário, inicia na segunda
+              - checkbox [ref=e69]
+        - generic [ref=e72]:
+          - generic [ref=e73]: Responsáveis
+          - generic [ref=e74]:
+            - generic [ref=e75]:
+              - generic [ref=e77]: 
+              - generic [ref=e78]:
+                - generic [ref=e79]: Mamãe
+                - generic [ref=e80]: Responsável
+            - generic [ref=e81]:
+              - generic [ref=e83]: 
+              - generic [ref=e84]:
+                - generic [ref=e85]: Papai
+                - generic [ref=e86]: Responsável
+            - button "Convidar responsável" [ref=e87] [cursor=pointer]:
+              - generic [ref=e88]: 
+              - text: Convidar responsável
+      - generic [ref=e89]:
+        - generic [ref=e90]: Regras
+        - generic [ref=e91]:
+          - generic [ref=e92]:
+            - generic [ref=e93]:
+              - generic [ref=e94]: Exigir foto de comprovação
+              - generic [ref=e95]: Pedir foto ao concluir missão
+            - checkbox [ref=e97]
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - generic [ref=e102]: Decaimento de estrelas
+              - generic [ref=e103]: Estrelas expiram após um período
+            - checkbox [ref=e105]
+          - generic [ref=e108]:
+            - generic [ref=e109]:
+              - generic [ref=e110]: Permitir saldo negativo
+              - generic [ref=e111]: Crianças podem ficar com saldo devedor
+            - checkbox [ref=e113]
+          - generic [ref=e116]:
+            - generic [ref=e117]:
+              - generic [ref=e118]: Aprovação automática
+              - generic [ref=e119]: Missões diárias liberam sem revisão
+            - checkbox [ref=e121]
+      - button "Salvar alterações" [ref=e125] [cursor=pointer]

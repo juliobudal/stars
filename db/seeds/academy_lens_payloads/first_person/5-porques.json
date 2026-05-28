@@ -1,6 +1,0 @@
-{
-  "action_prompt": "Pensa numa briga ou irritação real dos últimos 3 dias — irmão, regra de casa, coisa que deu errado no quarto. Agora pergunta 'por quê?' cinco vezes seguidas, cavando a resposta anterior. Faça isso no papel ou na cabeça, sem pular.",
-  "sensory_anchor": "Em qual 'por quê' a resposta mudou de assunto? Geralmente o terceiro ou o quarto sai da briga e cai num medo, num cansaço, numa coisa antiga.",
-  "expected_time_seconds": 90,
-  "reveal": "A briga visível quase nunca é a briga real. O primeiro 'por quê' explica o gatilho. O quinto costuma chegar na causa: 'queria atenção', 'tava com fome', 'me senti injustiçado mês passado'. Quem só responde o primeiro porquê apaga incêndio. Quem chega no quinto desliga o gás."
-}

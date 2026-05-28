@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, chuta: quantas vezes por dia seu corpo manda um sinal de fome que, na verdade, é sede? Palpita.",
-  "predict_unit": "vezes/dia",
-  "predict_min": 0,
-  "predict_max": 10,
-  "reveal_value": 3,
-  "reveal_source": "Estimativa baseada em relatos de clínicas de nutrição: até 3 episódios diários de confusão entre fome e sede em crianças e adolescentes (fonte: revisão informal de prontuários, 2023).",
-  "interpretation": "3 vezes por dia. Seu corpo pede água, você interpreta como fome. O hipotálamo — central de comando do cérebro — recebe os dois sinais pelo mesmo circuito. Sede disfarçada de fome é um dos erros de tradução mais comuns do corpo."
-}

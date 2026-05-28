@@ -1,0 +1,45 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]: 󲓧
+      - generic [ref=e18]: Você já completou "Por que comprar por impulso é uma armadilha?". ✨
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - link [ref=e21] [cursor=pointer]:
+          - /url: /kid/academy/subjects
+        - generic [ref=e23]:
+          - generic [ref=e24]: ÁREA DE FORMAÇÃO
+          - heading "Dinheiro & Vida Real" [level=1] [ref=e25]
+        - generic [ref=e26]: Nv. 0
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - generic [ref=e29]: 󱟴
+          - generic [ref=e30]: Novato · +6 pra mestre
+        - paragraph [ref=e33]: Inteligência financeira e responsabilidade.
+      - generic [ref=e34]: TRILHAS
+      - link "1 Quem manda no seu dinheiro? \"Quem não decide quando gasta, gasta sempre.\" 0/6" [ref=e36] [cursor=pointer]:
+        - /url: /kid/academy/subjects/dinheiro-vida/trails/impulso-vs-planejamento
+        - generic [ref=e37]:
+          - generic [ref=e39]: "1"
+          - generic [ref=e40]:
+            - generic [ref=e41]: Quem manda no seu dinheiro?
+            - paragraph [ref=e42]: "\"Quem não decide quando gasta, gasta sempre.\""
+            - generic [ref=e46]: 0/6
+  - text: 󲎤

@@ -1,0 +1,8 @@
+- generic [ref=e3]:
+  - img [ref=e4]
+  - heading "Quem é você?" [level=1] [ref=e6]
+  - link "J Julio Pai/Mãe" [ref=e9] [cursor=pointer]:
+    - /url: /profile_session/new?profile_id=764
+    - generic [ref=e10]: J
+    - generic [ref=e11]: Julio
+    - generic [ref=e12]: Pai/Mãe

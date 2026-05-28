@@ -1,6 +1,6 @@
 @font-face {
   font-family: "hugeicons-stroke-rounded";
-  src: url("/fonts/hugeicons/hgi-stroke-rounded.woff2") format("woff2");
+  src: url("../../fonts/hugeicons/hgi-stroke-rounded.woff2") format("woff2");
   font-display: swap;
 }
 .hgi-stroke {

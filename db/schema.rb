@@ -10,74 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_25_184150) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_28_120100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "academy_concept_edges", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "edge_type", default: "relates_to", null: false, comment: "v4 typed edge — see migration header"
-    t.bigint "from_concept_id", null: false
-    t.integer "kind", default: 0, null: false, comment: "0=echoes (symmetric), 1=depends_on, 2=leads_to"
-    t.bigint "to_concept_id", null: false
-    t.datetime "updated_at", null: false
-    t.index ["edge_type"], name: "idx_academy_concept_edges_edge_type"
-    t.index ["from_concept_id", "to_concept_id", "kind"], name: "idx_academy_concept_edges_unique", unique: true
-    t.index ["from_concept_id"], name: "index_academy_concept_edges_on_from_concept_id"
-    t.index ["to_concept_id"], name: "index_academy_concept_edges_on_to_concept_id"
-  end
-
-  create_table "academy_concepts", force: :cascade do |t|
-    t.boolean "active", default: true, null: false
-    t.string "category", null: false, comment: "cognitivo | cientifico | social | financeiro | saude | virtude | tecnologia"
-    t.text "common_confusion", comment: "Typical 7-12yo misread of this concept — feeds micro_check distractors"
-    t.datetime "created_at", null: false
-    t.text "definition", comment: "Plain-language 1-2 line description"
-    t.text "forbidden_terms", default: [], null: false, comment: "Words this concept must never use (e.g. 'prazer' for dopamina)", array: true
-    t.string "name", null: false
-    t.string "pokedex_color_key", comment: "Design token name (e.g. 'pokedex-mind', 'pokedex-body')"
-    t.string "pokedex_silhouette_key", comment: "Asset name in app/assets/images/academy/pokedex/ (svg)"
-    t.integer "position", default: 0, null: false
-    t.string "slug", null: false
-    t.text "the_essence", comment: "Curator's one-sentence north star — what every lens must point to"
-    t.datetime "updated_at", null: false
-    t.index ["category"], name: "index_academy_concepts_on_category"
-    t.index ["slug"], name: "index_academy_concepts_on_slug", unique: true
-  end
-
-  create_table "academy_discovery_cards", force: :cascade do |t|
-    t.text "application", comment: "1-sentence concrete application"
-    t.text "central_insight", comment: "Copied snapshot of mission insight at mint time"
-    t.datetime "created_at", null: false
-    t.string "headline", limit: 180, null: false, comment: "1-line sacada compressed"
-    t.string "illustration_key", comment: "Icon/illustration to render"
-    t.string "kind", default: "mission_card", null: false, comment: "mission_card | trail_theory | virtue_sighting"
-    t.bigint "learner_id", null: false
-    t.datetime "minted_at", null: false
-    t.bigint "mission_id", null: false
-    t.string "source", comment: "Author/tradition (optional, when applicable)"
-    t.datetime "updated_at", null: false
-    t.index ["learner_id", "kind"], name: "idx_academy_discovery_cards_learner_kind"
-    t.index ["learner_id", "minted_at"], name: "idx_academy_cards_learner_time"
-    t.index ["learner_id", "mission_id"], name: "idx_academy_cards_unique", unique: true
-    t.index ["mission_id"], name: "index_academy_discovery_cards_on_mission_id"
-  end
-
   create_table "academy_guide_conversations", force: :cascade do |t|
-    t.datetime "closed_at", comment: "Set when quota cap is hit or session expires"
+    t.datetime "closed_at"
     t.datetime "created_at", null: false
     t.text "flag_reasons", default: [], null: false, array: true
     t.boolean "flagged", default: false, null: false
     t.bigint "learner_id", null: false, comment: "Learner value-object id (no FK — module isolation)"
+    t.bigint "lesson_id", null: false
     t.integer "message_count", default: 0, null: false
-    t.bigint "mission_id", null: false
-    t.string "prompt_version", default: "guide-persona@v1", null: false, comment: "Frozen at conversation start so future persona iterations don't reinterpret history"
+    t.string "prompt_version", default: "guide-persona@v2", null: false
     t.datetime "started_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["flagged", "started_at"], name: "idx_academy_guide_conv_flagged", order: { started_at: :desc }, where: "(flagged = true)"
-    t.index ["learner_id", "mission_id", "started_at"], name: "idx_academy_guide_conv_learner_mission_started", order: { started_at: :desc }
-    t.index ["mission_id"], name: "index_academy_guide_conversations_on_mission_id"
+    t.index ["learner_id", "lesson_id", "started_at"], name: "idx_academy_guide_conv_learner_lesson_started", order: { started_at: :desc }
+    t.index ["lesson_id"], name: "index_academy_guide_conversations_on_lesson_id"
   end
 
   create_table "academy_guide_messages", force: :cascade do |t|
@@ -88,273 +38,50 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_25_184150) do
     t.integer "role", null: false, comment: "0 user · 1 guide · 2 system_note"
     t.integer "tokens_in"
     t.integer "tokens_out"
+    t.datetime "updated_at", null: false
     t.index ["conversation_id", "created_at"], name: "idx_academy_guide_msg_conv_created"
+    t.index ["conversation_id"], name: "index_academy_guide_messages_on_conversation_id"
   end
 
-  create_table "academy_learner_concepts", force: :cascade do |t|
-    t.bigint "concept_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "evolved_to_2_at"
-    t.datetime "evolved_to_3_at"
-    t.datetime "first_seen_at"
-    t.datetime "last_seen_at"
-    t.bigint "learner_id", null: false, comment: "Learner value-object id (no FK by design — module isolation)"
-    t.integer "level", default: 0, null: false, comment: "0..3 (silhouette → mastered)"
-    t.integer "seen_in_subjects_count", default: 0, null: false
-    t.datetime "updated_at", null: false
-    t.index ["concept_id"], name: "index_academy_learner_concepts_on_concept_id"
-    t.index ["learner_id", "concept_id"], name: "idx_academy_learner_concepts_unique", unique: true
-    t.index ["learner_id", "level"], name: "idx_academy_learner_concepts_level"
-  end
-
-  create_table "academy_learner_lens_visits", force: :cascade do |t|
-    t.string "chooser_version", comment: "Which version of ChooseNext picked this lens"
-    t.datetime "closed_at"
-    t.bigint "concept_id", null: false
-    t.datetime "created_at", null: false
-    t.bigint "learner_id", null: false
-    t.boolean "legacy", default: false, null: false
-    t.bigint "lens_cache_id"
-    t.string "lens_type", null: false
-    t.bigint "mission_progress_id", null: false
-    t.datetime "opened_at", null: false
-    t.integer "ordering_position", null: false, comment: "1-based position within mission attempt"
-    t.string "outcome", comment: "completed | abandoned | skipped_by_system"
-    t.jsonb "signal_payload", default: {}, null: false
-    t.datetime "updated_at", null: false
-    t.index ["learner_id", "concept_id", "lens_type"], name: "idx_academy_lens_visits_learner_concept_lens"
-    t.index ["learner_id", "opened_at"], name: "idx_academy_lens_visits_learner_opened"
-    t.index ["mission_progress_id", "ordering_position"], name: "idx_academy_lens_visits_position", unique: true
-  end
-
-  create_table "academy_learner_signals", force: :cascade do |t|
-    t.integer "affinity_score", default: 0, null: false, comment: "Cumulative weighted signal: completions + correct checkpoints + done challenges"
-    t.integer "completion_count", default: 0, null: false
-    t.integer "correct_checkpoints", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "last_session_at"
-    t.bigint "learner_id", null: false
-    t.bigint "subject_id", null: false
-    t.datetime "updated_at", null: false
-    t.integer "wrong_checkpoints", default: 0, null: false
-    t.index ["learner_id", "subject_id"], name: "idx_academy_signals_learner_subject", unique: true
-    t.index ["subject_id"], name: "index_academy_learner_signals_on_subject_id"
-  end
-
-  create_table "academy_learner_story_paths", force: :cascade do |t|
+  create_table "academy_lesson_progresses", force: :cascade do |t|
+    t.integer "check_choice"
+    t.boolean "check_correct"
     t.datetime "completed_at"
     t.datetime "created_at", null: false
-    t.bigint "learner_id", null: false, comment: "Learner value-object id (no FK)"
-    t.bigint "mission_id", null: false
-    t.jsonb "scene_sequence", default: [], null: false, comment: "Ordered: [{scene_id, choice_label, at}]"
-    t.string "terminal_scene_id", comment: "Final scene reached, when mission ends"
+    t.bigint "learner_id", null: false, comment: "Learner value-object id (no FK — module isolation)"
+    t.bigint "lesson_id", null: false
     t.datetime "updated_at", null: false
-    t.index ["learner_id", "mission_id"], name: "idx_academy_learner_story_paths_learner_mission"
-    t.index ["mission_id"], name: "index_academy_learner_story_paths_on_mission_id"
-    t.index ["terminal_scene_id"], name: "idx_academy_learner_story_paths_terminal"
+    t.index ["learner_id", "lesson_id"], name: "index_academy_lesson_progresses_on_learner_id_and_lesson_id", unique: true
+    t.index ["lesson_id"], name: "index_academy_lesson_progresses_on_lesson_id"
   end
 
-  create_table "academy_lens_cache", force: :cascade do |t|
-    t.string "age_band", default: "kid", null: false
-    t.bigint "concept_id", null: false
+  create_table "academy_lessons", force: :cascade do |t|
+    t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
-    t.datetime "generated_at", null: false
-    t.string "interest_key"
-    t.string "lens_type", null: false
-    t.string "locale", default: "pt-BR", null: false
+    t.string "enigma", null: false
     t.jsonb "payload", default: {}, null: false
-    t.boolean "quality_flagged", default: false, null: false
-    t.string "source", default: "curated", null: false
-    t.datetime "updated_at", null: false
-    t.index "concept_id, lens_type, age_band, locale, COALESCE(interest_key, ''::character varying)", name: "idx_academy_lens_cache_unique", unique: true
-    t.index ["concept_id", "lens_type", "source"], name: "idx_academy_lens_cache_source_lookup"
-    t.index ["interest_key"], name: "idx_academy_lens_cache_interest_key", where: "(interest_key IS NOT NULL)"
-    t.index ["lens_type"], name: "index_academy_lens_cache_on_lens_type"
-    t.index ["quality_flagged"], name: "idx_academy_lens_cache_quality_flagged", where: "(quality_flagged = true)"
-  end
-
-  create_table "academy_lens_signals", force: :cascade do |t|
-    t.bigint "concept_id", null: false
-    t.datetime "created_at", null: false
-    t.bigint "learner_id", null: false
-    t.string "lens_type", null: false
-    t.bigint "lens_visit_id"
-    t.bigint "mission_progress_id", null: false
-    t.decimal "numeric_value", precision: 12, scale: 4, comment: "Seconds, scores, etc; nullable"
-    t.datetime "recorded_at", null: false
-    t.string "signal_type", null: false, comment: "time_on_lens | micro_check_correct | micro_check_wrong | abandoned | self_report_easy | self_report_hard | transfer_hint"
-    t.datetime "updated_at", null: false
-    t.index ["learner_id", "concept_id", "lens_type", "recorded_at"], name: "idx_academy_lens_signals_learner_concept_lens_time"
-    t.index ["learner_id", "signal_type", "recorded_at"], name: "idx_academy_lens_signals_learner_type_time"
-    t.index ["mission_progress_id", "recorded_at"], name: "idx_academy_lens_signals_progress_time"
-  end
-
-  create_table "academy_lightning_round_runs", force: :cascade do |t|
-    t.jsonb "concept_ids", default: [], null: false
-    t.integer "correct_count", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.integer "elapsed_seconds"
-    t.bigint "learner_id", null: false
-    t.string "tier", null: false
-    t.integer "total_questions", null: false
-    t.datetime "updated_at", null: false
-    t.index ["learner_id", "created_at"], name: "idx_academy_lightning_runs_by_learner_recency"
-  end
-
-  create_table "academy_messages", force: :cascade do |t|
-    t.text "content", null: false
-    t.datetime "created_at", null: false
-    t.jsonb "metadata", default: {}, null: false
-    t.integer "role", default: 0, null: false
-    t.bigint "session_id", null: false
-    t.integer "tokens"
-    t.datetime "updated_at", null: false
-    t.index ["session_id", "created_at"], name: "idx_academy_messages_session_time"
-    t.index ["session_id"], name: "idx_academy_messages_session"
-  end
-
-  create_table "academy_mission_progresses", force: :cascade do |t|
-    t.datetime "completed_at"
-    t.integer "correct_checkpoints", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.integer "current_session_index", default: 0, null: false
-    t.bigint "learner_id", null: false
-    t.bigint "mission_id", null: false
-    t.datetime "started_at"
-    t.integer "status", default: 0, null: false
-    t.integer "total_checkpoints", default: 0, null: false
-    t.datetime "updated_at", null: false
-    t.index ["learner_id", "mission_id"], name: "idx_academy_progress_learner_mission", unique: true
-    t.index ["learner_id", "status"], name: "idx_academy_progress_learner_status"
-    t.index ["mission_id"], name: "index_academy_mission_progresses_on_mission_id"
-  end
-
-  create_table "academy_missions", force: :cascade do |t|
-    t.boolean "active", default: true, null: false
-    t.text "angle", comment: "Specific unique angle for this mission"
-    t.string "central_insight", limit: 240, comment: "The 'se X, então Y' takeaway the kid should keep"
-    t.string "challenge_observable", comment: "What the kid should notice after doing it"
-    t.text "challenge_prompt", comment: "Mini-desafio comportamental that anchors the lesson"
-    t.string "challenge_when", comment: "When to do the challenge: hoje | esta-semana"
-    t.bigint "concept_id", null: false
-    t.datetime "created_at", null: false
-    t.jsonb "curiosity_facts", default: [], null: false
-    t.string "framework", comment: "Didactic frame: socratic | story | metaphor | case | thought_experiment | paradox | historical_scene"
-    t.string "hook", comment: "Short mysterious teaser to entice the kid"
-    t.string "illustration_key", comment: "Icon/illustration slug the discovery card uses"
-    t.text "learning_objective", null: false
-    t.integer "order_in_subject", default: 0, null: false
-    t.integer "points_reward", default: 25, null: false
-    t.integer "position_in_trail"
-    t.string "slug", null: false
-    t.string "source", comment: "Author(s)/tradition/study the pílula distills (e.g. 'Carnegie', 'Marco Aurélio', 'Provérbios')"
-    t.bigint "subject_id", null: false
-    t.string "title", null: false
-    t.bigint "trail_id"
-    t.datetime "updated_at", null: false
-    t.index ["concept_id"], name: "index_academy_missions_on_concept_id"
-    t.index ["framework"], name: "index_academy_missions_on_framework"
-    t.index ["source"], name: "index_academy_missions_on_source"
-    t.index ["subject_id", "order_in_subject"], name: "index_academy_missions_on_subject_id_and_order_in_subject"
-    t.index ["subject_id", "slug"], name: "index_academy_missions_on_subject_id_and_slug", unique: true
-    t.index ["subject_id"], name: "index_academy_missions_on_subject_id"
-    t.index ["trail_id"], name: "index_academy_missions_on_trail_id"
-  end
-
-  create_table "academy_pill_views", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.bigint "learner_id", null: false
-    t.bigint "lens_cache_id", null: false
-    t.integer "micro_check_choice"
-    t.boolean "micro_check_correct"
-    t.boolean "shared_with_parent", default: false, null: false
-    t.string "status", default: "served", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "viewed_at"
-    t.index ["learner_id", "created_at"], name: "idx_academy_pill_views_by_learner_recency"
-    t.index ["learner_id", "lens_cache_id"], name: "idx_academy_pill_views_unique_per_learner", unique: true
-  end
-
-  create_table "academy_practice_wagers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.integer "guide_bet_count", null: false, comment: "The Guide's numeric wager (extracted from LLM payload)"
-    t.integer "learner_actual_count", comment: "What the kid reports D+1 — nil until reported"
-    t.bigint "learner_id", null: false, comment: "Learner value-object id (no FK)"
-    t.text "learner_note", comment: "Optional short note from the kid alongside the count"
-    t.bigint "mission_id", null: false
-    t.datetime "observed_at"
-    t.string "parent_observation", comment: "seen_match | seen_higher | seen_lower | skip"
-    t.datetime "reported_at"
-    t.datetime "updated_at", null: false
-    t.index ["learner_id", "mission_id"], name: "idx_academy_practice_wagers_unique", unique: true
-    t.index ["learner_id", "reported_at"], name: "idx_academy_practice_wagers_learner_reported"
-    t.index ["mission_id"], name: "index_academy_practice_wagers_on_mission_id"
-  end
-
-  create_table "academy_secret_unlocks", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.bigint "learner_id", null: false
-    t.bigint "secret_id", null: false
-    t.boolean "seen", default: false, null: false
-    t.datetime "unlocked_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["learner_id", "secret_id"], name: "idx_academy_secret_unlocks_unique", unique: true
-    t.index ["secret_id"], name: "index_academy_secret_unlocks_on_secret_id"
-  end
-
-  create_table "academy_secrets", force: :cascade do |t|
-    t.boolean "active", default: true, null: false
-    t.datetime "created_at", null: false
-    t.integer "kind", default: 0, null: false, comment: "0=cards_in_subject, 1=cards_total, 2=challenge_ratio"
-    t.bigint "mission_id", comment: "Optional bonus pílula tied to this secret"
-    t.integer "position", default: 0, null: false
-    t.jsonb "rule", default: {}, null: false, comment: "e.g. { subject_slug: 'mente-forte', threshold: 5 }"
-    t.string "slug", null: false
-    t.text "teaser", comment: "Mysterious hint shown when locked"
-    t.string "title", null: false
-    t.datetime "updated_at", null: false
-    t.index ["mission_id"], name: "index_academy_secrets_on_mission_id"
-    t.index ["slug"], name: "index_academy_secrets_on_slug", unique: true
-  end
-
-  create_table "academy_sessions", force: :cascade do |t|
-    t.jsonb "checkpoint_result", default: {}, null: false
-    t.datetime "completed_at"
-    t.datetime "created_at", null: false
-    t.bigint "mission_progress_id", null: false
-    t.integer "session_index", null: false
-    t.datetime "started_at"
-    t.datetime "updated_at", null: false
-    t.index ["mission_progress_id", "session_index"], name: "idx_academy_sessions_unique_idx", unique: true
-    t.index ["mission_progress_id"], name: "idx_academy_sessions_progress"
-  end
-
-  create_table "academy_subjects", force: :cascade do |t|
-    t.boolean "active", default: true, null: false
-    t.text "angle", comment: "Pedagogical angle the LLM should adopt"
-    t.string "color", default: "var(--c-primary)"
-    t.datetime "created_at", null: false
-    t.string "icon", default: "sparkle"
-    t.string "name", null: false
     t.integer "position", default: 0, null: false
     t.string "slug", null: false
-    t.string "tagline"
+    t.string "title", null: false
+    t.bigint "trail_id", null: false
     t.datetime "updated_at", null: false
-    t.index ["slug"], name: "index_academy_subjects_on_slug", unique: true
+    t.index ["slug"], name: "index_academy_lessons_on_slug", unique: true
+    t.index ["trail_id", "position"], name: "index_academy_lessons_on_trail_id_and_position", unique: true
+    t.index ["trail_id"], name: "index_academy_lessons_on_trail_id"
   end
 
   create_table "academy_trails", force: :cascade do |t|
+    t.string "accent", default: "green", null: false
     t.boolean "active", default: true, null: false
-    t.string "arc_hook", comment: "One-line gancho for the whole trail arc"
     t.datetime "created_at", null: false
+    t.string "emoji"
+    t.text "hook"
     t.integer "position", default: 0, null: false
     t.string "slug", null: false
-    t.bigint "subject_id", null: false
     t.string "title", null: false
     t.datetime "updated_at", null: false
-    t.index ["subject_id", "position"], name: "idx_academy_trails_subject_position"
-    t.index ["subject_id", "slug"], name: "idx_academy_trails_subject_slug", unique: true
-    t.index ["subject_id"], name: "index_academy_trails_on_subject_id"
+    t.index ["active", "position"], name: "index_academy_trails_on_active_and_position"
+    t.index ["slug"], name: "index_academy_trails_on_slug", unique: true
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -673,31 +400,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_25_184150) do
     t.index ["key"], name: "index_solid_queue_semaphores_on_key", unique: true
   end
 
-  add_foreign_key "academy_concept_edges", "academy_concepts", column: "from_concept_id"
-  add_foreign_key "academy_concept_edges", "academy_concepts", column: "to_concept_id"
-  add_foreign_key "academy_discovery_cards", "academy_missions", column: "mission_id"
-  add_foreign_key "academy_guide_conversations", "academy_missions", column: "mission_id"
+  add_foreign_key "academy_guide_conversations", "academy_lessons", column: "lesson_id"
   add_foreign_key "academy_guide_messages", "academy_guide_conversations", column: "conversation_id"
-  add_foreign_key "academy_learner_concepts", "academy_concepts", column: "concept_id"
-  add_foreign_key "academy_learner_lens_visits", "academy_concepts", column: "concept_id"
-  add_foreign_key "academy_learner_lens_visits", "academy_lens_cache", column: "lens_cache_id"
-  add_foreign_key "academy_learner_lens_visits", "academy_mission_progresses", column: "mission_progress_id"
-  add_foreign_key "academy_learner_signals", "academy_subjects", column: "subject_id"
-  add_foreign_key "academy_learner_story_paths", "academy_missions", column: "mission_id"
-  add_foreign_key "academy_lens_cache", "academy_concepts", column: "concept_id"
-  add_foreign_key "academy_lens_signals", "academy_learner_lens_visits", column: "lens_visit_id"
-  add_foreign_key "academy_lens_signals", "academy_mission_progresses", column: "mission_progress_id"
-  add_foreign_key "academy_messages", "academy_sessions", column: "session_id"
-  add_foreign_key "academy_mission_progresses", "academy_missions", column: "mission_id"
-  add_foreign_key "academy_missions", "academy_concepts", column: "concept_id"
-  add_foreign_key "academy_missions", "academy_subjects", column: "subject_id"
-  add_foreign_key "academy_missions", "academy_trails", column: "trail_id"
-  add_foreign_key "academy_pill_views", "academy_lens_cache", column: "lens_cache_id"
-  add_foreign_key "academy_practice_wagers", "academy_missions", column: "mission_id"
-  add_foreign_key "academy_secret_unlocks", "academy_secrets", column: "secret_id"
-  add_foreign_key "academy_secrets", "academy_missions", column: "mission_id"
-  add_foreign_key "academy_sessions", "academy_mission_progresses", column: "mission_progress_id"
-  add_foreign_key "academy_trails", "academy_subjects", column: "subject_id"
+  add_foreign_key "academy_lesson_progresses", "academy_lessons", column: "lesson_id"
+  add_foreign_key "academy_lessons", "academy_trails", column: "trail_id"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activity_logs", "profiles"

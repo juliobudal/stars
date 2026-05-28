@@ -1,0 +1,166 @@
+- generic [active] [ref=e1]:
+  - navigation "Principal" [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 
+      - generic [ref=e6]:
+        - generic [ref=e7]: LittleStars
+        - text: Estrelas Incríveis 2 pais · 3 filhos
+    - generic [ref=e8]:
+      - link "Início" [ref=e9] [cursor=pointer]:
+        - /url: /parent
+        - generic [ref=e10]: 
+        - generic [ref=e11]: Início
+      - link "Filhos" [ref=e12] [cursor=pointer]:
+        - /url: /parent/profiles
+        - generic [ref=e13]: 
+        - generic [ref=e14]: Filhos
+      - link "Missões" [ref=e15] [cursor=pointer]:
+        - /url: /parent/global_tasks
+        - generic [ref=e16]: 
+        - generic [ref=e17]: Missões
+      - link "Prêmios" [ref=e18] [cursor=pointer]:
+        - /url: /parent/rewards
+        - generic [ref=e19]: 
+        - generic [ref=e20]: Prêmios
+      - link "Aprovações 1" [ref=e21] [cursor=pointer]:
+        - /url: /parent/approvals
+        - generic [ref=e22]: 
+        - generic [ref=e23]: Aprovações
+        - generic [ref=e24]: "1"
+      - link "Configurações" [ref=e25] [cursor=pointer]:
+        - /url: /parent/settings
+        - generic [ref=e26]: 
+        - generic [ref=e27]: Configurações
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - img [ref=e30]
+        - generic [ref=e34]:
+          - generic [ref=e35]: Mamãe
+          - generic [ref=e36]: Administrador(a)
+      - button "Sair" [ref=e38] [cursor=pointer]:
+        - generic [ref=e39]: 
+        - generic [ref=e40]: Sair
+  - text:    
+  - generic [ref=e42]:
+    - generic [ref=e43]:
+      - generic [ref=e44]:
+        - link [ref=e45] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e46]: 
+        - generic [ref=e47]:
+          - heading "Missões" [level=2] [ref=e48]
+          - generic [ref=e49]: Crie tarefas que as crianças podem cumprir
+      - link "Nova" [ref=e51] [cursor=pointer]:
+        - /url: /parent/global_tasks/new
+        - generic [ref=e52]: 
+        - text: Nova
+    - generic [ref=e53]:
+      - button "Todas" [ref=e54] [cursor=pointer]
+      - button "Diárias" [ref=e55] [cursor=pointer]
+      - button "Semanais" [ref=e56] [cursor=pointer]
+      - button "Mensais" [ref=e57] [cursor=pointer]
+      - button "Únicas" [ref=e58] [cursor=pointer]
+      - button "Inativas" [ref=e59] [cursor=pointer]
+    - generic [ref=e60]:
+      - generic [ref=e61]:
+        - generic [ref=e62]: Missão
+        - generic [ref=e63]: Recorrência
+        - generic [ref=e64]: Pontos
+        - generic [ref=e65]: Atribuída
+        - generic [ref=e66]: Ativa
+      - generic [ref=e68]:
+        - generic [ref=e69]: Dar comida ao pet
+        - generic [ref=e71]: Diária
+        - generic [ref=e72]:
+          - generic [ref=e73]: 
+          - generic [ref=e74]: "15"
+        - generic [ref=e75]:
+          - generic "Lila" [ref=e76]: L
+          - generic "Theo" [ref=e77]: T
+          - generic "Zoe" [ref=e78]: Z
+        - generic [ref=e82]:
+          - link "Editar" [ref=e83] [cursor=pointer]:
+            - /url: /parent/global_tasks/23/edit
+            - generic [ref=e84]: 
+          - button [ref=e86] [cursor=pointer]:
+            - generic [ref=e87]: 
+      - generic [ref=e88]:
+        - generic [ref=e89]: Ler um livro
+        - generic [ref=e91]: Semanal
+        - generic [ref=e92]:
+          - generic [ref=e93]: 
+          - generic [ref=e94]: "30"
+        - generic [ref=e95]:
+          - generic "Lila" [ref=e96]: L
+          - generic "Theo" [ref=e97]: T
+          - generic "Zoe" [ref=e98]: Z
+        - generic [ref=e102]:
+          - link "Editar" [ref=e103] [cursor=pointer]:
+            - /url: /parent/global_tasks/22/edit
+            - generic [ref=e104]: 
+          - button [ref=e106] [cursor=pointer]:
+            - generic [ref=e107]: 
+      - generic [ref=e108]:
+        - generic [ref=e109]: Lavar a louça
+        - generic [ref=e111]: Diária
+        - generic [ref=e112]:
+          - generic [ref=e113]: 
+          - generic [ref=e114]: "40"
+        - generic [ref=e115]:
+          - generic "Lila" [ref=e116]: L
+          - generic "Theo" [ref=e117]: T
+          - generic "Zoe" [ref=e118]: Z
+        - generic [ref=e122]:
+          - link "Editar" [ref=e123] [cursor=pointer]:
+            - /url: /parent/global_tasks/21/edit
+            - generic [ref=e124]: 
+          - button [ref=e126] [cursor=pointer]:
+            - generic [ref=e127]: 
+      - generic [ref=e128]:
+        - generic [ref=e129]: Fazer a lição de casa
+        - generic [ref=e131]: Diária
+        - generic [ref=e132]:
+          - generic [ref=e133]: 
+          - generic [ref=e134]: "50"
+        - generic [ref=e135]:
+          - generic "Lila" [ref=e136]: L
+          - generic "Theo" [ref=e137]: T
+          - generic "Zoe" [ref=e138]: Z
+        - generic [ref=e142]:
+          - link "Editar" [ref=e143] [cursor=pointer]:
+            - /url: /parent/global_tasks/20/edit
+            - generic [ref=e144]: 
+          - button [ref=e146] [cursor=pointer]:
+            - generic [ref=e147]: 
+      - generic [ref=e148]:
+        - generic [ref=e149]: Escovar os dentes
+        - generic [ref=e151]: Diária
+        - generic [ref=e152]:
+          - generic [ref=e153]: 
+          - generic [ref=e154]: "10"
+        - generic [ref=e155]:
+          - generic "Lila" [ref=e156]: L
+          - generic "Theo" [ref=e157]: T
+          - generic "Zoe" [ref=e158]: Z
+        - generic [ref=e162]:
+          - link "Editar" [ref=e163] [cursor=pointer]:
+            - /url: /parent/global_tasks/19/edit
+            - generic [ref=e164]: 
+          - button [ref=e166] [cursor=pointer]:
+            - generic [ref=e167]: 
+      - generic [ref=e168]:
+        - generic [ref=e169]: Arrumar a cama
+        - generic [ref=e171]: Diária
+        - generic [ref=e172]:
+          - generic [ref=e173]: 
+          - generic [ref=e174]: "20"
+        - generic [ref=e175]:
+          - generic "Lila" [ref=e176]: L
+          - generic "Theo" [ref=e177]: T
+          - generic "Zoe" [ref=e178]: Z
+        - generic [ref=e182]:
+          - link "Editar" [ref=e183] [cursor=pointer]:
+            - /url: /parent/global_tasks/18/edit
+            - generic [ref=e184]: 
+          - button [ref=e186] [cursor=pointer]:
+            - generic [ref=e187]: 

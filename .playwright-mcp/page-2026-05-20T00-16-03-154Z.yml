@@ -1,0 +1,68 @@
+- generic [active] [ref=e406]:
+  - navigation "Navegação principal" [ref=e407]:
+    - link "Jornada" [ref=e408] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e409]: 󲑲
+      - generic [ref=e410]: Jornada
+    - link "Academia" [ref=e411] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e412]: 󲌸
+      - generic [ref=e413]: Academia
+    - link "Lojinha" [ref=e414] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e415]: 󲊉
+      - generic [ref=e416]: Lojinha
+    - link "Diário" [ref=e417] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e418]: 󱖃
+      - generic [ref=e419]: Diário
+  - main [ref=e420]:
+    - generic [ref=e421]:
+      - generic [ref=e422]:
+        - generic [ref=e423]:
+          - link "Voltar para Dinheiro & Vida Real" [ref=e424] [cursor=pointer]:
+            - /url: /kid/academy/subjects/dinheiro-vida
+          - generic [ref=e426]:
+            - generic [ref=e427]: DINHEIRO & VIDA REAL
+            - heading "Por que comprar por impulso é uma armadilha?" [level=1] [ref=e428]
+        - generic "Progresso da missão" [ref=e429]
+      - generic [ref=e437]:
+        - generic [ref=e438]: 🔬
+        - generic [ref=e439]:
+          - heading "Como funciona" [level=2] [ref=e440]
+          - generic [ref=e441]: sobre Recompensa imediata
+      - generic [ref=e442]:
+        - generic [ref=e443]:
+          - heading "Por que seu cérebro prefere um bombom agora a 10 bombons amanhã?" [level=2] [ref=e444]
+          - paragraph [ref=e445]: "Ilustração de um cérebro com duas áreas: uma 'lâmpada' acesa (sistema de recompensa) puxando a mão para um bombom na mesa, enquanto uma 'lâmpada' apagada (córtex pré-frontal) tenta mostrar uma pilha de 10 bombons ao longe, mas a mão não se vira."
+          - list [ref=e446]:
+            - listitem [ref=e447]:
+              - generic [ref=e448]: "1"
+              - generic [ref=e449]: Quando você vê algo gostoso agora, seu cérebro dispara dopamina antes mesmo de você pegar — o 'querer' acende na hora.
+            - listitem [ref=e450]:
+              - generic [ref=e451]: "2"
+              - generic [ref=e452]: Esse 'querer' imediato grita mais alto que a parte do cérebro que pensa no futuro (córtex pré-frontal), que ainda está calculando.
+            - listitem [ref=e453]:
+              - generic [ref=e454]: "3"
+              - generic [ref=e455]: O sistema de recompensa empurra você a pegar o bombom agora, porque a promessa de 10 bombons amanhã não acende o mesmo brilho hoje.
+        - generic [ref=e456]:
+          - generic [ref=e457]: Pergunta rápida
+          - paragraph [ref=e458]: Theo está jogando videogame e a mãe pede para parar agora, prometendo que amanhã pode jogar o dobro do tempo. Por que é tão difícil largar o controle?
+          - generic [ref=e459]:
+            - button "A Porque o cérebro prefere a recompensa imediata (jogar agora) do que a promessa de mais tempo amanhã." [disabled] [ref=e460]:
+              - generic [ref=e461]: A
+              - generic [ref=e462]: Porque o cérebro prefere a recompensa imediata (jogar agora) do que a promessa de mais tempo amanhã.
+            - button "B Porque a mãe não explicou direito." [disabled] [ref=e463]:
+              - generic [ref=e464]: B
+              - generic [ref=e465]: Porque a mãe não explicou direito.
+            - button "C Porque o videogame é mais divertido que qualquer outra coisa." [disabled] [ref=e466]:
+              - generic [ref=e467]: C
+              - generic [ref=e468]: Porque o videogame é mais divertido que qualquer outra coisa.
+            - button "D Porque o cérebro não entende promessas." [disabled] [ref=e469]:
+              - generic [ref=e470]: D
+              - generic [ref=e471]: Porque o cérebro não entende promessas.
+          - generic [ref=e474]:
+            - generic [ref=e475]: Por quê
+            - paragraph [ref=e476]: "A dopamina dispara com o jogo agora, e o 'querer' imediato vence a promessa futura — mesmo que amanhã você ganhasse o dobro. É o mesmo mecanismo do bombom: pouco-agora vence muito-depois."
+        - button "Continuar →" [ref=e473]
+  - text: 󲎤

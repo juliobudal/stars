@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, quantas vezes por dia você acha que uma pessoa checa o celular sem ter recebido notificação? Chuta antes de ler.",
-  "predict_unit": "vezes/dia",
-  "predict_min": 1,
-  "predict_max": 100,
-  "reveal_value": 50,
-  "reveal_source": "Estimativa ilustrativa baseada em mensagens gerais de uso de tela para crianças; não é uma citação direta.",
-  "interpretation": "50 vezes por dia. O celular não toca, mas você olha. Por quê? Porque às vezes TEM mensagem — e essa incerteza é mais viciante que notificação certa. O cérebro prefere o talvez."
-}

@@ -1,0 +1,20 @@
+- generic [active] [ref=e91]:
+  - main [ref=e92]:
+    - progressbar [ref=e93]
+    - generic [ref=e98]:
+      - generic [ref=e99]:
+        - generic [ref=e102]: 󱮊
+        - generic [ref=e104]: 󲎤
+      - generic [ref=e105]: Bem-vindo, Audit Kid!
+      - heading "Vamos juntos virar super-aluno?" [level=1] [ref=e106]:
+        - text: Vamos juntos virar
+        - text: super-aluno?
+      - paragraph [ref=e107]:
+        - text: Aqui você faz missões, ganha
+        - strong [ref=e108]: estrelinhas
+        - text: e troca por recompensas legais da sua família.
+    - link "Bora!" [ref=e110] [cursor=pointer]:
+      - /url: /kid/welcome/interests
+      - text: Bora!
+      - generic [ref=e111]: 󱑩
+  - text: 󲎤

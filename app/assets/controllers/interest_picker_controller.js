@@ -39,7 +39,7 @@ export default class extends Controller {
       chip.style.color = checked ? "var(--primary)" : "var(--text)"
     })
     if (this.hasCountTarget) {
-      this.countTarget.textContent = `${count} escolhidas — mínimo ${this.minValue}, máximo ${this.maxValue}`
+      this.countTarget.textContent = `${count} escolhidas. Mínimo ${this.minValue}, máximo ${this.maxValue}`
     }
   }
 }

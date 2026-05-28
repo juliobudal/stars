@@ -1,0 +1,22 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e8]: 󲎤
+      - generic [ref=e9]: LittleStars
+    - generic [ref=e10]: Família LittleStars
+  - heading "Bem-vindo de volta!" [level=1] [ref=e11]
+  - paragraph [ref=e12]: Entra pra acompanhar as missões
+  - generic [ref=e14]:
+    - generic [ref=e15]:
+      - generic [ref=e16]: Email da família
+      - textbox "Email da família" [ref=e17]
+    - generic [ref=e18]:
+      - generic [ref=e19]: Senha
+      - textbox "Senha" [ref=e20]
+    - button "Entrar" [ref=e21] [cursor=pointer]
+  - generic [ref=e22]:
+    - link "Criar família" [ref=e23] [cursor=pointer]:
+      - /url: /registration/new
+    - generic [ref=e24]: ·
+    - link "Esqueci a senha" [ref=e25] [cursor=pointer]:
+      - /url: /password_reset/new

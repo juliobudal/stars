@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, quantos por cento dos compradores online OLHAM as avaliações e estrelas de outras pessoas antes de decidir comprar um produto?",
-  "predict_unit": "%",
-  "predict_min": 0,
-  "predict_max": 100,
-  "reveal_value": 88,
-  "reveal_source": "Spiegel Research Center (Northwestern, 2017) e BrightLocal Consumer Review Survey: entre 87% e 93% dos compradores online consideram avaliações antes de decidir. Produtos com 5 reviews vendem cerca de 270% mais.",
-  "interpretation": "9 em cada 10 decisões passam por 'o que os outros acharam'. As marcas sabem disso e desenham as estrelas pra serem a primeira coisa que aparece. A intuição diz 'eu decido sozinho' — o número diz que quase sempre o primeiro gatilho começa fora de você."
-}

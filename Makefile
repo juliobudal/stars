@@ -13,7 +13,7 @@ RUN     := $(COMPOSE) run --rm web
         shell shell-db c \
         db-create db-migrate db-seed db-reseed db-prepare db-reset db-rollback \
         migrate seed prepare reset rollback \
-        test rspec lint rubocop brakeman audit ci \
+        test rspec lint rubocop lint-js lint-motion brakeman audit ci \
         routes assets-build assets-clobber \
         clean config \
         dokploy-deploy dokploy-migrate dokploy-seed dokploy-logs dokploy-status dokploy-restart dokploy-console \
@@ -40,6 +40,7 @@ help:
 	@echo "  make shell-db      psql into postgres"
 	@echo "  make test          bundle exec rspec"
 	@echo "  make lint          bin/rubocop"
+	@echo "  make lint-js       JS syntax check (node --check)"
 	@echo "  make ci            bin/ci"
 	@echo ""
 	@echo "  make logs          tail all logs"
@@ -122,10 +123,14 @@ rollback: db-rollback
 reset: db-reset
 
 # Tests & quality --------------------------------------------------------------
-# RAILS_ENV=test prevents env drift that triggers EnvironmentMismatchError +
-# protects dev DB from rspec's db:test:purge stomping if last command ran in dev.
+# Use one-shot containers (`docker compose run --rm web`) so these targets do
+# not depend on `web` already being up. `RAILS_ENV=test` + explicit DATABASE_URL
+# prevents env drift (EnvironmentMismatchError) and keeps test DB isolated.
+# Backwards-compat with historical docs: `make rspec SPEC=spec/path_spec.rb`.
+RSPEC_TARGET ?= $(or $(SPEC),$(ARGS))
 test:
-	$(EXEC) env RAILS_ENV=test DATABASE_URL=postgres://littlestars:littlestars_dev@db:5432/littlestars_test bundle exec rspec $(ARGS)
+	$(RUN) env RAILS_ENV=test DATABASE_URL=postgres://littlestars:littlestars_dev@db:5432/littlestars_test bin/rails db:environment:set
+	$(RUN) env RAILS_ENV=test DATABASE_URL=postgres://littlestars:littlestars_dev@db:5432/littlestars_test bundle exec rspec $(RSPEC_TARGET)
 
 rspec: test
 
@@ -134,7 +139,7 @@ rspec: test
 # OpenRouter — uses stubbed LLM responses for fast feedback in CI.
 # Live LLM eval is opt-in: ACADEMY_LIVE_EVAL=1 make eval-v5.
 eval-v5:
-	$(EXEC) env RAILS_ENV=test DATABASE_URL=postgres://littlestars:littlestars_dev@db:5432/littlestars_test bundle exec rspec \
+	$(RUN) env RAILS_ENV=test DATABASE_URL=postgres://littlestars:littlestars_dev@db:5432/littlestars_test bundle exec rspec \
 	  spec/services/academy/lens/ \
 	  spec/services/academy/missions/lifecycle_spec.rb \
 	  spec/services/academy/pokedex/
@@ -143,21 +148,24 @@ eval-v4-legacy:
 	@echo "eval-v4-legacy: no-op (v4 persona eval deleted; v5 eval is `make eval-v5`)"
 
 lint:
-	$(EXEC) bin/rubocop
+	$(RUN) bin/rubocop
 
 rubocop: lint
 
 lint-motion:
-	bash scripts/check-motion-tokens.sh
+	$(RUN) bash scripts/check-motion-tokens.sh
+
+lint-js:
+	$(RUN) bash scripts/check-js-syntax.sh
 
 brakeman:
-	$(EXEC) bin/brakeman
+	$(RUN) bin/brakeman
 
 audit:
-	$(EXEC) bin/bundler-audit check --update
+	$(RUN) bin/bundler-audit check --update
 
 ci:
-	$(EXEC) bin/ci
+	$(RUN) bin/ci
 
 # Rails utils ------------------------------------------------------------------
 routes:

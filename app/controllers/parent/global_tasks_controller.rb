@@ -23,7 +23,7 @@ class Parent::GlobalTasksController < ApplicationController
       redirect_to parent_global_tasks_path, notice: "Tarefa criada com sucesso."
     else
       @kids = current_profile.family.profiles.child.order(:name)
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -36,7 +36,7 @@ class Parent::GlobalTasksController < ApplicationController
       redirect_to parent_global_tasks_path, notice: "Tarefa atualizada com sucesso."
     else
       @kids = current_profile.family.profiles.child.order(:name)
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

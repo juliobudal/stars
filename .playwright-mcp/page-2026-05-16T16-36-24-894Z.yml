@@ -1,0 +1,87 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - link [ref=e18] [cursor=pointer]:
+          - /url: /kid/academy
+        - generic [ref=e20]:
+          - generic [ref=e21]: HABILIDADES
+          - heading "Seu radar" [level=1] [ref=e22]
+        - generic [ref=e23]:
+          - generic [ref=e24]: 󲌸
+          - generic [ref=e25]: Aprendiz
+      - paragraph [ref=e26]:
+        - text: Cada aula treina
+        - strong [ref=e27]: 1 ou 2 habilidades
+        - text: . Ela cresce com prática real.
+      - generic [ref=e28]:
+        - article [ref=e29]:
+          - generic [ref=e30]:
+            - generic [ref=e32]: 󲑲
+            - generic [ref=e34]: Disciplina
+            - generic [ref=e35]: 6 pts
+        - article [ref=e38]:
+          - generic [ref=e39]:
+            - generic [ref=e41]: 󲌸
+            - generic [ref=e43]: Curiosidade
+            - generic [ref=e44]: 0 pts
+        - article [ref=e47]:
+          - generic [ref=e48]:
+            - generic [ref=e50]: 󱠗
+            - generic [ref=e52]: Autonomia
+            - generic [ref=e53]: 0 pts
+        - article [ref=e56]:
+          - generic [ref=e57]:
+            - generic [ref=e59]: 󲑲
+            - generic [ref=e61]: Foco
+            - generic [ref=e62]: 10 pts
+        - article [ref=e65]:
+          - generic [ref=e66]:
+            - generic [ref=e68]: 󱦞
+            - generic [ref=e70]: Saúde
+            - generic [ref=e71]: 0 pts
+        - article [ref=e74]:
+          - generic [ref=e75]:
+            - generic [ref=e77]: 󲗦
+            - generic [ref=e79]: Comunicação
+            - generic [ref=e80]: 0 pts
+        - article [ref=e83]:
+          - generic [ref=e84]:
+            - generic [ref=e86]: 󲃬
+            - generic [ref=e88]: Lógica
+            - generic [ref=e89]: 0 pts
+        - article [ref=e92]:
+          - generic [ref=e93]:
+            - generic [ref=e95]: 󲓧
+            - generic [ref=e97]: Responsabilidade
+            - generic [ref=e98]: 2 pts
+        - article [ref=e101]:
+          - generic [ref=e102]:
+            - generic [ref=e106]: Criatividade
+            - generic [ref=e107]: 0 pts
+      - paragraph [ref=e110]: Disciplina sobe quando você cumpre um desafio. Responsabilidade sobe quando você reporta com honestidade — mesmo "não fiz".
+  - generic [ref=e111]:
+    - generic [ref=e113]: 󲎤
+    - generic [ref=e114]:
+      - paragraph [ref=e115]: Instale o LittleStars
+      - paragraph [ref=e116]: Acesso rápido pela tela inicial.
+    - generic [ref=e117]:
+      - button "Instalar" [ref=e118] [cursor=pointer]
+      - button "Agora não" [ref=e119] [cursor=pointer]

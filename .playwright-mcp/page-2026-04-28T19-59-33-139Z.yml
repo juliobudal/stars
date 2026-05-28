@@ -1,0 +1,120 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - text: 󱸠
+    - navigation "Principal" [ref=e2]:
+      - generic [ref=e4]:
+        - generic [ref=e6]: 󲎤
+        - generic [ref=e7]:
+          - generic [ref=e8]: LittleStars
+          - generic [ref=e9]: Modo pais
+      - generic [ref=e10]:
+        - link "Início" [ref=e11] [cursor=pointer]:
+          - /url: /parent
+          - generic [ref=e12]: 󱯉
+          - generic [ref=e13]: Início
+        - link "Crianças" [ref=e14] [cursor=pointer]:
+          - /url: /parent/profiles
+          - generic [ref=e15]: 󲗦
+          - generic [ref=e16]: Crianças
+        - link "Missões" [ref=e17] [cursor=pointer]:
+          - /url: /parent/global_tasks
+          - generic [ref=e18]: 󲑽
+          - generic [ref=e19]: Missões
+        - link "Prêmios" [ref=e20] [cursor=pointer]:
+          - /url: /parent/rewards
+          - generic [ref=e21]: 󲊉
+          - generic [ref=e22]: Prêmios
+        - link "Categorias" [ref=e23] [cursor=pointer]:
+          - /url: /parent/categories
+          - generic [ref=e24]: 󱖠
+          - generic [ref=e25]: Categorias
+        - link "Aprovações 3" [ref=e26] [cursor=pointer]:
+          - /url: /parent/approvals
+          - generic [ref=e27]: 󱞿
+          - generic [ref=e28]: Aprovações
+          - generic [ref=e29]: "3"
+        - link "Configurações" [ref=e30] [cursor=pointer]:
+          - /url: /parent/settings
+          - generic [ref=e31]: 󲉌
+          - generic [ref=e32]: Configurações
+      - generic [ref=e33]:
+        - link "Editar meu perfil" [ref=e34] [cursor=pointer]:
+          - /url: /parent/profiles/322/edit
+          - img "Mamãe" [ref=e35]:
+            - generic [ref=e36]: 󲗕
+          - generic [ref=e37]:
+            - generic [ref=e38]: Mamãe
+            - generic [ref=e39]: Responsável · Editar
+          - generic [ref=e40]: 󲀏
+        - button "Trocar perfil" [ref=e43] [cursor=pointer]:
+          - generic [ref=e44]: 󱶂
+          - text: Trocar perfil
+  - text: 󱯉 󱞿 󲑽 󲊉
+  - generic [ref=e46]:
+    - banner [ref=e47]:
+      - generic [ref=e49]:
+        - heading "Aprovações" [level=1] [ref=e50]
+        - paragraph [ref=e51]: 3 pendências aguardando sua revisão
+      - generic [ref=e53]:
+        - generic [ref=e54]: 󱞿
+        - generic [ref=e55]:
+          - generic [ref=e56]: "3"
+          - generic [ref=e57]: PENDENTES
+    - generic [ref=e59]:
+      - tablist [ref=e61]:
+        - tab "Missões 3" [selected] [ref=e62] [cursor=pointer]:
+          - generic [ref=e63]: 󲑲
+          - text: Missões
+          - generic [ref=e64]: "3"
+        - tab "Prêmios 0" [ref=e65] [cursor=pointer]:
+          - generic [ref=e66]: 󲊉
+          - text: Prêmios
+          - generic [ref=e67]: "0"
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e70]:
+            - img "Laura" [ref=e71]:
+              - generic [ref=e72]: 󱮊
+            - generic [ref=e73]:
+              - generic [ref=e74]:
+                - generic [ref=e75]: Passear com o Simba
+                - generic [ref=e76]: Laura
+                - generic [ref=e77]: Rotina
+              - generic [ref=e78]:
+                - generic [ref=e79]: +20 ★
+                - generic [ref=e80]: há 6 minutos
+              - generic [ref=e81]: 💬 Levei o Simba até o parquinho!
+          - generic [ref=e82]:
+            - button "Rejeitar" [ref=e84] [cursor=pointer]
+            - button "Aprovar" [ref=e86] [cursor=pointer]
+        - generic [ref=e87]:
+          - generic [ref=e88]:
+            - img "Lis" [ref=e89]:
+              - generic [ref=e90]: 󱮊
+            - generic [ref=e91]:
+              - generic [ref=e92]:
+                - generic [ref=e93]: Arrumar a cama
+                - generic [ref=e94]: Lis
+                - generic [ref=e95]: Casa
+              - generic [ref=e96]:
+                - generic [ref=e97]: +15 ★
+                - generic [ref=e98]: há 6 minutos
+          - generic [ref=e99]:
+            - button "Rejeitar" [ref=e101] [cursor=pointer]
+            - button "Aprovar" [ref=e103] [cursor=pointer]
+        - generic [ref=e104]:
+          - generic [ref=e105]:
+            - img "Theo" [ref=e106]:
+              - generic [ref=e107]: 󱮊
+            - generic [ref=e108]:
+              - generic [ref=e109]:
+                - generic [ref=e110]: Fazer a lição de casa
+                - generic [ref=e111]: Theo
+                - generic [ref=e112]: Escola
+              - generic [ref=e113]:
+                - generic [ref=e114]: +30 ★
+                - generic [ref=e115]: há 6 minutos
+          - generic [ref=e116]:
+            - button "Rejeitar" [ref=e118] [cursor=pointer]
+            - button "Aprovar" [ref=e120] [cursor=pointer]
+      - text: 󲓧

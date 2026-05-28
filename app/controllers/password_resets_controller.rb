@@ -37,7 +37,7 @@ class PasswordResetsController < ApplicationController
       redirect_to new_profile_session_path, notice: "Senha atualizada com sucesso!"
     else
       flash.now[:alert] = @family.errors.full_messages.to_sentence
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 end

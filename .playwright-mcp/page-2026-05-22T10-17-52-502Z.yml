@@ -1,0 +1,131 @@
+- generic [active] [ref=e277]:
+  - navigation "Navegação principal" [ref=e278]:
+    - link "Jornada" [ref=e279] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e280]: 󲑲
+      - generic [ref=e281]: Jornada
+    - link "Academia" [ref=e282] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e283]: 󲌸
+      - generic [ref=e284]: Academia
+    - link "Lojinha" [ref=e285] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e286]: 󲊉
+      - generic [ref=e287]: Lojinha
+    - link "Diário" [ref=e288] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e289]: 󱖃
+      - generic [ref=e290]: Diário
+  - main [ref=e291]:
+    - generic [ref=e292]:
+      - generic [ref=e293]: 󲓧
+      - generic [ref=e294]: Tudo pronto, Audit Kid! ✨
+    - generic [ref=e295]:
+      - generic [ref=e296]:
+        - generic [ref=e298]:
+          - generic [ref=e299]: 󲎤
+          - generic [ref=e300]: "0"
+        - button "Trocar de perfil" [ref=e303] [cursor=pointer]:
+          - generic [ref=e304]: 󱶂
+          - text: Trocar
+      - generic [ref=e305]:
+        - generic [ref=e306]:
+          - generic [ref=e309]: 󱮊
+          - generic [ref=e310]: 󲎤
+        - generic [ref=e311]:
+          - generic [ref=e312]: Bom dia, Audit Kid!
+          - heading "Por aqui agora, nada pra fazer!" [level=1] [ref=e313]:
+            - generic [ref=e314]: Por aqui agora,
+            - generic [ref=e315]: 󲎤
+            - generic [ref=e316]: nada pra fazer!
+          - paragraph [ref=e317]:
+            - generic [ref=e318]: Espera os pais soltarem missões pra você
+            - generic [ref=e319]: 󱧾
+      - link "💊 Pílula do Dia 60 segundos pra ficar mais esperto" [ref=e320] [cursor=pointer]:
+        - /url: /kid/academy/pill
+        - generic [ref=e322]:
+          - generic [ref=e323]: 💊
+          - generic [ref=e324]:
+            - generic [ref=e325]: Pílula do Dia
+            - generic [ref=e326]: 60 segundos pra ficar mais esperto
+      - link "Eu curto 🦖 Dinossauros · 🪐 Espaço e planetas · 🎵 Música" [ref=e328] [cursor=pointer]:
+        - /url: /kid/interests
+        - generic [ref=e330]:
+          - generic [ref=e331]: 💡
+          - generic [ref=e332]:
+            - generic [ref=e333]: Eu curto
+            - generic [ref=e334]: 🦖 Dinossauros · 🪐 Espaço e planetas · 🎵 Música
+      - generic [ref=e336]:
+        - generic [ref=e337]:
+          - generic [ref=e338]:
+            - generic [ref=e339]: Você está no
+            - generic [ref=e340]:
+              - generic [ref=e341]: NÍVEL 1
+              - generic [ref=e342]: → Nível 2
+          - generic [ref=e343]:
+            - generic [ref=e344]: 0/20
+            - generic [ref=e345]: Estrelinhas
+        - generic [ref=e347]:
+          - generic [ref=e348]: 󲎤
+          - generic [ref=e349]:
+            - text: Faltam
+            - strong [ref=e350]: 20 estrelinhas
+            - text: pra subir!
+      - link "Sua meta Escolher um prêmio Toque pra ir pra Lojinha" [ref=e353] [cursor=pointer]:
+        - /url: /kid/rewards
+        - generic [ref=e355]: 󲎤
+        - generic [ref=e356]:
+          - paragraph [ref=e357]: Sua meta
+          - paragraph [ref=e358]: Escolher um prêmio
+          - paragraph [ref=e359]: Toque pra ir pra Lojinha
+        - generic [ref=e360]: 󱑩
+      - heading "Missões de hoje" [level=2] [ref=e362]
+      - generic [ref=e364]:
+        - generic [ref=e366]: 󲎤
+        - heading "Nenhuma missão hoje" [level=3] [ref=e367]
+        - paragraph [ref=e368]: Um responsável vai adicionar novas missões pra você
+      - generic [ref=e370]:
+        - generic [ref=e372]:
+          - generic [ref=e374]: 󲎤
+          - generic [ref=e375]:
+            - generic [ref=e376]: Meta da família
+            - generic [ref=e377]: Pizza no jantar de sexta
+            - generic [ref=e379]:
+              - generic [ref=e380]:
+                - text: "0"
+                - generic [ref=e381]: 󲎤
+                - generic [ref=e382]: /
+                - text: "150"
+                - generic [ref=e383]: 󲎤
+              - generic [ref=e384]: 0%
+        - generic [ref=e386]:
+          - generic [ref=e388]: 󲎤
+          - generic [ref=e389]:
+            - generic [ref=e390]: Meta da família
+            - generic [ref=e391]: Cinema todo mundo junto
+            - generic [ref=e393]:
+              - generic [ref=e394]:
+                - text: "0"
+                - generic [ref=e395]: 󲎤
+                - generic [ref=e396]: /
+                - text: "400"
+                - generic [ref=e397]: 󲎤
+              - generic [ref=e398]: 0%
+        - generic [ref=e400]:
+          - generic [ref=e402]: 󲎤
+          - generic [ref=e403]:
+            - generic [ref=e404]: Meta da família
+            - generic [ref=e405]: Viagem pequena (2-3 dias)
+            - generic [ref=e407]:
+              - generic [ref=e408]:
+                - text: "0"
+                - generic [ref=e409]: 󲎤
+                - generic [ref=e410]: /
+                - text: "6000"
+                - generic [ref=e411]: 󲎤
+              - generic [ref=e412]: 0%
+      - link "Fez algo fora da lista? Adicionar" [ref=e413] [cursor=pointer]:
+        - /url: /kid/missions/new
+        - generic [ref=e414]: 󲁸
+        - text: Fez algo fora da lista? Adicionar
+  - text: 󲎤

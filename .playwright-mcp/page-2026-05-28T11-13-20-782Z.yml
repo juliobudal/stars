@@ -1,0 +1,397 @@
+- generic [active] [ref=e1]:
+  - link "Pular para o conteúdo" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Navegação principal" [ref=e3]:
+    - link "Jornada" [ref=e4] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e5]: 󲑲
+      - generic [ref=e6]: Jornada
+    - link "Academia" [ref=e7] [cursor=pointer]:
+      - /url: /kid/academy
+      - generic [ref=e8]: 󲌸
+      - generic [ref=e9]: Academia
+    - link "Lojinha" [ref=e10] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e11]: 󲊉
+      - generic [ref=e12]: Lojinha
+    - link "Diário" [ref=e13] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e14]: 󱖃
+      - generic [ref=e15]: Diário
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e19]:
+        - link "Voltar" [ref=e20] [cursor=pointer]:
+          - /url: /kid
+          - generic [ref=e21]: 󱑘
+        - generic [ref=e22]:
+          - heading "Loja de Prêmios" [level=2] [ref=e23]
+          - generic [ref=e24]: Troca estrelinhas por coisas legais!
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e28]: 󲎤
+          - generic [ref=e29]:
+            - generic [ref=e30]: Saldo
+            - generic [ref=e31]:
+              - generic [ref=e32]: "0"
+              - generic [ref=e33]: estrelinhas
+        - link "Histórico" [ref=e34] [cursor=pointer]:
+          - /url: /kid/wallet
+          - generic [ref=e35]: 󱞿
+          - generic [ref=e36]: Histórico
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - button "Tudo · 28" [ref=e39] [cursor=pointer]
+          - button "Telinha · 3" [ref=e40] [cursor=pointer]
+          - button "Docinhos · 3" [ref=e41] [cursor=pointer]
+          - button "Passeios · 5" [ref=e42] [cursor=pointer]
+          - button "Brinquedos · 12" [ref=e43] [cursor=pointer]
+          - button "Experiências · 5" [ref=e44] [cursor=pointer]
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e48]: 󲍽
+            - heading "Continua juntando!" [level=2] [ref=e49]
+          - generic [ref=e50]:
+            - generic [ref=e51]:
+              - button "Definir como meta" [ref=e54] [cursor=pointer]:
+                - generic [ref=e55]: 󲎤
+                - text: Meta
+              - button "Escolher o que assistir na TV à noite 0/30 Falta 30" [ref=e56] [cursor=pointer]:
+                - generic [ref=e58]: 󲕻
+                - generic [ref=e59]: Escolher o que assistir na TV à noite
+                - generic [ref=e61]:
+                  - generic [ref=e62]:
+                    - generic [ref=e63]: 󲎤
+                    - generic [ref=e64]: 0/30
+                  - generic [ref=e65]: Falta 30
+            - generic [ref=e66]:
+              - button "Definir como meta" [ref=e69] [cursor=pointer]:
+                - generic [ref=e70]: 󲎤
+                - text: Meta
+              - button "30 min extra de celular/tablet 0/30 Falta 30" [ref=e71] [cursor=pointer]:
+                - generic [ref=e73]: 󲋰
+                - generic [ref=e74]: 30 min extra de celular/tablet
+                - generic [ref=e76]:
+                  - generic [ref=e77]:
+                    - generic [ref=e78]: 󲎤
+                    - generic [ref=e79]: 0/30
+                  - generic [ref=e80]: Falta 30
+            - generic [ref=e81]:
+              - button "Definir como meta" [ref=e84] [cursor=pointer]:
+                - generic [ref=e85]: 󲎤
+                - text: Meta
+              - button "Sobremesa especial no jantar 0/35 Falta 35" [ref=e86] [cursor=pointer]:
+                - generic [ref=e88]: 󱘫
+                - generic [ref=e89]: Sobremesa especial no jantar
+                - generic [ref=e91]:
+                  - generic [ref=e92]:
+                    - generic [ref=e93]: 󲎤
+                    - generic [ref=e94]: 0/35
+                  - generic [ref=e95]: Falta 35
+            - generic [ref=e96]:
+              - button "Definir como meta" [ref=e99] [cursor=pointer]:
+                - generic [ref=e100]: 󲎤
+                - text: Meta
+              - button "Sorvete com cobertura 0/40 Falta 40" [ref=e101] [cursor=pointer]:
+                - generic [ref=e103]: 󱰄
+                - generic [ref=e104]: Sorvete com cobertura
+                - generic [ref=e106]:
+                  - generic [ref=e107]:
+                    - generic [ref=e108]: 󲎤
+                    - generic [ref=e109]: 0/40
+                  - generic [ref=e110]: Falta 40
+            - generic [ref=e111]:
+              - button "Definir como meta" [ref=e114] [cursor=pointer]:
+                - generic [ref=e115]: 󲎤
+                - text: Meta
+              - button "Escolher o jantar da família 0/50 Falta 50" [ref=e116] [cursor=pointer]:
+                - generic [ref=e118]: 󲁐
+                - generic [ref=e119]: Escolher o jantar da família
+                - generic [ref=e121]:
+                  - generic [ref=e122]:
+                    - generic [ref=e123]: 󲎤
+                    - generic [ref=e124]: 0/50
+                  - generic [ref=e125]: Falta 50
+            - generic [ref=e126]:
+              - button "Definir como meta" [ref=e129] [cursor=pointer]:
+                - generic [ref=e130]: 󲎤
+                - text: Meta
+              - button "Dormir 30 min mais tarde 0/50 Falta 50" [ref=e131] [cursor=pointer]:
+                - generic [ref=e133]: 󱺻
+                - generic [ref=e134]: Dormir 30 min mais tarde
+                - generic [ref=e136]:
+                  - generic [ref=e137]:
+                    - generic [ref=e138]: 󲎤
+                    - generic [ref=e139]: 0/50
+                  - generic [ref=e140]: Falta 50
+            - generic [ref=e141]:
+              - button "Definir como meta" [ref=e144] [cursor=pointer]:
+                - generic [ref=e145]: 󲎤
+                - text: Meta
+              - button "Adesivos / figurinhas 0/60 Falta 60" [ref=e146] [cursor=pointer]:
+                - generic [ref=e148]: 󲎱
+                - generic [ref=e149]: Adesivos / figurinhas
+                - generic [ref=e151]:
+                  - generic [ref=e152]:
+                    - generic [ref=e153]: 󲎤
+                    - generic [ref=e154]: 0/60
+                  - generic [ref=e155]: Falta 60
+            - generic [ref=e156]:
+              - button "Definir como meta" [ref=e159] [cursor=pointer]:
+                - generic [ref=e160]: 󲎤
+                - text: Meta
+              - button "Lanche favorito (McDonald's/BK) 0/80 Falta 80" [ref=e161] [cursor=pointer]:
+                - generic [ref=e163]: 󱭯
+                - generic [ref=e164]: Lanche favorito (McDonald's/BK)
+                - generic [ref=e166]:
+                  - generic [ref=e167]:
+                    - generic [ref=e168]: 󲎤
+                    - generic [ref=e169]: 0/80
+                  - generic [ref=e170]: Falta 80
+            - generic [ref=e171]:
+              - button "Definir como meta" [ref=e174] [cursor=pointer]:
+                - generic [ref=e175]: 󲎤
+                - text: Meta
+              - button "Slime, massinha ou esmalte novo 0/100 Falta 100" [ref=e176] [cursor=pointer]:
+                - generic [ref=e178]: 󲃬
+                - generic [ref=e179]: Slime, massinha ou esmalte novo
+                - generic [ref=e181]:
+                  - generic [ref=e182]:
+                    - generic [ref=e183]: 󲎤
+                    - generic [ref=e184]: 0/100
+                  - generic [ref=e185]: Falta 100
+            - generic [ref=e186]:
+              - button "Definir como meta" [ref=e189] [cursor=pointer]:
+                - generic [ref=e190]: 󲎤
+                - text: Meta
+              - button "Hot Wheels ou acessório de cabelo 0/120 Falta 120" [ref=e191] [cursor=pointer]:
+                - generic [ref=e193]: 󱚬
+                - generic [ref=e194]: Hot Wheels ou acessório de cabelo
+                - generic [ref=e196]:
+                  - generic [ref=e197]:
+                    - generic [ref=e198]: 󲎤
+                    - generic [ref=e199]: 0/120
+                  - generic [ref=e200]: Falta 120
+            - generic [ref=e201]:
+              - button "Definir como meta" [ref=e204] [cursor=pointer]:
+                - generic [ref=e205]: 󲎤
+                - text: Meta
+              - button "Saída pro parque com 1 dos pais 0/120 Falta 120" [ref=e206] [cursor=pointer]:
+                - generic [ref=e208]: 󱨓
+                - generic [ref=e209]: Saída pro parque com 1 dos pais
+                - generic [ref=e211]:
+                  - generic [ref=e212]:
+                    - generic [ref=e213]: 󲎤
+                    - generic [ref=e214]: 0/120
+                  - generic [ref=e215]: Falta 120
+            - generic [ref=e216]:
+              - button "Definir como meta" [ref=e219] [cursor=pointer]:
+                - generic [ref=e220]: 󲎤
+                - text: Meta
+              - button "Família Pizza no jantar de sexta 0/150 Falta 150" [ref=e221] [cursor=pointer]:
+                - generic [ref=e223]: 󲁐
+                - generic [ref=e224]:
+                  - generic [ref=e225]: Família
+                  - text: Pizza no jantar de sexta
+                - generic [ref=e227]:
+                  - generic [ref=e228]:
+                    - generic [ref=e229]: 󲎤
+                    - generic [ref=e230]: 0/150
+                  - generic [ref=e231]: Falta 150
+            - generic [ref=e232]:
+              - button "Definir como meta" [ref=e235] [cursor=pointer]:
+                - generic [ref=e236]: 󲎤
+                - text: Meta
+              - button "Almoço fora só com 1 dos pais 0/180 Falta 180" [ref=e237] [cursor=pointer]:
+                - generic [ref=e239]: 󱥃
+                - generic [ref=e240]: Almoço fora só com 1 dos pais
+                - generic [ref=e242]:
+                  - generic [ref=e243]:
+                    - generic [ref=e244]: 󲎤
+                    - generic [ref=e245]: 0/180
+                  - generic [ref=e246]: Falta 180
+            - generic [ref=e247]:
+              - button "Definir como meta" [ref=e250] [cursor=pointer]:
+                - generic [ref=e251]: 󲎤
+                - text: Meta
+              - button "Livro novo (escolha livre) 0/200 Falta 200" [ref=e252] [cursor=pointer]:
+                - generic [ref=e254]: 󱖄
+                - generic [ref=e255]: Livro novo (escolha livre)
+                - generic [ref=e257]:
+                  - generic [ref=e258]:
+                    - generic [ref=e259]: 󲎤
+                    - generic [ref=e260]: 0/200
+                  - generic [ref=e261]: Falta 200
+            - generic [ref=e262]:
+              - button "Definir como meta" [ref=e265] [cursor=pointer]:
+                - generic [ref=e266]: 󲎤
+                - text: Meta
+              - button "Tarde no shopping com mãe ou pai 0/200 Falta 200" [ref=e267] [cursor=pointer]:
+                - generic [ref=e269]: 󲊉
+                - generic [ref=e270]: Tarde no shopping com mãe ou pai
+                - generic [ref=e272]:
+                  - generic [ref=e273]:
+                    - generic [ref=e274]: 󲎤
+                    - generic [ref=e275]: 0/200
+                  - generic [ref=e276]: Falta 200
+            - generic [ref=e277]:
+              - button "Definir como meta" [ref=e280] [cursor=pointer]:
+                - generic [ref=e281]: 󲎤
+                - text: Meta
+              - button "Brinquedo médio (pelúcia / boneca / action) 0/300 Falta 300" [ref=e282] [cursor=pointer]:
+                - generic [ref=e284]: 󱮊
+                - generic [ref=e285]: Brinquedo médio (pelúcia / boneca / action)
+                - generic [ref=e287]:
+                  - generic [ref=e288]:
+                    - generic [ref=e289]: 󲎤
+                    - generic [ref=e290]: 0/300
+                  - generic [ref=e291]: Falta 300
+            - generic [ref=e292]:
+              - button "Definir como meta" [ref=e295] [cursor=pointer]:
+                - generic [ref=e296]: 󲎤
+                - text: Meta
+              - button "Maquiagem teen (Laura) 0/300 Falta 300" [ref=e297] [cursor=pointer]:
+                - generic [ref=e300]: Maquiagem teen (Laura)
+                - generic [ref=e302]:
+                  - generic [ref=e303]:
+                    - generic [ref=e304]: 󲎤
+                    - generic [ref=e305]: 0/300
+                  - generic [ref=e306]: Falta 300
+            - generic [ref=e307]:
+              - button "Definir como meta" [ref=e310] [cursor=pointer]:
+                - generic [ref=e311]: 󲎤
+                - text: Meta
+              - button "Jogo de tabuleiro novo 0/350 Falta 350" [ref=e312] [cursor=pointer]:
+                - generic [ref=e314]: 󲃬
+                - generic [ref=e315]: Jogo de tabuleiro novo
+                - generic [ref=e317]:
+                  - generic [ref=e318]:
+                    - generic [ref=e319]: 󲎤
+                    - generic [ref=e320]: 0/350
+                  - generic [ref=e321]: Falta 350
+            - generic [ref=e322]:
+              - button "Definir como meta" [ref=e325] [cursor=pointer]:
+                - generic [ref=e326]: 󲎤
+                - text: Meta
+              - button "Cinema com pipoca grande 0/400 Falta 400" [ref=e327] [cursor=pointer]:
+                - generic [ref=e329]: 󲂛
+                - generic [ref=e330]: Cinema com pipoca grande
+                - generic [ref=e332]:
+                  - generic [ref=e333]:
+                    - generic [ref=e334]: 󲎤
+                    - generic [ref=e335]: 0/400
+                  - generic [ref=e336]: Falta 400
+            - generic [ref=e337]:
+              - button "Definir como meta" [ref=e340] [cursor=pointer]:
+                - generic [ref=e341]: 󲎤
+                - text: Meta
+              - button "Família Cinema todo mundo junto 0/400 Falta 400" [ref=e342] [cursor=pointer]:
+                - generic [ref=e344]: 󱩣
+                - generic [ref=e345]:
+                  - generic [ref=e346]: Família
+                  - text: Cinema todo mundo junto
+                - generic [ref=e348]:
+                  - generic [ref=e349]:
+                    - generic [ref=e350]: 󲎤
+                    - generic [ref=e351]: 0/400
+                  - generic [ref=e352]: Falta 400
+            - generic [ref=e353]:
+              - button "Definir como meta" [ref=e356] [cursor=pointer]:
+                - generic [ref=e357]: 󲎤
+                - text: Meta
+              - button "LEGO escolha livre 0/800 Falta 800" [ref=e358] [cursor=pointer]:
+                - generic [ref=e360]: 󱢍
+                - generic [ref=e361]: LEGO escolha livre
+                - generic [ref=e363]:
+                  - generic [ref=e364]:
+                    - generic [ref=e365]: 󲎤
+                    - generic [ref=e366]: 0/800
+                  - generic [ref=e367]: Falta 800
+            - generic [ref=e368]:
+              - button "Definir como meta" [ref=e371] [cursor=pointer]:
+                - generic [ref=e372]: 󲎤
+                - text: Meta
+              - button "Patinete ou skate novo 0/1200 Falta 1200" [ref=e373] [cursor=pointer]:
+                - generic [ref=e375]: 󲈃
+                - generic [ref=e376]: Patinete ou skate novo
+                - generic [ref=e378]:
+                  - generic [ref=e379]:
+                    - generic [ref=e380]: 󲎤
+                    - generic [ref=e381]: 0/1200
+                  - generic [ref=e382]: Falta 1200
+            - generic [ref=e383]:
+              - button "Definir como meta" [ref=e386] [cursor=pointer]:
+                - generic [ref=e387]: 󲎤
+                - text: Meta
+              - button "Microscópio ou kit de ciência 0/1500 Falta 1500" [ref=e388] [cursor=pointer]:
+                - generic [ref=e390]: 󱹨
+                - generic [ref=e391]: Microscópio ou kit de ciência
+                - generic [ref=e393]:
+                  - generic [ref=e394]:
+                    - generic [ref=e395]: 󲎤
+                    - generic [ref=e396]: 0/1500
+                  - generic [ref=e397]: Falta 1500
+            - generic [ref=e398]:
+              - button "Definir como meta" [ref=e401] [cursor=pointer]:
+                - generic [ref=e402]: 󲎤
+                - text: Meta
+              - button "Bicicleta nova 0/3000 Falta 3000" [ref=e403] [cursor=pointer]:
+                - generic [ref=e405]: 󱔛
+                - generic [ref=e406]: Bicicleta nova
+                - generic [ref=e408]:
+                  - generic [ref=e409]:
+                    - generic [ref=e410]: 󲎤
+                    - generic [ref=e411]: 0/3000
+                  - generic [ref=e412]: Falta 3000
+            - generic [ref=e413]:
+              - button "Definir como meta" [ref=e416] [cursor=pointer]:
+                - generic [ref=e417]: 󲎤
+                - text: Meta
+              - button "Máquina de sorvete 0/5000 Falta 5000" [ref=e418] [cursor=pointer]:
+                - generic [ref=e420]: 󱰄
+                - generic [ref=e421]: Máquina de sorvete
+                - generic [ref=e423]:
+                  - generic [ref=e424]:
+                    - generic [ref=e425]: 󲎤
+                    - generic [ref=e426]: 0/5000
+                  - generic [ref=e427]: Falta 5000
+            - generic [ref=e428]:
+              - button "Definir como meta" [ref=e431] [cursor=pointer]:
+                - generic [ref=e432]: 󲎤
+                - text: Meta
+              - button "Família Viagem pequena (2-3 dias) 0/6000 Falta 6000" [ref=e433] [cursor=pointer]:
+                - generic [ref=e435]: 󲆏
+                - generic [ref=e436]:
+                  - generic [ref=e437]: Família
+                  - text: Viagem pequena (2-3 dias)
+                - generic [ref=e439]:
+                  - generic [ref=e440]:
+                    - generic [ref=e441]: 󲎤
+                    - generic [ref=e442]: 0/6000
+                  - generic [ref=e443]: Falta 6000
+            - generic [ref=e444]:
+              - button "Definir como meta" [ref=e447] [cursor=pointer]:
+                - generic [ref=e448]: 󲎤
+                - text: Meta
+              - button "Nintendo Switch 0/8000 Falta 8000" [ref=e449] [cursor=pointer]:
+                - generic [ref=e451]: 󱽔
+                - generic [ref=e452]: Nintendo Switch
+                - generic [ref=e454]:
+                  - generic [ref=e455]:
+                    - generic [ref=e456]: 󲎤
+                    - generic [ref=e457]: 0/8000
+                  - generic [ref=e458]: Falta 8000
+            - generic [ref=e459]:
+              - button "Definir como meta" [ref=e462] [cursor=pointer]:
+                - generic [ref=e463]: 󲎤
+                - text: Meta
+              - button "Celular novo (quando idade permitir) 0/12000 Falta 12000" [ref=e464] [cursor=pointer]:
+                - generic [ref=e466]: 󲋰
+                - generic [ref=e467]: Celular novo (quando idade permitir)
+                - generic [ref=e469]:
+                  - generic [ref=e470]:
+                    - generic [ref=e471]: 󲎤
+                    - generic [ref=e472]: 0/12000
+                  - generic [ref=e473]: Falta 12000
+      - text: 󱚙 󱮊 󲎤 󱑩 󲕻 󲍽 󱚙 󱮊 󲎤 󱑩 󲋰 󲍽 󱚙 󱮊 󲎤 󱑩 󱘫 󲍽 󱚙 󱮊 󲎤 󱑩 󱰄 󲍽 󱚙 󱮊 󲎤 󱑩 󲁐 󲍽 󱚙 󱮊 󲎤 󱑩 󱺻 󲍽 󱚙 󱮊 󲎤 󱑩 󲎱 󲍽 󱚙 󱮊 󲎤 󱑩 󱭯 󲍽 󱚙 󱮊 󲎤 󱑩 󲃬 󲍽 󱚙 󱮊 󲎤 󱑩 󱚬 󲍽 󱚙 󱮊 󲎤 󱑩 󱨓 󲍽 󱚙 󱮊 󲎤 󱑩 󲁐 󲍽 󱚙 󱮊 󲎤 󱑩 󱥃 󲍽 󱚙 󱮊 󲎤 󱑩 󱖄 󲍽 󱚙 󱮊 󲎤 󱑩 󲊉 󲍽 󱚙 󱮊 󲎤 󱑩 󱮊 󲍽 󱚙 󱮊 󲎤 󱑩 󲍽 󱚙 󱮊 󲎤 󱑩 󲃬 󲍽 󱚙 󱮊 󲎤 󱑩 󲂛 󲍽 󱚙 󱮊 󲎤 󱑩 󱩣 󲍽 󱚙 󱮊 󲎤 󱑩 󱢍 󲍽 󱚙 󱮊 󲎤 󱑩 󲈃 󲍽 󱚙 󱮊 󲎤 󱑩 󱹨 󲍽 󱚙 󱮊 󲎤 󱑩 󱔛 󲍽 󱚙 󱮊 󲎤 󱑩 󱰄 󲍽 󱚙 󱮊 󲎤 󱑩 󲆏 󲍽 󱚙 󱮊 󲎤 󱑩 󱽔 󲍽 󱚙 󱮊 󲎤 󱑩 󲋰 󲍽
+  - text: 󲎤

@@ -1,0 +1,147 @@
+- generic [active] [ref=e224]:
+  - navigation "Navegação principal" [ref=e225]:
+    - link "Jornada" [ref=e226] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e227]: 󲑲
+      - generic [ref=e228]: Jornada
+    - link "Academia" [ref=e229] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e230]: 󲌸
+      - generic [ref=e231]: Academia
+    - link "Lojinha" [ref=e232] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e233]: 󲊉
+      - generic [ref=e234]: Lojinha
+    - link "Diário" [ref=e235] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e236]: 󱖃
+      - generic [ref=e237]: Diário
+  - main [ref=e238]:
+    - generic [ref=e239]:
+      - generic [ref=e240]:
+        - generic [ref=e241]:
+          - generic [ref=e242]: ACADEMIA
+          - generic [ref=e243]:
+            - generic [ref=e244]: 󲌸
+            - generic [ref=e245]: Aprendiz
+        - heading "Suas áreas de formação" [level=1] [ref=e246]
+        - paragraph [ref=e247]:
+          - text: Cada aula entrega
+          - strong [ref=e248]: 1 ideia que muda alguma coisa hoje
+          - text: .
+      - generic [ref=e249]:
+        - generic [ref=e250]: 🧭 BÚSSOLA DO EXPLORADOR
+        - generic [ref=e251]:
+          - link "🌍 TERRITÓRIO NOVO · Mente Forte Por que mexer no celular é tão difícil de parar? \"Apps foram desenhados pra te prender — não é fraqueza.\"" [ref=e252] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte/missions/celular-dif%C3%ADcil-parar
+            - generic [ref=e254]: 🌍 TERRITÓRIO NOVO · Mente Forte
+            - heading "Por que mexer no celular é tão difícil de parar?" [level=2] [ref=e255]
+            - paragraph [ref=e256]: "\"Apps foram desenhados pra te prender — não é fraqueza.\""
+          - link "🔄 PADRÃO QUE VOLTOU · Mente Forte Por que 25 minutos podem valer mais que 2 horas? Aquele padrão que vc viu antes voltou — em outro lugar." [ref=e257] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte/missions/foco-profundo-25min
+            - generic [ref=e259]: 🔄 PADRÃO QUE VOLTOU · Mente Forte
+            - heading "Por que 25 minutos podem valer mais que 2 horas?" [level=2] [ref=e260]
+            - paragraph [ref=e261]: Aquele padrão que vc viu antes voltou — em outro lugar.
+      - generic [ref=e263]:
+        - link "Mente Forte Nv. 0 Dominar a própria mente 0/7" [ref=e264] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e265]:
+            - generic [ref=e267]: 󱗗
+            - generic [ref=e268]:
+              - generic [ref=e269]:
+                - generic [ref=e270]: Mente Forte
+                - generic [ref=e271]: Nv. 0
+              - generic [ref=e272]: Dominar a própria mente
+              - generic [ref=e275]: 0/7
+        - link "Corpo & Saúde Nv. 0 Cuidar do corpo como ferramenta poderosa 0/7" [ref=e276] [cursor=pointer]:
+          - /url: /kid/academy/subjects/corpo-saude
+          - generic [ref=e277]:
+            - generic [ref=e279]: 󱦞
+            - generic [ref=e280]:
+              - generic [ref=e281]:
+                - generic [ref=e282]: Corpo & Saúde
+                - generic [ref=e283]: Nv. 0
+              - generic [ref=e284]: Cuidar do corpo como ferramenta poderosa
+              - generic [ref=e287]: 0/7
+        - link "Dinheiro & Vida Real Nv. 0 Inteligência financeira e responsabilidade 0/6" [ref=e288] [cursor=pointer]:
+          - /url: /kid/academy/subjects/dinheiro-vida
+          - generic [ref=e289]:
+            - generic [ref=e291]: 󱟴
+            - generic [ref=e292]:
+              - generic [ref=e293]:
+                - generic [ref=e294]: Dinheiro & Vida Real
+                - generic [ref=e295]: Nv. 0
+              - generic [ref=e296]: Inteligência financeira e responsabilidade
+              - generic [ref=e299]: 0/6
+        - link "Caráter & Virtudes Nv. 0 Formar caráter forte 0/6" [ref=e300] [cursor=pointer]:
+          - /url: /kid/academy/subjects/carater
+          - generic [ref=e301]:
+            - generic [ref=e303]: 󲑲
+            - generic [ref=e304]:
+              - generic [ref=e305]:
+                - generic [ref=e306]: Caráter & Virtudes
+                - generic [ref=e307]: Nv. 0
+              - generic [ref=e308]: Formar caráter forte
+              - generic [ref=e311]: 0/6
+        - link "Tecnologia & Criação Nv. 0 Sair do consumir e entrar no criar 0/6" [ref=e312] [cursor=pointer]:
+          - /url: /kid/academy/subjects/tecnologia-criacao
+          - generic [ref=e313]:
+            - generic [ref=e315]: 󱧓
+            - generic [ref=e316]:
+              - generic [ref=e317]:
+                - generic [ref=e318]: Tecnologia & Criação
+                - generic [ref=e319]: Nv. 0
+              - generic [ref=e320]: Sair do consumir e entrar no criar
+              - generic [ref=e323]: 0/6
+        - link "Resolver Problemas Nv. 0 Autonomia intelectual 0/5" [ref=e324] [cursor=pointer]:
+          - /url: /kid/academy/subjects/resolver-problemas
+          - generic [ref=e325]:
+            - generic [ref=e327]: 󲃬
+            - generic [ref=e328]:
+              - generic [ref=e329]:
+                - generic [ref=e330]: Resolver Problemas
+                - generic [ref=e331]: Nv. 0
+              - generic [ref=e332]: Autonomia intelectual
+              - generic [ref=e335]: 0/5
+        - link "Vida & Sociedade Nv. 0 Entender pessoas e o mundo 0/5" [ref=e336] [cursor=pointer]:
+          - /url: /kid/academy/subjects/vida-sociedade
+          - generic [ref=e337]:
+            - generic [ref=e339]: 󲗦
+            - generic [ref=e340]:
+              - generic [ref=e341]:
+                - generic [ref=e342]: Vida & Sociedade
+                - generic [ref=e343]: Nv. 0
+              - generic [ref=e344]: Entender pessoas e o mundo
+              - generic [ref=e347]: 0/5
+        - link "Como o Mundo Funciona Nv. 0 Mecanismos invisíveis do dia a dia 0/10" [ref=e348] [cursor=pointer]:
+          - /url: /kid/academy/subjects/como-o-mundo-funciona
+          - generic [ref=e352]:
+            - generic [ref=e353]:
+              - generic [ref=e354]: Como o Mundo Funciona
+              - generic [ref=e355]: Nv. 0
+            - generic [ref=e356]: Mecanismos invisíveis do dia a dia
+            - generic [ref=e359]: 0/10
+        - link "Curiosidades do Corpo Nv. 0 O que o teu corpo faz sem te contar 0/10" [ref=e360] [cursor=pointer]:
+          - /url: /kid/academy/subjects/curiosidades-do-corpo
+          - generic [ref=e364]:
+            - generic [ref=e365]:
+              - generic [ref=e366]: Curiosidades do Corpo
+              - generic [ref=e367]: Nv. 0
+            - generic [ref=e368]: O que o teu corpo faz sem te contar
+            - generic [ref=e371]: 0/10
+        - link "Palavras & Origens Nv. 0 De onde vêm as ideias e os nomes 0/10" [ref=e372] [cursor=pointer]:
+          - /url: /kid/academy/subjects/palavras-origens
+          - generic [ref=e376]:
+            - generic [ref=e377]:
+              - generic [ref=e378]: Palavras & Origens
+              - generic [ref=e379]: Nv. 0
+            - generic [ref=e380]: De onde vêm as ideias e os nomes
+            - generic [ref=e383]: 0/10
+      - link "Elenco Quem conta cada aula" [ref=e385] [cursor=pointer]:
+        - /url: /kid/academy/cast
+        - generic [ref=e387]:
+          - generic [ref=e388]: 🎭
+          - generic [ref=e389]:
+            - generic [ref=e390]: Elenco
+            - generic [ref=e391]: Quem conta cada aula
+  - text: 󲎤

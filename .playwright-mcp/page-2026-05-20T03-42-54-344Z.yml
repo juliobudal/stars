@@ -1,0 +1,65 @@
+- generic [active] [ref=e155]:
+  - navigation "Navegação principal" [ref=e156]:
+    - link "Jornada" [ref=e157] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e158]: 󲑲
+      - generic [ref=e159]: Jornada
+    - link "Academia" [ref=e160] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e161]: 󲌸
+      - generic [ref=e162]: Academia
+    - link "Lojinha" [ref=e163] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e164]: 󲊉
+      - generic [ref=e165]: Lojinha
+    - link "Diário" [ref=e166] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e167]: 󱖃
+      - generic [ref=e168]: Diário
+  - main [ref=e169]:
+    - generic [ref=e170]:
+      - generic [ref=e171]:
+        - generic [ref=e172]:
+          - link "Voltar para Mente Forte" [ref=e173] [cursor=pointer]:
+            - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e175]:
+            - generic [ref=e176]: MENTE FORTE
+            - heading "Como o cérebro inventa lembranças?" [level=1] [ref=e177]
+        - generic "Progresso da missão" [ref=e178]
+      - generic [ref=e186]:
+        - generic [ref=e187]: 📖
+        - generic [ref=e188]:
+          - heading "Conta a história" [level=2] [ref=e189]
+          - generic [ref=e190]: sobre Memória reconstrutiva
+      - generic [ref=e191]:
+        - generic [ref=e192]:
+          - generic [ref=e193]:
+            - generic [ref=e194]: C
+            - generic [ref=e195]:
+              - generic [ref=e196]: Camila, 12
+              - generic [ref=e197]: tem certeza absoluta dos detalhes de coisas antigas e briga com quem disser que foi diferente
+          - generic [ref=e199]:
+            - generic [ref=e200]: Cena 1
+            - paragraph [ref=e201]: "Sábado de manhã. Camila e a mãe organizam uma caixa de fotos antigas no chão da sala. Camila pega uma foto de aniversário: 'Olha, meus 8 anos! Lembra do robô gigante que a prima Lara me deu naquele ano? Foi o melhor presente que eu já ganhei.' A mãe pega a foto, vira pra luz, franze a testa."
+          - button "Próxima cena →" [ref=e202] [cursor=pointer]
+        - generic [ref=e203]:
+          - generic [ref=e204]: Pergunta rápida
+          - paragraph [ref=e205]: Theo, por que Camila tinha tanta certeza que a prima Lara entregou o robô?
+          - generic [ref=e206]:
+            - button "A Porque a prima Lara esteve no aniversário e a mãe esqueceu" [disabled] [ref=e207]:
+              - generic [ref=e208]: A
+              - generic [ref=e209]: Porque a prima Lara esteve no aniversário e a mãe esqueceu
+            - button "B Porque Camila viu o presente num vídeo e confundiu com o aniversário" [disabled] [ref=e210]:
+              - generic [ref=e211]: B
+              - generic [ref=e212]: Porque Camila viu o presente num vídeo e confundiu com o aniversário
+            - button "C Porque o cérebro preencheu um buraco da memória com a pessoa que fazia mais sentido pra ela" [disabled] [ref=e213]:
+              - generic [ref=e214]: C
+              - generic [ref=e215]: Porque o cérebro preencheu um buraco da memória com a pessoa que fazia mais sentido pra ela
+            - button "D Porque Camila mentiu pra mãe sem perceber" [disabled] [ref=e216]:
+              - generic [ref=e217]: D
+              - generic [ref=e218]: Porque Camila mentiu pra mãe sem perceber
+          - generic [ref=e221]:
+            - generic [ref=e222]: Por quê
+            - paragraph [ref=e223]: "A cena na cabeça parece nítida porque o cérebro montou um quebra-cabeça e desenhou a peça que faltava (quem entregou o robô) com a pessoa que ela queria que tivesse vindo. A foto mostra a peça verdadeira: tia Patrícia."
+        - button "Continuar →" [ref=e220]
+  - text: 󲎤

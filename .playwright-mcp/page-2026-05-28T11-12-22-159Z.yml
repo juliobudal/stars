@@ -1,0 +1,40 @@
+- generic [ref=e1]:
+  - link "Pular para o conteúdo" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Navegação principal" [ref=e3]:
+    - link "Jornada" [ref=e4] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e5]: 󲑲
+      - generic [ref=e6]: Jornada
+    - link "Academia" [ref=e7] [cursor=pointer]:
+      - /url: /kid/academy
+      - generic [ref=e8]: 󲌸
+      - generic [ref=e9]: Academia
+    - link "Lojinha" [ref=e10] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e11]: 󲊉
+      - generic [ref=e12]: Lojinha
+    - link "Diário" [ref=e13] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e14]: 󱖃
+      - generic [ref=e15]: Diário
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - link "Voltar para a trilha" [ref=e19] [cursor=pointer]:
+          - /url: /kid/academy/trails/seu-cerebro-mente
+          - generic [ref=e20]: 󱑘
+        - generic [ref=e21]:
+          - generic [ref=e22]: Seu cérebro mente pra você
+          - heading "As cores não existem lá fora" [level=1] [ref=e23]
+        - link "Perguntar ao Guia" [ref=e24] [cursor=pointer]:
+          - /url: /kid/academy/trails/seu-cerebro-mente/lessons/cores-nao-existem/guide
+          - generic [ref=e25]: 🦉
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - generic [ref=e29]: 🤔
+            - paragraph [ref=e30]: E se a cor vermelha não existir no mundo — só dentro da sua cabeça?
+          - button "Investigar →" [active] [ref=e31] [cursor=pointer]
+        - text: 󲓧 󱚙 󲓧
+  - text: 󲎤

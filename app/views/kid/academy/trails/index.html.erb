@@ -1,0 +1,69 @@
+<% content_for(:title) { "Academia" } %>
+
+<div class="screen with-nav screen-enter">
+  <header class="mb-5">
+    <div class="font-display text-[11px] font-extrabold tracking-[1.5px] uppercase mb-1" style="color: var(--text-muted);">
+      Pílulas de conhecimento
+    </div>
+    <h1 class="font-display text-2xl font-extrabold leading-tight m-0" style="color: var(--text);">
+      O que você vai descobrir hoje?
+    </h1>
+  </header>
+
+  <% if @trails.empty? %>
+    <%= render Ui::Empty::Component.new(
+          icon: "sparkle",
+          title: "Nenhuma trilha por aqui ainda",
+          subtitle: "Logo logo tem mistério novo pra você."
+        ) %>
+  <% else %>
+    <div class="flex flex-col gap-4">
+      <% @trails.each do |trail| %>
+        <%
+          prog = @progress[trail.id] || { total: 0, done: 0 }
+          total = prog[:total]; done = prog[:done]
+          ratio = total.zero? ? 0 : (done.to_f / total * 100).round
+          nxt = @next_by_trail[trail]
+          cta = done.zero? ? "Começar" : (nxt ? "Continuar" : "Trilha completa")
+          href = nxt ? kid_academy_trail_lesson_path(trail, nxt) : kid_academy_trail_path(trail)
+        %>
+        <%= link_to href,
+              class: "ls-card-3d anim-press block no-underline p-4",
+              style: "background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.08);" do %>
+          <div class="flex items-start gap-3">
+            <div class="shrink-0 w-12 h-12 rounded-[14px] flex items-center justify-center text-[26px]"
+                 style="background: var(--primary-soft);" aria-hidden="true">
+              <%= trail.emoji.presence || "🔍" %>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h2 class="font-display text-[17px] font-extrabold leading-tight m-0 mb-1" style="color: var(--text);">
+                <%= trail.title %>
+              </h2>
+              <% if trail.hook.present? %>
+                <p class="font-display text-[13px] leading-snug m-0" style="color: var(--text-muted);">
+                  <%= trail.hook %>
+                </p>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="mt-3 flex items-center gap-3">
+            <div class="flex-1 h-2.5 rounded-full overflow-hidden" style="background: var(--surface-2);">
+              <div class="h-full rounded-full" style="width: <%= ratio %>%; background: var(--primary);"></div>
+            </div>
+            <span class="font-display text-[12px] font-extrabold shrink-0" style="color: var(--text-muted);">
+              <%= done %>/<%= total %>
+            </span>
+          </div>
+
+          <div class="mt-3">
+            <span class="inline-flex items-center gap-1 px-4 py-2 rounded-[12px] font-display text-[13px] font-extrabold uppercase tracking-[0.5px]"
+                  style="background: <%= nxt || done.zero? ? 'var(--primary)' : 'var(--surface-2)' %>; color: <%= nxt || done.zero? ? 'white' : 'var(--text-muted)' %>;">
+              <%= cta %>
+            </span>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module Academy
-  # A single (learner × mission × day) Q&A thread with the Guia.
+  # A single (learner × lesson × day) Q&A thread with the Guia.
   #
   # `learner_id` is a no-FK bigint per the Academy module isolation contract.
-  # `mission_id` is FK into academy_missions.
+  # `lesson_id` is FK into academy_lessons.
   #
   # `prompt_version` freezes the persona/scope/safety prompt identifier at
   # conversation start so future iterations of `Academy::Guide::Persona` do
@@ -18,7 +18,7 @@ module Academy
   class GuideConversation < ApplicationRecord
     self.table_name = "academy_guide_conversations"
 
-    belongs_to :mission, class_name: "Academy::Mission"
+    belongs_to :lesson, class_name: "Academy::Lesson"
     has_many :messages, -> { order(:created_at) },
              class_name: "Academy::GuideMessage",
              foreign_key: :conversation_id,

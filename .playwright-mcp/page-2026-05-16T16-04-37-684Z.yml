@@ -1,0 +1,111 @@
+- generic [active] [ref=e151]:
+  - navigation "Navegação principal" [ref=e152]:
+    - link "Jornada" [ref=e153] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e154]: 󲑲
+      - generic [ref=e155]: Jornada
+    - link "Academia" [ref=e156] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e157]: 󲌸
+      - generic [ref=e158]: Academia
+    - link "Lojinha" [ref=e159] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e160]: 󲊉
+      - generic [ref=e161]: Lojinha
+    - link "Diário" [ref=e162] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e163]: 󱖃
+      - generic [ref=e164]: Diário
+  - main [ref=e165]:
+    - generic [ref=e166]:
+      - generic [ref=e167]: 󲓧
+      - generic [ref=e168]: Anotado. 💪
+    - generic [ref=e169]:
+      - generic [ref=e170]:
+        - generic [ref=e171]: ACADEMIA
+        - heading "Suas áreas de formação" [level=1] [ref=e172]
+        - paragraph [ref=e173]:
+          - text: Cada aula entrega
+          - strong [ref=e174]: 1 ideia que muda alguma coisa hoje
+          - text: .
+      - generic [ref=e176]:
+        - link "Mente Forte Nv. 1 Dominar a própria mente 1/7" [ref=e177] [cursor=pointer]:
+          - /url: /kid/academy/subjects/mente-forte
+          - generic [ref=e178]:
+            - generic [ref=e180]: 󱗗
+            - generic [ref=e181]:
+              - generic [ref=e182]:
+                - generic [ref=e183]: Mente Forte
+                - generic [ref=e184]: Nv. 1
+              - generic [ref=e185]: Dominar a própria mente
+              - generic [ref=e189]: 1/7
+        - link "Corpo & Saúde Nv. 0 Cuidar do corpo como ferramenta poderosa 0/7" [ref=e190] [cursor=pointer]:
+          - /url: /kid/academy/subjects/corpo-saude
+          - generic [ref=e191]:
+            - generic [ref=e193]: 󱦞
+            - generic [ref=e194]:
+              - generic [ref=e195]:
+                - generic [ref=e196]: Corpo & Saúde
+                - generic [ref=e197]: Nv. 0
+              - generic [ref=e198]: Cuidar do corpo como ferramenta poderosa
+              - generic [ref=e201]: 0/7
+        - link "Dinheiro & Vida Real Nv. 0 Inteligência financeira e responsabilidade 0/2" [ref=e202] [cursor=pointer]:
+          - /url: /kid/academy/subjects/dinheiro-vida
+          - generic [ref=e203]:
+            - generic [ref=e205]: 󱟴
+            - generic [ref=e206]:
+              - generic [ref=e207]:
+                - generic [ref=e208]: Dinheiro & Vida Real
+                - generic [ref=e209]: Nv. 0
+              - generic [ref=e210]: Inteligência financeira e responsabilidade
+              - generic [ref=e213]: 0/2
+        - link "Caráter & Virtudes Nv. 0 Formar caráter forte 0/2" [ref=e214] [cursor=pointer]:
+          - /url: /kid/academy/subjects/carater
+          - generic [ref=e215]:
+            - generic [ref=e217]: 󲑲
+            - generic [ref=e218]:
+              - generic [ref=e219]:
+                - generic [ref=e220]: Caráter & Virtudes
+                - generic [ref=e221]: Nv. 0
+              - generic [ref=e222]: Formar caráter forte
+              - generic [ref=e225]: 0/2
+        - link "Tecnologia & Criação Nv. 0 Sair do consumir e entrar no criar 0/2" [ref=e226] [cursor=pointer]:
+          - /url: /kid/academy/subjects/tecnologia-criacao
+          - generic [ref=e230]:
+            - generic [ref=e231]:
+              - generic [ref=e232]: Tecnologia & Criação
+              - generic [ref=e233]: Nv. 0
+            - generic [ref=e234]: Sair do consumir e entrar no criar
+            - generic [ref=e237]: 0/2
+        - link "Resolver Problemas Nv. 0 Autonomia intelectual 0/2" [ref=e238] [cursor=pointer]:
+          - /url: /kid/academy/subjects/resolver-problemas
+          - generic [ref=e239]:
+            - generic [ref=e241]: 󲃬
+            - generic [ref=e242]:
+              - generic [ref=e243]:
+                - generic [ref=e244]: Resolver Problemas
+                - generic [ref=e245]: Nv. 0
+              - generic [ref=e246]: Autonomia intelectual
+              - generic [ref=e249]: 0/2
+        - link "Vida & Sociedade Nv. 0 Entender pessoas e o mundo 0/2" [ref=e250] [cursor=pointer]:
+          - /url: /kid/academy/subjects/vida-sociedade
+          - generic [ref=e251]:
+            - generic [ref=e253]: 󲗦
+            - generic [ref=e254]:
+              - generic [ref=e255]:
+                - generic [ref=e256]: Vida & Sociedade
+                - generic [ref=e257]: Nv. 0
+              - generic [ref=e258]: Entender pessoas e o mundo
+              - generic [ref=e261]: 0/2
+      - generic [ref=e262]:
+        - generic [ref=e263]:
+          - generic [ref=e264]: ATLAS · ÚLTIMAS DESCOBERTAS
+          - link "Ver tudo →" [ref=e265] [cursor=pointer]:
+            - /url: /kid/academy/atlas
+        - article [ref=e267]:
+          - generic [ref=e270]: Mente Forte
+          - paragraph [ref=e271]: Se você não decide o que faz sua atenção, um algoritmo decide por você.
+          - generic [ref=e272]: Tristan Harris
+      - link "Minhas medalhas →" [ref=e274] [cursor=pointer]:
+        - /url: /kid/academy/medals
+  - text: 󲎤

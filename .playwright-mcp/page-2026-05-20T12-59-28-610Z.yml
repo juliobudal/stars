@@ -1,0 +1,110 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e18]:
+        - link "Sair do Lightning" [ref=e19] [cursor=pointer]:
+          - /url: /kid
+        - generic [ref=e21]:
+          - generic [ref=e22]: ⚡ Lightning Round
+          - heading "5 perguntas pra testar memória" [level=1] [ref=e23]
+        - generic [ref=e24]: ⏱ 90s
+      - generic [ref=e25]:
+        - group "1/5 · Trabalho profundo" [ref=e26]:
+          - generic [ref=e27]: 1/5 · Trabalho profundo
+          - paragraph [ref=e28]: Por que pessoas em foco profundo produzem tanto mais?
+          - generic [ref=e29]:
+            - generic [ref=e30] [cursor=pointer]:
+              - radio "Porque depois de 15-25 min sem interrupção o cérebro entra numa marcha que a maioria nunca alcança." [ref=e31]
+              - generic [ref=e32]: Porque depois de 15-25 min sem interrupção o cérebro entra numa marcha que a maioria nunca alcança.
+            - generic [ref=e33] [cursor=pointer]:
+              - radio "Porque elas têm QI mais alto do que a média da população." [ref=e34]
+              - generic [ref=e35]: Porque elas têm QI mais alto do que a média da população.
+            - generic [ref=e36] [cursor=pointer]:
+              - radio "Porque trabalham mais horas por dia que os outros." [ref=e37]
+              - generic [ref=e38]: Porque trabalham mais horas por dia que os outros.
+            - generic [ref=e39] [cursor=pointer]:
+              - radio "Porque usam técnicas secretas de produtividade que ninguém conhece." [ref=e40]
+              - generic [ref=e41]: Porque usam técnicas secretas de produtividade que ninguém conhece.
+        - group "2/5 · Pensar rápido vs devagar" [ref=e42]:
+          - generic [ref=e43]: 2/5 · Pensar rápido vs devagar
+          - paragraph [ref=e44]: "{{learner_name}}, por que Rafa levou o gol no segundo tempo?"
+          - generic [ref=e45]:
+            - generic [ref=e46] [cursor=pointer]:
+              - radio "O atacante chutou muito forte e no ângulo" [ref=e47]
+              - generic [ref=e48]: O atacante chutou muito forte e no ângulo
+            - generic [ref=e49] [cursor=pointer]:
+              - radio "Rafa pensou demais e demorou a reagir" [ref=e50]
+              - generic [ref=e51]: Rafa pensou demais e demorou a reagir
+            - generic [ref=e52] [cursor=pointer]:
+              - radio "A barreira não pulou na hora certa" [ref=e53]
+              - generic [ref=e54]: A barreira não pulou na hora certa
+            - generic [ref=e55] [cursor=pointer]:
+              - radio "O técnico pediu pra ele segurar o pulo" [ref=e56]
+              - generic [ref=e57]: O técnico pediu pra ele segurar o pulo
+        - group "3/5 · Recompensa variável" [ref=e58]:
+          - generic [ref=e59]: 3/5 · Recompensa variável
+          - paragraph [ref=e60]: "{{learner_name}}, por que Rafa fez as quatro trocas mesmo tendo guardado esmeralda pra outra coisa?"
+          - generic [ref=e61]:
+            - generic [ref=e62] [cursor=pointer]:
+              - radio "Porque o livro encantado raro valia muito mais que o Mending" [ref=e63]
+              - generic [ref=e64]: Porque o livro encantado raro valia muito mais que o Mending
+            - generic [ref=e65] [cursor=pointer]:
+              - radio "Porque cada troca podia trazer Proteção IV — e a chance fez ele esquecer o objetivo" [ref=e66]
+              - generic [ref=e67]: Porque cada troca podia trazer Proteção IV — e a chance fez ele esquecer o objetivo
+            - generic [ref=e68] [cursor=pointer]:
+              - radio "Porque o clérigo prometeu que o próximo slot vinha encantado bom" [ref=e69]
+              - generic [ref=e70]: Porque o clérigo prometeu que o próximo slot vinha encantado bom
+            - generic [ref=e71] [cursor=pointer]:
+              - radio "Porque ele queria mostrar a armadura pros amigos do servidor" [ref=e72]
+              - generic [ref=e73]: Porque ele queria mostrar a armadura pros amigos do servidor
+        - group "4/5 · Recompensa imediata" [ref=e74]:
+          - generic [ref=e75]: 4/5 · Recompensa imediata
+          - paragraph [ref=e76]: "{{learner_name}}, qual o pulo na cabeça do Léo na hora que ele viu o boné na vitrine?"
+          - generic [ref=e77]:
+            - generic [ref=e78] [cursor=pointer]:
+              - radio "Léo pesou com calma boné contra cinema antes de decidir gastar" [ref=e79]
+              - generic [ref=e80]: Léo pesou com calma boné contra cinema antes de decidir gastar
+            - generic [ref=e81] [cursor=pointer]:
+              - radio "O cérebro entregou recompensa pelo brilho de AGORA — o cinema da sexta nem entrou na conta" [ref=e82]
+              - generic [ref=e83]: O cérebro entregou recompensa pelo brilho de AGORA — o cinema da sexta nem entrou na conta
+            - generic [ref=e84] [cursor=pointer]:
+              - radio "Léo não gostava de cinema mesmo, foi só sincero consigo" [ref=e85]
+              - generic [ref=e86]: Léo não gostava de cinema mesmo, foi só sincero consigo
+            - generic [ref=e87] [cursor=pointer]:
+              - radio "A avó tinha mandado ele comprar o boné, ele só obedeceu" [ref=e88]
+              - generic [ref=e89]: A avó tinha mandado ele comprar o boné, ele só obedeceu
+        - group "5/5 · Custo da troca" [ref=e90]:
+          - generic [ref=e91]: 5/5 · Custo da troca
+          - paragraph [ref=e92]: Por que ler a notificação rapidinho 'pra não perder' acaba saindo mais caro?
+          - generic [ref=e93]:
+            - generic [ref=e94] [cursor=pointer]:
+              - radio "Porque depois do beep o cérebro precisa de cerca de 23 min pra reconstruir o contexto que perdeu." [ref=e95]
+              - generic [ref=e96]: Porque depois do beep o cérebro precisa de cerca de 23 min pra reconstruir o contexto que perdeu.
+            - generic [ref=e97] [cursor=pointer]:
+              - radio "Porque ler a notificação demora mais que ignorá-la." [ref=e98]
+              - generic [ref=e99]: Porque ler a notificação demora mais que ignorá-la.
+            - generic [ref=e100] [cursor=pointer]:
+              - radio "Porque o celular fica quente e atrapalha a concentração." [ref=e101]
+              - generic [ref=e102]: Porque o celular fica quente e atrapalha a concentração.
+            - generic [ref=e103] [cursor=pointer]:
+              - radio "Porque você acaba respondendo a notificação e gasta tempo escrevendo." [ref=e104]
+              - generic [ref=e105]: Porque você acaba respondendo a notificação e gasta tempo escrevendo.
+        - button "⚡ Conferir respostas" [ref=e106] [cursor=pointer]
+  - text: 󲎤

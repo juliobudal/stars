@@ -1,0 +1,28 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - heading "404" [level=1] [ref=e5]
+    - heading "This page could not be found." [level=2] [ref=e7]
+  - navigation "Navegação principal" [ref=e8]:
+    - list [ref=e9]:
+      - listitem [ref=e10]:
+        - link "Hoje" [ref=e11] [cursor=pointer]:
+          - /url: /
+          - img [ref=e13]
+          - generic [ref=e16]: Hoje
+      - listitem [ref=e17]:
+        - link "Metas" [ref=e18] [cursor=pointer]:
+          - /url: /goals
+          - img [ref=e20]
+          - generic [ref=e24]: Metas
+      - listitem [ref=e25]:
+        - link "Stats" [ref=e26] [cursor=pointer]:
+          - /url: /stats
+          - img [ref=e28]
+          - generic [ref=e30]: Stats
+      - listitem [ref=e31]:
+        - link "Ajustes" [ref=e32] [cursor=pointer]:
+          - /url: /settings
+          - img [ref=e34]
+          - generic [ref=e37]: Ajustes
+  - region "Notifications alt+T"
+  - alert [ref=e38]

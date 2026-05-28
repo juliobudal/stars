@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# "O Guia" chat surface — open Q&A scoped to the active mission.
+# "O Guia" chat surface — open Q&A scoped to the active lesson.
 # Talks to Academy::Guide::{FindOrStartConversation, Ask}.
 # Hidden entirely when OPENROUTER_API_KEY is missing — this controller is
 # the only Academy surface that requires the LLM at runtime, so the guard
@@ -10,21 +10,21 @@ class Kid::Academy::GuidesController < Kid::Academy::BaseController
   rate_limit to: 10, within: 1.minute, only: :create
 
   before_action :require_academy_configured!
-  before_action :load_subject_and_mission
+  before_action :load_trail_and_lesson
 
-  # GET /kid/academy/subjects/:subject_id/missions/:mission_id/guide
+  # GET /kid/academy/trails/:trail_slug/lessons/:lesson_slug/guide
   def show
     @conversation = ::Academy::Guide::FindOrStartConversation.call(
-      learner: current_learner, mission: @mission
+      learner: current_learner, lesson: @lesson
     ).data
     @messages = visible_messages(@conversation)
   end
 
-  # POST /kid/academy/subjects/:subject_id/missions/:mission_id/guide
+  # POST /kid/academy/trails/:trail_slug/lessons/:lesson_slug/guide
   def create
     result = ::Academy::Guide::Ask.call(
       learner: current_learner,
-      mission: @mission,
+      lesson: @lesson,
       user_content: params[:content].to_s
     )
 
@@ -34,7 +34,7 @@ class Kid::Academy::GuidesController < Kid::Academy::BaseController
       @just_sent = [ result.data[:user_message], result.data[:guide_message] ]
       render :show
     else
-      redirect_to kid_academy_subject_mission_guide_path(@subject, @mission),
+      redirect_to kid_academy_trail_lesson_guide_path(@trail, @lesson),
                   alert: error_message(result.error)
     end
   end
@@ -47,9 +47,9 @@ class Kid::Academy::GuidesController < Kid::Academy::BaseController
     redirect_to kid_root_path, alert: "O Guia está indisponível agora."
   end
 
-  def load_subject_and_mission
-    @subject = ::Academy::Subject.active.find_by!(slug: params[:subject_id])
-    @mission = @subject.missions.active.find_by!(slug: params[:mission_id])
+  def load_trail_and_lesson
+    @trail = ::Academy::Trail.active.find_by!(slug: params[:trail_slug])
+    @lesson = @trail.lessons.active.find_by!(slug: params[:lesson_slug])
   end
 
   def visible_messages(conversation)
@@ -62,6 +62,7 @@ class Kid::Academy::GuidesController < Kid::Academy::BaseController
   def error_message(error)
     case error
     when :empty_content then "Escreve sua pergunta antes de enviar."
+    when :quota_exceeded then "Você já fez suas 5 perguntas de hoje. O Guia volta amanhã."
     when :llm_error then "O Guia está descansando. Tenta de novo em alguns minutos."
     else "Não consegui falar com O Guia agora."
     end

@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, de cada 100 vídeos que TENTAM aparecer no seu feed do YouTube, quantos você acha que os filtros (idade, tema, horário) bloqueiam ANTES de chegar na tela? Chuta.",
-  "predict_unit": "%",
-  "predict_min": 0,
-  "predict_max": 100,
-  "reveal_value": 30,
-  "reveal_source": "Relatório de transparência do YouTube (2023): cerca de 30 em cada 100 vídeos candidatos a aparecer em contas de adolescentes passam por algum filtro de idade, tema ou modo restrito antes de chegar ao feed final.",
-  "interpretation": "30 em 100. Quase um terço do que o algoritmo cogita te mostrar fica fora antes de você ver. Não é magia — é uma camada de regras (idade da conta, palavras proibidas, filtros parentais, modo restrito) que roda depois do algoritmo escolher e antes do feed entregar. Curtir não desbloqueia o que a regra cortou."
-}

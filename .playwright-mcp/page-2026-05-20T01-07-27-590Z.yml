@@ -1,0 +1,57 @@
+- generic [active] [ref=e195]:
+  - navigation "Navegação principal" [ref=e196]:
+    - link "Jornada" [ref=e197] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e198]: 󲑲
+      - generic [ref=e199]: Jornada
+    - link "Academia" [ref=e200] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e201]: 󲌸
+      - generic [ref=e202]: Academia
+    - link "Lojinha" [ref=e203] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e204]: 󲊉
+      - generic [ref=e205]: Lojinha
+    - link "Diário" [ref=e206] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e207]: 󱖃
+      - generic [ref=e208]: Diário
+  - main [ref=e209]:
+    - generic [ref=e210]:
+      - generic [ref=e211]: 󲓧
+      - generic [ref=e212]: Missão completa! ✨
+    - generic [ref=e213]:
+      - generic [ref=e215]:
+        - link "Voltar para Dinheiro & Vida Real" [ref=e216] [cursor=pointer]:
+          - /url: /kid/academy/subjects/dinheiro-vida
+        - generic [ref=e218]:
+          - generic [ref=e219]: DINHEIRO & VIDA REAL · REVISÃO
+          - heading "Por que comprar por impulso é uma armadilha?" [level=1] [ref=e220]
+      - generic [ref=e221]:
+        - generic [ref=e223]: ✓
+        - generic [ref=e224]: Missão completa
+        - paragraph [ref=e225]:
+          - strong [ref=e226]: "3"
+          - text: lições percorridas sobre
+          - strong [ref=e227]: Recompensa imediata
+          - text: .
+      - generic [ref=e228]:
+        - link "📖 Lição 1 Conta a história" [ref=e229] [cursor=pointer]:
+          - /url: /kid/academy/subjects/dinheiro-vida/missions/impulso-perigoso/visits/2369
+          - generic [ref=e230]: 📖
+          - generic [ref=e231]:
+            - generic [ref=e232]: Lição 1
+            - generic [ref=e233]: Conta a história
+        - link "🔬 Lição 2 Como funciona" [ref=e236] [cursor=pointer]:
+          - /url: /kid/academy/subjects/dinheiro-vida/missions/impulso-perigoso/visits/2370
+          - generic [ref=e237]: 🔬
+          - generic [ref=e238]:
+            - generic [ref=e239]: Lição 2
+            - generic [ref=e240]: Como funciona
+        - link "📈 Lição 3 Adivinha" [ref=e243] [cursor=pointer]:
+          - /url: /kid/academy/subjects/dinheiro-vida/missions/impulso-perigoso/visits/2371
+          - generic [ref=e244]: 📈
+          - generic [ref=e245]:
+            - generic [ref=e246]: Lição 3
+            - generic [ref=e247]: Adivinha
+  - text: 󲎤

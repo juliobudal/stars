@@ -1,0 +1,80 @@
+- generic [active] [ref=e1]:
+  - navigation "Navegação principal" [ref=e2]:
+    - link "Jornada" [ref=e3] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e4]: 󲑲
+      - generic [ref=e5]: Jornada
+    - link "Academia" [ref=e6] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e7]: 󲌸
+      - generic [ref=e8]: Academia
+    - link "Lojinha" [ref=e9] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e10]: 󲊉
+      - generic [ref=e11]: Lojinha
+    - link "Diário" [ref=e12] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e13]: 󱖃
+      - generic [ref=e14]: Diário
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e18]:
+        - link "Voltar pro Home" [ref=e19] [cursor=pointer]:
+          - /url: /kid
+        - generic [ref=e21]:
+          - generic [ref=e22]: Pílula do Dia
+          - heading "Salário vem de sal" [level=1] [ref=e23]
+      - generic [ref=e24]:
+        - generic [ref=e25]: 🔭
+        - generic [ref=e26]:
+          - heading "Em outro lugar" [level=2] [ref=e27]
+          - generic [ref=e28]: 60-90 segundos · sem missão
+        - generic "Narrado por O Tradutor" [ref=e29]:
+          - generic [ref=e30]: 🌉
+          - generic [ref=e31]: O Tradutor
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e35]: Origem
+            - generic [ref=e36]: Figurinhas raras na escola servindo de moeda
+            - list [ref=e37]:
+              - listitem [ref=e38]: • Na escola tem aquela figurinha brilhante que quase ninguém consegue
+              - listitem [ref=e39]: • A galera troca lanche, caneta, até cola por uma figurinha rara
+              - listitem [ref=e40]: • Quem tem várias figurinhas é considerado 'rico' do recreio
+              - listitem [ref=e41]: • Combina-se 'te dou 3 figurinhas por semana' por algum favor
+              - listitem [ref=e42]: • A figurinha vira a unidade de pagamento daquele lugar
+          - generic [ref=e43]:
+            - generic [ref=e44]: Destino
+            - generic [ref=e45]: Soldado romano pago em sal
+            - list [ref=e46]:
+              - listitem [ref=e47]: • Em Roma antiga, sal era rarissimo e caríssimo (conserva carne, vida)
+              - listitem [ref=e48]: • Os soldados recebiam ração de sal todo mês como pagamento
+              - listitem [ref=e49]: • Quem tinha muito sal era considerado rico do exército
+              - listitem [ref=e50]: • A palavra latina 'salarium' queria dizer 'a quantidade de sal'
+              - listitem [ref=e51]: • 'Salarium' virou 'salário' — o pagamento que se recebe pelo trabalho
+        - generic [ref=e52]: Pontes
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - generic [ref=e55]: Figurinha rara = moeda do recreio
+            - generic [ref=e56]: →
+            - generic [ref=e57]: Sal = moeda do soldado romano
+          - generic [ref=e58]:
+            - generic [ref=e59]: Recebe figurinhas pelo combinado
+            - generic [ref=e60]: →
+            - generic [ref=e61]: Recebe sal pelo trabalho do mês
+          - generic [ref=e62]:
+            - generic [ref=e63]: "'Te pago em figurinhas' descreve o tipo de moeda"
+            - generic [ref=e64]: →
+            - generic [ref=e65]: "'Salarium' descreve o tipo de moeda — sal"
+          - generic [ref=e66]:
+            - generic [ref=e67]: Quando a moeda some do uso a palavra ainda continua no jeito de falar
+            - generic [ref=e68]: →
+            - generic [ref=e69]: Mesmo sem sal nos pagamentos atuais 'salário' continua sendo a palavra
+        - paragraph [ref=e71]: Se 'salário' literalmente veio de 'sal' por ser raro e valioso, qual seria o nome do pagamento se a moeda preferida em Roma fosse pimenta-do-reino?
+      - generic [ref=e72]:
+        - button "💬 Conta pro pai/mãe" [ref=e74] [cursor=pointer]
+        - link "📔 Ver caderno de pílulas" [ref=e75] [cursor=pointer]:
+          - /url: /kid/academy/pills
+        - link "Voltar pra Jornada" [ref=e76] [cursor=pointer]:
+          - /url: /kid
+  - text: 󲎤

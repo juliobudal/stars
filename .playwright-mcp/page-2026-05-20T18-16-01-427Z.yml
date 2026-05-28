@@ -1,0 +1,47 @@
+- generic [ref=e31]:
+  - generic [ref=e33]:
+    - generic [ref=e34]:
+      - generic [ref=e36]: 󲎤
+      - generic [ref=e37]: LittleStars
+    - generic [ref=e38]: Bora começar!
+  - img "Júlio Kid" [ref=e40]:
+    - generic [ref=e41]: 󱮊
+  - heading "Quem é você?" [level=1] [ref=e42]
+  - paragraph [ref=e43]: Toque no seu rostinho pra entrar
+  - generic [ref=e44]:
+    - generic [ref=e45]:
+      - link "Júlio Kid Júlio Kid 0" [ref=e46] [cursor=pointer]:
+        - /url: /profile_session/new?profile_id=1170
+        - img "Júlio Kid" [ref=e48]:
+          - generic [ref=e49]: 󱮊
+        - generic [ref=e50]: Júlio Kid
+        - generic [ref=e51]:
+          - generic [ref=e52]: 󲎤
+          - text: "0"
+      - link "Pai Homolog Pai Homolog Responsável" [ref=e53] [cursor=pointer]:
+        - /url: /profile_session/new?profile_id=1171
+        - generic [ref=e55]: 󲍽
+        - img "Pai Homolog" [ref=e57]:
+          - generic [ref=e58]: 󲗕
+        - generic [ref=e59]: Pai Homolog
+        - generic [ref=e60]: Responsável
+    - generic [ref=e62]:
+      - button "Fechar" [ref=e63] [cursor=pointer]:
+        - generic [ref=e64]: 󱚙
+      - img "Pai Homolog" [ref=e66]:
+        - generic [ref=e67]: 󲗕
+      - generic [ref=e68]: Olá, Pai Homolog!
+      - generic [ref=e69]: Digite seu PIN secreto
+      - generic [ref=e76]:
+        - button "1" [ref=e77] [cursor=pointer]
+        - button "2" [ref=e78] [cursor=pointer]
+        - button "3" [ref=e79] [cursor=pointer]
+        - button "4" [ref=e80] [cursor=pointer]
+        - button "5" [ref=e81] [cursor=pointer]
+        - button "6" [ref=e82] [cursor=pointer]
+        - button "7" [ref=e83] [cursor=pointer]
+        - button "8" [ref=e84] [cursor=pointer]
+        - button "9" [active] [ref=e85] [cursor=pointer]
+        - button "0" [ref=e87] [cursor=pointer]
+        - button "Apagar" [ref=e88] [cursor=pointer]: ⌫
+      - generic [ref=e89]: Esqueci meu PIN

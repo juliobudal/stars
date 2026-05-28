@@ -39,7 +39,7 @@ RSpec.describe "Kid interests picker", type: :request do
       patch kid_interests_path, params: { interest_keys: keys }
     }.not_to change { child.reload.profile_interests.count }
 
-    expect(response).to have_http_status(:unprocessable_entity)
+    expect(response).to have_http_status(:unprocessable_content)
     expect(response.body).to include("ao menos")
   end
 

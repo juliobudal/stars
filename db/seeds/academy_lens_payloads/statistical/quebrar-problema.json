@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, quantas peças você acha que um quebra-cabeça de 1000 peças tem, se você separar primeiro todas as peças de borda? Chuta antes de ler.",
-  "predict_unit": "vezes/dia",
-  "predict_min": 1,
-  "predict_max": 100,
-  "reveal_value": 40,
-  "reveal_source": "Estimativa: em quebra-cabeças retangulares típicos (25x40), as peças de borda são cerca de 4% do total, ou ~40 peças. Fonte: Ravenburger, padrão de fabricação.",
-  "interpretation": "40 peças de borda num quebra-cabeça de 1000. Montar só a moldura já resolve a parte mais difícil: organizar o espaço. O resto vira subproblemas menores — céu, árvore, casa. Decompor é isso: pegar o gigante e cortar em pedaços que cabem na mão."
-}

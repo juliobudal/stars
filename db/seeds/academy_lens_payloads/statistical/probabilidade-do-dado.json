@@ -1,9 +1,0 @@
-{
-  "predict_prompt": "{{learner_name}}, chuta: se você jogar uma moeda 10 vezes seguidas, qual a chance de sair CARA em TODAS elas? Palpita antes de ver.",
-  "predict_unit": "%",
-  "predict_min": 0,
-  "predict_max": 100,
-  "reveal_value": 0.1,
-  "reveal_source": "Cálculo: (1/2)^10 = 1/1024 ≈ 0,0977%. Fonte: probabilidade clássica de eventos independentes.",
-  "interpretation": "0,1%. Menos de 1 em mil. Sua intuição talvez chutou 10% ou 1% — mas a cada cara que sai, a chance do próximo também ser cara cai pela metade. A incerteza se multiplica, não se soma."
-}

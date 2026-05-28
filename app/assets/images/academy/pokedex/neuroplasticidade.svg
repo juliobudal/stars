@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-  <circle cx="14" cy="20" r="4"/>
-  <circle cx="32" cy="12" r="4"/>
-  <circle cx="50" cy="20" r="4"/>
-  <circle cx="20" cy="44" r="4"/>
-  <circle cx="44" cy="44" r="4"/>
-  <circle cx="32" cy="54" r="4"/>
-  <path d="M14 20l18-8M32 12l18 8M14 20l6 24M50 20l-6 24M20 44l12 10M44 44l-12 10M20 44h24"/>
-</svg>

@@ -1,8 +1,11 @@
-<%# locals: (goal:, viewer: nil) %>
+<%# locals: (goal:, viewer: nil, limit: nil) %>
 <%# goal: result.data from Rewards::WeeklyFamilyGoalService %>
 <%# viewer: profile (kid or parent) · controls if redeem CTA shows %>
+<%# limit: cap how many goals to show, most relevant first (kid dashboard passes 1) %>
 <% earned = goal[:earned] %>
 <% goals = goal[:goals] || [] %>
+<% goals = goals.sort_by { |g| [g[:eligible] ? 0 : 1, -g[:progress_pct].to_i] } %>
+<% if (lim = local_assigns[:limit]) %><% goals = goals.first(lim) %><% end %>
 <% if goals.any? %>
   <div class="flex flex-col gap-3">
     <% goals.each do |g|

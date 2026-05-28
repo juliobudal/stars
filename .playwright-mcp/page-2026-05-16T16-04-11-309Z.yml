@@ -1,0 +1,39 @@
+- generic [active] [ref=e71]:
+  - navigation "Navegação principal" [ref=e72]:
+    - link "Jornada" [ref=e73] [cursor=pointer]:
+      - /url: /kid
+      - generic [ref=e74]: 󲑲
+      - generic [ref=e75]: Jornada
+    - link "Academia" [ref=e76] [cursor=pointer]:
+      - /url: /kid/academy/subjects
+      - generic [ref=e77]: 󲌸
+      - generic [ref=e78]: Academia
+    - link "Lojinha" [ref=e79] [cursor=pointer]:
+      - /url: /kid/rewards
+      - generic [ref=e80]: 󲊉
+      - generic [ref=e81]: Lojinha
+    - link "Diário" [ref=e82] [cursor=pointer]:
+      - /url: /kid/wallet
+      - generic [ref=e83]: 󱖃
+      - generic [ref=e84]: Diário
+  - main [ref=e85]:
+    - generic [ref=e86]:
+      - generic [ref=e87]:
+        - link [ref=e88] [cursor=pointer]:
+          - /url: /kid/academy/subjects
+        - generic [ref=e90]:
+          - generic [ref=e91]: ATLAS
+          - heading "Suas descobertas" [level=1] [ref=e92]
+      - paragraph [ref=e93]:
+        - strong [ref=e94]: "1"
+        - text: sacada que
+        - strong [ref=e95]: você
+        - text: trouxe pra cá.
+      - article [ref=e97]:
+        - generic [ref=e101]:
+          - generic [ref=e102]: Mente Forte
+          - generic [ref=e103]: 16 de maio
+        - paragraph [ref=e104]: Se você não decide o que faz sua atenção, um algoritmo decide por você.
+        - paragraph [ref=e105]: "Antes de pegar o celular, pergunte: 'O que eu vou fazer aqui?' Se não souber, não abre."
+        - generic [ref=e106]: Tristan Harris
+  - text: 󲎤

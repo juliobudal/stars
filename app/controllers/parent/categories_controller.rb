@@ -18,7 +18,7 @@ class Parent::CategoriesController < ApplicationController
     if @category.save
       redirect_to parent_categories_path, notice: "Categoria criada."
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -29,7 +29,7 @@ class Parent::CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to parent_categories_path, notice: "Categoria atualizada."
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
