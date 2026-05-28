@@ -40,12 +40,15 @@ node_modules/.vite
 .mcp.json
 /spec/examples.txt
 
-# Local agent tooling / scratch (not part of the app)
+# Local agent tooling / spec frameworks / scratch (not part of the app)
 /.agents/
 /.impeccable/
 /.specify/
 /.claude/agents/
 /.claude/skills/
+/.claude/commands/opsx/
 /reference/
 /audit/
 /openspec/
+/docs/superpowers/
+/AGENTS.md

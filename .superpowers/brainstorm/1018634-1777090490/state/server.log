@@ -1,4 +1,0 @@
-{"type":"server-started","port":57103,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:57103","screen_dir":"/home/julio-budal/Projetos/guardian/.superpowers/brainstorm/1018634-1777090490/content","state_dir":"/home/julio-budal/Projetos/guardian/.superpowers/brainstorm/1018634-1777090490/state"}
-{"type":"screen-added","file":"/home/julio-budal/Projetos/guardian/.superpowers/brainstorm/1018634-1777090490/content/pin-modal.html"}
-{"type":"screen-added","file":"/home/julio-budal/Projetos/guardian/.superpowers/brainstorm/1018634-1777090490/content/waiting.html"}
-{"type":"server-stopped","reason":"idle timeout"}
