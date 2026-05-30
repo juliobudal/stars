@@ -11,7 +11,12 @@ class Parent::ProfilesController < ApplicationController
   layout "parent"
 
   def index
-    @profiles = current_family.profiles.child.includes(:profile_tasks).order(:name)
+    @profiles = current_family.profiles.child.order(:name)
+    # Aggregate counts in two grouped queries instead of loading every child's
+    # full ProfileTask history into memory just to count two statuses.
+    ids = @profiles.map(&:id)
+    @awaiting_counts = ProfileTask.where(profile_id: ids).awaiting_approval.group(:profile_id).count
+    @pending_counts  = ProfileTask.where(profile_id: ids).pending.group(:profile_id).count
   end
 
   def new
@@ -56,6 +61,33 @@ class Parent::ProfilesController < ApplicationController
   def destroy
     @profile.destroy
     redirect_to parent_root_path, notice: "Perfil removido com sucesso."
+  end
+
+  # ── Per-child management panel ──────────────────────────────────────────
+  # One screen with everything about a single child: snapshot, the missions
+  # assigned to them (live toggles), and their wishlist.
+  def manage
+    @child = current_family.profiles.child.find(params[:id])
+    @missions = GlobalTask.for_family(current_family.id).with_assignments.by_priority
+    @awaiting_count = @child.profile_tasks.awaiting_approval.count
+    @today_count = @child.profile_tasks.for_today(current_family.current_date).pending.count
+  end
+
+  # Adds/removes a single child from one mission, reconciling the mission's
+  # full assignment set so other children keep their assignments.
+  def toggle_mission
+    @child = current_family.profiles.child.find(params[:id])
+    @mission = GlobalTask.for_family(current_family.id).with_assignments.find(params[:mission_id])
+    assigned = ActiveModel::Type::Boolean.new.cast(params[:assigned])
+
+    result = Tasks::SetAssignments.toggle(global_task: @mission, profile_id: @child.id, assigned: assigned)
+    # Reload preloaded for the row partial (strict_loading in development).
+    @mission = GlobalTask.for_family(current_family.id).with_assignments.find(@mission.id)
+    render turbo_stream: turbo_stream.replace(
+      "manage_mission_#{@mission.id}",
+      partial: "parent/profiles/manage_mission_row",
+      locals: { mission: @mission, child: @child, saved: result.success? }
+    ), status: (result.success? ? :ok : :unprocessable_content)
   end
 
   def reset_pin

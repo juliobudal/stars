@@ -21,19 +21,39 @@ Rails.application.routes.draw do
     resources :profiles, only: [ :index, :new, :create, :edit, :update, :destroy ] do
       member do
         patch :reset_pin
+        get :manage
+        patch :toggle_mission
       end
     end
     resources :global_tasks, except: [ :show ] do
-      member { patch :toggle_active }
+      member do
+        patch :toggle_active
+        patch :assignment
+        post :duplicate
+      end
+      collection do
+        get :assignments
+        get :library
+        post :add_from_template
+      end
     end
     resources :rewards, only: [ :index, :new, :create, :edit, :update, :destroy ] do
-      member { post :redeem_collective }
+      member do
+        post :redeem_collective
+        post :duplicate
+      end
+      collection do
+        get :library
+        post :add_from_template
+      end
     end
     resources :categories
     resources :approvals, only: [ :index ] do
       collection do
         post :bulk_approve
         post :bulk_reject
+        post :bulk_approve_redemptions
+        post :bulk_reject_redemptions
       end
       member do
         patch :approve

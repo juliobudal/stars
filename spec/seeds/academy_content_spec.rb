@@ -17,10 +17,26 @@ RSpec.describe "Academy curated content (arcos narrativos)" do
     expect(violations).to be_empty, "Violações de arco:\n  - #{violations.join("\n  - ")}"
   end
 
-  it "tem 5 trilhas, cada uma com ao menos 4 aulas (SC-005)" do
-    expect(content.size).to eq(5)
+  it "tem 7 trilhas, cada uma com ao menos 4 aulas (SC-101)" do
+    expect(content.size).to eq(7)
     content.each do |trail|
       expect(trail[:lessons].size).to be >= 4, "#{trail[:slug]} tem #{trail[:lessons].size} aulas"
+    end
+  end
+
+  it "encadeia o cliffhanger sem ponta morta: as-palavras-mudam → T6 → T7 → nil (SC-103)" do
+    by_slug = content.to_h { |t| [ t[:slug], t ] }
+
+    expect(by_slug.fetch("as-palavras-mudam")[:cliffhanger_to]).to eq("tudo-quase-vazio")
+    expect(by_slug.fetch("tudo-quase-vazio")[:cliffhanger_to]).to eq("voce-feito-de-estrelas")
+    expect(by_slug.fetch("voce-feito-de-estrelas")[:cliffhanger_to]).to be_nil
+
+    # Todo destino não-nil aponta para uma trilha existente no conjunto.
+    content.each do |trail|
+      dest = trail[:cliffhanger_to]
+      next if dest.nil?
+
+      expect(by_slug).to have_key(dest), "#{trail[:slug]} aponta para destino inexistente #{dest.inspect}"
     end
   end
 

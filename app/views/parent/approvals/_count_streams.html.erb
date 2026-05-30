@@ -2,8 +2,8 @@
      Keeps the page header subtitle, nav badges (sidebar + mobile), and the
      HeaderStatChip KPI in sync without re-rendering the whole layout. %>
 <%
-  pending_tasks = current_profile.family.profile_tasks.awaiting_approval.count
-  pending_redemptions = current_profile.family.redemptions.pending.count
+  pending_tasks = local_assigns.fetch(:pending_tasks) { current_profile.family.profile_tasks.awaiting_approval.count }
+  pending_redemptions = local_assigns.fetch(:pending_redemptions) { current_profile.family.redemptions.pending.count }
   pending_total = pending_tasks + pending_redemptions
   subtitle_text = pending_total.positive? ? "#{pending_total} #{pending_total == 1 ? 'pendência aguardando' : 'pendências aguardando'} sua revisão" : "Nenhuma pendência no momento"
 %>

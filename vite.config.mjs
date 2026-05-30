@@ -11,11 +11,18 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 3036,
     strictPort: true,
-    origin: 'http://127.0.0.1:10302',
+    // The Vite dev server is only reachable from the browser through the Rails
+    // (Puma) same-origin proxy at /vite — the direct Docker-mapped port
+    // (127.0.0.1:10302) is unreachable, so any asset URL pointing there fails
+    // (the icon webfont referenced from CSS url(), and the HMR websocket).
+    // Point both at the page origin so they ride the working proxy.
+    origin: 'http://localhost:10301',
+    cors: true,
+    allowedHosts: true,
     hmr: {
       protocol: 'ws',
-      host: '127.0.0.1',
-      clientPort: 10302
+      host: 'localhost',
+      clientPort: 10301
     }
   }
 })

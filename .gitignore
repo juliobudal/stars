@@ -52,3 +52,6 @@ node_modules/.vite
 /openspec/
 /docs/superpowers/
 /AGENTS.md
+
+# Playwright MCP scratch output (browser snapshots/logs)
+.playwright-mcp/

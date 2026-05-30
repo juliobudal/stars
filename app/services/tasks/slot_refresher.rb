@@ -50,8 +50,11 @@ module Tasks
 
     private
 
+    # Single source of truth for the family's day boundary — honors
+    # day_start_hour, matching DailyResetService/SetAssignments. (See
+    # Family#current_date.)
     def default_date
-      Time.current.in_time_zone(@profile.family.timezone).to_date
+      @profile.family.current_date
     end
   end
 end

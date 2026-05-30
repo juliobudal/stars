@@ -96,7 +96,8 @@ class Ui::Icon::Component < ApplicationComponent
     apple: "apple",
     spark: "sparkles",
     tools: "tools",
-    magic: "magic-wand-01"
+    magic: "magic-wand-01",
+    copy: "copy-01"
   }.freeze
 
   STYLE_MAP = {

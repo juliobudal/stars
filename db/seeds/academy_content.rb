@@ -477,7 +477,7 @@ ACADEMY_CONTENT = [
     refrao: "uma lente",
     callback_anchor: "azul",
     arc_payload_marker: "uma palavra",
-    cliffhanger_to: nil,
+    cliffhanger_to: "tudo-quase-vazio",
     lessons: [
       {
         slug: "a-cor-sem-nome",
@@ -575,7 +575,231 @@ ACADEMY_CONTENT = [
             answer_index: 1,
             explanation: "Da cor ao medo, foi sempre a mesma lente. Quem escolhe a palavra ajusta a lente."
           },
-          hook: "Você já viu o cérebro inventar, o corpo te entregar, as forças te empurrarem, a luz te atrasar e a palavra te enganar. Agora a pergunta fica com você: quando perceber o truque, vai mirar a lente — ou deixar que mirem ela em você? 🔍"
+          hook: "Você já viu o cérebro inventar, o corpo te entregar, as forças te empurrarem, a luz te atrasar e a palavra te enganar — sempre uma lente entre você e o mundo. Mas tem uma lente que falta: e se a coisa mais sólida que você conhece, a sua própria mão, for quase toda buraco? Próxima trilha: Tudo que parece sólido é quase vazio. 🔍"
+        }
+      }
+    ]
+  },
+  {
+    slug: "tudo-quase-vazio",
+    title: "Tudo que parece sólido é quase vazio",
+    hook: "Bate na mesa: parece sólida, dura, cheia. Mentira. Ela é quase toda buraco — e tem outra: você nunca, nem uma vez na vida, conseguiu encostar de verdade em nada. Vamos pegar isso no flagra.",
+    emoji: "✋",
+    accent: "sky",
+    refrao: "quase vazio",
+    callback_anchor: "mão",
+    arc_payload_marker: "encostar",
+    cliffhanger_to: "voce-feito-de-estrelas",
+    lessons: [
+      {
+        slug: "mao-mais-buraco",
+        title: "Sua mão é mais buraco que mão",
+        enigma: "Se a sua mão é tão cheia e sólida, por que ela é quase toda… buraco?",
+        payload: {
+          clues: [
+            "Tudo é feito de átomos. E o átomo tem um caroço minúsculo no meio, com o resto sendo espaço vazio em volta.",
+            "Pra você sentir o tamanho: se o caroço do meio fosse uma bolinha de gude no centro de um campo de futebol, o resto do átomo iria até a arquibancada. Tudo no meio é vazio.",
+            "Sua mão tem bilhões e bilhões desses átomos. Cada um, quase todo oco."
+          ],
+          revelation: "A sua mão parece cheia, firme, sólida — mas é quase vazio. Cada átomo é um caroço pequenininho no meio de um montão de espaço. Junta bilhões deles e dá a mão que você está olhando: parece um bloco cheio, mas por dentro é mais buraco do que coisa.",
+          check: {
+            kind: "multiple_choice",
+            prompt: "Por que a gente acha que a mão é 'cheia' se ela é quase toda espaço?",
+            options: [
+              "Porque os átomos são grudados sem nenhum buraco",
+              "Porque são tantos átomos juntos que de longe parece um bloco sólido",
+              "Porque a pele tapa os buracos"
+            ],
+            answer_index: 1,
+            explanation: "São tantos caroços minúsculos juntos que seu olho vê um bloco. De perto de verdade, é quase tudo vazio."
+          },
+          hook: "Se é tudo vazio, por que a mão não atravessa a mesa? E será que você já encostou em alguma coisa de verdade? Próxima pílula."
+        }
+      },
+      {
+        slug: "nunca-encostou",
+        title: "Você nunca encostou em nada",
+        enigma: "Você toca tudo o dia inteiro. E se eu disser que você nunca encostou em coisa nenhuma?",
+        payload: {
+          clues: [
+            "A parte de fora de todo átomo é feita de elétrons, que têm carga negativa.",
+            "Coisas de mesma carga se empurram. Os elétrons da sua pele empurram os elétrons da mesa antes de chegarem a se tocar.",
+            "Então quando você 'encosta' na mesa, é um empurrão de longe: as duas nuvens de elétrons se repelem sem nunca grudar."
+          ],
+          revelation: "O que você chama de toque é um empurrão. Os elétrons da sua pele e os da mesa se repelem antes de se encostarem — sobra sempre um vãozinho no meio. Você sente a força, e seu cérebro chama isso de 'tocar'. São dois quase vazio se empurrando sem nunca se grudar de verdade.",
+          check: {
+            kind: "multiple_choice",
+            prompt: "O que você sente quando 'toca' a mesa?",
+            options: [
+              "Os átomos da mesa grudando nos seus",
+              "O empurrão dos elétrons se repelindo, com um vãozinho no meio",
+              "O calor da mesa entrando na mão"
+            ],
+            answer_index: 1,
+            explanation: "Mesma carga se empurra. Você sente o empurrão de longe — não o toque. O vãozinho nunca fecha."
+          },
+          hook: "Se nem encosta de verdade, por que a mesa segura o copo e não deixa tudo afundar? Continua."
+        }
+      },
+      {
+        slug: "vazio-nao-desaba",
+        title: "Por que o vazio não desaba",
+        enigma: "Se tudo é quase vazio, por que a cadeira aguenta o seu peso sem amassar?",
+        payload: {
+          clues: [
+            "A firmeza de uma coisa não vem de ela estar 'cheia'. Vem das forças que prendem os átomos uns nos outros.",
+            "O carbono é o mesmo átomo no diamante e no grafite do lápis. Um risca o vidro, o outro esfarela no papel.",
+            "A diferença não é 'mais cheio' ou 'mais vazio' — é só o jeito que os átomos estão arrumados e presos."
+          ],
+          revelation: "A cadeira te segura por causa das forças que travam os átomos no lugar, não porque ela é 'cheia'. O mesmo material quase vazio, arrumado de um jeito, vira diamante duríssimo; de outro jeito, vira grafite que esfarela. Solidez é força e arrumação — não é estar cheio de coisa.",
+          check: {
+            kind: "multiple_choice",
+            prompt: "Por que o diamante é duro e o grafite mole, se são o mesmo átomo?",
+            options: [
+              "O diamante tem mais átomos por dentro",
+              "Os átomos estão arrumados e presos de um jeito diferente",
+              "O grafite é mais vazio que o diamante"
+            ],
+            answer_index: 1,
+            explanation: "Mesmo átomo, mesma quantidade de vazio. Muda só o arranjo e a força entre eles."
+          },
+          hook: "Se a solidez é uma força e não 'coisa cheia'… quanto de você é matéria de verdade, tirando todo o vazio? Última pílula."
+        }
+      },
+      {
+        slug: "torrao-de-acucar",
+        title: "A humanidade num torrão de açúcar",
+        enigma: "Hora de pagar a promessa: tudo é quase vazio e você nunca encostou em nada — e daí?",
+        payload: {
+          clues: [
+            "Lembra do começo: sua mão parece cheia, mas é quase toda buraco, e o toque é só um empurrão de longe.",
+            "Agora imagine apertar todo o vazio pra fora, deixando só os caroços do meio de cada átomo, bem juntinhos.",
+            "Cientistas calculam que, tirando o vazio, toda a humanidade — bilhões de pessoas — caberia, mais ou menos, num torrão de açúcar."
+          ],
+          revelation: "Aqui a promessa se paga: a sua mão cheia é quase vazio, e você nunca chegou a encostar em nada — só empurrou. Tirando o espaço de dentro dos átomos, a matéria de verdade de toda a humanidade daria mais ou menos um torrão de açúcar. Há quase 3.000 anos, no Salmo 8, alguém olhou o céu e escreveu: 'que é o homem, para que dele te lembres?'. Ele não sabia de átomos — mas já tinha sentido como a gente é pequenininho diante de tudo.",
+          check: {
+            kind: "prediction",
+            prompt: "A matéria de verdade do seu corpo, sem o vazio, é grande ou minúscula?",
+            options: [
+              "Grande — o corpo é cheio de coisa",
+              "Minúscula — quase tudo em você é espaço vazio"
+            ],
+            answer_index: 1,
+            explanation: "Quase tudo em você é vazio. A matéria de verdade caberia num cantinho — e ainda sobra espaço."
+          },
+          hook: "Mas então sobra um tiquinho de matéria real em você. De onde veio esse pedacinho? De uma estrela que explodiu lá longe, há bilhões de anos. Próxima trilha: Você é feito de estrelas mortas. ✨"
+        }
+      }
+    ]
+  },
+  {
+    slug: "voce-feito-de-estrelas",
+    title: "Você é feito de estrelas mortas",
+    hook: "O ferro do seu sangue, o cálcio do seu osso — nada disso nasceu na Terra. Tudo veio da explosão de uma estrela, há bilhões de anos. Você é, de verdade, feito de estrela morta.",
+    emoji: "✨",
+    accent: "lilac",
+    refrao: "emprestado do universo",
+    callback_anchor: "osso",
+    arc_payload_marker: "explosão",
+    cliffhanger_to: nil,
+    lessons: [
+      {
+        slug: "ferro-do-sangue",
+        title: "O ferro do seu sangue veio de uma estrela",
+        enigma: "O que o ferro do seu sangue tem a ver com uma estrela lá longe?",
+        payload: {
+          clues: [
+            "Bem no começo de tudo, o universo só tinha os átomos mais simples: hidrogênio e hélio. Não existia ferro, nem cálcio, nem ouro.",
+            "As estrelas são fornos gigantes: lá dentro, átomos pequenos são esmagados e grudados, virando átomos maiores e mais pesados.",
+            "Quando uma estrela grande morre, ela espalha tudo isso pelo espaço numa explosão enorme."
+          ],
+          revelation: "O ferro que corre no seu sangue e o cálcio do seu osso não nasceram aqui: foram fabricados dentro de uma estrela e cuspidos pelo espaço quando ela morreu. Cada átomo desses é só emprestado do universo — passou bilhões de anos viajando até virar parte de você.",
+          check: {
+            kind: "multiple_choice",
+            prompt: "De onde veio o ferro do seu sangue?",
+            options: [
+              "Ele sempre existiu na Terra desde o começo",
+              "Foi forjado dentro de uma estrela e espalhado quando ela morreu",
+              "Foi criado pelo seu corpo do nada"
+            ],
+            answer_index: 1,
+            explanation: "Os átomos pesados nascem em estrelas. O ferro do seu sangue é peça de estrela emprestada."
+          },
+          hook: "Se o seu osso veio de uma estrela… ele é seu mesmo, ou só está de passagem por você? Continua."
+        }
+      },
+      {
+        slug: "troca-de-corpo",
+        title: "Você troca de corpo o tempo todo",
+        enigma: "Você ainda é feito dos mesmos pedacinhos de um ano atrás?",
+        payload: {
+          clues: [
+            "Você come, bebe e respira o tempo todo — e isso vira pedaço de você. Ao mesmo tempo, seu corpo descarta pedaços velhos.",
+            "Quase tudo em você se renova com o tempo: pele, sangue, osso vão trocando os átomos aos poucos.",
+            "Então o 'material' de você hoje não é exatamente o mesmo de um tempo atrás, mesmo você sendo você."
+          ],
+          revelation: "Você é mais um desenho que se mantém do que um material fixo. Quase tudo em você se renova: os átomos entram pela comida e pelo ar, ficam um tempo e vão embora. Cada peça é só emprestado do universo — passa por você e segue viagem. O que continua sendo 'você' é a forma, não as peças.",
+          check: {
+            kind: "multiple_choice",
+            prompt: "O que te mantém 'você' se os átomos vão trocando?",
+            options: [
+              "Os átomos nunca trocam, são sempre os mesmos",
+              "A forma, o desenho que se mantém enquanto as peças passam",
+              "Só o cérebro nunca muda nenhum átomo"
+            ],
+            answer_index: 1,
+            explanation: "As peças entram e saem; o desenho continua. Você é um padrão, não um bloco fixo."
+          },
+          hook: "Se os átomos entram e saem… por onde será que eles andaram antes de chegar em você? Continua."
+        }
+      },
+      {
+        slug: "respira-dinossauro",
+        title: "Você respirou um pedaço de dinossauro",
+        enigma: "Será que você respirou um pedacinho de dinossauro hoje de manhã?",
+        payload: {
+          clues: [
+            "O ar não some: os mesmos átomos de oxigênio circulam pelo planeta há muito, muito tempo.",
+            "Um dinossauro respirou esse ar milhões de anos atrás — e devolveu os mesmos átomos pro mundo.",
+            "Tem tanto átomo num único suspiro que, espalhados pelo tempo todo, é bem provável que alguns já passaram por um dinossauro."
+          ],
+          revelation: "É bem provável que, hoje, você tenha respirado um átomo que já esteve dentro de um dinossauro. Os mesmos pedacinhos circulam há milhões de anos: passam por um bicho, pelo ar, por uma planta e por você. Tudo emprestado do universo, num rodízio que nunca para.",
+          check: {
+            kind: "multiple_choice",
+            prompt: "Por que dá pra dizer que você respirou 'pedaço de dinossauro'?",
+            options: [
+              "Porque sobrou poeira de dinossauro no ar",
+              "Porque os mesmos átomos circulam há milhões de anos e voltam pra todo mundo",
+              "Porque dinossauros viviam onde você mora"
+            ],
+            answer_index: 1,
+            explanation: "Os átomos não somem: rodam pelo mundo e voltam. Os de hoje já foram de muita gente e muito bicho."
+          },
+          hook: "Se nada é novo e tudo circula… o que será que acontece com os seus átomos depois de você? Última pílula."
+        }
+      },
+      {
+        slug: "nada-se-perde",
+        title: "Nada se perde, tudo vira estrela de novo",
+        enigma: "Para onde vai a estrela que te formou, quando o seu corpo devolve os átomos?",
+        payload: {
+          clues: [
+            "Lembra do começo: o ferro do sangue e o cálcio do osso vieram da explosão de uma estrela, há bilhões de anos.",
+            "Esses átomos não se gastam nem somem: quando um corpo devolve, eles voltam pro rodízio do mundo.",
+            "Viram terra, viram planta, viram outro bicho — e seguem circulando, do mesmo jeito que chegaram em você."
+          ],
+          revelation: "Aqui a promessa se paga: o cálcio do seu osso veio da explosão de uma estrela e um dia volta pro rodízio — vira terra, planta, outro ser vivo. Nada se perde, tudo se empresta: você é, de verdade, emprestado do universo. Há milhares de anos, o livro de Gênesis (3:19) já dizia 'pó és, e ao pó voltarás'; e o cientista Carl Sagan resumiu: 'somos feitos de poeira de estrelas'. Os dois falavam da mesma viagem dos átomos.",
+          check: {
+            kind: "prediction",
+            prompt: "Quando o corpo devolve seus átomos, eles acabam?",
+            options: [
+              "Sim, somem pra sempre",
+              "Não — voltam pro rodízio e viram outras coisas vivas"
+            ],
+            answer_index: 1,
+            explanation: "Os átomos não acabam: voltam pro mundo e continuam o rodízio. Emprestados, sempre."
+          },
+          hook: "E o mais estranho de tudo: esses mesmos átomos emprestados, arrumados de um certo jeito, conseguem parar e se perguntar de onde vieram. Por que justo essa arrumação 'acorda' e pensa? Esse é o maior mistério — e a caçada continua. 💫"
         }
       }
     ]

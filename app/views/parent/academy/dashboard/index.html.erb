@@ -1,14 +1,10 @@
 <% content_for(:title) { "Academia" } %>
 
 <div class="screen-enter">
-  <header class="mb-6">
-    <div class="font-display text-[11px] font-extrabold tracking-[1.5px] uppercase mb-1" style="color: var(--text-muted);">
-      Academia
-    </div>
-    <h1 class="font-display text-2xl font-extrabold leading-tight m-0" style="color: var(--text);">
-      Progresso nas trilhas
-    </h1>
-  </header>
+  <%= render Ui::PageHeader::Component.new(
+        title: "Progresso nas trilhas",
+        subtitle: "Acompanhe como cada criança avança nas pílulas de conhecimento."
+      ) %>
 
   <% if @children.empty? %>
     <%= render Ui::Empty::Component.new(icon: "users", title: "Nenhuma criança ainda", subtitle: "Adicione um perfil de criança para acompanhar o aprendizado.") %>

@@ -33,6 +33,10 @@ class GlobalTask < ApplicationRecord
   has_many :global_task_assignments, dependent: :destroy
   has_many :assigned_profiles, through: :global_task_assignments, source: :profile
 
+  scope :for_family, ->(family_id) { where(family_id: family_id) }
+  scope :with_assignments, -> { includes(:assigned_profiles) }
+  scope :by_priority, -> { order(active: :desc, title: :asc) }
+
   enum :category, { escola: 0, casa: 1, rotina: 2, saude: 3, outro: 4 }
   enum :frequency, { daily: 0, weekly: 1, monthly: 2, once: 3 }
 
@@ -60,6 +64,44 @@ class GlobalTask < ApplicationRecord
 
   def repeatable?
     max_completions_per_period.to_i > 1
+  end
+
+  # A task with zero explicit assignments is implicitly assigned to ALL
+  # children in the family (see Tasks::DailyResetService#materialize_today).
+  # Reads through `assigned_profiles` so a preloaded association is reused
+  # (the host models run strict_loading in development).
+  def assigned_to_all?
+    assigned_profiles.empty?
+  end
+
+  # Whether this task's schedule fires on the given date. Pure calendar check —
+  # ignores the `active` flag and per-profile "once" dedup. Prefer
+  # `materialize_slot_for` as the single authority that bundles the dedup;
+  # only call this directly when you genuinely want the schedule-only answer.
+  def applicable_on?(date)
+    case frequency.to_s
+    when "daily"   then true
+    when "weekly"  then days_of_week.present? && days_of_week.map(&:to_i).include?(date.wday)
+    when "monthly" then day_of_month == date.day
+    when "once"    then true
+    else false
+    end
+  end
+
+  # A `once` task is materialized at most one slot per profile, ever.
+  # Direct query (not association traversal) so a strict_loading GlobalTask
+  # doesn't raise in development.
+  def once_completed_for?(profile)
+    once? && ProfileTask.where(global_task_id: id, profile_id: profile.id).exists?
+  end
+
+  # Single authority for "should this child get today's slot now?". Honors the
+  # `once` dedup so DailyResetService and Tasks::SetAssignments can't drift.
+  # Returns the SlotRefresher result, or nil when skipped.
+  def materialize_slot_for(profile, date)
+    return if once_completed_for?(profile)
+
+    Tasks::SlotRefresher.new(profile: profile, global_task: self, date: date).call
   end
 
   private

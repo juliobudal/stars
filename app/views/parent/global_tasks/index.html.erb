@@ -17,10 +17,22 @@
   <%# Header %>
   <%= render Ui::PageHeader::Component.new(title: "Missões", subtitle: subtitle) do |h| %>
     <% h.with_right_slot do %>
-      <%= render Ui::Btn::Component.new(variant: "primary", url: new_parent_global_task_path) do %>
-        <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
-        Nova missão
-      <% end %>
+      <div class="flex items-center gap-2 flex-wrap justify-end">
+        <% if @kids.any? && total_count.positive? %>
+          <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: assignments_parent_global_tasks_path) do %>
+            <%= render Ui::Icon::Component.new("users", size: 14, color: "currentColor") %>
+            Atribuições
+          <% end %>
+        <% end %>
+        <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: library_parent_global_tasks_path) do %>
+          <%= render Ui::Icon::Component.new("sparkle", size: 14, color: "currentColor") %>
+          Biblioteca
+        <% end %>
+        <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: new_parent_global_task_path) do %>
+          <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
+          Nova missão
+        <% end %>
+      </div>
     <% end %>
   <% end %>
 

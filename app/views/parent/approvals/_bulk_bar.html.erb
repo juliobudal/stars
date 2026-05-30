@@ -1,0 +1,26 @@
+<%#
+  Bulk action bar for an approvals panel. Lives inside a data-controller="bulk-select"
+  wrapper alongside the rows (whose checkboxes are data-bulk-select-target="checkbox").
+  Locals: approve_url, reject_url, approve_label, reject_label.
+%>
+<div class="flex items-center justify-between gap-3 mb-3 px-3.5 py-2.5 rounded-[12px] border-2"
+     style="background: var(--surface); border-color: var(--hairline); box-shadow: var(--shadow-card);">
+  <label class="flex items-center gap-2.5 cursor-pointer select-none min-h-[44px]">
+    <input type="checkbox" data-bulk-select-target="selectAll" data-action="change->bulk-select#toggleAll"
+           aria-label="Selecionar todos"
+           style="width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer;">
+    <span class="text-[12px] font-extrabold" data-bulk-select-target="count" style="color: var(--text-muted);">Selecione para agir em lote</span>
+  </label>
+  <div class="flex items-center gap-2">
+    <%= render Ui::Btn::Component.new(
+          variant: "secondary", size: "sm", type: "button",
+          data: { bulk_select_target: "submit", bulk_url: reject_url, action: "click->bulk-select#submit" }) do %>
+      <%= reject_label %>
+    <% end %>
+    <%= render Ui::Btn::Component.new(
+          variant: "primary", size: "sm", type: "button",
+          data: { bulk_select_target: "submit", bulk_url: approve_url, action: "click->bulk-select#submit" }) do %>
+      <%= approve_label %>
+    <% end %>
+  </div>
+</div>

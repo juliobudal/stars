@@ -1,0 +1,31 @@
+<%# Shared turbo_stream for all four bulk actions (approve/reject tasks &
+     redemptions). Removes each processed row, shows a success toast, swaps in
+     the empty state when nothing is left, and refreshes the pending counts. %>
+<% @processed_ids.each do |id| %>
+  <%= turbo_stream.remove "#{@dom_prefix}#{id}" %>
+<% end %>
+
+<%= turbo_stream.update :flash do %>
+  <%= render "parent/approvals/success_toast", message: @bulk_message %>
+<% end %>
+
+<%
+  # Count once and reuse for both the empty-state check and count_streams,
+  # instead of re-issuing the same two aggregate COUNTs inside count_streams.
+  pending_tasks = current_profile.family.profile_tasks.awaiting_approval.count
+  pending_redemptions = current_profile.family.redemptions.pending.count
+%>
+<% if (pending_tasks + pending_redemptions).zero? %>
+  <%= turbo_stream.replace "approvals_list" do %>
+    <%= turbo_frame_tag "approvals_list" do %>
+      <%= render Ui::Empty::Component.new(
+            icon: "party",
+            title: "Tudo em dia!",
+            subtitle: "Não há pendências no momento."
+          ) %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render "parent/approvals/count_streams",
+      pending_tasks: pending_tasks, pending_redemptions: pending_redemptions %>

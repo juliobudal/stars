@@ -2,6 +2,15 @@
   <% if compact? %>
     <%# ─── Compact (dashboard): single row with inline buttons ─── %>
     <div class="flex items-center gap-3.5">
+      <% if bulk? %>
+        <label class="flex items-center justify-center w-11 h-11 -my-2 shrink-0 cursor-pointer">
+          <input type="checkbox" name="approval_ids[]" value="<%= bulk_value || dom_id %>"
+                 aria-label="Selecionar <%= title %>"
+                 data-bulk-select-target="checkbox"
+                 data-action="change->bulk-select#change"
+                 style="width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer;" />
+        </label>
+      <% end %>
       <% if category_meta %>
         <% tint_color = category_meta[:tint] %>
         <div class="w-[42px] h-[42px] rounded-[12px] grid place-items-center shrink-0 border-2"
@@ -46,11 +55,13 @@
     <%# ─── Full layout (approvals page): stacked buttons ─── %>
     <div class="flex items-center gap-2.5 mb-2.5">
       <% if bulk? %>
-        <input type="checkbox" name="approval_ids[]" value="<%= bulk_value || dom_id %>"
-               aria-label="Selecionar"
-               data-bulk-select-target="checkbox"
-               data-action="change->bulk-select#change"
-               style="width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0;" />
+        <label class="flex items-center justify-center w-11 h-11 -my-2 shrink-0 cursor-pointer">
+          <input type="checkbox" name="approval_ids[]" value="<%= bulk_value || dom_id %>"
+                 aria-label="Selecionar <%= title %>"
+                 data-bulk-select-target="checkbox"
+                 data-action="change->bulk-select#change"
+                 style="width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer;" />
+        </label>
       <% end %>
       <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 40, decorative: true) %>
       <% if profile_task&.proof_photo&.attached? %>
@@ -84,7 +95,7 @@
           <% end %>
         </div>
         <% if submission_comment.present? %>
-          <div class="mt-2 px-3 py-2 rounded-[10px] border-2 text-[13px] font-medium flex items-start gap-2"
+          <div class="mt-2 px-3 py-2 rounded-[10px] border-2 text-[13px] font-bold flex items-start gap-2"
                style="background: var(--surface-2); border-color: var(--hairline); color: var(--text);">
             <%= render Ui::Icon::Component.new("edit", size: 14, color: "var(--primary-2)", class: "mt-0.5 shrink-0") %>
             <span><%= submission_comment %></span>

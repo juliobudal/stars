@@ -17,6 +17,13 @@
              completed_today_count: completed_today_count %>
 <% end %>
 
+<%# Keep the "X de Y" count + progress strip in sync with the greeting. %>
+<%= turbo_stream.replace "kid_today_progress" do %>
+  <%= render "kid/dashboard/today_progress",
+             done_count: awaiting_count + completed_today_count,
+             total: remaining_count + awaiting_count + completed_today_count %>
+<% end %>
+
 <%= turbo_stream.update "flash" do %>
   <div
     data-controller="flash"

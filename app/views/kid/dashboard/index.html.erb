@@ -7,32 +7,25 @@
 <div class="screen screen-enter with-nav">
   <%= render Ui::Celebration::Component.new %>
 
-  <%# ── Header: streak + stars + switch ── %>
-  <%= render Ui::KidTopBar::Component.new(profile: current_profile, streak: @streak_days) %>
-
-  <%# ── Greeting block (extracted; complete.turbo_stream replaces this id) ── %>
-  <%= render "kid/dashboard/greeting",
+  <%# ══ TIER 1 · Onde estou ══ %>
+  <%= render "kid/dashboard/progress_hero",
+             profile: current_profile,
+             streak: @streak_days,
+             level: @level,
+             level_progress: @level_progress,
+             level_size: @level_size,
+             level_remaining: @level_remaining,
+             level_pct: @level_pct,
              remaining: remaining,
              awaiting_count: @awaiting_tasks.count,
              completed_today_count: @completed_today.count %>
 
-  <%# ── Section heading + counter ── %>
-  <div class="flex justify-between items-center mb-3 px-1 shrink-0 z-2">
-    <h2 class="font-display text-[16px] font-extrabold m-0" style="color: var(--text);">Missões de hoje</h2>
-    <% if total.positive? %>
-      <div class="ls-card-3d inline-flex items-center gap-1.5"
-           style="background: var(--primary-soft); border: 2px solid var(--primary); padding: 4px 10px; border-radius: 10px; box-shadow: 0 2px 0 var(--primary-2);">
-        <span class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--primary-2);">
-          <%= done_count %> de <%= total %>
-        </span>
-        <%= render Ui::Icon::Component.new(:check, size: 12, color: "var(--primary-2)") %>
-      </div>
-    <% end %>
-  </div>
+  <%# ══ TIER 2 · O que fazer agora (the loop) ══ %>
+  <%= render "kid/dashboard/today_progress", done_count: done_count, total: total %>
 
-  <%# ── Mission list (above-the-fold) ── %>
+  <%# Mission list (above-the-fold) ── %>
   <% pending_visible, pending_extra = @profile_tasks.first(5), @profile_tasks.drop(5) %>
-  <div class="flex flex-col gap-3 mb-5 relative z-2">
+  <div class="flex flex-col gap-3 mb-4 relative z-2">
 
     <%# Completed (approved today) %>
     <div id="panel-completed" class="contents">
@@ -55,7 +48,7 @@
       <% end %>
 
       <% if pending_extra.any? %>
-        <details class="contents" data-controller="">
+        <details class="contents">
           <summary class="font-display flex items-center justify-center gap-2 cursor-pointer list-none"
                    style="background: transparent; color: var(--text-muted); border: 2px dashed var(--hairline); border-radius: 14px; padding: 12px 14px; font-size: 13px; font-weight: 800;">
             <%= render Ui::Icon::Component.new(:plus, size: 14, color: "currentColor") %>
@@ -81,74 +74,59 @@
     <% end %>
   </div>
 
-  <%# ── Ghost CTA: create custom mission (quiet, secondary affordance) ── %>
+  <%# Ghost CTA: create custom mission (quiet, secondary affordance) ── %>
   <%= link_to new_kid_mission_path,
-        class: "ls-btn-3d anim-press font-display flex items-center justify-center gap-2 w-full text-center mb-5 z-2 shrink-0 no-underline",
+        class: "ls-btn-3d anim-press font-display flex items-center justify-center gap-2 w-full text-center mb-6 z-2 shrink-0 no-underline",
         style: "background: var(--surface); color: var(--text-muted); border: 2px dashed var(--hairline); border-radius: 14px; padding: 12px 14px; font-size: 13px; font-weight: 800;" do %>
     <%= render Ui::Icon::Component.new(:plus, size: 16, color: "currentColor") %>
     Fiz algo fora da lista
   <% end %>
 
-  <%# ── Level progress (quiet, non-interactive info block) ── %>
-  <div class="mb-5 z-2 shrink-0" style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; padding: 16px;">
-    <div class="flex items-center justify-between mb-2.5">
-      <div class="flex items-center gap-2">
-        <span class="font-display text-[14px] font-extrabold"
-              style="background: var(--primary); color: white; padding: 4px 10px; border-radius: 8px;">
-          Nível <%= @level %>
-        </span>
-        <span class="font-display text-[13px] font-extrabold" style="color: var(--text-muted);">
-          <%= @level_progress %>/<%= @level_size %>
-        </span>
-      </div>
-      <span class="font-display text-[12px] font-bold" style="color: var(--text);">
-        Faltam <strong class="font-extrabold" style="color: var(--primary-2);"><%= @level_remaining %></strong> pra subir
-      </span>
-    </div>
+  <%# ══ TIER 3 · Pra onde ir (secondary, varied rhythm) ══ %>
 
-    <div class="relative overflow-hidden" style="height: 14px; background: var(--hairline); border-radius: 10px;">
-      <div class="anim-progress h-full" style="width: <%= @level_pct %>%; background: var(--primary); border-radius: 10px;"></div>
-    </div>
-  </div>
-
-  <%# ── Wishlist goal card ── %>
+  <%# Personal goal — wishlist (carries its own mb-5) ── %>
   <%= render "kid/wishlist/goal", profile: current_profile %>
 
-  <%# ── Shortcut cards (Academia, Eu curto) ── %>
+  <%# Explorar — navigational tiles ── %>
   <% kid_interests = current_profile.interest_keys(5) %>
   <% interests_title = kid_interests.any? ?
        kid_interests.first(3).map { |k| ProfileInterest::Catalog.emoji_for(k) + " " + ProfileInterest::Catalog.label_for(k) }.join("  ·  ") :
        "Conta pra gente o que você curte!" %>
 
-  <div class="flex flex-col gap-3 mb-5 z-2 relative shrink-0">
-    <%= render Ui::ShortcutCard::Component.new(
-          url: kid_academy_root_path,
-          tint: :primary,
-          icon: "search-01",
-          eyebrow: "Academia",
-          title: "Descubra uma pílula de conhecimento",
-          test_id: "kid-academy-card"
-        ) %>
+  <div class="mb-6 z-2 relative shrink-0">
+    <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase mb-2 px-1" style="color: var(--text-soft);">Explorar</div>
+    <div class="flex flex-col gap-3">
+      <%= render Ui::ShortcutCard::Component.new(
+            url: kid_academy_root_path,
+            tint: :primary,
+            icon: "search-01",
+            eyebrow: "Academia",
+            title: "Descubra uma pílula de conhecimento",
+            test_id: "kid-academy-card"
+          ) %>
 
-    <%= render Ui::ShortcutCard::Component.new(
-          url: kid_interests_path,
-          tint: :neutral,
-          icon: "idea-01",
-          eyebrow: "Eu curto",
-          title: interests_title,
-          test_id: "kid-interests-card"
-        ) %>
+      <%= render Ui::ShortcutCard::Component.new(
+            url: kid_interests_path,
+            tint: :neutral,
+            icon: "idea-01",
+            eyebrow: "Eu curto",
+            title: interests_title,
+            test_id: "kid-interests-card"
+          ) %>
+    </div>
   </div>
 
-  <%# ── Meta coletiva semanal ── %>
-  <div class="relative z-2 mb-5">
-    <%= render "shared/family_goal_widget", goal: @family_goal, viewer: current_profile, limit: 1 %>
-  </div>
-
-  <%# ── Upcoming weekly/monthly missions ── %>
-  <% if @upcoming_missions.any? %>
-    <div class="relative z-2 mb-5">
-      <%= render "kid/dashboard/upcoming_missions_widget", upcoming: @upcoming_missions %>
+  <%# Em equipe & em breve — collective goal + upcoming ── %>
+  <% family_goals = Array(@family_goal && @family_goal[:goals]) %>
+  <% if family_goals.any? || @upcoming_missions.any? %>
+    <div class="z-2 relative shrink-0">
+      <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase mb-2 px-1" style="color: var(--text-soft);">Em equipe &amp; em breve</div>
+      <div class="flex flex-col gap-3">
+        <%= render "shared/family_goal_widget", goal: @family_goal, viewer: current_profile, limit: 1 %>
+        <% if @upcoming_missions.any? %>
+          <%= render "kid/dashboard/upcoming_missions_widget", upcoming: @upcoming_missions %>
+        <% end %>
+      </div>
     </div>
   <% end %>
 

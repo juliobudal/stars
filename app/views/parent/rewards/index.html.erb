@@ -6,10 +6,16 @@
         subtitle: "#{@rewards.size} #{@rewards.size == 1 ? 'prêmio' : 'prêmios'} · precificados em estrelinhas"
       ) do |h| %>
     <% h.with_right_slot do %>
-      <%= render Ui::Btn::Component.new(variant: "primary", url: new_parent_reward_path) do %>
-        <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
-        Novo prêmio
-      <% end %>
+      <div class="flex items-center gap-2 flex-wrap justify-end">
+        <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: library_parent_rewards_path) do %>
+          <%= render Ui::Icon::Component.new("sparkle", size: 14, color: "currentColor") %>
+          Biblioteca
+        <% end %>
+        <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: new_parent_reward_path) do %>
+          <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
+          Novo prêmio
+        <% end %>
+      </div>
     <% end %>
   <% end %>
 

@@ -54,12 +54,20 @@
 
       <% if manage %>
         <div class="flex items-center justify-between gap-3 pt-3 mt-3 border-t border-hairline">
-          <%= link_to edit_parent_profile_path(kid),
-                class: "flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline",
-                style: "color: #{palette[:ink]};" do %>
-            <%= render Ui::Icon::Component.new("pencil", size: 14, color: palette[:ink]) %>
-            Editar
-          <% end %>
+          <div class="flex items-center gap-4">
+            <%= link_to manage_parent_profile_path(kid),
+                  class: "flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline",
+                  style: "color: #{palette[:ink]};" do %>
+              <%= render Ui::Icon::Component.new("target", size: 14, color: palette[:ink]) %>
+              Gerenciar
+            <% end %>
+            <%= link_to edit_parent_profile_path(kid),
+                  class: "flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline",
+                  style: "color: var(--text-muted);" do %>
+              <%= render Ui::Icon::Component.new("pencil", size: 14, color: "var(--text-muted)") %>
+              Editar
+            <% end %>
+          </div>
           <%= button_to parent_profile_path(kid), method: :delete,
                 form: { data: { turbo_confirm: "Remover #{kid.name}? Todas as missões e histórico serão perdidos." } },
                 class: "inline-flex items-center justify-center w-11 h-11 rounded-[10px] bg-transparent border-0 cursor-pointer text-danger",

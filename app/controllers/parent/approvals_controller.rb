@@ -9,11 +9,23 @@ class Parent::ApprovalsController < ApplicationController
   end
 
   def bulk_approve
-    perform_bulk(service: Tasks::ApproveService, success_msg: ->(n) { "#{n} tarefa(s) aprovada(s)." })
+    perform_bulk(service: Tasks::ApproveService, scope: family_profile_tasks, dom_prefix: "profile_task_",
+                 empty_alert: "Nenhuma tarefa selecionada.", success_msg: ->(n) { "#{n} tarefa(s) aprovada(s)." })
   end
 
   def bulk_reject
-    perform_bulk(service: Tasks::RejectService, success_msg: ->(n) { "#{n} tarefa(s) rejeitada(s)." })
+    perform_bulk(service: Tasks::RejectService, scope: family_profile_tasks, dom_prefix: "profile_task_",
+                 empty_alert: "Nenhuma tarefa selecionada.", success_msg: ->(n) { "#{n} tarefa(s) rejeitada(s)." })
+  end
+
+  def bulk_approve_redemptions
+    perform_bulk(service: Rewards::ApproveRedemptionService, scope: family_redemptions, dom_prefix: "redemption_",
+                 empty_alert: "Nenhum resgate selecionado.", success_msg: ->(n) { "#{n} resgate(s) marcado(s) como entregue(s)." })
+  end
+
+  def bulk_reject_redemptions
+    perform_bulk(service: Rewards::RejectRedemptionService, scope: family_redemptions, dom_prefix: "redemption_",
+                 empty_alert: "Nenhum resgate selecionado.", success_msg: ->(n) { "#{n} resgate(s) rejeitado(s) e estrelas devolvidas." })
   end
 
   def approve
@@ -59,25 +71,36 @@ class Parent::ApprovalsController < ApplicationController
 
   private
 
-  def perform_bulk(service:, success_msg:)
+  # Single bulk handler for tasks and redemptions. `scope` is the family-scoped
+  # relation to look records up in; `dom_prefix` is the row id prefix used by
+  # the turbo_stream removals (bulk.turbo_stream.erb). The bulk bar submits via
+  # Turbo (bulk_select_controller#submit), so the turbo_stream branch runs in
+  # place and the active tab is preserved.
+  def perform_bulk(service:, scope:, dom_prefix:, empty_alert:, success_msg:)
     ids = Array(params[:approval_ids]).reject(&:blank?)
     if ids.empty?
-      redirect_to parent_approvals_path, alert: "Nenhuma tarefa selecionada."
+      redirect_to parent_approvals_path, alert: empty_alert
       return
     end
 
-    processed_ids = ids.filter_map do |id|
-      task = family_profile_tasks.find_by(id: id)
-      next unless task
-      result = service.call(task)
-      id if result.success?
+    @processed_ids = ids.filter_map do |id|
+      record = scope.find_by(id: id)
+      next unless record
+      id if service.call(record).success?
+    end
+    @dom_prefix = dom_prefix
+    @bulk_message = success_msg.call(@processed_ids.size)
+
+    # Surface partial failures (record vanished, lost a race, service refused)
+    # instead of silently reporting only the successes.
+    failed = ids.size - @processed_ids.size
+    if failed.positive?
+      @bulk_message += failed == 1 ? " 1 item não pôde ser processado." : " #{failed} itens não puderam ser processados."
     end
 
     respond_to do |format|
-      format.html { redirect_to parent_approvals_path, notice: success_msg.call(processed_ids.size) }
-      format.turbo_stream do
-        render turbo_stream: processed_ids.map { |id| turbo_stream.remove("profile_task_#{id}") }
-      end
+      format.html { redirect_to parent_approvals_path, notice: @bulk_message }
+      format.turbo_stream { render :bulk }
     end
   end
 

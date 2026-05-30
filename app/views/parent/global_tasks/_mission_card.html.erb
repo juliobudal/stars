@@ -8,6 +8,13 @@
   panel_keys << "inactive" unless mission.active?
 %>
 <div id="mission_row_<%= mission.id %>" data-filter-tabs-target="item" data-panels="<%= panel_keys.join(' ') %>" class="relative">
+  <%= button_to duplicate_parent_global_task_path(mission), method: :post,
+        form_class: "absolute top-3 right-[60px] z-2",
+        class: "ls-btn-3d inline-flex items-center justify-center w-11 h-11 rounded-[10px] border-2 cursor-pointer bg-surface",
+        style: "border-color: var(--hairline); box-shadow: 0 2px 0 var(--hairline);",
+        aria: { label: "Duplicar missão" }, title: "Duplicar" do %>
+    <%= render Ui::Icon::Component.new("copy", size: 14, color: "var(--text-muted)") %>
+  <% end %>
   <%= button_to toggle_active_parent_global_task_path(mission), method: :patch,
         form_class: "absolute top-3 right-3 z-2",
         class: "ls-btn-3d inline-flex items-center justify-center w-11 h-11 rounded-[10px] border-2 cursor-pointer bg-surface",
@@ -24,9 +31,9 @@
         <%= render Ui::Icon::Component.new(cm[:icon], size: 28, color: tint_fg) %>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="flex justify-between items-start gap-2 pr-11">
+        <div class="flex justify-between items-start gap-2 pr-[104px]">
           <div class="min-w-0">
-            <div class="text-[15px] font-extrabold mb-0.5 truncate inline-flex items-center gap-1.5" style="color: var(--text);">
+            <div class="text-[15px] font-extrabold mb-0.5 flex items-center gap-1.5 min-w-0" style="color: var(--text);">
               <% if mission.featured? %>
                 <span class="inline-flex items-center justify-center rounded-full shrink-0"
                       style="background: var(--star); width: 16px; height: 16px; box-shadow: 0 1px 0 var(--star-2);"

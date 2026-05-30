@@ -6,13 +6,20 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["checkbox", "submit"]
+  static targets = ["checkbox", "submit", "selectAll", "count"]
 
   connect() {
     this.#updateSubmit()
   }
 
   change() {
+    this.#syncSelectAll()
+    this.#updateSubmit()
+  }
+
+  toggleAll(event) {
+    const checked = event.currentTarget.checked
+    this.checkboxTargets.forEach(cb => { cb.checked = checked })
     this.#updateSubmit()
   }
 
@@ -46,15 +53,30 @@ export default class extends Controller {
     })
 
     document.body.appendChild(form)
-    form.submit()
+    // requestSubmit (not submit) fires the submit event so Turbo intercepts it
+    // and applies the turbo_stream response in place — the active tab/panel is
+    // preserved instead of a full-page reload resetting to the default tab.
+    form.requestSubmit()
   }
 
   #updateSubmit() {
-    const anyChecked = this.checkboxTargets.some(cb => cb.checked)
+    const selected = this.checkboxTargets.filter(cb => cb.checked).length
+    const anyChecked = selected > 0
     this.submitTargets.forEach(btn => {
       btn.disabled = !anyChecked
       btn.style.opacity = anyChecked ? "1" : ".65"
       btn.style.cursor = anyChecked ? "pointer" : "not-allowed"
     })
+    this.countTargets.forEach(el => {
+      el.textContent = anyChecked ? `${selected} selecionado${selected === 1 ? "" : "s"}` : "Selecione para agir em lote"
+    })
+  }
+
+  #syncSelectAll() {
+    if (!this.hasSelectAllTarget) return
+    const total = this.checkboxTargets.length
+    const checked = this.checkboxTargets.filter(cb => cb.checked).length
+    this.selectAllTarget.checked = total > 0 && checked === total
+    this.selectAllTarget.indeterminate = checked > 0 && checked < total
   }
 }

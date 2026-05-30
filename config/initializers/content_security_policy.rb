@@ -33,6 +33,10 @@ Rails.application.configure do
       policy.script_src(*policy.script_src, :unsafe_eval)
       policy.connect_src(*policy.connect_src, "ws:", "http:")
       policy.style_src(*policy.style_src, "http:")
+      # Vite dev server serves the HugeIcons webfont from a different origin
+      # (127.0.0.1:<vite-port>) over http, so :self/:https/:data all miss it
+      # and every icon renders as a tofu box. Mirror the style/connect dev rule.
+      policy.font_src(*policy.font_src, "http:")
     end
 
     if Rails.env.test?

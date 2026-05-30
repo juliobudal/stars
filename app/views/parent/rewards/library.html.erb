@@ -1,0 +1,76 @@
+<div class="page-enter-right">
+
+  <%= render Ui::PageHeader::Component.new(
+        title: "Biblioteca de prêmios",
+        subtitle: "Marque os prêmios prontos e adicione todos de uma vez"
+      ) do |h| %>
+    <% h.with_right_slot do %>
+      <%= render Ui::Btn::Component.new(variant: "secondary", size: "sm", url: parent_rewards_path) do %>
+        <%= render Ui::Icon::Component.new("back", size: 14, color: "currentColor") %>
+        Catálogo
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if @default_category.nil? %>
+    <div class="bg-surface rounded-[16px] border-2 p-5" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
+      <%= render Ui::Empty::Component.new(
+            icon: "list", color: "rose",
+            title: "Crie uma categoria primeiro",
+            subtitle: "Os prêmios precisam de uma categoria para serem organizados."
+          ) do %>
+        <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: parent_categories_path) do %>Gerenciar categorias<% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <%= form_with url: add_from_template_parent_rewards_path, method: :post do |f| %>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-24">
+        <% @templates.each do |tpl| %>
+          <% already = @existing_titles.include?(tpl[:title]) %>
+          <label class="relative block rounded-[16px] p-4 border-2 transition-all
+                        <%= already ? 'cursor-default' : 'cursor-pointer' %>
+                        has-[:checked]:border-[var(--primary)] has-[:checked]:bg-[var(--primary-soft)]"
+                 style="background: var(--surface); border-color: var(--hairline); box-shadow: var(--shadow-card); <%= 'opacity:.55;' if already %>">
+            <input type="checkbox" name="keys[]" value="<%= tpl[:key] %>" class="peer sr-only" <%= "disabled" if already %>>
+            <div class="flex items-center gap-3.5">
+              <div class="w-12 h-12 rounded-[14px] flex items-center justify-center shrink-0 border-2"
+                   style="background: var(--star-soft); border-color: var(--star);">
+                <%= render Ui::Icon::Component.new(tpl[:icon], size: 24, color: "var(--c-reward-text)") %>
+              </div>
+              <div class="flex-1 min-w-0 pr-8">
+                <div class="text-[15px] font-extrabold mb-1 truncate" style="color: var(--text);"><%= tpl[:title] %></div>
+                <div class="inline-flex items-center gap-1 px-2 py-1 rounded-[8px] border-2"
+                     style="background: var(--star-soft); border-color: var(--star);">
+                  <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--star)") %>
+                  <span class="text-[12px] font-extrabold" style="color: var(--c-reward-text);"><%= tpl[:cost] %></span>
+                </div>
+              </div>
+            </div>
+            <% if already %>
+              <span class="absolute top-3 right-3 text-[9px] font-extrabold uppercase px-2 py-1 rounded-full"
+                    style="background: var(--surface-muted); color: var(--text-soft);">no catálogo</span>
+            <% else %>
+              <span class="absolute top-3 right-3 w-7 h-7 rounded-full border-2 flex items-center justify-center text-transparent
+                           border-[var(--hairline)] peer-checked:border-[var(--primary)] peer-checked:bg-[var(--primary)] peer-checked:text-white">
+                <%= render Ui::Icon::Component.new("check", size: 14, color: "currentColor") %>
+              </span>
+            <% end %>
+          </label>
+        <% end %>
+      </div>
+
+      <div class="fixed bottom-[calc(72px+env(safe-area-inset-bottom))] lg:bottom-0 left-0 right-0 lg:left-[220px] z-40 px-6 py-4 border-t-2"
+           style="background: var(--surface); border-color: var(--hairline); padding-bottom: calc(env(safe-area-inset-bottom) + 16px);">
+        <div class="max-w-[1100px] mx-auto flex items-center justify-between gap-3">
+          <span class="hidden sm:block text-[13px] font-bold" style="color: var(--text-muted);">
+            Entram na categoria <strong style="color: var(--text);"><%= @default_category.name %></strong>
+          </span>
+          <%= render Ui::Btn::Component.new(variant: "primary", type: "submit") do %>
+            <%= render Ui::Icon::Component.new("plus", size: 14, color: "currentColor") %>
+            Adicionar selecionados
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

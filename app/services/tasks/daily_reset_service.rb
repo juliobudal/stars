@@ -48,13 +48,8 @@ module Tasks
 
     private
 
-    # "Today" for this family is the date in its local timezone, with the
-    # rollover anchored at `day_start_hour`. If start hour = 6, then at 05:30
-    # local we are still in yesterday for task purposes.
     def compute_today(now)
-      local = now.in_time_zone(@family.timezone || "UTC")
-      start_hour = (@family.day_start_hour || 0).to_i
-      local.hour < start_hour ? (local - 1.day).to_date : local.to_date
+      @family.current_date(now)
     end
 
     def already_run_today?
@@ -84,10 +79,8 @@ module Tasks
         end
 
         target_profiles.each do |child|
-          next if global_task.once? && once_already_done_for?(global_task, child)
-
-          result = Tasks::SlotRefresher.new(profile: child, global_task: global_task, date: @today).call
-          created += 1 if result.success? && result.data == :slot_created
+          result = global_task.materialize_slot_for(child, @today)
+          created += 1 if result&.success? && result.data == :slot_created
         end
       end
 
@@ -95,17 +88,7 @@ module Tasks
     end
 
     def applicable_today?(gt)
-      return true if gt.daily?
-      return gt.day_of_month == @today.day if gt.monthly?
-      return true if gt.once? # per-profile check happens in the loop
-      return false unless gt.weekly?
-      return false if gt.days_of_week.blank?
-
-      gt.days_of_week.map(&:to_i).include?(@today.wday)
-    end
-
-    def once_already_done_for?(global_task, profile)
-      ProfileTask.where(global_task: global_task, profile: profile).exists?
+      gt.applicable_on?(@today)
     end
   end
 end

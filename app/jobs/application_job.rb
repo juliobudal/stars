@@ -1,7 +1,7 @@
 class ApplicationJob < ActiveJob::Base
-  # Automatically retry jobs that encountered a deadlock
-  # retry_on ActiveRecord::Deadlocked
+  # Transient infra failures self-heal instead of dying silently.
+  retry_on ActiveRecord::Deadlocked, attempts: 3
 
-  # Most jobs are safe to ignore if the underlying records are no longer available
-  # discard_on ActiveJob::DeserializationError
+  # A job whose underlying record was deleted before it ran can never succeed.
+  discard_on ActiveJob::DeserializationError
 end

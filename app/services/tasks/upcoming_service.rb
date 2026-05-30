@@ -14,7 +14,7 @@ module Tasks
       @profile = profile
       @family = profile.family
       @days_ahead = days_ahead
-      @today = now.in_time_zone(@family.timezone || "UTC").to_date
+      @today = @family.current_date(now)
     end
 
     def call
