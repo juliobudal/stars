@@ -1,0 +1,77 @@
+<%# locals: profile, streak, level, level_progress, level_size, level_remaining, level_pct,
+     remaining, awaiting_count, completed_today_count
+
+     Tier 1 of the kid home: one tactile panel that answers "where am I?".
+     Folds the old split top-bar balance + far-down level bar + greeting into a
+     single progress object. The #profile_points_<id> span mirrors the exact
+     structure Profile#broadcast_points re-renders (star icon + display span),
+     so live balance updates keep working. The greeting partial (its own id) is
+     swapped in place by complete.turbo_stream; everything else here is static. %>
+<section class="anim-pop-in mb-6 z-2 shrink-0 relative" aria-label="Seu progresso"
+         style="background: var(--surface); border: 2px solid var(--hairline); border-radius: var(--r-featured); box-shadow: var(--shadow-card-heavy); padding: 18px;">
+
+  <%# ── Identity row: avatar · status line · switch ── %>
+  <div class="flex items-center gap-3 mb-4">
+    <div class="ls-mascot-bounce shrink-0">
+      <%= render Ui::SmileyAvatar::Component.new(kid: profile, size: 52, decorative: true) %>
+    </div>
+
+    <%= render "kid/dashboard/greeting",
+               remaining: remaining,
+               awaiting_count: awaiting_count,
+               completed_today_count: completed_today_count %>
+
+    <%= form_with url: profile_session_path, method: :delete, local: true, class: "contents" do %>
+      <button type="submit"
+              aria-label="Trocar de perfil"
+              class="ls-btn-3d anim-press inline-flex items-center justify-center shrink-0 min-h-[44px] min-w-[44px]"
+              style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 12px; box-shadow: 0 3px 0 var(--hairline); color: var(--text-muted);">
+        <%= render Ui::Icon::Component.new(:users, size: 18, color: "currentColor") %>
+      </button>
+    <% end %>
+  </div>
+
+  <%# ── Progress core: stars balance · streak ── %>
+  <div class="flex items-center justify-between gap-3 mb-4">
+    <div class="min-w-0">
+      <div class="font-display text-[10px] font-extrabold tracking-[0.8px] uppercase mb-0.5" style="color: var(--text-muted);">Suas estrelas</div>
+      <span id="profile_points_<%= profile.id %>"
+            aria-live="polite"
+            data-controller="count-up"
+            data-count-up-current-value="<%= profile.points %>"
+            class="inline-flex items-center gap-1.5 font-display text-[34px] font-extrabold leading-none"
+            style="color: var(--c-amber-dark);">
+        <%= render Ui::Icon::Component.new(:star, size: 18, color: "var(--star)") %>
+        <span data-count-up-target="display"><%= profile.points %></span>
+      </span>
+    </div>
+
+    <% if streak.to_i.positive? %>
+      <div class="shrink-0">
+        <%= render Ui::StreakBadge::Component.new(streak: streak) %>
+      </div>
+    <% end %>
+  </div>
+
+  <%# ── Level progress ── %>
+  <div>
+    <div class="flex items-center justify-between mb-1.5 gap-2">
+      <span class="font-display text-[12px] font-extrabold leading-none"
+            style="background: var(--primary); color: white; padding: 4px 10px; border-radius: 8px;">
+        Nível <%= level %>
+      </span>
+      <span class="font-display text-[12px] font-bold inline-flex items-center gap-1" style="color: var(--text-muted);">
+        faltam
+        <strong class="inline-flex items-center gap-0.5 font-extrabold" style="color: var(--primary-2);">
+          <%= level_remaining %>
+          <%= render Ui::Icon::Component.new(:star, size: 11, color: "var(--star)") %>
+        </strong>
+        pra subir
+      </span>
+    </div>
+
+    <div class="relative overflow-hidden" style="height: 12px; background: var(--hairline); border-radius: 999px;">
+      <div class="anim-progress h-full" style="width: <%= level_pct %>%; background: var(--primary); border-radius: 999px;"></div>
+    </div>
+  </div>
+</section>

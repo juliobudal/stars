@@ -24,7 +24,7 @@
                         end
     top_streak = @children.map { |c| c.respond_to?(:streak) ? c.streak.to_i : 0 }.max.to_i
   %>
-  <%= render Ui::PageHeader::Component.new(title: "Olá, #{current_profile.name}! 👋", subtitle: dashboard_subtitle) do |h| %>
+  <%= render Ui::PageHeader::Component.new(title: "Olá, #{current_profile.name}!", subtitle: dashboard_subtitle) do |h| %>
     <% h.with_right_slot do %>
       <div class="flex items-center gap-3 shrink-0">
         <% if top_streak > 0 %>
@@ -48,7 +48,7 @@
     <%= render Ui::StatCard::Component.new(value: @stats[:total_stars],       label: "Estrelinhas",     icon: "star",   tint: "reward") %>
     <%= render Ui::StatCard::Component.new(value: @stats[:active_missions],   label: "Missões ativas",  icon: "target", tint: "info") %>
     <%= render Ui::StatCard::Component.new(value: @stats[:rewards_count],     label: "Prêmios",         icon: "bag",    tint: "prize") %>
-    <%= render Ui::StatCard::Component.new(value: @stats[:pending_approvals], label: "Pendentes →",     icon: "clock",  tint: "danger") %>
+    <%= render Ui::StatCard::Component.new(value: @stats[:pending_approvals], label: "Pendentes",        icon: "clock",  tint: "danger") %>
   </div>
 
   <%# ─── Suas crianças ─── %>
@@ -63,11 +63,13 @@
     <% if @children.any? %>
       <div class="grid grid-cols-1 lg:grid-cols-1 gap-3">
         <% @children.each do |child| %>
-          <%= render Ui::KidProgressCard::Component.new(
-                kid: child,
-                awaiting_count: @child_awaiting[child.id].to_i,
-                missions_count: @child_missions[child.id].to_i
-              ) %>
+          <%= link_to manage_parent_profile_path(child), class: "block no-underline anim-press", aria: { label: "Gerenciar #{child.name}" } do %>
+            <%= render Ui::KidProgressCard::Component.new(
+                  kid: child,
+                  awaiting_count: @child_awaiting[child.id].to_i,
+                  missions_count: @child_missions[child.id].to_i
+                ) %>
+          <% end %>
         <% end %>
       </div>
     <% else %>

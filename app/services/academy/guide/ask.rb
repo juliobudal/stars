@@ -46,6 +46,8 @@ module Academy
 
         @result
       rescue ::Academy::Llm::Client::Error => e
+        Rails.error.report(e, handled: true, source: "academy.guide.ask",
+                              context: { lesson_id: @lesson.id, learner_id: @learner.id })
         fail_with(:llm_error, data: { message: e.message })
       end
 

@@ -2,7 +2,7 @@ class Kid::WalletController < Kid::BaseController
   HISTORY_LIMIT = 200
 
   def index
-    @today = family_today(current_profile.family)
+    @today = current_profile.family.current_date
     week_start_day = current_profile.family.week_start.zero? ? :sunday : :monday
     week_start = Time.current.beginning_of_week(week_start_day)
 

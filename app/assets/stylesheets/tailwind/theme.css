@@ -1,11 +1,14 @@
 :root {
   /* ─── LittleStars Duolingo Style (default) ─── */
-  --bg-deep: #F7F7F7;
-  --bg-mid: #F7F7F7;
+  /* Neutrals carry an imperceptible green tint (chroma ~0.005 at the brand
+     hue) so surfaces read warm and cohesive instead of clinical gray. The
+     quieter pass: same Duolingo bones, less visual harshness. */
+  --bg-deep: oklch(0.974 0.004 131);
+  --bg-mid: oklch(0.974 0.004 131);
   --bg-soft: #DCFCE7;
 
   --surface: #ffffff;
-  --surface-2: #F7F7F7;
+  --surface-2: oklch(0.975 0.004 131);
   --surface-ink: #4B4B4B;
   --surface-on-primary: #FFFFFF;
   --overlay-soft: rgba(255, 255, 255, 0.25);
@@ -22,26 +25,29 @@
   --star-soft: #FFF4DA;
   --star-stroke: var(--c-amber-dark);
 
-  /* Hairline */
-  --hairline: #E5E5E5;
+  /* Hairline — softened + green-tinted so 2px borders read lighter */
+  --hairline: oklch(0.93 0.004 131);
 
-  /* Secondary palettes (Duolingo accent system) */
-  --c-peach: #F472B6;
+  /* Secondary palettes (Duolingo accent system).
+     Accent fills/borders are eased ~22% in chroma (same hue + lightness, so
+     contrast is untouched) so category cards read calmer without losing their
+     identity. Brand green and star gold keep full chroma on purpose. */
+  --c-peach: oklch(from #F472B6 l calc(c * 0.78) h);
   --c-peach-soft: #FCE7F3;
   --c-peach-dark: #BE185D;
-  --c-rose: #EC4899;
+  --c-rose: oklch(from #EC4899 l calc(c * 0.78) h);
   --c-rose-soft: #FCE7F3;
   --c-rose-dark: #BE185D;
   --c-mint: #58CC02;
   --c-mint-soft: #DCFCE7;
   --c-mint-dark: #46A302;
-  --c-sky: #1CB0F6;
+  --c-sky: oklch(from #1CB0F6 l calc(c * 0.82) h);
   --c-sky-soft: #DDF4FF;
   --c-sky-dark: #1899D6;
-  --c-lilac: #CE82FF;
+  --c-lilac: oklch(from #CE82FF l calc(c * 0.80) h);
   --c-lilac-soft: #F3E8FF;
   --c-lilac-dark: #7C3AED;
-  --c-coral: #FF9600;
+  --c-coral: oklch(from #FF9600 l calc(c * 0.85) h);
   --c-coral-dark: #CC7700;
   --c-coral-soft: #FFE4CC;
   --c-coral-depth: #B36F00;
@@ -127,17 +133,19 @@
 
   --text-dark: #4B4B4B;
   --text: #4B4B4B;
-  --text-muted: #777777;
-  --text-soft: #AFAFAF;
+  --text-muted: oklch(0.56 0.005 131);
+  --text-soft: oklch(0.74 0.004 131);
 
-  /* Shadows — Duolingo 3D */
-  --shadow-btn: 0 4px 0 rgba(0, 0, 0, 0.12);
-  --shadow-btn-hover: 0 6px 0 rgba(0, 0, 0, 0.12);
-  --shadow-card-light: 0 4px 0 rgba(0, 0, 0, 0.04);
-  --shadow-card-subtle: 0 4px 0 rgba(0, 0, 0, 0.06);
-  --shadow-card: 0 4px 0 rgba(0, 0, 0, 0.08);
-  --shadow-card-heavy: 0 4px 0 rgba(0, 0, 0, 0.12);
-  --shadow-lift: 0 6px 0 rgba(0, 0, 0, 0.08);
+  /* Shadows — Duolingo 3D, eased one notch lighter.
+     Hard 0 4px 0 (no blur) stays — only the alpha drops, so cards/buttons
+     keep their pressable depth while sitting more gently on the surface. */
+  --shadow-btn: 0 4px 0 rgba(0, 0, 0, 0.10);
+  --shadow-btn-hover: 0 6px 0 rgba(0, 0, 0, 0.10);
+  --shadow-card-light: 0 4px 0 rgba(0, 0, 0, 0.03);
+  --shadow-card-subtle: 0 4px 0 rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-card-heavy: 0 4px 0 rgba(0, 0, 0, 0.10);
+  --shadow-lift: 0 6px 0 rgba(0, 0, 0, 0.06);
   --border-card: 2px solid var(--hairline);
 
   /* Radius — Duolingo compact */
@@ -197,7 +205,7 @@
   --info: var(--c-sky);
   --primary-foreground: #ffffff;
   --primary-depth: var(--primary-2);
-  --overlay: rgba(26, 42, 74, 0.4);
+  --overlay: rgba(26, 42, 74, 0.32);
   /* Radius aliases */
   --radius-base: var(--r-sm);
   --radius-btn: var(--r-lg);
@@ -467,9 +475,9 @@
 @utility shadow-btn-warning-hover  { box-shadow: 0 5px 0 var(--color-warning-depth); }
 @utility shadow-btn-warning-active { box-shadow: 0 1px 0 var(--color-warning-depth); }
 
-@utility shadow-btn-secondary        { box-shadow: 0 4px 0 #C9C9C9; }
-@utility shadow-btn-secondary-hover  { box-shadow: 0 5px 0 #C9C9C9; }
-@utility shadow-btn-secondary-active { box-shadow: 0 1px 0 #C9C9C9; }
+@utility shadow-btn-secondary        { box-shadow: 0 4px 0 oklch(0.88 0.004 131); }
+@utility shadow-btn-secondary-hover  { box-shadow: 0 5px 0 oklch(0.88 0.004 131); }
+@utility shadow-btn-secondary-active { box-shadow: 0 1px 0 oklch(0.88 0.004 131); }
 
 /* Active-tab depth shadow */
 @utility shadow-tab-active { box-shadow: 0 2px 0 var(--color-primary-depth); }

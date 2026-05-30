@@ -17,8 +17,8 @@
       <% @profiles.each do |k| %>
         <%= render Ui::KidProgressCard::Component.new(
               kid: k,
-              awaiting_count: k.profile_tasks.select(&:awaiting_approval?).size,
-              missions_count: k.profile_tasks.select(&:pending?).size,
+              awaiting_count: @awaiting_counts[k.id].to_i,
+              missions_count: @pending_counts[k.id].to_i,
               manage: true
             ) %>
       <% end %>

@@ -1,0 +1,74 @@
+<div class="page-enter-right">
+
+  <%= render Ui::PageHeader::Component.new(
+        title: "Atribuições",
+        subtitle: "Escolha quais missões cada criança recebe · salva automaticamente"
+      ) do |h| %>
+    <% h.with_right_slot do %>
+      <%= render Ui::Btn::Component.new(variant: "secondary", url: parent_global_tasks_path) do %>
+        <%= render Ui::Icon::Component.new("back", size: 14, color: "currentColor") %>
+        Catálogo
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if @kids.empty? %>
+    <div class="bg-surface rounded-[16px] border-2 p-5" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
+      <%= render Ui::Empty::Component.new(
+            icon: "users", color: "primary",
+            title: "Nenhuma criança ainda",
+            subtitle: "Adicione uma criança para distribuir as missões."
+          ) do %>
+        <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: parent_profiles_path) do %>Adicionar criança<% end %>
+      <% end %>
+    </div>
+  <% elsif @global_tasks.empty? %>
+    <div class="bg-surface rounded-[16px] border-2 p-5" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
+      <%= render Ui::Empty::Component.new(
+            icon: "target", color: "primary",
+            title: "Nenhuma missão no catálogo",
+            subtitle: "Crie missões ou use a biblioteca para começar."
+          ) do %>
+        <%= render Ui::Btn::Component.new(variant: "primary", size: "sm", url: library_parent_global_tasks_path) do %>Abrir biblioteca<% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <div data-controller="assignment-matrix" class="relative">
+
+      <%# Toast region for failed saves %>
+      <div data-assignment-matrix-target="toast" hidden
+           class="fixed bottom-[96px] lg:bottom-6 left-1/2 -translate-x-1/2 z-[500] px-5 py-3 rounded-full text-white font-display font-extrabold text-[14px] shadow-lift bg-destructive anim-pop-in"></div>
+
+      <div class="bg-surface rounded-[16px] border-2 overflow-hidden" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
+        <div class="overflow-x-auto">
+          <div class="min-w-max">
+
+            <%# ── Header row: child avatars ── %>
+            <div class="flex items-stretch sticky top-0 z-2" style="background: var(--surface);">
+              <div class="shrink-0 flex items-end px-4 pt-4 pb-2"
+                   style="width: 240px; position: sticky; left: 0; background: var(--surface); z-index: 3; box-shadow: 1px 0 0 var(--surface-muted);">
+                <span class="text-[11px] font-extrabold uppercase tracking-[0.5px]" style="color: var(--text-soft);">Missão</span>
+              </div>
+              <% @kids.each do |kid| %>
+                <% pal = Ui::SmileyAvatar::Component.palette_vars(kid.color) %>
+                <div class="shrink-0 flex flex-col items-center gap-1 px-1 pt-4 pb-2" style="width: 72px;">
+                  <%= render Ui::SmileyAvatar::Component.new(kid: kid, size: 38, decorative: true) %>
+                  <span class="text-[10px] font-extrabold truncate max-w-full" style="color: var(--text);"><%= kid.name %></span>
+                </div>
+              <% end %>
+            </div>
+
+            <%# ── Mission rows ── %>
+            <% @global_tasks.each do |mission| %>
+              <%= render "assign_row", mission: mission, kids: @kids, saved: false %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-[12px] font-bold text-center mt-4" style="color: var(--text-soft);">
+        Uma missão sem nenhuma marcação fica disponível para <strong style="color: var(--primary-2);">todas</strong> as crianças, inclusive as que entrarem depois.
+      </p>
+    </div>
+  <% end %>
+</div>

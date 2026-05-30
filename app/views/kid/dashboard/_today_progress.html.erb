@@ -1,0 +1,23 @@
+<%# locals: done_count, total
+     "Missões de hoje" header + done-today count + progress strip. Own id so
+     complete.turbo_stream can refresh the count and bar in lockstep with the
+     greeting when a task moves pending → waiting. display:contents keeps the
+     children flowing in the screen layout exactly as before. %>
+<% done_pct = total.positive? ? (done_count.to_f / total * 100).round : 0 %>
+<div id="kid_today_progress" style="display: contents;">
+  <div class="flex items-end justify-between mb-2 px-1 shrink-0 z-2">
+    <h2 class="font-display text-[18px] font-extrabold m-0" style="color: var(--text);">Missões de hoje</h2>
+    <% if total.positive? %>
+      <span class="font-display text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--text-muted);">
+        <%= done_count %> de <%= total %>
+      </span>
+    <% end %>
+  </div>
+
+  <% if total.positive? %>
+    <%# Integrated done-today progress strip — distinct from level (hero) ── %>
+    <div class="mb-4 px-1 relative overflow-hidden z-2 shrink-0" style="height: 6px; background: var(--hairline); border-radius: 999px;">
+      <div class="anim-progress h-full" style="width: <%= done_pct %>%; background: var(--primary); border-radius: 999px;"></div>
+    </div>
+  <% end %>
+</div>

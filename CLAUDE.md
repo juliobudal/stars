@@ -78,3 +78,9 @@ Before writing or editing any view/component/stylesheet: **read `DESIGN.md`**. I
 - All color/font/radius/shadow values via CSS variables from `app/assets/stylesheets/tailwind/theme.css`. Raw hex outside that file is forbidden.
 - Any element with a depth shadow (`0 4px 0`) must honor the 3D motion contract (DESIGN.md §5) and `prefers-reduced-motion`.
 - Do not reintroduce retired tokens: Fraunces, lilac `#A78BFA`, Berry Pop / Soft Candy shadows.
+
+<!-- SPECKIT START -->
+For additional context about technologies to be used, project structure,
+shell commands, and other important information, read the current plan:
+`specs/003-academy-content-arcs-next/plan.md`
+<!-- SPECKIT END -->

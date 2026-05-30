@@ -24,8 +24,14 @@
             ]
           ) %>
 
-      <div id="panel-missions" class="flex flex-col gap-2.5">
+      <div id="panel-missions" data-controller="bulk-select" class="flex flex-col gap-2.5">
         <% if @profile_tasks.any? %>
+          <% if @profile_tasks.size > 1 %>
+            <%= render "bulk_bar",
+                  approve_url: bulk_approve_parent_approvals_path,
+                  reject_url: bulk_reject_parent_approvals_path,
+                  approve_label: "Aprovar", reject_label: "Rejeitar" %>
+          <% end %>
           <% @profile_tasks.each do |task| %>
             <%= render Ui::ApprovalRow::Component.new(
                   dom_id: dom_id(task),
@@ -43,7 +49,9 @@
                   profile_task: task,
                   submission_comment: task.submission_comment,
                   custom: task.custom?,
-                  points_editable: task.custom?
+                  points_editable: task.custom?,
+                  bulk: @profile_tasks.size > 1,
+                  bulk_value: task.id
                 ) %>
           <% end %>
         <% else %>
@@ -55,8 +63,14 @@
         <% end %>
       </div>
 
-      <div id="panel-rewards" class="flex flex-col gap-2.5 hidden">
+      <div id="panel-rewards" data-controller="bulk-select" class="flex flex-col gap-2.5 hidden">
         <% if @redemptions.any? %>
+          <% if @redemptions.size > 1 %>
+            <%= render "bulk_bar",
+                  approve_url: bulk_approve_redemptions_parent_approvals_path,
+                  reject_url: bulk_reject_redemptions_parent_approvals_path,
+                  approve_label: "Entregue", reject_label: "Cancelar" %>
+          <% end %>
           <% @redemptions.each do |redemption| %>
             <%= render Ui::ApprovalRow::Component.new(
                   dom_id: dom_id(redemption),
@@ -73,7 +87,9 @@
                   approve_submits_with: "Entregando...",
                   reject_submits_with: "Cancelando...",
                   reject_confirm: "Rejeitar este pedido de prêmio? As estrelas serão devolvidas.",
-                  compact: true
+                  compact: true,
+                  bulk: @redemptions.size > 1,
+                  bulk_value: redemption.id
                 ) %>
           <% end %>
         <% else %>

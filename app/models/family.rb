@@ -53,6 +53,15 @@ class Family < ApplicationRecord
 
   after_create :seed_default_categories
 
+  # "Today" for this family: the local date with the daily rollover anchored at
+  # `day_start_hour` (e.g. with start_hour 6, 05:30 local still counts as
+  # yesterday). Single source of truth for task scheduling — used by
+  # Tasks::DailyResetService and Tasks::SetAssignments so both agree on the day.
+  def current_date(now = Time.current)
+    local = now.in_time_zone(timezone || "UTC")
+    local.hour < day_start_hour.to_i ? (local - 1.day).to_date : local.to_date
+  end
+
   private
 
   def seed_default_categories

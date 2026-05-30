@@ -17,3 +17,7 @@ production:
     class: DailyResetJob
     schedule: "5 * * * *"
     queue: default
+  ledger_reconciliation:
+    class: LedgerReconciliationJob
+    schedule: "0 3 * * *"
+    queue: default
