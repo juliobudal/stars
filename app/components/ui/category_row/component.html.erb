@@ -1,8 +1,8 @@
-<div class="ls-card-3d bg-surface rounded-[16px] border-2 border-hairline p-4 flex items-center justify-between gap-3">
+<div class="bg-surface rounded-[16px] border border-hairline p-4 flex items-center justify-between gap-3">
   <div class="flex items-center gap-3 min-w-0">
     <%# ls-icon-cell 56x56 with palette swatch + icon %>
-    <div class="ls-icon-cell w-14 h-14 rounded-[14px] flex items-center justify-center shrink-0 border-2"
-         style="background: <%= palette[:soft_var] %>; border-color: <%= palette[:fg_var] %>; box-shadow: 0 3px 0 <%= palette[:fg_var] %>;">
+    <div class="ls-icon-cell w-14 h-14 rounded-[14px] flex items-center justify-center shrink-0 border"
+         style="background: <%= palette[:soft_var] %>; border-color: <%= palette[:fg_var] %>;">
       <%= render Ui::Icon::Component.new(category.icon, size: 24, color: palette[:fg_var]) %>
     </div>
     <div class="flex flex-col min-w-0">
@@ -17,15 +17,15 @@
 
   <div class="flex items-center gap-1.5 shrink-0">
     <%= link_to edit_parent_category_path(category),
-          class: "ls-btn-3d inline-flex items-center justify-center w-11 h-11 rounded-[12px] border-2 no-underline",
-          style: "background: var(--primary-soft); border-color: var(--primary); box-shadow: 0 2px 0 var(--primary-2);",
+          class: "anim-press inline-flex items-center justify-center w-11 h-11 rounded-[12px] border no-underline",
+          style: "background: var(--primary-soft); border-color: var(--primary);",
           aria: { label: "Editar #{category.name}" } do %>
       <%= render Ui::Icon::Component.new("pencil", size: 14, color: "var(--primary-2)") %>
     <% end %>
     <%= button_to parent_category_path(category), method: :delete,
           form: { class: "inline" },
-          class: "ls-btn-3d inline-flex items-center justify-center w-11 h-11 rounded-[12px] border-2 cursor-pointer p-0",
-          style: "background: var(--c-rose-soft); border-color: var(--danger); box-shadow: 0 2px 0 var(--danger-2);",
+          class: "anim-press inline-flex items-center justify-center w-11 h-11 rounded-[12px] border cursor-pointer p-0",
+          style: "background: var(--c-rose-soft); border-color: var(--danger);",
           data: { turbo_confirm: "Excluir #{category.name}? Categorias com prêmios não podem ser removidas." },
           aria: { label: "Excluir #{category.name}" } do %>
       <%= render Ui::Icon::Component.new("trash", size: 14, color: "var(--danger)") %>

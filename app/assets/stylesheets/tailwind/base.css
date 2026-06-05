@@ -178,8 +178,8 @@ html.is-navigating #main-content {
   border-color: var(--danger);
 }
 .academy-option[data-state="muted"] { opacity: 0.5; }
-.academy-feedback[data-result="correct"] { background: var(--primary-soft); border: 2px solid var(--primary); }
-.academy-feedback[data-result="wrong"] { background: var(--surface-2); border: 2px solid var(--hairline); }
+.academy-feedback[data-result="correct"] { background: var(--primary-soft); border: 1px solid var(--primary); }
+.academy-feedback[data-result="wrong"] { background: var(--surface-2); border: 1px solid var(--hairline); }
 @media (prefers-reduced-motion: reduce) {
   .academy-option { transition: none; }
 }
@@ -187,7 +187,6 @@ html.is-navigating #main-content {
 /* ─── Academy — chat / guide surface ─────────────────────────────── */
 .academy-card {
   background: var(--surface);
-  border: 2px solid var(--hairline);
+  border: 1px solid var(--hairline);
   border-radius: var(--r-xl);
-  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.06);
 }

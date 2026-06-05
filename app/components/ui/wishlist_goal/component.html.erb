@@ -1,7 +1,6 @@
 <%= turbo_frame_tag dom_id(@profile, :wishlist) do %>
   <% if pinned? %>
-    <div class="bg-surface rounded-[16px] border-2 border-hairline p-4 ls-card-3d mb-5"
-         style="box-shadow: var(--shadow-card);"
+    <div class="bg-surface rounded-[16px] border border-hairline p-4 mb-5"
          data-testid="wishlist-goal-filled">
       <div class="flex items-center gap-3 mb-3">
         <div class="rounded-[12px] p-2"
@@ -62,8 +61,8 @@
   <% else %>
     <div data-testid="wishlist-goal-empty" class="mb-5">
       <%= link_to kid_rewards_path,
-                  class: "ls-card-3d flex items-center gap-3 p-4 rounded-[16px] no-underline",
-                  style: "background: var(--surface); border: 2px solid var(--primary); box-shadow: 0 4px 0 var(--primary-2);" do %>
+                  class: "anim-press flex items-center gap-3 p-4 rounded-[16px] no-underline",
+                  style: "background: var(--surface); border: 1px solid var(--primary);" do %>
         <div class="grid place-items-center rounded-[12px] shrink-0"
              style="width: 44px; height: 44px; background: var(--primary-soft);">
           <%= render Ui::Icon::Component.new(:star, size: 22, color: "var(--primary-2)") %>

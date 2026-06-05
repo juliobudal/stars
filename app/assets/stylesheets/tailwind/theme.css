@@ -25,8 +25,15 @@
   --star-soft: #FFF4DA;
   --star-stroke: var(--c-amber-dark);
 
-  /* Hairline — softened + green-tinted so 2px borders read lighter */
-  --hairline: oklch(0.93 0.004 131);
+  /* Hairline — green-tinted; carries definition now that borders are 1px */
+  --hairline: oklch(0.92 0.004 131);
+
+  /* Interactive-control border — perceptibly darker than the passive --hairline.
+     Passive cards/rows stay quiet on --hairline; interactive form controls
+     (inputs, selects, checkboxes, textareas) are NOT passive and need a
+     boundary that meets WCAG 1.4.11 non-text contrast (target ≥3:1 on white).
+     Nudge toward 0.64 for strict 3:1 if a stronger edge is wanted. */
+  --border-control: oklch(0.66 0.006 131);
 
   /* Secondary palettes (Duolingo accent system).
      Accent fills/borders are eased ~22% in chroma (same hue + lightness, so
@@ -136,17 +143,26 @@
   --text-muted: oklch(0.56 0.005 131);
   --text-soft: oklch(0.74 0.004 131);
 
-  /* Shadows — Duolingo 3D, eased one notch lighter.
-     Hard 0 4px 0 (no blur) stays — only the alpha drops, so cards/buttons
-     keep their pressable depth while sitting more gently on the surface. */
+  /* Shadows — "quase plano" pass. Depth is now reserved for INTERACTIVE
+     controls only (buttons keep their tactile 0 4px 0 colored depth — that's
+     the remaining arcade fun). PASSIVE containers (cards, list rows, stat
+     panels) go flat: a 1px hairline + the white-on-tinted-canvas contrast
+     does the separation, no shadow. --shadow-card* therefore resolve to
+     `none`; only --shadow-card-heavy keeps a whisper for true hero moments. */
   --shadow-btn: 0 4px 0 rgba(0, 0, 0, 0.10);
   --shadow-btn-hover: 0 6px 0 rgba(0, 0, 0, 0.10);
-  --shadow-card-light: 0 4px 0 rgba(0, 0, 0, 0.03);
-  --shadow-card-subtle: 0 4px 0 rgba(0, 0, 0, 0.05);
-  --shadow-card: 0 4px 0 rgba(0, 0, 0, 0.06);
-  --shadow-card-heavy: 0 4px 0 rgba(0, 0, 0, 0.10);
-  --shadow-lift: 0 6px 0 rgba(0, 0, 0, 0.06);
-  --border-card: 2px solid var(--hairline);
+  --shadow-card-light: none;
+  --shadow-card-subtle: none;
+  --shadow-card: none;
+  --shadow-card-heavy: 0 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-lift: none;
+  --border-card: 1px solid var(--hairline);
+
+  /* Floating overlays keep their elevation. The quase-plano pass flattened
+     in-flow PASSIVE surfaces only — elements that hover ABOVE content
+     (dropdown panels, off-canvas drawers, toasts) still need separation or
+     they merge into the page. Hard offset, zero blur (the Hard-Shadow Rule). */
+  --shadow-popover: 0 6px 0 rgba(0, 0, 0, 0.10);
 
   /* Radius — Duolingo compact */
   --r-sm: 10px;
@@ -404,6 +420,7 @@
   --shadow-card: var(--shadow-card);
   --shadow-card-heavy: var(--shadow-card-heavy);
   --shadow-lift: var(--shadow-lift);
+  --shadow-popover: var(--shadow-popover);
 
   /* Colors used in design system */
   --color-bg-deep: var(--bg-deep);
@@ -416,6 +433,7 @@
   --color-star-2: var(--star-2);
   --color-star-soft: var(--star-soft);
   --color-hairline: var(--hairline);
+  --color-border-control: var(--border-control);
   --color-text-dark: var(--text-dark);
   --color-text-muted: var(--text-muted);
   --color-text-soft: var(--text-soft);

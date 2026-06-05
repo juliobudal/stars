@@ -13,7 +13,7 @@
   <% end %>
 
   <% if @kids.empty? %>
-    <div class="bg-surface rounded-[16px] border-2 p-5" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
+    <div class="bg-surface rounded-[16px] border p-5" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
       <%= render Ui::Empty::Component.new(
             icon: "users", color: "primary",
             title: "Nenhuma criança ainda",
@@ -23,7 +23,7 @@
       <% end %>
     </div>
   <% elsif @global_tasks.empty? %>
-    <div class="bg-surface rounded-[16px] border-2 p-5" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
+    <div class="bg-surface rounded-[16px] border p-5" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
       <%= render Ui::Empty::Component.new(
             icon: "target", color: "primary",
             title: "Nenhuma missão no catálogo",
@@ -37,9 +37,9 @@
 
       <%# Toast region for failed saves %>
       <div data-assignment-matrix-target="toast" hidden
-           class="fixed bottom-[96px] lg:bottom-6 left-1/2 -translate-x-1/2 z-[500] px-5 py-3 rounded-full text-white font-display font-extrabold text-[14px] shadow-lift bg-destructive anim-pop-in"></div>
+           class="fixed bottom-[96px] lg:bottom-6 left-1/2 -translate-x-1/2 z-[500] px-5 py-3 rounded-full text-white font-display font-extrabold text-[14px] shadow-popover bg-destructive anim-pop-in"></div>
 
-      <div class="bg-surface rounded-[16px] border-2 overflow-hidden" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
+      <div class="bg-surface rounded-[16px] border overflow-hidden" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
         <div class="overflow-x-auto">
           <div class="min-w-max">
 

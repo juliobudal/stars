@@ -3,11 +3,11 @@
   tint = cat[:tint]
   disabled = reward.respond_to?(:active?) && !reward.active?
 %>
-<div class="ls-card-3d bg-surface rounded-[16px] border-2 border-hairline p-4 flex flex-col gap-3<%= " opacity-[0.85]" if disabled %>">
+<div class="bg-surface rounded-[16px] border border-hairline p-4 flex flex-col gap-3<%= " opacity-[0.85]" if disabled %>">
 
   <div class="flex items-start gap-[14px]">
     <%# ls-icon-cell 56x56 %>
-    <div class="ls-icon-cell w-14 h-14 rounded-[14px] flex items-center justify-center shrink-0 border-2"
+    <div class="ls-icon-cell w-14 h-14 rounded-[14px] flex items-center justify-center shrink-0 border"
          style="background: var(--c-<%= tint %>-soft, var(--primary-soft)); border-color: var(--c-<%= tint %>, var(--primary));">
       <%= render Ui::Icon::Component.new(reward.icon.presence || "gift", size: 28, color: "var(--c-#{tint}-dark, var(--primary-2))") %>
     </div>
@@ -32,7 +32,7 @@
           </div>
         </div>
         <%# Star pill %>
-        <div class="flex items-center gap-1 px-2 py-1 rounded-[8px] border-2 shrink-0"
+        <div class="flex items-center gap-1 px-2 py-1 rounded-[8px] border shrink-0"
              style="background: var(--star-soft); border-color: var(--star);">
           <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--star)") %>
           <span class="text-[12px] font-extrabold" style="color: var(--c-reward-text);"><%= reward.cost %></span>
@@ -43,7 +43,7 @@
 
   <%# Footer: status + actions %>
   <div class="mt-auto pt-[10px] flex items-center justify-between gap-2"
-       style="border-top: 2px solid var(--surface-2);">
+       style="border-top: 1px solid var(--surface-2);">
     <span class="text-[10px] font-extrabold uppercase tracking-[0.5px] flex items-center gap-1"
           style="color: <%= disabled ? 'var(--c-amber-dark)' : 'var(--primary-2)' %>;">
       <span class="w-1.5 h-1.5 rounded-full" style="background: <%= disabled ? 'var(--star)' : 'var(--primary)' %>;"></span>
@@ -51,20 +51,20 @@
     </span>
     <div class="flex items-center gap-1.5">
       <%= button_to duplicate_parent_reward_path(reward), method: :post,
-            class: "ls-btn-3d inline-flex items-center justify-center w-11 h-11 rounded-[10px] border-2 cursor-pointer p-0 bg-surface",
-            style: "border-color: var(--hairline); box-shadow: 0 2px 0 var(--hairline);",
+            class: "anim-press inline-flex items-center justify-center w-11 h-11 rounded-[10px] border cursor-pointer p-0 bg-surface",
+            style: "border-color: var(--hairline);",
             aria: { label: "Duplicar #{reward.title}" }, title: "Duplicar" do %>
         <%= render Ui::Icon::Component.new("copy", size: 16, color: "var(--text-muted)") %>
       <% end %>
       <%= link_to edit_parent_reward_path(reward),
-            class: "ls-btn-3d inline-flex items-center justify-center w-11 h-11 rounded-[10px] border-2 no-underline",
-            style: "background: var(--primary-soft); border-color: var(--primary); box-shadow: 0 2px 0 var(--primary-2);",
+            class: "anim-press inline-flex items-center justify-center w-11 h-11 rounded-[10px] border no-underline",
+            style: "background: var(--primary-soft); border-color: var(--primary);",
             aria: { label: "Editar #{reward.title}" } do %>
         <%= render Ui::Icon::Component.new("pencil", size: 16, color: "var(--primary-2)") %>
       <% end %>
       <%= button_to parent_reward_path(reward), method: :delete,
-            class: "ls-btn-3d inline-flex items-center justify-center w-11 h-11 rounded-[10px] border-2 cursor-pointer p-0",
-            style: "background: var(--c-rose-soft); border-color: var(--danger); box-shadow: 0 2px 0 var(--danger-2);",
+            class: "anim-press inline-flex items-center justify-center w-11 h-11 rounded-[10px] border cursor-pointer p-0",
+            style: "background: var(--c-rose-soft); border-color: var(--danger);",
             data: { turbo_confirm: "Remover \"#{reward.title}\" do catálogo? Esta ação não pode ser desfeita." },
             aria: { label: "Remover #{reward.title}" } do %>
         <%= render Ui::Icon::Component.new("trash", size: 16, color: "var(--danger)") %>

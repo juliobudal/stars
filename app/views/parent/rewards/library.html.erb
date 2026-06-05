@@ -13,7 +13,7 @@
   <% end %>
 
   <% if @default_category.nil? %>
-    <div class="bg-surface rounded-[16px] border-2 p-5" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
+    <div class="bg-surface rounded-[16px] border p-5" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
       <%= render Ui::Empty::Component.new(
             icon: "list", color: "rose",
             title: "Crie uma categoria primeiro",
@@ -27,19 +27,19 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-24">
         <% @templates.each do |tpl| %>
           <% already = @existing_titles.include?(tpl[:title]) %>
-          <label class="relative block rounded-[16px] p-4 border-2 transition-all
+          <label class="relative block rounded-[16px] p-4 border transition-all
                         <%= already ? 'cursor-default' : 'cursor-pointer' %>
                         has-[:checked]:border-[var(--primary)] has-[:checked]:bg-[var(--primary-soft)]"
                  style="background: var(--surface); border-color: var(--hairline); box-shadow: var(--shadow-card); <%= 'opacity:.55;' if already %>">
             <input type="checkbox" name="keys[]" value="<%= tpl[:key] %>" class="peer sr-only" <%= "disabled" if already %>>
             <div class="flex items-center gap-3.5">
-              <div class="w-12 h-12 rounded-[14px] flex items-center justify-center shrink-0 border-2"
+              <div class="w-12 h-12 rounded-[14px] flex items-center justify-center shrink-0 border"
                    style="background: var(--star-soft); border-color: var(--star);">
                 <%= render Ui::Icon::Component.new(tpl[:icon], size: 24, color: "var(--c-reward-text)") %>
               </div>
               <div class="flex-1 min-w-0 pr-8">
                 <div class="text-[15px] font-extrabold mb-1 truncate" style="color: var(--text);"><%= tpl[:title] %></div>
-                <div class="inline-flex items-center gap-1 px-2 py-1 rounded-[8px] border-2"
+                <div class="inline-flex items-center gap-1 px-2 py-1 rounded-[8px] border"
                      style="background: var(--star-soft); border-color: var(--star);">
                   <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--star)") %>
                   <span class="text-[12px] font-extrabold" style="color: var(--c-reward-text);"><%= tpl[:cost] %></span>
@@ -50,7 +50,7 @@
               <span class="absolute top-3 right-3 text-[9px] font-extrabold uppercase px-2 py-1 rounded-full"
                     style="background: var(--surface-muted); color: var(--text-soft);">no catálogo</span>
             <% else %>
-              <span class="absolute top-3 right-3 w-7 h-7 rounded-full border-2 flex items-center justify-center text-transparent
+              <span class="absolute top-3 right-3 w-7 h-7 rounded-full border flex items-center justify-center text-transparent
                            border-[var(--hairline)] peer-checked:border-[var(--primary)] peer-checked:bg-[var(--primary)] peer-checked:text-white">
                 <%= render Ui::Icon::Component.new("check", size: 14, color: "currentColor") %>
               </span>

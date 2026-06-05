@@ -1,5 +1,5 @@
-<div class="flex items-center gap-1.5 px-3.5 py-2 rounded-[14px] border-2 shrink-0 <%= @options[:class] %>"
-     style="background: <%= tokens[:bg] %>; border-color: <%= tokens[:border] %>; box-shadow: 0 3px 0 <%= tokens[:shadow] %>;">
+<div class="flex items-center gap-1.5 px-3.5 py-2 rounded-[14px] border shrink-0 <%= @options[:class] %>"
+     style="background: <%= tokens[:bg] %>; border-color: <%= tokens[:border] %>;">
   <% if @icon.present? %>
     <%= render Ui::Icon::Component.new(@icon, size: 18, color: tokens[:icon_color]) %>
   <% end %>

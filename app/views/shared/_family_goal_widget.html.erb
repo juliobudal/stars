@@ -16,7 +16,7 @@
       <%= render Ui::Card::Component.new(padding: "md", class: "family-goal-widget") do %>
         <div class="flex items-start gap-4">
           <div class="shrink-0 w-12 h-12 rounded-[14px] grid place-items-center"
-               style="background: <%= eligible ? 'var(--primary-soft)' : 'var(--star-soft)' %>; border: 2px solid <%= eligible ? 'var(--primary)' : 'var(--star)' %>;">
+               style="background: <%= eligible ? 'var(--primary-soft)' : 'var(--star-soft)' %>; border: 1px solid <%= eligible ? 'var(--primary)' : 'var(--star)' %>;">
             <%= render Ui::Icon::Component.new(eligible ? "gift" : "star", size: 24, color: eligible ? "var(--primary-2)" : "var(--star-2)") %>
           </div>
           <div class="flex-1 min-w-0">

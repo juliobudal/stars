@@ -50,7 +50,7 @@
       <% if pending_extra.any? %>
         <details class="contents">
           <summary class="font-display flex items-center justify-center gap-2 cursor-pointer list-none"
-                   style="background: transparent; color: var(--text-muted); border: 2px dashed var(--hairline); border-radius: 14px; padding: 12px 14px; font-size: 13px; font-weight: 800;">
+                   style="background: transparent; color: var(--text-muted); border: 1px dashed var(--hairline); border-radius: 14px; padding: 12px 14px; font-size: 13px; font-weight: 800;">
             <%= render Ui::Icon::Component.new(:plus, size: 14, color: "currentColor") %>
             Ver mais <%= pluralize(pending_extra.size, "missão", plural: "missões") %>
           </summary>
@@ -76,8 +76,8 @@
 
   <%# Ghost CTA: create custom mission (quiet, secondary affordance) ── %>
   <%= link_to new_kid_mission_path,
-        class: "ls-btn-3d anim-press font-display flex items-center justify-center gap-2 w-full text-center mb-6 z-2 shrink-0 no-underline",
-        style: "background: var(--surface); color: var(--text-muted); border: 2px dashed var(--hairline); border-radius: 14px; padding: 12px 14px; font-size: 13px; font-weight: 800;" do %>
+        class: "anim-press font-display flex items-center justify-center gap-2 w-full text-center mb-6 z-2 shrink-0 no-underline",
+        style: "background: var(--surface); color: var(--text-muted); border: 1px dashed var(--hairline); border-radius: 14px; padding: 12px 14px; font-size: 13px; font-weight: 800;" do %>
     <%= render Ui::Icon::Component.new(:plus, size: 16, color: "currentColor") %>
     Fiz algo fora da lista
   <% end %>

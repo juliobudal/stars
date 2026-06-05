@@ -7,11 +7,11 @@
       <% palette = helpers.smiley_palette(profile.color) %>
       <% is_selected = selected&.id == profile.id %>
       <%= link_to new_profile_session_path(profile_id: profile.id),
-                  class: "ls-profile-card relative bg-surface rounded-[20px] p-5 sm:p-6 text-center no-underline border-2 #{is_selected ? 'border-[3px]' : ''}",
-                  style: "border-color: #{is_selected ? 'var(--primary)' : 'var(--hairline)'}; box-shadow: 0 4px 0 #{is_selected ? 'var(--primary-2)' : 'rgba(0,0,0,0.08)'};",
+                  class: "ls-profile-card relative bg-surface rounded-[20px] p-5 sm:p-6 text-center no-underline border",
+                  style: "border-color: #{is_selected ? 'var(--primary)' : 'var(--hairline)'};",
                   data: { turbo_frame: "pin_modal", palette: profile.color } do %>
         <% if profile.parent? %>
-          <div class="absolute top-3 right-3 w-6 h-6 rounded-full grid place-items-center" style="background: var(--c-info-100); border: 2px solid var(--c-info-500);">
+          <div class="absolute top-3 right-3 w-6 h-6 rounded-full grid place-items-center" style="background: var(--c-info-100); border: 1px solid var(--c-info-500);">
             <%= render Ui::Icon::Component.new("lock", size: 11, color: "var(--c-info-600)") %>
           </div>
         <% end %>

@@ -9,7 +9,7 @@
   <%= form_with url: kid_missions_path, scope: :profile_task, multipart: true, local: true,
         html: { class: "flex flex-col gap-[18px]" } do |f| %>
     <% if flash[:alert].present? %>
-      <div class="rounded-[12px] border-2 px-4 py-3 text-[13px] font-bold"
+      <div class="rounded-[12px] border px-4 py-3 text-[13px] font-bold"
            style="background: var(--danger-soft); color: var(--c-red-dark); border-color: var(--c-red-dark);">
         <%= flash[:alert] %>
       </div>

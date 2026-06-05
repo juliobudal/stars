@@ -6,7 +6,7 @@
       <%= link_to kid_academy_root_path,
             "aria-label": "Voltar",
             class: "w-11 h-11 rounded-full flex items-center justify-center anim-press shrink-0",
-            style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06);" do %>
+            style: "background: var(--surface); border: 1px solid var(--hairline); box-shadow: none;" do %>
         <%= render Ui::Icon::Component.new(:back, size: 18, color: "var(--text)") %>
       <% end %>
       <div class="flex-1 min-w-0">
@@ -39,7 +39,7 @@
         <% inner = capture do %>
           <div class="flex items-center gap-3 p-3.5">
             <div class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-display text-[15px] font-extrabold"
-                 style="background: <%= num_bg %>; color: <%= num_fg %>; box-shadow: 0 3px 0 rgba(0,0,0,0.1);">
+                 style="background: <%= num_bg %>; color: <%= num_fg %>; box-shadow: none;">
               <% if completed %>
                 <%= render Ui::Icon::Component.new(:check, size: 18, color: "white") %>
               <% elsif locked %>
@@ -60,13 +60,13 @@
         <% end %>
 
         <% if locked %>
-          <div class="block rounded-[14px] opacity-60" style="background: <%= tile_bg %>; border: 2px solid var(--hairline);">
+          <div class="block rounded-[14px] opacity-60" style="background: <%= tile_bg %>; border: 1px solid var(--hairline);">
             <%= inner %>
           </div>
         <% else %>
           <%= link_to kid_academy_trail_lesson_path(@trail, lesson),
                 class: "ls-card-3d anim-press block no-underline rounded-[14px]",
-                style: "background: #{tile_bg}; border: 2px solid #{completed ? 'var(--primary)' : 'var(--hairline)'}; box-shadow: 0 4px 0 rgba(0,0,0,0.06);" do %>
+                style: "background: #{tile_bg}; border: 1px solid #{completed ? 'var(--primary)' : 'var(--hairline)'}; box-shadow: none;" do %>
             <%= inner %>
           <% end %>
         <% end %>

@@ -64,7 +64,7 @@ export default class extends Controller {
       if (filled) {
         cell.style.background = "var(--star-soft)"
         cell.style.borderColor = "var(--star)"
-        cell.style.boxShadow = "0 3px 0 var(--star-2)"
+        cell.style.boxShadow = "0 4px 0 var(--star-2)"
       } else {
         cell.style.background = "var(--surface-muted)"
         cell.style.borderColor = "var(--hairline)"

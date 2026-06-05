@@ -1,5 +1,5 @@
-<div class="rounded-[16px] p-[14px] flex flex-col gap-1.5 ls-card-3d"
-     style="background: <%= tint[:bg] %>; border: 2px solid <%= tint[:border] %>; box-shadow: var(--shadow-card);">
+<div class="rounded-[16px] p-[14px] flex flex-col gap-1.5"
+     style="background: <%= tint[:bg] %>; border: 1px solid var(--hairline);">
   <%= render Ui::Icon::Component.new(icon, size: 22, color: tint[:fg]) %>
   <div class="text-[24px] leading-none font-extrabold"
        style="color: <%= tint[:fg] %>;"><%= value %></div>

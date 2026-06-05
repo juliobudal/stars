@@ -60,11 +60,11 @@
           <% (1..10).each do |i| %>
             <% filled = i <= picker_points %>
             <button type="button"
-                    class="ls-star-cell flex-1 aspect-square rounded-[10px] flex items-center justify-center border-2 cursor-pointer"
+                    class="ls-star-cell flex-1 aspect-square rounded-[10px] flex items-center justify-center border cursor-pointer"
                     data-action="click->star-picker#select"
                     data-star-picker-target="cell"
                     data-value="<%= i %>"
-                    style="<%= filled ? 'background: var(--star-soft); border-color: var(--star); box-shadow: 0 3px 0 var(--star-2);' : 'background: var(--surface-muted); border-color: var(--hairline);' %>"
+                    style="<%= filled ? 'background: var(--star-soft); border-color: var(--star); box-shadow: 0 4px 0 var(--star-2);' : 'background: var(--surface-muted); border-color: var(--hairline);' %>"
                     aria-label="<%= i %> <%= 'estrelinha'.pluralize(i == 1 ? 1 : 2) %>">
               <%= render Ui::Icon::Component.new("star", size: 18, color: filled ? "var(--star)" : "var(--text-soft)") %>
             </button>
@@ -73,7 +73,7 @@
         <%= f.hidden_field :points, value: current_points, id: "global_task_points", data: { star_picker_target: "hidden", form_preview_field: "points" } %>
         <div class="flex justify-between items-center mt-3 gap-3">
           <span class="text-[11px] font-bold" style="color: var(--text-soft);">Tarefa fácil</span>
-          <div class="inline-flex items-center gap-1.5 rounded-[10px] border-2 px-2 py-1"
+          <div class="inline-flex items-center gap-1.5 rounded-[10px] border px-2 py-1"
                style="background: var(--star-soft); border-color: var(--star);">
             <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
             <input type="number"
@@ -99,10 +99,10 @@
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" data-controller="selectable-group">
         <% freq_options.each do |opt|
              selected = current_freq == opt[:key]
-             selected_style   = "background: var(--c-info-100); border-color: var(--c-info-500); box-shadow: 0 3px 0 var(--c-info-600); color: var(--c-info-600);"
+             selected_style   = "background: var(--c-info-100); border-color: var(--c-info-500); box-shadow: 0 4px 0 var(--c-info-600); color: var(--c-info-600);"
              unselected_style = "background: var(--surface); border-color: var(--hairline); color: var(--text-muted);"
         %>
-          <label class="ls-icon-cell rounded-[12px] p-3 sm:p-3.5 min-w-0 text-center border-2 cursor-pointer flex flex-col items-center gap-1.5"
+          <label class="ls-icon-cell rounded-[12px] p-3 sm:p-3.5 min-w-0 text-center border cursor-pointer flex flex-col items-center gap-1.5"
                  data-selectable-group-target="option"
                  data-selected-style="<%= selected_style %>"
                  data-unselected-style="<%= unselected_style %>"
@@ -181,10 +181,10 @@
              selected = cat_name == key
              tint_soft = Ui::Tokens.tint_soft(data[:tint])
              tint_fg   = Ui::Tokens.tint_fg(data[:tint])
-             selected_style   = "background: #{tint_soft}; color: #{tint_fg}; border-color: #{tint_fg}; box-shadow: 0 3px 0 #{tint_fg};"
-             unselected_style = "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: 0 3px 0 var(--hairline);"
+             selected_style   = "background: #{tint_soft}; color: #{tint_fg}; border-color: #{tint_fg}; box-shadow: 0 4px 0 #{tint_fg};"
+             unselected_style = "background: var(--surface); color: var(--text-muted); border-color: var(--hairline); box-shadow: none;"
         %>
-          <label class="ls-btn-3d inline-flex items-center gap-1.5 px-3.5 py-2 rounded-[12px] border-2 text-[12px] font-extrabold uppercase tracking-[0.5px] cursor-pointer"
+          <label class="ls-btn-3d inline-flex items-center gap-1.5 px-3.5 py-2 rounded-[12px] border text-[12px] font-extrabold uppercase tracking-[0.5px] cursor-pointer"
                  data-selectable-group-target="option"
                  data-selected-style="<%= selected_style %>"
                  data-unselected-style="<%= unselected_style %>"
@@ -208,14 +208,14 @@
           <% kids.each do |kid|
                checked = selected_kid_ids.include?(kid.id)
                palette = Ui::SmileyAvatar::Component.palette_vars(kid.color)
-               selected_style   = "background: #{palette[:tile]}; border-color: #{palette[:ring]}; box-shadow: 0 3px 0 #{palette[:ink]};"
-               unselected_style = "background: var(--surface); border-color: var(--hairline); box-shadow: 0 3px 0 var(--hairline);"
+               selected_style   = "background: #{palette[:tile]}; border-color: #{palette[:ring]}; box-shadow: 0 4px 0 #{palette[:ink]};"
+               unselected_style = "background: var(--surface); border-color: var(--hairline); box-shadow: none;"
                name_selected_style   = "color: #{palette[:ink]};"
                name_unselected_style = "color: var(--text);"
                check_bg_selected   = "background: var(--primary); box-shadow: 0 2px 0 var(--primary-2);"
-               check_bg_unselected = "background: var(--surface-muted); border: 2px solid var(--hairline);"
+               check_bg_unselected = "background: var(--surface-muted); border: 1px solid var(--hairline);"
           %>
-            <label class="ls-icon-cell relative inline-flex items-center gap-2.5 pl-2 pr-9 py-2 rounded-[14px] border-2 cursor-pointer"
+            <label class="ls-icon-cell relative inline-flex items-center gap-2.5 pl-2 pr-9 py-2 rounded-[14px] border cursor-pointer"
                    data-selectable-group-target="option"
                    data-selected-style="<%= selected_style %>"
                    data-unselected-style="<%= unselected_style %>"

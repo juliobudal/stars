@@ -182,7 +182,7 @@ export default class extends Controller {
   tileClasses(slug) {
     const selected = (slug === this.pendingValue)
     return [
-      "flex items-center justify-center w-11 h-11 rounded-xl border-2 transition-all bg-white",
+      "flex items-center justify-center w-11 h-11 rounded-xl border transition-all bg-white",
       selected ? "border-primary bg-primary-soft" : "border-[rgba(26,42,74,0.1)] hover:border-primary"
     ].join(" ")
   }

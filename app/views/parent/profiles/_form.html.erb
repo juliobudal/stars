@@ -50,8 +50,8 @@
           <% color_options.each do |col| %>
             <label class="cursor-pointer">
               <%= f.radio_button :color, col, class: "peer sr-only", data: { form_preview_field: "color" } %>
-              <div class="relative aspect-square rounded-full transition-all peer-checked:scale-105 peer-checked:[&>span]:opacity-100 hover:scale-105 border-2"
-                   style="background: var(--c-<%= col %>); border-color: var(--c-<%= col %>-dark, var(--c-<%= col %>)); box-shadow: 0 3px 0 var(--c-<%= col %>-dark, rgba(0,0,0,0.15));"
+              <div class="relative aspect-square rounded-full transition-all peer-checked:scale-105 peer-checked:[&>span]:opacity-100 hover:scale-105 border"
+                   style="background: var(--c-<%= col %>); border-color: var(--c-<%= col %>-dark, var(--c-<%= col %>)); box-shadow: 0 4px 0 var(--c-<%= col %>-dark, rgba(0,0,0,0.15));"
                    aria-label="<%= col %>">
                 <span class="absolute inset-0 flex items-center justify-center text-white opacity-0 transition-opacity">
                   <%= render Ui::Icon::Component.new("check", size: 18, color: "white") %>
@@ -119,7 +119,7 @@
     <aside class="hidden lg:block">
       <div class="sticky top-6">
         <div data-form-preview-target="color" data-form-preview-palette="true" data-palette="<%= current_color %>"
-             class="bg-surface rounded-[16px] border-2 border-hairline p-6 text-center relative"
+             class="bg-surface rounded-[16px] border border-hairline p-6 text-center relative"
              style="box-shadow: var(--shadow-card);">
           <div class="text-[11px] font-extrabold uppercase tracking-[0.5px] mb-3" style="color: var(--text-muted);">Pré-visualização</div>
           <div class="w-[88px] h-[88px] rounded-full grid place-items-center mx-auto mb-3.5"

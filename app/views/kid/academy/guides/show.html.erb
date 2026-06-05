@@ -8,7 +8,7 @@
       <%= link_to kid_academy_trail_lesson_path(@trail, @lesson),
                   "aria-label": "Voltar para a aula",
                   class: "w-11 h-11 rounded-full flex items-center justify-center anim-press shrink-0",
-                  style: "background: var(--surface); border: 2px solid var(--hairline); box-shadow: 0 3px 0 rgba(0,0,0,0.06);" do %>
+                  style: "background: var(--surface); border: 1px solid var(--hairline); box-shadow: none;" do %>
         <%= render Ui::Icon::Component.new(:back, size: 18, color: "var(--text)") %>
       <% end %>
 
@@ -53,7 +53,7 @@
                     required: true,
                     placeholder: "O que você quer entender?",
                     class: "w-full rounded-xl p-3 font-display text-[15px] leading-snug",
-                    style: "background: var(--surface); border: 2px solid var(--hairline); color: var(--text); outline: none;" %>
+                    style: "background: var(--surface); border: 1px solid var(--border-control); color: var(--text); outline: none;" %>
     <div class="flex items-center justify-end mt-3">
       <%= f.submit "Perguntar →",
                    class: "px-5 py-2.5 rounded-xl font-display font-extrabold text-[14px] anim-press ls-btn-3d border-0",

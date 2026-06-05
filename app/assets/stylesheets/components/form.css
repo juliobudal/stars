@@ -4,8 +4,9 @@
    LittleStars — Form primitives (DESIGN.md §8)
    .form-field   wraps each input
    .form-label   uppercase 12px / 800 / muted
-   .form-input   15px Nunito 700 / 2px hairline / focus ring
+   .form-input   15px Nunito 700 / 1px control border / focus ring
    .form-select  same shell as .form-input for native selects
+   Controls use --border-control (darker than passive --hairline) for WCAG 1.4.11.
    =============================================== */
 
 .form-field {
@@ -19,9 +20,9 @@
 
 .form-input,
 .form-select {
-  @apply w-full px-4 py-[14px] rounded-[14px] border-2 font-bold text-[15px] outline-none box-border transition-all;
+  @apply w-full px-4 py-[14px] rounded-[14px] border font-bold text-[15px] outline-none box-border transition-all;
   background: var(--surface);
-  border-color: var(--hairline);
+  border-color: var(--border-control);
   color: var(--text);
   font-family: inherit;
 }
@@ -42,10 +43,9 @@
 }
 
 .form-checkbox {
-  @apply appearance-none w-[22px] h-[22px] rounded-[6px] border-2 cursor-pointer transition-all relative;
+  @apply appearance-none w-[22px] h-[22px] rounded-[6px] border cursor-pointer transition-all relative;
   background: var(--surface);
-  border-color: var(--hairline);
-  box-shadow: 0 2px 0 var(--hairline);
+  border-color: var(--border-control);
   flex-shrink: 0;
 }
 

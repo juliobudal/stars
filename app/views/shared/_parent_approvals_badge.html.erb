@@ -6,7 +6,7 @@
 <% positive = count.to_i.positive? %>
 <% if variant.to_sym == :mobile %>
   <span id="<%= target_id %>"
-        class="absolute top-1 right-1/4 -translate-x-1 bg-danger text-white text-[9px] font-extrabold px-1 rounded-full min-w-[16px] h-4 flex items-center justify-center border-2 border-white"
+        class="absolute top-1 right-1/4 -translate-x-1 bg-danger text-white text-[9px] font-extrabold px-1 rounded-full min-w-[16px] h-4 flex items-center justify-center border border-white"
         style="<%= "display: none;" unless positive %>">
     <%= count if positive %>
   </span>

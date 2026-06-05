@@ -14,7 +14,7 @@
     <div class="grid gap-6 md:grid-cols-2">
       <% @children.each do |child| %>
         <% prog = @progress_by_child[child] %>
-        <section class="p-5" style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 16px; box-shadow: 0 4px 0 rgba(0,0,0,0.06);">
+        <section class="p-5" style="background: var(--surface); border: 1px solid var(--hairline); border-radius: 16px; box-shadow: none;">
           <h2 class="font-display text-[17px] font-extrabold leading-tight m-0 mb-4" style="color: var(--text);">
             <%= child.name %>
           </h2>

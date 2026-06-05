@@ -34,7 +34,7 @@ export default class extends Controller {
       const checked = !!cb && cb.checked
       chip.dataset.checked = checked
       chip.style.background = checked ? "var(--primary-soft)" : "var(--surface-2, #F7F7F7)"
-      chip.style.border = `2px solid ${checked ? "var(--primary)" : "transparent"}`
+      chip.style.border = `1px solid ${checked ? "var(--primary)" : "transparent"}`
       chip.style.boxShadow = checked ? "0 4px 0 var(--primary-glow, rgba(0,0,0,0.08))" : "none"
       chip.style.color = checked ? "var(--primary)" : "var(--text)"
     })

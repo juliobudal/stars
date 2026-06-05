@@ -23,7 +23,7 @@
   <%# Brand %>
   <div class="px-[14px] pt-5 pb-[18px]">
     <div class="flex items-center gap-2.5">
-      <div class="w-8 h-8 grid place-items-center rounded-[10px]" style="background: var(--star); box-shadow: 0 3px 0 var(--star-2);">
+      <div class="w-8 h-8 grid place-items-center rounded-[10px]" style="background: var(--star); box-shadow: 0 4px 0 var(--star-2);">
         <%= render Ui::Icon::Component.new("star", size: 18, color: "white") %>
       </div>
       <div class="flex flex-col leading-tight">
@@ -51,7 +51,7 @@
       <% active = current_page?(item[:path]) %>
       <% is_approvals = item[:path] == parent_approvals_path %>
       <%= link_to item[:path],
-          class: "flex items-center gap-3 px-3 py-2.5 rounded-[14px] transition-colors font-extrabold text-[14px] border-2 #{active ? 'bg-accent text-accent-foreground border-primary' : 'text-muted-foreground border-transparent hover:bg-muted hover:text-foreground'}",
+          class: "flex items-center gap-3 px-3 py-2.5 rounded-[14px] transition-colors font-extrabold text-[14px] border #{active ? 'bg-accent text-accent-foreground border-primary' : 'text-muted-foreground border-transparent hover:bg-muted hover:text-foreground'}",
           title: item[:label],
           aria: { current: active ? "page" : nil } do %>
         <%= render Ui::Icon::Component.new(item[:icon], size: 18, color: "currentColor") %>
@@ -68,7 +68,7 @@
   <%# Footer: profile + switch profile %>
   <div class="px-[14px] pb-5 pt-3">
     <%= link_to edit_parent_profile_path(current_profile),
-          class: "flex items-center gap-2.5 p-3 rounded-[14px] border-2 no-underline hover:scale-[1.01] transition-transform",
+          class: "flex items-center gap-2.5 p-3 rounded-[14px] border no-underline hover:scale-[1.01] transition-transform",
           style: "background: var(--surface-muted); border-color: var(--hairline);",
           aria: { label: "Editar meu perfil" } do %>
       <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 34, decorative: true) %>
@@ -114,14 +114,14 @@
           class: "flex flex-col items-center justify-center gap-1 flex-1 py-2 relative min-h-[44px] no-underline",
           title: item[:label],
           aria: { current: active ? "page" : nil, label: item[:label] } do %>
-      <span class="flex flex-col items-center gap-0.5 px-2 py-1 rounded-[12px] border-2 transition-colors #{active ? 'bg-accent text-accent-foreground border-primary' : 'text-muted-foreground border-transparent'}">
+      <span class="flex flex-col items-center gap-0.5 px-2 py-1 rounded-[12px] border transition-colors #{active ? 'bg-accent text-accent-foreground border-primary' : 'text-muted-foreground border-transparent'}">
         <%= render Ui::Icon::Component.new(item[:icon], size: 22, color: "currentColor") %>
         <span class="text-[10px] font-extrabold tracking-[0.5px] uppercase whitespace-nowrap"><%= item[:label] %></span>
       </span>
       <% if is_approvals %>
         <%= render "shared/parent_approvals_badge", count: pending_approvals_count, variant: :mobile %>
       <% elsif item[:badge] %>
-        <span class="absolute top-1 right-1/4 -translate-x-1 bg-danger text-white text-[9px] font-extrabold px-1 rounded-full min-w-[16px] h-4 flex items-center justify-center border-2 border-white"><%= item[:badge] %></span>
+        <span class="absolute top-1 right-1/4 -translate-x-1 bg-danger text-white text-[9px] font-extrabold px-1 rounded-full min-w-[16px] h-4 flex items-center justify-center border border-white"><%= item[:badge] %></span>
       <% end %>
     <% end %>
   <% end %>
@@ -131,7 +131,7 @@
           data-action="click->sidebar-toggle#open"
           aria-label="Mais opções"
           class="flex flex-col items-center justify-center gap-1 flex-1 py-2 min-h-[44px] bg-transparent border-0 cursor-pointer">
-    <span class="flex flex-col items-center gap-0.5 px-2 py-1 rounded-[12px] border-2 border-transparent text-muted-foreground transition-colors">
+    <span class="flex flex-col items-center gap-0.5 px-2 py-1 rounded-[12px] border border-transparent text-muted-foreground transition-colors">
       <%= render Ui::Icon::Component.new("list", size: 22, color: "currentColor") %>
       <span class="text-[10px] font-extrabold tracking-[0.5px] uppercase whitespace-nowrap">Mais</span>
     </span>

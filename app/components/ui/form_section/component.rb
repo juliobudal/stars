@@ -4,7 +4,7 @@ module Ui
   module FormSection
     # White-card form section with hairline border, card shadow, and
     # 16px radius. Replaces the inline
-    #   `bg-surface rounded-[16px] border-2 border-hairline p-[18px]`
+    #   `bg-surface rounded-[16px] border border-hairline p-[18px]`
     # block duplicated 14+ times across parent form partials. See
     # .planning/ui-reviews/20260428-audit/03-parent-surfaces.md §7.
     #

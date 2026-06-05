@@ -8,7 +8,7 @@
      so live balance updates keep working. The greeting partial (its own id) is
      swapped in place by complete.turbo_stream; everything else here is static. %>
 <section class="anim-pop-in mb-6 z-2 shrink-0 relative" aria-label="Seu progresso"
-         style="background: var(--surface); border: 2px solid var(--hairline); border-radius: var(--r-featured); box-shadow: var(--shadow-card-heavy); padding: 18px;">
+         style="background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--r-featured); box-shadow: var(--shadow-card-heavy); padding: 18px;">
 
   <%# ── Identity row: avatar · status line · switch ── %>
   <div class="flex items-center gap-3 mb-4">
@@ -24,8 +24,8 @@
     <%= form_with url: profile_session_path, method: :delete, local: true, class: "contents" do %>
       <button type="submit"
               aria-label="Trocar de perfil"
-              class="ls-btn-3d anim-press inline-flex items-center justify-center shrink-0 min-h-[44px] min-w-[44px]"
-              style="background: var(--surface); border: 2px solid var(--hairline); border-radius: 12px; box-shadow: 0 3px 0 var(--hairline); color: var(--text-muted);">
+              class="anim-press inline-flex items-center justify-center shrink-0 min-h-[44px] min-w-[44px]"
+              style="background: var(--surface); border: 1px solid var(--hairline); border-radius: 12px; color: var(--text-muted);">
         <%= render Ui::Icon::Component.new(:users, size: 18, color: "currentColor") %>
       </button>
     <% end %>

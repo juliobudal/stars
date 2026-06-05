@@ -25,8 +25,8 @@
 
   <% if @awaiting_count.positive? %>
     <%= link_to parent_approvals_path,
-          class: "flex items-center justify-between gap-3 mb-5 px-4 py-3 rounded-[14px] border-2 no-underline",
-          style: "background: var(--c-rose-soft); border-color: var(--danger); box-shadow: 0 3px 0 var(--danger-2);" do %>
+          class: "flex items-center justify-between gap-3 mb-5 px-4 py-3 rounded-[14px] border no-underline",
+          style: "background: var(--c-rose-soft); border-color: var(--danger); box-shadow: 0 4px 0 var(--danger-2);" do %>
       <span class="text-[13px] font-extrabold inline-flex items-center gap-2" style="color: var(--danger-2);">
         <%= render Ui::Icon::Component.new("clock", size: 16, color: "var(--danger)") %>
         <%= @awaiting_count %> <%= @awaiting_count == 1 ? "missão aguardando" : "missões aguardando" %> aprovação
@@ -38,7 +38,7 @@
   <%# ── Missões desta criança ── %>
   <section data-controller="child-assign" class="relative">
     <div data-child-assign-target="toast" hidden
-         class="fixed bottom-[96px] lg:bottom-6 left-1/2 -translate-x-1/2 z-[500] px-5 py-3 rounded-full text-white font-display font-extrabold text-[14px] shadow-lift bg-destructive anim-pop-in"></div>
+         class="fixed bottom-[96px] lg:bottom-6 left-1/2 -translate-x-1/2 z-[500] px-5 py-3 rounded-full text-white font-display font-extrabold text-[14px] shadow-popover bg-destructive anim-pop-in"></div>
 
     <div class="flex items-center justify-between mb-3">
       <h2 class="text-[16px] font-extrabold m-0" style="color: var(--text);">Missões de <%= @child.name %></h2>
@@ -53,7 +53,7 @@
         <% end %>
       </div>
     <% else %>
-      <div class="bg-surface rounded-[16px] border-2 p-5" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
+      <div class="bg-surface rounded-[16px] border p-5" style="border-color: var(--hairline); box-shadow: var(--shadow-card);">
         <%= render Ui::Empty::Component.new(
               icon: "target", color: "primary",
               title: "Nenhuma missão ainda",

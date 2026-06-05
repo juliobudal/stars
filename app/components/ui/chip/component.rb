@@ -28,7 +28,7 @@ class Ui::Chip::Component < ApplicationComponent
     when "sky"     then "bg-sky-soft text-sky-depth"
     when "lilac"   then "bg-lilac-soft text-lilac-depth"
     when "primary" then "bg-primary-soft text-primary-depth"
-    when "outline" then "bg-white text-foreground border-2 border-[rgba(26,42,74,0.1)]"
+    when "outline" then "bg-white text-foreground border border-[rgba(26,42,74,0.1)]"
     else                "bg-surface-2 text-muted-foreground"
     end
 

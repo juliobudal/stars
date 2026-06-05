@@ -31,7 +31,7 @@ class Ui::Badge::Component < ApplicationComponent
     when "lilac" then "bg-lilac-soft text-lilac-dark"
     when "coral" then "bg-coral-soft text-coral-depth"
     when "primary" then "bg-primary-soft text-primary-2"
-    when "outline" then "bg-white text-foreground border-2 border-hairline"
+    when "outline" then "bg-white text-foreground border border-hairline"
     else ""
     end
 

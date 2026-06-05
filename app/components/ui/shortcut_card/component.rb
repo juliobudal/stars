@@ -84,14 +84,13 @@ module Ui
              "background: #{tint[:bg]}",
              "border-radius: 14px",
              "padding: 12px 14px" ]
-        s << (ghost ? "border: 2px dashed #{tint[:border]}" : "border: 2px solid #{tint[:border]}")
-        s << "box-shadow: 0 4px 0 #{tint[:shadow]}" if tint[:shadow]
+        s << (ghost ? "border: 1px dashed #{tint[:border]}" : "border: 1px solid #{tint[:border]}")
         s.join("; ")
       end
 
       def icon_cell_style
         return nil if tint[:icon_bg].nil?
-        "background: #{tint[:icon_bg]}; border: 2px solid #{tint[:icon_brd]};"
+        "background: #{tint[:icon_bg]}; border: 1px solid #{tint[:icon_brd]};"
       end
     end
   end

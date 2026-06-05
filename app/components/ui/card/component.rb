@@ -20,7 +20,7 @@ class Ui::Card::Component < ApplicationComponent
   private
 
   def classes
-    base_classes = "bg-surface rounded-card shadow-card relative border-2 border-hairline"
+    base_classes = "bg-surface rounded-card shadow-card relative border border-hairline"
 
     padding_class = PADDINGS[@padding.to_s] || @padding.to_s
 

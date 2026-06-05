@@ -24,5 +24,5 @@
 .ls-textarea:focus,
 .ls-input:focus {
   border-color: var(--primary) !important;
-  box-shadow: 0 3px 0 var(--primary-2) !important;
+  box-shadow: 0 4px 0 var(--primary-2) !important;
 }

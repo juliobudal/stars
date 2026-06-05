@@ -1,4 +1,4 @@
-<div<%= " id=\"#{dom_id}\"".html_safe if dom_id %> data-palette="<%= helpers.palette_for(kid) %>" class="bg-surface rounded-[16px] border-2 border-hairline p-[14px]" style="box-shadow: var(--shadow-card);">
+<%= tag.div id: dom_id, data: { palette: helpers.palette_for(kid) }, class: "bg-surface rounded-[16px] border border-hairline p-[14px]" do %>
   <% if compact? %>
     <%# ─── Compact (dashboard): single row with inline buttons ─── %>
     <div class="flex items-center gap-3.5">
@@ -13,7 +13,7 @@
       <% end %>
       <% if category_meta %>
         <% tint_color = category_meta[:tint] %>
-        <div class="w-[42px] h-[42px] rounded-[12px] grid place-items-center shrink-0 border-2"
+        <div class="w-[42px] h-[42px] rounded-[12px] grid place-items-center shrink-0 border"
              style="background: <%= Ui::Tokens.tint_soft(tint_color) %>; border-color: <%= Ui::Tokens.tint_fg(tint_color) %>;">
           <%= render Ui::Icon::Component.new(category_meta[:icon], size: 22, color: Ui::Tokens.tint_fg(tint_color)) %>
         </div>
@@ -35,20 +35,16 @@
         </div>
       </div>
       <div class="flex gap-2 shrink-0">
-        <%= button_to reject_url, method: :patch,
-            class: "text-xs uppercase tracking-[0.5px]",
-            style: "background: var(--surface); color: var(--text-muted); border: 2px solid var(--hairline); border-radius: 12px; padding: 10px 14px; min-height: 44px; font-weight: 800; cursor: pointer; white-space: nowrap; box-shadow: 0 3px 0 var(--hairline);",
-            aria: { label: reject_label },
-            data: { turbo_frame: "approvals_list", turbo_confirm: reject_confirm, turbo_submits_with: reject_submits_with }.compact do %>
-          <%= reject_label %>
-        <% end %>
-        <%= button_to approve_url, method: :patch,
-            class: "text-xs uppercase tracking-[0.5px]",
-            style: "background: var(--primary); color: white; border: 2px solid var(--primary); border-radius: 12px; padding: 10px 16px; min-height: 44px; font-weight: 800; cursor: pointer; white-space: nowrap; box-shadow: 0 3px 0 var(--primary-2);",
-            aria: { label: approve_label },
-            data: { turbo_frame: "approvals_list", turbo_submits_with: approve_submits_with } do %>
-          <%= approve_label %>
-        <% end %>
+        <%= render Ui::Btn::Component.new(
+              variant: "secondary", size: "sm", url: reject_url, method: :patch,
+              aria: { label: reject_label },
+              data: { turbo_frame: "approvals_list", turbo_confirm: reject_confirm, turbo_submits_with: reject_submits_with }.compact
+            ) do %><%= reject_label %><% end %>
+        <%= render Ui::Btn::Component.new(
+              variant: "primary", size: "sm", url: approve_url, method: :patch,
+              aria: { label: approve_label },
+              data: { turbo_frame: "approvals_list", turbo_submits_with: approve_submits_with }
+            ) do %><%= approve_label %><% end %>
       </div>
     </div>
   <% else %>
@@ -95,7 +91,7 @@
           <% end %>
         </div>
         <% if submission_comment.present? %>
-          <div class="mt-2 px-3 py-2 rounded-[10px] border-2 text-[13px] font-bold flex items-start gap-2"
+          <div class="mt-2 px-3 py-2 rounded-[10px] border text-[13px] font-bold flex items-start gap-2"
                style="background: var(--surface-2); border-color: var(--hairline); color: var(--text);">
             <%= render Ui::Icon::Component.new("edit", size: 14, color: "var(--primary-2)", class: "mt-0.5 shrink-0") %>
             <span><%= submission_comment %></span>
@@ -104,28 +100,25 @@
       </div>
     </div>
     <div class="flex items-center gap-2.5">
-      <%= button_to reject_url, method: :patch,
-          form_class: "flex-1",
-          class: "text-sm uppercase tracking-[0.5px]",
-          style: "width: 100%; background: var(--surface); color: var(--text-muted); border: 2px solid var(--hairline); border-radius: 12px; padding: 10px 0; font-weight: 800; cursor: pointer; text-align: center; box-shadow: 0 3px 0 var(--hairline);",
-          aria: { label: reject_label },
-          data: { turbo_frame: "approvals_list", turbo_confirm: reject_confirm, turbo_submits_with: reject_submits_with }.compact do %>
-        <%= reject_label %>
-      <% end %>
+      <%= render Ui::Btn::Component.new(
+            variant: "secondary", size: "md", url: reject_url, method: :patch, block: true,
+            form_class: "flex-1",
+            aria: { label: reject_label },
+            data: { turbo_frame: "approvals_list", turbo_confirm: reject_confirm, turbo_submits_with: reject_submits_with }.compact
+          ) do %><%= reject_label %><% end %>
       <%= form_with url: approve_url, method: :patch, class: "flex-1",
             data: { turbo_frame: "approvals_list", turbo_submits_with: approve_submits_with } do |f| %>
         <% if points_editable %>
           <div class="flex items-center gap-2 mb-2">
             <label class="text-[12px] font-extrabold" style="color: var(--text-muted);">Pontos:</label>
             <%= f.number_field :points_override, value: points, min: 1, max: 1000,
-                  class: "w-20 px-2 py-1 rounded-[8px] border-2 text-[13px] font-bold text-center",
-                  style: "border-color: var(--hairline); background: var(--surface); color: var(--text);" %>
+                  class: "w-20 px-2 py-1 rounded-[8px] border text-[13px] font-bold text-center",
+                  style: "border-color: var(--border-control); background: var(--surface); color: var(--text);" %>
           </div>
         <% end %>
         <%= f.submit approve_label,
-              class: "w-full text-sm uppercase tracking-[0.5px]",
-              style: "background: var(--primary); color: white; border: 2px solid var(--primary); border-radius: 12px; padding: 10px 0; font-weight: 800; cursor: pointer; box-shadow: 0 3px 0 var(--primary-2);" %>
+              class: "ui-btn ui-btn--primary ui-btn--md min-h-[44px] anim-press w-full" %>
       <% end %>
     </div>
   <% end %>
-</div>
+<% end %>

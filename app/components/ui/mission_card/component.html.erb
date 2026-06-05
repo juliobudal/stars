@@ -4,8 +4,7 @@
     style="
       background: white;
       border-radius: var(--r-xl);
-      border: 2px solid var(--hairline);
-      box-shadow: var(--shadow-card);
+      border: 1px solid var(--hairline);
       padding: 14px;
       cursor: <%= status_locked? ? 'default' : 'pointer' %>;
       animation-delay: <%= @index * 0.04 %>s;
@@ -47,19 +46,18 @@
 <% elsif approved? %>
   <%# bubble · approved (line-through, primary check tile) %>
   <div
-    class="ls-card-3d anim-card-enter flex items-center gap-3.5 px-4 py-3.5 w-full <%= @options[:class] %>"
+    class="anim-card-enter flex items-center gap-3.5 px-4 py-3.5 w-full <%= @options[:class] %>"
     style="
       background: var(--primary-soft);
-      border: 2px solid var(--primary);
+      border: 1px solid var(--primary);
       border-radius: var(--r-xl);
-      box-shadow: 0 4px 0 var(--primary-2);
       animation-delay: <%= [@index, 5].min * 0.04 %>s;
       <%= @options[:style] %>
     "
     <%= extra_html_attrs %>
   >
     <div class="grid place-items-center shrink-0"
-         style="width: 48px; height: 48px; border-radius: 12px; background: var(--surface); border: 2px solid var(--primary);">
+         style="width: 48px; height: 48px; border-radius: 12px; background: var(--surface); border: 1px solid var(--primary);">
       <%= render Ui::Icon::Component.new("check", size: 26, color: "var(--primary-2)") %>
     </div>
     <div class="flex-1 min-w-0">
@@ -74,19 +72,18 @@
 <% elsif rejected? %>
   <%# bubble · rejected (line-through, danger x tile) %>
   <div
-    class="ls-card-3d anim-card-enter flex items-center gap-3.5 px-4 py-3.5 w-full <%= @options[:class] %>"
+    class="anim-card-enter flex items-center gap-3.5 px-4 py-3.5 w-full <%= @options[:class] %>"
     style="
       background: var(--c-rose-soft);
-      border: 2px solid var(--danger);
+      border: 1px solid var(--danger);
       border-radius: var(--r-xl);
-      box-shadow: 0 4px 0 var(--danger-2);
       animation-delay: <%= [@index, 5].min * 0.04 %>s;
       <%= @options[:style] %>
     "
     <%= extra_html_attrs %>
   >
     <div class="grid place-items-center shrink-0"
-         style="width: 48px; height: 48px; border-radius: 12px; background: var(--surface); border: 2px solid var(--danger);">
+         style="width: 48px; height: 48px; border-radius: 12px; background: var(--surface); border: 1px solid var(--danger);">
       <%= render Ui::Icon::Component.new("x", size: 26, color: "var(--danger)") %>
     </div>
     <div class="flex-1 min-w-0">
@@ -101,10 +98,9 @@
   <div
     class="anim-card-enter anim-press w-full text-left flex items-center gap-3 sm:gap-4 px-4 py-3.5 sm:px-5 sm:py-[18px] <%= @options[:class] %>"
     style="
-      background: <%= category_data[:color] == 'primary' ? 'var(--primary-soft)' : "var(--c-#{category_data[:color]}-soft)" %>;
+      background: var(--surface);
       border-radius: var(--r-xl);
-      border: 2px solid <%= category_data[:color] == 'primary' ? 'var(--primary)' : "var(--c-#{category_data[:color]})" %>;
-      box-shadow: 0 4px 0 <%= category_data[:color] == 'primary' ? 'var(--primary-2)' : "var(--c-#{category_data[:color]}-dark)" %>;
+      border: 1px solid var(--hairline);
       cursor: <%= waiting? ? 'default' : 'pointer' %>;
       animation-delay: <%= [@index, 5].min * 0.04 %>s;
       opacity: <%= waiting? ? 0.88 : 1 %>;
@@ -131,8 +127,8 @@
       <% else %>
         <%= render Ui::StarValue::Component.new(value: points_value, size: :lg, color: :gold, class: "text-star-2 tracking-[-0.02em]") %>
         <span aria-hidden="true"
-              class="grid place-items-center shrink-0 ls-card-3d"
-              style="width: 40px; height: 40px; background: var(--primary); border: 2px solid var(--primary-2); border-radius: 12px; box-shadow: 0 3px 0 var(--primary-2); color: white;">
+              class="grid place-items-center shrink-0"
+              style="width: 40px; height: 40px; background: var(--primary); border-radius: 12px; color: white;">
           <%= render Ui::Icon::Component.new("check", size: 22, color: "white") %>
         </span>
       <% end %>

@@ -5,7 +5,7 @@
                   method: :delete,
                   form: { class: "block", data: { turbo: true, turbo_frame: dom_id(reward, :pin) } },
                   class: "ls-btn-3d inline-flex items-center gap-1 px-2 py-1 rounded-[10px] text-[11px] font-extrabold",
-                  style: "background: var(--star-soft); color: var(--c-amber-dark); box-shadow: 0 3px 0 var(--star-2);",
+                  style: "background: var(--star-soft); color: var(--c-amber-dark); box-shadow: 0 4px 0 var(--star-2);",
                   aria: { label: "Remover meta" } do %>
       <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--c-amber-dark)") %>
       Meta
@@ -15,8 +15,8 @@
                   method: :post,
                   params: { reward_id: reward.id },
                   form: { class: "block", data: { turbo: true, turbo_frame: dom_id(reward, :pin) } },
-                  class: "ls-btn-3d inline-flex items-center gap-1 px-2 py-1 rounded-[10px] text-[11px] font-bold",
-                  style: "background: var(--surface); color: var(--text-muted); border: 2px solid var(--hairline); box-shadow: 0 3px 0 var(--hairline);",
+                  class: "anim-press inline-flex items-center gap-1 px-2 py-1 rounded-[10px] text-[11px] font-bold",
+                  style: "background: var(--surface); color: var(--text-muted); border: 1px solid var(--hairline);",
                   aria: { label: "Definir como meta" } do %>
       <%= render Ui::Icon::Component.new(:star, size: 12, color: "var(--text-muted)") %>
       Meta

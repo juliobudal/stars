@@ -18,7 +18,7 @@
                 class: "space-y-5 px-1" do |f| %>
 
     <% if flash.now[:alert].present? %>
-      <div class="rounded-[14px] border-2 px-4 py-3 text-[13px] font-bold"
+      <div class="rounded-[14px] border px-4 py-3 text-[13px] font-bold"
            style="background: var(--danger-soft); color: var(--danger); border-color: var(--danger);">
         <%= flash.now[:alert] %>
       </div>
@@ -35,7 +35,7 @@
                  padding: 12px 14px;
                  border-radius: 14px;
                  background: <%= checked ? 'var(--primary-soft)' : 'var(--surface-2)' %>;
-                 border: 2px solid <%= checked ? 'var(--primary)' : 'transparent' %>;
+                 border: 1px solid <%= checked ? 'var(--primary)' : 'transparent' %>;
                  box-shadow: <%= checked ? '0 4px 0 var(--primary-glow, rgba(0,0,0,0.08))' : 'none' %>;
                  cursor: pointer;
                  font-family: var(--font-display, Nunito), sans-serif;

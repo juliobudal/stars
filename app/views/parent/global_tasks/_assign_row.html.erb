@@ -21,7 +21,7 @@
   <%# ── Sticky mission cell ── %>
   <div class="assign-col-task flex items-center gap-3 px-4 py-3 shrink-0"
        style="width: 240px; position: sticky; left: 0; background: var(--surface); z-index: 1; box-shadow: 1px 0 0 var(--surface-muted);">
-    <div class="w-10 h-10 rounded-[12px] flex items-center justify-center shrink-0 border-2"
+    <div class="w-10 h-10 rounded-[12px] flex items-center justify-center shrink-0 border"
          style="background: <%= tint_soft %>; border-color: <%= tint_fg %>; opacity: <%= mission.active? ? 1 : 0.5 %>;">
       <%= render Ui::Icon::Component.new(cm[:icon], size: 20, color: tint_fg) %>
     </div>
@@ -56,7 +56,7 @@
       <input type="checkbox" name="profile_ids[]" value="<%= kid.id %>" <%= "checked" if checked %>
              class="peer sr-only" data-action="change->assignment-matrix#save"
              aria-label="<%= mission.title %> para <%= kid.name %>">
-      <span class="w-9 h-9 rounded-[11px] border-2 flex items-center justify-center text-transparent
+      <span class="w-9 h-9 rounded-[11px] border flex items-center justify-center text-transparent
                    border-[var(--hairline)] bg-[var(--surface-muted)]
                    peer-checked:border-[var(--primary)] peer-checked:bg-[var(--primary)] peer-checked:text-white
                    peer-focus-visible:ring-2 peer-focus-visible:ring-[var(--primary)]"

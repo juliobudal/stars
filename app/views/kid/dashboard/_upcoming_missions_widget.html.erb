@@ -22,10 +22,10 @@
                      I18n.l(date, format: "%d/%m")
                    end
       %>
-        <li class="flex items-center gap-3 py-2 px-3 rounded-[12px] border-2 border-hairline"
+        <li class="flex items-center gap-3 py-2 px-3 rounded-[12px] border border-hairline"
             style="background: var(--surface-2);">
           <div class="shrink-0 w-9 h-9 rounded-[10px] grid place-items-center"
-               style="background: var(--star-soft); border: 2px solid var(--star);">
+               style="background: var(--star-soft); border: 1px solid var(--star);">
             <%= render Ui::Icon::Component.new(gt.icon.presence || :target, size: 16, color: "var(--star-2)") %>
           </div>
           <div class="flex-1 min-w-0">

@@ -27,7 +27,7 @@
     <%= render Ui::FormSection::Component.new(title: "PINs dos perfis") do %>
       <ul class="flex flex-col gap-2">
         <% current_family.profiles.order(:name).each do |profile| %>
-          <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-3 px-3 rounded-[12px] border-2 border-hairline min-w-0"
+          <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-3 px-3 rounded-[12px] border border-hairline min-w-0"
               style="background: var(--surface-2);">
             <div class="flex items-center gap-3 min-w-0 flex-1">
               <%= render Ui::SmileyAvatar::Component.new(kid: profile, size: 32, decorative: true) %>
