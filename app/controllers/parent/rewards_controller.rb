@@ -37,8 +37,12 @@ class Parent::RewardsController < ApplicationController
   end
 
   def destroy
-    @reward.destroy
-    redirect_to parent_rewards_path, notice: "Recompensa removida."
+    if @reward.destroy
+      redirect_to parent_rewards_path, notice: "Recompensa removida."
+    else
+      redirect_to parent_rewards_path,
+                  alert: "Não dá para excluir um prêmio que já foi resgatado — o histórico precisa dele. Edite-o se quiser ajustar."
+    end
   end
 
   # Clones a reward so parents don't rebuild similar ones; lands on edit.

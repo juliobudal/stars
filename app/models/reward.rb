@@ -27,6 +27,11 @@ class Reward < ApplicationRecord
   belongs_to :family
   belongs_to :category
 
+  # Redemptions are an append-only ledger entry: a redeemed reward must not be
+  # silently destroyed (it would orphan the kid's history and hit the DB FK
+  # constraint with a 500). Block the delete and surface a friendly error.
+  has_many :redemptions, dependent: :restrict_with_error
+
   validates :title, presence: true
   validates :cost, numericality: { greater_than: 0 }
 

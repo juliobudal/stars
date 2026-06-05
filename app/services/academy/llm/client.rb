@@ -112,6 +112,11 @@ module Academy
             Rails.logger.warn("[Academy::Llm::Client] open_timeout — retrying once")
             sleep RETRY_BACKOFF_S
             next
+          rescue Net::ReadTimeout => e
+            # Not retried (the request may already be processing upstream and a
+            # retry would double-bill tokens). But it MUST surface as Client::Error
+            # so Guide::Ask's rescue catches it instead of 500-ing the kid.
+            raise Error, "OpenRouter read_timeout after #{@http_read_timeout}s: #{e.message}"
           end
 
           return res unless RETRYABLE_STATUSES.include?(res.code) && attempts < 2

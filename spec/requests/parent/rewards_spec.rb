@@ -117,6 +117,19 @@ RSpec.describe "Parent::Rewards", type: :request do
         delete parent_reward_path(other_reward)
         expect(response).to have_http_status(:not_found)
       end
+
+      it "blocks deleting a reward that has redemptions instead of 500-ing" do
+        create(:redemption, profile: child_profile, reward: reward, points: 100)
+
+        expect {
+          delete parent_reward_path(reward)
+        }.not_to change(Reward, :count)
+
+        expect(response).to redirect_to(parent_rewards_path)
+        follow_redirect!
+        expect(response.body).to include("já foi resgatado")
+        expect(Reward.exists?(reward.id)).to be true
+      end
     end
   end
 end

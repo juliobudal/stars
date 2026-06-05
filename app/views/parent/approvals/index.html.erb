@@ -4,7 +4,7 @@
   <% pending_total = @profile_tasks.count + @redemptions.count %>
   <%
     subtitle_text = pending_total.positive? ? "#{pending_total} #{pending_total == 1 ? 'pendência aguardando' : 'pendências aguardando'} sua revisão" : "Nenhuma pendência no momento"
-    approvals_subtitle = %(<span id="parent_approvals_subtitle">#{subtitle_text}</span>).html_safe
+    approvals_subtitle = tag.span(subtitle_text, id: "parent_approvals_subtitle")
   %>
   <%= render Ui::PageHeader::Component.new(title: "Aprovações", subtitle: approvals_subtitle) do |h| %>
     <% if pending_total > 0 %>
