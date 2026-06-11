@@ -63,7 +63,7 @@ end
 
 gem "vite_rails", "~> 3.11"
 
-gem "view_component", "~> 4.11"
+gem "view_component", "~> 4.12"
 
 gem "rspec-rails", "~> 8.0", groups: [ :development, :test ]
 gem "factory_bot_rails", "~> 6.5", groups: [ :development, :test ]
