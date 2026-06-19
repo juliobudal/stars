@@ -14,9 +14,7 @@
       Escolhe uma senha nova pra entrar
     </p>
 
-    <% if flash[:alert] %>
-      <p role="alert" class="mb-4 font-bold" style="color: var(--danger);"><%= flash[:alert] %></p>
-    <% end %>
+    <%= render "shared/form_alert", message: flash[:alert] if flash[:alert] %>
 
     <div class="w-full max-w-[360px]">
       <%= render Ui::FormErrors::Component.new(record: @family) %>
@@ -40,7 +38,7 @@
               autocomplete: "new-password",
               class: "form-input" %>
         </div>
-        <%= render Ui::Btn::Component.new(variant: "primary", size: "md", type: "submit") do %>Salvar nova senha<% end %>
+        <%= render Ui::Btn::Component.new(variant: "primary", size: "md", type: "submit", block: true, data: { turbo_submits_with: "Salvando…" }) do %>Salvar nova senha<% end %>
       <% end %>
     </div>
   </div>

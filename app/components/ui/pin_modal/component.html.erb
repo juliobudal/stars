@@ -9,12 +9,15 @@
   <div class="pin-name" id="pin-modal-title-<%= profile.id %>">Olá, <%= profile.name %>!</div>
   <div class="pin-hint">Digite seu PIN secreto</div>
 
-  <div class="pin-dots" data-pin-pad-target="dots">
+  <div class="pin-dots <%= "anim-shake" if error %>" data-pin-pad-target="dots">
     <% 4.times do %><div class="pin-dot"></div><% end %>
   </div>
 
   <% if error %>
-    <p class="text-destructive text-sm mt-1"><%= error %></p>
+    <p role="alert" class="inline-flex items-center gap-1.5 text-[13px] font-extrabold mt-0 mb-1 m-0" style="color: var(--danger-2);">
+      <%= render Ui::Icon::Component.new("close", size: 14, color: "var(--danger)") %>
+      <%= error %>
+    </p>
   <% end %>
 
   <%= form_with url: profile_session_path, method: :post, local: true,

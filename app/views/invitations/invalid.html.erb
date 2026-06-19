@@ -1,0 +1,26 @@
+<% content_for :title, "Convite · LittleStars" %>
+<div class="screen screen-enter relative">
+  <%= render Ui::BgShapes::Component.new(variant: "cool") %>
+
+  <div class="relative z-2 flex flex-col items-center justify-center p-10 pt-12 text-center">
+    <%# Brand lockup %>
+    <div class="mb-6">
+      <%= render Ui::Brand::Component.new(size: :md, tagline: "Convite") %>
+    </div>
+
+    <div class="w-16 h-16 rounded-full grid place-items-center mb-5" style="background: var(--c-rose-soft);">
+      <%= render Ui::Icon::Component.new("close", size: 28, color: "var(--danger)") %>
+    </div>
+
+    <h1 class="text-[24px] font-extrabold mb-1.5" style="color: var(--text);">
+      Convite indisponível
+    </h1>
+    <p class="mb-6 text-[14px] font-bold max-w-[320px]" style="color: var(--text-muted);">
+      <%= @error_message.presence || "Esse convite expirou ou já foi usado. Peça um novo para quem te chamou." %>
+    </p>
+
+    <%= render Ui::Btn::Component.new(variant: "primary", size: "md", url: root_path) do %>
+      Voltar ao início
+    <% end %>
+  </div>
+</div>

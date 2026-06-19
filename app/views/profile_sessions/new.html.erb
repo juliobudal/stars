@@ -23,6 +23,6 @@
       Toque no seu rostinho pra entrar
     </p>
 
-    <%= render Ui::ProfilePicker::Component.new(profiles: @profiles, selected: @selected_profile) %>
+    <%= render Ui::ProfilePicker::Component.new(profiles: @profiles, selected: @selected_profile, pin_error: flash[:alert]) %>
   </div>
 </div>

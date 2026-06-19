@@ -16,4 +16,5 @@
 .pin-key.action { background: var(--surface-muted); color: var(--text-muted); font-size: 14px; }
 @media (prefers-reduced-motion: reduce) {
   .pin-dot, .pin-key { transition: none; }
+  .pin-card, .pin-modal-overlay { animation: none; }
 }

@@ -16,13 +16,7 @@
       Entra pra acompanhar as missões
     </p>
 
-    <% if flash[:alert] %>
-      <div role="alert" class="w-full max-w-[360px] mb-4 inline-flex items-center gap-2.5 px-3.5 py-3 rounded-[12px]"
-           style="background: color-mix(in oklab, var(--danger) 12%, var(--surface)); border: 1.5px solid var(--danger); box-shadow: 0 2px 0 color-mix(in oklab, var(--danger) 40%, var(--hairline));">
-        <span class="grid place-items-center shrink-0 font-display font-extrabold" style="width: 22px; height: 22px; background: var(--danger); color: white; border-radius: 7px; font-size: 14px; line-height: 1;" aria-hidden="true">!</span>
-        <p class="font-display text-[13px] font-extrabold leading-snug m-0" style="color: var(--danger-2);"><%= flash[:alert] %></p>
-      </div>
-    <% end %>
+    <%= render "shared/form_alert", message: flash[:alert] if flash[:alert] %>
 
     <%# Form anchored in card %>
     <div class="ls-card-3d w-full max-w-[360px]"
@@ -41,7 +35,7 @@
               autocomplete: "current-password",
               class: "form-input" %>
         </div>
-        <%= render Ui::Btn::Component.new(variant: "primary", size: "md", type: "submit") do %>
+        <%= render Ui::Btn::Component.new(variant: "primary", size: "md", type: "submit", block: true, data: { turbo_submits_with: "Entrando…" }) do %>
           Entrar
         <% end %>
       <% end %>

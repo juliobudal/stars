@@ -28,7 +28,8 @@
             size: "md",
             block: true,
             url: accept_invitation_path(token: params[:token]),
-            method: :post
+            method: :post,
+            data: { turbo_submits_with: "Entrando…" }
           ) do %>
         Aceitar convite
       <% end %>

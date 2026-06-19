@@ -1,0 +1,7 @@
+<%# Flat inline alert for auth/form flash[:alert]. Tinted fill + 1px hairline,
+    no depth, real icon — one consistent treatment across login/registration. %>
+<div role="alert" class="w-full max-w-[360px] mb-4 inline-flex items-center gap-2.5 px-3.5 py-3 rounded-[12px] border"
+     style="background: var(--c-rose-soft); border-color: var(--hairline);">
+  <%= render Ui::Icon::Component.new("close", size: 16, color: "var(--danger)") %>
+  <p class="font-display text-[13px] font-extrabold leading-snug m-0" style="color: var(--danger-2);"><%= message %></p>
+</div>

@@ -36,7 +36,7 @@
 
   <%= turbo_frame_tag "pin_modal" do %>
     <% if selected %>
-      <%= render Ui::PinModal::Component.new(profile: selected) %>
+      <%= render Ui::PinModal::Component.new(profile: selected, error: pin_error) %>
     <% end %>
   <% end %>
 </div>
