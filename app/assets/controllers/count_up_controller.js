@@ -21,6 +21,12 @@ export default class extends Controller {
   // Call animateTo(newValue) externally or via data-action
   animateTo(newValue) {
     if (isNaN(newValue)) return
+    // Respect reduced-motion: snap to the final value, no ticking interval.
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      this.displayed = newValue
+      if (this.hasDisplayTarget) this.displayTarget.textContent = newValue
+      return
+    }
     const start = isNaN(this.displayed) ? 0 : this.displayed
     const diff = newValue - start
     const steps = 18

@@ -15,27 +15,27 @@
   outline-offset: 2px;
 }
 
-.ui-btn--primary    { @apply bg-primary text-white shadow-btn-primary hover:-translate-y-1; }
+.ui-btn--primary    { @apply bg-primary text-white shadow-btn-primary; }
 .ui-btn--primary:hover  { @apply shadow-btn-primary-hover; }
 .ui-btn--primary:active { transform: translateY(2px); box-shadow: none; }
 
-.ui-btn--secondary  { @apply bg-surface text-foreground border shadow-btn-secondary hover:-translate-y-1; border-color: var(--hairline); }
+.ui-btn--secondary  { @apply bg-surface text-foreground border shadow-btn-secondary; border-color: var(--hairline); }
 .ui-btn--secondary:hover  { @apply shadow-btn-secondary-hover; background: var(--surface-2); }
 .ui-btn--secondary:active { transform: translateY(2px); box-shadow: none; }
 
-.ui-btn--ghost      { @apply bg-transparent text-foreground border border-[rgba(26,42,74,0.1)] shadow-none; }
-.ui-btn--ghost:hover { @apply bg-[rgba(26,42,74,0.04)]; }
+.ui-btn--ghost      { @apply bg-transparent text-foreground border shadow-none; border-color: var(--hairline); }
+.ui-btn--ghost:hover { background: var(--surface-2); }
 .ui-btn--ghost:active { transform: translateY(2px); box-shadow: none; }
 
-.ui-btn--danger     { @apply bg-destructive text-white shadow-btn-destructive hover:-translate-y-1; }
+.ui-btn--danger     { @apply bg-destructive text-white shadow-btn-destructive; }
 .ui-btn--danger:hover  { @apply shadow-btn-destructive-hover; }
 .ui-btn--danger:active { transform: translateY(2px); box-shadow: none; }
 
-.ui-btn--success    { @apply bg-success text-white shadow-btn-success hover:-translate-y-1; }
+.ui-btn--success    { @apply bg-success text-white shadow-btn-success; }
 .ui-btn--success:hover  { @apply shadow-btn-success-hover; }
 .ui-btn--success:active { transform: translateY(2px); box-shadow: none; }
 
-.ui-btn--star       { @apply bg-warning text-foreground shadow-btn-warning hover:-translate-y-1; }
+.ui-btn--star       { @apply bg-warning text-foreground shadow-btn-warning; }
 .ui-btn--star:hover  { @apply shadow-btn-warning-hover; }
 .ui-btn--star:active { transform: translateY(2px); box-shadow: none; }
 

@@ -8,7 +8,7 @@
   </div>
   <button type="button" id="sidebar-toggle"
           data-action="click->sidebar-toggle#open"
-          aria-label="Abrir menu"
+          aria-label="Abrir menu" aria-expanded="false" aria-controls="parent-sidebar"
           class="flex items-center justify-center w-11 h-11 rounded-[10px] bg-muted border-none cursor-pointer text-foreground">
     <%= render Ui::Icon::Component.new("list", size: 22) %>
   </button>
@@ -129,7 +129,7 @@
   <%# "Mais" · opens the drawer to reach Crianças / Categorias / Configurações %>
   <button type="button"
           data-action="click->sidebar-toggle#open"
-          aria-label="Mais opções"
+          aria-label="Mais opções" aria-expanded="false" aria-controls="parent-sidebar"
           class="flex flex-col items-center justify-center gap-1 flex-1 py-2 min-h-[44px] bg-transparent border-0 cursor-pointer">
     <span class="flex flex-col items-center gap-0.5 px-2 py-1 rounded-[12px] border border-transparent text-muted-foreground transition-colors">
       <%= render Ui::Icon::Component.new("list", size: 22, color: "currentColor") %>

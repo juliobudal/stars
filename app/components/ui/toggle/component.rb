@@ -47,6 +47,7 @@ module Ui
       def peer_track_classes
         class_names(
           "rounded-full bg-hairline transition-colors duration-200 relative peer-checked:bg-primary",
+          "peer-focus-visible:[outline:2px_solid_var(--primary)] peer-focus-visible:[outline-offset:2px]",
           size == :sm ? "w-[34px] h-[20px]" : "w-[52px] h-[30px]"
         )
       end

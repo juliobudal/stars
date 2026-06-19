@@ -60,16 +60,16 @@ module Ui
       def trigger_class
         class_names(
           "ui-select__trigger inline-flex items-center justify-between gap-3 w-full",
-          "bg-white border border-border-control font-bold text-foreground",
+          "bg-surface border border-border-control font-bold text-foreground",
           "transition-all cursor-pointer",
-          "hover:border-primary/40 focus:border-primary focus:outline-none",
+          "hover:border-primary/40 focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--primary-soft)]",
           SIZES[@size],
           @class
         )
       end
 
       def panel_class
-        "ui-select__panel absolute left-0 right-0 mt-1.5 z-50 bg-white border border-hairline rounded-xl shadow-popover overflow-hidden hidden"
+        "ui-select__panel absolute left-0 right-0 mt-1.5 z-50 bg-surface border border-hairline rounded-xl shadow-popover overflow-hidden hidden"
       end
 
       def option_class(value)

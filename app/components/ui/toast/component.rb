@@ -17,9 +17,9 @@ module Ui
 
       def variant_classes
         case variant
-        when :success then "bg-emerald-500 text-white"
-        when :error   then "bg-rose-500 text-white"
-        when :info    then "bg-sky-500 text-white"
+        when :success then "bg-success text-white"
+        when :error   then "bg-destructive text-white"
+        when :info    then "bg-info text-white"
         else "bg-foreground text-background"
         end
       end

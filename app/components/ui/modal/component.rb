@@ -58,9 +58,9 @@ class Ui::Modal::Component < ApplicationComponent
 
   def variant_band_class
     case @variant
-    when :success then "border-t-4 border-emerald-400"
-    when :"confirm-destructive" then "border-t-4 border-rose-500"
-    when :celebration then "border-t-4 border-warning"
+    when :success then "border border-success"
+    when :"confirm-destructive" then "border border-destructive"
+    when :celebration then "border border-warning"
     else ""
     end
   end

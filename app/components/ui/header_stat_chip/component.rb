@@ -21,7 +21,7 @@ module Ui
         },
         warning: {
           bg: "var(--star-soft)",
-          border: "var(--star)",
+          border: "var(--hairline)",
           shadow: "var(--star-2)",
           value_color: "var(--c-streak)",
           label_color: "var(--c-amber-dark)",
@@ -29,7 +29,7 @@ module Ui
         },
         success: {
           bg: "var(--primary-soft)",
-          border: "var(--primary)",
+          border: "var(--hairline)",
           shadow: "var(--primary-2)",
           value_color: "var(--primary-2)",
           label_color: "var(--primary-2)",
@@ -37,7 +37,7 @@ module Ui
         },
         danger: {
           bg: "var(--c-rose-soft)",
-          border: "var(--danger)",
+          border: "var(--hairline)",
           shadow: "var(--danger-2)",
           value_color: "var(--danger)",
           label_color: "var(--danger-2)",

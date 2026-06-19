@@ -4,10 +4,11 @@ require "view_component/test_helpers"
 RSpec.describe Ui::FormSection::Component, type: :component do
   include ViewComponent::TestHelpers
 
-  it "wraps content in a card with hairline border + shadow" do
+  it "wraps content in a flat card with a hairline border (no depth — quase plano)" do
     render_inline(described_class.new) { "<input />".html_safe }
     section = page.find("section")
-    expect(section[:class]).to include("bg-surface", "rounded-card", "border-hairline", "shadow-card")
+    expect(section[:class]).to include("bg-surface", "rounded-card", "border-hairline")
+    expect(section[:class]).not_to include("shadow-card")
     expect(section).to have_css("input")
   end
 

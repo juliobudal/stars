@@ -19,11 +19,11 @@
 }
 .cat-tab:active { transform: translateY(1px); }
 .cat-tab--active {
-  background: var(--primary);
-  color: white;
+  background: var(--primary-soft);
+  color: var(--primary-2);
   border-color: var(--primary);
 }
-.cat-tab--active:hover { color: white; }
+.cat-tab--active:hover { color: var(--primary-2); }
 @media (prefers-reduced-motion: reduce) {
   .cat-tab { transition: none; }
   .cat-tab:active { transform: none; }

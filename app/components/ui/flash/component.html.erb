@@ -1,4 +1,4 @@
-<div id="flash" class="fixed top-6 left-1/2 -translate-x-1/2 z-[500] flex flex-col items-center gap-2 pointer-events-none">
+<div id="flash" role="status" aria-live="polite" aria-atomic="false" class="fixed top-6 left-1/2 -translate-x-1/2 z-[500] flex flex-col items-center gap-2 pointer-events-none">
   <% flash.each do |key, message| %>
     <% next if message.blank? %>
     <div

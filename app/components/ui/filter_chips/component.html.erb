@@ -2,9 +2,9 @@
   <div role="<%= container_role %>"<%= " aria-label=\"#{container_label}\"".html_safe if container_label.present? %> class="flex flex-wrap items-center gap-2 mb-5">
     <% items.each do |item|
          is_active = active?(item[:id])
-         pill_active   = "background: var(--primary); color: var(--surface-on-primary); border-color: var(--primary);"
+         pill_active   = "background: var(--primary-soft); color: var(--primary-2); border-color: var(--primary);"
          pill_inactive = "background: var(--surface); color: var(--text-muted); border-color: var(--hairline);"
-         badge_active   = "background: var(--overlay-soft); color: var(--surface-on-primary);"
+         badge_active   = "background: var(--primary); color: var(--surface-on-primary);"
          badge_inactive = "background: var(--surface-muted); color: var(--text-muted);"
     %>
       <button type="button"
