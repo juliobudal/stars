@@ -8,13 +8,11 @@ module Rewards
     def call
       Rails.logger.info("[Rewards::RejectRedemptionService] start redemption_id=#{@redemption.id}")
 
-      ActiveRecord::Base.transaction do
+      result = ActiveRecord::Base.transaction do
         @redemption.lock!
         @profile.lock!
 
-        unless @redemption.pending?
-          return fail_with("Resgate não está pendente")
-        end
+        next fail_with("Resgate não está pendente") unless @redemption.pending?
 
         @redemption.update!(status: :rejected)
         @profile.increment!(:points, @redemption.points)
@@ -24,10 +22,11 @@ module Rewards
           title: "Resgate Recusado (Reembolso): #{@redemption.title}",
           points: @redemption.points
         )
+        ok(@redemption)
       end
 
-      Rails.logger.info("[Rewards::RejectRedemptionService] success id=#{@redemption.id}")
-      ok(@redemption)
+      Rails.logger.info("[Rewards::RejectRedemptionService] success id=#{@redemption.id}") if result.success?
+      result
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
       Rails.logger.error("[Rewards::RejectRedemptionService] exception id=#{@redemption.id} error=#{e.message}")
       fail_with(e.message)

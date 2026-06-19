@@ -26,18 +26,19 @@ module Tasks
       created_count = 0
       missed_count = 0
 
-      ActiveRecord::Base.transaction do
+      ran = ActiveRecord::Base.transaction do
         @family.lock!
 
-        if already_run_today?
-          return ok(created: 0, missed: 0, skipped: true)
-        end
+        next false if already_run_today?
 
         missed_count = sweep_stale_pendings
         created_count = materialize_today
 
         @family.update_column(:last_reset_on, @today)
+        true
       end
+
+      return ok(created: 0, missed: 0, skipped: true) unless ran
 
       Rails.logger.info("[Tasks::DailyResetService] success family_id=#{@family.id} created=#{created_count} missed=#{missed_count}")
       ok(created: created_count, missed: missed_count, skipped: false)

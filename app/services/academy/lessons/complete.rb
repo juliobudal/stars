@@ -28,6 +28,14 @@ module Academy
         progress.save!
 
         ok(progress: progress, next_lesson: next_lesson, check_correct: correct)
+      rescue ActiveRecord::RecordNotUnique
+        # Concurrent double-submit: the unique index on (learner_id, lesson_id)
+        # already protected the row — re-read the winning progress and return
+        # the same idempotent result instead of surfacing a 500.
+        progress = ::Academy::LessonProgress.find_by!(
+          learner_id: @learner.id, lesson_id: @lesson.id
+        )
+        ok(progress: progress, next_lesson: next_lesson, check_correct: correct)
       end
 
       private

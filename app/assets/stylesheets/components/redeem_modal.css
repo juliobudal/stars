@@ -22,10 +22,15 @@
   border: 1px solid var(--hairline);
   border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.05s;
+  transition: transform var(--dur-instant) var(--ease-snap);
   z-index: 2;
 }
 .redeem-ritual__close:active { transform: translateY(1px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .redeem-ritual__close { transition: none; }
+  .redeem-ritual__close:active { transform: none; }
+}
 
 .redeem-ritual__mascot { margin-top: 4px; }
 
@@ -98,7 +103,7 @@
 .redeem-ritual__warning {
   width: 100%;
   padding: 10px 12px;
-  background: rgba(255, 75, 75, 0.08);
+  background: var(--color-danger-soft);
   border: 1px solid var(--danger);
   border-radius: 12px;
   color: var(--danger);
@@ -141,7 +146,7 @@
 
 .redeem-ritual__btn--primary {
   background: var(--primary);
-  color: white;
+  color: var(--surface);
   border-color: var(--primary);
   box-shadow: 0 4px 0 var(--primary-2);
 }

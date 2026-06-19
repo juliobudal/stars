@@ -163,6 +163,11 @@
   --shadow-lift: none;
   --border-card: 1px solid var(--hairline);
 
+  /* Inner lip on a progress-bar FILL — gives the filled track a subtle
+     bottom-edge so it reads as a solid bar, not a flat block. This is part of
+     the fill treatment, not a passive-container shadow. */
+  --shadow-progress-inset: inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+
   /* Floating overlays keep their elevation. The quase-plano pass flattened
      in-flow PASSIVE surfaces only — elements that hover ABOVE content
      (dropdown panels, off-canvas drawers, toasts) still need separation or

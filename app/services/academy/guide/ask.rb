@@ -18,10 +18,16 @@ module Academy
       # Daily cap on kid questions per learner across all lessons.
       DAILY_QUESTION_LIMIT = 5
 
+      # Server-side ceiling on a single kid message (the textarea caps at 500
+      # client-side, but a crafted POST could send an arbitrarily large body to
+      # the paid LLM). Truncate rather than reject so the kid still gets an
+      # answer.
+      MAX_CONTENT_LENGTH = 1000
+
       def initialize(learner:, lesson:, user_content:, client: ::Academy::Llm::Client.new)
         @learner = learner
         @lesson = lesson
-        @user_content = user_content.to_s.strip
+        @user_content = user_content.to_s.strip.slice(0, MAX_CONTENT_LENGTH).to_s
         @client  = client
       end
 
@@ -32,9 +38,15 @@ module Academy
 
         conversation = FindOrStartConversation.call(learner: @learner, lesson: @lesson).data
 
+        # Call the LLM BEFORE opening any transaction so a slow upstream (up to
+        # the client's 180s read timeout) never pins a Postgres connection. If
+        # it raises, neither message is persisted (the rescue below returns
+        # before the write transaction). The two message writes then commit
+        # atomically.
+        response = call_llm(conversation)
+
         ActiveRecord::Base.transaction do
           user_msg = persist_user(conversation, @user_content)
-          response = call_llm(conversation)
           guide_msg = persist_guide(conversation, response)
 
           @result = ok(
@@ -75,7 +87,11 @@ module Academy
 
       def call_llm(conversation)
         prompt = BuildPrompt.call(learner: @learner, lesson: @lesson)
-        messages = [ { role: "system", content: prompt.data[:system] } ] + transcript_messages(conversation)
+        # The new question is not persisted yet (it commits with the guide reply
+        # after this call), so append it explicitly to the transcript.
+        messages = [ { role: "system", content: prompt.data[:system] } ] +
+                   transcript_messages(conversation) +
+                   [ { role: "user", content: @user_content } ]
 
         @client.chat(messages: messages)
       end

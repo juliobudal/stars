@@ -24,5 +24,7 @@
 .ls-textarea:focus,
 .ls-input:focus {
   border-color: var(--primary) !important;
-  box-shadow: 0 4px 0 var(--primary-2) !important;
+  /* Fields stay flat — focus is a 3px soft glow, never a 0 4px 0 depth shadow
+     (DESIGN.md §4/§5). Matches components/form.css. */
+  box-shadow: 0 0 0 3px var(--primary-soft) !important;
 }

@@ -12,7 +12,17 @@ module Tasks
         return fail_with("Tarefa não está aguardando aprovação")
       end
 
-      ActiveRecord::Base.transaction do
+      race_lost = false
+
+      committed = ActiveRecord::Base.transaction do
+        @profile_task.lock!
+
+        unless @profile_task.awaiting_approval?
+          Rails.logger.info("[Tasks::RejectService] race lost id=#{@profile_task.id} status=#{@profile_task.status}")
+          race_lost = true
+          next nil
+        end
+
         @profile_task.update!(status: :rejected)
 
         if @profile_task.global_task.present?
@@ -22,7 +32,12 @@ module Tasks
             date: @profile_task.assigned_date
           ).call
         end
+
+        true
       end
+
+      return fail_with("Tarefa já foi processada") if race_lost
+      return fail_with("Transação interrompida") unless committed
 
       Rails.logger.info("[Tasks::RejectService] success id=#{@profile_task.id}")
       ok(@profile_task)

@@ -58,5 +58,35 @@ RSpec.describe "PasswordResets", type: :request do
       }
       expect(response).to redirect_to(root_path)
     end
+
+    it "rejects a token that was already used (single-use)" do
+      token = family.generate_token_for(:password_reset)
+
+      patch password_reset_path(token: token), params: {
+        token: token, password: "firstpass123456", password_confirmation: "firstpass123456"
+      }
+
+      # The reset rotated the password salt, which is baked into the token —
+      # replaying the same token must now be rejected.
+      patch password_reset_path(token: token), params: {
+        token: token, password: "secondpass123456", password_confirmation: "secondpass123456"
+      }
+
+      expect(response).to redirect_to(root_path)
+      family.reload
+      expect(family.authenticate("firstpass123456")).to be_truthy
+      expect(family.authenticate("secondpass123456")).to be_falsey
+    end
+  end
+
+  describe "token expiry" do
+    it "rejects a genuinely expired token" do
+      token = family.generate_token_for(:password_reset)
+
+      travel 31.minutes do
+        get edit_password_reset_path(token: token)
+        expect(response).to redirect_to(root_path)
+      end
+    end
   end
 end

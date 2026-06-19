@@ -13,9 +13,8 @@ module Academy
 
       # With max_tokens at 10k and reasoning models that emit hidden thought
       # tokens before output, a single call can exceed 60s on slow upstream.
-      # 180s gives comfortable headroom; the loading overlay's failsafe
-      # (75s in academy_loading_controller.js) is a lower-bound UX cap,
-      # not a hard transport cap.
+      # 180s gives comfortable headroom; the kid-facing pill controller shows
+      # its own loading state while this resolves.
       DEFAULT_TIMEOUT = 180
 
       # Transient upstream errors get one retry with a short backoff. We

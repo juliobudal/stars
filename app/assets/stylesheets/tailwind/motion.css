@@ -52,16 +52,6 @@
     outline-offset: 2px;
   }
 
-  .anim-tile {
-    transition:
-      transform var(--dur-base) var(--ease-spring-soft),
-      box-shadow var(--dur-base) var(--ease-snap);
-  }
-  .anim-tile:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.10);
-  }
-
   .anim-pop-in {
     animation: fxPopIn var(--dur-pop) var(--ease-spring) both;
   }

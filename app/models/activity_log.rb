@@ -27,5 +27,10 @@ class ActivityLog < ApplicationRecord
 
   enum :log_type, { earn: 0, redeem: 1, adjust: 2, decay: 3 }
 
+  # Append-only ledger: every row must carry a type and a value (which may be
+  # negative for redeems, but never NULL). Backed by NOT NULL columns.
+  validates :log_type, presence: true
+  validates :points, presence: true
+
   scope :recent, -> { order(created_at: :desc).limit(10) }
 end

@@ -65,7 +65,7 @@ module Ui
       end
 
       def shadow_value
-        color = "rgba(26,42,74,0.08)"
+        color = "var(--hairline)"
         color = "var(--c-#{category_data[:color]})" if @variant == "bubble"
         color = "var(--primary)" if @variant == "bubble" && category_data[:color] == "primary"
 

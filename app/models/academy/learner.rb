@@ -3,31 +3,17 @@
 module Academy
   # Boundary value object. The Academy module knows nothing about Profile,
   # Family, or any host model — it only knows a learner has an id, a display
-  # name, and an age band ("kid" by default). Build one in the host:
+  # name, and an age band ("kid" by default). The host builds one at the
+  # boundary (see Kid::Academy::BaseController#build_learner); the module never
+  # reaches back into host models such as ProfileInterest::Catalog.
   #
-  #   Academy::Learner.from_profile(current_profile)
-  # Interest entry resolved at the host boundary (key + label) so the
-  # Academy module never reaches into ProfileInterest::Catalog directly.
+  # Interest is a pure (key + label) pair resolved by the host before it
+  # crosses into the module.
   Interest = Data.define(:key, :label) do
     def to_s = label.to_s
   end
 
   Learner = Data.define(:id, :display_name, :age_band, :timezone, :interests) do
-    def self.from_profile(profile)
-      keys = profile.respond_to?(:interest_keys) ? Array(profile.interest_keys) : []
-      resolved = keys.map do |k|
-        label = defined?(::ProfileInterest) ? ::ProfileInterest::Catalog.label_for(k) : k.to_s
-        ::Academy::Interest.new(key: k, label: label)
-      end
-      new(
-        id: profile.id,
-        display_name: profile.name,
-        age_band: profile.role == "child" ? "kid" : "adult",
-        timezone: profile.family&.timezone.presence || "UTC",
-        interests: resolved
-      )
-    end
-
     def kid?  = age_band == "kid"
     def top_interest = Array(interests).first
     def interest_keys = Array(interests).map(&:key)
