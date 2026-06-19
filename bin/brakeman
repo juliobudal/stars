@@ -2,6 +2,10 @@
 require "rubygems"
 require "bundler/setup"
 
-ARGV.unshift("--ensure-latest")
+# NOTE: the default Rails binstub injects `--ensure-latest`, which makes
+# brakeman exit non-zero (code 5) whenever a newer brakeman exists on rubygems
+# — even with zero findings. That tied every CI/deploy run to brakeman's
+# release cadence instead of our code and broke production deploys. We scan
+# with the locked Gemfile version and bump it deliberately via Bundler.
 
 load Gem.bin_path("brakeman", "brakeman")
