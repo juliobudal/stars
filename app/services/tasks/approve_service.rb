@@ -94,7 +94,7 @@ module Tasks
       tier = Ui::Celebration.tier_for(:approved)
       payload = { points: @profile_task.points, message: "Tarefa aprovada!" }
 
-      override = Streaks::CheckService.call(@profile, points_before: points_before, points_after: points_after)
+      override = Streaks::CheckService.call(@profile, points_before: points_before, points_after: points_after).data
       if override
         tier = override[:tier]
         payload = payload.merge(override[:payload])

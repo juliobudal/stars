@@ -63,9 +63,9 @@ RSpec.describe Tasks::ApproveService do
     end
 
     context 'celebration broadcast' do
-      # Stub Streaks::CheckService to nil so the default :big tier (from Ui::Celebration.tier_for(:approved))
+      # Stub Streaks::CheckService to ok(nil) so the default :big tier (from Ui::Celebration.tier_for(:approved))
       # is not overridden by a real streak/threshold detection (50pt task crosses the 50 threshold).
-      before { allow(Streaks::CheckService).to receive(:call).and_return(nil) }
+      before { allow(Streaks::CheckService).to receive(:call).and_return(ApplicationService::Result.new(success: true, error: nil, data: nil)) }
 
       it 'broadcasts a celebration partial with data-fx-event and tier=big' do
         broadcasts = []
@@ -82,7 +82,7 @@ RSpec.describe Tasks::ApproveService do
       end
 
       it 'upgrades tier to :streak when Streaks::CheckService returns one' do
-        allow(Streaks::CheckService).to receive(:call).and_return({ tier: :streak, payload: { days: 3 } })
+        allow(Streaks::CheckService).to receive(:call).and_return(ApplicationService::Result.new(success: true, error: nil, data: { tier: :streak, payload: { days: 3 } }))
         captured = nil
         allow(Turbo::StreamsChannel).to receive(:broadcast_append_to) do |*streamables, **kwargs|
           captured = kwargs[:locals]

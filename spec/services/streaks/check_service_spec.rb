@@ -8,16 +8,21 @@ RSpec.describe Streaks::CheckService do
 
   describe '.call' do
     around { |ex| travel_to(Time.zone.local(2025, 6, 15, 12, 0, 0)) { ex.run } }
+
+    it 'wraps the override in a Result' do
+      expect(described_class.call(profile, points_before: 100, points_after: 110)).to be_a(ApplicationService::Result)
+    end
+
     context 'when no threshold or streak hit' do
-      it 'returns nil' do
-        result = described_class.call(profile, points_before: 100, points_after: 110)
+      it 'returns nil data' do
+        result = described_class.call(profile, points_before: 100, points_after: 110).data
         expect(result).to be_nil
       end
     end
 
     context 'when crossing a threshold (50)' do
       it 'returns :threshold tier with the threshold value' do
-        result = described_class.call(profile, points_before: 49, points_after: 55)
+        result = described_class.call(profile, points_before: 49, points_after: 55).data
         expect(result).to be_a(Hash)
         expect(result[:tier]).to eq(:threshold)
         expect(result[:payload][:threshold]).to eq(50)
@@ -26,14 +31,14 @@ RSpec.describe Streaks::CheckService do
 
     context 'when crossing 100' do
       it 'returns :threshold with 100' do
-        result = described_class.call(profile, points_before: 99, points_after: 105)
+        result = described_class.call(profile, points_before: 99, points_after: 105).data
         expect(result[:payload][:threshold]).to eq(100)
       end
     end
 
     context 'when crossing two thresholds at once (49 -> 105)' do
       it 'returns the highest crossed threshold' do
-        result = described_class.call(profile, points_before: 49, points_after: 105)
+        result = described_class.call(profile, points_before: 49, points_after: 105).data
         expect(result[:payload][:threshold]).to eq(100)
       end
     end
@@ -46,7 +51,7 @@ RSpec.describe Streaks::CheckService do
       end
 
       it 'returns :streak tier with day count' do
-        result = described_class.call(profile, points_before: 95, points_after: 100)
+        result = described_class.call(profile, points_before: 95, points_after: 100).data
         expect(result[:tier]).to eq(:streak)
         expect(result[:payload][:days]).to eq(3)
       end
@@ -60,16 +65,16 @@ RSpec.describe Streaks::CheckService do
       end
 
       it 'does NOT return :streak (chain broken)' do
-        result = described_class.call(profile, points_before: 5, points_after: 10)
+        result = described_class.call(profile, points_before: 5, points_after: 10).data
         expect(result).to be_nil
       end
     end
 
     context 'when service raises internally' do
-      it 'returns nil and logs warning' do
+      it 'returns nil data and logs warning' do
         allow(profile).to receive(:activity_logs).and_raise(StandardError, "boom")
         expect(Rails.logger).to receive(:warn).with(/Streaks::CheckService/)
-        result = described_class.call(profile, points_before: 0, points_after: 5)
+        result = described_class.call(profile, points_before: 0, points_after: 5).data
         expect(result).to be_nil
       end
     end
@@ -83,7 +88,7 @@ RSpec.describe Streaks::CheckService do
 
       it 'returns :streak (priority over :threshold)' do
         # profile starts at 100; points_before=49 / points_after=55 would cross threshold 50
-        result = described_class.call(profile, points_before: 49, points_after: 55)
+        result = described_class.call(profile, points_before: 49, points_after: 55).data
         expect(result[:tier]).to eq(:streak)
         expect(result[:payload][:days]).to eq(3)
       end

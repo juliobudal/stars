@@ -1,11 +1,12 @@
 module Streaks
-  class CheckService
+  # Read-only celebration detector. Returns ok(override) where override is a
+  # { tier:, payload: } hash describing how to upgrade an approval celebration
+  # (a crossed star threshold or a streak milestone), or ok(nil) when nothing
+  # was crossed. Best-effort: it never fails the surrounding approve flow, so a
+  # detection error still resolves to ok(nil).
+  class CheckService < ApplicationService
     THRESHOLDS = [ 50, 100, 250 ].freeze
     STREAK_MILESTONES = [ 3, 7, 14 ].freeze
-
-    def self.call(...)
-      new(...).call
-    end
 
     def initialize(profile, points_before:, points_after:)
       @profile = profile
@@ -15,15 +16,15 @@ module Streaks
 
     def call
       streak = detect_streak
+      return ok({ tier: :streak, payload: { days: streak } }) if streak
+
       threshold = detect_threshold
+      return ok({ tier: :threshold, payload: { threshold: threshold } }) if threshold
 
-      return { tier: :streak, payload: { days: streak } } if streak
-      return { tier: :threshold, payload: { threshold: threshold } } if threshold
-
-      nil
+      ok(nil)
     rescue StandardError => e
       Rails.logger.warn("[Streaks::CheckService] error profile_id=#{@profile&.id} error=#{e.message}")
-      nil
+      ok(nil)
     end
 
     private
