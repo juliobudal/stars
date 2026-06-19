@@ -1,6 +1,4 @@
 class RegistrationsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :create, raise: false
-
   def new
     @family = Family.new
   end

@@ -11,7 +11,7 @@ RSpec.describe "Invitations (public)", type: :request do
       let(:invitation) { create(:profile_invitation, family: family, invited_by: inviter) }
 
       it "renders the acceptance form" do
-        get invitation_acceptance_path(token: invitation.token)
+        get invitation_acceptance_path(token: invitation.raw_token)
         expect(response).to have_http_status(:ok)
       end
     end
@@ -20,7 +20,7 @@ RSpec.describe "Invitations (public)", type: :request do
       let(:invitation) { create(:profile_invitation, :expired, family: family, invited_by: inviter) }
 
       it "returns 404" do
-        get invitation_acceptance_path(token: invitation.token)
+        get invitation_acceptance_path(token: invitation.raw_token)
         expect(response).to have_http_status(:not_found)
       end
     end
@@ -29,7 +29,7 @@ RSpec.describe "Invitations (public)", type: :request do
       let(:invitation) { create(:profile_invitation, :accepted, family: family, invited_by: inviter) }
 
       it "returns 404" do
-        get invitation_acceptance_path(token: invitation.token)
+        get invitation_acceptance_path(token: invitation.raw_token)
         expect(response).to have_http_status(:not_found)
       end
     end
@@ -47,19 +47,19 @@ RSpec.describe "Invitations (public)", type: :request do
 
     context "with an active token" do
       it "marks the invitation as accepted" do
-        post accept_invitation_path(token: invitation.token)
+        post accept_invitation_path(token: invitation.raw_token)
         invitation.reload
         expect(invitation.accepted_at).to be_present
       end
 
       it "redirects to new parent profile (onboarding)" do
-        post accept_invitation_path(token: invitation.token)
+        post accept_invitation_path(token: invitation.raw_token)
         expect(response).to redirect_to(new_parent_profile_path(onboarding: true, invited: true))
       end
 
       it "returns 404 on second attempt with the same token" do
-        post accept_invitation_path(token: invitation.token)
-        post accept_invitation_path(token: invitation.token)
+        post accept_invitation_path(token: invitation.raw_token)
+        post accept_invitation_path(token: invitation.raw_token)
         expect(response).to have_http_status(:not_found)
       end
     end
@@ -68,7 +68,7 @@ RSpec.describe "Invitations (public)", type: :request do
       let(:expired) { create(:profile_invitation, :expired, family: family, invited_by: inviter) }
 
       it "returns 404" do
-        post accept_invitation_path(token: expired.token)
+        post accept_invitation_path(token: expired.raw_token)
         expect(response).to have_http_status(:not_found)
       end
     end

@@ -44,20 +44,21 @@ RSpec.describe ProfileInvitation, type: :model do
       expect(inv).to be_valid
     end
 
-    it "rejects duplicate tokens" do
+    it "rejects duplicate token digests" do
       existing = create(:profile_invitation)
-      inv = build(:profile_invitation, token: existing.token)
+      inv = build(:profile_invitation, token_digest: existing.token_digest)
       expect(inv).not_to be_valid
-      expect(inv.errors[:token]).to be_present
+      expect(inv.errors[:token_digest]).to be_present
     end
   end
 
   describe "before_validation callbacks on create" do
-    it "auto-generates a token" do
-      inv = build(:profile_invitation, token: nil)
+    it "auto-generates a token digest and exposes the raw token once" do
+      inv = build(:profile_invitation)
       inv.valid?
-      expect(inv.token).to be_present
-      expect(inv.token.length).to be >= 32
+      expect(inv.token_digest).to be_present
+      expect(inv.raw_token.length).to be >= 32
+      expect(inv.token_digest).to eq(ProfileInvitation.digest(inv.raw_token))
     end
 
     it "sets expires_at to 7 days from now if blank" do

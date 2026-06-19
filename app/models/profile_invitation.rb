@@ -26,13 +26,30 @@ class ProfileInvitation < ApplicationRecord
   belongs_to :family
   belongs_to :invited_by, class_name: "Profile", optional: true
 
+  # The raw token is never persisted — only its SHA256 digest (token_digest).
+  # The plaintext is exposed via `raw_token` right after creation so the mailer
+  # can build the acceptance URL, then it's gone. Look invitations up with
+  # `.find_by_token(raw)`, never by a stored plaintext token.
+  attr_reader :raw_token
+
   validates :email, presence: true, format: URI::MailTo::EMAIL_REGEXP
-  validates :token, presence: true, uniqueness: true
+  validates :token_digest, presence: true, uniqueness: true
 
   before_validation :generate_token, on: :create
   before_validation :set_expires_at, on: :create
 
   scope :active, -> { where(accepted_at: nil).where("expires_at > ?", Time.current) }
+
+  # Hashes a raw token the same way it was stored, for lookup.
+  def self.digest(token)
+    Digest::SHA256.hexdigest(token.to_s)
+  end
+
+  # Finds an invitation by its raw (emailed) token via the stored digest.
+  def self.find_by_token(token)
+    return nil if token.blank?
+    find_by(token_digest: digest(token))
+  end
 
   # Marks the invitation as accepted and returns the family.
   # Profile creation now happens through the regular onboarding flow
@@ -45,7 +62,9 @@ class ProfileInvitation < ApplicationRecord
   private
 
   def generate_token
-    self.token ||= SecureRandom.urlsafe_base64(32)
+    return if token_digest.present?
+    @raw_token = SecureRandom.urlsafe_base64(32)
+    self.token_digest = self.class.digest(@raw_token)
   end
 
   def set_expires_at

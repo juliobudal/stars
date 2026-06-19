@@ -5,7 +5,7 @@ module Auth
     end
 
     def call
-      invitation = ProfileInvitation.find_by(token: @token)
+      invitation = ProfileInvitation.find_by_token(@token)
       return fail_with("Convite inválido.") if invitation.nil?
       return fail_with("Convite expirado.") if invitation.expires_at < Time.current
       return fail_with("Convite já aceito.") if invitation.accepted_at.present?

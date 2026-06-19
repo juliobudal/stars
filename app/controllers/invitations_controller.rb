@@ -2,7 +2,7 @@ class InvitationsController < ApplicationController
   rate_limit to: 5, within: 15.minutes, only: :accept
 
   def show
-    @invitation = ProfileInvitation.find_by(token: params[:token])
+    @invitation = ProfileInvitation.find_by_token(params[:token])
     if @invitation.nil? || @invitation.expires_at < Time.current || @invitation.accepted_at.present?
       render plain: "Convite expirado ou inválido.", status: :not_found
     end

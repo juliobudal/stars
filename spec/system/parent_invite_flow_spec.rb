@@ -4,13 +4,13 @@ RSpec.describe "Parent invite flow", type: :system do
   let!(:family) { Family.create!(name: "Fam", email: "fam@example.com", password: "supersecret1234") }
   let!(:invitation) do
     family.profile_invitations.create!(
-      email: "newparent@example.com", token: SecureRandom.hex(16),
+      email: "newparent@example.com",
       expires_at: 1.day.from_now
     )
   end
 
   it "invitee accepts → onboarding → new parent profile" do
-    visit invitation_acceptance_path(token: invitation.token)
+    visit invitation_acceptance_path(token: invitation.raw_token)
     click_on "Aceitar convite"
 
     expect(page).to have_current_path(new_parent_profile_path(onboarding: true, invited: true))

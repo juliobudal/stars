@@ -4,13 +4,13 @@ RSpec.describe Auth::AcceptInvitation do
   let(:family) { Family.create!(name: "Fam", email: "f@x.co", password: "supersecret1234") }
   let(:invitation) do
     family.profile_invitations.create!(
-      email: "new@example.com", token: SecureRandom.hex(16),
+      email: "new@example.com",
       expires_at: 1.day.from_now
     )
   end
 
   it "marks invitation accepted and returns family" do
-    result = described_class.call(token: invitation.token)
+    result = described_class.call(token: invitation.raw_token)
     expect(result.success?).to be true
     expect(result.data[:family]).to eq(family)
     expect(invitation.reload.accepted_at).to be_present
@@ -22,14 +22,16 @@ RSpec.describe Auth::AcceptInvitation do
   end
 
   it "fails for expired invitation" do
+    raw = invitation.raw_token
     invitation.update!(expires_at: 1.day.ago)
-    result = described_class.call(token: invitation.token)
+    result = described_class.call(token: raw)
     expect(result.success?).to be false
   end
 
   it "fails for already-accepted invitation" do
+    raw = invitation.raw_token
     invitation.update!(accepted_at: 1.hour.ago)
-    result = described_class.call(token: invitation.token)
+    result = described_class.call(token: raw)
     expect(result.success?).to be false
   end
 end

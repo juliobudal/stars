@@ -16,7 +16,7 @@ class Parent::InvitationsController < ApplicationController
     )
 
     if @invitation.save
-      InvitationMailer.invite(@invitation).deliver_later
+      InvitationMailer.invite(@invitation, @invitation.raw_token).deliver_later
       redirect_to parent_settings_path, notice: "Convite enviado"
     else
       render :new, status: :unprocessable_content
