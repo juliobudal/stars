@@ -21,3 +21,7 @@ production:
     class: LedgerReconciliationJob
     schedule: "0 3 * * *"
     queue: default
+  decay:
+    class: DecayJob
+    schedule: "0 4 * * *"
+    queue: default
