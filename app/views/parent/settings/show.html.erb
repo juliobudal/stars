@@ -7,6 +7,7 @@
       ) %>
 
   <%= form_with url: parent_settings_path, method: :patch, local: true, class: "flex flex-col gap-5" do |f| %>
+    <%= render Ui::FormErrors::Component.new(record: @family) %>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
       <%= render partial: "family_card", locals: { family: @family } %>
       <%= render partial: "responsibles_card", locals: { family: @family } %>

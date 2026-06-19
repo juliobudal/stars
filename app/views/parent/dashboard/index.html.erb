@@ -38,18 +38,39 @@
     <% end %>
   <% end %>
 
-  <%# ─── Meta coletiva semanal ─── %>
-  <div class="relative z-10 mb-5">
-    <%= render "shared/family_goal_widget", goal: @family_goal, viewer: current_profile %>
-  </div>
-
-  <%# ─── Stats grid ─── %>
-  <div class="z-10 relative grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
-    <%= render Ui::StatCard::Component.new(value: @stats[:total_stars],       label: "Estrelinhas",     icon: "star",   tint: "reward") %>
-    <%= render Ui::StatCard::Component.new(value: @stats[:active_missions],   label: "Missões ativas",  icon: "target", tint: "info") %>
-    <%= render Ui::StatCard::Component.new(value: @stats[:rewards_count],     label: "Prêmios",         icon: "bag",    tint: "prize") %>
-    <%= render Ui::StatCard::Component.new(value: @stats[:pending_approvals], label: "Pendentes",        icon: "clock",  tint: "danger") %>
-  </div>
+  <%# ─── Aprovações pendentes (o que precisa de você primeiro) ─── %>
+  <section class="mb-5">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-[16px] font-extrabold m-0" style="color: var(--text);">Aprovações pendentes</h2>
+      <%= link_to "Ver tudo", parent_approvals_path, class: "text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline", style: "color: var(--c-info-600);" %>
+    </div>
+    <% if @pending_tasks.any? %>
+      <div class="flex flex-col gap-2.5">
+        <% @pending_tasks.each do |task| %>
+          <%= render Ui::ApprovalRow::Component.new(
+                dom_id: dom_id(task),
+                kid: task.profile,
+                title: task.title,
+                kid_chip_text: task.profile&.name,
+                category: task.category,
+                meta: "há #{time_ago_in_words(task.updated_at)}",
+                points: task.points,
+                points_sign: "+",
+                approve_url: approve_parent_approval_path(task),
+                reject_url: reject_parent_approval_path(task),
+                reject_confirm: "Rejeitar esta missão?",
+                compact: true
+              ) %>
+        <% end %>
+      </div>
+    <% else %>
+      <%= render Ui::Empty::Component.new(
+        icon: "check",
+        title: "Tudo em dia!",
+        subtitle: "Nenhuma missão aguardando aprovação."
+      ) %>
+    <% end %>
+  </section>
 
   <%# ─── Suas crianças ─── %>
   <section class="mb-5">
@@ -83,38 +104,17 @@
     <% end %>
   </section>
 
-  <%# ─── Aprovações pendentes ─── %>
-  <section>
-    <div class="flex items-center justify-between mb-3">
-      <h2 class="text-[16px] font-extrabold m-0" style="color: var(--text);">Aprovações pendentes</h2>
-      <%= link_to "Ver tudo", parent_approvals_path, class: "text-[12px] font-extrabold uppercase tracking-[0.5px] no-underline", style: "color: var(--c-info-600);" %>
-    </div>
-    <% if @pending_tasks.any? %>
-      <div class="flex flex-col gap-2.5">
-        <% @pending_tasks.each do |task| %>
-          <%= render Ui::ApprovalRow::Component.new(
-                dom_id: dom_id(task),
-                kid: task.profile,
-                title: task.title,
-                kid_chip_text: task.profile&.name,
-                category: task.category,
-                meta: "há #{time_ago_in_words(task.updated_at)}",
-                points: task.points,
-                points_sign: "+",
-                approve_url: approve_parent_approval_path(task),
-                reject_url: reject_parent_approval_path(task),
-                reject_confirm: "Rejeitar esta missão?",
-                compact: true
-              ) %>
-        <% end %>
-      </div>
-    <% else %>
-      <%= render Ui::Empty::Component.new(
-        icon: "check",
-        title: "Tudo em dia!",
-        subtitle: "Nenhuma missão aguardando aprovação."
-      ) %>
-    <% end %>
-  </section>
+  <%# ─── Meta coletiva semanal ─── %>
+  <div class="relative z-10 mb-5">
+    <%= render "shared/family_goal_widget", goal: @family_goal, viewer: current_profile %>
+  </div>
+
+  <%# ─── Resumo da família ─── %>
+  <div class="z-10 relative grid grid-cols-2 lg:grid-cols-4 gap-3">
+    <%= render Ui::StatCard::Component.new(value: @stats[:total_stars],       label: "Estrelinhas",     icon: "star",   tint: "reward") %>
+    <%= render Ui::StatCard::Component.new(value: @stats[:active_missions],   label: "Missões ativas",  icon: "target", tint: "info") %>
+    <%= render Ui::StatCard::Component.new(value: @stats[:rewards_count],     label: "Prêmios",         icon: "bag",    tint: "prize") %>
+    <%= render Ui::StatCard::Component.new(value: @stats[:pending_approvals], label: "Pendentes",        icon: "clock",  tint: "danger") %>
+  </div>
 
 </div>

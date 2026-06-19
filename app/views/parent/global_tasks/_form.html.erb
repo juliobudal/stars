@@ -96,7 +96,7 @@
 
     <%# Frequency %>
     <%= render Ui::FormSection::Component.new(title: "Frequência") do %>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" data-controller="selectable-group">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" data-controller="selectable-group fields">
         <% freq_options.each do |opt|
              selected = current_freq == opt[:key]
              selected_style   = "background: var(--c-info-100); border-color: var(--c-info-500); box-shadow: 0 4px 0 var(--c-info-600); color: var(--c-info-600);"
@@ -110,7 +110,7 @@
             <%= f.radio_button :frequency, opt[:key],
                   class: "sr-only",
                   checked: selected,
-                  data: { action: "change->fields#enable", controls: "day_of_month_field" } %>
+                  data: { action: "change->fields#enable", controls: "day_of_month_field", controls_value: "monthly" } %>
             <%= render Ui::Icon::Component.new(opt[:icon], size: 22, color: "currentColor") %>
             <div class="text-[13px] font-extrabold whitespace-nowrap"><%= opt[:label] %></div>
             <div class="text-[10px] font-bold w-full truncate"><%= opt[:helper] %></div>

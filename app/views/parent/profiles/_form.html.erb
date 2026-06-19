@@ -75,7 +75,7 @@
       <% if profile.new_record? && !is_parent %>
         <div class="rounded-2xl px-4 py-3 mt-1 text-[12px] font-bold flex items-start gap-2"
              style="background: var(--primary-soft); color: var(--primary-2);">
-          <span aria-hidden="true" style="font-size: 16px; line-height: 1;">✨</span>
+          <%= render Ui::Icon::Component.new(:sparkle, size: 16, color: "var(--primary-2)", class: "shrink-0 mt-0.5") %>
           <span>Na primeira vez que entrar, a criança vai ser recebida com um tour curtinho, só pra ela entender as missões, estrelinhas e recompensas.</span>
         </div>
       <% end %>

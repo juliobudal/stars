@@ -17,7 +17,7 @@
   <%# ─── Summary ─── %>
   <div class="grid grid-cols-1 sm:grid-cols-2 mb-5 gap-3 relative z-10">
     <div class="border p-4 rounded-[16px]"
-         style="background: var(--c-info-100); border-color: var(--c-info-500); box-shadow: var(--shadow-card);">
+         style="background: var(--c-info-100); border-color: var(--hairline);">
       <div class="flex items-center gap-2.5">
         <div class="flex items-center justify-center w-10 h-10 rounded-[10px] border"
              style="background: var(--c-info-500); border-color: var(--c-info-600);">
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="border p-4 rounded-[16px]"
-         style="background: var(--c-rose-soft); border-color: var(--c-rose); box-shadow: var(--shadow-card);">
+         style="background: var(--c-rose-soft); border-color: var(--hairline);">
       <div class="flex items-center gap-2.5">
         <div class="flex items-center justify-center w-10 h-10 rounded-[10px] border"
              style="background: var(--c-rose); border-color: var(--c-rose-dark);">
@@ -55,9 +55,9 @@
     <% if grouped.any? %>
       <% grouped.each_with_index do |(day, logs), gi| %>
         <div class="anim-card-enter bg-surface rounded-[16px] border border-hairline overflow-hidden"
-             style="box-shadow: var(--shadow-card); animation-delay: <%= gi * 0.03 %>s;">
+             style="animation-delay: <%= gi * 0.03 %>s;">
           <%# Day header %>
-          <div class="flex items-center justify-between px-4 py-2.5 border-b-2"
+          <div class="flex items-center justify-between px-4 py-2.5 border-b"
                style="background: var(--surface-muted); border-color: var(--hairline);">
             <div class="text-[11px] font-extrabold tracking-[0.5px] uppercase" style="color: var(--text-muted);">
               <%= l(day, format: :long) %>
@@ -74,7 +74,7 @@
               <% chip_bg = earn ? "var(--star-soft)" : "var(--c-rose-soft)" %>
               <% chip_fg = earn ? "var(--c-amber-dark)" : "var(--c-rose-dark)" %>
               <% chip_border = earn ? "var(--star)" : "var(--c-rose)" %>
-              <div class="flex items-center gap-3 px-4 py-3 <%= 'border-t-2 border-hairline' unless i.zero? %>">
+              <div class="flex items-center gap-3 px-4 py-3 <%= 'border-t border-hairline' unless i.zero? %>">
                 <div class="w-10 h-10 rounded-[10px] grid place-items-center shrink-0 border"
                      style="background: <%= chip_bg %>; border-color: <%= chip_border %>;">
                   <%= render Ui::Icon::Component.new(earn ? "sparkle" : "gift", size: 20, color: chip_fg) %>

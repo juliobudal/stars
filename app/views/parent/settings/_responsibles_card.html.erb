@@ -7,14 +7,14 @@
         <div class="flex flex-col flex-1 gap-0.5 min-w-0">
           <div class="text-[14px] font-extrabold truncate" style="color: var(--text);"><%= p.name %></div>
           <div class="text-[11px] font-bold truncate" style="color: var(--text-muted);">
-            <%= p.name.downcase.parameterize(separator: ".") %>@familia.com · Administrador<%= "a" if p.name.ends_with?("a") || p.name.ends_with?("e") %>
+            <%= p.email.presence || "Responsável" %>
           </div>
         </div>
-        <button type="button"
-                class="bg-transparent border-none cursor-pointer w-11 h-11 -mr-1.5 shrink-0 rounded-[8px] flex items-center justify-center"
-                aria-label="Editar responsável">
+        <%= link_to edit_parent_profile_path(p),
+                class: "bg-transparent cursor-pointer w-11 h-11 -mr-1.5 shrink-0 rounded-[8px] flex items-center justify-center no-underline",
+                aria: { label: "Editar #{p.name}" } do %>
           <%= render Ui::Icon::Component.new("pencil", size: 16, color: "var(--text-muted)") %>
-        </button>
+        <% end %>
       </div>
     <% end %>
 
