@@ -34,8 +34,15 @@ class Kid::Academy::GuidesController < Kid::Academy::BaseController
       @just_sent = [ result.data[:user_message], result.data[:guide_message] ]
       render :show
     else
-      redirect_to kid_academy_trail_lesson_guide_path(@trail, @lesson),
-                  alert: error_message(result.error)
+      # Re-render in place so a failed turn keeps the kid's typed question
+      # (a redirect would wipe it). The error shows inline above the input.
+      @conversation = ::Academy::Guide::FindOrStartConversation.call(
+        learner: current_learner, lesson: @lesson
+      ).data
+      @messages = visible_messages(@conversation)
+      @guide_error = error_message(result.error)
+      @draft_content = params[:content].to_s
+      render :show, status: :unprocessable_content
     end
   end
 

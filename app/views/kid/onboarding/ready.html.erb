@@ -1,14 +1,18 @@
 <%= render Ui::ProgressSteps::Component.new(current: @step, total: 4) %>
 
-<div class="flex-1 flex flex-col items-center text-center pt-2"
+<div class="flex-1 flex flex-col items-center justify-center text-center"
      data-controller="onboarding-celebrate">
   <%# Mascote bouncing · same SmileyAvatar as welcome, framed by sparkles. %>
   <div class="relative mb-6">
     <div class="ls-mascot-bounce">
       <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 128, decorative: true) %>
     </div>
-    <span class="absolute -top-2 -left-3" aria-hidden="true" style="font-size: 22px;">✨</span>
-    <span class="absolute -top-1 -right-3" aria-hidden="true" style="font-size: 22px;">🎉</span>
+    <span class="absolute -top-2 -left-3" aria-hidden="true">
+      <%= render Ui::Icon::Component.new(:sparkle, size: 22, color: "var(--star)") %>
+    </span>
+    <span class="absolute -top-1 -right-3" aria-hidden="true">
+      <%= render Ui::Icon::Component.new(:party, size: 22, color: "var(--streak-coral, var(--c-streak))") %>
+    </span>
     <span class="absolute -bottom-1 -right-1" aria-hidden="true">
       <%= render Ui::Icon::Component.new(:star, size: 22, color: "var(--star)") %>
     </span>

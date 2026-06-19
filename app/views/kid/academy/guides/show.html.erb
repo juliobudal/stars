@@ -45,19 +45,28 @@
   </section>
 
   <%# ── Input ─────────────────────────────────────────────────── %>
+  <% if @guide_error.present? %>
+    <div role="alert" class="academy-card p-3 mb-3 inline-flex items-center gap-2.5"
+         style="background: var(--c-coral-soft); border-color: var(--c-coral);">
+      <%= render Ui::Icon::Component.new("repeat", size: 16, color: "var(--c-coral-dark)") %>
+      <p class="font-display text-[13px] font-extrabold leading-snug m-0" style="color: var(--c-coral-dark);"><%= @guide_error %></p>
+    </div>
+  <% end %>
+
   <%= form_with url: kid_academy_trail_lesson_guide_path(@trail, @lesson),
                 method: :post, local: true, class: "academy-card p-3" do |f| %>
     <%= f.text_area :content,
                     rows: 3,
                     maxlength: 500,
                     required: true,
+                    value: @draft_content,
                     placeholder: "O que você quer entender?",
-                    class: "w-full rounded-xl p-3 font-display text-[15px] leading-snug",
-                    style: "background: var(--surface); border: 1px solid var(--border-control); color: var(--text); outline: none;" %>
+                    class: "form-input leading-snug" %>
     <div class="flex items-center justify-end mt-3">
-      <%= f.submit "Perguntar →",
-                   class: "px-5 py-2.5 rounded-xl font-display font-extrabold text-[14px] anim-press ls-btn-3d border-0",
-                   style: "background: var(--primary); color: white; box-shadow: 0 4px 0 var(--primary-2);" %>
+      <%= render Ui::Btn::Component.new(variant: "primary", size: "md", type: "submit", data: { turbo_submits_with: "Perguntando…" }) do %>
+        Perguntar
+        <%= render Ui::Icon::Component.new("arrow-right-01", size: 16, color: "white") %>
+      <% end %>
     </div>
   <% end %>
 </div>

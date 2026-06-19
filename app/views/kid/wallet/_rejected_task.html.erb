@@ -1,13 +1,14 @@
-<%# Kid · Rejected task partial (LittleStars Duolingo design) %>
-<div class="ls-card-3d flex items-center gap-3.5 p-4" style="background: var(--surface); border: 1px solid var(--danger); border-radius: 14px; box-shadow: none;">
-  <div class="flex items-center justify-center shrink-0 w-[48px] h-[48px] rounded-[12px]" style="background: var(--danger-soft); border: 1px solid var(--danger);">
-    <%= render Ui::Icon::Component.new("close", size: 22, color: "var(--danger)") %>
+<%# Kid · Rejected task — framed as "try again", never as punishment (PRODUCT.md:
+    "nunca pune. Erros são parte do caminho"). Coral = soft warning, not danger red. %>
+<div class="flex items-center gap-3.5 p-4" style="background: var(--surface); border: 1px solid var(--c-coral); border-radius: 14px;">
+  <div class="flex items-center justify-center shrink-0 w-[48px] h-[48px] rounded-[12px]" style="background: var(--c-coral-soft); border: 1px solid var(--c-coral);">
+    <%= render Ui::Icon::Component.new("repeat", size: 22, color: "var(--c-coral-dark)") %>
   </div>
   <div class="flex flex-col flex-1 gap-1 min-w-0">
-    <div class="font-display text-[15px] leading-tight font-extrabold tracking-[-0.01em] line-through opacity-80" style="color: var(--text);"><%= rejected_task.title %></div>
-    <span class="inline-flex items-center gap-1 w-fit px-2.5 py-1 rounded-full font-display font-extrabold text-[11px] tracking-[0.5px] uppercase" style="background: var(--danger-soft); color: var(--danger); border: 1px solid var(--danger);">
-      <%= render Ui::Icon::Component.new("close", size: 10, color: "currentColor") %>
-      Rejeitada
+    <div class="font-display text-[15px] leading-tight font-extrabold tracking-[-0.01em]" style="color: var(--text);"><%= rejected_task.title %></div>
+    <span class="inline-flex items-center gap-1 w-fit px-2.5 py-1 rounded-full font-display font-extrabold text-[11px] tracking-[0.5px] uppercase" style="background: var(--c-coral-soft); color: var(--c-coral-dark); border: 1px solid var(--c-coral);">
+      <%= render Ui::Icon::Component.new("repeat", size: 10, color: "currentColor") %>
+      Bora tentar de novo
     </span>
   </div>
   <div class="flex flex-col items-center justify-center shrink-0 leading-none">
