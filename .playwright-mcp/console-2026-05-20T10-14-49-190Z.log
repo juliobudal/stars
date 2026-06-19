@@ -1,2 +1,0 @@
-[     505ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:10301/parent/tasks:0
-[     642ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:10301/favicon.ico:0

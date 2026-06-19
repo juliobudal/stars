@@ -1,3 +1,17 @@
+# =============================================================================
+# Seed oficial — Família Budal (uso real)
+#
+# Filosofia: COMEÇAR ENXUTO. Só as tarefas mais prioritárias — as âncoras
+# pessoais não-negociáveis de cada criança + os deveres de escola + a oração da
+# família. Tudo diário, fácil de manter no dia 1. Conforme o hábito pega, novas
+# missões (zona da casa, cuidado do Simba, chores semanais, bônus) entram aos
+# poucos pelo painel dos pais — sem precisar editar este arquivo.
+#
+# A lojinha (recompensas) já começa completa, em 4 tiers, pra ter metas de todo
+# tamanho desde o primeiro dia: micro (dopamina diária) → médio (meta semanal)
+# → aspiracional (wishlist longa) → família (coletivo).
+# =============================================================================
+
 # Idempotent: skip wipe + seed if any Family already exists, unless SEED_FORCE=1.
 if Family.exists? && ENV["SEED_FORCE"] != "1"
   puts "↪ Seed skipped: #{Family.count} family/families already present. Use SEED_FORCE=1 to re-seed."
@@ -35,33 +49,22 @@ laura = Profile.create!(family: family, name: "Laura", role: :child,
 
 puts "Creating Global Tasks (per-kid via assignments)..."
 
-# Point scale by effort/age:
-#   Lis (4y)   daily 5–15, weekly 20–30
-#   Theo (7y)  daily 5–15, weekly 20–40
-#   Laura (11y) daily 5–20, weekly 25–50
-
-# =============================================================================
-# Método 3-2-1 Familiar: cada kid dono de zona clara → tira peso da mamãe.
-#   3 âncoras diárias (rotina pessoal não-negociável)
-#   2 deveres de zona (contribuição à casa)
-#   1 bônus/desafio
-# Zonas: Lis = cantinho próprio + água Simba · Theo = louça/cozinha + comida Simba
-#        Laura = sala/banheiros + passeio Simba
-# =============================================================================
+# Escala de pontos por esforço/idade:
+#   Lis (4y)   diária 10–15
+#   Theo (7y)  diária 10–15
+#   Laura (11y) diária 10–25
+#
+# Conjunto inicial = ÂNCORAS PESSOAIS (rotina não-negociável) + ESCOLA. Tudo
+# diário. As zonas da casa, o cuidado do Simba e os chores semanais ficam de
+# fora por enquanto — entram depois pelo painel dos pais.
 
 lis_missions = [
   # Âncoras pessoais (3)
   { title: "Escovar dentinhos 2x (manhã + noite)", points: 10, frequency: :daily, category: :saude,  icon: "tooth-01" },
   { title: "Rotina da manhã (lavar rosto + pentear + banheiro)", points: 15, frequency: :daily, category: :rotina, icon: "soap" },
   { title: "Meu cantinho (roupa no cesto + sapatos + cama com ajuda)", points: 15, frequency: :daily, category: :casa, icon: "bed-bunk" },
-  # Zona Lis (2): cantinho + Simba água
-  { title: "Trocar a água do Simba",          points: 10, frequency: :daily,  category: :casa,   icon: "drink" },
-  { title: "Comer toda a verdurinha + beber água do dia", points: 15, frequency: :daily, category: :saude, icon: "broccoli" },
-  # Bônus (1)
-  { title: "Aprender algo novo (10 min)",     points: 15, frequency: :daily,  category: :escola, icon: "book-open-01" },
-  # Semanais — contribuição leve à casa (2)
-  { title: "Ajudar a regar as plantinhas",    points: 20, frequency: :weekly, category: :casa,   icon: "plant-02" },
-  { title: "Ajudar a guardar as compras",     points: 25, frequency: :weekly, category: :casa,   icon: "shopping-bag-01" }
+  # Escola (1) — na idade da Lis, "escola" é aprender brincando
+  { title: "Aprender algo novo (10 min)",     points: 15, frequency: :daily, category: :escola, icon: "book-open-01" }
 ]
 
 theo_missions = [
@@ -69,17 +72,9 @@ theo_missions = [
   { title: "Escovar dentes 2x (manhã + noite)", points: 10, frequency: :daily, category: :saude,  icon: "tooth-01" },
   { title: "Banho sozinho + cama pronta",      points: 15, frequency: :daily, category: :rotina, icon: "shower-head" },
   { title: "Prep escola (mochila + roupa amanhã + agenda)", points: 15, frequency: :daily, category: :casa, icon: "school-bag-01" },
-  # Zona Theo (2): cozinha + Simba comida
-  { title: "Secar a louça do jantar",         points: 15, frequency: :daily,  category: :casa,   icon: "dish-washer" },
-  { title: "Dar comida pro Simba (manhã + noite)", points: 10, frequency: :daily, category: :casa, icon: "happy-01" },
-  # Estudo (2)
+  # Escola (2)
   { title: "Lição de casa antes da brincadeira", points: 15, frequency: :daily, category: :escola, icon: "notebook-01" },
-  { title: "Leitura solo (15 min antes de dormir)", points: 15, frequency: :daily, category: :escola, icon: "book-02" },
-  # Bônus (1)
-  { title: "Praticar inglês no Duolingo (10 min)", points: 10, frequency: :daily, category: :escola, icon: "language-skill" },
-  # Semanal rotativa — chore real + banho do Simba
-  { title: "Chore semanal rotativa (Caçada Lixo / Estante / Espelho)", points: 25, frequency: :weekly, category: :casa, icon: "broom" },
-  { title: "Dar banho no Simba",              points: 40, frequency: :weekly, category: :casa,   icon: "shower-head" }
+  { title: "Leitura solo (15 min antes de dormir)", points: 15, frequency: :daily, category: :escola, icon: "book-02" }
 ]
 
 laura_missions = [
@@ -87,26 +82,14 @@ laura_missions = [
   { title: "Skincare e higiene completa",     points: 10, frequency: :daily,  category: :saude,  icon: "soap" },
   { title: "Mochila e uniforme prontos pra amanhã", points: 10, frequency: :daily, category: :casa, icon: "school-bag-01" },
   { title: "Quarto organizado, chão livre",   points: 15, frequency: :daily,  category: :casa,   icon: "broom" },
-  # Zona Laura (2): louça pesada + passeio Simba
-  { title: "Lavar a louça do jantar",         points: 20, frequency: :daily,  category: :casa,   icon: "dish-washer" },
-  { title: "Levar o Simba pra passear",       points: 20, frequency: :daily,  category: :casa,   icon: "happy-01" },
-  # Estudo (2)
+  # Escola (2)
   { title: "Lição de casa antes do lazer",    points: 20, frequency: :daily,  category: :escola, icon: "notebook-01" },
-  { title: "Estudar 30 min + ler 20 min antes de dormir", points: 25, frequency: :daily, category: :escola, icon: "book-02" },
-  # Bônus (1)
-  { title: "Praticar inglês no Duolingo (15 min)", points: 15, frequency: :daily, category: :escola, icon: "language-skill" },
-  # Semanal — chore rotativa + chapéu de irmã rotativo
-  { title: "Chore semanal rotativa (Sala / Geladeira / Banheiros)", points: 35, frequency: :weekly, category: :casa, icon: "broom" },
-  { title: "Chapéu de irmã: ler pra Lis OU ajudar Theo na lição", points: 30, frequency: :weekly, category: :rotina, icon: "happy-01" },
-  { title: "Cozinhar uma receita completa com supervisão", points: 50, frequency: :weekly, category: :outro, icon: "cake-slice" }
+  { title: "Estudar 30 min + ler 20 min antes de dormir", points: 25, frequency: :daily, category: :escola, icon: "book-02" }
 ]
 
-# Compartilhadas — rotinas familiares mínimas + reposições do "cada um cuida".
+# Compartilhada — rotina espiritual da família, vale pra todos.
 shared_missions = [
-  { title: "Fazer a oração antes de dormir",  points: 5,  frequency: :daily,  category: :rotina, icon: "praying-hands-01" },
-  { title: "Dia sem brigar com os irmãos",    points: 10, frequency: :daily,  category: :rotina, icon: "happy" },
-  { title: "Repor o gelo no congelador",      points: 20, frequency: :weekly, category: :casa,   icon: "drink" },
-  { title: "Repor bala fini caseira",         points: 20, frequency: :weekly, category: :casa,   icon: "cake-slice" }
+  { title: "Fazer a oração antes de dormir",  points: 5, frequency: :daily, category: :rotina, icon: "praying-hands-01" }
 ]
 
 per_kid_missions = { lis => lis_missions, theo => theo_missions, laura => laura_missions }
@@ -128,9 +111,9 @@ end
 puts "Creating Rewards..."
 cats = family.categories.index_by(&:name)
 # Estrutura enxuta em 4 tiers: Micro (dopamina diária) · Médio (meta semanal) ·
-# Aspiracional (meta longa) · Família (coletivo). Total ~30 itens, sem overlap.
+# Aspiracional (meta longa) · Família (coletivo). Total ~28 itens, sem overlap.
 rewards = [
-  # Micro (15-80) — pequenas conquistas diárias
+  # Micro (30-80) — pequenas conquistas diárias
   { title: "30 min extra de celular/tablet",           cost: 30,    icon: "smart-phone-01",   category: "Telinha" },
   { title: "Escolher o que assistir na TV à noite",    cost: 30,    icon: "tv-01",            category: "Experiências" },
   { title: "Sobremesa especial no jantar",             cost: 35,    icon: "cake-slice",       category: "Docinhos" },
@@ -180,8 +163,9 @@ end
 
 puts "Seed complete! 🌟"
 puts "  Família Budal — login: familia@budal.dev / supersecret1234"
+puts "  Pais: Mamãe (rose, PIN 1111) · Papai (sky, PIN 2222)"
 puts "  Kids: Theo (sky), Lis (rose), Laura (lilac) — 0⭐ each — PINs: 1111/2222/3333"
-puts "  Missions per kid: Lis=#{lis_missions.size}, Theo=#{theo_missions.size}, Laura=#{laura_missions.size} (+#{shared_missions.size} compartilhadas)"
+puts "  Missions per kid: Lis=#{lis_missions.size}, Theo=#{theo_missions.size}, Laura=#{laura_missions.size} (+#{shared_missions.size} compartilhada) — só diárias, comece enxuto"
 puts "  Total: #{family.global_tasks.count} missions, #{family.rewards.count} rewards, #{family.categories.count} categories"
 
 load Rails.root.join("db/seeds/academy.rb")

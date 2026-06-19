@@ -1,5 +1,5 @@
 <div class="z-content">
-  <div role="tablist" class="flex flex-wrap items-center gap-2 mb-5">
+  <div role="<%= container_role %>"<%= " aria-label=\"#{container_label}\"".html_safe if container_label.present? %> class="flex flex-wrap items-center gap-2 mb-5">
     <% items.each do |item|
          is_active = active?(item[:id])
          pill_active   = "background: var(--primary); color: var(--surface-on-primary); border-color: var(--primary);"
@@ -8,15 +8,14 @@
          badge_inactive = "background: var(--surface-muted); color: var(--text-muted);"
     %>
       <button type="button"
-              role="tab"
+              <% if filter_mode? %>aria-pressed="<%= is_active %>"<% else %>role="tab" id="tab-<%= item[:id] %>" aria-controls="panel-<%= item[:id] %>" aria-selected="<%= is_active %>"<% end %>
               class="ls-filter-pill flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-[12px] font-extrabold text-[12px] uppercase tracking-[0.5px] cursor-pointer border"
               style="<%= is_active ? pill_active : pill_inactive %>"
               data-active-style="<%= pill_active %>"
               data-inactive-style="<%= pill_inactive %>"
               data-<%= controller %>-target="tab"
               data-action="<%= "click->#{controller}#show" %>"
-              data-<%= controller %>-id-param="<%= item[:id] %>"
-              aria-selected="<%= is_active %>">
+              data-<%= controller %>-id-param="<%= item[:id] %>">
         <% if item[:icon] %>
           <%= render Ui::Icon::Component.new(item[:icon], size: 14, color: "currentColor") %>
         <% end %>

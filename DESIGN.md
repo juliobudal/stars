@@ -196,6 +196,8 @@ A bright, saturated, candy-shop palette anchored by one optimistic green, with e
 
 **The Tinted Neutral Rule.** Neutrals are never flat gray. Every background, hairline, and muted-text value carries an imperceptible green tint (OKLCH chroma ≈0.004 at hue 131, the brand green) so surfaces read warm and cohesive instead of clinical. Saturated accents stay sRGB hex; only the neutral ramp is expressed in OKLCH. Pure `#000` is forbidden; the only sanctioned pure `#fff` is `--surface` on lifted cards.
 
+**The Brand-Contrast Tradeoff (white-on-green).** White label text on `--primary` `#58CC02` measures ≈2.1:1, below WCAG 1.4.3 AA (4.5:1). This is an **accepted, deliberate tradeoff**, not an oversight: it is the defining Duolingo-inherited brand signal, carried by `Ui::Btn` primary across both shells, and darkening the fill enough to pass AA would no longer read as the brand green. We hold it on three conditions: (1) primary buttons stay **large and bold** (Nunito 800, ≥14px) so the label is legible in practice; (2) state and meaning are **never carried by the green alone** — primary actions pair an icon + a clear text label, and the 3D depth gives the affordance (see §4 and the no-color-alone rule in PRODUCT.md); (3) **body and informational text never** sits white-on-green at small sizes. Any *new* white-on-saturated surface that is not a brand primary button (e.g. white text on `--info-sky`) must be re-checked, not assumed safe by analogy. If the brand ever relaxes, the clean fix is dark-on-green or a darker fill, not a text-shadow (which §4 forbids).
+
 ## 3. Typography
 
 **Display Font:** Nunito (with `system-ui, sans-serif` fallback)
@@ -225,7 +227,7 @@ After the **"quase plano" pass**, depth is no longer applied to everything. It i
 - **Interactive controls** keep the Duolingo **hard, flat, offset shadow** (`0 4px 0`, zero blur, a colored "side" beneath). This is reserved for: primary/secondary buttons (`Ui::Btn`), the parent approve/reject pair, the PIN pad keys, and selected/active picker states. These are the moments that should feel pressable, and the press-and-spring is what keeps the app fun.
 - **Celebration & hero** keep a whisper. A completed/approved card keeps its tint and a coloured `1px` border (no depth); the kid home hero keeps a single faint `--shadow-card-heavy` (`0 2px 0 rgba(0,0,0,0.05)`); singular brand/identity accents (the logo tile, a profile avatar's coloured ring) keep their `0 4px 0` pop because they appear once, not repeated.
 
-Blur is still reserved exclusively for the decorative background orb layer (`Ui::BgShapes`); it never appears on a functional element. Soft blurry card shadows from the retired era remain banned.
+Blur is reserved for two places only: the decorative background orb layer (`Ui::BgShapes`), and the full-screen **overlay scrim** behind a focused surface (modal / drawer / icon-picker / sidebar backdrop), where a light `backdrop-blur-sm` over `bg-black/40` pushes the page back so the focused layer reads as foreground. It never appears on an **in-flow surface** — not on cards, rows, chips, nor on a modal/drawer's own sticky header/footer (those are solid `bg-card`; the quase-plano pass dropped their old `bg-card/70 backdrop-blur-sm` glass). Soft blurry card shadows from the retired era remain banned.
 
 ### Shadow Vocabulary
 - **Passive card** (`--shadow-card`, `--shadow-card-subtle`, `--shadow-card-light`): all resolve to **`none`**. `surface-card-3d` / `surface-card-3d-soft` are now flat (1px border, no shadow); they survive as layout shorthands.
@@ -296,7 +298,7 @@ Functional icons are HugeIcons SVG via `Ui::Icon`; never emoji and never `<img>`
 - **Don't** reintroduce the retired Berry Pop / Soft Candy era: no Fraunces, no lilac `#A78BFA` as primary, no soft blurry shadows.
 - **Don't** add a depth shadow to a passive container (card, row, panel, chip, tile). Depth that repeats down a list is the "heaviness" the quase-plano pass removed. When a shadow *is* warranted (a button), it is `0 4px 0`, hard and flat, never `rgba(...) 0 4px 12px`.
 - **Don't** put a saturated colored border on a tinted fill. A tint already separates the surface; a neutral 1px hairline is enough.
-- **Don't** use `background-clip: text` gradient text, decorative glassmorphism, or blur on any functional element (blur is for `Ui::BgShapes` only).
+- **Don't** use `background-clip: text` gradient text, decorative glassmorphism, or blur on any in-flow surface (blur is only for `Ui::BgShapes` and the full-screen overlay scrim behind a modal/drawer — never on a card, row, or a modal's own sticky header/footer).
 - **Don't** use a `border-left`/`border-right` greater than 1px as a colored accent stripe. Use a full 1px border or a tint background.
 - **Don't** drop below `font-weight: 700`, and never introduce a second typeface.
 - **Don't** use border-radius greater than 20px outside avatars and modals, and never nest a bordered card inside another.

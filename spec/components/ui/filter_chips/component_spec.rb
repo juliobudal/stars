@@ -24,4 +24,26 @@ RSpec.describe Ui::FilterChips::Component, type: :component do
     ))
     expect(page).to have_css("button[role=tab][aria-selected='true']", text: "B")
   end
+
+  it "associates each tab with its panel via aria-controls in tabs mode" do
+    render_inline(described_class.new(
+      active: "a",
+      items: [ { id: "a", label: "A" }, { id: "b", label: "B" } ]
+    ))
+    expect(page).to have_css("button#tab-a[role=tab][aria-controls='panel-a']")
+    expect(page).to have_css("button#tab-b[role=tab][aria-controls='panel-b']")
+  end
+
+  it "renders a toggle-button group (not a tablist) in filter-tabs mode" do
+    render_inline(described_class.new(
+      active: "all",
+      controller: "filter-tabs",
+      items: [ { id: "all", label: "Tudo" }, { id: "b", label: "B" } ]
+    ))
+    expect(page).to have_css("[role=group]")
+    expect(page).to have_no_css("[role=tablist]")
+    expect(page).to have_no_css("button[role=tab]")
+    expect(page).to have_css("button[aria-pressed='true']", count: 1, text: "Tudo")
+    expect(page).to have_css("button[aria-pressed='false']", text: "B")
+  end
 end

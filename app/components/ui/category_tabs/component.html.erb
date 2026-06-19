@@ -1,7 +1,16 @@
-<div data-controller="<%= controller %>" class="cat-tabs">
+<%# Renders only the tab strip. The #panel-* regions these tabs switch are
+    siblings in the consuming view, so the Stimulus controller must live on a
+    wrapper that contains BOTH this strip and the panels. Hosting data-controller
+    here would capture the click without seeing the panels (FilterChips follows
+    the same contract). %>
+<div class="cat-tabs" role="tablist">
   <% items.each do |item| %>
     <button
       type="button"
+      role="tab"
+      id="tab-<%= item[:id] %>"
+      aria-controls="panel-<%= item[:id] %>"
+      aria-selected="<%= active?(item[:id]) %>"
       data-<%= controller %>-target="tab"
       data-action="click-><%= controller %>#show"
       data-<%= controller %>-id-param="<%= item[:id] %>"

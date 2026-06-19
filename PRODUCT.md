@@ -11,14 +11,14 @@ product
 - **Pais** — buscam um sistema que ajude a formar caráter, hábitos e virtudes nos filhos sem virar policial 24/7. Usam o app em momentos curtos (aprovar tarefa, configurar recompensa, revisar progresso). Contexto típico: celular, à noite, depois do jantar.
 - **Crianças/adolescentes** — usuários principais do dia a dia. Tela pequena (mobile-first, `max-w-[430px]`), interação rápida entre escola e brincadeira. Querem ver progresso, ganhar estrelas, resgatar recompensas, conversar com "O Guia".
 
-A "moeda" do app são **estrelas** (`Profile.points`), ganhas por tarefas concluídas e missões da Academy, trocadas por recompensas combinadas com os pais.
+A "moeda" do app são **estrelas** (`Profile.points`), ganhas ao concluir tarefas (aprovadas pelos pais) e trocadas por recompensas combinadas com os pais. A Academy é formação pura: as pílulas não dão estrelas, o estímulo é o desbloqueio sequencial e a curiosidade.
 
 ## Product Purpose
 
 LittleStars transforma a rotina familiar e a formação humana num jogo cooperativo entre pais e filhos. Existem três núcleos:
 
 1. **Economia de estrelas** — tarefas configuradas pelos pais → criança realiza → pais aprovam → estrelas creditadas → criança resgata recompensas.
-2. **Academy (Formação Humana v2)** — 26 tabelas, 7 áreas, currículo invisível com 45 conceitos + 9 skills, spaced repetition, segredos desbloqueáveis. Conteúdo 100% curado em seeds; único LLM em runtime é "O Guia" (DeepSeek/OpenRouter, persona *authoritative + mysterious + fascinated*, 5 perguntas/dia).
+2. **Academy — "Pílulas de Conhecimento"** (redesign 2026-05-28, spec `specs/001-academy-redesign/`) — radicalmente simples: **5 tabelas**, modelo **Trilha → Aulas (pílulas) ordenadas**, desbloqueadas em sequência (aula N abre quando N-1 é concluída). Cada aula segue o **método do mistério**: `enigma → pistas → revelação → teste → fisgada`. Conteúdo 100% curado em seeds (`db/seeds/academy*.rb`); o único LLM em runtime é o chatbot **"O Guia"** (DeepSeek via OpenRouter, persona *authoritative + mysterious + fascinated*, **5 perguntas/dia** por criança, escopado a uma aula). Sem `OPENROUTER_API_KEY` o botão 🦉 some e a aula funciona normal. O v2/v4 (pokédex, conceitos/grafo, skills, ranks, segredos, missions/subjects, medals) foi **removido**.
 3. **Vida em família** — wishlist da criança, streaks diárias, perfis múltiplos por família, convites entre membros.
 
 Sucesso = a criança quer abrir o app sozinha, e os pais sentem que o tempo de tela é formativo, não anestésico.

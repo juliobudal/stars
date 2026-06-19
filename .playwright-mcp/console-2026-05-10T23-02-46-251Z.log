@@ -1,6 +1,0 @@
-[     100ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:10302/vite/?token=GzG2AkceSa0_' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:10301/vite/@vite/client:744
-[     100ms] [ERROR] [vite] failed to connect to websocket (Error: WebSocket closed without opened.).  @ http://localhost:10301/vite/@vite/client:771
-[     103ms] Error: WebSocket closed without opened.
-    at WebSocket.<anonymous> (http://localhost:10301/vite/@vite/client:423:30)
-[     211ms] [INFO] [pwa] sw registered, scope: http://localhost:10301/ @ http://localhost:10301/vite/entrypoints/pwa.js:7
-[     217ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://localhost:10301/parent/rewards:0

@@ -4,7 +4,10 @@ export default class extends Controller {
   static targets = ["tab", "item"]
 
   connect() {
-    const active = this.tabTargets.find(t => t.getAttribute("aria-selected") === "true")
+    // A filter group exposes state via aria-pressed (toggle buttons); legacy
+    // tab-styled markup uses aria-selected. Accept either as the active marker.
+    const isOn = t => t.getAttribute("aria-pressed") === "true" || t.getAttribute("aria-selected") === "true"
+    const active = this.tabTargets.find(isOn)
                    || this.tabTargets.find(t => t.classList.contains("active"))
                    || this.tabTargets[0]
     if (active) {
@@ -25,7 +28,8 @@ export default class extends Controller {
     this.tabTargets.forEach(t => {
       const isActive = t === activeBtn
       t.classList.toggle("active", isActive)
-      t.setAttribute("aria-selected", isActive ? "true" : "false")
+      const stateAttr = t.hasAttribute("aria-pressed") ? "aria-pressed" : "aria-selected"
+      t.setAttribute(stateAttr, isActive ? "true" : "false")
 
       if (t.classList.contains("cat-tab")) {
         t.classList.toggle("cat-tab--active", isActive)

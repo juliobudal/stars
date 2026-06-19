@@ -1,5 +1,8 @@
 /* Ui::WishlistGoal · colocated styles. Prefer Tailwind utilities; fall back here only for animation. */
 
+/* Animates `width`, not transform: this fill has a 90deg gradient, rounded
+   caps, and an inset bottom shadow that scaleX would distort. One-shot,
+   contained inside an overflow-hidden track — keep width. */
 .wishlist-goal__fill {
   transition: width var(--dur-long) var(--ease-spring);
 }

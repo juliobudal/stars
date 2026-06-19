@@ -1,5 +1,0 @@
-[      84ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:10302/vite/?token=GzG2AkceSa0_' failed: Connection closed before receiving a handshake response @ http://localhost:10301/vite/@vite/client:744
-[      84ms] [ERROR] [vite] failed to connect to websocket (Error: WebSocket closed without opened.).  @ http://localhost:10301/vite/@vite/client:771
-[      85ms] Error: WebSocket closed without opened.
-    at WebSocket.<anonymous> (http://localhost:10301/vite/@vite/client:423:30)
-[     140ms] [INFO] [pwa] sw registered, scope: http://localhost:10301/ @ http://localhost:10301/vite/entrypoints/pwa.js:7

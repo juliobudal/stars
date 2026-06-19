@@ -17,7 +17,6 @@
 @import "../stylesheets/components/submit";
 @import "../stylesheets/components/scroller";
 @import "../stylesheets/components/wrapper";
-@import "../stylesheets/components/wysiwyg";
 @import "../stylesheets/components/redeem_modal";
 
 
@@ -25,7 +24,6 @@
 @import "../../components/ui/bg_shapes/component.css";
 @import "../../components/ui/btn/btn.css";
 @import "../../components/ui/category_tabs/category_tabs.css";
-@import "../../components/ui/drawer/drawer.css";
 @import "../../components/ui/group/group.css";
 @import "../../components/ui/install_prompt/component.css";
 @import "../../components/ui/ios_install_hint/component.css";
@@ -35,7 +33,6 @@
 @import "../../components/ui/pwa_update_toast/component.css";
 @import "../../components/ui/smiley_avatar/component.css";
 @import "../../components/ui/spinner/turbo_frame_spinner.css";
-@import "../../components/ui/tabs/tabs.css";
 @import "../../components/ui/wishlist_goal/component.css";
 
 /* Vendors */

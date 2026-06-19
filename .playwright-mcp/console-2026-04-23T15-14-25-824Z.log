@@ -1,5 +1,0 @@
-[     369ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/05w9_next_dist_04sc5oc._.js:2431
-[     444ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/05w9_next_dist_04sc5oc._.js:2431
-[     504ms] [ERROR] Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
-
-Check the render method of `Button`.  It was passed a child from Button. @ http://localhost:3000/_next/static/chunks/05w9_next_dist_04sc5oc._.js:3272

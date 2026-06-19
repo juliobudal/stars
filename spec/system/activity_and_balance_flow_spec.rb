@@ -31,13 +31,10 @@ RSpec.describe "Activity Log e Saldo", type: :system do
       open_modal_and_click("modal_reward_#{reward.id}", "Sim, quero!")
       expect(page).to have_content("Resgate solicitado!", wait: 10)
 
-      # 4. Pai aprova o resgate (revela painel via JS pois tabs_controller não controla painéis irmãos)
+      # 4. Pai abre a aba "Prêmios" (o tabs_controller revela o painel irmão) e aprova
       sign_in_as_parent(parent)
       visit parent_approvals_path
-      page.execute_script(<<~JS)
-        var panel = document.getElementById('panel-rewards');
-        if (panel) { panel.style.display = 'flex'; panel.style.flexDirection = 'column'; }
-      JS
+      click_button "Prêmios"
       expect(page).to have_css("#panel-rewards", text: "Sorvete Duplo", visible: true)
       within("#panel-rewards") do
         find("button", text: /entregue/i).click

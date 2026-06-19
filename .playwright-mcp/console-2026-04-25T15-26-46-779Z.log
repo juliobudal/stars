@@ -1,5 +1,0 @@
-[     991ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:10302/vite/?token=IdHZFaFduB2v' failed: Error during WebSocket handshake: net::ERR_CONNECTION_RESET @ http://localhost:10301/vite/@vite/client:744
-[     991ms] [ERROR] [vite] failed to connect to websocket (Error: WebSocket closed without opened.).  @ http://localhost:10301/vite/@vite/client:771
-[     994ms] Error: WebSocket closed without opened.
-    at WebSocket.<anonymous> (http://localhost:10301/vite/@vite/client:423:30)
-[    4853ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:10301/registration/new:0

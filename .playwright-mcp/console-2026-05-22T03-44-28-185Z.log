@@ -1,2 +1,0 @@
-[     722ms] [ERROR] Connecting to 'ws://127.0.0.1:10302/vite/?token=2DQd-YDmsfqY' violates the following Content Security Policy directive: "connect-src 'self' https: wss: http://127.0.0.1:3036 ws://127.0.0.1:3036". The action has been blocked. @ http://localhost:10301/vite/@vite/client:744
-[    2562ms] [INFO] [pwa] sw registered, scope: http://localhost:10301/ @ http://localhost:10301/vite/entrypoints/pwa.js:7

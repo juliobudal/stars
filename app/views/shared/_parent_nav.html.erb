@@ -15,7 +15,7 @@
 </div>
 
 <%# Sidebar %>
-<nav class="flex flex-col fixed left-0 top-0 bottom-0 w-[220px] bg-surface border-r-2 border-hairline z-50 -translate-x-full lg:translate-x-0"
+<nav class="flex flex-col fixed left-0 top-0 bottom-0 w-[220px] bg-surface border-r border-hairline z-50 -translate-x-full lg:translate-x-0"
      id="parent-sidebar"
      data-sidebar-toggle-target="sidebar"
      aria-label="Principal"
@@ -28,7 +28,7 @@
       </div>
       <div class="flex flex-col leading-tight">
         <span class="font-extrabold text-[17px]" style="color: var(--text);">LittleStars</span>
-        <span class="text-[10px] font-bold tracking-[1px] uppercase" style="color: var(--text-soft);">Modo pais</span>
+        <span class="text-[10px] font-bold tracking-[1px] uppercase" style="color: var(--text-muted);">Modo pais</span>
       </div>
     </div>
   </div>
@@ -74,9 +74,9 @@
       <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 34, decorative: true) %>
       <div class="flex-1 min-w-0">
         <div class="text-[13px] font-extrabold overflow-hidden text-ellipsis whitespace-nowrap" style="color: var(--text);"><%= current_profile.name %></div>
-        <div class="text-[11px] font-bold" style="color: var(--text-soft);">Responsável · Editar</div>
+        <div class="text-[11px] font-bold" style="color: var(--text-muted);">Responsável · Editar</div>
       </div>
-      <%= render Ui::Icon::Component.new("edit", size: 14, color: "var(--text-soft)") %>
+      <%= render Ui::Icon::Component.new("edit", size: 14, color: "var(--text-muted)") %>
     <% end %>
     <div data-controller="switch-profile" class="mt-2">
       <%= form_with url: profile_session_path, method: :delete, local: true,
@@ -97,7 +97,7 @@
      data-sidebar-toggle-target="backdrop"
      data-action="click->sidebar-toggle#close"></div>
 
-<div class="fixed bottom-0 left-0 right-0 bg-surface border-t-2 border-hairline flex justify-around items-stretch px-2 z-40 lg:hidden"
+<div class="fixed bottom-0 left-0 right-0 bg-surface border-t border-hairline flex justify-around items-stretch px-2 z-40 lg:hidden"
      style="padding-bottom: env(safe-area-inset-bottom); min-height: calc(72px + env(safe-area-inset-bottom));">
   <%
     mobile_nav_items = [

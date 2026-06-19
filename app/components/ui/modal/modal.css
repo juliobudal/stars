@@ -8,7 +8,7 @@
     @apply mt-4;
   }
   .modal__header {
-    @apply sticky top-0 flex items-start justify-between p-4 px-6 backdrop-blur-sm bg-card/70;
+    @apply sticky top-0 flex items-start justify-between p-4 px-6 bg-card;
   }
   .modal__header-bordered {
     @apply border-b border-border;
@@ -28,7 +28,7 @@
     @apply px-6 py-6 overflow-auto rounded-modal;
   }
   .modal__footer {
-    @apply sticky bottom-0 w-full p-4 backdrop-blur-sm bg-card/70;
+    @apply sticky bottom-0 w-full p-4 bg-card;
     border-bottom-left-radius: var(--radius-modal);
     border-bottom-right-radius: var(--radius-modal);
   }

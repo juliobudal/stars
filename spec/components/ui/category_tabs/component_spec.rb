@@ -21,6 +21,15 @@ RSpec.describe Ui::CategoryTabs::Component, type: :component do
     expect(page).to have_css("button[data-tabs-id-param='x']")
   end
 
+  it "associates each tab with its panel via aria-controls" do
+    render_inline(described_class.new(
+      active: "a",
+      items: [ { id: "a", label: "A" }, { id: "b", label: "B" } ]
+    ))
+    expect(page).to have_css("button#tab-a[role=tab][aria-controls='panel-a']")
+    expect(page).to have_css("button#tab-b[role=tab][aria-controls='panel-b']")
+  end
+
   it "renders icon when provided" do
     render_inline(described_class.new(
       active: "a",

@@ -46,8 +46,9 @@
   <% if @rewards.any? %>
     <%# ── Filter pills ── %>
     <div data-controller="filter-tabs" class="z-2 shrink-0">
-      <div class="cat-tabs">
+      <div class="cat-tabs" role="group" aria-label="Filtrar prêmios por categoria">
         <button type="button"
+                aria-pressed="true"
                 data-filter-tabs-target="tab"
                 data-action="click->filter-tabs#show"
                 data-filter-tabs-id-param="all"
@@ -56,6 +57,7 @@
         </button>
         <% @categories_with_rewards.each do |cat| %>
           <button type="button"
+                  aria-pressed="false"
                   data-filter-tabs-target="tab"
                   data-action="click->filter-tabs#show"
                   data-filter-tabs-id-param="<%= cat.id %>"

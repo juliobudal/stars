@@ -170,6 +170,10 @@
     animation: fxFadeUp var(--dur-base) var(--ease-spring-soft) both;
   }
 
+  /* Determinate progress fill. Animates `width` on purpose, not transform:
+     scaleX would stretch the gradient + squish the rounded cap/inset shadow.
+     One-shot transition inside an overflow-hidden track, so layout/paint is
+     contained to the fill — negligible cost. Don't "optimize" to transform. */
   .anim-progress {
     transition: width var(--dur-long) var(--ease-spring-soft);
   }

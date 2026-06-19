@@ -46,7 +46,7 @@
     </div>
 
     <% if @missions.any? %>
-      <p class="text-[12px] font-bold mb-3" style="color: var(--text-soft);">Ative para incluir esta criança na missão.</p>
+      <p class="text-[12px] font-bold mb-3" style="color: var(--text-muted);">Ative para incluir esta criança na missão.</p>
       <div class="flex flex-col gap-2.5">
         <% @missions.each do |mission| %>
           <%= render "manage_mission_row", mission: mission, child: @child, saved: false %>

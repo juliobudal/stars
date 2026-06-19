@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LittleStars · Como usar (tutorial 9:16)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --primary:#58CC02; --primary-2:#46A302; --primary-soft:#DCFCE7; --primary-glow:#86EFAC;
+    --star:#FFC800; --star-2:#E0A800; --star-soft:#FFF4DA; --star-depth:#a37100;
+    --sky:#1CB0F6; --sky-soft:#DDF4FF; --sky-dark:#1899D6;
+    --lilac:#CE82FF; --lilac-soft:#F3E8FF; --lilac-dark:#A855E0;
+    --rose:#F472B6; --rose-soft:#FCE7F3; --rose-dark:#BE185D;
+    --coral:#FF9600; --coral-soft:#FFE4CC;
+    --peach-soft:#FCE7F3;
+    --surface:#fff; --surface-2:oklch(0.975 0.004 131); --bg-soft:#DCFCE7;
+    --text:#4B4B4B; --text-muted:oklch(0.56 0.005 131); --hairline:oklch(0.92 0.004 131);
+    --reward-text:#9E6200;
+    --danger:#FF4B4B; --danger-2:#C53232;
+    --font:'Nunito',system-ui,sans-serif;
+    /* Easing exponencial ease-out (DESIGN §5 / animate.md). Sem bounce/elastic. */
+    --e-quart:cubic-bezier(.25,1,.5,1);
+    --e-quint:cubic-bezier(.22,1,.36,1);
+    --e-expo:cubic-bezier(.16,1,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;background:#0e1410;font-family:var(--font);overflow:hidden}
+
+  #fit{position:absolute;top:0;left:0;width:1080px;height:1920px;transform-origin:top left}
+  .stage{
+    position:relative;width:1080px;height:1920px;overflow:hidden;
+    background:radial-gradient(120% 75% at 50% 0%, #eafff0 0%, var(--bg-soft) 45%, #b7f0c8 100%);
+    font-family:var(--font);color:var(--text);user-select:none;
+  }
+  .blob{position:absolute;border-radius:50%;opacity:.45;filter:blur(2px)}
+  .blob.b1{width:260px;height:260px;background:#86EFAC;top:-50px;left:-60px}
+  .blob.b2{width:200px;height:200px;background:var(--sky-soft);top:200px;right:-70px}
+  .blob.b3{width:240px;height:240px;background:var(--star-soft);bottom:60px;left:-80px}
+
+  /* ─── Caption (passo atual) ─── */
+  .caption{
+    position:absolute;top:46px;left:50%;
+    display:flex;align-items:center;gap:20px;
+    background:#fff;border:2px solid var(--hairline);
+    border-radius:999px;padding:20px 38px;
+    box-shadow:0 6px 0 rgba(0,0,0,.07);
+    z-index:60;max-width:900px;
+    opacity:0;transform:translate(-50%,-26px);
+    transition:opacity .4s var(--e-quart), transform .55s var(--e-expo);
+  }
+  .caption.show{opacity:1;transform:translate(-50%,0)}
+  .caption .num{
+    flex:none;width:62px;height:62px;border-radius:50%;
+    background:var(--primary);color:#fff;font-weight:900;font-size:36px;
+    display:grid;place-items:center;box-shadow:0 4px 0 var(--primary-2);
+  }
+  .caption .num.pop{animation:numPop .55s var(--e-expo)}
+  @keyframes numPop{0%{transform:scale(.2) rotate(-20deg)}60%{transform:scale(1.18) rotate(4deg)}100%{transform:scale(1)}}
+  .caption .txt{font-weight:800;font-size:38px;color:var(--text);white-space:nowrap}
+
+  /* ─── Celular ─── */
+  .phone{
+    position:absolute;left:170px;top:160px;width:740px;height:1580px;
+    background:#1d2620;border-radius:72px;padding:20px;
+    box-shadow:0 18px 0 rgba(0,0,0,.22), 0 0 0 4px #0c100d inset;
+  }
+  .screen-wrap{
+    position:relative;width:100%;height:100%;
+    background:var(--surface-2);border-radius:54px;overflow:hidden;
+  }
+  .notch{
+    position:absolute;top:18px;left:50%;transform:translateX(-50%);
+    width:200px;height:34px;background:#1d2620;border-radius:999px;z-index:50;
+  }
+
+  .screen{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;
+    opacity:0;pointer-events:none;
+    will-change:transform,opacity;
+  }
+  .screen.active{opacity:1}
+  .screen .body{flex:1;overflow:hidden;padding:70px 34px 30px}
+
+  /* App top header */
+  .app-head{display:flex;flex-direction:column;gap:6px;margin-bottom:26px}
+  .app-title{font-weight:900;font-size:46px;color:var(--text)}
+  .app-sub{font-weight:700;font-size:26px;color:var(--text-muted)}
+
+  /* ─── Bottom nav ─── */
+  .botnav{
+    position:absolute;left:24px;right:24px;bottom:28px;
+    display:flex;gap:8px;background:#fff;border:2px solid var(--hairline);
+    border-radius:30px;padding:12px;box-shadow:0 2px 0 rgba(0,0,0,.05);z-index:30; /* nav kid: whisper único (DESIGN §5) */
+  }
+  .botnav .nav-item{
+    flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;
+    padding:12px 4px;border-radius:20px;color:var(--text-muted);
+  }
+  .botnav .nav-item.active{background:var(--primary-soft);color:var(--primary-2)}
+  .botnav .nav-item .ni{font-size:38px;line-height:1}
+  .botnav .nav-item .nl{font-weight:800;font-size:18px;text-transform:uppercase;letter-spacing:.5px}
+
+  /* ─── Avatares smiley ─── */
+  .ava{position:relative;border-radius:50%;display:grid;place-items:center;flex:none}
+  .ava .a-face{position:relative;width:55%;height:55%}
+  .ava .a-eye{position:absolute;top:32%;width:14%;height:20%;background:#3a3a3a;border-radius:50%}
+  .ava .a-eye.l{left:24%} .ava .a-eye.r{right:24%}
+  .ava .a-mouth{position:absolute;bottom:18%;left:50%;transform:translateX(-50%);
+    width:42%;height:24%;border:5px solid #3a3a3a;border-top:none;border-radius:0 0 40px 40px}
+  .pal-sky{background:var(--sky-soft);box-shadow:inset 0 0 0 5px #7DD3FC}
+  .pal-rose{background:var(--rose-soft);box-shadow:inset 0 0 0 5px var(--rose)}
+  .pal-lilac{background:var(--lilac-soft);box-shadow:inset 0 0 0 5px #C4B5FD}
+
+  /* ─── Tela: Perfil ─── */
+  .profile-screen{align-items:center;justify-content:center;text-align:center;gap:18px;padding:90px 40px}
+  .brand{font-weight:900;font-size:58px;color:var(--primary-2);line-height:1}
+  .brand .s{color:var(--star)}
+  .h-quem{font-weight:900;font-size:54px;color:var(--text);margin-top:30px}
+  .sub-quem{font-weight:700;font-size:30px;color:var(--text-muted)}
+  .avatars{display:flex;gap:46px;margin-top:46px}
+  .avatars .pick{display:flex;flex-direction:column;align-items:center;gap:16px}
+  .avatars .pick .ava{width:170px;height:170px}
+  .avatars .pick .name{font-weight:800;font-size:32px;color:var(--text)}
+
+  /* ─── Hero de progresso (dashboard) ─── */
+  .hero{background:#fff;border:2px solid var(--hairline);border-radius:30px;padding:28px;margin-bottom:24px}
+  .hero .row1{display:flex;align-items:center;gap:20px}
+  .hero .greet{flex:1}
+  .hero .greet .g1{font-weight:700;font-size:24px;color:var(--text-muted)}
+  .hero .greet .g2{font-weight:900;font-size:38px;color:var(--text)}
+  .hero .bal{display:flex;flex-direction:column;align-items:flex-end}
+  .hero .bal .bl{font-weight:700;font-size:20px;color:var(--text-muted);text-transform:uppercase}
+  .hero .bal .bn{font-weight:900;font-size:52px;color:var(--reward-text);display:flex;align-items:center;gap:10px}
+  .hero .lvl{display:flex;align-items:center;gap:14px;margin-top:22px}
+  .hero .lvl .chip{background:var(--primary);color:#fff;font-weight:800;font-size:22px;padding:8px 20px;border-radius:999px}
+  .hero .lvl .lt{font-weight:700;font-size:22px;color:var(--text-muted)}
+  .hero .bar{height:18px;background:var(--hairline);border-radius:999px;margin-top:16px;overflow:hidden}
+  .hero .bar > i{position:relative;display:block;height:100%;width:40%;background:var(--primary);border-radius:999px;
+    transition:width 1s var(--e-expo), box-shadow .5s var(--e-quart);overflow:hidden}
+  .hero .bar > i.full{box-shadow:0 0 0 2px var(--primary-glow), 0 0 22px 2px rgba(88,204,2,.45)}
+  /* shimmer que varre a barra quando enche */
+  .hero .bar > i.full::after{content:'';position:absolute;inset:0;border-radius:999px;
+    background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.7) 50%,transparent 80%);
+    transform:translateX(-120%);animation:shimmer 1.1s var(--e-quart) .25s 1}
+  @keyframes shimmer{to{transform:translateX(120%)}}
+
+  /* ─── Seção missões ─── */
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;margin:18px 4px 14px}
+  .sec-head .st{font-weight:900;font-size:36px;color:var(--text)}
+  .sec-head .sc{font-weight:800;font-size:26px;color:var(--text-muted)}
+
+  .mcard{
+    display:flex;align-items:center;gap:22px;background:#fff;
+    border:2px solid var(--hairline);border-radius:26px;padding:22px;margin-bottom:18px;
+    transition:background .5s var(--e-quart), border-color .5s var(--e-quart), opacity .4s var(--e-quart);
+  }
+  .mcard .mi{position:relative;width:90px;height:90px;border-radius:22px;display:grid;place-items:center;font-size:48px;flex:none}
+  .mi.casa{background:var(--primary-soft)} .mi.saude{background:var(--star-soft)} .mi.escola{background:var(--lilac-soft)}
+  /* carimbo de check sobre o ícone (aprovado) */
+  .mcard .mi-emoji{transition:opacity .3s, transform .4s var(--e-expo)}
+  .mcard .mi-check{
+    position:absolute;inset:0;display:grid;place-items:center;border-radius:22px;
+    background:var(--primary);color:#fff;font-size:50px;font-weight:900;
+    opacity:0;transform:scale(.3) rotate(-12deg);
+  }
+  .mcard.approved .mi-emoji{opacity:0;transform:scale(.6)}
+  .mcard.approved .mi-check{opacity:1;transform:none;transition:opacity .25s, transform .5s var(--e-expo)}
+  .mcard .mt{flex:1;min-width:0}
+  .mcard .mt .tt{font-weight:900;font-size:34px;color:var(--text);transition:color .4s var(--e-quart)}
+  .mcard .mt .tm{font-weight:700;font-size:24px;color:var(--text-muted);margin-top:4px}
+  /* cluster de estados (direita): crossfade pendente → esperando → ganho */
+  .rstate{position:relative;width:210px;height:90px;flex:none;display:flex;align-items:center;justify-content:flex-end}
+  .rstate .st{position:absolute;right:0;display:flex;align-items:center;gap:14px;
+    transition:opacity .35s var(--e-quart), transform .5s var(--e-expo)}
+  .rstate .st-wait,.rstate .st-done{opacity:0;transform:translateX(28px) scale(.85);pointer-events:none}
+  .star-val{font-weight:900;font-size:32px;color:var(--reward-text);display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .mcard .check{
+    width:74px;height:74px;border-radius:50%;background:var(--primary);
+    display:grid;place-items:center;color:#fff;font-size:42px;font-weight:900;
+    box-shadow:0 5px 0 var(--primary-2);flex:none;
+  }
+  .wait-badge{background:var(--coral-soft);color:#9a5b00;font-weight:800;font-size:24px;padding:12px 24px;border-radius:999px;white-space:nowrap}
+  .gained{font-weight:900;font-size:24px;color:var(--primary-2);text-transform:uppercase;white-space:nowrap}
+  /* estado: esperando aprovação */
+  .mcard.waiting{opacity:.82}
+  .mcard.waiting .st-pending{opacity:0;transform:translateX(-28px) scale(.85)}
+  .mcard.waiting .st-wait{opacity:1;transform:none}
+  /* estado: aprovado */
+  .mcard.approved{background:var(--primary-soft);border-color:var(--primary);opacity:1}
+  .mcard.approved .st-pending{opacity:0;transform:translateX(-28px) scale(.85)}
+  .mcard.approved .st-wait{opacity:0;transform:translateX(-28px) scale(.85)}
+  .mcard.approved .st-done{opacity:1;transform:none}
+  .mcard.approved .tt{text-decoration:line-through;color:var(--primary-2)}
+
+  /* ─── Tela: Aprovações (pai) ─── */
+  .tabs{display:flex;gap:14px;margin-bottom:24px}
+  .tabs .tab{flex:1;display:flex;align-items:center;justify-content:center;gap:12px;
+    border:2px solid var(--hairline);background:#fff;border-radius:22px;padding:18px;
+    font-weight:800;font-size:28px;color:var(--text-muted)}
+  .tabs .tab.active{background:var(--primary-soft);border-color:var(--primary);color:var(--primary-2)}
+  .approw{background:#fff;border:2px solid var(--hairline);border-radius:28px;padding:28px}
+  .approw .top{display:flex;align-items:center;gap:20px}
+  .approw .top .ava{width:84px;height:84px}
+  .approw .top .info{flex:1}
+  .approw .top .info .at{font-weight:900;font-size:34px;color:var(--text)}
+  .approw .chips{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
+  .approw .chips .c{font-weight:800;font-size:22px;padding:6px 18px;border-radius:999px}
+  .c.kid{background:var(--sky-soft);color:var(--sky-dark)}
+  .c.cat{background:var(--primary-soft);color:var(--primary-2)}
+  .approw .meta{display:flex;align-items:center;gap:20px;margin-top:22px}
+  .approw .meta .sv{font-weight:900;font-size:32px;color:var(--reward-text)}
+  .approw .meta .tm{font-weight:700;font-size:24px;color:var(--text-muted)}
+  .approw .acts{display:flex;gap:16px;margin-top:28px}
+  .btn-s{flex:1;text-align:center;font-weight:800;font-size:30px;padding:24px;border-radius:22px}
+  .btn-reject{background:#fff;border:2px solid var(--hairline);color:var(--text)}
+  .btn-approve{background:var(--primary);color:#fff;box-shadow:0 6px 0 var(--primary-2)}
+
+  /* ─── Tela: Lojinha ─── */
+  .bal-hero{display:flex;align-items:center;gap:22px;background:var(--star-soft);
+    border:2px solid #FFE9A8;border-radius:30px;padding:26px;margin-bottom:24px}
+  .bal-hero .bx{width:88px;height:88px;border-radius:22px;background:#fff;display:grid;place-items:center;font-size:48px}
+  .bal-hero .l{flex:1}
+  .bal-hero .l .ll{font-weight:800;font-size:22px;color:#9a5b00;text-transform:uppercase}
+  .bal-hero .l .ln{font-weight:900;font-size:48px;color:var(--reward-text)}
+  .rcard{display:flex;align-items:center;gap:22px;background:#fff;border:2px solid var(--hairline);
+    border-radius:26px;padding:22px;margin-bottom:18px}
+  .rcard .ri{width:90px;height:90px;border-radius:22px;display:grid;place-items:center;font-size:50px;flex:none}
+  .ri.r1{background:var(--rose-soft)} .ri.r2{background:var(--sky-soft)} .ri.r3{background:var(--lilac-soft)}
+  .rcard .rt{flex:1}
+  .rcard .rt .rtt{font-weight:900;font-size:32px;color:var(--text)}
+  .rcard .rt .rcat{font-weight:700;font-size:23px;color:var(--text-muted)}
+  .rcard .cost{font-weight:900;font-size:30px;color:#9a5b00;background:var(--star-soft);
+    padding:12px 22px;border-radius:999px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .rcard.locked{opacity:.5}
+
+  /* ─── Modal genérico dentro do phone ─── */
+  .sheet{
+    position:absolute;inset:0;background:rgba(20,30,22,.45);
+    display:flex;align-items:flex-end;justify-content:center;z-index:40;
+    opacity:0;pointer-events:none;transition:opacity .3s;
+  }
+  .sheet.show{opacity:1}
+  .sheet .panel{
+    width:100%;background:#fff;border-radius:44px 44px 0 0;padding:48px 40px 56px;
+    transform:translateY(100%);transition:transform .4s cubic-bezier(.2,1,.3,1);
+    text-align:center;
+  }
+  .sheet.show .panel{transform:translateY(0)}
+  .sheet .m-ico{width:130px;height:130px;border-radius:30px;margin:0 auto 24px;display:grid;place-items:center;font-size:70px}
+  .sheet .m-title{font-weight:900;font-size:44px;color:var(--text)}
+  .sheet .m-desc{font-weight:700;font-size:28px;color:var(--text-muted);margin-top:14px}
+  .trade{display:flex;align-items:center;justify-content:center;gap:26px;margin:34px 0}
+  .trade .side{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .trade .side .bigico{font-size:64px}
+  .trade .side .lbl{font-weight:900;font-size:30px;color:var(--text)}
+  .trade .arrow{font-size:50px;color:var(--primary)}
+  .sheet .m-after{font-weight:800;font-size:30px;color:var(--reward-text);margin-top:6px}
+  .sheet .m-acts{display:flex;gap:18px;margin-top:38px}
+  .m-btn{flex:1;text-align:center;font-weight:800;font-size:32px;padding:28px;border-radius:24px}
+  .m-cancel{background:#fff;border:2px solid var(--hairline);color:var(--text)}
+  .m-ok{background:var(--primary);color:#fff;box-shadow:0 6px 0 var(--primary-2)}
+
+  /* ─── Cursor / toque ─── */
+  .cursor{
+    position:absolute;left:540px;top:960px;z-index:80;pointer-events:none;
+    width:78px;height:78px;margin:-39px 0 0 -39px;
+    transition:left .62s var(--e-expo), top .62s var(--e-expo);
+    opacity:0;
+  }
+  .cursor.show{opacity:1}
+  .cursor .dot{
+    width:78px;height:78px;border-radius:50%;
+    background:radial-gradient(circle at 38% 34%, rgba(255,255,255,.55), rgba(75,75,75,.30) 60%);
+    border:5px solid rgba(75,75,75,.55);
+    transition:transform .5s var(--e-expo);
+  }
+  /* antecipação: encolhe enquanto viaja, salta ao chegar */
+  .cursor.moving .dot{transform:scale(.8)}
+  .cursor.tap .dot{animation:tapPress .42s var(--e-expo)}
+  @keyframes tapPress{0%{transform:scale(1)}35%{transform:scale(.55)}100%{transform:scale(1)}}
+  .ripple{
+    position:absolute;left:540px;top:960px;z-index:79;pointer-events:none;
+    width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;
+    border:5px solid var(--primary);opacity:0;
+  }
+  /* token "+10" que voa do card até o saldo */
+  .flytok{position:absolute;z-index:85;pointer-events:none;display:flex;align-items:center;gap:8px;
+    font-weight:900;font-size:40px;color:var(--reward-text);
+    background:#fff;border:2px solid var(--star);border-radius:999px;padding:8px 20px;
+    box-shadow:0 4px 0 rgba(0,0,0,.08);opacity:0;will-change:transform,opacity}
+  /* pulso da seta de troca */
+  .trade .arrow.pulse{animation:arrowPulse 1s var(--e-quart) infinite}
+  @keyframes arrowPulse{0%,100%{transform:translateX(0);opacity:.8}50%{transform:translateX(10px);opacity:1}}
+
+  /* Confete */
+  #confetti{position:absolute;inset:0;z-index:70;pointer-events:none}
+  .confetti-piece{position:absolute;width:24px;height:32px;top:-40px;border-radius:4px}
+
+  /* Final */
+  .final{align-items:center;justify-content:center;text-align:center;gap:24px;padding:90px 50px}
+  .final .mascot{width:240px;height:240px}
+  .final .mascot svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 12px 0 var(--star-depth))}
+  .final .fcta{background:var(--star);color:#4B3a00;font-weight:900;font-size:42px;padding:28px 64px;border-radius:999px;box-shadow:0 8px 0 var(--star-depth)}
+
+  /* Overlay play / replay */
+  #overlay{position:absolute;inset:0;background:rgba(14,20,16,.55);display:grid;place-items:center;z-index:100;cursor:pointer;
+    border:none;margin:0;padding:0;font:inherit;color:inherit;text-align:center}
+  #overlay:focus-visible{outline:6px solid var(--primary-glow);outline-offset:-10px}
+  #overlay .play-btn{width:200px;height:200px;border-radius:50%;background:var(--primary);
+    box-shadow:0 10px 0 var(--primary-2);display:grid;place-items:center;transition:transform .15s}
+  #overlay:hover .play-btn{transform:scale(1.06)}
+  #overlay .play-btn::after{content:'';border-left:70px solid #fff;border-top:44px solid transparent;border-bottom:44px solid transparent;margin-left:18px}
+  #overlay .hint{position:absolute;bottom:120px;color:#fff;font-weight:700;font-size:36px;text-align:center;width:80%}
+  #replay{position:absolute;bottom:54px;left:50%;transform:translateX(-50%);z-index:95;
+    background:#fff;color:var(--text);border:2px solid var(--hairline);border-radius:999px;
+    padding:22px 50px;font-family:var(--font);font-weight:800;font-size:34px;
+    box-shadow:0 6px 0 rgba(0,0,0,.08);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s}
+  #replay.show{opacity:1;pointer-events:auto}
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+  }
+</style>
+</head>
+<body>
+<div id="fit">
+  <div class="stage" id="stage">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+      <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#FFE08A"/><stop offset="45%" stop-color="#FFC800"/><stop offset="100%" stop-color="#E0A800"/>
+      </linearGradient>
+      <symbol id="mascot-star" viewBox="0 0 24 24">
+        <path d="M11.4806 3.4987C11.6728 3.03673 12.3272 3.03673 12.5193 3.4987L14.6453 8.61016C14.7263 8.80492 14.9095 8.93799 15.1197 8.95485L20.638 9.39724C21.1367 9.43722 21.339 10.0596 20.959 10.3851L16.7546 13.9866C16.5945 14.1238 16.5245 14.3391 16.5734 14.5443L17.8579 19.9292C17.974 20.4159 17.4446 20.8005 17.0176 20.5397L12.2932 17.6541C12.1132 17.5441 11.8868 17.5441 11.7068 17.6541L6.98238 20.5397C6.55539 20.8005 6.02594 20.4159 6.14203 19.9292L7.42652 14.5443C7.47546 14.3391 7.4055 14.1238 7.24531 13.9866L3.04099 10.3851C2.661 10.0596 2.86323 9.43722 3.36197 9.39724L8.88022 8.95485C9.09048 8.93799 9.27363 8.80492 9.35464 8.61016L11.4806 3.4987Z" fill="url(#goldGrad)" stroke="#D99B00" stroke-width="0.5" stroke-linejoin="round"/>
+        <ellipse cx="9.7" cy="8.4" rx="1.5" ry="0.85" fill="#fff" opacity="0.35" transform="rotate(-25 9.7 8.4)"/>
+        <ellipse cx="8.9" cy="13" rx="0.9" ry="0.55" fill="#FF8FA3" opacity="0.55"/>
+        <ellipse cx="15.1" cy="13" rx="0.9" ry="0.55" fill="#FF8FA3" opacity="0.55"/>
+        <circle cx="10.3" cy="11.4" r="1.05" fill="#3A2E00"/><circle cx="13.7" cy="11.4" r="1.05" fill="#3A2E00"/>
+        <circle cx="10.0" cy="11.05" r="0.34" fill="#fff"/><circle cx="13.4" cy="11.05" r="0.34" fill="#fff"/>
+        <path d="M10.4 13.1 Q12 15 13.6 13.1" fill="none" stroke="#3A2E00" stroke-width="0.7" stroke-linecap="round"/>
+      </symbol>
+    </defs></svg>
+
+    <div class="blobs" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+    <!-- Caption -->
+    <div class="caption" id="caption"><div class="num" id="capNum" aria-hidden="true">1</div><div class="txt" id="capTxt">Entre no seu perfil</div></div>
+
+    <!-- Celular -->
+    <div class="phone">
+      <div class="screen-wrap" id="screenWrap">
+        <div class="notch"></div>
+
+        <!-- TELA 1: PERFIL -->
+        <section class="screen profile-screen" id="scrProfile">
+          <div class="brand">Little<span class="s">Stars</span></div>
+          <div class="h-quem">Quem é você?</div>
+          <div class="sub-quem">Toque no seu rostinho pra entrar</div>
+          <div class="avatars">
+            <div class="pick" id="pickTheo">
+              <div class="ava pal-sky"><div class="a-face"><div class="a-eye l"></div><div class="a-eye r"></div><div class="a-mouth"></div></div></div>
+              <div class="name">Théo</div>
+            </div>
+            <div class="pick">
+              <div class="ava pal-rose"><div class="a-face"><div class="a-eye l"></div><div class="a-eye r"></div><div class="a-mouth"></div></div></div>
+              <div class="name">Zoe</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TELA 2: DASHBOARD -->
+        <section class="screen" id="scrDash">
+          <div class="body">
+            <div class="hero">
+              <div class="row1">
+                <div class="ava pal-sky" style="width:78px;height:78px"><div class="a-face"><div class="a-eye l"></div><div class="a-eye r"></div><div class="a-mouth"></div></div></div>
+                <div class="greet"><div class="g1">Boa tarde,</div><div class="g2">Théo</div></div>
+                <div class="bal"><div class="bl">Suas estrelas</div><div class="bn"><span>⭐</span><span id="dashBal">20</span></div></div>
+              </div>
+              <div class="lvl"><div class="chip">Nível 3</div><div class="lt">faltam 10 ★ pra subir</div></div>
+              <div class="bar"><i id="lvlFill" style="width:40%"></i></div>
+            </div>
+
+            <div class="sec-head"><div class="st">Missões de hoje</div><div class="sc" id="dashCount">0 de 3</div></div>
+
+            <div class="mcard" id="missCama">
+              <div class="mi casa"><span class="mi-emoji">🛏️</span><span class="mi-check" aria-hidden="true">✓</span></div>
+              <div class="mt"><div class="tt">Arrumar a cama</div><div class="tm">Casa · Todo dia</div></div>
+              <div class="rstate">
+                <div class="st st-pending"><div class="star-val">⭐ +10</div><div class="check" id="camaCheck">✓</div></div>
+                <div class="st st-wait"><div class="wait-badge">Esperando ✓</div></div>
+                <div class="st st-done"><div class="gained">+10 ★ ganhas!</div></div>
+              </div>
+            </div>
+            <div class="mcard">
+              <div class="mi saude">🪥</div>
+              <div class="mt"><div class="tt">Escovar os dentes</div><div class="tm">Saúde · Todo dia</div></div>
+              <div class="star-val">⭐ +5</div>
+              <div class="check">✓</div>
+            </div>
+            <div class="mcard">
+              <div class="mi escola">📚</div>
+              <div class="mt"><div class="tt">Ler 10 minutos</div><div class="tm">Escola · Todo dia</div></div>
+              <div class="star-val">⭐ +8</div>
+              <div class="check">✓</div>
+            </div>
+          </div>
+          <div class="botnav">
+            <div class="nav-item active"><div class="ni">🎯</div><div class="nl">Jornada</div></div>
+            <div class="nav-item"><div class="ni">✨</div><div class="nl">Academia</div></div>
+            <div class="nav-item" id="navLoja"><div class="ni">🛍️</div><div class="nl">Lojinha</div></div>
+            <div class="nav-item"><div class="ni">📖</div><div class="nl">Diário</div></div>
+          </div>
+        </section>
+
+        <!-- TELA 3: APROVAÇÕES (PAI) -->
+        <section class="screen" id="scrApprove">
+          <div class="body">
+            <div class="app-head"><div class="app-title">Aprovações</div><div class="app-sub">1 pendência aguardando sua revisão</div></div>
+            <div class="tabs">
+              <div class="tab active">🎯 Missões · 1</div>
+              <div class="tab">🛍️ Prêmios · 0</div>
+            </div>
+            <div class="approw">
+              <div class="top">
+                <div class="ava pal-sky"><div class="a-face"><div class="a-eye l"></div><div class="a-eye r"></div><div class="a-mouth"></div></div></div>
+                <div class="info">
+                  <div class="at">Arrumar a cama</div>
+                  <div class="chips"><span class="c kid">Théo</span><span class="c cat">Casa</span></div>
+                </div>
+              </div>
+              <div class="meta"><span class="sv">+10 ⭐</span><span class="tm">há instantes</span></div>
+              <div class="acts">
+                <div class="btn-s btn-reject">Rejeitar</div>
+                <div class="btn-s btn-approve" id="btnApprove">Aprovar</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TELA 4: LOJINHA -->
+        <section class="screen" id="scrShop">
+          <div class="body">
+            <div class="app-head"><div class="app-title">Loja de Prêmios</div><div class="app-sub">Troca estrelinhas por coisas legais!</div></div>
+            <div class="bal-hero">
+              <div class="bx">⭐</div>
+              <div class="l"><div class="ll">Saldo</div><div class="ln"><span id="shopBal">30</span> <span style="font-size:26px">estrelinhas</span></div></div>
+            </div>
+            <div class="rcard" id="rewSorvete">
+              <div class="ri r1">🍦</div>
+              <div class="rt"><div class="rtt">Sorvete especial</div><div class="rcat">Guloseima</div></div>
+              <div class="cost">⭐ 10</div>
+            </div>
+            <div class="rcard">
+              <div class="ri r2">🎮</div>
+              <div class="rt"><div class="rtt">30 min de videogame</div><div class="rcat">Tempo de tela</div></div>
+              <div class="cost">⭐ 20</div>
+            </div>
+            <div class="rcard locked">
+              <div class="ri r3">🎡</div>
+              <div class="rt"><div class="rtt">Passeio no parque</div><div class="rcat">Passeio · Família</div></div>
+              <div class="cost">⭐ 50</div>
+            </div>
+          </div>
+          <div class="botnav">
+            <div class="nav-item"><div class="ni">🎯</div><div class="nl">Jornada</div></div>
+            <div class="nav-item"><div class="ni">✨</div><div class="nl">Academia</div></div>
+            <div class="nav-item active"><div class="ni">🛍️</div><div class="nl">Lojinha</div></div>
+            <div class="nav-item"><div class="ni">📖</div><div class="nl">Diário</div></div>
+          </div>
+        </section>
+
+        <!-- TELA FINAL -->
+        <section class="screen final" id="scrFinal">
+          <div class="mascot"><svg viewBox="0 0 24 24"><use href="#mascot-star"/></svg></div>
+          <div class="brand">Little<span class="s">Stars</span></div>
+          <div class="sub-quem">Tarefa vira aventura, estrela vira prêmio ✨</div>
+          <div class="fcta">Comece hoje! 🚀</div>
+        </section>
+
+        <!-- Modal: concluir missão -->
+        <div class="sheet" id="sheetDone">
+          <div class="panel">
+            <div class="m-ico" style="background:var(--primary-soft)">🛏️</div>
+            <div class="m-title">Terminou essa missão?</div>
+            <div class="m-desc">Um responsável vai confirmar.</div>
+            <div class="m-acts">
+              <div class="m-btn m-cancel">Ainda não</div>
+              <div class="m-btn m-ok" id="btnTerminei">Terminei! ✓</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal: trocar recompensa -->
+        <div class="sheet" id="sheetTrade">
+          <div class="panel">
+            <div class="m-title">Você quer trocar?</div>
+            <div class="trade">
+              <div class="side"><div class="bigico">⭐</div><div class="lbl">10</div></div>
+              <div class="arrow">→</div>
+              <div class="side"><div class="bigico">🍦</div><div class="lbl">Sorvete</div></div>
+            </div>
+            <div class="m-after">Saldo depois: ★ 20</div>
+            <div class="m-acts">
+              <div class="m-btn m-cancel">Volto depois</div>
+              <div class="m-btn m-ok" id="btnQuero">Sim, quero!</div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /screen-wrap -->
+    </div><!-- /phone -->
+
+    <div id="confetti" aria-hidden="true"></div>
+    <div class="cursor" id="cursor" aria-hidden="true"><div class="dot"></div></div>
+
+    <button id="overlay" type="button" aria-label="Reproduzir o tutorial do LittleStars com som"><span class="play-btn" aria-hidden="true"></span><span class="hint">Toque para reproduzir com som 🔊<br/>(grave a tela pra exportar o vídeo)</span></button>
+    <button id="replay" type="button" aria-label="Repetir o tutorial">↺ Repetir</button>
+  </div>
+</div>
+
+<script>
+  const fit=document.getElementById('fit');
+  function resize(){const s=Math.min(innerWidth/1080,innerHeight/1920);
+    fit.style.transform=`translate(${(innerWidth-1080*s)/2}px,${(innerHeight-1920*s)/2}px) scale(${s})`;}
+  addEventListener('resize',resize);resize();
+
+  // ── Audio ──
+  let actx;
+  const audio=()=>actx||(actx=new (window.AudioContext||window.webkitAudioContext)());
+  function tone(f,s,d,t='sine',g=.25){const a=audio(),tt=a.currentTime+s,o=a.createOscillator(),gn=a.createGain();
+    o.type=t;o.frequency.setValueAtTime(f,tt);gn.gain.setValueAtTime(.0001,tt);
+    gn.gain.exponentialRampToValueAtTime(g,tt+.015);gn.gain.exponentialRampToValueAtTime(.0001,tt+d);
+    o.connect(gn);gn.connect(a.destination);o.start(tt);o.stop(tt+d+.05);}
+  function noise(s,d,g=.15){const a=audio(),tt=a.currentTime+s,b=a.createBuffer(1,a.sampleRate*d,a.sampleRate),dt=b.getChannelData(0);
+    for(let i=0;i<dt.length;i++)dt[i]=(Math.random()*2-1)*(1-i/dt.length);
+    const sr=a.createBufferSource();sr.buffer=b;const gn=a.createGain();gn.gain.value=g;
+    const fl=a.createBiquadFilter();fl.type='highpass';fl.frequency.value=1200;
+    sr.connect(fl);fl.connect(gn);gn.connect(a.destination);sr.start(tt);}
+  const SFX={
+    tap(){tone(420,0,.07,'triangle',.18);},
+    whoosh(){noise(0,.35,.1);tone(180,0,.35,'sine',.06);},
+    pop(){tone(520,0,.12,'triangle',.28);tone(780,.04,.12,'triangle',.18);},
+    ding(){tone(880,0,.45,'sine',.28);tone(1320,.02,.45,'sine',.16);},
+    coin(){tone(1180,0,.08,'square',.1);tone(1560,.05,.1,'square',.08);},
+    sparkle(){[1568,1976,2349].forEach((f,i)=>tone(f,i*.05,.22,'sine',.09));},
+    fanfare(){[523,659,784,1047].forEach((f,i)=>tone(f,i*.12,.5,'sawtooth',.14));tone(1047,.5,.7,'sine',.2);noise(.5,.5,.08);}
+  };
+
+  const $=id=>document.getElementById(id);
+  const REDUCE=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const E={quart:'cubic-bezier(.25,1,.5,1)',quint:'cubic-bezier(.22,1,.36,1)',expo:'cubic-bezier(.16,1,.3,1)'};
+  let timers=[];
+  const at=(ms,fn)=>timers.push(setTimeout(fn,ms));
+  const clearAll=()=>{timers.forEach(clearTimeout);timers=[];};
+  const reflow=el=>void el.offsetWidth;
+  const stage=$('stage'),cursor=$('cursor');
+
+  // rect de tela -> centro em coords do stage (1080x1920)
+  function stageXY(el){const sr=stage.getBoundingClientRect(),sc=sr.width/1080,er=el.getBoundingClientRect();
+    return {x:(er.left+er.width/2-sr.left)/sc,y:(er.top+er.height/2-sr.top)/sc};}
+
+  // ─── Telas: push direcional (navegação nativa) ───
+  const screens={profile:$('scrProfile'),dash:$('scrDash'),approve:$('scrApprove'),shop:$('scrShop'),final:$('scrFinal')};
+  let curScreen=null;
+  function goScreen(k,dir='fwd'){
+    const next=screens[k]; if(next===curScreen)return;
+    const prev=curScreen; curScreen=next;
+    next.classList.add('active'); next.style.zIndex=2; if(prev)prev.style.zIndex=1;
+    if(REDUCE){ if(prev)prev.classList.remove('active'); return; }
+    const off=dir==='back'?-1:1;
+    next.getAnimations().forEach(a=>a.cancel());
+    next.animate([{opacity:0,transform:`translateX(${64*off}px) scale(.97)`},{opacity:1,transform:'none'}],{duration:480,easing:E.expo});
+    if(prev){const a=prev.animate([{opacity:1,transform:'none'},{opacity:0,transform:`translateX(${-46*off}px) scale(.96)`}],{duration:340,easing:E.quart});
+      a.onfinish=()=>{prev.classList.remove('active');prev.style.zIndex='';};}
+  }
+
+  // ─── Caption (número faz pop a cada passo) ───
+  function caption(n,t){
+    const c=$('caption'),num=$('capNum');
+    c.classList.remove('show');reflow(c);num.textContent=n;$('capTxt').textContent=t;c.classList.add('show');
+    num.classList.remove('pop');reflow(num);num.classList.add('pop');
+  }
+
+  // ─── Cursor: viaja com antecipação, salta ao chegar; alvo deprime ───
+  function moveCursor(el){const p=stageXY(el);cursor.classList.add('show','moving');
+    cursor.style.left=p.x+'px';cursor.style.top=p.y+'px';at(560,()=>cursor.classList.remove('moving'));}
+  function pressFx(el){if(REDUCE||!el)return;
+    el.animate([{transform:'scale(1)'},{transform:'scale(.9)'},{transform:'scale(1)'}],{duration:300,easing:E.quart});}
+  function tap(target){
+    cursor.classList.remove('tap');reflow(cursor);cursor.classList.add('tap');SFX.tap();
+    if(!REDUCE){const r=document.createElement('div');r.className='ripple';
+      r.style.left=cursor.style.left;r.style.top=cursor.style.top;stage.appendChild(r);
+      r.animate([{transform:'scale(1)',opacity:.9},{transform:'scale(4.5)',opacity:0}],{duration:520,easing:E.quart});
+      setTimeout(()=>r.remove(),540);}
+    pressFx(target);
+    setTimeout(()=>cursor.classList.remove('tap'),420);
+  }
+
+  // ─── Token "+10" voando do card até o saldo ───
+  function flyToken(fromEl,toEl,text){
+    if(REDUCE)return;
+    const a=stageXY(fromEl),b=stageXY(toEl);
+    const t=document.createElement('div');t.className='flytok';t.innerHTML=text;
+    t.style.left=a.x+'px';t.style.top=a.y+'px';stage.appendChild(t);
+    t.animate([
+      {transform:'translate(-50%,-50%) scale(.5)',opacity:0},
+      {transform:'translate(-50%,-50%) scale(1.25)',opacity:1,offset:.18},
+      {transform:`translate(calc(-50% + ${b.x-a.x}px), calc(-50% + ${b.y-a.y}px)) scale(.7)`,opacity:1,offset:.9},
+      {transform:`translate(calc(-50% + ${b.x-a.x}px), calc(-50% + ${b.y-a.y}px)) scale(0)`,opacity:0}
+    ],{duration:950,easing:E.expo});
+    SFX.sparkle();
+    setTimeout(()=>t.remove(),970);
+  }
+
+  // ─── Entrada em stagger (listas/painéis) ───
+  function staggerEls(els,base=120){if(REDUCE)return;
+    [...els].forEach((el,i)=>el.animate(
+      [{opacity:0,transform:'translateY(30px)'},{opacity:1,transform:'none'}],
+      {duration:520,delay:base+i*90,easing:E.expo,fill:'backwards'}));}
+  function pop(el,scale=1.12){if(REDUCE||!el)return;
+    el.animate([{transform:'scale(.4)',opacity:0},{transform:`scale(${scale})`,opacity:1,offset:.6},{transform:'scale(1)',opacity:1}],{duration:560,easing:E.expo});}
+
+  // ─── Estados da missão (classes, sem innerHTML) ───
+  function setWaiting(){$('missCama').classList.add('waiting');}
+  function setApproved(){const m=$('missCama');m.classList.remove('waiting');m.classList.add('approved');
+    if(!REDUCE)m.animate([{transform:'scale(1)'},{transform:'scale(1.035)'},{transform:'scale(1)'}],{duration:520,easing:E.expo});}
+
+  function countTo(el,target,ms){
+    if(REDUCE){el.textContent=target;SFX.coin();return;}
+    const start=parseInt(el.textContent)||0,steps=12,step=ms/steps;
+    for(let i=1;i<=steps;i++)at(step*i,()=>{el.textContent=Math.round(start+(target-start)*(i/steps));if(i%3===0)SFX.coin();});}
+
+  const COLORS=['#58CC02','#FFC800','#1CB0F6','#F472B6','#CE82FF','#FF9600'];
+  function confetti(n=60){if(REDUCE)return;const w=$('confetti');for(let i=0;i<n;i++){const p=document.createElement('div');
+    p.className='confetti-piece';p.style.left=Math.random()*1080+'px';p.style.background=COLORS[i%COLORS.length];
+    p.style.borderRadius=Math.random()>.5?'50%':'4px';w.appendChild(p);
+    const dx=(Math.random()-.5)*280,rot=(Math.random()-.5)*900,dur=2000+Math.random()*1400;
+    p.animate([{transform:'translate(0,0)',opacity:1},{transform:`translate(${dx}px,2000px) rotate(${rot}deg)`,opacity:1,offset:.85},{transform:`translate(${dx}px,2000px) rotate(${rot}deg)`,opacity:0}],{duration:dur,easing:E.quart});
+    setTimeout(()=>p.remove(),dur);}}
+
+  function reset(){
+    clearAll();
+    stage.querySelectorAll('.flytok,.ripple').forEach(e=>e.remove());
+    Object.values(screens).forEach(s=>{s.getAnimations().forEach(a=>a.cancel());s.classList.remove('active');s.style.zIndex='';});
+    curScreen=screens.profile;screens.profile.classList.add('active');
+    $('caption').classList.remove('show');
+    cursor.classList.remove('show','tap','moving');
+    $('sheetTrade').querySelector('.arrow').classList.remove('pulse');
+    $('sheetDone').classList.remove('show');$('sheetTrade').classList.remove('show');
+    $('confetti').innerHTML='';$('replay').classList.remove('show');
+    $('dashBal').textContent='20';$('dashCount').textContent='0 de 3';
+    const f=$('lvlFill');f.classList.remove('full');f.style.width='40%';
+    $('missCama').classList.remove('waiting','approved');
+    $('shopBal').textContent='30';
+  }
+
+  function play(){
+    reset();
+
+    // PASSO 1 — perfil
+    SFX.whoosh();
+    at(80,()=>staggerEls(document.querySelectorAll('#scrProfile .pick'),160));
+    at(350,()=>caption(1,'Entre no seu perfil'));
+    at(1200,()=>moveCursor($('pickTheo')));
+    at(2050,()=>tap($('pickTheo')));
+
+    // PASSO 2 — dashboard (entra deslizando + cards em stagger)
+    at(2500,()=>{goScreen('dash','fwd');SFX.whoosh();caption(2,'Veja as missões de hoje');});
+    at(2620,()=>staggerEls(document.querySelectorAll('#scrDash .hero, #scrDash .sec-head, #scrDash .mcard'),120));
+    at(4000,()=>moveCursor($('camaCheck')));
+    at(4800,()=>tap($('camaCheck')));
+
+    // PASSO 3 — modal concluir
+    at(5050,()=>{$('sheetDone').classList.add('show');staggerIn($('sheetDone'));SFX.pop();caption(3,'Marque que terminou');});
+    at(6100,()=>moveCursor($('btnTerminei')));
+    at(6900,()=>tap($('btnTerminei')));
+    at(7150,()=>{$('sheetDone').classList.remove('show');SFX.ding();setWaiting();caption(3,'Esperando o adulto confirmar');});
+
+    // PASSO 4 — aprovação do pai
+    at(8600,()=>{goScreen('approve','fwd');SFX.whoosh();caption(4,'Um responsável aprova');});
+    at(8720,()=>staggerEls(document.querySelectorAll('#scrApprove .app-head, #scrApprove .tabs, #scrApprove .approw'),120));
+    at(10000,()=>moveCursor($('btnApprove')));
+    at(10800,()=>{tap($('btnApprove'));});
+    at(11050,()=>{SFX.ding();SFX.sparkle();});
+
+    // PASSO 5 — estrelas creditadas (volta pro dash, beat de herói)
+    at(11500,()=>{goScreen('dash','back');SFX.whoosh();caption(5,'Estrelas na conta!');setApproved();$('dashCount').textContent='1 de 3';});
+    at(12100,()=>flyToken($('missCama'),$('dashBal'),'⭐ +10'));
+    at(13050,()=>{countTo($('dashBal'),30,820);const f=$('lvlFill');f.style.width='100%';f.classList.add('full');});
+
+    // PASSO 6 — lojinha
+    at(14400,()=>{goScreen('shop','fwd');SFX.whoosh();caption(6,'Troque por recompensas');});
+    at(14520,()=>staggerEls(document.querySelectorAll('#scrShop .bal-hero, #scrShop .rcard'),120));
+    at(15700,()=>moveCursor($('rewSorvete')));
+    at(16500,()=>tap($('rewSorvete')));
+    at(16750,()=>{$('sheetTrade').classList.add('show');staggerIn($('sheetTrade'));$('sheetTrade').querySelector('.arrow').classList.add('pulse');SFX.pop();caption(6,'Confirme a troca');});
+    at(17800,()=>moveCursor($('btnQuero')));
+    at(18600,()=>tap($('btnQuero')));
+    at(18850,()=>{$('sheetTrade').querySelector('.arrow').classList.remove('pulse');$('sheetTrade').classList.remove('show');SFX.ding();});
+
+    // FINAL
+    at(19500,()=>{goScreen('final','fwd');$('caption').classList.remove('show');cursor.classList.remove('show');
+      pop(document.querySelector('#scrFinal .mascot'));confetti(90);SFX.fanfare();});
+    at(20300,()=>SFX.sparkle());
+    at(22300,()=>$('replay').classList.add('show'));
+  }
+
+  // stagger do conteúdo de um sheet (filhos do .panel)
+  function staggerIn(sheet){if(REDUCE)return;
+    const kids=[...sheet.querySelector('.panel').children];
+    kids.forEach((el,i)=>el.animate(
+      [{opacity:0,transform:'translateY(26px)'},{opacity:1,transform:'none'}],
+      {duration:520,delay:160+i*90,easing:E.expo,fill:'backwards'}));}
+
+  $('overlay').addEventListener('click',()=>{audio().resume();$('overlay').style.display='none';play();});
+  $('replay').addEventListener('click',()=>{audio().resume();play();});
+</script>
+</body>
+</html>

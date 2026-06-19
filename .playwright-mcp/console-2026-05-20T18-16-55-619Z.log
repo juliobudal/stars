@@ -1,5 +1,0 @@
-[     123ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:10302/vite/?token=b43d0y2tKq1M' failed: Error in connection establishment: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:10301/vite/@vite/client:744
-[     123ms] [ERROR] [vite] failed to connect to websocket (Error: WebSocket closed without opened.).  @ http://localhost:10301/vite/@vite/client:771
-[     123ms] Error: WebSocket closed without opened.
-    at WebSocket.<anonymous> (http://localhost:10301/vite/@vite/client:423:30)
-[     192ms] [INFO] [pwa] sw registered, scope: http://localhost:10301/ @ http://localhost:10301/vite/entrypoints/pwa.js:7

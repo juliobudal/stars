@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LittleStars · Propaganda 9:16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  /* ─── Tokens (espelham theme.css do app) ─── */
+  :root {
+    --primary: #58CC02;
+    --primary-2: #46A302;
+    --primary-soft: #DCFCE7;
+    --primary-glow: #86EFAC;
+    --star: #FFC800;
+    --star-2: #E0A800;
+    --star-soft: #FFF4DA;
+    --star-depth: #a37100;
+    --sky: #1CB0F6;
+    --sky-soft: #DDF4FF;
+    --sky-dark: #1899D6;
+    --lilac: #CE82FF;
+    --rose: #F472B6;
+    --coral: #FF9600;
+    --surface: #ffffff;
+    --bg-soft: #DCFCE7;
+    --text: #4B4B4B;
+    --text-muted: oklch(0.56 0.005 131);
+    --hairline: oklch(0.92 0.004 131);
+    --reward-text: #9E6200;
+    --shadow-hero: 0 2px 0 rgba(0,0,0,0.05); /* único whisper passivo permitido (DESIGN §4) */
+    --font: 'Nunito', system-ui, sans-serif;
+    --r-lg: 18px;
+    --r-xl: 24px;
+    --r-full: 999px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    background: #0e1410;
+    font-family: var(--font);
+    overflow: hidden;
+  }
+
+  /* Palco 9:16 escalado pra caber na viewport.
+     transform não muda a caixa de layout, então posicionamos via top/left
+     calculados em JS com origem no canto superior esquerdo. */
+  #fit {
+    position: absolute;
+    top: 0; left: 0;
+    width: 1080px;
+    height: 1920px;
+    transform-origin: top left;
+  }
+
+  .stage {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    border-radius: 0;
+    background:
+      radial-gradient(120% 80% at 50% 0%, #eafff0 0%, var(--bg-soft) 45%, #c7f7d6 100%);
+    font-family: var(--font);
+    color: var(--text);
+    user-select: none;
+  }
+
+  /* Bolhas decorativas de fundo */
+  .blob { position: absolute; border-radius: 50%; opacity: 0.5; filter: blur(2px); }
+  .blob.b1 { width: 280px; height: 280px; background: var(--primary-glow); top: -60px; left: -60px; }
+  .blob.b2 { width: 220px; height: 220px; background: var(--sky-soft); top: 240px; right: -70px; }
+  .blob.b3 { width: 260px; height: 260px; background: var(--star-soft); bottom: 120px; left: -90px; }
+  .blob.b4 { width: 180px; height: 180px; background: #FCE7F3; bottom: 380px; right: -40px; }
+
+  .scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 72px;
+    padding: 90px 80px;
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+  }
+  .scene.active { opacity: 1; }
+
+  /* ─── Mascote (estrela real — mesma forma do icons/star.svg, com carinha) ─── */
+  .mascot {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    display: grid;
+    place-items: center;
+  }
+  .mascot svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(0 12px 0 var(--star-depth));
+  }
+
+  /* ─── Tipografia ─── */
+  .logo {
+    font-weight: 900;
+    font-size: 96px;
+    letter-spacing: -2px;
+    color: var(--primary-2);
+    line-height: 1;
+  }
+  .logo .star-dot { color: var(--star); }
+  .tagline {
+    font-weight: 800;
+    font-size: 44px;
+    color: var(--text);
+  }
+  .headline {
+    font-weight: 900;
+    font-size: 64px;
+    line-height: 1.05;
+    color: var(--primary-2);
+  }
+  .sub {
+    font-weight: 700;
+    font-size: 38px;
+    color: var(--text-muted);
+  }
+
+  /* ─── Card de tarefa ─── */
+  .card {
+    width: 760px;
+    background: var(--surface);
+    border: 2px solid var(--hairline);
+    border-radius: var(--r-xl);
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    box-shadow: var(--shadow-hero); /* quase plano: superfície passiva focal só ganha o whisper de herói */
+  }
+  .card .task-row { display: flex; align-items: center; gap: 28px; }
+  .card .task-emoji {
+    width: 110px; height: 110px;
+    display: grid; place-items: center;
+    font-size: 64px;
+    background: var(--sky-soft);
+    border-radius: 22px;
+    flex: none;
+  }
+  .card .task-text { text-align: left; }
+  .card .task-title { font-weight: 800; font-size: 48px; color: var(--text); }
+  .card .task-meta {
+    font-weight: 800; font-size: 34px;
+    color: var(--reward-text);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .btn {
+    width: 100%;
+    padding: 32px;
+    font-family: var(--font);
+    font-weight: 800;
+    font-size: 44px;
+    color: #fff;
+    background: var(--primary);
+    border: none;
+    border-radius: var(--r-lg);
+    box-shadow: 0 8px 0 var(--primary-2);
+    cursor: pointer;
+    transition: transform .12s, box-shadow .12s;
+  }
+  .btn.pressed { transform: translateY(6px); box-shadow: 0 2px 0 var(--primary-2); }
+  .btn.done { background: var(--primary-2); }
+
+  /* Selo de concluído sobre o card */
+  .stamp {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%) scale(0) rotate(-18deg);
+    font-weight: 900;
+    font-size: 60px;
+    color: var(--primary-2);
+    background: #fff;
+    border: 6px solid var(--primary);
+    border-radius: var(--r-full);
+    padding: 22px 54px;
+    box-shadow: 0 4px 0 rgba(0,0,0,.08); /* selo de celebração one-off: hard-shadow leve */
+    opacity: 0;
+  }
+  .stamp.show { animation: stampIn .5s cubic-bezier(.2,1.4,.4,1) forwards; }
+  @keyframes stampIn {
+    0% { transform: translate(-50%,-50%) scale(0) rotate(-18deg); opacity: 0; }
+    60% { transform: translate(-50%,-50%) scale(1.15) rotate(-8deg); opacity: 1; }
+    100% { transform: translate(-50%,-50%) scale(1) rotate(-8deg); opacity: 1; }
+  }
+
+  /* ─── Contador de estrelas (HUD) ─── */
+  .balance {
+    position: absolute;
+    top: 70px; right: 80px;
+    display: flex; align-items: center; gap: 16px;
+    background: #fff;
+    border: 2px solid var(--hairline);
+    border-radius: var(--r-full);
+    padding: 18px 36px;
+    font-weight: 900; font-size: 52px;
+    color: var(--reward-text); /* contraste AA pra numeral de pontos sobre branco (DESIGN §2) */
+    box-shadow: var(--shadow-hero);
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: opacity .4s, transform .4s;
+    z-index: 30;
+  }
+  .balance.show { opacity: 1; transform: translateY(0); }
+  .balance .ico { font-size: 48px; }
+  .balance.bump { animation: bump .35s ease; }
+  @keyframes bump { 0%,100%{transform:scale(1)} 40%{transform:scale(1.22)} }
+
+  /* Estrela voadora */
+  .fly-star {
+    position: absolute;
+    font-size: 90px;
+    z-index: 40;
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  /* ─── Recompensa ─── */
+  .reward-card {
+    width: 720px;
+    background: #fff;
+    border: 2px solid var(--hairline);
+    border-radius: var(--r-xl);
+    padding: 56px;
+    display: flex; flex-direction: column; align-items: center; gap: 28px;
+    box-shadow: var(--shadow-hero); /* superfície focal passiva: whisper, não 0 8px 0 */
+    position: relative;
+  }
+  .reward-card .rico {
+    font-size: 150px;
+    filter: drop-shadow(0 10px 0 rgba(0,0,0,.08));
+  }
+  .reward-card .rtitle { font-weight: 900; font-size: 56px; color: var(--text); }
+  .reward-card .rcost {
+    font-weight: 800; font-size: 40px; color: var(--reward-text);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .unlock-badge {
+    position: absolute; top: -34px;
+    background: var(--primary);
+    color: #fff; font-weight: 900; font-size: 36px;
+    padding: 16px 40px; border-radius: var(--r-full);
+    box-shadow: 0 6px 0 var(--primary-2);
+    opacity: 0; transform: scale(.4);
+  }
+  .unlock-badge.show { animation: stampIn .5s cubic-bezier(.2,1.4,.4,1) forwards; }
+
+  /* ─── Animações utilitárias ─── */
+  .pop-in { animation: popIn .55s cubic-bezier(.2,1.4,.4,1) both; }
+  @keyframes popIn {
+    0% { transform: scale(.5) translateY(40px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+  }
+  .rise-in { animation: riseIn .6s cubic-bezier(.2,1,.3,1) both; }
+  @keyframes riseIn {
+    0% { transform: translateY(60px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  .float { animation: float 2.4s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-22px)} }
+  .wiggle { animation: wiggle 2.6s ease-in-out infinite; }
+  @keyframes wiggle { 0%,100%{transform:rotate(-3deg)} 50%{transform:rotate(3deg)} }
+  .jump { animation: jump .6s ease-in-out infinite; }
+  @keyframes jump {
+    0%,100%{transform:translateY(0) scale(1)}
+    30%{transform:translateY(-70px) scale(1.05)}
+    50%{transform:translateY(0) scale(.96,1.04)}
+  }
+
+  /* Confete */
+  #confetti { position: absolute; inset: 0; z-index: 50; pointer-events: none; }
+  .confetti-piece {
+    position: absolute;
+    width: 26px; height: 36px;
+    top: -50px;
+    border-radius: 4px;
+    will-change: transform, opacity;
+  }
+
+  /* CTA final */
+  .cta {
+    margin-top: 10px;
+    background: var(--star);
+    color: #4B3a00;
+    font-weight: 900; font-size: 46px;
+    padding: 30px 70px;
+    border-radius: var(--r-full);
+    box-shadow: 0 8px 0 var(--star-depth);
+  }
+
+  /* ─── Overlay de play / controles ─── */
+  #overlay {
+    position: absolute; inset: 0;
+    background: rgba(14,20,16,.55);
+    display: grid; place-items: center;
+    z-index: 100;
+    cursor: pointer;
+    border: none; margin: 0; padding: 0;
+    font: inherit; color: inherit; text-align: center;
+  }
+  #overlay:focus-visible { outline: 6px solid var(--primary-glow); outline-offset: -10px; }
+  #overlay .play-btn {
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 10px 0 var(--primary-2);
+    display: grid; place-items: center;
+    transition: transform .15s;
+  }
+  #overlay:hover .play-btn { transform: scale(1.06); }
+  #overlay .play-btn::after {
+    content: '';
+    width: 0; height: 0;
+    border-left: 70px solid #fff;
+    border-top: 44px solid transparent;
+    border-bottom: 44px solid transparent;
+    margin-left: 18px;
+  }
+  #overlay .hint {
+    position: absolute; bottom: 120px;
+    color: #fff; font-weight: 700; font-size: 36px;
+    text-align: center; width: 80%;
+  }
+
+  #replay {
+    position: absolute; bottom: 60px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 90;
+    background: #fff; color: var(--text);
+    border: 2px solid var(--hairline);
+    border-radius: var(--r-full);
+    padding: 22px 50px;
+    font-family: var(--font); font-weight: 800; font-size: 34px;
+    box-shadow: 0 6px 0 rgba(0,0,0,.08);
+    cursor: pointer;
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s;
+  }
+  #replay.show { opacity: 1; pointer-events: auto; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .float, .wiggle, .jump { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div id="fit">
+    <div class="stage" id="stage">
+      <!-- Símbolo do mascote: estrela do icons/star.svg, dourada, com carinha -->
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+          <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FFE08A"/>
+            <stop offset="45%" stop-color="#FFC800"/>
+            <stop offset="100%" stop-color="#E0A800"/>
+          </linearGradient>
+          <symbol id="mascot-star" viewBox="0 0 24 24">
+            <path d="M11.4806 3.4987C11.6728 3.03673 12.3272 3.03673 12.5193 3.4987L14.6453 8.61016C14.7263 8.80492 14.9095 8.93799 15.1197 8.95485L20.638 9.39724C21.1367 9.43722 21.339 10.0596 20.959 10.3851L16.7546 13.9866C16.5945 14.1238 16.5245 14.3391 16.5734 14.5443L17.8579 19.9292C17.974 20.4159 17.4446 20.8005 17.0176 20.5397L12.2932 17.6541C12.1132 17.5441 11.8868 17.5441 11.7068 17.6541L6.98238 20.5397C6.55539 20.8005 6.02594 20.4159 6.14203 19.9292L7.42652 14.5443C7.47546 14.3391 7.4055 14.1238 7.24531 13.9866L3.04099 10.3851C2.661 10.0596 2.86323 9.43722 3.36197 9.39724L8.88022 8.95485C9.09048 8.93799 9.27363 8.80492 9.35464 8.61016L11.4806 3.4987Z"
+                  fill="url(#goldGrad)" stroke="#D99B00" stroke-width="0.5" stroke-linejoin="round"/>
+            <!-- gloss -->
+            <ellipse cx="9.7" cy="8.4" rx="1.5" ry="0.85" fill="#FFFFFF" opacity="0.35" transform="rotate(-25 9.7 8.4)"/>
+            <!-- bochechas -->
+            <ellipse cx="8.9" cy="13" rx="0.9" ry="0.55" fill="#FF8FA3" opacity="0.55"/>
+            <ellipse cx="15.1" cy="13" rx="0.9" ry="0.55" fill="#FF8FA3" opacity="0.55"/>
+            <!-- olhos -->
+            <circle cx="10.3" cy="11.4" r="1.05" fill="#3A2E00"/>
+            <circle cx="13.7" cy="11.4" r="1.05" fill="#3A2E00"/>
+            <circle cx="10.0" cy="11.05" r="0.34" fill="#FFFFFF"/>
+            <circle cx="13.4" cy="11.05" r="0.34" fill="#FFFFFF"/>
+            <!-- sorriso -->
+            <path d="M10.4 13.1 Q12 15 13.6 13.1" fill="none" stroke="#3A2E00" stroke-width="0.7" stroke-linecap="round"/>
+          </symbol>
+        </defs>
+      </svg>
+      <div class="blobs" aria-hidden="true">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+        <div class="blob b4"></div>
+      </div>
+
+      <!-- HUD saldo de estrelas -->
+      <div class="balance" id="balance"><span class="ico" aria-hidden="true">⭐</span><span id="balanceNum">0</span></div>
+
+      <!-- Cena 1: Abertura / logo -->
+      <section class="scene" id="s1">
+        <div class="mascot float" id="mascot1">
+          <svg viewBox="0 0 24 24"><use href="#mascot-star"/></svg>
+        </div>
+        <div class="logo">Little<span class="star-dot">Stars</span></div>
+        <div class="tagline">Onde fazer tarefas vira aventura ✨</div>
+      </section>
+
+      <!-- Cena 2: Faz a tarefa -->
+      <section class="scene" id="s2">
+        <div class="headline">Sua missão de hoje</div>
+        <div class="card" id="taskCard">
+          <div class="task-row">
+            <div class="task-emoji">🛏️</div>
+            <div class="task-text">
+              <div class="task-title">Arrumar a cama</div>
+              <div class="task-meta">⭐ +10 estrelas</div>
+            </div>
+          </div>
+          <button class="btn" id="doneBtn">Concluir!</button>
+          <div class="stamp" id="stamp">Feito! ✓</div>
+        </div>
+      </section>
+
+      <!-- Cena 3: Ganha estrelas (reaproveita HUD) -->
+      <section class="scene" id="s3">
+        <div class="mascot wiggle" id="mascot3" style="width:260px;height:260px">
+          <svg viewBox="0 0 24 24"><use href="#mascot-star"/></svg>
+        </div>
+        <div class="headline">+10 estrelas! 🎉</div>
+        <div class="sub">Cada tarefa te aproxima do prêmio</div>
+      </section>
+
+      <!-- Cena 4: Troca por recompensa -->
+      <section class="scene" id="s4">
+        <div class="headline">Troque por recompensas</div>
+        <div class="reward-card" id="rewardCard">
+          <div class="unlock-badge" id="unlockBadge">Desbloqueado! 🔓</div>
+          <div class="rico">🍦</div>
+          <div class="rtitle">Sorvete especial</div>
+          <div class="rcost">⭐ 10 estrelas</div>
+        </div>
+      </section>
+
+      <!-- Cena 5: Comemoração + CTA -->
+      <section class="scene" id="s5">
+        <div class="mascot jump" id="mascot5">
+          <svg viewBox="0 0 24 24"><use href="#mascot-star"/></svg>
+        </div>
+        <div class="logo">Little<span class="star-dot">Stars</span></div>
+        <div class="sub">Baixe e comece a brilhar hoje</div>
+        <div class="cta">Quero jogar! 🚀</div>
+      </section>
+
+      <div id="confetti" aria-hidden="true"></div>
+
+      <!-- Overlay de play -->
+      <button id="overlay" type="button" aria-label="Reproduzir a propaganda do LittleStars com som">
+        <span class="play-btn" aria-hidden="true"></span>
+        <span class="hint">Toque para reproduzir com som 🔊<br/>(grave a tela pra exportar o vídeo)</span>
+      </button>
+
+      <button id="replay" type="button" aria-label="Repetir a propaganda">↺ Repetir</button>
+    </div>
+  </div>
+
+<script>
+  // ─── Fit-to-viewport (mantém 9:16) ───
+  const fit = document.getElementById('fit');
+  function resize() {
+    const s = Math.min(window.innerWidth / 1080, window.innerHeight / 1920);
+    const x = (window.innerWidth - 1080 * s) / 2;
+    const y = (window.innerHeight - 1920 * s) / 2;
+    fit.style.transform = `translate(${x}px, ${y}px) scale(${s})`;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // ─── Web Audio: sons sintetizados ───
+  let actx;
+  function audio() {
+    if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
+    return actx;
+  }
+  function tone(freq, start, dur, type = 'sine', gain = 0.25) {
+    const a = audio();
+    const t = a.currentTime + start;
+    const osc = a.createOscillator();
+    const g = a.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, t);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(gain, t + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    osc.connect(g); g.connect(a.destination);
+    osc.start(t); osc.stop(t + dur + 0.05);
+  }
+  function noise(start, dur, gain = 0.18) {
+    const a = audio();
+    const t = a.currentTime + start;
+    const buf = a.createBuffer(1, a.sampleRate * dur, a.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
+    const src = a.createBufferSource(); src.buffer = buf;
+    const g = a.createGain(); g.gain.value = gain;
+    const f = a.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = 1200;
+    src.connect(f); f.connect(g); g.connect(a.destination);
+    src.start(t);
+  }
+  const SFX = {
+    whoosh() { noise(0, 0.4, 0.12); tone(180, 0, 0.4, 'sine', 0.08); },
+    pop() { tone(520, 0, 0.12, 'triangle', 0.3); tone(780, 0.04, 0.12, 'triangle', 0.2); },
+    ding() { tone(880, 0, 0.5, 'sine', 0.3); tone(1320, 0.02, 0.5, 'sine', 0.18); },
+    coin() { tone(1180, 0, 0.08, 'square', 0.12); tone(1560, 0.05, 0.12, 'square', 0.1); },
+    unlock() { tone(440, 0, 0.18, 'triangle', 0.25); tone(660, 0.12, 0.22, 'triangle', 0.22); tone(880, 0.26, 0.3, 'triangle', 0.2); },
+    fanfare() {
+      const notes = [523, 659, 784, 1047];
+      notes.forEach((f, i) => tone(f, i * 0.12, 0.5, 'sawtooth', 0.16));
+      tone(1047, 0.5, 0.7, 'sine', 0.22);
+      noise(0.5, 0.5, 0.1);
+    },
+    sparkle() { [1568, 1976, 2349].forEach((f, i) => tone(f, i * 0.05, 0.25, 'sine', 0.1)); }
+  };
+
+  // ─── Helpers ───
+  const $ = (id) => document.getElementById(id);
+  // Respeita prefers-reduced-motion: corta floreios (confete, estrela voadora,
+  // contagem animada) e mantém só as trocas de cena legíveis.
+  const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const scenes = ['s1','s2','s3','s4','s5'].map($);
+  let timers = [];
+  function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+  function clearAll() { timers.forEach(clearTimeout); timers = []; }
+  function show(scene) {
+    scenes.forEach(s => s.classList.remove('active'));
+    scene.classList.add('active');
+  }
+  function reflow(el) { void el.offsetWidth; }
+  function animateClass(el, cls) { el.classList.remove(cls); reflow(el); el.classList.add(cls); }
+
+  // Contador de saldo
+  function countTo(target, ms) {
+    const el = $('balanceNum'), bal = $('balance');
+    if (REDUCE) { el.textContent = target; SFX.coin(); return; }
+    const start = parseInt(el.textContent) || 0;
+    const steps = 12, step = ms / steps;
+    for (let i = 1; i <= steps; i++) {
+      at(step * i, () => {
+        el.textContent = Math.round(start + (target - start) * (i / steps));
+        bal.classList.remove('bump'); reflow(bal); bal.classList.add('bump');
+        if (i % 3 === 0) SFX.coin();
+      });
+    }
+  }
+
+  // Estrela voando do card até o HUD de saldo
+  function flyStar() {
+    if (REDUCE) { SFX.sparkle(); return; }
+    const star = document.createElement('div');
+    star.className = 'fly-star'; star.textContent = '⭐';
+    $('stage').appendChild(star);
+    const bal = $('balance').getBoundingClientRect();
+    const stage = $('stage').getBoundingClientRect();
+    const scale = stage.width / 1080;
+    const ex = (bal.left - stage.left) / scale + 30;
+    const ey = (bal.top - stage.top) / scale + 20;
+    star.style.left = '480px'; star.style.top = '900px';
+    star.animate([
+      { transform: 'translate(0,0) scale(.4)', opacity: 0 },
+      { transform: 'translate(0,-60px) scale(1.4)', opacity: 1, offset: .25 },
+      { transform: `translate(${ex - 510}px, ${ey - 900}px) scale(.6)`, opacity: 1, offset: .9 },
+      { transform: `translate(${ex - 510}px, ${ey - 900}px) scale(0)`, opacity: 0 }
+    ], { duration: 900, easing: 'cubic-bezier(.5,0,.4,1)' });
+    SFX.sparkle();
+    at(900, () => star.remove());
+  }
+
+  // Confete
+  const COLORS = ['#58CC02','#FFC800','#1CB0F6','#F472B6','#CE82FF','#FF9600'];
+  function confettiBurst(count = 80) {
+    if (REDUCE) return;
+    const wrap = $('confetti');
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'confetti-piece';
+      p.style.left = Math.random() * 1080 + 'px';
+      p.style.background = COLORS[i % COLORS.length];
+      p.style.borderRadius = Math.random() > .5 ? '50%' : '4px';
+      wrap.appendChild(p);
+      const dx = (Math.random() - 0.5) * 300;
+      const rot = (Math.random() - 0.5) * 1080;
+      const dur = 2200 + Math.random() * 1400;
+      p.animate([
+        { transform: `translate(0,0) rotate(0deg)`, opacity: 1 },
+        { transform: `translate(${dx}px, 2050px) rotate(${rot}deg)`, opacity: 1, offset: .85 },
+        { transform: `translate(${dx}px, 2050px) rotate(${rot}deg)`, opacity: 0 }
+      ], { duration: dur, easing: 'cubic-bezier(.3,.6,.5,1)' });
+      setTimeout(() => p.remove(), dur);
+    }
+  }
+
+  // ─── Timeline (~15s) ───
+  function play() {
+    clearAll();
+    $('balanceNum').textContent = '0';
+    $('balance').classList.remove('show');
+    $('stamp').classList.remove('show');
+    $('doneBtn').classList.remove('pressed','done');
+    $('doneBtn').textContent = 'Concluir!';
+    $('unlockBadge').classList.remove('show');
+    $('replay').classList.remove('show');
+    $('confetti').innerHTML = '';
+
+    // — Cena 1: abertura (0–2.8s)
+    show($('s1'));
+    animateClass($('mascot1'), 'pop-in');
+    SFX.whoosh();
+    at(450, () => SFX.sparkle());
+    at(1200, () => SFX.ding());
+
+    // — Cena 2: tarefa (2.8–6.4s)
+    at(2800, () => {
+      show($('s2'));
+      animateClass($('taskCard'), 'rise-in');
+      SFX.whoosh();
+    });
+    at(4600, () => { $('doneBtn').classList.add('pressed'); SFX.pop(); });
+    at(4900, () => {
+      $('doneBtn').classList.remove('pressed');
+      $('doneBtn').classList.add('done');
+      $('doneBtn').textContent = 'Concluído ✓';
+      $('stamp').classList.add('show');
+      SFX.ding();
+    });
+
+    // — Cena 3: ganha estrelas (6.4–9.6s)
+    at(6400, () => {
+      show($('s3'));
+      animateClass($('mascot3'), 'pop-in');
+      $('balance').classList.add('show');
+      SFX.sparkle();
+    });
+    at(6900, () => { flyStar(); countTo(10, 900); });
+
+    // — Cena 4: recompensa (9.6–12.6s)
+    at(9600, () => {
+      show($('s4'));
+      animateClass($('rewardCard'), 'pop-in');
+      SFX.whoosh();
+    });
+    at(10400, () => { $('unlockBadge').classList.add('show'); SFX.unlock(); });
+    at(11000, () => confettiBurst(40));
+
+    // — Cena 5: comemoração + CTA (12.6–15.5s)
+    at(12600, () => {
+      show($('s5'));
+      animateClass($('mascot5'), 'pop-in');
+      confettiBurst(90);
+      SFX.fanfare();
+    });
+    at(13400, () => SFX.sparkle());
+    at(15300, () => $('replay').classList.add('show'));
+  }
+
+  // ─── Controles ───
+  $('overlay').addEventListener('click', () => {
+    audio().resume();
+    $('overlay').style.display = 'none';
+    play();
+  });
+  $('replay').addEventListener('click', () => { audio().resume(); play(); });
+</script>
+</body>
+</html>

@@ -47,7 +47,7 @@
             <div class="flex items-stretch sticky top-0 z-2" style="background: var(--surface);">
               <div class="shrink-0 flex items-end px-4 pt-4 pb-2"
                    style="width: 240px; position: sticky; left: 0; background: var(--surface); z-index: 3; box-shadow: 1px 0 0 var(--surface-muted);">
-                <span class="text-[11px] font-extrabold uppercase tracking-[0.5px]" style="color: var(--text-soft);">Missão</span>
+                <span class="text-[11px] font-extrabold uppercase tracking-[0.5px]" style="color: var(--text-muted);">Missão</span>
               </div>
               <% @kids.each do |kid| %>
                 <% pal = Ui::SmileyAvatar::Component.palette_vars(kid.color) %>
@@ -66,7 +66,7 @@
         </div>
       </div>
 
-      <p class="text-[12px] font-bold text-center mt-4" style="color: var(--text-soft);">
+      <p class="text-[12px] font-bold text-center mt-4" style="color: var(--text-muted);">
         Uma missão sem nenhuma marcação fica disponível para <strong style="color: var(--primary-2);">todas</strong> as crianças, inclusive as que entrarem depois.
       </p>
     </div>

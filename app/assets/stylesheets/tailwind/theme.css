@@ -140,7 +140,12 @@
 
   --text-dark: #4B4B4B;
   --text: #4B4B4B;
-  --text-muted: oklch(0.56 0.005 131);
+  /* Secondary text. Nudged one step darker (0.56 -> 0.545) so it clears WCAG
+     1.4.3 (>=4.5:1) on the tinted --bg-deep canvas, not just on white cards. */
+  --text-muted: oklch(0.545 0.005 131);
+  /* DECORATIVE / non-text only: dot separators, idle/placeholder icon strokes.
+     At ~2.3:1 it fails 1.4.3 for readable copy by design — never put words on
+     --text-soft; use --text-muted for any label or sentence. */
   --text-soft: oklch(0.74 0.004 131);
 
   /* Shadows — "quase plano" pass. Depth is now reserved for INTERACTIVE
@@ -231,7 +236,7 @@
   --c-info-500: #1CB0F6;
   --c-info-600: #1899D6;
   --c-info-100: #DDF4FF;
-  --c-reward-text: #B36F00;
+  --c-reward-text: #9E6200; /* darkened from #B36F00 -> AA (>=4.5:1) on white and --star-soft at small (12px) sizes. Large star numerals keep --c-amber-dark. */
   --c-character-500: #CE82FF;
   --c-character-600: #A855E0;
   --c-streak: #FF9600;
@@ -311,7 +316,6 @@
 
   --animate-fade-in: fadeIn 0.15s ease-in-out;
   --animate-slide-down: slideDown 0.3s ease-in-out;
-  --animate-slide-left: slideLeft 0.3s ease-in-out;
   --animate-slide-up: slideUp 0.3s ease-in-out;
 }
 
@@ -496,9 +500,6 @@
 @utility shadow-btn-secondary        { box-shadow: 0 4px 0 oklch(0.88 0.004 131); }
 @utility shadow-btn-secondary-hover  { box-shadow: 0 5px 0 oklch(0.88 0.004 131); }
 @utility shadow-btn-secondary-active { box-shadow: 0 1px 0 oklch(0.88 0.004 131); }
-
-/* Active-tab depth shadow */
-@utility shadow-tab-active { box-shadow: 0 2px 0 var(--color-primary-depth); }
 
 /* ── Surface cards — Duolingo 3D depth ──
    Two utilities for the canonical "white card on hairline border with depth shadow"

@@ -1,2 +1,0 @@
-[     166ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:10301/:0
-[     281ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:10301/favicon.ico:0

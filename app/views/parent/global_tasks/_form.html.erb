@@ -72,7 +72,7 @@
         </div>
         <%= f.hidden_field :points, value: current_points, id: "global_task_points", data: { star_picker_target: "hidden", form_preview_field: "points" } %>
         <div class="flex justify-between items-center mt-3 gap-3">
-          <span class="text-[11px] font-bold" style="color: var(--text-soft);">Tarefa fácil</span>
+          <span class="text-[11px] font-bold" style="color: var(--text-muted);">Tarefa fácil</span>
           <div class="inline-flex items-center gap-1.5 rounded-[10px] border px-2 py-1"
                style="background: var(--star-soft); border-color: var(--star);">
             <%= render Ui::Icon::Component.new("star", size: 14, color: "var(--star)") %>
@@ -89,7 +89,7 @@
             <span class="text-[12px] font-extrabold" data-star-picker-target="readout"
                   style="color: var(--c-reward-text);"><%= "estrelinha".pluralize(current_points == 1 ? 1 : 2) %></span>
           </div>
-          <span class="text-[11px] font-bold" style="color: var(--text-soft);">Tarefa difícil</span>
+          <span class="text-[11px] font-bold" style="color: var(--text-muted);">Tarefa difícil</span>
         </div>
       </div>
     <% end %>
@@ -202,7 +202,7 @@
       <%= render Ui::FormSection::Component.new do %>
         <label class="block text-[12px] font-extrabold uppercase tracking-[0.5px] mb-1"
                style="color: var(--text-muted);">Para quem é essa missão?</label>
-        <p class="text-[11px] font-bold mb-3" style="color: var(--text-soft);">Selecione uma ou mais crianças. Deixe em branco para atribuir a todas.</p>
+        <p class="text-[11px] font-bold mb-3" style="color: var(--text-muted);">Selecione uma ou mais crianças. Deixe em branco para atribuir a todas.</p>
         <div class="flex flex-wrap gap-2.5" data-controller="selectable-group">
           <%= hidden_field_tag "global_task[assigned_profile_ids][]", "" %>
           <% kids.each do |kid|

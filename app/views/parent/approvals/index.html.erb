@@ -24,7 +24,7 @@
             ]
           ) %>
 
-      <div id="panel-missions" data-controller="bulk-select" class="flex flex-col gap-2.5">
+      <div id="panel-missions" role="tabpanel" aria-labelledby="tab-missions" data-controller="bulk-select" class="flex flex-col gap-2.5">
         <% if @profile_tasks.any? %>
           <% if @profile_tasks.size > 1 %>
             <%= render "bulk_bar",
@@ -63,7 +63,7 @@
         <% end %>
       </div>
 
-      <div id="panel-rewards" data-controller="bulk-select" class="flex flex-col gap-2.5 hidden">
+      <div id="panel-rewards" role="tabpanel" aria-labelledby="tab-rewards" data-controller="bulk-select" class="flex flex-col gap-2.5 hidden">
         <% if @redemptions.any? %>
           <% if @redemptions.size > 1 %>
             <%= render "bulk_bar",
