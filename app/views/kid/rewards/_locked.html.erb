@@ -7,7 +7,7 @@
     <h2 class="font-display text-[16px] font-extrabold m-0" style="color: var(--text-muted);">Continua juntando!</h2>
   </div>
 
-  <div class="grid grid-cols-2 gap-3 mb-6">
+  <div class="grid grid-cols-2 gap-4 mb-6">
     <% locked_rewards.each_with_index do |reward, i| %>
       <% icon_name = (reward.respond_to?(:icon) && reward.icon.presence) || reward.category&.icon.presence || "gift" %>
       <% pal = Ui::Tokens.color_palette_entry(reward.category&.color || "lilac") %>

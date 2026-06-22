@@ -9,7 +9,7 @@ module Ui
     class Component < ApplicationComponent
       TINTS = {
         primary: {
-          bg:        "linear-gradient(135deg, var(--primary-soft) 0%, var(--surface) 70%)",
+          bg:        "var(--primary-soft)",
           border:    "var(--primary)",
           shadow:    "var(--primary-2)",
           eyebrow:   "var(--primary)",
@@ -83,7 +83,7 @@ module Ui
         s = [ "display: block", "color: inherit", "text-decoration: none",
              "background: #{tint[:bg]}",
              "border-radius: 14px",
-             "padding: 12px 14px" ]
+             "padding: 16px 18px" ]
         s << (ghost ? "border: 1px dashed #{tint[:border]}" : "border: 1px solid #{tint[:border]}")
         s.join("; ")
       end

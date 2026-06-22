@@ -5,7 +5,7 @@
       background: white;
       border-radius: var(--r-xl);
       border: 1px solid var(--hairline);
-      padding: 14px;
+      padding: 18px;
       cursor: <%= status_locked? ? 'default' : 'pointer' %>;
       animation-delay: <%= @index * 0.04 %>s;
       opacity: <%= status_locked? ? 0.7 : 1 %>;
@@ -46,7 +46,7 @@
 <% elsif approved? %>
   <%# bubble · approved (line-through, primary check tile) %>
   <div
-    class="anim-card-enter flex items-center gap-3.5 px-4 py-3.5 w-full <%= @options[:class] %>"
+    class="anim-card-enter flex items-center gap-3.5 px-[18px] py-4 w-full <%= @options[:class] %>"
     style="
       background: var(--primary-soft);
       border: 1px solid var(--primary);
@@ -72,7 +72,7 @@
 <% elsif rejected? %>
   <%# bubble · rejected (line-through, danger x tile) %>
   <div
-    class="anim-card-enter flex items-center gap-3.5 px-4 py-3.5 w-full <%= @options[:class] %>"
+    class="anim-card-enter flex items-center gap-3.5 px-[18px] py-4 w-full <%= @options[:class] %>"
     style="
       background: var(--c-rose-soft);
       border: 1px solid var(--danger);
@@ -96,7 +96,7 @@
 <% else %>
   <%# bubble style · pending / waiting (category-tinted) %>
   <div
-    class="anim-card-enter anim-press w-full text-left flex items-center gap-3 sm:gap-4 px-4 py-3.5 sm:px-5 sm:py-[18px] <%= @options[:class] %>"
+    class="anim-card-enter anim-press w-full text-left flex items-center gap-3.5 sm:gap-4 px-[18px] py-4 sm:px-5 sm:py-5 <%= @options[:class] %>"
     style="
       background: var(--surface);
       border-radius: var(--r-xl);

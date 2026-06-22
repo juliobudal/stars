@@ -1,6 +1,6 @@
 <%# Mobile sticky header · hidden on desktop via CSS %>
 <div data-controller="sidebar-toggle">
-<div class="flex lg:hidden items-center justify-between px-4 h-[64px] bg-white border-b border-hairline sticky top-0 z-40"
+<div class="flex lg:hidden items-center justify-between px-4 h-[64px] bg-surface border-b border-hairline sticky top-0 z-40"
      style="padding-top: env(safe-area-inset-top); height: calc(64px + env(safe-area-inset-top));">
   <div class="flex items-center gap-2.5">
     <%= render Ui::LogoMark::Component.new(size: 20) %>
@@ -9,13 +9,14 @@
   <button type="button" id="sidebar-toggle"
           data-action="click->sidebar-toggle#open"
           aria-label="Abrir menu" aria-expanded="false" aria-controls="parent-sidebar"
-          class="flex items-center justify-center w-11 h-11 rounded-[10px] bg-muted border-none cursor-pointer text-foreground">
+          class="flex items-center justify-center w-11 h-11 rounded-[12px] bg-surface border border-hairline cursor-pointer text-foreground transition-colors hover:bg-muted">
     <%= render Ui::Icon::Component.new("list", size: 22) %>
   </button>
 </div>
 
-<%# Sidebar %>
-<nav class="flex flex-col fixed left-0 top-0 bottom-0 w-[220px] bg-surface border-r border-hairline z-50 -translate-x-full lg:translate-x-0"
+<%# Sidebar (mobile drawer + desktop rail). Active state uses sky — the parent
+    nav accent (DESIGN.md §2) — so "where I am" never reads as a green action. %>
+<nav class="flex flex-col fixed left-0 top-0 bottom-0 w-[224px] bg-surface border-r border-hairline z-50 -translate-x-full lg:translate-x-0"
      id="parent-sidebar"
      data-sidebar-toggle-target="sidebar"
      aria-label="Principal"
@@ -34,7 +35,7 @@
   </div>
 
   <%# Nav items %>
-  <div class="flex flex-col gap-1 px-[14px] flex-1 overflow-y-auto">
+  <div class="flex flex-col gap-0.5 px-[14px] flex-1 overflow-y-auto">
     <%
       items = [
         { icon: "house", path: parent_root_path, label: "Início" },
@@ -51,11 +52,15 @@
       <% active = current_page?(item[:path]) %>
       <% is_approvals = item[:path] == parent_approvals_path %>
       <%= link_to item[:path],
-          class: "flex items-center gap-3 px-3 py-2.5 rounded-[14px] transition-colors font-extrabold text-[14px] border #{active ? 'bg-accent text-accent-foreground border-primary' : 'text-muted-foreground border-transparent hover:bg-muted hover:text-foreground'}",
+          class: "flex items-center gap-3 px-2.5 py-2 rounded-[12px] transition-colors font-extrabold text-[14px] no-underline #{active ? '' : 'hover:bg-muted'}",
           title: item[:label],
+          style: ("background: var(--c-info-100);" if active),
           aria: { current: active ? "page" : nil } do %>
-        <%= render Ui::Icon::Component.new(item[:icon], size: 18, color: "currentColor") %>
-        <span><%= item[:label] %></span>
+        <span class="grid place-items-center w-8 h-8 rounded-[9px] shrink-0 transition-colors"
+              style="<%= "background: var(--c-info-500);" if active %>">
+          <%= render Ui::Icon::Component.new(item[:icon], size: 18, color: active ? "white" : "var(--text-muted)") %>
+        </span>
+        <span style="color: <%= active ? "var(--text)" : "var(--text-muted)" %>;"><%= item[:label] %></span>
         <% if is_approvals %>
           <%= render "shared/parent_approvals_badge", count: pending_approvals_count, variant: :sidebar %>
         <% elsif item[:badge] %>
@@ -68,7 +73,7 @@
   <%# Footer: profile + switch profile %>
   <div class="px-[14px] pb-5 pt-3">
     <%= link_to edit_parent_profile_path(current_profile),
-          class: "flex items-center gap-2.5 p-3 rounded-[14px] border no-underline hover:scale-[1.01] transition-transform",
+          class: "flex items-center gap-2.5 p-3 rounded-[14px] border no-underline transition-colors hover:bg-muted",
           style: "background: var(--surface-muted); border-color: var(--hairline);",
           aria: { label: "Editar meu perfil" } do %>
       <%= render Ui::SmileyAvatar::Component.new(kid: current_profile, size: 34, decorative: true) %>
@@ -92,11 +97,13 @@
   </div>
 </nav>
 
-<%# Sidebar backdrop (mobile) %>
-<div id="sidebar-backdrop" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden"
+<%# Sidebar backdrop (mobile). Sits above the bottom bar (z-40) so the open
+    drawer reads as one clean overlay, not stacked on top of the tab bar. %>
+<div id="sidebar-backdrop" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[45] hidden"
      data-sidebar-toggle-target="backdrop"
      data-action="click->sidebar-toggle#close"></div>
 
+<%# Bottom tab bar (mobile). Active tab = soft-sky lozenge behind the icon. %>
 <div class="fixed bottom-0 left-0 right-0 bg-surface border-t border-hairline flex justify-around items-stretch px-2 z-40 lg:hidden"
      style="padding-bottom: env(safe-area-inset-bottom); min-height: calc(72px + env(safe-area-inset-bottom));">
   <%
@@ -114,10 +121,12 @@
           class: "flex flex-col items-center justify-center gap-1 flex-1 py-2 relative min-h-[44px] no-underline",
           title: item[:label],
           aria: { current: active ? "page" : nil, label: item[:label] } do %>
-      <span class="flex flex-col items-center gap-0.5 px-2 py-1 rounded-[12px] border transition-colors #{active ? 'bg-accent text-accent-foreground border-primary' : 'text-muted-foreground border-transparent'}">
-        <%= render Ui::Icon::Component.new(item[:icon], size: 22, color: "currentColor") %>
-        <span class="text-[10px] font-extrabold tracking-[0.5px] uppercase whitespace-nowrap"><%= item[:label] %></span>
+      <span class="grid place-items-center w-12 h-7 rounded-full transition-colors"
+            style="<%= "background: var(--c-info-100);" if active %>">
+        <%= render Ui::Icon::Component.new(item[:icon], size: 21, color: active ? "var(--c-info-600)" : "var(--text-muted)") %>
       </span>
+      <span class="text-[10px] font-extrabold tracking-[0.2px] whitespace-nowrap"
+            style="color: <%= active ? "var(--text)" : "var(--text-muted)" %>;"><%= item[:label] %></span>
       <% if is_approvals %>
         <%= render "shared/parent_approvals_badge", count: pending_approvals_count, variant: :mobile %>
       <% elsif item[:badge] %>
@@ -131,12 +140,11 @@
           data-action="click->sidebar-toggle#open"
           aria-label="Mais opções" aria-expanded="false" aria-controls="parent-sidebar"
           class="flex flex-col items-center justify-center gap-1 flex-1 py-2 min-h-[44px] bg-transparent border-0 cursor-pointer">
-    <span class="flex flex-col items-center gap-0.5 px-2 py-1 rounded-[12px] border border-transparent text-muted-foreground transition-colors">
-      <%= render Ui::Icon::Component.new("list", size: 22, color: "currentColor") %>
-      <span class="text-[10px] font-extrabold tracking-[0.5px] uppercase whitespace-nowrap">Mais</span>
+    <span class="grid place-items-center w-12 h-7 rounded-full">
+      <%= render Ui::Icon::Component.new("list", size: 21, color: "var(--text-muted)") %>
     </span>
+    <span class="text-[10px] font-extrabold tracking-[0.2px] whitespace-nowrap" style="color: var(--text-muted);">Mais</span>
   </button>
 </div>
 
 </div><%# end data-controller="sidebar-toggle" %>
-

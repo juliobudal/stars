@@ -6,13 +6,8 @@ module Academy
   # name, and an age band ("kid" by default). The host builds one at the
   # boundary (see Kid::Academy::BaseController#build_learner); the module never
   # reaches back into host models such as ProfileInterest::Catalog.
-  #
-  # Interest is a pure (key + label) pair resolved by the host before it
-  # crosses into the module.
-  Interest = Data.define(:key, :label) do
-    def to_s = label.to_s
-  end
-
+  # The companion value object Academy::Interest lives in its own file
+  # (academy/interest.rb) so Zeitwerk can autoload it independently.
   Learner = Data.define(:id, :display_name, :age_band, :timezone, :interests) do
     def kid?  = age_band == "kid"
     def top_interest = Array(interests).first

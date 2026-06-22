@@ -36,7 +36,7 @@
               <div class="flex items-center gap-1.5 flex-wrap">
                 <span class="text-[10px] font-extrabold uppercase tracking-[0.5px] rounded-[6px] px-2 py-0.5"
                       style="color: <%= tint_fg %>; background: <%= tint_soft %>;"><%= cm[:label] %></span>
-                <span class="text-[11px] font-bold" style="color: var(--text-muted);"><%= fm[:label] %> · <%= tpl[:points] %>★</span>
+                <span class="inline-flex items-center gap-1 text-[11px] font-bold" style="color: var(--text-muted);"><%= fm[:label] %> · <%= tpl[:points] %><%= render Ui::Icon::Component.new(:star, size: 11, color: "var(--star)") %></span>
               </div>
             </div>
           </div>

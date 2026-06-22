@@ -28,7 +28,7 @@
 
   <%# Mission list (above-the-fold) ── %>
   <% pending_visible, pending_extra = @profile_tasks.first(5), @profile_tasks.drop(5) %>
-  <div class="flex flex-col gap-3 mb-4 relative z-2">
+  <div class="flex flex-col gap-4 mb-5 relative z-2">
 
     <%# Completed (approved today) %>
     <div id="panel-completed" class="contents">
@@ -57,7 +57,7 @@
             <%= render Ui::Icon::Component.new(:plus, size: 14, color: "currentColor") %>
             Ver mais <%= pluralize(pending_extra.size, "missão", plural: "missões") %>
           </summary>
-          <div class="flex flex-col gap-3 mt-3">
+          <div class="flex flex-col gap-4 mt-4">
             <% pending_extra.each_with_index do |profile_task, i| %>
               <%= render "kid/dashboard/pending_card", profile_task: profile_task, index: i + pending_visible.size %>
             <% end %>
@@ -97,8 +97,8 @@
        "Conta pra gente o que você curte!" %>
 
   <div class="mb-6 z-2 relative shrink-0">
-    <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase mb-2 px-1" style="color: var(--text-muted);">Explorar</div>
-    <div class="flex flex-col gap-3">
+    <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase mb-3 px-1" style="color: var(--text-muted);">Explorar</div>
+    <div class="flex flex-col gap-4">
       <%= render Ui::ShortcutCard::Component.new(
             url: kid_academy_root_path,
             tint: :primary,
@@ -123,8 +123,8 @@
   <% family_goals = Array(@family_goal && @family_goal[:goals]) %>
   <% if family_goals.any? || @upcoming_missions.any? %>
     <div class="z-2 relative shrink-0">
-      <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase mb-2 px-1" style="color: var(--text-muted);">Em equipe &amp; em breve</div>
-      <div class="flex flex-col gap-3">
+      <div class="font-display text-[11px] font-extrabold tracking-[1px] uppercase mb-3 px-1" style="color: var(--text-muted);">Em equipe &amp; em breve</div>
+      <div class="flex flex-col gap-4">
         <%= render "shared/family_goal_widget", goal: @family_goal, viewer: current_profile, limit: 1 %>
         <% if @upcoming_missions.any? %>
           <%= render "kid/dashboard/upcoming_missions_widget", upcoming: @upcoming_missions %>

@@ -8,7 +8,7 @@
      so live balance updates keep working. The greeting partial (its own id) is
      swapped in place by complete.turbo_stream; everything else here is static. %>
 <section class="anim-pop-in mb-6 z-2 shrink-0 relative" aria-label="Seu progresso"
-         style="background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--r-featured); box-shadow: var(--shadow-card-heavy); padding: 18px;">
+         style="background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--r-featured); box-shadow: var(--shadow-card-heavy); padding: 20px;">
 
   <%# ── Identity row: avatar · status line · switch ── %>
   <div class="flex items-center gap-3 mb-4">
@@ -71,7 +71,7 @@
     </div>
 
     <div class="relative overflow-hidden" style="height: 12px; background: var(--hairline); border-radius: 999px;">
-      <div class="anim-progress h-full" style="width: <%= level_pct %>%; background: var(--primary); border-radius: 999px;"></div>
+      <div class="anim-progress anim-bar-grow h-full" style="width: <%= level_pct %>%; background: var(--primary); border-radius: 999px;"></div>
     </div>
   </div>
 </section>

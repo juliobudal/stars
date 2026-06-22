@@ -168,6 +168,17 @@
     transition: width var(--dur-long) var(--ease-spring-soft);
   }
 
+  /* Determinate bar fill that grows in from 0 on first paint. The element's
+     inline `width: N%` is the animation's implicit end state, so the fill
+     sweeps 0 → N% once. Pairs with the `transition: width` on the same fill
+     (which handles later live updates). Contained in an overflow-hidden track. */
+  .anim-bar-grow {
+    animation: fxBarGrow var(--dur-long) var(--ease-spring-soft) both;
+  }
+  @keyframes fxBarGrow {
+    from { width: 0; }
+  }
+
   /* ── Effects catalog (opt-in) ── */
 
   .anim-count-up {
@@ -312,6 +323,7 @@
     .page-enter,
     .page-enter-right,
     .anim-progress,
+    .anim-bar-grow,
     .anim-count-up,
     .anim-streak-flame,
     .anim-reward-unlock,

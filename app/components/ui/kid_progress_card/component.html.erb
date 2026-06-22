@@ -1,5 +1,5 @@
 <div data-palette="<%= helpers.palette_for(kid) %>">
-  <div class="bg-surface rounded-[16px] border border-hairline p-4 flex items-center gap-4">
+  <div class="bg-surface rounded-[16px] border border-hairline p-5 flex items-center gap-4">
 
     <div class="relative shrink-0">
       <div class="w-16 h-16 rounded-full grid place-items-center"
@@ -21,7 +21,7 @@
       </div>
 
       <div class="h-[14px] rounded-[8px] overflow-hidden mb-3 relative" style="background: var(--hairline);">
-        <div class="h-full rounded-[8px]" style="width: <%= xp_progress %>%; background: <%= palette[:fill] %>; box-shadow: var(--shadow-progress-inset);"></div>
+        <div class="anim-bar-grow h-full rounded-[8px]" style="width: <%= xp_progress %>%; background: <%= palette[:fill] %>; box-shadow: var(--shadow-progress-inset);"></div>
       </div>
 
       <div class="flex flex-wrap gap-x-[18px] gap-y-1 text-[13px] font-extrabold">

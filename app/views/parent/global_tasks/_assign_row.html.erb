@@ -34,7 +34,7 @@
         <% end %>
       </div>
       <div class="flex items-center gap-1.5 mt-0.5">
-        <span class="text-[11px] font-bold" style="color: var(--text-muted);"><%= fm[:label] %> · <%= mission.points %>★</span>
+        <span class="inline-flex items-center gap-1 text-[11px] font-bold" style="color: var(--text-muted);"><%= fm[:label] %> · <%= mission.points %><%= render Ui::Icon::Component.new(:star, size: 11, color: "var(--star)") %></span>
         <% if all_assigned %>
           <span data-all-pill class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-[5px]"
                 style="background: var(--primary-soft); color: var(--primary-2);">todas</span>

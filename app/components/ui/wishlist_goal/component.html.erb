@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(@profile, :wishlist) do %>
   <% if pinned? %>
-    <div class="bg-surface rounded-[16px] border border-hairline p-4 mb-5"
+    <div class="bg-surface rounded-[16px] border border-hairline p-5 mb-5"
          data-testid="wishlist-goal-filled">
       <div class="flex items-center gap-3 mb-3">
         <div class="rounded-[12px] p-2"
@@ -19,7 +19,7 @@
 
       <div class="wishlist-goal__bar relative overflow-hidden"
            style="height: 18px; background: var(--hairline); border-radius: 10px;">
-        <div class="wishlist-goal__fill h-full"
+        <div class="wishlist-goal__fill anim-bar-grow h-full"
              style="width: <%= progress_pct %>%; background: var(--primary); border-radius: 10px;">
         </div>
       </div>

@@ -33,7 +33,7 @@
       <% end %>
     </div>
     <div class="flex items-center gap-1.5 mt-0.5">
-      <span class="text-[11px] font-bold" style="color: var(--text-muted);"><%= fm[:label] %> · <%= mission.points %>★</span>
+      <span class="inline-flex items-center gap-1 text-[11px] font-bold" style="color: var(--text-muted);"><%= fm[:label] %> · <%= mission.points %><%= render Ui::Icon::Component.new(:star, size: 11, color: "var(--star)") %></span>
       <% if saved %>
         <span data-saved-chip class="anim-pop-in inline-flex items-center gap-0.5 text-[11px] font-extrabold" style="color: var(--text);">
           <%= render Ui::Icon::Component.new("check", size: 12, color: "var(--primary)") %> salvo

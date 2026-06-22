@@ -23,12 +23,12 @@ RSpec.describe Ui::PinModal::Component, type: :component do
 
   it "shows the error message when one is provided" do
     render_inline(described_class.new(profile: profile, error: "PIN incorreto"))
-    expect(page).to have_text("PIN incorreto")
+    expect(page).to have_css('p[role="alert"]', text: "PIN incorreto")
   end
 
   it "does not show an error block when none is provided" do
     render_inline(described_class.new(profile: profile))
-    expect(page).not_to have_css(".text-destructive")
+    expect(page).not_to have_css('p[role="alert"]')
   end
 
   it "submits to profile_session_path with the profile id" do

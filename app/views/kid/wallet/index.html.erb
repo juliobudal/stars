@@ -12,7 +12,7 @@
   <% end %>
 
   <%# Week Summary Cards (3-col) %>
-  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5 z-10 relative">
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5 z-10 relative">
     <%= render Ui::StatMetric::Component.new(value: @week_earned,   label: "Conquistado", tint: "mint",    prefix: "+") %>
     <%= render Ui::StatMetric::Component.new(value: @week_spent,    label: "Gasto",       tint: "rose",    prefix: "−") %>
     <%= render Ui::StatMetric::Component.new(value: @week_missions, label: "Missões",     tint: "primary") %>
