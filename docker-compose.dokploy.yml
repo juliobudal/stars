@@ -1,5 +1,11 @@
-# Dokploy deployment for LittleStars (Rails 8 monolith)
-# Reuses existing dokploy-network + Traefik + Let's Encrypt on app.iacomcafe.com.
+# Dokploy production deployment for LittleStars (Rails 8 monolith).
+# 2 services: db (Postgres 16) + app (Rails, Solid Queue embedded in Puma).
+# Reuses the external dokploy-network.
+#
+# TLS termina no Cloudflare Tunnel (na borda); o Traefik do Dokploy serve HTTP
+# no origin (sem Let's Encrypt — LE não validaria num IP de LAN). Secrets vêm da
+# Environment do Dokploy via interpolação ${VAR} (NÃO usar env_file: — o clone do
+# Dokploy não tem o .env.production gitignored).
 
 services:
   littlestars-app:
@@ -9,6 +15,11 @@ services:
     image: littlestars-app:latest
     container_name: littlestars-app
     restart: unless-stopped
+    # Migrations + seed automáticos no boot (não há passo manual pós-deploy no
+    # modelo Dokploy-nativo): db:prepare cria/migra os 4 bancos (primary +
+    # cache/queue/cable), db:seed é idempotente ("skip if families exist") e
+    # popula catálogo + Academy. exec → Puma liga em 0.0.0.0:3000 (config/puma.rb).
+    command: ["bash", "-c", "./bin/rails db:prepare && ./bin/rails db:seed && exec ./bin/rails server"]
     deploy:
       resources:
         limits:
@@ -38,32 +49,17 @@ services:
       - ACADEMY_LLM_TEMPERATURE=${ACADEMY_LLM_TEMPERATURE}
       - ACADEMY_LLM_MAX_TOKENS=${ACADEMY_LLM_MAX_TOKENS}
     depends_on:
-      - littlestars-db
+      littlestars-db:
+        condition: service_healthy
     networks:
       - dokploy-network
     labels:
+      # TLS termina no Cloudflare Tunnel; Traefik serve HTTP no origin.
       - "traefik.enable=true"
       - "traefik.docker.network=dokploy-network"
-      # HTTP -> HTTPS redirect
-      - "traefik.http.middlewares.littlestars-redirect.redirectscheme.scheme=https"
-      - "traefik.http.middlewares.littlestars-redirect.redirectscheme.permanent=true"
-      - "traefik.http.routers.littlestars-http.rule=Host(`${DOMAIN_LITTLESTARS:-stars.iacomcafe.com}`)"
-      - "traefik.http.routers.littlestars-http.entrypoints=web"
-      - "traefik.http.routers.littlestars-http.middlewares=littlestars-redirect@docker"
-      # HTTPS
       - "traefik.http.routers.littlestars.rule=Host(`${DOMAIN_LITTLESTARS:-stars.iacomcafe.com}`)"
-      - "traefik.http.routers.littlestars.entrypoints=websecure"
-      - "traefik.http.routers.littlestars.tls=true"
-      - "traefik.http.routers.littlestars.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.littlestars.entrypoints=web"
       - "traefik.http.services.littlestars.loadbalancer.server.port=3000"
-      # Security headers
-      - "traefik.http.middlewares.littlestars-security.headers.frameDeny=true"
-      - "traefik.http.middlewares.littlestars-security.headers.contentTypeNosniff=true"
-      - "traefik.http.middlewares.littlestars-security.headers.browserXssFilter=true"
-      - "traefik.http.middlewares.littlestars-security.headers.forceSTSHeader=true"
-      - "traefik.http.middlewares.littlestars-security.headers.stsSeconds=31536000"
-      - "traefik.http.routers.littlestars.middlewares=littlestars-security@docker"
-      # Dokploy
       - "dokploy.enabled=true"
       - "dokploy.name=littlestars-app"
       - "dokploy.type=app"
@@ -78,7 +74,13 @@ services:
       - POSTGRES_DB=littlestars_production
     volumes:
       - littlestars-db-data:/var/lib/postgresql/data
+      # Cria os bancos do Solid Queue/Cache/Cable no primeiro boot do volume.
       - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - dokploy-network
     labels:

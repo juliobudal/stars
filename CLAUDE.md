@@ -14,7 +14,7 @@ LittleStars — gamified family task manager with "star economy" for kids. Rails
 
 ## Stack
 
-Rails 8.1 · Ruby 3.3+ · PostgreSQL 16 · Vite + Propshaft · Tailwind 4 · Stimulus · Turbo · ViewComponent 4.7 · RSpec + FactoryBot + Capybara · Solid Queue/Cache/Cable · Kamal · OpenRouter (Academy chatbot only, via `Academy::Llm::Client`).
+Rails 8.1 · Ruby 3.3+ · PostgreSQL 16 · Vite + Propshaft · Tailwind 4 · Stimulus · Turbo · ViewComponent 4.7 · RSpec + FactoryBot + Capybara · Solid Queue/Cache/Cable · Dokploy (deploy) · OpenRouter (Academy chatbot only, via `Academy::Llm::Client`).
 
 Dev environment is Devcontainer/Docker Compose. Run commands inside `web` container.
 
@@ -34,7 +34,16 @@ Dev workflow is Docker Compose. Use `make` targets — they exec inside the `web
 - `make migrate` · `make seed` · `make db-reseed` · `make reset` — db ops
 - `make shell` — bash into web container · `make c` — rails console · `make shell-db` — psql
 - `make routes` · `make assets-build`
-- `make dokploy-deploy` / `dokploy-migrate` / `dokploy-logs` / `dokploy-status` / `dokploy-restart` / `dokploy-console` / `dokploy-db-reset` — production (Dokploy) wrappers
+- `make dokploy-deploy` / `dokploy-redeploy` / `dokploy-status` / `dokploy-logs SERVICE=littlestars-app` / `dokploy-deploy-logs` / `dokploy-stop` / `dokploy-start` / `dokploy-console` — production (falam com a API do Dokploy; vars em `.env.production`)
+
+## Deploy (produção)
+
+Dokploy-nativo no servidor `192.168.1.13` (homelab LAN). O Dokploy é um **Compose service** (projeto `guardian`) que clona o repo (`git@github.com:juliobudal/stars.git` @ `main` via deploy key SSH), builda `Dockerfile.production` e sobe `littlestars-app` + `littlestars-db` na `dokploy-network`. As `make dokploy-*` falam com a **API do Dokploy** (`DOKPLOY_URL`/`DOKPLOY_API_KEY`/`DOKPLOY_COMPOSE_ID` em `.env.production`) — não há mais rsync/SSH.
+
+- **Migrations + seed automáticos** no boot: o `command` do compose roda `bin/rails db:prepare && bin/rails db:seed && bin/rails server`. `db:seed` é idempotente. Os 3 bancos do Solid (cache/queue/cable) são criados por `db/init/00-create-solid-dbs.sh`.
+- **Secrets** entram via `environment: ${VAR}` no `docker-compose.dokploy.yml` (sem `env_file:` — o clone do Dokploy não tem o `.env.production`), interpolados da Environment salva no Dokploy. A app lê do `ENV`: `PROD_POSTGRES_PASSWORD`, `RAILS_MASTER_KEY`, `APP_HOST`, `SMTP_*`/`MAIL_FROM`, `OPENROUTER_API_KEY`, `ACADEMY_LLM_*`.
+- **TLS / domínio:** `stars.iacomcafe.com` é servido via **Cloudflare Tunnel** (TLS na borda); o Traefik do Dokploy serve **HTTP** no origin (sem Let's Encrypt — não validaria no IP de LAN). `production.rb` usa `assume_ssl` + `APP_HOST` no host authorization.
+- GitHub Actions (`.github/workflows/deploy.yml`) dispara o deploy via API no push pra `main` — só funciona se a API do Dokploy for alcançável pelo runner (tunnel público + secrets `DOKPLOY_*`); em LAN pura, use `make dokploy-deploy`. Tests/lint ficam no `ci.yml`. Console/reseed: terminal do painel Dokploy.
 
 ## Architecture
 

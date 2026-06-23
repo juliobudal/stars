@@ -16,8 +16,8 @@ RUN     := $(COMPOSE) run --rm web
         test rspec lint rubocop lint-js lint-motion brakeman audit ci \
         routes assets-build assets-clobber \
         clean config \
-        dokploy-deploy dokploy-migrate dokploy-seed dokploy-logs dokploy-status dokploy-restart dokploy-console \
-        dokploy-db-reset
+        dokploy-deploy dokploy-redeploy dokploy-status dokploy-logs dokploy-deploy-logs \
+        dokploy-stop dokploy-start dokploy-console dokploy-db-reset
 
 help:
 	@echo "LittleStars Makefile — common targets:"
@@ -226,123 +226,66 @@ config:
 clean:
 	$(COMPOSE) down -v --remove-orphans
 
-# Dokploy production deploy ----------------------------------------------------
-# Same SSH-based pattern as ../study-flix. Requires .env.production at repo root
-# (see .env.production.example). Deploys to app.iacomcafe.com via rsync + SSH.
+# Dokploy production deploy (API — servidor Dokploy nativo) --------------------
+# O deploy é gerenciado pelo Dokploy (Compose service "guardian"). Não há mais
+# rsync/SSH: o Dokploy clona o repo (git@github.com:juliobudal/stars.git @ main
+# via deploy key) e faz build no servidor. As targets abaixo falam com a API do
+# Dokploy usando DOKPLOY_URL / DOKPLOY_API_KEY / DOKPLOY_COMPOSE_ID (.env.production).
+# Migrations + seed rodam sozinhas no boot (compose command → db:prepare && db:seed).
 
 ifneq (,$(wildcard ./.env.production))
     include .env.production
     export
 endif
 
-SSH_CMD := ssh -o StrictHostKeyChecking=no
-ifneq ($(SSH_KEY_PATH),)
-    SSH_CMD += -i $(SSH_KEY_PATH)
-endif
-ifneq ($(DEPLOY_PORT),)
-    SSH_CMD += -p $(DEPLOY_PORT)
-else
-    DEPLOY_PORT := 22
-endif
+DOKPLOY_API := curl -fsS -H "x-api-key: $(DOKPLOY_API_KEY)" -H "Content-Type: application/json"
 
-DOKPLOY_COMPOSE := docker compose --env-file .env.production -f docker-compose.dokploy.yml
-
-dokploy-deploy:
-	@echo "→ deploying LittleStars to Dokploy server..."
-	@if [ -z "$(DEPLOY_HOST)" ] || [ -z "$(DEPLOY_USER)" ] || [ -z "$(DEPLOY_DIR)" ]; then \
-		echo "✗ DEPLOY_HOST, DEPLOY_USER, DEPLOY_DIR must be set in .env.production"; exit 1; \
+define _check_dokploy
+	@if [ -z "$(DOKPLOY_URL)" ] || [ -z "$(DOKPLOY_API_KEY)" ] || [ -z "$(DOKPLOY_COMPOSE_ID)" ]; then \
+		echo "✗ DOKPLOY_URL, DOKPLOY_API_KEY e DOKPLOY_COMPOSE_ID devem estar em .env.production"; exit 1; \
 	fi
-	@if [ ! -f .env.production ]; then \
-		echo "✗ .env.production not found — copy .env.production.example and fill"; exit 1; \
-	fi
-	@echo "→ syncing files..."
-	rsync -avz -e "ssh -p $(DEPLOY_PORT)" --progress --delete \
-		--exclude .git --exclude node_modules --exclude tmp --exclude log \
-		--exclude .planning --exclude .claude --exclude spec \
-		--exclude '.env' --exclude '.env.local' --exclude '.env.development' \
-		--exclude 'public/assets' --exclude 'public/vite' \
-		--exclude '*.png' --exclude '*.md' \
-		./ $(DEPLOY_USER)@$(DEPLOY_HOST):$(DEPLOY_DIR)/
-	@echo "→ building + recreating containers on server..."
-	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
-		$(DOKPLOY_COMPOSE) down --remove-orphans || true && \
-		docker rm -f littlestars-app littlestars-db 2>/dev/null || true && \
-		DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 $(DOKPLOY_COMPOSE) build --parallel && \
-		$(DOKPLOY_COMPOSE) up -d --force-recreate --remove-orphans"
-	@echo "→ waiting for /up health check..."
-	@$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) '\
-		for i in 1 2 3 4 5 6 7 8 9 10 11 12; do \
-			if docker exec littlestars-app curl -fsS http://127.0.0.1:3000/up > /dev/null 2>&1; then \
-				echo "✓ healthy on attempt $$i"; exit 0; \
-			fi; \
-			echo "  attempt $$i/12 — waiting 5s..."; sleep 5; \
-		done; \
-		echo "✗ health check failed — see make dokploy-logs"; exit 1'
-	@echo "→ running db:prepare (create + migrate + seed if empty)..."
-	@$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
-		$(DOKPLOY_COMPOSE) exec -T littlestars-app bin/rails db:prepare" || \
-		echo "⚠ db:prepare failed — run make dokploy-migrate manually"
-	@echo "✓ deployed → https://$${DOMAIN_LITTLESTARS:-stars.iacomcafe.com}"
+endef
 
-dokploy-migrate:
-	@echo "→ running migrations on Dokploy..."
-	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
-	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
-		$(DOKPLOY_COMPOSE) exec -T littlestars-app bin/rails db:migrate"
-	@echo "✓ migrations applied"
+dokploy-deploy: ## Dispara deploy no Dokploy (clone main + build + up)
+	$(call _check_dokploy)
+	@echo "→ disparando deploy no Dokploy..."
+	@$(DOKPLOY_API) -X POST "$(DOKPLOY_URL)/api/compose.deploy" \
+		-d '{"composeId":"$(DOKPLOY_COMPOSE_ID)","title":"make dokploy-deploy"}' && echo
+	@echo "✓ enfileirado — acompanhe: make dokploy-status / make dokploy-deploy-logs"
 
-dokploy-seed:
-	@echo "→ seeding production DB (SEED_FORCE=$(SEED_FORCE))..."
-	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
-	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
-		$(DOKPLOY_COMPOSE) exec -T -e SEED_FORCE=$(SEED_FORCE) littlestars-app bin/rails db:seed"
+dokploy-redeploy: ## Redeploy (rebuild) no Dokploy
+	$(call _check_dokploy)
+	@$(DOKPLOY_API) -X POST "$(DOKPLOY_URL)/api/compose.redeploy" \
+		-d '{"composeId":"$(DOKPLOY_COMPOSE_ID)","title":"make dokploy-redeploy"}' && echo
 
-dokploy-logs:
-	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
-	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
-		$(DOKPLOY_COMPOSE) logs -f --tail=100"
+dokploy-status: ## Status do compose no Dokploy
+	$(call _check_dokploy)
+	@$(DOKPLOY_API) "$(DOKPLOY_URL)/api/compose.one?composeId=$(DOKPLOY_COMPOSE_ID)" \
+		| python3 -c "import json,sys;d=json.load(sys.stdin);print('status:',d.get('composeStatus'),'| source:',d.get('sourceType'),'| branch:',d.get('customGitBranch'))"
 
-dokploy-status:
-	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
-	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
-		$(DOKPLOY_COMPOSE) ps && \
-		docker stats --no-stream littlestars-app littlestars-db || true"
+dokploy-logs: ## Logs de runtime (SERVICE=littlestars-app|littlestars-db, TAIL=100)
+	$(call _check_dokploy)
+	@$(DOKPLOY_API) "$(DOKPLOY_URL)/api/compose.readLogs?composeId=$(DOKPLOY_COMPOSE_ID)&containerId=$(or $(SERVICE),littlestars-app)&tail=$(or $(TAIL),100)"
 
-dokploy-restart:
-	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
-	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
-		$(DOKPLOY_COMPOSE) restart"
+dokploy-deploy-logs: ## Status/log do último deploy (build)
+	$(call _check_dokploy)
+	@$(DOKPLOY_API) "$(DOKPLOY_URL)/api/deployment.allByCompose?composeId=$(DOKPLOY_COMPOSE_ID)" \
+		| python3 -c "import json,sys;d=json.load(sys.stdin);x=d[0];print('último:',x.get('status'),'|',x.get('title'));print('log (via ssh):',x.get('logPath'))"
 
-dokploy-console:
-	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
-	$(SSH_CMD) -t $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
-		$(DOKPLOY_COMPOSE) exec littlestars-app bin/rails console"
+dokploy-stop: ## Para o compose no Dokploy
+	$(call _check_dokploy)
+	@$(DOKPLOY_API) -X POST "$(DOKPLOY_URL)/api/compose.stop" -d '{"composeId":"$(DOKPLOY_COMPOSE_ID)"}' && echo
 
-# DESTRUCTIVE: drops + recreates + migrates + seeds production DB. Wipes ALL data.
-# Requires explicit confirm: make dokploy-db-reset CONFIRM=RESET-PROD
-dokploy-db-reset:
-	@if [ -z "$(DEPLOY_HOST)" ]; then echo "✗ .env.production missing DEPLOY_HOST"; exit 1; fi
-	@if [ "$(CONFIRM)" != "RESET-PROD" ]; then \
-		echo ""; \
-		echo "⚠  DESTRUCTIVE: this will DROP the production database on $(DEPLOY_HOST)."; \
-		echo "   ALL families, profiles, tasks, rewards, activity logs will be lost."; \
-		echo ""; \
-		echo "   To proceed, re-run:"; \
-		echo "     make dokploy-db-reset CONFIRM=RESET-PROD"; \
-		echo ""; \
-		exit 1; \
-	fi
-	@echo "→ resetting production DB on $(DEPLOY_HOST)..."
-	@echo "→ stopping app to release connections..."
-	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
-		$(DOKPLOY_COMPOSE) stop littlestars-app"
-	@echo "→ drop + create + migrate + seed (DISABLE_DATABASE_ENVIRONMENT_CHECK=1)..."
-	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
-		$(DOKPLOY_COMPOSE) run --rm \
-			-e DISABLE_DATABASE_ENVIRONMENT_CHECK=1 \
-			-e RAILS_ENV=production \
-			littlestars-app bin/rails db:drop db:create db:migrate db:seed"
-	@echo "→ restarting app..."
-	$(SSH_CMD) $(DEPLOY_USER)@$(DEPLOY_HOST) "cd $(DEPLOY_DIR) && \
-		$(DOKPLOY_COMPOSE) start littlestars-app"
-	@echo "✓ production DB reset complete"
+dokploy-start: ## Sobe o compose no Dokploy
+	$(call _check_dokploy)
+	@$(DOKPLOY_API) -X POST "$(DOKPLOY_URL)/api/compose.start" -d '{"composeId":"$(DOKPLOY_COMPOSE_ID)"}' && echo
+
+# Migrations + seed rodam sozinhas no boot. Para reseed/console use o terminal
+# do painel Dokploy (Compose → littlestars-app → Terminal).
+dokploy-console: ## (use o terminal do painel Dokploy: littlestars-app → bin/rails console)
+	@echo "→ Abra o painel Dokploy → projeto guardian → littlestars-app → Terminal e rode: bin/rails console"
+	@echo "  $(DOKPLOY_URL)"
+
+dokploy-db-reset: ## DESTRUTIVO: faça pelo painel Dokploy (littlestars-db) ou Terminal do littlestars-app
+	@echo "⚠  Operação destrutiva. Faça pelo painel Dokploy (volume littlestars-db-data) ou"
+	@echo "   pelo Terminal do littlestars-app: bin/rails db:drop db:prepare db:seed"
