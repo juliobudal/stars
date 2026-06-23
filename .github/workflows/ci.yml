@@ -78,4 +78,7 @@ jobs:
         run: bin/brakeman --no-pager
 
       - name: Gem vulnerability audit
-        run: bin/bundler-audit --update
+        # Usa o advisory-db embutido no gem bundler-audit (0.9.x vendoriza o
+        # ruby-advisory-db) — sem `git clone` no runner, que era flaky e
+        # quebrava a CI. O binstub injeta --config config/bundler-audit.yml.
+        run: bin/bundler-audit check
